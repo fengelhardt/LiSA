@@ -40,7 +40,7 @@ class Lisa_ControlParameters: public  Lisa_Object{
 private:
 
   //@{
-  /// 6 separate lists to avoid type checking (searching is faster this way) 
+  /// separate list to avoid type checking (searching is faster this way) 
   Lisa_List<std::string> StringKeyList, IntKeyList, DoubleKeyList;
   Lisa_List<std::string> StringList;
   Lisa_List<long int> IntList;

@@ -9,7 +9,7 @@
 #include "../scheduling/mo_jo.hpp"
 #include "filentry.hpp"
 
-/// collection of all values which defines the instance of a problem
+/// collection of all values which define the instance of a problem
 /** @author Per Willenius, Thomas Tautenhahn
     @version 2.3pre3
   */

@@ -56,7 +56,7 @@ public:
 template<class T>
 class Lisa_List: public Lisa_Object{
 private:
-  /// position were at in the list
+  /// position we're at in the list
   int where;
   /// are we at a valid node ?
   bool where_ok;

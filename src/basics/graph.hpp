@@ -10,7 +10,7 @@
 
 /// flags indicating various possible connections between knots
 enum{NOT_POSSIBLE=-2
-    ,CRA /// backwards arc ;)
+    ,CRA /// backwards ARC ;)
     ,NO
     ,ARC
     ,EDGE};

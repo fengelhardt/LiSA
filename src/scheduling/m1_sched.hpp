@@ -38,7 +38,7 @@ public:
   /// consturctor
   /** construct Lisa_SingleMProblem with specified dimension 
   and a arbitrary param to construct start values */
-  Lisa_1Problem( Lisa_Values *Pin );
+  Lisa_1Problem(Lisa_Values* Pin);
   
   /// destructor
   ~Lisa_1Problem();
@@ -47,63 +47,96 @@ public:
 
 
 /// schedule for single machine problem,
-/** WARNING: the numeration is here beginning by 0 
+/** WARNING: the numeration is here beginning at 0 
     @see Lisa_1Problem
     @author Andreas Winkler
     @version 2.3pre3
 */
 class Lisa_1Schedule{
-public:  
+private: 
+
+  // objective value
+  TIMETYP  value;
+
+  /// successor for each operation 
+  Lisa_Vector<int> *JOsucc;
+  /// predecessor for each operation
+  Lisa_Vector<int> *JOpred;
+  /// head for each operation
+  Lisa_Vector<TIMETYP> * head;
+  /// tail for each operation
+  Lisa_Vector<TIMETYP> * tail;
+  /// compute heads/tails ?
+  bool  ComputeTails, ComputeHeads;
+  
+  /// internal flags
+  /** needs documentation */
+  int   sti, started;
+
+  //@{
+  /// operations on heads/tails
+  /** needs documentation */
+  int pushhead(int i, TIMETYP newhead);
+  int pushtail(int i, TIMETYP newtail);
+  int pullhead(int i);
+  int pulltail(int i);
+  //@}
+  
+public:
+  /// completion times for each operation
   Lisa_Vector<TIMETYP>    *Ci;
+  
   /// Pointer to the problem instance
   Lisa_1Problem *PP;
-  int tabu_pos, tabu_pos_to;
-  /// construct Lisa_1Schedule with specified problem datas
-  Lisa_1Schedule( Lisa_1Problem* );
+
+  /// constructor
+  /** create Lisa_1Schedule with specified problem data */
+  Lisa_1Schedule(Lisa_1Problem* PPi);
+  
+  /// destructor
   ~Lisa_1Schedule();
-  int GetJOsucc(int i) { return (*JOsucc)[i]; } 	
+  
+  /// get successor of specified operation
+  int GetJOsucc(int i) { return (*JOsucc)[i]; }
+  /// get predecessor of specified operation 	
   int GetJOpred(int i) { return (*JOpred)[i]; }
+  
+  /// returns head for a given oeration
   TIMETYP GetHead(int i) { return (*head)[i]; }
+  /// returns tail for a given operation
   TIMETYP GetTail(int i) { return (*tail)[i]; }
-  /** switch computation of heads/tails on or off for all 
-  following insert and exclude operations. ONE OF THE 
-  PARAMETERS HAS TO BE TRUE! */ 
-  void ComputeHeadsTails( bool, bool );
+
+  /// switch computation of heads/tails on or off 
+  /** for all following insert and exclude operations. ONE OF THE PARAMETERS 
+      HAS TO BE TRUE! */ 
+  void ComputeHeadsTails(bool heads, bool tails);
+  
   /// test whether operation belongs to schedule
-  bool exists( int );
-  /** insert(i,j) inserts job i after after job kon the machine, 
-  respectively, return value is OK, PERFEKT (if no other 
-  operation is moved) */
-  int insert( int, int );
+  bool exists(int i);
+  
+  /// insert(i,j) inserts job i after after job k on the machine
+  /** return value is OK, PERFEKT (if no other operation is moved) */
+  int insert(int i, int woi);
   /// exclude job from schedule
-  void exclude( int );
+  void exclude(int i);
   /// sets the specified objectiv function
-  int SetValue( int );
+  int SetValue(int ZF);
   /// returns the objective value
   TIMETYP  GetValue();
   /// shift( pos1, pos2 ) shifts job at pos1 to pos2
-  int shift( int, int );
+  int shift( int a, int b);
   /// returns the operation on the specified position
-  int get_sequ( int );
-  void operator = (Lisa_1Schedule &);
+  int get_sequ(int i);
+  ///assignment operator
+  void operator = (Lisa_1Schedule &other);
   /// the sequence of the jobs
   Lisa_Vector<int>  *sequ;
   /// determs the Ci from specified number to n
-  void get_Ci(int);
+  void get_Ci(int pos);
+  /// writes the current sequence to sequ
   void write_sequ();
   /// own print function for debugging
   void print(void);
-  private: TIMETYP  value;
-  Lisa_Vector<int> *JOsucc;
-  Lisa_Vector<int> *JOpred;
-  Lisa_Vector<TIMETYP> * head;
-  Lisa_Vector<TIMETYP> * tail;
-  bool  ComputeTails, ComputeHeads;
-  int   sti, started;
-  int pushhead( int, TIMETYP );
-  int pushtail( int, TIMETYP );
-  int pullhead( int );
-  int pulltail( int );
 };
 
 #endif

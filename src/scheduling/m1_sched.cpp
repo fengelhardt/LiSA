@@ -153,6 +153,8 @@ void  Lisa_1Schedule::ComputeHeadsTails(bool h, bool t)
       }
   }
 
+  //**************************************************************************
+
 void Lisa_1Schedule::get_Ci(int pos)
   {
     if ((pos<1) || (pos>PP->n))
@@ -492,8 +494,7 @@ void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
     if (PP->n!=other.PP->n)
       exit(7);
     PP=other.PP;
-    tabu_pos = other.tabu_pos;
-    tabu_pos_to = other.tabu_pos_to;
+    
     value = other.value;
     for (i=1; i<PP->n+1; i++)
        {
@@ -504,21 +505,20 @@ void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
 
 //**************************************************************************
 
-void Lisa_1Schedule::write_sequ()
+void Lisa_1Schedule::write_sequ(){
+  int i=1, succ=0;
+  sequ->fill(0);
+  while ( (*JOsucc)[succ] != 0 )
   {
-    int i=1, succ=0;
-    sequ->fill(0);
-    while ( (*JOsucc)[succ] != 0 )
-      {
-	(*sequ)[i] = (*JOsucc)[succ];
-	succ = (*JOsucc)[succ];
-	i += 1;
-      }
+    (*sequ)[i] = (*JOsucc)[succ];
+    succ = (*JOsucc)[succ];
+    i += 1;
   }
+}
 
 //**************************************************************************
 
-void Lisa_1Schedule::print(void)
+void Lisa_1Schedule::print()
   {
     cout << "\nvalue= "<< value;
     cout << "\nsequ="<< *sequ; 

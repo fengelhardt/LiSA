@@ -25,15 +25,12 @@ const int ANNOTE=40*LINE;
 /// maximal number of problems per annote item.
 const int MAX_PRBLMS=40;
 
-//@{
-/// a constant
-  
-const int NP_HARD=-1;
-const int STR_NP_HARD=-2;
-const int PS_POLYN=1;
-const int POLYN=2;
-const int OPEN=0;
 
+///hardness of problems
+enum{STR_NP_HARD=-2,NP_HARD,OPEN,PS_POLYN,POLYN};
+
+//@{
+/// flag for missing entry
 const int NO_AUTHOR=-1;
 const int NO_ANNOTE=-2;
 //@}
