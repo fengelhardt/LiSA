@@ -20,8 +20,9 @@
 /// IO-Handler for Lisa Native Data Model
 class Lisa_NativeDataHandler : public Lisa_DataHandler {
   
- protected:		
+ public:		
   static std::string getName() {return "lisa_native";}
+ protected:
   virtual bool write_to_stream(const Lisa_Schedule& S, std::string tag, std::ostream & out);
   virtual bool write_to_stream(const Lisa_Values& V,   std::string tag, std::ostream & out);
   virtual bool write_to_stream(const Lisa_Graph& G,    std::string tag, std::ostream & out);

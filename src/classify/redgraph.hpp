@@ -89,7 +89,7 @@ class Lisa_RedGraph
   /// Obtain the reduction trees for a given pair of problems for each property graph.
   static void getReductions(const Lisa_ProblemType& source,
 			    const Lisa_ProblemType& target,
-			    const Lisa_ReductionTree* [TUPEL_INDEX] rts);
+			    const Lisa_ReductionTree* rts[TUPEL_INDEX]);
 		
   friend class Lisa_ReductionTree;
 		
