@@ -1,13 +1,13 @@
 OBJECTS=\
-	../../../compiled/partition.o \
-	../../../compiled/global.o \
-	../../../compiled/except.o \
-	../../../compiled/matrix.o \
-	../../../compiled/pair.o \
-	../../../compiled/list.o \
-	../../../compiled/ctrlpara.o \
-	../../../compiled/lisa_str.o \
-	../../../compiled/ptype.o \
-	../../../compiled/mo.o \
-	../../../compiled/lvalues.o \
-	../../../compiled/schedule.o
+	../../../obj/partition.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/list.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lisa_str.o \
+	../../../obj/ptype.o \
+	../../../obj/mo.o \
+	../../../obj/lvalues.o \
+	../../../obj/schedule.o

@@ -1,5 +1,5 @@
 <GENERAL>
-Name= partition-module
+Name= Partition Alg. (Research)
 Type= constructive
 Call= partition
 Code= external
