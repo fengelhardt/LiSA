@@ -350,6 +350,7 @@ int main(int argc, char *argv[]){
    // run all the algorithms .. first one should be constructive, the others 
    // can be iterative to improve the solution or contructive to create a new
    // solution ...
+   TIMETYP old_objective = MAXTIME;
    Lisa_List<Lisa_ScheduleNode> SchedList;
    for(int j=0;j<numberalgorithms;j++){
     
@@ -360,7 +361,12 @@ int main(int argc, char *argv[]){
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
     std::cout << "Objective after algorithm " << j+1 << ": "
-              << os.GetValue() << std::endl;
+              << os.GetValue();
+    if(old_objective > os.GetValue()) std::cout << " +";
+    std::cout << std::endl;
+    
+    old_objective = os.GetValue();
+    
     /*
     out_file << "************************************************************"
              << "****************" << std::endl << std::endl
