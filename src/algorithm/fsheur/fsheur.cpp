@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
      {
        myjsschedule->insert(myOrder[0]+1,j,SOURCE) ;
      }
-   cout << "objective= " << 100*(n+m-1) << endl;
+   cout << "OBJECTIVE= " << 100*(n+m-1) << endl;
    myjsschedule->SetValue(CMAX);
 
    // i is the number of jobs, which are already inserted
@@ -257,7 +257,7 @@ int main(int argc, char *argv[])
 	 {
 	   myjsschedule -> insert(myOrder[i]+1,j,bestpos);
 	 }
-       cout << "objective= " << min  << endl;
+       cout << "OBJECTIVE= " << min  << endl;
      }      
        
        Lisa_Schedule * out_schedule = new Lisa_Schedule(my_values->get_n(),
@@ -322,7 +322,7 @@ int main(int argc, char *argv[])
      {
        schedule_3->insert(myOrder[0]+1,j,SOURCE) ;
      }
-   cout << "objective= " << 100*(n+m-1) << endl;
+   cout << "OBJECTIVE= " << 100*(n+m-1) << endl;
    // The (i+1)-th  job (with number myOrder[i]+1) is inserted:
    for (i=1;i<n;i++)
      {
@@ -362,7 +362,7 @@ int main(int argc, char *argv[])
 	 {
 	   schedule_3 -> insert(myOrder[i]+1,j,bestpos); 
 	 }
-       cout << "objective= " << min  << endl;
+       cout << "OBJECTIVE= " << min  << endl;
      } //endfor i                                               
            
         

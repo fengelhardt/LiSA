@@ -33,7 +33,7 @@ void Lisa_GenericBb::count_steps()
  {
    steps++;
    if ((steps % 10000) == 1000)
-      cout << "objective= " << upper_bound << endl;
+      cout << "OBJECTIVE= " << upper_bound << endl;
  }    
 
 // WARNING! The following two functions have to be replaced for Windoofs!

@@ -154,14 +154,14 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
   else tocheck = pow(2,num)-1;
   double step = tocheck/400;
 
-  cout << "objective= 1 " << count << "/" << tocheck << endl;
+  cout << "OBJECTIVE= 1 " << count << "/" << tocheck << endl;
 
   bool irre = 1;
   for(;;){ 
 
     if(oldcount+step<count){
       oldcount = count;
-      cout << "objective= 1 " << count << "/" << tocheck << endl;
+      cout << "OBJECTIVE= 1 " << count << "/" << tocheck << endl;
     }
     count++;
 

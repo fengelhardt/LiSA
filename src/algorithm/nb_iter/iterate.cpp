@@ -222,7 +222,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
  	  test = NB->prepare_move(search_type);
 	  NB->set_objective( objective_type, ORIG_SOLUTION );
 	  if (!(steps%steps_per_output_line))
-	    cout << "steps= " << steps << " objective= " 
+	    cout << "steps= " << steps << " OBJECTIVE= " 
 	  	 << NB->get_objective_value(ORIG_SOLUTION) 
 	  	 << " best= " << best_value << endl;
 	  if (test==OK)
@@ -336,7 +336,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
 		     {
 		       steps--; 
 		       if (!(steps%steps_per_output_line))
-		       	 cout << "steps= " << steps << " objective= " 
+		       	 cout << "steps= " << steps << " OBJECTIVE= " 
 		              << NB->get_objective_value( ORIG_SOLUTION )
 		              << " best= " << best_value << endl;
 		       non_move = max_non_move;
@@ -357,7 +357,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
 			   non_move = max_non_move;
 			   steps--;
 			   if (!(steps%steps_per_output_line))
-			     cout << "steps= " << steps << " objective= " 
+			     cout << "steps= " << steps << " OBJECTIVE= " 
 				  << NB->get_objective_value( ORIG_SOLUTION )
 				  << " best= " << best_value << endl;
 			 }
@@ -375,7 +375,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
 	       non_move = max_non_move;
 	       steps--;
 	       if (!(steps%steps_per_output_line))
-		 cout << "steps= " << steps << " objective= " 
+		 cout << "steps= " << steps << " OBJECTIVE= " 
 		      << NB->get_objective_value( ORIG_SOLUTION )
 		      << " best= " << best_value << endl;
 	     }

@@ -106,14 +106,14 @@ proc algo_event {fid file name_of_algo} {
 	if {[winfo exists .ext_alg_graph]} {
 	    .ext_alg_graph.fra25.lab20 config -text $line
 	    scan $line "%*s  %*s %s %d" entryname ext_algo(objective)
-	    if {$entryname!="objective="} { 
+	    if {$entryname!="OBJECTIVE="} { 
 		scan $line "%s %d" entryname ext_algo(objective)
 	    }
 	    if {$entryname=="PID="} {
 		# puts "pid=$ext_algo(objective)"
 		set lsa_status(pid)  $ext_algo(objective)
 	    }
-	    if {$entryname=="objective="} {
+	    if {$entryname=="OBJECTIVE="} {
 		set ext_algo(objective) "$ext_algo(objective).0"
 		if {$ext_algo(xpos)==0} { 
 		    if {$ext_algo(objective)>0} {

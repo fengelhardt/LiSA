@@ -278,7 +278,7 @@ void Heuristic_Schedule (int problem_n, int problem_m )
 
      UpperBound = C_max;
      //printf("Upper Bound = %4d\n",C_max);
-     cout << "objective= " << C_max << endl;
+     cout << "OBJECTIVE= " << C_max << endl;
      for(i = 1; i <= NumOfOperations; ++i) CurrentBest[i] = Selection[i];
      fp = fopen("output.dat","a");
      fprintf(fp,"\nUpper bound %d after %d search tree nodes\n",

@@ -210,7 +210,7 @@ int main(int argc, char *argv[]){
 
    const Lisa_Vector<int> *I_matched;
    
-   cout << "objective= " << 100*mx << endl;
+   cout << "OBJECTIVE= " << 100*mx << endl;
         
    Lisa_Matching* matching;
    
@@ -241,7 +241,7 @@ int main(int argc, char *argv[]){
        matching->set_all_edges(op_rel);
      }// if
      
-     cout << "objective= " << my_heads->get_max() << endl;
+     cout << "OBJECTIVE= " << my_heads->get_max() << endl;
      
    } // for
    

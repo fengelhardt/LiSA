@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
   
   x_bound += y_bound;
 
-  cout << "objective= "<< x_bound << endl; 
+  cout << "OBJECTIVE= "<< x_bound << endl; 
 
   //create the insertion order
   for (int i=0; i < os_problem->n; i++)
@@ -201,7 +201,7 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
   //iterate over all operations
   for(int op = 1;op < length; op++){
     //make outpu to the progress window
-    cout << "objective= "<< objective; 
+    cout << "OBJECTIVE= "<< objective; 
     cout << " ready " << 100*op / length << "%" << endl;
     //the expanded schedule-list
     KList *children = new KList(beam_width); 
