@@ -42,13 +42,13 @@ Tcl_Interp *interp;
 
 int main(int argc, char *argv[]) {
   if(argc < 2){
-      cerr << "Syntax: " << argv[0] << " [config file] " << endl;
+      cerr << "Usage: " << argv[0] << " [config file] " << endl;
       return -1;
   }
   
   ifstream Pref(argv[1]);
   if (! Pref){
-    cerr << "Could not open file: '" << argv[1] << "'. Exiting." << endl;
+    cerr << "Could not open config file: '" << argv[1] << "'. Exiting." << endl;
     return -1;
   }
     
@@ -83,7 +83,9 @@ int main(int argc, char *argv[]) {
     }
     else cerr << "No Startfile: '" << G_Preferences.get_string("STARTFILE") << "' found." << cerr;
   }
+  
   Tk_myMain( argc, argv );
+  
   delete G_Schedule;
   delete G_XSchedule;
   delete G_ScheduleList;
