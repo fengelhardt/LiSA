@@ -5,8 +5,8 @@
 
 //**************************************************************************
 
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 
 #include <string>
 #include <iostream>
@@ -29,8 +29,8 @@ int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
 
-const char* algin = "auto_alg.in";
-const char* algout = "auto_alg.out";
+const char* algin = "auto_alg.in.xml";
+const char* algout = "auto_alg.out.xml";
 
 //**************************************************************************
 
@@ -344,33 +344,11 @@ int main(int argc, char *argv[]){
    //need those two to calculate objective
    Lisa_OsProblem op(&val);
    Lisa_OsSchedule os(&op);
-     
-   //open output file, write generated problem + comments
-   std::ofstream out_file(((std::string)argv[1]+"."+fstr(i+1)+".lsa").c_str());
-   if(!out_file){
-     G_ExceptionList.lthrow((std::string)"Could not open '"+argv[1]+"."+
-                            fstr(i+1)+".lsa"+"' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
-     exit(-1);
-   }
-   
-   out_file 
-   << "This is problem number " << i+1 << " created from the following initial "
-   << "values:" << std::endl
-   << pt << std::endl
-   << cp << std::endl  
-   << "Generated problem instance:" << std::endl
-   << val << std::endl
-   << "The sum of all processing times is: " << sum(val.PT) << std::endl
-   << std::endl
-   << "Now follows a list of schedules for this problem, each preceded by the" 
-   << std::endl << "algorithm and parameters that were used to generate it. "
-   << "The first algorithm" << std::endl << "was called without an initial "
-   << "schedule, while the following algorithms get" << std::endl << "the "
-   << "previous schedule as input." << std::endl << std::endl;
-   
+           
    // run all the algorithms .. first one should be constructive, the others 
    // can be iterative to improve the solution or contructive to create a new
-   // solution ... 
+   // solution ...
+   Lisa_List<Lisa_ScheduleNode> SchedList;
    for(int j=0;j<numberalgorithms;j++){
     
     writeAlgInput(pt,cps[j],val,sched);
@@ -379,16 +357,49 @@ int main(int argc, char *argv[]){
     
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
-    
+    /*
     out_file << "************************************************************"
              << "****************" << std::endl << std::endl
              << "Objective of this schedule: "
              << os.GetValue() << std::endl << std::endl
              << cps[j] << sched  << std::endl ;
-
+    */
+    SchedList.append(Lisa_ScheduleNode(&sched));
    }
    
+   //open output file, write generated problem + comments
+   std::string out_file_name = (std::string)argv[1]+"."+fstr(i+1)+".xml";
+   std::ofstream out_file(out_file_name.c_str());
+   if(!out_file){
+     G_ExceptionList.lthrow("Could not open '"+out_file_name+"' for writing.",
+                            Lisa_ExceptionList::FILE_NOT_FOUND);
+     exit(-1);
+   }
    out_file.close();
+   
+   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+   xmlOutput << pt << val << SchedList;
+   xmlOutput.write(out_file_name);
+   
+   std::ofstream out_file1(out_file_name.c_str(),std::ios::out|std::ios::app);
+   if(!out_file1){
+     G_ExceptionList.lthrow("Could not open '"+out_file_name+"' for appending.",
+                            Lisa_ExceptionList::FILE_NOT_FOUND);
+     exit(-1);
+   }
+   
+   out_file1 
+   << "<!--" << std::endl
+   << "This is problem number " << i+1 << " created from the following "
+   << "initial values:" << std::endl
+   << pt << std::endl
+   << cp << std::endl  
+   << "The sum of all processing times is: " << sum(val.PT) << std::endl
+   << "-->";
+   
+   out_file1.close();
+   
+   
  }
 
  delete[] cps;
