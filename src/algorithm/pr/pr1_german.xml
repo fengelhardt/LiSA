@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="LAPT-Regel" type="constructive" call="pr" code="external" help_file="algorithm/pr.html">
+  <exact>
+    <problem>
+      <alpha env="O" m="2"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls/>
+</algorithm>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="MS-Regel" type="constructive" call="pr" code="external" help_file="algorithm/pr.html">
+  <heuristic>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+  </heuristic>
+  <alg_controls/>
+</algorithm>
