@@ -45,7 +45,7 @@ const int SINK=0;
     problems without repetion, preemption, precedence constraints or batching.
     WARNING: jobs and machines are internally indexed 1,2, ...
     @author Thomas Tautenhahn and Andreas Winkler
-    @version 2.3pre1
+    @version 2.3pre2
     @see Lisa_ShpSchedule
 */
 class Lisa_ShpProblem 
@@ -74,7 +74,7 @@ class Lisa_ShpProblem
 /** basic class for Lisa_OsSchedule and Lisa_JsSchedule. 
     Cannot be used explicitely. 
     @author Thomas Tautenhahn and Andreas Winkler
-    @version 2.3pre1
+    @version 2.3pre2
     @see Lisa_OsSchedule 
     @see Lisa_JsSchedule
     @see Lisa_ShpProblem

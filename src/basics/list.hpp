@@ -48,7 +48,7 @@ public:
     T be a pointer to the desired type.
 
     @author Thomas Tautenhahn
-    @version 2.3pre1
+    @version 2.3pre2
     @see Lisa_GenericList
     @see Lisa_BasicList
 */ 

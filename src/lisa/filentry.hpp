@@ -30,7 +30,7 @@
     Include file LiSA/src/lisa_dt/lsaobjkt.h, 
 
     @author Per Willenius 
-    @version 2.3pre1
+    @version 2.3pre2
 */ 
 
 /** Lisa_FileEntry has only a symbolic function.

@@ -17,7 +17,7 @@
     Include file LiSA/src/lisa_dt/problem.h, it uses iostream and string.
 
     @author Per Willenius and Thomas Tautenhahn
-    @version 2.3pre1
+    @version 2.3pre2
 */ 
 
 //@{

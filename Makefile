@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-VERSION=2.3pre1
+VERSION=2.3pre2
 
 # ------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ about: logo
 # ------------------------------------------------------------------------------
 
 help: logo
-	@echo "'make' ................. same as 'make compile'"
+	@echo "'make' ................. same as 'make all'"
 	@echo "'make about' ........... shows the about information"
 	@echo "'make all' ............. compiles and installs all"
 	@echo "'make nongui' .......... compiles and installs everything but the GUI"
@@ -194,7 +194,6 @@ version:
 	@$(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' $(SOURCEPATH)/main/version.hpp
 	@echo
 	@echo "updating $(TOPPROGRAMPATH)/setup.tcl"
-	@$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(TOPPROGRAMPATH)/setup.tcl
-	@chmod 755 $(TOPPROGRAMPATH)/setup.tcl
+	@$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(SOURCEPATH)/setup/setup.tcl
 	@echo
 

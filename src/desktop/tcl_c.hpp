@@ -15,7 +15,7 @@
     contains functions, which can be called by the TCL/TK interpreter
 
     @author Per Willenius
-    @version 2.3pre1
+    @version 2.3pre2
 */ 
 
 //@{ 

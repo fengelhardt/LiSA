@@ -12,7 +12,7 @@
 /** @name File in and output
 
     @author Per Willenius
-    @version 2.3pre1
+    @version 2.3pre2
 */ 
 
 //@{
