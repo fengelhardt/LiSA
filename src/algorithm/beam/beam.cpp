@@ -369,7 +369,6 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
 		if(iord == queens)
 				return makeQueenSweep(ops,os_problem);
 		Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
-                order->init_keys(DOUBLE_INF);
 		int l = os_problem->n * os_problem->m;
 		//use system time for independent random numbers
   //this is not reversable
@@ -434,9 +433,7 @@ Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem){
 		int n = os_problem->n, m = os_problem->m;
 		int l = n*m;
 		Lisa_Order *order = new Lisa_Order(n,m);
-                order->init_keys(DOUBLE_INF);
 		Lisa_Order *ECT = new Lisa_Order(n,m);
-                ECT->init_keys(DOUBLE_INF);
 		double *compl_times = new double[l];
 		//initialize order and times
 		for(int i = 0; i< n; i++)
@@ -496,8 +493,7 @@ Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem){
 		return order;
 }
 
-
-#define QUEEN_POS_EVEN(M,I) (((M)%6!=2)?((I<(M)/2)?(2*(I)+1):((2*(I))%(M))):((I<(M)/2)?((M)/2+2*(I)+1):((2*(I)+(M)/2+2)%(M))))
+#define QUEEN_POS_EVEN(M,I) (((M)%6!=2)?((I<((M)/2))?(2*(I)+1):((2*(I))%(M))):((I<((M)/2))?(((M)/2+2*(I)-1)%(M)):((2*(I)+(M)/2+2)%(M))))
 
 #define QUEEN_POS(M,I) (((M)%2==0)?QUEEN_POS_EVEN(M,I):((I)<((M)-1))?(QUEEN_POS_EVEN(((M)-1),I)):((M)-1))
 
@@ -505,7 +501,6 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 		int n = os_problem->n, m = os_problem->m;
 		int l = n*m;
 		Lisa_Order *order = new Lisa_Order(n,m);
-                order->init_keys(DOUBLE_INF);
 		int pos = 0;
 		//horizontal sweep
 		if(m >= n){
