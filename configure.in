@@ -351,7 +351,11 @@ if test -z "$NO_TK"; then
         TK_INCL=""
         TK_LIB=""
     else
-        TK_INCL="$tcl_incl"
+        if test "$tcl_inclp" = "/usr/include"; then
+            TK_INCL=""
+        else
+            TK_INCL="$tcl_incl"
+        fi
         TK_LIB="$tcl_lib"
     fi
 
