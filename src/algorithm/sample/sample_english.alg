@@ -1,5 +1,5 @@
 <GENERAL>
-Name= sample algorithm
+Name= Sample Algorithm
 Type= constructive
 Call= sample
 Code= external
@@ -19,7 +19,7 @@ Lisa_ProblemType= { O / / Cmax }
 </HEURISTIC>
 
 <PARAMETERS>
-string TEST_PARAMETER ( TRUE FALSE ) "test parameter"
+string TEST_PARAMETER ( TRUE FALSE ) "Test Parameter"
 </PARAMETERS>
 
 
