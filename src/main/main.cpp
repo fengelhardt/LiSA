@@ -41,12 +41,17 @@ Tcl_Interp *interp;
 // *********************** functions *************************
 
 int main(int argc, char *argv[]) {
+  if(argc < 2){
+      cerr << "Syntax: " << argv[0] << " [config file] " << endl;
+      return -1;
+  }
+  
   ifstream Pref(argv[1]);
-  if (Pref==NULL) 
-    {
-      cerr << "sorry, no file:" << argv[1] << " in Lisa/data directory\n";
-      return 0;
-    }
+  if (! Pref){
+    cerr << "Could not open file: '" << argv[1] << "'. Exiting." << endl;
+    return -1;
+  }
+    
   //  G_ExceptionList.set_output_to_cerr();
   Pref >> G_Preferences;
   G_Schedule= new Lisa_Schedule(1,1);
