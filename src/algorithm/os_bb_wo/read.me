@@ -1,0 +1,244 @@
+
+		      BRANCH & BOUND - VERFAHREN FUER 
+
+			     OPEN-SHOP PROBLEME
+
+
+------------------------------------------------------------------------------
+1.) Start des Programms auf einer Workstation Sun4/20
+
+2.) Erlaeuterungen zum Quellcode
+
+3.) Erlaeuterungen zu den verwendeten Testdaten von Taillard
+
+4.) Formatierung der Problemdateien
+
+5.) Ausgabe des Programms in die Datei 'output.dat'
+------------------------------------------------------------------------------
+
+
+
+1.) Start des Programms auf einer Workstation Sun4/20:
+
+*.c     : Quell-Dateien in C-Codes
+*.h     : Header-Dateien
+openx   : ausfuehrbare Datei fuer eine Workstation Sun4/20 
+makefile: enthaelt die Linker- und Compileroptionen
+
+
+Das Programm wird folgendermassen gestartet:   ' openx  FileName '
+
+   - 'FileName' ist die Datei, die die Problemdaten (siehe 3./4.)) enthaelt
+
+   - 'openx' ( x = 1, 2, 3, 4, 5, 6, 7, 8 ) ist das 
+     Branch & Bound - Verfahren, das mithilfe der Heuristik in 'heurx.c'
+     (siehe 2.)) in jedem Suchbaumknoten eine Selektion berechnet.
+
+   - Das Verfahren 'openx' erhaelt man durch den Befehl: ' make openx ' 
+     (x = 1,2,3,4,5,6,7,8).
+     Dazu alle  *.c - Dateien und alle  *.h - Dateien zusammen mit dem
+     makefile in ein Verzeichnis kopieren.
+    
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+
+
+2.) Erlaeuterungen zum Quellcode:
+
+block.c:  Berechnen der Bloecke auf dem kritischen Pfad. 
+
+branch.c: Berechnen der Bewegungskandidaten auf dem kritischen Pfad. 
+
+calc.c:   Enthaelt zwei Funktionen fuer Nebenrechnungen.
+
+fix.c:    Festlegen der Kanten gemaess der Verzweigungsregel.
+
+head.c:   Berechnen der Heads und Tails
+
+heur1.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    Summenzuordnungsproblem/Minimierung.
+
+heur2.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    Summenzuordnungsproblem/Maximierung.
+
+heur3.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    Bottleneck-Matchingproblem/Minimierung.
+
+heur4.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    Bottleneck-Matchingproblem/Maximierung.
+
+heur5.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    modifiziertes Bottleneck-Matchingproblem/Minimierung.
+
+heur6.c:  Heuristik auf der Basis eines Matchingproblems: 
+		    modifiziertes Bottleneck-Matchingproblem/Maximierung.
+
+heur7.c:  Heuristik auf der Basis einer Vorrangregel, die sich aufgrund 
+		    einer Untere-Schranke-Berechnung ergibt.             
+
+heur8.c:  Heuristik auf der Basis einer Vorrangregel, die sich aufgrund 
+		    einer Untere-Schranke-Berechnung ergibt/Variation.
+
+init.c:   Initialisierung globaler Variablen aus table.c.
+
+list.c:   Listenfunktionen: Elemente in eine Liste einfuegen, loeschen von 
+	  Elementen einer Liste, Durchsuchen einer Liste nach Elementen.
+
+low.c:    Berechnung einer unteren Schranke fur den Suchbaumknoten 
+	  SonNode.
+
+main.c:   Hauptprogramm
+
+read.c:   Einlesen der Problemdaten ('Bearbeitungszeit auf Maschine, 
+	  Jobnummer') aus der Datei 'FileName'.
+
+select.c: Festlegen weiterer Maschinenkanten nach den Ideen von Carlier 
+	  und Pinson.
+
+sort.c:   Sortierfunktion
+
+stack.c:  Das Branch & Bound-Verfahren wird als Suchbaum beschrieben.
+	  Jeder neu hinzukommende Suchbaumknoten wird im Stack oben 
+	  abgelegt ('Push'). Die Betrachtung eines Knotens kann erst 
+	  dann wieder erfolgen, wenn alle seine Nachfolgeknoten im 
+	  Suchbaum abgearbeitet sind (Backtracking => 'Pop').
+
+table.c:  Definition globaler Variablen.
+
+data.h:   Definition globaler Konstanten und Datenstrukturen.
+
+
+______________________________________________________________________________
+______________________________________________________________________________
+
+
+
+3.) Erlaeuterungen zu den verwendeten Testdaten von Taillard:
+
+
+tai*   : Benchmark-Probleme von Taillard der Dimension m x n 
+	 (m Maschinen, n Jobs).
+	 Die Probleme tai81 - tai100 liegen nicht als Benchmark-Probleme
+	 vor, sondern sind Einschraenkungen der 10 x 10 -Probleme in 
+	 bezug auf Job- und Maschinenzahl.
+
+tai01 - tai10:   4 x 4 - Probleme;
+
+tai11 - tai20:   5 x 5 - Probleme;
+
+tai21 - tai30:   7 x 7 - Probleme;
+
+tai81 - tai90:   8 x 8 - Probleme;
+
+tai91 - tai100:  9 x 9 - Probleme;
+
+tai31 - tai40: 10 x 10 - Probleme;
+
+tai41 - tai50: 15 x 15 - Probleme;
+
+tai51 - tai60: 20 x 20 - Probleme;
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+
+4.) Erlaeuterung zur Formatierung einer Problemdatei 'tai*':
+
+
+	    M1   M2   M3   M4
+	     |    |    |    |
+	     v    v    v    v
+	4 4                       <--  4 Maschinen, 4 Jobs
+	4 34 1  2 2 54 3 61 4     <- J1
+	4 15 1 89 2 70 3  9 4     <- J2
+	4 38 1 19 2 28 3 87 4     <- J3
+	4 95 1  7 2 34 3 29 4     <- J4
+	|                 |
+	|                 v
+	|                 Bearbeitungszeit des Jobs Ji auf Maschine Mj
+	v
+	Anz. Op'en pro Job
+
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+
+5.) Ausgabe des Programms in die Datei 'output.dat'
+
+In  output.dat werden folgende Groessen ausgegeben: 
+
+  - erste obere Schranke in der Wurzel des Suchbaumes:
+		 'Upper Bound ..  after 1 search tree nodes'
+
+  - Selektion in der Wurzel ( Maschinenreihenfolgen fuer Jobs und Job-
+    reihenfolgen fuer Maschinen )
+
+  - kritischer Pfad 
+
+  - triviale untere Schranke:
+		 'LowerBound = .. '            
+
+  - in allen weiteren Suchbaumknoten: 
+	 Zielfunktionswert: 'Upper Bound ..  after .. search tree nodes'
+	 Selektion
+	 kritischer Pfad
+
+  - 'SearchTreeNodes' ist die Anzahl der Suchbaumknoten, die benoetigt 
+		      wurden um die Optimalitaet der (letzten) Loesung 
+		      zu beweisen
+
+
+
+Beispiel fuer eine Selektion:
+
+	JobNo   1 :    2   4   3   1 
+	JobNo   2 :    8   5   7   6 
+	JobNo   3 :   10   9  12  11 
+	JobNo   4 :   15  14  13  16 
+
+	MaschineNo   1 :    5   9  13   1 
+	MaschineNo   2 :    2  10  14   6 
+	MaschineNo   3 :   15   7   3  11 
+	MaschineNo   4 :    8   4  12  16 
+
+
+	Zuerst sind die Maschinenreihenfolgen fuer die Jobs angegeben: 
+
+	JobNo   1 :    2   4   3   1 
+
+	J1 muss erst an M2, dann an M4, M3 und zuletzt an M1, d.h.
+	Operation 2 vor Operation 4 vor Operation 3 vor Operation 1
+	(J1 besteht aus den Op'en 1,2,3,4)
+	 
+	JobNo   2 :    8   5   7   6 
+
+	J2 muss erst an M4, dann an M1, M3 und zuletzt an M2, d.h.
+	Operation 8 vor Operation 5 vor Operation 7 vor Operation 6
+	(J2 besteht aus den Op'en 5,6,7,8) 
+
+	usw....
+
+	Dann sind die Jobreihenfolgen auf den Maschinen angegeben:
+
+	MaschineNo   1 :    5   9  13   1 
+
+	Auf M1 muessen die Operationen 1,5,9,13 bearbeitet werden und zwar
+	in der Reihenfolge: Operation 5 vor 9 vor 13 vor 1;
+	D.h. auf M1 wir zuerst J2 bearbeitet, dann J3, J4 und zuletzt J1.
+
+	MaschineNo   2 :    2  10  14   6 
+
+	Auf M2 muessen die Operationen 2,6,10,14 bearbeitet werden und zwar
+	in der Reihenfolge: Operation 2 vor 10 vor 14 vor 6;
+	D.h. auf M2 wir zuerst J1 bearbeitet, dann J3, J4 und zuletzt J2.
+
+	usw....
+
