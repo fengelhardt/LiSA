@@ -47,7 +47,7 @@ proc vTclWindow.ext_alg_graph {base} {
         -width 125 
     button $base.fra23.but24 \
         -padx 11 -pady 4 -text $Name(Cancel) \
-	-command {exec kill -2 $lsa_status(pid); \
+	-command {kill -2 $lsa_status(pid); \
 		      set stop(pid) $lsa_status(pid); Window show .alg_stop }
     ###################
     # SETTING GEOMETRY
@@ -88,7 +88,7 @@ proc ext_alg_cancel { } {
     global stop
     global lsa_status
     if {$ext_algo(running)==1 } {
-	catch {exec ./kill -2 $lsa_status(pid)}; 
+	catch {kill -2 $lsa_status(pid)}; 
 	set stop(pid) $lsa_status(pid); 
 	Window show .alg_stop 
     }
@@ -183,7 +183,7 @@ proc vTclWindow.alg_stop {base} {
         -width 125 
     button $base.fra26.but27 \
         -padx 11 -pady 4 -text $Name(Kill_algo) \
-	-command {catch {exec kill -9 $stop(pid)}
+	-command {catch {kill -9 $stop(pid)}
 		      if {[winfo exists .ext_alg_graph]} { destroy .ext_alg_graph};
 		      catch {destroy .alg_stop} }
     ###################
