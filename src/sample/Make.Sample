@@ -51,21 +51,13 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir docdir
+install:
+	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
+	mkdir -p $(DOCPATH)/lisa/english/sample
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/sample/$(PROGRAMNAME).html
+	mkdir -p $(DOCPATH)/lisa/german/sample
 	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/sample/$(PROGRAMNAME).html
-    
-# ------------------------------------------------------------------------------
-
-bindir:
-	@mkdir -p $(BINPATH)
-
-# ------------------------------------------------------------------------------
-
-docdir:
-	@mkdir -p $(DOCPATH)/lisa/english/sample
-	@mkdir -p $(DOCPATH)/lisa/german/sample
 
 # ------------------------------------------------------------------------------
 

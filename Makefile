@@ -112,9 +112,9 @@ uninstall:
 
 # ------------------------------------------------------------------------------
 
-cygwin: cygwindir
-	rm -fr $(CYGWINPATH)/*
-	mkdir $(CYGWINPATH)/LiSA
+cygwin:
+	rm -fr $(CYGWINPATH)
+	mkdir -p $(CYGWINPATH)/LiSA
 	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
 	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
 	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
@@ -132,11 +132,6 @@ cygwin: cygwindir
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
 	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win.zip LiSA
-
-# ------------------------------------------------------------------------------
-
-cygwindir:
-	@mkdir -p $(CYGWINPATH)
 
 # ------------------------------------------------------------------------------
 

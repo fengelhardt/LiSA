@@ -61,48 +61,28 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir datadir classifydir algdir docdir
+install:
+	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(INSTALLNAME) $(BINPATH)/$(INSTALLNAME)
 	chmod 755 $(BINPATH)/$(INSTALLNAME)
+	mkdir -p $(DATAPATH)
 	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
+	mkdir -p $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)/classify
 	cp -r $(SOURCEPATH)/sample/problem $(DATAPATH)/sample
+	mkdir -p $(ALGPATH)/language/english
 	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_english.alg $(ALGPATH)/language/english/disp3.alg
+	mkdir -p $(ALGPATH)/language/german
 	cp $(SOURCEPATH)/algo/disp1_german.alg $(ALGPATH)/language/german/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_german.alg $(ALGPATH)/language/german/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_german.alg $(ALGPATH)/language/german/disp3.alg
+	mkdir -p $(DOCPATH)/lisa
 	cp -r $(SOURCEPATH)/doc/* $(DOCPATH)/lisa
-
-# ------------------------------------------------------------------------------
-
-bindir:
-	@mkdir -p $(BINPATH)
-
-# ------------------------------------------------------------------------------
-
-classifydir:
-	@mkdir -p $(DATAPATH)/classify
-
-# ------------------------------------------------------------------------------
-
-datadir:
-	@mkdir -p $(DATAPATH)
-
-# ------------------------------------------------------------------------------
-
-algdir:
-	@mkdir -p $(ALGPATH)/language/english
-	@mkdir -p $(ALGPATH)/language/german
-
-# ------------------------------------------------------------------------------
-
-docdir:
-	@mkdir -p $(DOCPATH)/lisa
 
 # ------------------------------------------------------------------------------
 

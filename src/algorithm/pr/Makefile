@@ -58,33 +58,21 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir algdir docdir
+install:
+	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
+	mkdir -p $(ALGPATH)/language/english
 	cp $(PROGRAMNAME)1_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)1.alg
 	cp $(PROGRAMNAME)2_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)3.alg
+	mkdir -p $(ALGPATH)/language/german
 	cp $(PROGRAMNAME)1_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)1.alg
 	cp $(PROGRAMNAME)2_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)3.alg
+	mkdir -p $(DOCPATH)/lisa/english/algorithm
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
+	mkdir -p $(DOCPATH)/lisa/german/algorithm
 	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/algorithm/$(PROGRAMNAME).html
-    
-# ------------------------------------------------------------------------------
-
-bindir:
-	@mkdir -p $(BINPATH)
-
-# ------------------------------------------------------------------------------
-
-algdir:
-	@mkdir -p $(ALGPATH)/language/english
-	@mkdir -p $(ALGPATH)/language/german
-
-# ------------------------------------------------------------------------------
-
-docdir:
-	@mkdir -p $(DOCPATH)/lisa/english/algorithm
-	@mkdir -p $(DOCPATH)/lisa/german/algorithm
 
 # ------------------------------------------------------------------------------
 
