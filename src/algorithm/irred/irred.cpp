@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
   int alg_param = Lisa_IrreducibilityTest::JUST_TEST;
   Lisa_ControlParameters sp;
   i_strm >> sp;
-  if (sp.defined("TYPE")==STRING){
+  if (sp.defined("TYPE")==Lisa_ControlParameters::STRING){
     if (sp.get_string("TYPE") == "ALL_REDUCING"){
       alg_param = Lisa_IrreducibilityTest::GENERATE_ALL;
     }else if(sp.get_string("TYPE") == "ITERATIVE_REDUCING"){
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
   }else cout <<"WARNING: Could not read TYPE parameter, using default."<< endl;
   
   bool return_all = 0;
-  if (sp.defined("RETURN")==STRING){
+  if (sp.defined("RETURN")==Lisa_ControlParameters::STRING){
     if (sp.get_string("RETURN") == "ALL"){
       return_all = 1;
     }else if(sp.get_string("RETURN") == "ONLY_IRREDUCIBLE"){
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
   }else cout<<"WARNING: Could not read RETURN parameter, using default."<<endl;
   if (alg_param==Lisa_IrreducibilityTest::GENERATE_SIMILAR) return_all = 1;
 
-  if (sp.defined("RNDM")==STRING){
+  if (sp.defined("RNDM")==Lisa_ControlParameters::STRING){
     if (sp.get_string("RNDM") == "YES"){ 
       if(alg_param==Lisa_IrreducibilityTest::JUST_TEST){ 
         alg_param = Lisa_IrreducibilityTest::JUST_TEST_RANDOM;

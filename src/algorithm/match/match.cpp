@@ -138,7 +138,7 @@ int main(int argc, char *argv[]){
    bool min = 0;
    bool bottle = 0;
    bool heads = 0;
-   if (sp->defined("MINMAX")==STRING){ 
+   if (sp->defined("MINMAX")==Lisa_ControlParameters::STRING){ 
      if (sp->get_string("MINMAX")=="MIN") min = 1;
      else if (sp->get_string("MINMAX")=="MAX") min = 0;
      else if (sp->get_string("MINMAX")=="HEADS"){
@@ -147,7 +147,7 @@ int main(int argc, char *argv[]){
      }else cout << "WARNING: MINMAX value out of Range, using MAX" << endl;
    }else cout << "WARNING: Could not read MINMAX parameter, using MAX." << endl;
    
-   if (sp->defined("TYPEOF")==STRING){ 
+   if (sp->defined("TYPEOF")==Lisa_ControlParameters::STRING){ 
      if (sp->get_string("TYPEOF")=="BOTTLENECK") bottle = 1;
      else if (sp->get_string("TYPEOF")=="WEIGHTED") bottle = 0;
      else cout << "WARNING: TYPEOF value out of Range, using WEIGHTED" << endl;

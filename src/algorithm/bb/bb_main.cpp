@@ -94,16 +94,16 @@ int main(int argc, char *argv[])
    // read control parameters: 
    Lisa_ControlParameters * sp = new Lisa_ControlParameters;
    i_strm >> (*sp);
-   if (sp->defined("INS_ORDER")==STRING)
+   if (sp->defined("INS_ORDER")==Lisa_ControlParameters::STRING)
      {
        if (sp->get_string("INS_ORDER")=="LPT") 
 	 my_bb->set_ins_order(LPT_ORDER);
      }
-   if (sp->defined("NB_SOLUTIONS")==INT)
+   if (sp->defined("NB_SOLUTIONS")==Lisa_ControlParameters::INT)
       my_bb->set_output_bound(sp->get_int("NB_SOLUTIONS"));
-   if (sp->defined("UPPER_BOUND")==DOUBLE)
+   if (sp->defined("UPPER_BOUND")==Lisa_ControlParameters::DOUBLE)
       my_bb->set_upper_bound((TIMETYP) sp->get_double("UPPER_BOUND"));
-   if (sp->defined("LOWER_BOUND")==DOUBLE)
+   if (sp->defined("LOWER_BOUND")==Lisa_ControlParameters::DOUBLE)
       my_bb->set_lower_bound((TIMETYP) sp->get_double("LOWER_BOUND"));
    delete sp;
       

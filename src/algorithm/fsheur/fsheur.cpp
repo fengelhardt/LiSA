@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
    i_strm >> (*sp);
 
    int Job_insertion_order=DECREASE;
-   if (sp->defined("JOB_INSERTION_ORDER")==STRING)
+   if (sp->defined("JOB_INSERTION_ORDER")==Lisa_ControlParameters::STRING)
      {
        if (sp->get_string("JOB_INSERTION_ORDER")=="INCREASE")
 	 Job_insertion_order=INCREASE;
@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
    int type_of_lower_bound=NORMAL;
    if (objective_function==FAST)
      {
-       if (sp->defined("TYPE_OF_LOWER_BOUND")==STRING)
+       if (sp->defined("TYPE_OF_LOWER_BOUND")==Lisa_ControlParameters::STRING)
        {
 	 if (sp->get_string("TYPE_OF_LOWER_BOUND")=="EXTENDED")
 	   type_of_lower_bound=EXTENDED;

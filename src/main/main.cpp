@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
   G_Values.make_RD(); 
   G_Values.make_SIJ(); 
   G_Values.make_WI(); 
-  if (G_Preferences.contents.defined("STARTFILE") ==STRING) {
+  if (G_Preferences.contents.defined("STARTFILE") ==Lisa_ControlParameters::STRING) {
     if (read(G_Preferences.get_string("STARTFILE"))==0) {
       new_mn();
       G_Values.PT_to_SIJ();

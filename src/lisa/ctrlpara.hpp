@@ -9,13 +9,6 @@
 #include "../basics/list.hpp"
 #include "lsaobjct.hpp"
 
-/// flags for type of value
-enum{UNDEFINED /** unknown type */ =0
-    ,INT /// integer type
-    ,DOUBLE /// floating point type
-    ,STRING /// string type
-    };
-
 /// Organizes communication between LiSA and its external modules.     
 /** You can define keywords and values of type string, double or long for each
     of these words. Lisa_ControlParameters holds these values and can write and 
@@ -45,6 +38,13 @@ private:
   
 public:
 
+/// flags for type of value
+enum{UNDEFINED /** unknown type */ =0
+    ,INT /// integer type
+    ,DOUBLE /// floating point type
+    ,STRING /// string type
+    };
+    
     /// add a new int-entry with name and value
     void add_key(const std::string name, long int value=0);
     
