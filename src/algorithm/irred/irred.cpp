@@ -42,62 +42,62 @@ release dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and 
 
 It may be called:\\
 
-#irred [input file] [output file]#\\
+irred [input file] [output file]\\
 
 Controlparameters are:
 
-#string TYPE [SIMILAR ALL_REDUCING ITERATIVE_REDUCING]#\\
-#string RETURN [ALL ONLY_IRREDUCIBLE]#\\
-#string RNDM [YES NO]#\\
+string TYPE [SIMILAR ALL_REDUCING ITERATIVE_REDUCING]\\
+string RETURN [ALL ONLY_IRREDUCIBLE]\\
+string RNDM [YES NO]\\
 
 An example for a correct input file is:\\
 
-#<PROBLEMTYPE>#\\
-#Lisa_ProblemType= { O / r_i / Cmax }#\\
-#</PROBLEMTYPE>#\\
+<PROBLEMTYPE>\\
+Lisa_ProblemType= { O / r_i / Cmax }\\
+</PROBLEMTYPE>\\
 
-#<CONTROLPARAMETERS>
-#string TYPE ITERATIVE_REDUCING#\\
-#string RETURN ALL#\\
-#string RNDM YES#\\
-#</CONTROLPARAMETERS>#\\
+<CONTROLPARAMETERS>
+string TYPE ITERATIVE_REDUCING\\
+string RETURN ALL\\
+string RNDM YES\\
+</CONTROLPARAMETERS>\\
  
-#<VALUES>#\\
-#m= 2#\\
-#n= 3#\\
-#PT= {#\\
-# { 25 82 }#\\
-# { 88 59 }#\\
-# { 57 10 }#\\
-#}#\\
+<VALUES>\\
+m= 2\\
+n= 3\\
+PT= {\\
+ { 25 82 }\\
+ { 88 59 }\\
+ { 57 10 }\\
+}\\
  
-#SIJ= {#\\
-# { 1 1 }#\\
-# { 1 1 }#\\
-# { 1 1 }#\\
-#}#\\
+SIJ= {\\
+ { 1 1 }\\
+ { 1 1 }\\
+ { 1 1 }\\
+}\\
  
-#RD= { 48 5 9 }#\\
+RD= { 48 5 9 }\\
  
-#</VALUES>#\\
+</VALUES>\\
  
-#<SCHEDULE>#\\
-#m= 2#\\
-#n= 3#\\
-#semiactive= 1#\\
-#LR= {#\\
-# { 3 2 }#\\
-# { 2 1 }#\\
-# { 4 3 }#\\
-#}#\\
+<SCHEDULE>\\
+m= 2\\
+n= 3\\
+semiactive= 1\\
+LR= {\\
+ { 3 2 }\\
+ { 2 1 }\\
+ { 4 3 }\\
+}\\
  
-#CIJ= {#\\
-# { 177 146 }#\\
-# { 152 64 }#\\
-# { 234 156 }#\\
-#}
+CIJ= {\\
+ { 177 146 }\\
+ { 152 64 }\\
+ { 234 156 }\\
+}
  
-#</SCHEDULE>#\\ 
+</SCHEDULE>\\ 
 
 */
 //@{

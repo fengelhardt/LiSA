@@ -31,9 +31,9 @@ using namespace std;
     
     There are two ways to use this object. You can either create a list with a given length. 
     In that case every entry in the tabu list contains 4 integers. You will have to use the functions
-    #use()# and #set()# then. Otherwise you can create a list with a given length AND an entry length. 
+    use() and set() then. Otherwise you can create a list with a given length AND an entry length. 
     In that case any entry contains as much integers as you have specified. Entrys are then given as 
-    vectors and you will have to use the functions #use_vector()# and #set_vector()#.\\
+    vectors and you will have to use the functions use_vector() and set_vector().\\
     
     This is also an example of how to implement your own tabu list.\\
 
@@ -73,43 +73,30 @@ public:
   
   /** put an entry into the list ...\\
       
-      Set an entry of 4 integers into the tabulist (returns #OK#). */
+      Set an entry of 4 integers into the tabulist (returns OK). */
   int set( int, int, int, int );
   
   /** put an entry into the list ...\\
 
-      Set a vector into the tabulist (returns #OK#). */
+      Set a vector into the tabulist (returns OK). */
   int set_vector( Lisa_Vector<int>* );
   
   /** check whether an entry is in the list ...\\
       
       Search for an entry of 4 integers in the tabulist.
-      #OK# is returned if that entry WAS NOT found and #!OK# if 
+      OK is returned if that entry WAS NOT found and !OK if 
       that entry WAS found. */
   int use(int entry1, int entry2, int entry3, int entry4);
 
   /** check whether an entry is in the list ...\\
       
       Search for a vector in the tabulist. 
-      #OK# is returned if that entry WAS NOT found and #!OK#
+      OK is returned if that entry WAS NOT found and !OK
       if that entry WAS found. */
   int use_vector(Lisa_Vector<int>* entry);
 };
 
-#endif
 //@}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#endif
 

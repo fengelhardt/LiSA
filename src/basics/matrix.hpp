@@ -24,9 +24,9 @@
 using namespace std;
 
 /** @name Vectors and Matrices
-    Classes #Lisa_Vector<T># and #Lisa_Matrix<T># provide easy to use 
+    Classes Lisa_Vector<T> and Lisa_Matrix<T> provide easy to use 
     vectors and matrices with dynamic size and fast access to the elements.
-    Define #LISA_DEBUG# to get automatic array bounds check! \\
+    Define LISA_DEBUG to get automatic array bounds check! \\
     
     Include file LiSA/src/basics/matrix.hpp, it uses iostream.
     Use only for basic types int, bool, long, float. Elements of vectors 
@@ -242,19 +242,4 @@ inline istream& operator >> (istream&strm, void* ){
 #endif
 
 //@}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
