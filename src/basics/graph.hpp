@@ -191,9 +191,9 @@ public:
 //**************************************************************************
 
 /// graph object 
-/** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
-    backwards directed arcs. There are three double-linked lists for every 
-    single vertice, to determine its arc-predecessors, arc-successors and 
+/** The Lisa_MatrixListGraph Model stores three kind of connections: edges,
+    arcs and backwards directed arcs. There are three double-linked lists for
+    every single vertice, to determine its arc-predecessors, arc-successors and 
     edge-neighbours. The matrix includes these structures. The process of 
     adding or deleting a connection changes these lists, according to the 
     choosen kind of connection.
@@ -326,15 +326,13 @@ public:
 };
 
 //**************************************************************************
-/// graph object 
-/** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
-    backwards directed arcs. There are three double-linked lists for every 
-    single vertice, to determine its arc-predecessors, arc-successors and 
-    edge-neighbours. The matrix includes these structures. The process of 
-    adding or deleting a connection changes these lists, according to the 
-    choosen kind of connection.
 
-    @author Christian Schulz
+/// graph object 
+/** The Lisa_MatrixGraph Model stores three kind of connections: edges, arcs 
+    and  backwards directed arcs. This is managed through a simple adjacency
+    matrix with entrys of 1 and 0
+
+    @author Marc Moerig
     @version 2.3final
 */  
 class Lisa_MatrixGraph : public Lisa_Graph {
@@ -424,21 +422,19 @@ class Lisa_GraphAlg{
 public:
 
   /// sort vertices topologically
-  /** The vertices will be put in topoligical order into the 
-      vertex_sequence vector, i.e. vertex i in the original graph 
-      is assigned to the vertex indicated by knot_sequence(i).
-      returns true: all vertices are topsorted, graph contains no cycles
-      returns false: graph contains cycle, elements of vertex_sequence are 
-      undefined */ 
+  /** The vertices will be put in topoligical order into the vertex_sequence
+      vector, i.e. vertex i in the original graph is assigned to the vertex
+      indicated by knot_sequence(i). returns true: all vertices are topsorted,
+      graph contains no cycles returns false: graph contains cycle, elements of
+      vertex_sequence are undefined */ 
   static bool topsort(const Lisa_Graph *const g,
                       Lisa_Vector<int> *const vertex_sequence);
                       
   /// Sort vertices topologically.
-  /** topsort() performs this operation such that if i is the vertex 
-      his position will be stored at (*vertex_sequence)[i-1]. 
- 
-      This Method however does it the other way around, so that i is 
-      the position while (*vertex_sequence)[i] contains the vertex. */
+  /** topsort() performs this operation such that if i is the vertex his
+      position will be stored at (*vertex_sequence)[i-1]. This Method however
+      does it the other way around, so that i is the position while
+      (*vertex_sequence)[i] contains the vertex. */
   static bool topsort_inverse(const Lisa_Graph *const g,
                               Lisa_Vector<int> *const vertex_sequence);
                    
@@ -446,8 +442,8 @@ public:
   static void build_semigraph(Lisa_Graph *const graph);
    
   /// Create a comparability graph.
-  /** Build the transitive hull, then create the semigraph of it.
-      The targetgraph is supposed to have the same number of vertice as the 
+  /** Build the transitive hull, then create the semigraph of it. The
+      targetgraph is supposed to have the same number of vertice as the
       inputgraph, but no EDGE's or ARC's at all.*/ 
   static void build_compgraph(Lisa_Graph *const source,Lisa_Graph *const target);
 
