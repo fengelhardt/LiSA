@@ -124,7 +124,7 @@ dist-unix:
 	cp -r $(TOPPROGRAMPATH)/data $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/img $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/tcl $(DISTPATH)/LiSA
-	echo -e > $(DISTPATH)/LiSA/setup '#!/bin/sh\n\ncd `dirname $$0`\nbin/setup'
+	printf > $(DISTPATH)/LiSA/setup '#!/bin/sh\n\ncd `dirname $$0`\nbin/setup'
 	chmod 755 $(DISTPATH)/LiSA/setup
 	cd $(DISTPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
 
@@ -154,7 +154,7 @@ dist-cygwin:
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tk* -maxdepth 0`
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
-	echo -e > $(CYGWINPATH)/LiSA/setup.bat '@echo off\n\nbin/setup.exe'
+	printf > $(CYGWINPATH)/LiSA/setup.bat '@echo off\r\n\r\ncd bin\r\nsetup.exe'
 	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
 
 # ------------------------------------------------------------------------------
