@@ -531,21 +531,21 @@ void Lisa_MatrixListGraph::clear(const int knot){
   //EDGES
   int next=(*matrix)[knot][knot].x;
   while(next<=size){
-    remove_edge(knot,next);
+    rem_edge(knot,next);
     next=(*matrix)[knot][knot].x;
   }
 
   //ARCS
   next=(*matrix)[knot][0].x;
   while(next<=size){
-    remove_arc(knot,next);
+    rem_arc(knot,next);
     next=(*matrix)[knot][0].x;
   } 
 
   //CRA
   next=(*matrix)[0][knot].x;
   while(next<=size){
-    remove_arc(next,knot);
+    rem_arc(next,knot);
     next=(*matrix)[0][knot].x;
   } 
   
