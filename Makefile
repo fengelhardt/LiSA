@@ -121,27 +121,29 @@ uninstall:
 
 cygwin: cygwindir
 	rm -fr $(CYGWINPATH)/*
-	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/README.txt
-	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LICENSE.txt
-	cp -r $(BINPATH) $(CYGWINPATH)/bin
-	rm -f $(CYGWINPATH)/bin/lisa
-	cp -r $(DOCPATH) $(CYGWINPATH)/doc
-	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)
-	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)
-	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)
-	cp /usr/share/cygwin1.dll $(CYGWINPATH)/bin
-	cp /usr/share/cygtcl[0-9]*.dll $(CYGWINPATH)/bin
-	cp /usr/share/cygtk[0-9*].dll $(CYGWINPATH)/bin
-	mkdir -p $(CYGWINPATH)/share/`cd /usr/share;find tcl* -maxdepth 0`
-	cp -r /usr/share/tcl*/init.tcl $(CYGWINPATH)/share/tcl*
-	mkdir -p $(CYGWINPATH)/share/`cd /usr/share;find tk* -maxdepth 0`
-	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/share/tk*
-	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/share/tk*
+	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
+	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
+	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
+	rm -f $(CYGWINPATH)/LiSA/bin/lisa
+	cp -r $(DOCPATH) $(CYGWINPATH)/LiSA/doc
+	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)/LiSA
+	cp /bin/cygwin1.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygtcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygtk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
+	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tcl* -maxdepth 0`
+	cp -r /usr/share/tcl*/init.tcl $(CYGWINPATH)/LiSA/share/tcl*
+	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tk* -maxdepth 0`
+	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
+	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
+	cd $(CYGWINPATH)
+	zip -9r lisa-$(VERSION)-win.zip LiSA
 
 # ------------------------------------------------------------------------------
 
 cygwindir:
-	@mkdir -p $(CYGWINPATH)
+	@mkdir -p $(CYGWINPATH)/LiSA
 
 # ------------------------------------------------------------------------------
 
