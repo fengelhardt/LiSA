@@ -22,5 +22,5 @@ Lisa_ProblemType = { O / / Cmax }
 <PARAMETERS>
 long K_BRANCHES 2 "Anzahl zu verfolgender Zweige"
 string TREE_MODE ( INSERT1 INSERT2 ) "Auswahlrestriktion"
-string INS_ORDER ( RANDOM LPT ) "Einfügereihenfolge"
+string INS_ORDER ( RANDOM LPT LINE_BY_LINE DIAGONAL) "Einfügereihenfolge"
 </PARAMETERS>

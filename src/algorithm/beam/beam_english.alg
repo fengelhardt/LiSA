@@ -10,6 +10,7 @@ Help= algorithm/beam.html
 </EXACT>
 
 <HEURISTIC>
+
 <PROBLEMTYPE>
 Lisa_ProblemType = { 1 / / Cmax }
 </PROBLEMTYPE>
@@ -19,7 +20,7 @@ Lisa_ProblemType = { O / / Cmax }
 </HEURISTIC>
 
 <PARAMETERS>
-long K_BRANCHES 2 "Anzahl zu verfolgender Zweige"
-string TREE_MODE ( INSERT1 INSERT2 ) "Auswahlrestriktion"
-string INS_ORDER ( RANDOM LPT ) "Einfügereihenfolge"
+long K_BRANCHES 2 "Number of Branches"
+string TREE_MODE ( INSERT1 INSERT2 ) "Treemode"
+string INS_ORDER ( RANDOM LPT LINE_BY_LINE DIAGONAL) "Insertionorder"
 </PARAMETERS>
