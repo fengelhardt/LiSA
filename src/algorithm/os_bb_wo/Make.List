@@ -1,0 +1,17 @@
+CXXSOURCES=\
+  wo_block.cpp \
+  wo_head.cpp \
+  wo_main.cpp \
+  wo_stack.cpp \
+  wo_branch.cpp \
+  wo_heur1.cpp \
+  wo_int.cpp \
+  wo_read.cpp \
+  wo_table.cpp \
+  wo_calc.cpp \
+  wo_list.cpp \
+  wo_select.cpp \
+  wo_fix.cpp \
+  wo_low.cpp \
+  wo_sort.cpp \
+
