@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
 			const int PROB_TYPE = Problem.get_property(M_ENV);
 			
 			if ( (OBJ_TYPE != CMAX) || ((PROB_TYPE != J) && (PROB_TYPE != F)) ){
-					G_ExceptionList.lthrow("Wrong Problemtype or Objective function.",2);
+					G_ExceptionList.lthrow("Wrong Problemtype or Objective function.",Lisa_ExceptionList::INCONSISTENT_INPUT);
 					exit(7);
 			}
 			
@@ -210,12 +210,12 @@ int main(int argc, char *argv[])
 			// the best schedule:
 			Lisa_JsProblem *js_Prob;
 			if ( !( js_Prob = new Lisa_JsProblem(&Values ) ) ){  
-					G_ExceptionList.lthrow("out of memory",2);
+					G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 					exit( 7 );
 			}
 			
 			if ( !( best_schedule = new Lisa_JsSchedule( js_Prob ) ) ){  
-					G_ExceptionList.lthrow("out of memory",2);
+					G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 					exit( 7 );
 			}
 			
@@ -291,25 +291,25 @@ int main(int argc, char *argv[])
   
   Lisa_Matrix<int> *LR;
   if ( !( LR = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",2);
+				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 				exit( 7 );
   }
   
   Lisa_Matrix<int> *JO;
   if( !( JO = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",2);
+				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 				exit( 7 );
   }
   
   Lisa_Matrix<int> *MO;
   if ( !( MO = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",2);
+				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 				exit( 7 );
   }
   
   Lisa_Matrix<int> *MJ;
   if ( !( MJ = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",2);
+				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
   }
   
@@ -360,7 +360,7 @@ int main(int argc, char *argv[])
 	    }
       if ( count_2 == 0 )
 	{  
-	  G_ExceptionList.lthrow("ERROR: Cycle in LR !",2);
+	  G_ExceptionList.lthrow("ERROR: Cycle in LR !");
 	  exit( 7 );
 	}
       for (i=0; i<n; i++)
@@ -377,7 +377,7 @@ int main(int argc, char *argv[])
   Lisa_Schedule * plan_in;
   
   if ( !( plan_in = new Lisa_Schedule( n, m ) ) ){  
-      G_ExceptionList.lthrow("out of memory",2);
+      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
   }
   
