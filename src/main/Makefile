@@ -69,6 +69,7 @@ install: bindir datadir algdir docdir
 	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)
 	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)
 	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
+	cp -r $(SOURCEPATH)/sample/problem $(DATAPATH)/sample
 	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_english.alg $(ALGPATH)/language/english/disp3.alg
@@ -107,6 +108,7 @@ uninstall:
 	rm -f $(DATAPATH)/classify.bst
 	rm -f $(DATAPATH)/classify.tex
 	rm -f $(DATAPATH)/default.lsa
+	rm -fr $(DATAPATH)/sample
 	rm -f $(ALGPATH)/language/*/disp*.alg
 	rm -f $(DOCPATH)/lisa/*.html
 
