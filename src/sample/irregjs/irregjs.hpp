@@ -23,7 +23,7 @@ class NM_JsProblem: public Lisa_JsProblem
      public:
      NM_JsProblem( Lisa_Values *Pin );
      void read(istream& = cin);  
-     ~NM_JsProblem(){};
+     ~NM_JsProblem(){}
    };
 
 class NM_JsSchedule: public Lisa_JsSchedule
@@ -31,7 +31,7 @@ class NM_JsSchedule: public Lisa_JsSchedule
      public:
      NM_JsSchedule( Lisa_JsProblem *Pin );
      void read(istream& = cin);  
-     ~NM_JsSchedule(){};
+     ~NM_JsSchedule(){}
    };
 
 

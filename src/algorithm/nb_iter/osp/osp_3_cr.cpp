@@ -32,7 +32,7 @@ OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
       }
-  };
+  }
 
 OSHOP_3_CR_Ngbh::~OSHOP_3_CR_Ngbh()
   {
@@ -276,7 +276,7 @@ int OSHOP_3_CR_Ngbh::do_move()
        return OK;
      } 
    return !OK;
- };
+ }
  
 int OSHOP_3_CR_Ngbh::use_tabulist()
   {
@@ -295,7 +295,7 @@ int OSHOP_3_CR_Ngbh::use_tabulist()
 	    swaps[i][4] = !OK;
 	}
     return ret;
-  };
+  }
 
 int OSHOP_3_CR_Ngbh::set_tabulist()
   {
@@ -304,14 +304,14 @@ int OSHOP_3_CR_Ngbh::set_tabulist()
       if ( swaps[i][4] == OK )
 	tabulist->set(swaps[i][0],swaps[i][1],swaps[i][3],swaps[i][2]);
     return OK;
-  };
+  }
 
 void OSHOP_3_CR_Ngbh::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       swaps[i][0] = swaps[i][1] = swaps[i][2] = swaps[i][3] = 0;
-  };
+  }
 
 
 

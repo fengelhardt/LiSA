@@ -43,8 +43,8 @@ class Lisa_GenericObject
 {
 public:
   /// write Object-Information on a stream
-  virtual void write(ostream& = cout) const =NULL;
-  virtual ~Lisa_GenericObject() { };
+  virtual void write(ostream& = cout) const = 0;
+  virtual ~Lisa_GenericObject() { }
 };
 
 
@@ -63,7 +63,7 @@ class Lisa_Object : public Lisa_GenericObject
 {
 public:
   /// read Object-Information on a stream
-  virtual void read(istream& = cin)=NULL;
+  virtual void read(istream& = cin)= 0;
 };
 
 // operators for IO via streams:

@@ -82,11 +82,11 @@ class Lisa_ShpProblem
 class Lisa_ShpSchedule: public Lisa_GenericObject 
   { 
     public:
-       virtual ~Lisa_ShpSchedule() {};				  
+       virtual ~Lisa_ShpSchedule() {}			  
        /// pointer to the problem instance
        Lisa_ShpProblem * P;
        /// exclude operation from schedule 
-       virtual void    exclude(int,int)=NULL;
+       virtual void    exclude(int,int) = 0;
        /// test whether operation belongs to schedule
        bool exists(int,int); 
        /// several get-functions, no need to explain ...

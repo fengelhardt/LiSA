@@ -19,7 +19,7 @@ OSHOP_cr_shift_Ngbh::OSHOP_cr_shift_Ngbh(Lisa_OsSchedule *Plan,Lisa_OsProblem *P
     count = 0;
     JOrd = new Lisa_Vector<int>(PP->n+1);   // JOrd[i] is the job on position i on the machine
     MOrd = new Lisa_Vector<int>(PP->m+1);   // MOrd[i] is ...
-  };
+  }
 
 OSHOP_cr_shift_Ngbh::~OSHOP_cr_shift_Ngbh()
   {
@@ -27,7 +27,7 @@ OSHOP_cr_shift_Ngbh::~OSHOP_cr_shift_Ngbh()
     delete cr_list_m;
     delete JOrd;
     delete MOrd;
-  };
+  }
 
 int OSHOP_cr_shift_Ngbh::prepare_move( int typ )
   {
@@ -133,7 +133,7 @@ int OSHOP_cr_shift_Ngbh::prepare_move( int typ )
 
    G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return !OK;
- };
+ }
 
 int OSHOP_cr_shift_Ngbh::do_move()
  {

@@ -56,9 +56,9 @@ public:
   /// Lisa_Values is valid iff valid==TRUE;
   int valid;
   /// number of columns in the matrices (number of maschines)
-  int get_m(void){return m;};
+  int get_m(void){return m;}
   /// number of rows in the matrices (number of jobs)
-  int get_n(void){return n;};  
+  int get_n(void){return n;}
   /// Processing Time Matrix
   Lisa_Matrix<TIMETYP> *PT; 
   // Processing Time Matrix (with preemtion)

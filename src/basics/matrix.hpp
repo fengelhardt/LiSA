@@ -67,7 +67,7 @@ public:
 	}
       #endif
       return contents[j];
-    }; 
+    } 
   T operator[] (const unsigned int j) const   
     { 
       #ifdef LISA_DEBUG
@@ -80,7 +80,7 @@ public:
 	}
       #endif
       return contents[j];
-    }; 
+    }
   /// length of vector
   int get_m() const { return m; }
   /// assign a vector to another  
@@ -129,7 +129,7 @@ public:
 	}
       #endif
       return row[i];
-    }; 
+    } 
   const Lisa_Vector<T>& operator[] (const unsigned i) const  
     { 
       #ifdef LISA_DEBUG
@@ -142,7 +142,7 @@ public:
 	}
       #endif
       return row[i];
-    };  
+    }  
   /// number of columns
   int get_m() const { return m; }
   /// number of rows           

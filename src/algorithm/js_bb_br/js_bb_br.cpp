@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     {
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    };
+    }
   strm.seekg(0);
   strm >> (*prob_type);
   fplan_o << (*prob_type);
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   strm >> (*problem_in);
   if ( !(problem_in->MO))
     {
@@ -157,12 +157,12 @@ int main(int argc, char *argv[])
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   if ( !( best_schedule = new Lisa_JsSchedule( js_Prob ) ) )
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   delete problem_in;
   // original program code by P.Brucker:
   struct BranchList  *DeleteBranch;
@@ -238,25 +238,25 @@ int main(int argc, char *argv[])
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    };
+    }
   Lisa_Matrix<int> *JO;
   if ( !( JO = new Lisa_Matrix<int>(n,m) ) )
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    };
+    }
   Lisa_Matrix<int> *MO;
   if ( !( MO = new Lisa_Matrix<int>(n,m) ) )
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   Lisa_Matrix<int> *MJ;
   if ( !( MJ = new Lisa_Matrix<int>(n,m) ) )
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   for (i=0; i<n; i++)
     {
       maschine = SOURCE;
@@ -317,7 +317,7 @@ int main(int argc, char *argv[])
     {  
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    }; 
+    } 
   plan_in->make_LR();
   best_schedule->write_LR( plan_in->LR );
   fplan_o << (*plan_in);

@@ -350,7 +350,7 @@ void Lisa_ShpSchedule::SetValue(int function_type)
 	  default:
 	       G_ExceptionList.lthrow("Undefined objective function.");
 	}
-    };
+    }
 
 void Lisa_ShpSchedule::push_LR(Lisa_Matrix<int> * LR, int i, int j, int k) 
 const

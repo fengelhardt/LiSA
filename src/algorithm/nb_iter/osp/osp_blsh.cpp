@@ -21,7 +21,7 @@ OSHOP_cr_bl_shift_Ngbh::OSHOP_cr_bl_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsPr
     count = 0;
     JOrd = new Lisa_Vector<int>(PP->n+1);
     MOrd = new Lisa_Vector<int>(PP->m+1);
-  };
+  }
 
 OSHOP_cr_bl_shift_Ngbh::~OSHOP_cr_bl_shift_Ngbh()
   {
@@ -30,7 +30,7 @@ OSHOP_cr_bl_shift_Ngbh::~OSHOP_cr_bl_shift_Ngbh()
     delete direction;
     delete JOrd;
     delete MOrd;
-  };
+  }
 
 int OSHOP_cr_bl_shift_Ngbh::prepare_move( int typ )
   {

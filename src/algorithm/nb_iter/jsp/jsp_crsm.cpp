@@ -32,14 +32,14 @@ JSHOP_cr_shift_mix_Ngbh::JSHOP_cr_shift_mix_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsP
 	exit( 7 );
       }
     cr_count = 0;
-  };
+  }
 
 JSHOP_cr_shift_mix_Ngbh::~JSHOP_cr_shift_mix_Ngbh()
   {
     delete JOrd;
     delete cr_list_j;
     delete cr_list_m;
-  };
+  }
 
 int JSHOP_cr_shift_mix_Ngbh::prepare_move( int typ )
   {

@@ -17,11 +17,11 @@ using namespace std;
 
 NM_JsProblem::NM_JsProblem(Lisa_Values * Pin) : Lisa_JsProblem( Pin ) 
   {
-  };
+  }
 
 NM_JsSchedule::NM_JsSchedule(Lisa_JsProblem * Pin) : Lisa_JsSchedule( Pin ) 
   {
-  };
+  }
 
 void NM_JsProblem::read(istream& strm) 
      {      

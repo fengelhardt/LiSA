@@ -33,14 +33,14 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	{  
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	}; 
+	} 
       strm >> (*problem_in);
       fplan_o << (*problem_in);
       if ( !( m1_Prob = new Lisa_1Problem( problem_in ) ) )
 	{
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	};
+	}
 
       // here could standing precedence-constraints
       delete problem_in;
@@ -53,7 +53,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    };
+	    }
 	    
 	  strm >> (*plan_in);
 	  if ( m1_Prob->n != plan_in->get_n() )
@@ -66,7 +66,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    };
+	    }
 
 	  m1_Plan->ComputeHeadsTails( 1, 1 );
 	  // transfering the datas:
@@ -118,14 +118,14 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 		{
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		};  
+		}
 	      break;
 	    case SHIFT:
 	      if(!(ngbh=m1_shift=new shift_Neighborhood(m1_Plan,m1_Prob)))
 		{
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    default: 
 	      G_ExceptionList.lthrow("The specified Neighborhood does not exist");
@@ -136,7 +136,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    };  
+	    }
 
 	  switch ( METHOD )
 	    {
@@ -181,7 +181,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  plan_in->make_LR();
 	  plan_in->make_CIJ();
 	  for ( i=1; i<m1_Prob->n+1; i++ )
@@ -217,14 +217,14 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	{
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	}; 	  
+	} 
       strm >> (*problem_in);
       fplan_o << (*problem_in);
       if ( !( os_Prob = new Lisa_OsProblem(problem_in) ) )
 	{
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	}; 
+	}
       delete problem_in;
 
       for ( jj=0; jj<NUMB_PLANS; jj++ )
@@ -233,7 +233,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  os_Plan->ComputeHeadsTails( 1, 1 );
 	  
 	  // start-schedule-datas
@@ -242,7 +242,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  strm >> (*plan_in);
 	  if ( os_Prob->n != plan_in->get_n() )
 	    {
@@ -289,47 +289,47 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case SHIFT: 
 	      if(!(ngbh = os_shift = new OSHOP_shift_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case _3_API:
 	    /*  if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob)))
 	      	{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-	        }; */
+	        } */
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		};
+		}
 	      break;
 	    case _3_CR:
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case CR_API:
 	      if(!(ngbh=os_cr_api = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break; 
 	    case BL_API:
 	      if(!(ngbh=os_bl_api=new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;   
 	    case CR_SHIFT:
 	      if(!(ngbh = os_cr_shift 
@@ -337,7 +337,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case BL_SHIFT:
 	      if(!(ngbh = os_bl_shift 
@@ -345,14 +345,14 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case CR_TST:
 	      if(!(ngbh=os_cr_tst = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    default: 
 	      //G_ExceptionList.lthrow("wrong Neighborhood specified in ITERATE");
@@ -365,7 +365,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  switch ( METHOD )
 	    {
 	    case II: it->init( II, TYPE ); break;
@@ -438,7 +438,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  
 	  //os_Plan->print();
 
@@ -473,7 +473,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	{  
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	}; 
+	}
       strm >> (*problem_in);
       if ( !(problem_in->MO))
 	{
@@ -486,7 +486,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	{  
 	  G_ExceptionList.lthrow("out of memory",2);
 	  exit( 7 );
-	}; 
+	}
 
       delete problem_in;
 
@@ -496,7 +496,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  js_Plan->ComputeHeadsTails( 1, 1 );
 	  
 	  // start-schedule-datas
@@ -505,7 +505,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 
 	  strm >> (*plan_in);
 	  if ( js_Prob->n != plan_in->get_n() )
@@ -562,28 +562,28 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case SWAP:   
 	      if(!(ngbh = js_swap = new JSHOP_swap_Ngbh( js_Plan, js_Prob )))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case SHIFT: 
 	      if(!(ngbh= js_shift = new JSHOP_shift_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		} 
 	      break;
 	    case TRANS: 
 	      if(!(ngbh= js_trans = new JSHOP_trans_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case CR_TRANS: 
 	      if(!(ngbh= js_cr_trans 
@@ -591,7 +591,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case CR_TRANS_MIX: 
 	      if(!(ngbh= js_cr_trans_mix 
@@ -599,7 +599,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case SC_TRANS: 
 	      if(!(ngbh= js_sc_trans 
@@ -607,42 +607,42 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case _3_API:
 	      if(!(ngbh= js_api_3 = new JSHOP_3_API_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case _3_CR:
 	      if(!(ngbh= js_cr_3 = new JSHOP_3_CR_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;	      
 	    case CR_API:
 	      if(!(ngbh=js_cr_api = new JSHOP_cr_API_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break; 
 	    case SC_API:
 	      if(!(ngbh=js_sc_api = new JSHOP_semi_API_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break; 
 	    case BL_API:
 	      if(!(ngbh=js_bl_api=new JSHOP_cr_bl_API_Ngbh(js_Plan,js_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break; 
 	    case CR_SHIFT:
 	      if(!(ngbh = js_cr_shift 
@@ -650,7 +650,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case CR_SHIFT_MIX:
 	      if(!(ngbh = js_cr_shift_mix
@@ -658,7 +658,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    case BL_SHIFT:
 	      if(!(ngbh = js_bl_shift 
@@ -666,7 +666,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}; 
+		}
 	      break;
 	    default: 
 	      G_ExceptionList.lthrow("The specified Neighborhood does not exist");
@@ -677,7 +677,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  switch ( METHOD )
 	    {
 	    case II: it->init( II, TYPE ); break;
@@ -773,7 +773,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",2);
 	      exit( 7 );
-	    }; 
+	    }
 	  
 	  // constructing LR
 	  plan_in->make_LR();
@@ -855,7 +855,7 @@ int main(int argc, char *argv[])
     {
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    };
+    }
   strm.seekg(0);
   strm >> (*prob_type);
   OBJ_TYPE = prob_type->get_property(OBJECTIVE);
@@ -867,7 +867,7 @@ int main(int argc, char *argv[])
     {
       G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
-    };
+    }
 
   // read the special-datas
   strm >> (*my_special);
@@ -1082,7 +1082,7 @@ int main(int argc, char *argv[])
   delete my_special;
 
   return OK;
- };
+ }
 
 
 

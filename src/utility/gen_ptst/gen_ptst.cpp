@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
      {
        G_ExceptionList.lthrow("out of memory",2);
        exit( 7 );
-     };
+     }
 
    // at first read the names of all parameters
    // create two lists of string for fixed and variable parameters
@@ -293,7 +293,7 @@ int main(int argc, char *argv[])
      {
        G_ExceptionList.lthrow("out of memory",2);
        return !OK;
-     };
+     }
    strm.seekg(0);
    strm >> (*prob_type);
    ostrm << (*prob_type);
@@ -303,7 +303,7 @@ int main(int argc, char *argv[])
      {
        G_ExceptionList.lthrow("out of memory",2);
        return !OK;
-     }; 	  
+     }	  
    strm >> (*problem_in);
    ostrm << (*problem_in);
 
@@ -312,7 +312,7 @@ int main(int argc, char *argv[])
      {
        G_ExceptionList.lthrow("out of memory",2);
        return !OK;
-     }; 
+     } 
    strm >> (*plan_in);
 
    // the best of all created schedules
@@ -499,7 +499,7 @@ int main(int argc, char *argv[])
 		     {
 		       G_ExceptionList.lthrow("out of memory",2);
 		       return !OK;
-		     };
+		     }
 	       
 		   // the fixed controlparameters
 		   if ( numb_fix_l > 0 )
@@ -685,7 +685,7 @@ int main(int argc, char *argv[])
 	     {
 	       G_ExceptionList.lthrow("out of memory",2);
 	       return !OK;
-	     };
+	     }
 	       
 	   // the fixed controlparameters
 	   if ( numb_fix_l > 0 )
@@ -791,7 +791,7 @@ int main(int argc, char *argv[])
 	 {
 	   G_ExceptionList.lthrow("out of memory",2);
 	   return !OK;
-	 };
+	 }
        
        // the fixed controlparameters
        if ( numb_fix_l > 0 )

@@ -40,7 +40,7 @@ public:
 	  temp=temp->succ;
 	} while (temp!=first_last);
       strm << ") ";
-    };
+    }
 
   void fill(T wert) {
     for (Lisa_Node<T> * temp=first_last->succ;
@@ -107,7 +107,7 @@ public:
 	}
       #endif
       return contents[j];
-    }; 
+    }
   Lisa_nestedList<T> operator[] (const unsigned int j) const   
     { 
       #ifdef LISA_DEBUG
@@ -120,7 +120,7 @@ public:
 	}
       #endif
       return contents[j];
-    }; 
+    }
   /// length of vector
   int get_m() const { return m; }
   /// assign a vector to another  
@@ -151,14 +151,14 @@ inline ostream& operator << (ostream&strm, const Lisa_VectorOfLists<T>& l)
 {
   l.write(strm);
   return strm;
-};
+}
 
 template<class T>
 inline istream& operator >> (istream&strm, Lisa_VectorOfLists<T>& l)
 {
   l.read(strm);
   return strm;
-};
+}
 
 
 
@@ -208,7 +208,7 @@ public:
 	}
       #endif
       return row[i];
-    }; 
+    }
   const Lisa_VectorOfLists<T>& operator[] (const unsigned i) const  
     { 
       #ifdef LISA_DEBUG
@@ -221,7 +221,7 @@ public:
 	}
       #endif
       return row[i];
-    };  
+    }
   /// number of columns
   int get_m() const { return m; }
   /// number of rows           
@@ -262,14 +262,14 @@ inline ostream& operator << (ostream&strm, const Lisa_MatrixOfLists<T>& l)
 {
   l.write(strm);
   return strm;
-};
+}
 
 template<class T>
 inline istream& operator >> (istream&strm, Lisa_MatrixOfLists<T>& l)
 {
   l.read(strm);
   return strm;
-};
+}
 
 
 #endif             

@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
    o_strm << *out_schedule;
    delete out_schedule;
    delete my_werte;
- };
+ }
 
 
 

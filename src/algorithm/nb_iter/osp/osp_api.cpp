@@ -24,29 +24,29 @@ OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
    *(P[0])=*Plan;
 
    if ( !( P[1] = new Lisa_OsSchedule( PP ) ))
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
 
    if ( !( P[2] = new Lisa_OsSchedule( PP ) ))
      {
        G_ExceptionList.lthrow("out of memory",2);
        exit( 7 );
-     };
+     }
 
    if ( !( P[3] = new Lisa_OsSchedule( PP ) ))
      {
        G_ExceptionList.lthrow("out of memory",2);
        exit( 7 );
-     };
+     }
    
    tabulist = NULL;
-  };
+  }
 
 OSHOP_API_Ngbh::~OSHOP_API_Ngbh()
   {
@@ -58,13 +58,13 @@ OSHOP_API_Ngbh::~OSHOP_API_Ngbh()
       delete P[3];
     if ( tabulist != NULL )
       delete tabulist;
-  };
+  }
 
 int OSHOP_API_Ngbh::copy_schedule( int a , int b )
   {
    *P[b]=*P[a];
    return OK;
-  };
+  }
 
 int OSHOP_API_Ngbh::accept_solution()
 {
@@ -278,12 +278,12 @@ int OSHOP_API_Ngbh::do_move()
 int OSHOP_API_Ngbh::anti_neighbor()
  {
    return OK;
- };
+ }
 
 void OSHOP_API_Ngbh::set_objective_type( int o )
  {
    objective_type = o;
- };
+ }
 
 void OSHOP_API_Ngbh::set_objective( int z, int a)
  {
@@ -313,39 +313,39 @@ int OSHOP_API_Ngbh::init_tabulist( unsigned int length )
       exit( 7 );
      }
    return OK;
-  };
+  }
 
 int OSHOP_API_Ngbh::use_tabulist()
   {
    return tabulist->use(tabu_param[0][0],tabu_param[0][1],
 			tabu_param[0][2],tabu_param[0][3]);
-  };
+  }
 
 int OSHOP_API_Ngbh::set_tabulist()
   {
     tabulist->set(tabu_param[1][0],tabu_param[1][1],
 		  tabu_param[1][2],tabu_param[1][3]);
     return OK;
-  };
+  }
 
 void OSHOP_API_Ngbh::store_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[1][i] = tabu_param[0][i];
-  };
+  }
 
 void OSHOP_API_Ngbh::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[0][i] = 0;
-  };
+  }
 
 void OSHOP_API_Ngbh::return_schedule( Lisa_OsSchedule *Plan )
   {
     *Plan = *(P[BEST_SOLUTION]);
-  };
+  }
 
 
 

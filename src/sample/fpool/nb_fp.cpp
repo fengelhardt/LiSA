@@ -99,12 +99,12 @@ int fp_nb::do_move( )
 int fp_nb::anti_neighbor()
  {
    return OK;
- };
+ }
 
 void fp_nb::set_objective_type( int o )
  {
    objective_type = o;
- };
+ }
 
 int fp_nb::init_tabulist( unsigned int i)
  {

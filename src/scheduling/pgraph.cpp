@@ -579,7 +579,7 @@ ad_list_el::ad_list_el(){
 
 Vlist::Vlist()
 {
-};
+}
 
 Vlist::Vlist(int size){
   int i;

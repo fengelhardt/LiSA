@@ -464,7 +464,7 @@ public:
 	    current_node=test;
 	}
       return current_node->value;
-    };
+    }
   
   /** locates and returns the maximum element of the list ...\\
       if that is not empty also puts the internal pointer to this node */       
@@ -482,7 +482,7 @@ public:
 	    current_node=test;
 	}
       return current_node->value;
-    }; 
+    } 
 
   // sum the values of all the entries...
   /*
@@ -500,7 +500,7 @@ public:
 	  test=test->succ;
 	}
       return result;
-    }; 
+    } 
   */
 
   /** moves the internal pointer to the first occurance of the value ...\\
@@ -529,7 +529,7 @@ public:
   void sort()
     {
        if (size>1) qsort(first_last->succ,first_last->pred);
-    };
+    }
   //@}
 
 
@@ -549,7 +549,7 @@ public:
 	  temp=temp->succ;
 	}  while (temp!=first_last);
       strm << ") "<<endl;
-    };
+    }
 
   /** read the list values from a stream */
   void read(istream& strm) 
@@ -587,13 +587,13 @@ inline ostream& operator << (ostream&strm, const Lisa_List<T>& l)
 {
   l.write(strm);
   return strm;
-};
+}
 
 template<class T>
 inline istream& operator >> (istream&strm, Lisa_List<T>& l)
 {
   l.read(strm);
   return strm;
-};
+}
 
 #endif

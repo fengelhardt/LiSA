@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
    delete out_schedule;
    //delete jsSch;
    delete my_werte;
- };
+ }
 
 
 

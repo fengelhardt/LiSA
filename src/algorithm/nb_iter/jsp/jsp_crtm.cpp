@@ -58,7 +58,7 @@ JSHOP_cr_trans_mix_Ngbh::JSHOP_cr_trans_mix_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsP
 	exit( 7 );
       }
 
-  };
+  }
 
 JSHOP_cr_trans_mix_Ngbh::~JSHOP_cr_trans_mix_Ngbh()
   {
@@ -71,7 +71,7 @@ JSHOP_cr_trans_mix_Ngbh::~JSHOP_cr_trans_mix_Ngbh()
     delete krr;
     delete kr;
     delete machines;
-  };
+  }
 
 int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
   {
@@ -287,7 +287,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
       }
     G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
     return !OK;
-  };
+  }
 
 int JSHOP_cr_trans_mix_Ngbh::do_move()
  {
@@ -337,28 +337,28 @@ int JSHOP_cr_trans_mix_Ngbh::init_tabulist( unsigned int length )
 	exit( 7 );
       }
     return OK;
-  };
+  }
 
 int JSHOP_cr_trans_mix_Ngbh::use_tabulist()
   {
    return tabulist->use_vector( tabu_0 );
-  };
+  }
 
 int JSHOP_cr_trans_mix_Ngbh::set_tabulist()
   {
     tabulist->set_vector( tabu_1 );
     return OK;
-  };
+  }
 
 void JSHOP_cr_trans_mix_Ngbh::store_tabu_param()
   {
     *tabu_1 = *tabu_0;
-  };
+  }
 
 void JSHOP_cr_trans_mix_Ngbh::clean_tabu_param()
   {
     tabu_0->fill(0);
-  };
+  }
     
 
 

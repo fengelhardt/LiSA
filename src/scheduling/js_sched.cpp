@@ -76,13 +76,13 @@ Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin )
 		 ("given job orders do not fit operation set", 
 		  INCONSISTENT_INPUT);
        }
-   };
+   }
 
 Lisa_JsProblem::~Lisa_JsProblem()
    {
      delete MOsucc;
      delete MOpred;
-   };
+   }
 
 // ############ schedule #################################################
 

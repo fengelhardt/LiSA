@@ -40,7 +40,7 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength )
    tabu_2->fill(0);
    tabu_3->fill(0);
    tabu_4->fill(0);
-  };
+  }
 
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
   {
@@ -53,7 +53,7 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
       }
     pos = 0;
     tabu->fill(0);
-  };
+  }
 
 Lisa_Tabu::~Lisa_Tabu()
   {
@@ -67,7 +67,7 @@ Lisa_Tabu::~Lisa_Tabu()
       delete tabu_4;
     if ( tabu != NULL )
       delete tabu;
-  };
+  }
 
 int Lisa_Tabu::set( int a, int b, int c, int d )
   {
@@ -78,7 +78,7 @@ int Lisa_Tabu::set( int a, int b, int c, int d )
     if ( ++pos >= int(length) )
       pos=0;
     return OK;
-  };
+  }
 
 int Lisa_Tabu::set_vector( Lisa_Vector<int> *entry )
   {
@@ -86,7 +86,7 @@ int Lisa_Tabu::set_vector( Lisa_Vector<int> *entry )
     if ( ++pos >= int(length) )
       pos = 0;
     return OK;
-  };
+  }
 
 int Lisa_Tabu::use( int a, int b, int c, int d )
   {
@@ -97,7 +97,7 @@ int Lisa_Tabu::use( int a, int b, int c, int d )
 	  ( (*tabu_3)[i]==c ) && ( (*tabu_4)[i]==d ) )
        return !OK;
    return OK;
-  };
+  }
 
 int Lisa_Tabu::use_vector( Lisa_Vector<int> *entry )
   {
@@ -107,5 +107,5 @@ int Lisa_Tabu::use_vector( Lisa_Vector<int> *entry )
       if ( (*tabu)[i] == *entry )
 	return !OK;
     return OK;
-  };
+  }
 

@@ -125,7 +125,7 @@ Lisa_1Schedule::Lisa_1Schedule( Lisa_1Problem *PPi )
     */
 
     get_Ci(1);
-  };
+  }
 
 Lisa_1Schedule::~Lisa_1Schedule()
   {
@@ -136,7 +136,7 @@ Lisa_1Schedule::~Lisa_1Schedule()
     delete JOpred;
     if (tail)
       delete tail;
-  };
+  }
 
 void  Lisa_1Schedule::ComputeHeadsTails(bool h, bool t)
   { 
@@ -171,7 +171,7 @@ void Lisa_1Schedule::get_Ci(int pos)
 	  t = (*PP->ri)[i];
 	(*Ci)[i]= (t += (*PP->time)[i]);
       }
-  };
+  }
 
 int Lisa_1Schedule::SetValue( int ZF )
   {
@@ -221,12 +221,12 @@ int Lisa_1Schedule::SetValue( int ZF )
 	exit( 7 );
      }
     return OK;
-  };
+  }
 
 TIMETYP Lisa_1Schedule::GetValue()
   {
     return value;
-  };
+  }
 
 int Lisa_1Schedule::get_sequ(int pos)	
   {
@@ -465,7 +465,7 @@ int Lisa_1Schedule::shift(int a, int b)
       }
     if (a<b) get_Ci(a); else get_Ci(b);
     return OK;
-  };
+  }
 
 void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
   {
@@ -481,7 +481,7 @@ void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
 	 (*Ci)[i]=(*other.Ci)[i];
 	 (*sequ)[i]=(*other.sequ)[i];
        }
-  };
+  }
 
 void Lisa_1Schedule::write_sequ()
   {

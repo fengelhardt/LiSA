@@ -52,7 +52,7 @@ static int Jackson_Immediate_Selection(int mach_no, int head[], int tail[])
      while (rest_pos <= num && head[head_sort[rest_pos]] == time) {
         set_S[++num_of_S] = head_sort[rest_pos];
         rest_pos++;
-     };
+     }
      while (num_of_S > 0)  {     
         Op = set_S[num_of_S];
         sum_processtime = head[Op] + process[Op];

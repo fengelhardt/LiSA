@@ -189,7 +189,7 @@ public:
       
       Create an #API# neighbourhood object. */
   // call constructor of base class and reset enumeration counter
-  inline Travel_API_Neighbourhood(Travel_Graph* prob_in):Travel_RPI_Neighbourhood(prob_in){enum_pos = 0;};
+  inline Travel_API_Neighbourhood(Travel_Graph* prob_in):Travel_RPI_Neighbourhood(prob_in){enum_pos = 0;}
  
   /** propose a possible move ...\\
 

@@ -76,10 +76,10 @@ public:
   bool run(Lisa_Schedule *pSchedule);
   
   /// get the best schedule
-  Lisa_Vector<int>* get_bestSchedule(){return bestSchedule;};
+  Lisa_Vector<int>* get_bestSchedule(){return bestSchedule;}
   
   /// get the best Lmax
-  double get_bestLmax() {return bestLmax;};
+  double get_bestLmax() {return bestLmax;}
 };
 
 #endif

@@ -23,29 +23,29 @@ API_Neighborhood::API_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
    *(P[0])=*Plan;
 
    if ( !( P[1] = new Lisa_1Schedule( PP ) ))
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
 
    if ( !( P[2] = new Lisa_1Schedule( PP ) ))
      {
        G_ExceptionList.lthrow("out of memory",2);
        exit( 7 );
-     };
+     }
    
    if ( !( P[3] = new Lisa_1Schedule( PP ) ))
      {
        G_ExceptionList.lthrow("out of memory",2);
        exit( 7 );
-     };
+     }
    
    tabulist = NULL;
-  };
+  }
 
 API_Neighborhood::~API_Neighborhood()
   {
@@ -57,13 +57,13 @@ API_Neighborhood::~API_Neighborhood()
       delete P[3];
     if ( tabulist != NULL )
       delete tabulist;
-  };
+  }
 
 int API_Neighborhood::copy_schedule( int a , int b )
   {
    *P[b]=*P[a];
    return OK;
-  };
+  }
 
 int API_Neighborhood::accept_solution()
 {
@@ -104,7 +104,7 @@ int API_Neighborhood::prepare_move( int typ )
 	     {
 	       num = 1;
 	       return NO_NGHBOURS;
-	     };
+	     }
 	   // is this move setting to be tabu ? :
 	   tabu_param[0][0] = P[0]->get_sequ(pos);
 	   tabu_param[0][1] = P[0]->get_sequ(pos+1);
@@ -167,12 +167,12 @@ int API_Neighborhood::do_move()
 int API_Neighborhood::anti_neighbor()
  {
    return OK;
- };
+ }
 
 void API_Neighborhood::set_objective_type( int o )
  {
    objective_type = o;
- };
+ }
 
 void API_Neighborhood::set_objective( int z, int a)
  {
@@ -202,39 +202,39 @@ int API_Neighborhood::init_tabulist( unsigned int length )
        exit( 7 );
      }
    return OK;
-  };
+  }
 
 int API_Neighborhood::use_tabulist()
   {
    return tabulist->use(tabu_param[0][0],tabu_param[0][1],
 			tabu_param[0][2],tabu_param[0][3]);
-  };
+  }
 
 int API_Neighborhood::set_tabulist()
   {
     tabulist->set(tabu_param[1][0],tabu_param[1][1],
 		  tabu_param[1][2],tabu_param[1][3]);
     return OK;
-  };
+  }
 
 void API_Neighborhood::store_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[1][i] = tabu_param[0][i];
-  };
+  }
 
 void API_Neighborhood::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[0][i] = 0;
-  };
+  }
 
 void API_Neighborhood::return_schedule( Lisa_1Schedule *Plan )
   {
     *Plan = *(P[BEST_SOLUTION]);
-  };
+  }
 
 
 

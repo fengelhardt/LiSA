@@ -24,7 +24,7 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     P[0]->ComputeHeadsTails( 1, 1 );
     *(P[0])=*Plan;
 
@@ -32,7 +32,7 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     P[1]->ComputeHeadsTails( 1, 1 );
 
 
@@ -40,18 +40,18 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     P[2]->ComputeHeadsTails( 1, 1 );
 
     if ( !( P[3] = new Lisa_JsSchedule( PP ) ))
       {
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     P[3]->ComputeHeadsTails( 1, 1 );
 
     tabulist = NULL;
-  };
+  }
 
 JSHOP_API_Ngbh::~JSHOP_API_Ngbh()
   {
@@ -63,13 +63,13 @@ JSHOP_API_Ngbh::~JSHOP_API_Ngbh()
       delete P[3];
     if ( tabulist != NULL )
       delete tabulist;
-  };
+  }
 
 int JSHOP_API_Ngbh::copy_schedule( int a , int b )
   {
    *P[b]=*P[a];
    return OK;
-  };
+  }
 
 int JSHOP_API_Ngbh::accept_solution()
 {
@@ -292,12 +292,12 @@ int JSHOP_API_Ngbh::anti_neighbor()
    delete copied;
 
    return OK;
- };
+ }
 
 void JSHOP_API_Ngbh::set_objective_type( int o )
  {
    objective_type = o;
- };
+ }
 
 void JSHOP_API_Ngbh::set_objective( int z, int a)
  {
@@ -327,39 +327,39 @@ int JSHOP_API_Ngbh::init_tabulist( unsigned int length )
       exit( 7 );
      }
    return OK;
-  };
+  }
 
 int JSHOP_API_Ngbh::use_tabulist()
   {
    return tabulist->use(tabu_param[0][0],tabu_param[0][1],
 			tabu_param[0][2],tabu_param[0][3]);
-  };
+  }
 
 int JSHOP_API_Ngbh::set_tabulist()
   {
     tabulist->set(tabu_param[1][0],tabu_param[1][1],
 		  tabu_param[1][2],tabu_param[1][3]);
     return OK;
-  };
+  }
 
 void JSHOP_API_Ngbh::store_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[1][i] = tabu_param[0][i];
-  };
+  }
 
 void JSHOP_API_Ngbh::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[0][i] = 0;
-  };
+  }
 
 void JSHOP_API_Ngbh::return_schedule( Lisa_JsSchedule *Plan )
   {
     *Plan = *(P[BEST_SOLUTION]);
-  };
+  }
 
 
 

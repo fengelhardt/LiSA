@@ -21,12 +21,12 @@ JSHOP_semi_API_Ngbh::JSHOP_semi_API_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
       }
-  };
+  }
 
 JSHOP_semi_API_Ngbh::~JSHOP_semi_API_Ngbh()
   {
     delete JOrd;
-  };
+  }
 
 int JSHOP_semi_API_Ngbh::prepare_move( int typ )
   {

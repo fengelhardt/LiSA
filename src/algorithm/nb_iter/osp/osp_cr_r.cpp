@@ -27,12 +27,12 @@ OSHOP_cr_TST_Ngbh::OSHOP_cr_TST_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi
     for ( i=0; i<PP->n*PP->m; i++ )
       ROrd->read_one_key( i, float(lisa_random( 1, 1000, &seed )) );
     ROrd->sort();
-  };
+  }
 
 OSHOP_cr_TST_Ngbh::~OSHOP_cr_TST_Ngbh()
   {
     delete ROrd;
-  };
+  }
 
 int OSHOP_cr_TST_Ngbh::prepare_move( int typ )
   {
@@ -161,7 +161,7 @@ int OSHOP_cr_TST_Ngbh::do_move()
        return OK;
      }
    return !OK;
- };
+ }
 
 
 

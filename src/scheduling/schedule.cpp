@@ -123,7 +123,7 @@ ScheduleNode::~ScheduleNode(){
 //   else
 //     delete actual_schedule;
   delete schedule_info;
-};
+}
 
 //######################## Lisa_Schedule #####################################
 

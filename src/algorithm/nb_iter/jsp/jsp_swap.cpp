@@ -15,12 +15,12 @@ JSHOP_swap_Ngbh::JSHOP_swap_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
     JOrd = new Lisa_Vector<int>( PP->n+1 );   // JOrd[i] is the job on position i on the machine
-  };
+  }
 
 JSHOP_swap_Ngbh::~JSHOP_swap_Ngbh()
   {
     delete JOrd;
-  };
+  }
 
 int JSHOP_swap_Ngbh::prepare_move( int typ )
   {
@@ -77,7 +77,7 @@ int JSHOP_swap_Ngbh::prepare_move( int typ )
       }
     G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
     return !OK;
-  };
+  }
 
 int JSHOP_swap_Ngbh::do_move()
  {

@@ -21,7 +21,7 @@ OSHOP_shift_Ngbh::OSHOP_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
     MOrd = new Lisa_Vector<int>( PP->m+1 );   // MOrd[i] is ...
     JOpos = new Lisa_Vector<int>( PP->n+1 );  // JOpos[i] is the position of job i on the machine
     MOpos = new Lisa_Vector<int>( PP->m+1 );  // MOpos[i] is ...
-  };
+  }
 
 OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh()
   {
@@ -29,7 +29,7 @@ OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh()
     delete MOrd;
     delete JOpos;
     delete MOpos;
-  };
+  }
 
 int OSHOP_shift_Ngbh::prepare_move( int typ )
   {
@@ -190,7 +190,7 @@ int OSHOP_shift_Ngbh::prepare_move( int typ )
      }
    G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return !OK;
- };
+ }
 
 int OSHOP_shift_Ngbh::do_move()
  {

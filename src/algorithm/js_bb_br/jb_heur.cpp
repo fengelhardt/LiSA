@@ -261,14 +261,14 @@ void Heuristic_Schedule (int problem_n, int problem_m )
       {  
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     JO->fill(0);
     Lisa_Vector<int> *JO_help;
     if ( !( JO_help = new Lisa_Vector<int>(problem_n) ) )
       {  
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
-      };
+      }
     JO_help->fill(0);
     Lisa_Order *JOOrder;
      if ( !(JOOrder = new Lisa_Order(problem_n)) )

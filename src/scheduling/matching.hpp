@@ -229,7 +229,7 @@ public:
   static const TIMETYP REMOVED;
   
   /// destructs this object 
-  virtual ~Lisa_Matching(){};
+  virtual ~Lisa_Matching(){}
   
   /** the returned vector contains the matchingpartner 
       for all vertice in I or UNMATCHED (-1) if it is not 

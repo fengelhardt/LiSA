@@ -63,9 +63,9 @@ public:
   /// Lisa_Schedule is valid iff valid==TRUE
   int valid;
   /// get number of maschines
-  int get_m(void) const {return m;};
+  int get_m(void) const {return m;}
   /// get number of jobs
-  int get_n(void) const {return n;};
+  int get_n(void) const {return n;}
   /// semiactive==TRUE iff Lisa_Schedule is defined as a semiactive Schedule
   bool semiactive;
   /// constructor

@@ -26,13 +26,13 @@ JSHOP_cr_API_Ngbh::JSHOP_cr_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi
       exit( 7 );
      }
    count = 0;
-  };
+  }
 
 JSHOP_cr_API_Ngbh::~JSHOP_cr_API_Ngbh()
   {
     delete[] cr_list_j;
     delete[] cr_list_m;
-  };
+  }
 
 int JSHOP_cr_API_Ngbh::prepare_move( int typ )
   {
@@ -112,7 +112,7 @@ int JSHOP_cr_API_Ngbh::do_move()
    tabu_param[0][3] = help;
    return OK;
 
- };
+ }
 
 
 

@@ -26,13 +26,13 @@ OSHOP_cr_API_Ngbh::OSHOP_cr_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi
 	exit( 7 );
       }
     count = 0;
-  };
+  }
 
 OSHOP_cr_API_Ngbh::~OSHOP_cr_API_Ngbh()
   {
     delete[] cr_list_j;
     delete[] cr_list_m;
-  };
+  }
 
 int OSHOP_cr_API_Ngbh::prepare_move( int typ )
   {
@@ -146,7 +146,7 @@ int OSHOP_cr_API_Ngbh::do_move()
        return OK;
      }
    return !OK;
- };
+ }
 
 
 

@@ -32,7 +32,7 @@ JSHOP_cr_bl_shift_Ngbh::JSHOP_cr_bl_shift_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsPr
 	exit( 7 );
       }
     count = 0;
-  };
+  }
 
 JSHOP_cr_bl_shift_Ngbh::~JSHOP_cr_bl_shift_Ngbh()
   {
@@ -40,7 +40,7 @@ JSHOP_cr_bl_shift_Ngbh::~JSHOP_cr_bl_shift_Ngbh()
     delete[] cr_list_m;
     delete[] direction;
     delete JOrd;
-  };
+  }
 
 int JSHOP_cr_bl_shift_Ngbh::prepare_move( int typ )
   {

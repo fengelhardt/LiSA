@@ -26,7 +26,7 @@ Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
   Done_Machines->fill(0);
   Plan=new Lisa_Graph((JsPro->m)*(JsPro->n));
   init_graph();
-};
+}
 
 Shifting_Bottleneck::~Shifting_Bottleneck()
 {
@@ -94,7 +94,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	    first=0;
 	  }
       }
-    }; //end of computing  Cmax
+    } //end of computing  Cmax
     
     first=1;
     
@@ -110,7 +110,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	  if((*JsPro->sij)[job][j]){
 	    count++;
 	  }
-	};
+	}
 	
 	// create arrays with the right size, to store parameters
 	// for the single machine problems
@@ -130,7 +130,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	    (*jobNumbers)[newJobNumber]=job;
 	    newJobNumber++;
 	  }
-	};
+	}
 	      
 	// fill the arrays pt, rd, dd, which are used as parameters
 	// for single machine problem
@@ -139,7 +139,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	  (*rd)[job]=JsSch->GetHead((*jobNumbers)[job],j);
 	  (*dd)[job]=Cmax-(JsSch->GetTail((*jobNumbers)[job],j));
 	  (*pt)[job][0]=(*JsPro->time)[(*jobNumbers)[job]][j];
-	};
+	}
 	      
 	// creates the neccessary Lisa_Values object, to initialize 
 	// the single machine problem
@@ -192,7 +192,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	delete pLV; // includes delete pt; delete rd; delete dd;
 	delete pg;
       }      
-    }; //end of single machine problem 
+    } //end of single machine problem 
     
 
     // extend the Plan by the new ARCs, 
@@ -210,7 +210,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
       Plan->insert_arc(knot_s,knot_e);
       s=e;
       knot_s=knot_e;
-    };
+    }
 
 
     // update the transitive hull t, 
@@ -223,7 +223,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
     
     for(int p=size-1; p>=0; p--){
       JsSch->insert((*schedule)[p] ,machine, SOURCE);
-    };
+    }
 
     (*Done_Machines)[machine-1]=1;
     Cmax=Cmax+Lmax;

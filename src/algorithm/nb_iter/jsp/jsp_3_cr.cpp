@@ -32,7 +32,7 @@ JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
 	G_ExceptionList.lthrow("out of memory",2);
 	exit( 7 );
       }
-  };
+  }
 
 JSHOP_3_CR_Ngbh::~JSHOP_3_CR_Ngbh()
   {
@@ -181,7 +181,7 @@ int JSHOP_3_CR_Ngbh::do_move()
        return OK;
      }
    return !OK;
- };
+ }
  
 int JSHOP_3_CR_Ngbh::use_tabulist()
   {
@@ -199,7 +199,7 @@ int JSHOP_3_CR_Ngbh::use_tabulist()
 	  swaps[i][4] = !OK;
       }
     return ret;
-  };
+  }
 
 int JSHOP_3_CR_Ngbh::set_tabulist()
   {
@@ -208,14 +208,14 @@ int JSHOP_3_CR_Ngbh::set_tabulist()
       if ( swaps[i][4] == OK )
 	tabulist->set(swaps[i][0],swaps[i][1],swaps[i][3],swaps[i][2]);
     return OK;
-  };
+  }
 
 void JSHOP_3_CR_Ngbh::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       swaps[i][0] = swaps[i][1] = swaps[i][2] = swaps[i][3] = 0;
-  };
+  }
 
 
 

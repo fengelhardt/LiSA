@@ -24,7 +24,7 @@ Lisa_Graph::Lisa_Graph(int number_of_knots)
   matrix=0;
   succ_pred_pointer=0;
   init(number_of_knots);
-};
+}
 
 Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
 {
@@ -67,7 +67,7 @@ Lisa_Graph::Lisa_Graph(Lisa_JsProblem* jpro)
 int Lisa_Graph::get_knots() const
 {
   return n;
-};
+}
 
 
 int Lisa_Graph::get_first_successor(int knot)
@@ -93,7 +93,7 @@ int Lisa_Graph::get_last_predecessor(int knot)
 
 int Lisa_Graph::signum(int start, int end) const
 {
-  if(start==end) {return 0;};
+  if(start==end) {return 0;}
  
   if(((*matrix)[start][end].x>0)&&((*matrix)[start][end].y>0))
     {
@@ -108,7 +108,7 @@ int Lisa_Graph::signum(int start, int end) const
 
 int  Lisa_Graph::get_connection(int start, int end)
 {
-  if((start>n)||(end>n)||(start==end)){return NOT_POSSIBLE;};
+  if((start>n)||(end>n)||(start==end)){return NOT_POSSIBLE;}
   
   if(((*matrix)[start][end].x==0)&((*matrix)[start][end].y==0))
     {
@@ -141,7 +141,7 @@ int  Lisa_Graph::get_connection(int start, int end)
 bool Lisa_Graph::insert_arc(int start, int end)
 {
   
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;};
+  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
   int con=get_connection(start, end);
   
@@ -161,7 +161,7 @@ bool Lisa_Graph::insert_arc(int start, int end)
       }
       else{
 	(*matrix)[start][end_of_Succ_List].x=end;
-      };
+      }
 	  
       (*matrix)[start][0].y=end;
       (*matrix)[start][end].x=n+1;
@@ -175,7 +175,7 @@ bool Lisa_Graph::insert_arc(int start, int end)
       }
       else{
 	(*matrix)[end][end_of_Pred_List].x=-start;
-      };
+      }
       
       (*matrix)[0][end].y=start;
       (*matrix)[end][start].x=-(n+1);
@@ -189,17 +189,17 @@ bool Lisa_Graph::insert_arc(int start, int end)
 
 bool Lisa_Graph::insert_edge(int start, int end)
 {  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;};
+  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
 
   int con=get_connection(start, end);
 
   if(con!=EDGE){
     if(con==ARC){
       exclude_arc(start,end);
-    };
+    }
     if(con==CRA){
       exclude_arc(end,start);
-    };
+    }
 
     int end_of_NB_List;
       
@@ -212,7 +212,7 @@ bool Lisa_Graph::insert_edge(int start, int end)
     }
     else{
       (*matrix)[start][end_of_NB_List].x=end;
-    };
+    }
       
     (*matrix)[start][start].y=end;
     (*matrix)[start][end].x=n+1;
@@ -227,7 +227,7 @@ bool Lisa_Graph::insert_edge(int start, int end)
     }
     else{
       (*matrix)[end][end_of_NB_List].x=start;
-    };
+    }
       
     (*matrix)[end][end].y=start;
     (*matrix)[end][start].x=n+1;
@@ -240,7 +240,7 @@ bool Lisa_Graph::insert_edge(int start, int end)
 
 bool Lisa_Graph::exclude_edge(int start, int end)
 {
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;};
+  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
   //Test ob Kante vorhanden
   int con=get_connection(start,end);
@@ -254,14 +254,14 @@ bool Lisa_Graph::exclude_edge(int start, int end)
     }
     else{
       (*matrix)[start][succ_of_edge].y=pred_of_edge;
-    };
+    }
       
     if(pred_of_edge==n+1){
       (*matrix)[start][start].x=succ_of_edge;
     }
     else{
       (*matrix)[start][pred_of_edge].x=succ_of_edge;
-    };
+    }
       
     (*matrix)[start][end].x=0;
     (*matrix)[start][end].y=0;
@@ -276,27 +276,27 @@ bool Lisa_Graph::exclude_edge(int start, int end)
     }
     else{
       (*matrix)[end][succ_of_edge].y=pred_of_edge;
-    };
+    }
       
     if(pred_of_edge==n+1){
       (*matrix)[end][end].x=succ_of_edge;
     }
     else{
       (*matrix)[end][pred_of_edge].x=succ_of_edge;
-    };
+    }
       
     (*matrix)[end][start].x=0;
     (*matrix)[end][start].y=0;
     
     return true;
-  };
+  }
   return false;
 }
 
 bool Lisa_Graph::exclude_arc(int start, int end)
 {
 
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;};
+  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
   //Test ob Bogen vorhanden
   
@@ -312,14 +312,14 @@ bool Lisa_Graph::exclude_arc(int start, int end)
       }
       else{
 	(*matrix)[start][succ_of_arc ].y=pred_of_arc;
-      };
+      }
       
       if(pred_of_arc==n+1){
 	(*matrix)[start][0].x=succ_of_arc;
       }
       else{
 	(*matrix)[start][pred_of_arc].x=succ_of_arc;
-      };
+      }
       
       (*matrix)[start][end].x=0;
       (*matrix)[start][end].y=0;
@@ -334,26 +334,26 @@ bool Lisa_Graph::exclude_arc(int start, int end)
       }
       else{
 	(*matrix)[end][-succ_of_arc].y=pred_of_arc;
-      };
+      }
       
       if(pred_of_arc==-(n+1)){
 	(*matrix)[0][end].x=-succ_of_arc;
       }
       else{
 	(*matrix)[end][-pred_of_arc ].x=succ_of_arc ;
-      };
+      }
       
       (*matrix)[end][start].x=0;
       (*matrix)[end][start].y=0;
       
       return true;
-    };
+    }
 
   if(con==EDGE){
     exclude_edge(start, end);
     insert_arc(end, start);
     return true;
-    };
+    }
   
   return false;
 }
@@ -368,9 +368,9 @@ void Lisa_Graph::show()
       for (int j=0; j<=n; j++)
 	{
 	  cout<<(*matrix)[i][j].x<<"=="<<(*matrix)[i][j].y<<"   ";
-	};
+	}
       cout<<endl;
-    };
+    }
 } 
   
 bool Lisa_Graph::valid()
@@ -468,7 +468,7 @@ bool Lisa_Graph::valid()
         return false;
       }                      
 	  
-	};
+	}
     
       count=-1;
       
@@ -668,9 +668,9 @@ Lisa_Matrix<int>* Lisa_Graph::get_ADJ_Matrix( Lisa_Matrix<int> *adj) const
       for(int j=1; j<=n; j++)
 	{
 	  if(signum(i,j)==1) {(*adj)[i-1][j-1]=1;}
-	  else{(*adj)[i-1][j-1]=0;};
-	};
-    };
+	  else{(*adj)[i-1][j-1]=0;}
+	}
+    }
   return adj;
 }
 
@@ -680,10 +680,10 @@ void Lisa_Graph::init(int n_in)
   n=n_in;
   end=n+1;
 
-  if(matrix){delete matrix;};
+  if(matrix){delete matrix;}
   matrix= new Lisa_Matrix<Lisa_Pair>(n+1,n+1);
 
-  if(succ_pred_pointer){delete succ_pred_pointer;};
+  if(succ_pred_pointer){delete succ_pred_pointer;}
   succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(n);
 
   for (int i=0; i<=n; i++){
@@ -708,7 +708,7 @@ void Lisa_Graph::init(int n_in)
 
 bool Lisa_Graph::init_succ_pointer(int knot)
 {
-  if((knot<=0)||(knot>n)){return false;};
+  if((knot<=0)||(knot>n)){return false;}
 
   //(*list_pointer)[knot-1].x=0;
   (*succ_pred_pointer)[knot-1].x=knot;
@@ -738,7 +738,7 @@ const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other)
 
 bool Lisa_Graph::init_pred_pointer(int knot)
 {
-  if((knot<=0)||(knot>n)){return false;};
+  if((knot<=0)||(knot>n)){return false;}
   
   (*succ_pred_pointer)[knot-1].y=knot;
   return true;
@@ -761,14 +761,14 @@ int Lisa_Graph::get_next_successor(int knot)
 	next_knot=(*matrix)[knot][0].x; 
       }
     }
-  };
+  }
 
   if(next_knot==end){
     init_succ_pointer(knot);
   }
   else{
     (*succ_pred_pointer)[knot-1].x=next_knot;
-  };
+  }
 
   return next_knot;
 	
@@ -789,14 +789,14 @@ int Lisa_Graph::get_next_predeccessor(int knot)
 	next_knot=abs((*matrix)[0][knot].x);
       }
     }
-  };
+  }
 
   if(next_knot==end){
     init_pred_pointer(knot);
   }
   else{
     (*succ_pred_pointer)[knot-1].y=next_knot;
-  };
+  }
 
   return next_knot;
 	
@@ -807,7 +807,7 @@ int Lisa_Graph::get_next_edge(int knot)
   int next_knot=get_next_successor(knot);
   if((next_knot!=end)&&(get_connection(knot,next_knot)!=EDGE)){  
     next_knot=end;
-  };  
+  }  
   return next_knot;
 }
 
@@ -818,7 +818,7 @@ bool Lisa_Graph::no_edges()
     if(((*matrix)[i][i].x)!=end){
       return false;
     }
-  };
+  }
 
   return true;
 }
@@ -830,7 +830,7 @@ int Lisa_Graph::number_of_succ(int knot)
   init_succ_pointer(knot);
   while(get_next_successor(knot)<end){
     succ_count++;
-  };
+  }
   
   return succ_count;
 }
@@ -842,7 +842,7 @@ int Lisa_Graph::number_of_pred(int knot)
   init_pred_pointer(knot);
   while(get_next_predeccessor(knot)<end){
     pred_count++;
-  };
+  }
   
   return pred_count;
 }
@@ -856,7 +856,7 @@ bool Lisa_Graph::remove_all_con(int knot)
   while(next<end){
     exclude_edge(knot,next);
     next=(*matrix)[knot][knot].x;
-  };
+  }
 
   //ARCS
   next=(*matrix)[knot][0].x;
@@ -864,7 +864,7 @@ bool Lisa_Graph::remove_all_con(int knot)
   while(next<end){
     exclude_arc(knot,next);
     next=(*matrix)[knot][0].x;
-  }; 
+  } 
 
   //CRA
   next=(*matrix)[0][knot].x;
@@ -872,10 +872,10 @@ bool Lisa_Graph::remove_all_con(int knot)
   while(next<end){
     exclude_arc(next,knot);
     next=(*matrix)[0][knot].x;
-  }; 
+  } 
   
   return true;
-};
+}
 
 
 
@@ -898,7 +898,7 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
 	if((*knot_sequence)[v-1]==0){
 	  (*pred)[v-1]=top->number_of_pred(v);
 	}
-      };
+      }
       v=1;
       source=0;
       //find first source
@@ -909,15 +909,15 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
 	else{
 	  v++;
 	}
-      };
+      }
       
       //remove all connections of the first founded source 
       if(v<end){
 	top->remove_all_con(v);
 	(*knot_sequence)[v-1]=next;
 	next++;
-      };
-    };
+      }
+    }
     
     delete succ;
     delete pred;
@@ -1018,7 +1018,7 @@ void Lisa_Graph::read(istream & strm)
     {
       G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",ANY_ERROR);
       return;
-    };
+    }
 
   string S;
   int number_of_knots;
@@ -1045,7 +1045,7 @@ void Lisa_Graph::read(istream & strm)
 	{
 	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",END_OF_FILE);
 	  return;
-	};
+	}
       
       if (S=="</GRAPH>") break; 
       // Weiterlesen:

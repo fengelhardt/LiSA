@@ -18,7 +18,7 @@ shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi
    pos1 = 1;
    pos2 = 1;
    inc_dec = 1;
-  };
+  }
 
 int shift_Neighborhood::prepare_move( int typ )
   {
@@ -143,7 +143,7 @@ int shift_Neighborhood::prepare_move( int typ )
      }
    G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return NO_NGHBOURS;
-  };
+  }
 
 int shift_Neighborhood::do_move()
   {
@@ -152,7 +152,7 @@ int shift_Neighborhood::do_move()
     // to be tabu
     tabu_param[0][1] = (-1) * tabu_param[0][1];
     return P[1]->shift( pos1, pos2 );
-  };
+  }
 
 
 

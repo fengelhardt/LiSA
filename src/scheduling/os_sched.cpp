@@ -16,7 +16,7 @@
 
 Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
   {
-  };
+  }
 
 // ############ Lisa_OsSchedule #################################################
 

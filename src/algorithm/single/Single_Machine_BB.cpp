@@ -15,7 +15,7 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgrap
   bestSchedule=new Lisa_Vector<int> (n);
   maxDD=(*pLV->DD)[(pLV->DD->index_of_max())];
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
-};
+}
 
 SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool m)
 {
@@ -31,7 +31,7 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool 
   bestSchedule=new Lisa_Vector<int> (n);
   maxDD=(*pLV->DD)[(pLV->DD->index_of_max())];
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
-};
+}
 
 SingleMachineBB::~SingleMachineBB()
 {
@@ -39,7 +39,7 @@ SingleMachineBB::~SingleMachineBB()
   delete Sources;
   delete bestSchedule;
   delete Schedule;
-};
+}
 
 bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
 {
@@ -52,7 +52,7 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
     else{
       delete order;
       return false;
-    };
+    }
     
     for(int i=0; i<n; i++){
       (*Sources)[i]=priority->number_of_pred(i+1);
@@ -60,12 +60,12 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
   }
   else{
     Sources->fill(0);
-  };
+  }
   branching();
   pSchedule->make_LR();
   for(int i=0; i<n; i++){
     (*pSchedule->LR)[(*bestSchedule)[i]][0]=i+1;
-  };
+  }
   return true;
 }
 
@@ -82,7 +82,7 @@ bool SingleMachineBB::branching(int k)
       if((!(*Done)[i])&&((*Sources)[i]==0)){
 	counter++;
       }
-    };
+    }
 
     // compute lower bounds for all possible jobs
 
@@ -110,7 +110,7 @@ bool SingleMachineBB::branching(int k)
 	// set up values for next lower bound computation
 	for(int h=0; h<n; h++){
 	  (*Sources)[h]=(*s)[h];
-	};
+	}
 	(*Done)[i]=false;
 	j++;
       } //if
@@ -151,20 +151,20 @@ bool SingleMachineBB::branching(int k)
 	  
 	  for(int h=0; h<n; h++){
 	    (*Sources)[h]=(*s)[h];
-	  };
+	  }
 	  
 	  (*Done)[i]=false;
 
-	}; //if(LowerBounds==minMax)  
+	} //if(LowerBounds==minMax)  
 	j++;
       }                 //if
     }                   //for
     delete s;
     delete lbs;
-  };                      //if k<n
+  }                    //if k<n
   if(k==n){
     newSchedule();
-  };
+  }
   return true;
 }
 
@@ -183,7 +183,7 @@ double SingleMachineBB::lb(int k)
   // sets rest time of every jobs to proccessing time   
   for(int i=0; i<n; i++){
     (*rest_time)[i]=(*pLV->PT)[i][0];
-  };
+  }
 
   // fill the 3 job attribute vectors
 
@@ -200,10 +200,10 @@ double SingleMachineBB::lb(int k)
     }
     else{
       t1=t1+(*pLV->PT)[job][0];
-    };
+    }
     // Lmax value of every done job  
     (*lmax)[job]=t1-(*pLV->DD)[job];  
-  };
+  }
    
   // Lmax for eyery undone job
   
@@ -232,12 +232,12 @@ double SingleMachineBB::lb(int k)
       t2=t1+(*rest_time)[job];
             
       for(int i=0; i<n; i++){
-	if( ((*Sources)[i]==0) || (!(*done)[i]) ){
-	  if (((*pLV->RD)[i]>t1) && ((*pLV->RD)[i]<t2)){
-	    t2=(*pLV->RD)[i];
-	  }
-	}
-      };
+          if( ((*Sources)[i]==0) || (!(*done)[i]) ){
+              if (((*pLV->RD)[i]>t1) && ((*pLV->RD)[i]<t2)){
+                  t2=(*pLV->RD)[i];
+              }
+          }
+      }
       
       // for the time t2-t1, the job is done  
       (*rest_time)[job]=(*rest_time)[job]-(t2-t1);
@@ -284,7 +284,7 @@ double SingleMachineBB::lb(int k)
 
   return maxLmax;
   
-};
+}
 
 void SingleMachineBB::newSchedule()
 {
@@ -305,7 +305,7 @@ void SingleMachineBB::newSchedule()
     if((time-(*pLV->DD)[job])>max){
       max=time-(*pLV->DD)[job];
     }
-  };
+  }
   
   // compare with Lmax of bestSchedule (bestLmax) 
   
