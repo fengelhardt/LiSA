@@ -10,6 +10,9 @@ Help= algorithm/js_bb_br.html
 <PROBLEMTYPE>
 Lisa_ProblemType= { J / / Cmax }
 </PROBLEMTYPE>
+<PROBLEMTYPE>
+Lisa_ProblemType= { F / / Cmax }
+</PROBLEMTYPE>
 </EXACT>
 
 <HEURISTIC>
