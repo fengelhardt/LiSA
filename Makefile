@@ -147,6 +147,7 @@ dist-unix:
 	cp -r $(TOPPROGRAMPATH)/data $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/img $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/tcl $(DISTPATH)/LiSA
+	rm -fr $(DISTPATH)/LiSA/tcl/external
 	printf > $(DISTPATH)/LiSA/setup '#!/bin/sh\n\ncd `dirname $$0`\nbin/setup'
 	chmod 755 $(DISTPATH)/LiSA/setup
 	find $(DISTPATH) -name CVS | xargs rm -fr
@@ -170,6 +171,7 @@ dist-cygwin:
 	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)/LiSA
+	rm -fr $(CYGWINPATH)/LiSA/tcl/external
 	cp /bin/cygwin1.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygtcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygtk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
