@@ -84,16 +84,16 @@ int  TC_nb_ptst(ClientData /*clientData*/,
    NUMB_NGHB_incr   = 2;
    ABORT_BOUND      = 0;
 
-   NGBH_St = Tcl_GetVar2(interp,"neighbor","NGBH",TCL_GLOBAL_ONLY);
-   METHOD_St = Tcl_GetVar2(interp,"neighbor","METHOD",TCL_GLOBAL_ONLY);
-   TYPE_St = Tcl_GetVar2(interp,"neighbor","TYPE",TCL_GLOBAL_ONLY);
+   NGBH_St = Tcl_GetVar2(interp,"nb_iter","NGBH",TCL_GLOBAL_ONLY);
+   METHOD_St = Tcl_GetVar2(interp,"nb_iter","METHOD",TCL_GLOBAL_ONLY);
+   TYPE_St = Tcl_GetVar2(interp,"nb_iter","TYPE",TCL_GLOBAL_ONLY);
    STEPS_FA_St = Tcl_GetVar2(interp,"nb","STEPS_FA",TCL_GLOBAL_ONLY);
    PROB_FA_St = Tcl_GetVar2(interp,"nb","PROB_FA",TCL_GLOBAL_ONLY);
    MAX_STUCK_FA_St  = Tcl_GetVar2(interp,"nb","MAX_STUCK_FA",TCL_GLOBAL_ONLY);
    TABULENGTH_FA_St =Tcl_GetVar2(interp,"nb","TABULENGTH_FA",TCL_GLOBAL_ONLY);
    NUMB_NGHB_FA_St  = Tcl_GetVar2(interp,"nb","NUMB_NGHB_FA",TCL_GLOBAL_ONLY);
    FILE_St  = Tcl_GetVar2(interp,"nb","FILE",TCL_GLOBAL_ONLY);
-   sscanf(Tcl_GetVar2(interp,"neighbor","ABORT_BOUND",TCL_GLOBAL_ONLY),
+   sscanf(Tcl_GetVar2(interp,"nb_iter","ABORT_BOUND",TCL_GLOBAL_ONLY),
 	  "%f",&ABORT_BOUND);
    sscanf(Tcl_GetVar2(interp,"nb","STEPS_init",TCL_GLOBAL_ONLY),
 	  "%ld",&STEPS_init);

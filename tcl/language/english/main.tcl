@@ -286,7 +286,7 @@ set Name(TRANSPORTATION_DELAYS,TIK) "arbitrary"
 source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/classify.tcl
 source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/gantt.tcl
 source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/messages.tcl
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/neighbor.tcl
+source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/nb_iter.tcl
 
 }
 name_set

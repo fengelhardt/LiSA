@@ -1,20 +1,20 @@
 set ext_algo(NAME,nb_iter) $Name(Neighborhood_Search)
-set ext_algo(TYPE,neighbor) iterative
+set ext_algo(TYPE,nb_iter) iterative
 
-proc vTclWindow.neighbor {base} {
+proc vTclWindow.nb_iter {base} {
 
     global Name;
-    global neighbor
+    global nb_iter
     global ext_algo
 
-    set neighbor(ALGO_CALL) nb_iter
-    set neighbor(NAME) "Neighborhood Search (neighbor(NAME), obsolet?)"
-    set neighbor(CODE) external
-    set neighbor(HELPFILE) external/nb_iter.html
+    set nb_iter(ALGO_CALL) nb_iter
+    set nb_iter(NAME) "Neighborhood Search (nb_iter(NAME), obsolet?)"
+    set nb_iter(CODE) external
+    set nb_iter(HELPFILE) external/nb_iter.html
 
     global system
     if {$base == ""} {
-        set base .neighbor
+        set base .nb_iter
     }
     if {[winfo exists $base]} {
         wm deiconify $base; return
@@ -46,7 +46,7 @@ proc vTclWindow.neighbor {base} {
         -anchor w  -borderwidth 1 \
          -justify left -text $Name(NGBH) -width 30 
     menubutton $base.fra20.men22 \
-	-indicatoron 1 -menu .neighbor.fra20.men22.m -padx 5 -pady 4 \
+	-indicatoron 1 -menu .nb_iter.fra20.men22.m -padx 5 -pady 4 \
         -relief sunken -text OSP_BL_SHIFT 
     menu $base.fra20.men22.m \
          -cursor {} \
@@ -81,7 +81,7 @@ proc vTclWindow.neighbor {base} {
         -anchor w  -borderwidth 1 \
 	-text $Name(METHOD) -width 30 
     menubutton $base.fra23.men25 \
-	-menu .neighbor.fra23.men25.m -padx 5 -pady 4 \
+	-menu .nb_iter.fra23.men25.m -padx 5 -pady 4 \
         -relief sunken -text $Name(SA) -indicatoron 1
     menu $base.fra23.men25.m \
 	-cursor {} \
@@ -105,7 +105,7 @@ proc vTclWindow.neighbor {base} {
         -anchor w  -borderwidth 1 \
 	-text $Name(TYPE) -width 30 
     menubutton $base.fra26.men28 \
-	-menu .neighbor.fra26.men28.m -padx 5 -pady 4 \
+	-menu .nb_iter.fra26.men28.m -padx 5 -pady 4 \
         -relief sunken -text $Name(RAND) -indicatoron 1
     menu $base.fra26.men28.m \
          -cursor {} \
@@ -122,9 +122,9 @@ proc vTclWindow.neighbor {base} {
     label $base.fra30.lab31 \
         -anchor w  -borderwidth 1 \
 	-text $Name(STEPS) -width 30 
-    set neighbor(1,TYPE) long
-    set neighbor(1,NAME_OF_PARAMETER) STEPS
-    entry $base.fra30.ent32 -textvar neighbor(STEPS)
+    set nb_iter(1,TYPE) long
+    set nb_iter(1,NAME_OF_PARAMETER) STEPS
+    entry $base.fra30.ent32 -textvar nb_iter(STEPS)
     frame $base.fra39 \
          -borderwidth 2 -height 75 -width 125 
     label $base.fra39.lab40 \
@@ -136,18 +136,18 @@ proc vTclWindow.neighbor {base} {
     label $base.fra41.lab42 \
         -anchor w  -borderwidth 1 \
          -text $Name(PROB) -width 30 
-    set neighbor(2,TYPE) long
-    set neighbor(2,NAME_OF_PARAMETER) PROB
-    entry $base.fra41.ent43 -textvar neighbor(PROB) 
+    set nb_iter(2,TYPE) long
+    set nb_iter(2,NAME_OF_PARAMETER) PROB
+    entry $base.fra41.ent43 -textvar nb_iter(PROB) 
     frame $base.fra44 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 
     label $base.fra44.lab45 \
         -anchor w  -borderwidth 1 \
           -text $Name(MAX_STUCK) -width 30
-    set neighbor(3,TYPE) long
-    set neighbor(3,NAME_OF_PARAMETER) MAX_STUCK	
-    entry $base.fra44.ent46 -textvar neighbor(MAX_STUCK) 
+    set nb_iter(3,TYPE) long
+    set nb_iter(3,NAME_OF_PARAMETER) MAX_STUCK	
+    entry $base.fra44.ent46 -textvar nb_iter(MAX_STUCK) 
     frame $base.fra47 \
          -borderwidth 2 -height 75 -width 125 
     label $base.fra47.lab48 \
@@ -159,36 +159,36 @@ proc vTclWindow.neighbor {base} {
     label $base.fra49.lab50 \
         -anchor w  -borderwidth 1 \
 	-text $Name(TABULENGTH) -width 30 
-    set neighbor(4,TYPE) long
-    set neighbor(4,NAME_OF_PARAMETER) TABULENGTH
-    entry $base.fra49.ent51 -textvar neighbor(TABULENGTH)
+    set nb_iter(4,TYPE) long
+    set nb_iter(4,NAME_OF_PARAMETER) TABULENGTH
+    entry $base.fra49.ent51 -textvar nb_iter(TABULENGTH)
     frame $base.fra52 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 
     label $base.fra52.lab53 \
         -anchor w  -borderwidth 1 \
          -text $Name(NUMB_NGHB) -width 30 
-    set neighbor(5,TYPE) long
-    set neighbor(5,NAME_OF_PARAMETER) NUMB_NGHB
-    entry $base.fra52.ent54 -textvar neighbor(NUMB_NGHB)        
+    set nb_iter(5,TYPE) long
+    set nb_iter(5,NAME_OF_PARAMETER) NUMB_NGHB
+    entry $base.fra52.ent54 -textvar nb_iter(NUMB_NGHB)        
     frame $base.fra33 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 
     label $base.fra33.lab34 \
         -anchor w  -borderwidth 1 \
 	-text $Name(NUMB_STUCKS) -width 30
-    set neighbor(6,TYPE) long
-    set neighbor(6,NAME_OF_PARAMETER) NUMB_STUCKS
-    entry $base.fra33.ent35 -textvar neighbor(NUMB_STUCKS)
+    set nb_iter(6,TYPE) long
+    set nb_iter(6,NAME_OF_PARAMETER) NUMB_STUCKS
+    entry $base.fra33.ent35 -textvar nb_iter(NUMB_STUCKS)
     frame $base.fra36 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 
     label $base.fra36.lab37 \
         -anchor w  -borderwidth 1 \
          -text $Name(ABORT_BOUND) -width 30
-    set neighbor(7,TYPE) double
-    set neighbor(7,NAME_OF_PARAMETER) ABORT_BOUND
-    entry $base.fra36.ent38 -textvar neighbor(ABORT_BOUND)    
+    set nb_iter(7,TYPE) double
+    set nb_iter(7,NAME_OF_PARAMETER) ABORT_BOUND
+    entry $base.fra36.ent38 -textvar nb_iter(ABORT_BOUND)    
     frame $base.fra18 \
          -borderwidth 2 -height 75 -width 125 
      label $base.fra18.lab19 \
@@ -199,11 +199,11 @@ proc vTclWindow.neighbor {base} {
     button $base.fra57.but59 \
          -borderwidth 4 \
 	-padx 11 -pady 4 -text $Name(Cancel) \
-	-command {destroy .neighbor}
+	-command {destroy .nb_iter}
     button $base.fra57.but58 \
          -borderwidth 4 \
          -padx 11 -pady 4 -text $Name(START_NB) \
-	-command {destroy .neighbor; TC_startalg neighbor }
+	-command {destroy .nb_iter; TC_startalg nb_iter }
     button $base.fra57.but60 \
          -borderwidth 4 \
          -padx 11 -pady 4 -text $Name(Help) \
@@ -213,129 +213,129 @@ proc vTclWindow.neighbor {base} {
     ###################
     
     pack $base.fra20 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra20.lab21 \
-        -in .neighbor.fra20 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra20 -anchor center -expand 0 -fill none -side left 
     pack $base.fra20.men22 \
-        -in .neighbor.fra20 -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter.fra20 -anchor center -expand 0 -fill x -side top 
     pack $base.fra23 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra23.lab24 \
-        -in .neighbor.fra23 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra23 -anchor center -expand 0 -fill none -side left 
     pack $base.fra23.men25 \
-        -in .neighbor.fra23 -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter.fra23 -anchor center -expand 0 -fill x -side top 
     pack $base.fra26 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra26.lab27 \
-        -in .neighbor.fra26 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra26 -anchor center -expand 0 -fill none -side left 
     pack $base.fra26.men28 \
-        -in .neighbor.fra26 -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter.fra26 -anchor center -expand 0 -fill x -side top 
     pack $base.fra30 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra30.lab31 \
-        -in .neighbor.fra30 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra30 -anchor center -expand 0 -fill none -side left 
     pack $base.fra30.ent32 \
-        -in .neighbor.fra30 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra30 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra39 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra39.lab40 \
-        -in .neighbor.fra39 -anchor center -expand 0 -fill none -ipady 2 \
+        -in .nb_iter.fra39 -anchor center -expand 0 -fill none -ipady 2 \
         -side top 
     pack $base.fra41 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra41.lab42 \
-        -in .neighbor.fra41 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra41 -anchor center -expand 0 -fill none -side left 
     pack $base.fra41.ent43 \
-        -in .neighbor.fra41 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra41 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra44 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra44.lab45 \
-        -in .neighbor.fra44 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra44 -anchor center -expand 0 -fill none -side left 
     pack $base.fra44.ent46 \
-        -in .neighbor.fra44 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra44 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra47 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra47.lab48 \
-        -in .neighbor.fra47 -anchor center -expand 0 -fill none -ipady 2 \
+        -in .nb_iter.fra47 -anchor center -expand 0 -fill none -ipady 2 \
         -side top 
     pack $base.fra49 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra49.lab50 \
-        -in .neighbor.fra49 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra49 -anchor center -expand 0 -fill none -side left 
     pack $base.fra49.ent51 \
-        -in .neighbor.fra49 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra49 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra52 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra52.lab53 \
-        -in .neighbor.fra52 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra52 -anchor center -expand 0 -fill none -side left 
     pack $base.fra52.ent54 \
-        -in .neighbor.fra52 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra52 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra18 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra18.lab19 \
-         -in .neighbor.fra18 -anchor center -expand 0 -fill x -ipady 2 -side top 
+         -in .nb_iter.fra18 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra33 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra33.lab34 \
-        -in .neighbor.fra33 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra33 -anchor center -expand 0 -fill none -side left 
     pack $base.fra33.ent35 \
-        -in .neighbor.fra33 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra33 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra36 \
-        -in .neighbor -anchor center -expand 0 -fill x -side top 
+        -in .nb_iter -anchor center -expand 0 -fill x -side top 
     pack $base.fra36.lab37 \
-        -in .neighbor.fra36 -anchor center -expand 0 -fill none -side left 
+        -in .nb_iter.fra36 -anchor center -expand 0 -fill none -side left 
     pack $base.fra36.ent38 \
-        -in .neighbor.fra36 -anchor center -expand 0 -fill x -ipady 2 -side top 
+        -in .nb_iter.fra36 -anchor center -expand 0 -fill x -ipady 2 -side top 
     pack $base.fra57 \
-        -in .neighbor -anchor center -expand 0 -fill x -side bottom 
+        -in .nb_iter -anchor center -expand 0 -fill x -side bottom 
     pack $base.fra57.but58 \
-        -in .neighbor.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
+        -in .nb_iter.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
         -ipady 2 -padx 30 -pady 10 -side left 
     pack $base.fra57.but59 \
-        -in .neighbor.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
+        -in .nb_iter.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
         -ipady 2 -padx 30 -pady 10 -side left
     pack $base.fra57.but60 \
-        -in .neighbor.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
+        -in .nb_iter.fra57 -anchor center -expand 0 -fill none -ipadx 10 \
         -ipady 2 -padx 30 -pady 10 -side right
   
-    set neighbor(8,TYPE) string
-    set neighbor(8,NAME_OF_PARAMETER) NGBH
-    set neighbor(9,TYPE) string
-    set neighbor(9,NAME_OF_PARAMETER) METHOD
-    set neighbor(10,TYPE) string
-    set neighbor(10,NAME_OF_PARAMETER) TYPE
+    set nb_iter(8,TYPE) string
+    set nb_iter(8,NAME_OF_PARAMETER) NGBH
+    set nb_iter(9,TYPE) string
+    set nb_iter(9,NAME_OF_PARAMETER) METHOD
+    set nb_iter(10,TYPE) string
+    set nb_iter(10,NAME_OF_PARAMETER) TYPE
   
-    nb_set NGBH $neighbor(NGBH)
-    nb_set METHOD $neighbor(METHOD)
-    nb_set TYPE $neighbor(TYPE)
+    nb_set NGBH $nb_iter(NGBH)
+    nb_set METHOD $nb_iter(METHOD)
+    nb_set TYPE $nb_iter(TYPE)
 
      wm geometry $base 590x527
-    set neighbor(NO_OF_ENTRYS) 10
+    set nb_iter(NO_OF_ENTRYS) 10
       set ext_algo(objective) 0
     set ext_algo(running) 1
 
     bind $base <Visibility> {  
-	grab set .neighbor;  
-	bind .neighbor <Visibility> { } }
+	grab set .nb_iter;  
+	bind .nb_iter <Visibility> { } }
     
     
 }
 
 
 proc nb_set {name value} {
-    global neighbor;
+    global nb_iter;
     global Name;
     if {$name == "NGBH"} {
-	set neighbor(NGBH) $value
-	.neighbor.fra20.men22 config -text $Name($value)
+	set nb_iter(NGBH) $value
+	.nb_iter.fra20.men22 config -text $Name($value)
     }
     if {$name == "METHOD"} {
-	set neighbor(METHOD) $value
-	.neighbor.fra23.men25 config -text $Name($value)
+	set nb_iter(METHOD) $value
+	.nb_iter.fra23.men25 config -text $Name($value)
     }
     if {$name == "TYPE"} {
-	set neighbor(TYPE) $value
-	.neighbor.fra26.men28  config -text $Name($value)
+	set nb_iter(TYPE) $value
+	.nb_iter.fra26.men28  config -text $Name($value)
     }
 }
 

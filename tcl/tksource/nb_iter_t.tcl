@@ -1,14 +1,14 @@
-proc vTclWindow.neighbor_ptst {base} {
+proc vTclWindow.nb_iter_ptst {base} {
     global Name;
     global nb;
-    global neighbor
+    global nb_iter
     global nbmax
     global maxsteps
     global nboldx
     global system
     
     if {$base == ""} {
-        set base .neighbor_ptst
+        set base .nb_iter_ptst
     }
     if {[winfo exists $base]} {
         wm deiconify $base; return
@@ -118,27 +118,27 @@ proc vTclWindow.neighbor_ptst {base} {
     $base.fra23.men25.m add command \
         -label $Name(SA) \
 	-command {nbtst_set "METHOD" "SA";\
-	 set nb(x) [winfo rootx .neighbor_ptst];\
-	 set nb(y) [winfo rooty .neighbor_ptst];\
-	 destroy .neighbor_ptst; Window show .neighbor_ptst }
+	 set nb(x) [winfo rootx .nb_iter_ptst];\
+	 set nb(y) [winfo rooty .nb_iter_ptst];\
+	 destroy .nb_iter_ptst; Window show .nb_iter_ptst }
     $base.fra23.men25.m add command \
         -label $Name(TA) \
 	-command {nbtst_set "METHOD" "TA";\
-         set nb(x) [winfo rootx .neighbor_ptst];\
-	 set nb(y) [winfo rooty .neighbor_ptst];\
-	 destroy .neighbor_ptst; Window show .neighbor_ptst }
+         set nb(x) [winfo rootx .nb_iter_ptst];\
+	 set nb(y) [winfo rooty .nb_iter_ptst];\
+	 destroy .nb_iter_ptst; Window show .nb_iter_ptst }
     $base.fra23.men25.m add command \
 	-label $Name(TS) \
 	-command {nbtst_set "METHOD" "TS";\
-	 set nb(x) [winfo rootx .neighbor_ptst];\
-	 set nb(y) [winfo rooty .neighbor_ptst];\
-	 destroy .neighbor_ptst; Window show .neighbor_ptst }
+	 set nb(x) [winfo rootx .nb_iter_ptst];\
+	 set nb(y) [winfo rooty .nb_iter_ptst];\
+	 destroy .nb_iter_ptst; Window show .nb_iter_ptst }
     $base.fra23.men25.m add command \
         -label $Name(II) \
 	-command {nbtst_set "METHOD" "II";\
-	 set nb(x) [winfo rootx .neighbor_ptst];\
-	 set nb(y) [winfo rooty .neighbor_ptst];\
-	 destroy .neighbor_ptst; Window show .neighbor_ptst }
+	 set nb(x) [winfo rootx .nb_iter_ptst];\
+	 set nb(y) [winfo rooty .nb_iter_ptst];\
+	 destroy .nb_iter_ptst; Window show .nb_iter_ptst }
     frame $base.fra26 \
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
@@ -165,7 +165,7 @@ proc vTclWindow.neighbor_ptst {base} {
         -borderwidth 1 \
         -relief raised -text $Name(ABORT_BOUND) 
     entry $base.fra17.ent19 \
-        -textvar neighbor(ABORT_BOUND)
+        -textvar nb_iter(ABORT_BOUND)
 
 
     frame $base.fra30 \
@@ -181,7 +181,7 @@ proc vTclWindow.neighbor_ptst {base} {
 			           -filetypes $mw(filetypes) \
 				   -initialfile $nb(FILE) \
 			           -title $Name(out_file)];
-                   .neighbor_ptst.fra30.ent32 xview 200}
+                   .nb_iter_ptst.fra30.ent32 xview 200}
 
 
     frame $base.fra31 \
@@ -227,7 +227,7 @@ proc vTclWindow.neighbor_ptst {base} {
 #    label $base.fra44.lab45 \
 #        -borderwidth 1 \
 # 	-relief raised -text $Name(ONLY_SA_TA)
-if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
+if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } {
     frame $base.fra41 \
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
@@ -297,7 +297,7 @@ if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
 #    label $base.fra59.lab60 \
 #        -borderwidth 1 \
 #	-relief raised -text $Name(ONLY_TS) 
-if { $neighbor(METHOD)=="TS" } {
+if { $nb_iter(METHOD)=="TS" } {
     frame $base.fra61 \
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
@@ -366,14 +366,14 @@ if { $neighbor(METHOD)=="TS" } {
         -width 125 
     button $base.fra77.but78 \
 	-padx 11 -pady 4 -text $Name(START_NB) \
-	-command {set nb(x) [winfo rootx .neighbor_ptst];\
-	          set nb(y) [winfo rooty .neighbor_ptst];\
-		  destroy .neighbor_ptst; TC_nb_ptst}
+	-command {set nb(x) [winfo rootx .nb_iter_ptst];\
+	          set nb(y) [winfo rooty .nb_iter_ptst];\
+		  destroy .nb_iter_ptst; TC_nb_ptst}
     button $base.fra77.but79 \
 	-padx 11 -pady 4 -text $Name(Cancel) \
-	-command {set nb(x) [winfo rootx .neighbor_ptst];\
-	          set nb(y) [winfo rooty .neighbor_ptst];\
-		  destroy .neighbor_ptst}
+	-command {set nb(x) [winfo rootx .nb_iter_ptst];\
+	          set nb(y) [winfo rooty .nb_iter_ptst];\
+		  destroy .nb_iter_ptst}
     button $base.fra77.but80 \
 	-padx 11 -pady 4 -text $Name(Help) \
 	-command { lisa_help external/gen_ptst.html }
@@ -440,7 +440,7 @@ if { $neighbor(METHOD)=="TS" } {
 #        -x 0 -y 300 -width 500 -height 30 -anchor nw -bordermode ignore 
 #    place $base.fra44.lab45 \
 #        -x 0 -y 0 -width 499 -height 28 -anchor nw -bordermode ignore 
-if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
+if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } {
     place $base.fra41 \
         -x 0 -y 300 -width 500 -height 90 -anchor nw -bordermode ignore 
     place $base.fra41.lab42 \
@@ -478,7 +478,7 @@ if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
 #        -x 0 -y 510 -width 500 -height 30 -anchor nw -bordermode ignore 
 #    place $base.fra59.lab60 \
 #        -x 0 -y 0 -width 499 -height 28 -anchor nw -bordermode ignore 
-if { $neighbor(METHOD)=="TS" } {
+if { $nb_iter(METHOD)=="TS" } {
     place $base.fra61 \
         -x 0 -y 300 -width 500 -height 90 -anchor nw -bordermode ignore 
     place $base.fra61.lab62 \
@@ -521,9 +521,9 @@ if { $neighbor(METHOD)=="TS" } {
     place $base.fra77.but80 \
         -x 372 -y 20 -anchor nw -bordermode ignore
 
-    nbtst_set NGBH $neighbor(NGBH)
-    nbtst_set METHOD $neighbor(METHOD)
-    nbtst_set TYPE $neighbor(TYPE)
+    nbtst_set NGBH $nb_iter(NGBH)
+    nbtst_set METHOD $nb_iter(METHOD)
+    nbtst_set TYPE $nb_iter(TYPE)
     nbtst_set STEPS_FA $nb(STEPS_FA)
     nbtst_set PROB_FA $nb(PROB_FA)
     nbtst_set MAX_STUCK_FA $nb(MAX_STUCK_FA)
@@ -534,57 +534,57 @@ if { $neighbor(METHOD)=="TS" } {
     set maxsteps 0
     set  nboldx 0
     set nb(xpos) 0
-    bind .neighbor_ptst <Visibility> {  
-	grab set .neighbor_ptst;  
-	bind .neighbor_ptst <Visibility> { } }
-#    bind .neighbor_ptst <Destroy> { set mw(fSequence) "0" }
+    bind .nb_iter_ptst <Visibility> {  
+	grab set .nb_iter_ptst;  
+	bind .nb_iter_ptst <Visibility> { } }
+#    bind .nb_iter_ptst <Destroy> { set mw(fSequence) "0" }
 set nb(running) 1
 }
 
 proc nbtst_set {name value} {
     global nb;
-    global neighbor
+    global nb_iter
     global Name;
     if {$name == "NGBH"} {
-	set neighbor(NGBH) $value
-	.neighbor_ptst.fra20.men22 config -text $Name($value)
+	set nb_iter(NGBH) $value
+	.nb_iter_ptst.fra20.men22 config -text $Name($value)
     }
     if {$name == "METHOD"} {
-	set neighbor(METHOD) $value
-	.neighbor_ptst.fra23.men25 config -text $Name($value)
+	set nb_iter(METHOD) $value
+	.nb_iter_ptst.fra23.men25 config -text $Name($value)
     }
     if {$name == "TYPE"} {
-	set neighbor(TYPE) $value
-	.neighbor_ptst.fra26.men28  config -text $Name($value)
+	set nb_iter(TYPE) $value
+	.nb_iter_ptst.fra26.men28  config -text $Name($value)
     }
     if {$name == "STEPS_FA"} {
 	set nb(STEPS_FA) $value
-	.neighbor_ptst.fra33.men17  config -text $Name($value)
+	.nb_iter_ptst.fra33.men17  config -text $Name($value)
     }
     if {$name == "FILE"} {
 	if {$value != ""} {
 	    set nb(FILE) $value
-	    # .neighbor_ptst.fra30.ent32 config -textvar nb(FILE)
+	    # .nb_iter_ptst.fra30.ent32 config -textvar nb(FILE)
 	}
     }
-    if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } { 
+    if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } { 
        if {$name == "PROB_FA"} {
 	   set nb(PROB_FA) $value
-	   .neighbor_ptst.fra41.men18  config -text $Name($value)
+	   .nb_iter_ptst.fra41.men18  config -text $Name($value)
        }
        if {$name == "MAX_STUCK_FA"} {
 	   set nb(MAX_STUCK_FA) $value
-	   .neighbor_ptst.fra51.men19  config -text $Name($value)
+	   .nb_iter_ptst.fra51.men19  config -text $Name($value)
        }
     }
-    if { $neighbor(METHOD)=="TS" } {
+    if { $nb_iter(METHOD)=="TS" } {
 	if {$name == "TABULENGTH_FA"} {
 	    set nb(TABULENGTH_FA) $value
-	    .neighbor_ptst.fra61.men20  config -text $Name($value)
+	    .nb_iter_ptst.fra61.men20  config -text $Name($value)
 	} 
 	if {$name == "NUMB_NGHB_FA"} {
 	    set nb(NUMB_NGHB_FA) $value
-	    .neighbor_ptst.fra69.men21  config -text $Name($value)
+	    .nb_iter_ptst.fra69.men21  config -text $Name($value)
 	}
     }
 }

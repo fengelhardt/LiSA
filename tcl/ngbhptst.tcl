@@ -1,7 +1,7 @@
 proc vTclWindow.ngbh_paratst {base} {
     global Name;
     global nb;
-    global neighbor
+    global nb_iter
     global nbmax
     global maxsteps
     global nboldx
@@ -165,7 +165,7 @@ proc vTclWindow.ngbh_paratst {base} {
         -borderwidth 1 \
         -relief raised -text $Name(ABORT_BOUND) 
     entry $base.fra17.ent19 \
-        -textvar neighbor(ABORT_BOUND)
+        -textvar nb_iter(ABORT_BOUND)
 
 
     frame $base.fra30 \
@@ -227,7 +227,7 @@ proc vTclWindow.ngbh_paratst {base} {
 #    label $base.fra44.lab45 \
 #        -borderwidth 1 \
 # 	-relief raised -text $Name(ONLY_SA_TA)
-if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
+if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } {
     frame $base.fra41 \
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
@@ -297,7 +297,7 @@ if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
 #    label $base.fra59.lab60 \
 #        -borderwidth 1 \
 #	-relief raised -text $Name(ONLY_TS) 
-if { $neighbor(METHOD)=="TS" } {
+if { $nb_iter(METHOD)=="TS" } {
     frame $base.fra61 \
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
@@ -440,7 +440,7 @@ if { $neighbor(METHOD)=="TS" } {
 #        -x 0 -y 300 -width 500 -height 30 -anchor nw -bordermode ignore 
 #    place $base.fra44.lab45 \
 #        -x 0 -y 0 -width 499 -height 28 -anchor nw -bordermode ignore 
-if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
+if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } {
     place $base.fra41 \
         -x 0 -y 300 -width 500 -height 90 -anchor nw -bordermode ignore 
     place $base.fra41.lab42 \
@@ -478,7 +478,7 @@ if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } {
 #        -x 0 -y 510 -width 500 -height 30 -anchor nw -bordermode ignore 
 #    place $base.fra59.lab60 \
 #        -x 0 -y 0 -width 499 -height 28 -anchor nw -bordermode ignore 
-if { $neighbor(METHOD)=="TS" } {
+if { $nb_iter(METHOD)=="TS" } {
     place $base.fra61 \
         -x 0 -y 300 -width 500 -height 90 -anchor nw -bordermode ignore 
     place $base.fra61.lab62 \
@@ -521,9 +521,9 @@ if { $neighbor(METHOD)=="TS" } {
     place $base.fra77.but80 \
         -x 372 -y 20 -anchor nw -bordermode ignore
 
-    nbtst_set NGBH $neighbor(NGBH)
-    nbtst_set METHOD $neighbor(METHOD)
-    nbtst_set TYPE $neighbor(TYPE)
+    nbtst_set NGBH $nb_iter(NGBH)
+    nbtst_set METHOD $nb_iter(METHOD)
+    nbtst_set TYPE $nb_iter(TYPE)
     nbtst_set STEPS_FA $nb(STEPS_FA)
     nbtst_set PROB_FA $nb(PROB_FA)
     nbtst_set MAX_STUCK_FA $nb(MAX_STUCK_FA)
@@ -543,18 +543,18 @@ set nb(running) 1
 
 proc nbtst_set {name value} {
     global nb;
-    global neighbor
+    global nb_iter
     global Name;
     if {$name == "NGBH"} {
-	set neighbor(NGBH) $value
+	set nb_iter(NGBH) $value
 	.ngbh_paratst.fra20.men22 config -text $Name($value)
     }
     if {$name == "METHOD"} {
-	set neighbor(METHOD) $value
+	set nb_iter(METHOD) $value
 	.ngbh_paratst.fra23.men25 config -text $Name($value)
     }
     if {$name == "TYPE"} {
-	set neighbor(TYPE) $value
+	set nb_iter(TYPE) $value
 	.ngbh_paratst.fra26.men28  config -text $Name($value)
     }
     if {$name == "STEPS_FA"} {
@@ -567,7 +567,7 @@ proc nbtst_set {name value} {
 	    # .ngbh_paratst.fra30.ent32 config -textvar nb(FILE)
 	}
     }
-    if { $neighbor(METHOD)=="SA" || $neighbor(METHOD)=="TA" } { 
+    if { $nb_iter(METHOD)=="SA" || $nb_iter(METHOD)=="TA" } { 
        if {$name == "PROB_FA"} {
 	   set nb(PROB_FA) $value
 	   .ngbh_paratst.fra41.men18  config -text $Name($value)
@@ -577,7 +577,7 @@ proc nbtst_set {name value} {
 	   .ngbh_paratst.fra51.men19  config -text $Name($value)
        }
     }
-    if { $neighbor(METHOD)=="TS" } {
+    if { $nb_iter(METHOD)=="TS" } {
 	if {$name == "TABULENGTH_FA"} {
 	    set nb(TABULENGTH_FA) $value
 	    .ngbh_paratst.fra61.men20  config -text $Name($value)

@@ -1,6 +1,6 @@
 proc set_default_var { } {
     global nb;
-    global neighbor;
+    global nb_iter;
     global bb;
     global prnt;
     global gantt;
@@ -19,18 +19,18 @@ proc set_default_var { } {
     # win or unix
     set system(os) "unix"
 
-    set neighbor(x) 351
-    set neighbor(y) 62
-    set neighbor(NGBH) "API"
-    set neighbor(METHOD) "SA"
-    set neighbor(TYPE) "RAND"
-    set neighbor(STEPS) 10000
-    set neighbor(NUMB_STUCKS) "1000000"
-    set neighbor(ABORT_BOUND) ""
-    set neighbor(PROB) 87
-    set neighbor(MAX_STUCK) 3000
-    set neighbor(TABULENGTH) 7
-    set neighbor(NUMB_NGHB) 50
+    set nb_iter(x) 351
+    set nb_iter(y) 62
+    set nb_iter(NGBH) "API"
+    set nb_iter(METHOD) "SA"
+    set nb_iter(TYPE) "RAND"
+    set nb_iter(STEPS) 10000
+    set nb_iter(NUMB_STUCKS) "1000000"
+    set nb_iter(ABORT_BOUND) ""
+    set nb_iter(PROB) 87
+    set nb_iter(MAX_STUCK) 3000
+    set nb_iter(TABULENGTH) 7
+    set nb_iter(NUMB_NGHB) 50
     set nb(STEPS_init) 5000
     set nb(STEPS_max) 5000
     set nb(STEPS_incr) 2
