@@ -179,8 +179,8 @@ int main(int argc, char *argv[])
 					exit( 7 );
 			}
   
-			js_in << m << " ";
-			js_in << n << " ";
+			js_in << m << endl;
+			js_in << n << endl;
 			
 			int *m_nr = new int[m];
 			TIMETYP *ptime = new TIMETYP[m];
@@ -201,10 +201,16 @@ int main(int argc, char *argv[])
 					}
 					js_in << counter << " ";
 					//cout << "output " << counter << "\n";
-					if (counter > 0)
-							for (j=0; j<counter; j++)
-									js_in << ptime[j] << " " << m_nr[j] << " ";
-			}
+					if (counter > 0){
+            for (j=0; j<counter; j++){
+              js_in.width(4);
+              js_in << ptime[j];
+              js_in.width(4);
+              js_in << m_nr[j];
+            }
+              js_in << endl;
+          }
+      }
 			js_in.close();
 			
 			// the best schedule:
