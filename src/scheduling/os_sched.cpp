@@ -95,21 +95,32 @@ int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
       int h, xyz;  
       TIMETYP oldmosucc=0, oldjosucc=0;
 
-      if (!ScheduleOK) { cerr << "\nSchedule not feasible --> nothig done \n";
-		     return(ERROR);
-		   }
 #ifdef LISA_DEBUG
-      if (exists(i,j))
-	{ 
-          cerr <<"\nError: operation ("<<i<<","<<j<<") is already inserted!";
-	  return(ERROR);
-	}
-      if (!(exists(woi,j) && exists (i, woj)))
-	{ 
-          cerr << "\nError: insertion position does not exist!";
-	  return(ERROR);
-	}
+      if (!ScheduleOK) { 
+        G_ExceptionList.lthrow("Schedule not feasible.",
+                               Lisa_ExceptionList::UNDEFINED_OBJECT);
+		    return ERROR;
+		  }
+      if(exists(i,j)){ 
+        G_ExceptionList.lthrow("Operation ("+ztos(i)+","+ztos(j)+
+                               ") is already inserted!",
+                               Lisa_ExceptionList::UNDEFINED_OBJECT);
+        return ERROR;
+      }
+      if (!exists(woi,j)){
+        G_ExceptionList.lthrow("Insertion position ("+ztos(woi)+","+ztos(j)+
+                               ") does not exist!",
+                               Lisa_ExceptionList::UNDEFINED_OBJECT);
+        return ERROR;
+      }
+      if(!exists(i, woj)){ 
+        G_ExceptionList.lthrow("Insertion position ("+ztos(i)+","+ztos(woj)+
+                               ") does not exist!",
+                               Lisa_ExceptionList::UNDEFINED_OBJECT);
+        return ERROR;
+      }
 #endif
+
       // remember where it starts:  
       sti=i; stj=j;
 
@@ -147,17 +158,18 @@ void Lisa_OsSchedule::exclude(int i, int j)
     { 
       int pi,si, pj, sj;
     
-      if (!ScheduleOK) 
-	{ 
-	  cerr << "\nSchedule not feasible -> nothing done!";
-	  return;
-	}
 #ifdef LISA_DEBUG
-      if (!exists(i,j))
-	{ 
-          cerr<<"\nError: operation ("<<i<<","<<j<<") is not inserted!";
-	  return;
-	}
+    if (!ScheduleOK){ 
+	    G_ExceptionList.lthrow("Schedule not feasible.",
+                             Lisa_ExceptionList::UNDEFINED_OBJECT);
+	    return;
+    }
+    if (!exists(i,j)){ 
+      G_ExceptionList.lthrow("Operation ("+ztos(i)+","+ztos(j)+
+                             ") is not inserted!",
+                             Lisa_ExceptionList::UNDEFINED_OBJECT);
+	    return;
+    }
 #endif
 
       // modify lists
