@@ -61,14 +61,14 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir datadir algdir docdir
+install: bindir datadir classifydir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(INSTALLNAME) $(BINPATH)/$(INSTALLNAME)
 	chmod 755 $(BINPATH)/$(INSTALLNAME)
-	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)
-	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)
-	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)
 	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
+	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
+	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
+	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)/classify
 	cp -r $(SOURCEPATH)/sample/problem $(DATAPATH)/sample
 	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
@@ -82,6 +82,11 @@ install: bindir datadir algdir docdir
 
 bindir:
 	@mkdir -p $(BINPATH)
+
+# ------------------------------------------------------------------------------
+
+classifydir:
+	@mkdir -p $(DATAPATH)/classify
 
 # ------------------------------------------------------------------------------
 
@@ -104,10 +109,8 @@ docdir:
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
-	rm -f $(DATAPATH)/classify.bib
-	rm -f $(DATAPATH)/classify.bst
-	rm -f $(DATAPATH)/classify.tex
 	rm -f $(DATAPATH)/default.lsa
+	rm -fr $(DATAPATH)/classify
 	rm -fr $(DATAPATH)/sample
 	rm -f $(ALGPATH)/language/*/disp*.alg
 	rm -f $(DOCPATH)/lisa/*.html

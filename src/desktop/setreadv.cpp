@@ -477,7 +477,7 @@ int TC_getvar(ClientData /* clientData */,
   }
    else if (name=="REFERENCES") {
      str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
-		       "/data/classify.bib");
+		       "/data/classify/classify.bib");
      int stringlength=str.length();
      if (stringlength>250) {
        str.erase(250,stringlength);

@@ -27,7 +27,7 @@ const int PATHMAX=500;
 
 /** Scheduling problem classification - main function.  
     The function Lisa_classify initializes the database of minimal np-hard
-    and maximal polynomial problems located in LISA_HOME/data/classify.bib
+    and maximal polynomial problems located in LISA_HOME/data/classify/classify.bib
     
     The function also initializes the reduction graphs.
 

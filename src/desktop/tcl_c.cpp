@@ -644,9 +644,9 @@ int TC_classify(ClientData /* clientData */,
   mytext.clear();
   string str;
   str=Lisa_classify(&G_ProblemType,G_Preferences.LISA_HOME,
-		     "/data/classify.bib");
+		     "/data/classify/classify.bib");
    // str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
-   //		    "/data/classify.bib");
+   //		    "/data/classify/classify.bib");
   mytext.text(str.c_str());
   return TCL_OK; 
 }
@@ -656,7 +656,7 @@ int TC_references(ClientData /* clientData */,
 		int /*argc*/, char **/*argv[]*/) {
   string str2="";
   string str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
-			   "/data/classify.bib");
+			   "/data/classify/classify.bib");
   if (str!="") {
     str2="lisa_text  $Name(References) {" + str + "}" ;
     Tcl_Eval(interp, (char *) str2.c_str());
