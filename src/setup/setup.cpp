@@ -16,6 +16,9 @@ int main(int argc, char* argv[])
 
      Tcl_Interp* interp = Tcl_CreateInterp();
 
+     // Cygwin needs the following line due to a TCL bug therein
+     Tcl_FindExecutable(argv[0]);
+
      if (Tcl_Init(interp) == TCL_ERROR)
           {
           cerr << "Tcl_Init failed: " << interp->result << endl;
