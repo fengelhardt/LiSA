@@ -1550,10 +1550,11 @@ xmlChar* string2xmlChar(const string& input){
   int temp, size, out_size;
   temp = size = input.size() + 1; /*terminating null included*/
   out_size = size*2-1; /*terminating null is just one byte*/
-  xmlChar* out = (xmlChar*)  xmlMalloc((sizeof(xmlChar))* out_size); 
-  if ((isolat1ToUTF8(out, &out_size, (const unsigned char*) input.c_str(), &temp) <= 0)|| temp-size) {
+  xmlChar* out = (xmlChar*)  xmlMalloc((sizeof(xmlChar))* out_size);
+  int ret = isolat1ToUTF8(out, &out_size, (const unsigned char*) input.c_str(), &temp);
+  
+  if ((LIBXML_VERSION >= 20616 && ret <= 0 ) || ret != 0 || temp-size) {
     xmlFree(out);
-    //cout << "FAILED" << endl;
     cerr << "Warning : string2xmlChar : Failed to encode token \"" << input << "\"" << endl;
     return NULL;
   }
@@ -1570,7 +1571,7 @@ bool xmlChar2string(const xmlChar* in , string& result)
   unsigned char* out = new unsigned char[out_len];
 
   int ret = UTF8Toisolat1(out, &out_len, in,  &in_len);   
-  if (ret <= 0)
+  if ((LIBXML_VERSION >= 20616 && ret <= 0 ) || ret != 0 ) // libxml changed return value from version 2.6.16 on -marc- 
     {	
       cerr << "Warning : xmlChar2string : Failed to decode token \"" << (char*) in << "\"" << endl;
       return false;	
