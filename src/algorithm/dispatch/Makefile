@@ -62,13 +62,13 @@ install:
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	mkdir -p $(ALGPATH)/language/english
-	cp $(PROGRAMNAME)1_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)1.alg
-	cp $(PROGRAMNAME)2_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)2.alg
-	cp $(PROGRAMNAME)3_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)3.alg
+	cp $(PROGRAMNAME)1_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)1.xml
+	cp $(PROGRAMNAME)2_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)2.xml
+	cp $(PROGRAMNAME)3_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)3.xml
 	mkdir -p $(ALGPATH)/language/german
-	cp $(PROGRAMNAME)1_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)1.alg
-	cp $(PROGRAMNAME)2_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)2.alg
-	cp $(PROGRAMNAME)3_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)3.alg
+	cp $(PROGRAMNAME)1_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)1.xml
+	cp $(PROGRAMNAME)2_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)2.xml
+	cp $(PROGRAMNAME)3_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)3.xml
 	mkdir -p $(DOCPATH)/lisa/english/algorithm
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
 	mkdir -p $(DOCPATH)/lisa/german/algorithm
@@ -78,7 +78,7 @@ install:
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.alg
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.xml
 	rm -f $(DOCPATH)/lisa/*/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
