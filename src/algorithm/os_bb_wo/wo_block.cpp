@@ -31,8 +31,7 @@ void Compute_Blocks ()
  struct BlockList  *actual_block,  
 		   *first_block,
 		   *helpblock;
- struct List       *help,
-                   *help1;
+
  int               num_of_elements,  
                    pos = 1,
 		   pos_merk = 0,

@@ -172,7 +172,6 @@ void Compute_BranchList ()
 {
    struct BlockList  *actual_block;    
    struct List       *help;
-   int               op;
    char              block_kind;
 
    actual_block = SonNode->blocks;

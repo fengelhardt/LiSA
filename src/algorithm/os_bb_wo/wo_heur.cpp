@@ -143,8 +143,7 @@ void Heuristic_Schedule_MATCHING()
    struct List *cut,                                /*Op'en eines Matchings*/
 	       *updatelist,	                    /*local_heads aufdatieren */
 	       *help,
-	       *help1;
-   FILE        *fp;       
+	       *help1;     
    int         i, 
 	       n, 
 	       j,
@@ -153,7 +152,7 @@ void Heuristic_Schedule_MATCHING()
 	       readytime,                           /* Fertigstellungszeit    */
 	       c_max,
 	       sum,
-	       prior_op,                            /* Op'en fuer CriticalPath*/
+	       //prior_op,                            /* Op'en fuer CriticalPath*/
 	       op,
 	       pos_path,                            /* lok. fuer PathPos */
 	       iter,                                /*zaehlt betrachtete Op'en*/
@@ -590,15 +589,14 @@ void Heuristic_Schedule_BOTTLE_MATCHING()
    struct List *cut,                             /* Op'en e-s Matchings */
 	       *updatelist,	                 /* local_heads aufdatieren*/
 	       *help,
-	       *help1;
-   FILE        *fp;       
+	       *help1;      
    int         i, 
 	       j,
 	       k,
 	       readytime,                         /* Fertigstellungszeit    */
 	       c_max,
 	       sum,
-	       prior_op,                          /* Op'en fuer CriticalPath*/
+	       //prior_op,                          /* Op'en fuer CriticalPath*/
 	       op,
 	       iter,                              /* zaehlt betrachtete Open*/
                pos_path,
@@ -960,7 +958,6 @@ static int selection[MaxNumOfOperations+1],
   struct List  *cut,
 	       *help,
 	       *updatelist;
-  FILE         *fp;
   int          minreadytime,
   	       minreadytimemachine,	
 	       newminreadytime,
@@ -971,7 +968,7 @@ static int selection[MaxNumOfOperations+1],
 	       c_max,
 	       pos_path,
 	       op, 
-	       j,
+	       //j,
 	       sum,
 	       path_critical[MaxNumOfOperations+1];
 
@@ -1356,7 +1353,7 @@ void Heuristic_Schedule_LB_PREC_RULE_VAR()
   struct List  *cut,
 	       *help,
 	       *updatelist;
-  FILE         *fp;
+
   int          minreadytime,
 	       minreadytimemachine,	
 	       minreadytimejob,
@@ -1370,7 +1367,7 @@ void Heuristic_Schedule_LB_PREC_RULE_VAR()
 	       c_max,
 	       pos_path,
 	       op, 
-	       j,
+	       //j,
 	       sum,
 	       path_critical[MaxNumOfOperations+1];
 

@@ -77,7 +77,6 @@ int main(int argc,char *argv[]){
   G_ExceptionList.set_output_to_cout();
     
   struct BranchList  *DeleteBranch;
-  char *index;
     
   Initialize();
     
