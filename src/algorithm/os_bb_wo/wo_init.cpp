@@ -5,12 +5,13 @@
 /*                      Initialisierung globaler Variablen                  */ 
 /* ************************************************************************ */
 
-#include <stdio.h>
-#include <malloc.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_init.hpp"
+
+#include "../../misc/except.hpp"
 
 /* ************************************************************************ */
 /*                           Procedure  Initialize()                        */
@@ -28,25 +29,28 @@ void Initialize(){
   UpperBound = MaxInt;
   FirstOfStack = NIL;
 
-  if ( (SonNode = (struct NodeType *) malloc(sizeof(struct NodeType)))
+  if ( (SonNode = new struct NodeType)
                 == NIL )
   {
-     fprintf(stderr, "init,SonNode: malloc: kein Speicherplatz\n") ;
+     G_ExceptionList.lthrow("init,SonNode: kein Speicherplatz",
+                            Lisa_ExceptionList::NO_MORE_MEMORY) ;
      exit(1);
   }
   SonNode->blocks = NIL; 
 
-  if ( (ConjArcs = (struct ArcList *) malloc(sizeof(struct ArcList)))
+  if ( (ConjArcs = new struct ArcList)
                  == NIL )
   {
-     fprintf(stderr, "init,ConjArcs: malloc: kein Speicherplatz\n") ;
+     G_ExceptionList.lthrow("init,ConjArcs: kein Speicherplatz",
+                            Lisa_ExceptionList::NO_MORE_MEMORY) ;
      exit(1);
   }
  
-  if ( (DisjArcs = (struct ArcList *) malloc(sizeof(struct ArcList)))
+  if ( (DisjArcs = new struct ArcList)
                   == NIL )
   { 
-     fprintf(stderr, "init,DisjArcs: malloc: kein Speicherplatz\n") ;
+     G_ExceptionList.lthrow("init,DisjArcs: kein Speicherplatz",
+                            Lisa_ExceptionList::NO_MORE_MEMORY) ;
      exit(1);
   }
 

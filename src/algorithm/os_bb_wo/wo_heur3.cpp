@@ -9,7 +9,7 @@
 /*             HIER: BOTTLENECK-MATCHINGPROBLEM / MINIMIERUNG                */ 
 /* ************************************************************************* */
 
-#include <stdio.h>
+#include <cstdio>
 #include "wo_data.hpp"
 #include "wo_calc.hpp"    
 #include "wo_table.hpp"

@@ -6,14 +6,14 @@
 /*                    Suchbaumknotens SonNode.                               */
 /* ************************************************************************* */
 
-#include <malloc.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 #include "wo_branch.hpp"
 
+#include "../../misc/except.hpp"
 
 /* Uberpruefen, ob eine op vor einen Block bewegt werden kann, oder nicht:
    Wird eine der Op'en des Blockes bereits vor op bearbeitet, so darf 
@@ -112,10 +112,11 @@ static void InsertInOrder(int op,char direction,char block_kind)
 		      *help;
    int                value;
 
-   if ( (temp = (struct BranchList *) malloc(sizeof(struct BranchList)))
+   if ( (temp = new struct BranchList)
               == NIL )
    {
-      fprintf(stderr, "branch,temp: malloc: kein Speicherplatz\n") ;
+      G_ExceptionList.lthrow("branch,temp: kein Speicherplatz",
+                             Lisa_ExceptionList::NO_MORE_MEMORY);
       exit(1);
    }
 

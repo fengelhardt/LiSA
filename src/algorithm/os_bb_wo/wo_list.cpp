@@ -10,13 +10,13 @@
 /*                                  des Backtrackings                        */
 /* ************************************************************************* */
 
-#include <malloc.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 
+#include "../../misc/except.hpp"
 
 /* ************************************************************************* */
 /*                          Procedure  Insert()                              */
@@ -34,10 +34,11 @@ struct List *Insert(struct List *l,int op)
 
   if ( l == NIL ) 
   {
-     if ( (l = (struct List *) malloc(sizeof(struct List))) == NIL )
+     if ( (l = new struct List) == NIL )
      {
-        fprintf(stderr, "Insert,l: malloc: kein Speicherplatz\n");
-	exit(1);
+        G_ExceptionList.lthrow("Insert,l: kein Speicherplatz",
+                               Lisa_ExceptionList::NO_MORE_MEMORY);
+        exit(1);
      }
      l->number = op;
      l->next = NIL;
@@ -47,10 +48,11 @@ struct List *Insert(struct List *l,int op)
      help = l;
      while ( help->next != NIL ) 
              help = help->next;
-     if ( (help->next = (struct List *) malloc(sizeof(struct List)))
+     if ( (help->next = new struct List)
                       == NIL )
      {
-        fprintf(stderr, "Insert,help->next:malloc:kein Speicherplatz\n");
+        G_ExceptionList.lthrow("Insert,help->next: kein Speicherplatz",
+                               Lisa_ExceptionList::NO_MORE_MEMORY);
         exit(1);
      }
      help = help->next;
@@ -74,10 +76,11 @@ struct List *InsertBefore(struct List *l,int op)
 
  struct List *help;
 
-    if ( (help = (struct List *) malloc(sizeof(struct List)))
+    if ( (help = new struct List)
                == NIL )
     {
-       fprintf(stderr, "InsertBefore,help: malloc: kein Speicherplatz\n");
+       G_ExceptionList.lthrow("InsertBefore,help: kein Speicherplatz",
+                              Lisa_ExceptionList::NO_MORE_MEMORY);
        exit(1);
     }
     help->number = op;
@@ -105,7 +108,7 @@ struct List *Delete(struct List *l,register int op)
   {    
      cancel = l;
      l = l->next;
-     free((void *) cancel);
+     delete cancel;
      return(l);
   }
 
@@ -118,7 +121,7 @@ struct List *Delete(struct List *l,register int op)
      return(l);
   cancel = help->next;
   help->next = help->next->next;
-  free((void *) cancel);
+  delete cancel;
   return(l);
 }
 
@@ -139,7 +142,7 @@ struct List *Makeempty(register struct List *l)
   {
      cancel = l;
      l = l->next;
-     free((void *) cancel);
+     delete cancel;
   }
   return(NIL);                            
 }

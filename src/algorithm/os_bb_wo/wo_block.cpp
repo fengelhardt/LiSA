@@ -5,14 +5,14 @@
 /*                     Berechnung der Bloecke auf dem kritischen Pfad        */
 /* ************************************************************************* */
 
-#include <malloc.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 #include "wo_block.hpp"
 
+#include "../../misc/except.hpp"
 
 /* ************************************************************************* */
 /*                      Procedure Compute_Blocks()                           */
@@ -41,10 +41,11 @@ void Compute_Blocks ()
 
 
 
- if ( (first_block = (struct BlockList *) malloc(sizeof(struct BlockList)))
+ if ( (first_block = new struct BlockList)
                    == NIL )
  {
-    fprintf(stderr, "block,first_block: malloc: kein Speicherplatz\n") ;
+    G_ExceptionList.lthrow("block,first_block: kein Speicherplatz",
+                           Lisa_ExceptionList::NO_MORE_MEMORY) ;
     exit(1);
  }
  first_block->elements = NIL;
@@ -104,10 +105,11 @@ void Compute_Blocks ()
  */
  while ( pos_merk < PathPos )           
  {
-    if ( (actual_block = (struct BlockList *) malloc(sizeof(struct BlockList)))
+    if ( (actual_block = new struct BlockList)
                        == NIL )
     {
-       fprintf(stderr, "block,actual_block: malloc: kein Speicherplatz\n") ;
+       G_ExceptionList.lthrow("block,actual_block: kein Speicherplatz",
+                              Lisa_ExceptionList::NO_MORE_MEMORY) ;
        exit(1);
     }
     actual_block->elements = NIL;

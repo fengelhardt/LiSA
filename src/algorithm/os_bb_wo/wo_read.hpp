@@ -22,7 +22,7 @@
 /*             den Wert TRUE zurueck.                                        */
 /* ************************************************************************* */
 
-boolean Read_Data(char *FileName);
+void Read_Data(char *FileName);
 
 
 #endif

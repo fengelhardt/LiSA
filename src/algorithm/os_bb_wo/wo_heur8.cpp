@@ -9,7 +9,7 @@
 /*									    */
 /* ************************************************************************ */
 
-#include <stdio.h>
+#include <cstdio>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"

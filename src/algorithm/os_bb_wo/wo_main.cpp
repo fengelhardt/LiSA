@@ -5,11 +5,14 @@
 /*                                                                           */
 /* ************************************************************************* */
 
+#include <unistd.h>
 
-#include <malloc.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+
+#include <iostream>
+
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
@@ -24,6 +27,7 @@
 #include "wo_select.hpp"
 #include "wo_low.hpp"
 
+#include "../../misc/except.hpp"
 
 /* ************************************************************************* */
 /*                                                                           */
@@ -43,26 +47,33 @@
 
 int main(int argc,char *argv[]){
   
+  if(argc != 3){
+    std::cout << "Usage: " << argv[0] << " [input file] [output file]" << std::endl;
+    exit(1);
+  }
+  
+  std::cout << "This is the LiSA open shop branch and bound module." << std::endl;
+  std::cout << "PID= " << getpid() << std::endl;
+  
+  G_ExceptionList.set_output_to_cout();
+    
   struct BranchList  *DeleteBranch;
   char *index;
     
   Initialize();
     
-  if ( !Read_Data(argv[1]) ){
-    printf("Not able to read data !\n");
-    return(1);
-  }
+  Read_Data(argv[1]);
   
   if ( Compute_Head_Tail() ){
-    printf("\n");
     Heuristic_Schedule();
     if ((SonNode->lower_bound = Additional_Arcs()) < UpperBound){
       Compute_Blocks();
       Compute_BranchList();   
       ActualNode = SonNode;
       Push();
-      if ( (SonNode = (struct NodeType *) malloc(sizeof(struct NodeType))) == NIL ) {
-        fprintf(stderr, "main,SonNode: malloc: kein Speicherplatz\n") ;
+      if ( (SonNode = new struct NodeType) == NIL ) {
+        G_ExceptionList.lthrow("main,SonNode: kein Speicherplatz",
+                               Lisa_ExceptionList::NO_MORE_MEMORY);
         exit(1);
       } 
       SonNode->blocks = NIL; 
@@ -81,7 +92,7 @@ int main(int argc,char *argv[]){
       ActualNode->order->kind_of_block);
       DeleteBranch = ActualNode->order;
       ActualNode->order = ActualNode->order->next;
-      free((void *) DeleteBranch);
+      delete DeleteBranch;
       if ( Compute_Head_Tail() && 
         Compute_LowerBound() < UpperBound && 
         (SonNode->lower_bound = Additional_Arcs()) < UpperBound){
@@ -94,8 +105,9 @@ int main(int argc,char *argv[]){
             SearchTreeNodes++;
             Push();                 
             ActualNode = SonNode;  
-            if ( (SonNode = (struct NodeType *) malloc(sizeof(struct NodeType)))== NIL ){
-              fprintf(stderr, "main,SonNode: malloc: kein Speicherplatz\n");
+            if ( (SonNode = new struct NodeType)== NIL ){
+              G_ExceptionList.lthrow("main,SonNode: kein Speicherplatz",
+                                     Lisa_ExceptionList::NO_MORE_MEMORY);
               exit(1);
             }
             SonNode->blocks = NIL; 

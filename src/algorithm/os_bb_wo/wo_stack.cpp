@@ -7,14 +7,14 @@
 /*		       Loescht einen Suchbaumknoten vom Stack                */
 /* ************************************************************************* */
 
-#include <malloc.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 #include "wo_stack.hpp"
 
+#include "../../misc/except.hpp"
 
 /* ************************************************************************* */
 /*                           Procedure  Push()                               */
@@ -28,10 +28,11 @@ void Push ()
 {
   struct StackElement *newelement;
 
-  if ((newelement = (struct StackElement *) malloc(sizeof(struct StackElement)))
+  if ((newelement = new struct StackElement)
                   == NIL )
   {
-     fprintf(stderr, "stack,newelement: malloc: kein Speicherplatz\n") ;
+     G_ExceptionList.lthrow("stack,newelement: kein Speicherplatz",
+                            Lisa_ExceptionList::NO_MORE_MEMORY) ;
      exit(1);
   }
 
@@ -66,19 +67,19 @@ void Pop ()
         saveblock = blockhelp;
         blockhelp->elements = Makeempty(blockhelp->elements);
         blockhelp = blockhelp->next;
-        free((void *) saveblock);
+        delete saveblock;
      }
      branchhelp = ActualNode->order;
      while (branchhelp != NIL) 
      {
         savebranch = branchhelp;
         branchhelp = branchhelp->next;
-        free((void *) savebranch);
+        delete savebranch;
      }
-     free((void *) ActualNode);
+     delete ActualNode;
   }
   ActualNode = FirstOfStack->node;     
   savestack = FirstOfStack;
   FirstOfStack = FirstOfStack->next;
-  free((void *) savestack);
+  delete savestack;
 }

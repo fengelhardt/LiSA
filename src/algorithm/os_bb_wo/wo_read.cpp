@@ -6,7 +6,8 @@
 /* ************************************************************************ */
 
 
-#include <stdio.h>
+#include <cstdio>
+#include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_read.hpp"
@@ -23,7 +24,7 @@
 /*             den Wert TRUE zurueck.                                       */
 /* ************************************************************************ */
 
-boolean Read_Data(char *FileName){
+void Read_Data(char *FileName){
 
  int      i, 
 	  j, 
@@ -33,20 +34,20 @@ boolean Read_Data(char *FileName){
 
 
  if ((fp = fopen(FileName,"r")) == NIL)
-    return false;   
+    exit(1);   
 
  /* ermitteln des Problems (m x n - Problem);
     erfassen der Daten in den globalen Variablen NumOfMachines, NumOfJobs;    
  */
  if ( !fscanf(fp,"%d %d ", &NumOfMachines, &NumOfJobs))  
-    return(false);
+    exit(1);
 
  for (i = 1; i <= NumOfJobs; ++i) 
  {
     if (!fscanf(fp,"%d", &num_of_op_for_job)) 
-	return(false);
+      exit(1);
 
-    /* ermitteln der Bearbeitungszeit u. Maschinennummer einer Operation;
+   /* ermitteln der Bearbeitungszeit u. Maschinennummer einer Operation;
        erfassen der Daten in der globalen Variablen OpData[];
        Operationen, die auf derselben Maschine bearbeitet werden, kommen in
        eine gemeinsame globale Liste OpsOnMachine[];
@@ -57,7 +58,7 @@ boolean Read_Data(char *FileName){
     {
        if (!fscanf(fp,"%d %d ",&OpData[sum].process_time,
                                &OpData[sum].machine_nr) )
-          return(false);
+          exit(1);
 
        OpData[sum].job_nr = i;
 
@@ -72,5 +73,5 @@ boolean Read_Data(char *FileName){
  }
  fclose(fp); 
  NumOfOperations = --sum;
- return(true);    
+  
 }
