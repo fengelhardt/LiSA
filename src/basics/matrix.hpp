@@ -43,23 +43,27 @@ using namespace std;
 */ 
 
 //@{
+    
+template<class T> class Lisa_Matrix;
 
 /** Basic vector class in LiSA. */
 
 template<class T>
 class Lisa_Vector{
 private:
-  // size
+  /// size
   unsigned int m;
-  // array to hold elements
+  
+  /// array to hold elements
   T* contents;
   
   /** default constructor to create an empty vector */
   Lisa_Vector();
-  /** re-init vector */
-  void re_init(const unsigned int m);
-   
+
+  /// friends
+  friend class Lisa_Matrix<T>;
 public:
+
   /// construct vector with m elements of type T
   Lisa_Vector(const unsigned int m);
   
@@ -121,10 +125,10 @@ public:
   /// search index of minimal vector element
   unsigned int index_of_min() const;
   
-  /// return pointer to first element of the vector
+  /// returns pointer to first element of the vector
   inline T* get_first() const { return contents; }
   
-  /// return pointer to the last element of the vector
+  /// returns pointer after the last element of the vector
   inline T* get_last() const { return contents+m; }  
 };
 
@@ -132,100 +136,109 @@ public:
 
 /** Basic matrix class in LiSA. A Lisa_Matrix is a vector of vectors. */
 template<class T>
-class Lisa_Matrix 
-{ 
+class Lisa_Matrix{
+private: 
+  /// size
+  const unsigned int m;
+  const unsigned int n;
+  /// array holding contents 
+  Lisa_Vector<T>* row;
 public:
   /// construct matrix of given format n x m
   Lisa_Matrix(const int n_in, const int m_in);
+  
   /// construct copy of a given matrix
   Lisa_Matrix(const Lisa_Matrix<T>& other);
+  
+  /// destructor
+  ~Lisa_Matrix();
+  
   /// assign value to all matrix elements
   void fill(const T value);
+  
   /// access to i-th row vector
-  Lisa_Vector<T>& operator[] (const unsigned i)  
-    { 
-      #ifdef LISA_DEBUG
-      if (i>=n)
-	{
+  inline Lisa_Vector<T>& operator[] (const unsigned i){ 
+#ifdef LISA_DEBUG
+    if (i>=n){
+        G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
+				               ztos((int)n)+"-row matrix requested",
+                               OUT_OF_RANGE);
+        return row[0];
+	}
+#endif
+    return row[i];
+  } 
+  
+  inline const Lisa_Vector<T>& operator[](const unsigned i)const{ 
+#ifdef LISA_DEBUG
+    if (i>=n){
 	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
-				 ztos((int)n)+"-row matrix requested",
-				 OUT_OF_RANGE);
+				             ztos((int)n)+"-row matrix requested",
+                             OUT_OF_RANGE);
 	  return row[0];
 	}
-      #endif
-      return row[i];
-    } 
-  const Lisa_Vector<T>& operator[] (const unsigned i) const  
-    { 
-      #ifdef LISA_DEBUG
-      if (i>=n)
-	{
-	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
-				 ztos((int)n)+"-row matrix requested",
-				 OUT_OF_RANGE);
-	  return row[0];
-	}
-      #endif
-      return row[i];
-    }  
+#endif
+    return row[i];
+  }  
+  
   /// number of columns
-  int get_m() const { return m; }
+  int get_m()const{ return m; }
+  
   /// number of rows           
   int get_n() const { return n; } 
+  
   /// assign another matrix 
   const Lisa_Matrix<T>& operator=(const Lisa_Matrix<T>& other);
+  
   /// compare matrices element by element
   bool operator==(const Lisa_Matrix<T>&) const;
+  
   /// compare lexicographically
   bool operator<=(const Lisa_Matrix<T>&) const;
-  // input/output in LiSA-format:
+  
+  /// output in LiSA format
   void write(ostream& = cout) const;
-  void read(istream& = cin);  
-  ~Lisa_Matrix();
+  
+  /// output in LiSA format
+  void read(istream& = cin);
+  
   /// pointer to first row (for iterating the contents)
-  Lisa_Vector<T> * first_row() const { return row; }
-  /// Pointer after last row (for iterating the contents)
-  Lisa_Vector<T> * end_row() const { return row+n; }
-private: 
-  const unsigned int m;
-  const unsigned int n;
-  Lisa_Vector<T>* row;
+  inline Lisa_Vector<T> * first_row() const { return row; }
+  
+  /// pointer after last row (for iterating the contents)
+  inline Lisa_Vector<T> * end_row() const { return row+n; }
 };
 
 // stream operations for these classes:
 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_Vector<T>& v)
-   {
+inline ostream& operator << (ostream&strm, const Lisa_Vector<T>& v){
      v.write(strm);
      return strm;
-   }
+}
 
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_Vector<T>& v)
-   {
+inline istream& operator >> (istream&strm, Lisa_Vector<T>& v){
      v.read(strm);
      return strm;
-   }
+}
 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_Matrix<T>& m)
-   {
+inline ostream& operator << (ostream&strm, const Lisa_Matrix<T>& m){
      m.write(strm);
      return strm;
-   }
+}
 
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_Matrix<T>& m)
-   {
+inline istream& operator >> (istream&strm, Lisa_Matrix<T>& m){
      m.read(strm);
      return strm;
-   }
+}
 
-inline istream& operator >> (istream&strm, void* )
-   {
+inline istream& operator >> (istream&strm, void* ){
      return strm;
-   }
+}
+
 #endif
 
 //@}

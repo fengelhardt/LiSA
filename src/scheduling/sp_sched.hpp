@@ -61,7 +61,7 @@ class Lisa_ShpProblem
              /// additional weights for maximum earlyness / lateness
              float w_early, w_late;
              /// number of jobs and machines
-             int   n,m;
+             int n,m;
 	     /// needs a given instance of Lisa_Values to construct
              Lisa_ShpProblem(Lisa_Values * Pin);
              ~Lisa_ShpProblem();

@@ -3,12 +3,11 @@
  * 
  * vectors and matrices with dynamic size and fast access
  *
- * Owner: Thomas Tautenhahn
- *
- * 21.10.99
- *
+ * Owner: Thomas Tautenhahn 21.10.99
  * history: 21.10.99  made several methods const
-*/
+ *
+ * Patch: Marc Mörig 03.01.2003
+ */
 
 #include <string.h>
 #include <string>
@@ -19,11 +18,23 @@
 
 using namespace std;
 
+//**************************************************************************
+
+template<class T>
+Lisa_Vector<T>::Lisa_Vector(){
+    m=0;
+    contents=0;
+}
+
+//**************************************************************************
+
 template<class T>
 Lisa_Vector<T>::Lisa_Vector(const unsigned int m_in):m(m_in)
      {
        contents= new T[m];
      }  
+
+//**************************************************************************
 
 template<class T>
 Lisa_Vector<T>::Lisa_Vector(const Lisa_Vector<T>& other):m(other.m)
@@ -35,12 +46,16 @@ Lisa_Vector<T>::Lisa_Vector(const Lisa_Vector<T>& other):m(other.m)
        memcpy (contents, other.contents, m*sizeof(T));
      }
 
+//**************************************************************************
+
 template<class T>
 void Lisa_Vector<T>::fill(T wert) 
      {
        unsigned int i;
        for(i=m; i--; ) contents[i]=wert;
      }
+
+//**************************************************************************
 
 template<class T>
 unsigned int Lisa_Vector<T>::index_of_max() const
@@ -54,6 +69,8 @@ unsigned int Lisa_Vector<T>::index_of_max() const
   return i;
 }
 
+//**************************************************************************
+
 template<class T>
 unsigned int Lisa_Vector<T>::index_of_min() const 
 {
@@ -65,6 +82,8 @@ unsigned int Lisa_Vector<T>::index_of_min() const
     if (*go<value) { value=*go; i=j; }
   return i;
 }
+
+//**************************************************************************
 
 template<class T>
 const Lisa_Vector<T>& Lisa_Vector<T>::operator=(const Lisa_Vector<T>& other) 
@@ -83,6 +102,8 @@ const Lisa_Vector<T>& Lisa_Vector<T>::operator=(const Lisa_Vector<T>& other)
          // T MUST BE A TYPE WITHOUT DYNAMIC MEMORY!
         return *this;
      }  
+
+//**************************************************************************
     
 template<class T>
 void Lisa_Vector<T>::write(ostream& strm) const 
@@ -95,6 +116,8 @@ void Lisa_Vector<T>::write(ostream& strm) const
           }
        strm << "}\n";
      }
+
+//**************************************************************************
 
 template<class T>
 void Lisa_Vector<T>::read(istream& strm) 
@@ -112,6 +135,7 @@ void Lisa_Vector<T>::read(istream& strm)
           G_ExceptionList.lthrow("} expected in vector.read",SYNTAX_ERROR);
      }
 
+//**************************************************************************
 
 template<class T>
 Lisa_Vector<T>::~Lisa_Vector()
@@ -122,6 +146,8 @@ Lisa_Vector<T>::~Lisa_Vector()
        if(contents) delete[] contents;
      }
 
+//**************************************************************************
+
 template<class T>
 bool Lisa_Vector<T>::operator==(const Lisa_Vector<T>& other) const
      { 
@@ -130,6 +156,8 @@ bool Lisa_Vector<T>::operator==(const Lisa_Vector<T>& other) const
           if (contents[i]!= other.contents[i]) return FALSE;
        return true;
      }
+
+//**************************************************************************
 
 template<class T>
 bool Lisa_Vector<T>::operator<=(const Lisa_Vector<T>& other) const
@@ -143,23 +171,38 @@ bool Lisa_Vector<T>::operator<=(const Lisa_Vector<T>& other) const
        return true;
      }
 
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
 template<class T>
-Lisa_Matrix<T>::Lisa_Matrix(const Lisa_Matrix<T>& other):m(other.m),n(other.n)
-     {
-       int i;
+Lisa_Matrix<T>::Lisa_Matrix(const Lisa_Matrix<T>& other):m(other.m),n(other.n){
+    
 #ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) matrix given by value");
 #endif
-       row=new Lisa_Vector<T>[n](m);
-       for ( i=n ; i-- ; )
-          row[i]=other.row[i];
-     }
+       row=new Lisa_Vector<T>[n];
+       
+       for(unsigned int i=n;i--;){
+           row[i].m = m;
+           row[i].contents = new T[m];
+           row[i]=other.row[i]; 
+       }
+}
+
+//**************************************************************************
 
 template<class T>
-Lisa_Matrix<T>::Lisa_Matrix(int n_in, int m_in):m(m_in),n(n_in)
-     {
-       row=new Lisa_Vector<T>[n](m);
-     }
+Lisa_Matrix<T>::Lisa_Matrix(int n_in, int m_in):m(m_in),n(n_in){
+       row=new Lisa_Vector<T>[n];
+       
+       for(unsigned int i=n;i--;){
+           row[i].m = m;
+           row[i].contents = new T[m];
+       }
+}
+
+//**************************************************************************
 
 template<class T>
 void Lisa_Matrix<T>::fill(const T wert) 
@@ -169,6 +212,8 @@ void Lisa_Matrix<T>::fill(const T wert)
            row[i].fill(wert);
      }
 
+
+//**************************************************************************
 
 template<class T>
 const Lisa_Matrix<T>& Lisa_Matrix<T>::operator=(const Lisa_Matrix<T>& other) 
@@ -192,6 +237,8 @@ const Lisa_Matrix<T>& Lisa_Matrix<T>::operator=(const Lisa_Matrix<T>& other)
   return *this;
 }      
 
+//**************************************************************************
+
 template<class T>
 void Lisa_Matrix<T>::write(ostream& strm) const 
      {
@@ -201,6 +248,8 @@ void Lisa_Matrix<T>::write(ostream& strm) const
           strm << " " << row[i];
        strm << "}\n";
      }
+
+//**************************************************************************
 
 template<class T>
 void Lisa_Matrix<T>::read(istream& strm) 
@@ -220,12 +269,15 @@ void Lisa_Matrix<T>::read(istream& strm)
          G_ExceptionList.lthrow("} expected in vector.read",SYNTAX_ERROR);
      } 
 
+//**************************************************************************
 
 template<class T>
 Lisa_Matrix<T>::~Lisa_Matrix()
      {
        if (row) delete[] row;
      }
+
+//**************************************************************************
 
 template<class T>
 bool Lisa_Matrix<T>::operator==(const Lisa_Matrix<T>& other) const
@@ -235,6 +287,8 @@ bool Lisa_Matrix<T>::operator==(const Lisa_Matrix<T>& other) const
           if (!(row[i]== other.row[i])) return FALSE;
        return true;
      }
+
+//**************************************************************************
 
 template<class T>
 bool Lisa_Matrix<T>::operator<=(const Lisa_Matrix<T>& other) const
@@ -250,26 +304,23 @@ bool Lisa_Matrix<T>::operator<=(const Lisa_Matrix<T>& other) const
      }
 
 
+//**************************************************************************
+
 // define classes for following types T:
+template class Lisa_Matrix<bool>;
 template class Lisa_Matrix<int>;
+template class Lisa_Matrix<long>;
 template class Lisa_Matrix<float>;
 template class Lisa_Matrix<double>;
-template class Lisa_Matrix<bool>;
 template class Lisa_Matrix<Lisa_Pair>;
 
+template class Lisa_Vector<bool>;
 template class Lisa_Vector<int>;
+template class Lisa_Vector<long>;
 template class Lisa_Vector<float>;
 template class Lisa_Vector<double>;
-template class Lisa_Vector<bool>;
 template class Lisa_Vector<string>;
 template class Lisa_Vector<Lisa_Pair>;
 
-template class Lisa_Matrix<long>;
-template class Lisa_Vector<long>;
-
-
-
-
-
-
+//**************************************************************************
 
