@@ -26,6 +26,7 @@ TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
 ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
+CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
@@ -81,6 +82,8 @@ help: logo
 	@echo "'make compile' ..... compiles all"
 	@echo "'make install' ..... installs all"
 	@echo "'make uninstall' ... uninstalls all"
+	@echo "'make cygwin' ...... creates windows standalone version on cygwin"
+	@echo "'make uncygwin' .... uninstalls windows standalone version"
 	@echo "'make distclean' ... deletes the configuration and the compiled objects"
 	@echo "'make clean' ....... deletes only the compiled objects"
 	@echo "'make depend' ...... creates the dependencies for the compiling"
@@ -116,7 +119,38 @@ uninstall:
 
 # ------------------------------------------------------------------------------
 
-distclean: uninstall clean
+cygwin: cygwindir
+	rm -fr $(CYGWINPATH)/*
+	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/README.txt
+	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LICENSE.txt
+	cp -r $(BINPATH) $(CYGWINPATH)/bin
+	rm -f $(CYGWINPATH)/bin/lisa
+	cp -r $(DOCPATH) $(CYGWINPATH)/doc
+	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)
+	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)
+	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)
+	cp /usr/share/cygwin1.dll $(CYGWINPATH)/bin
+	cp /usr/share/cygtcl[0-9]*.dll $(CYGWINPATH)/bin
+	cp /usr/share/cygtk[0-9*].dll $(CYGWINPATH)/bin
+	mkdir -p $(CYGWINPATH)/share/`cd /usr/share;find tcl* -maxdepth 0`
+	cp -r /usr/share/tcl*/init.tcl $(CYGWINPATH)/share/tcl*
+	mkdir -p $(CYGWINPATH)/share/`cd /usr/share;find tk* -maxdepth 0`
+	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/share/tk*
+	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/share/tk*
+
+# ------------------------------------------------------------------------------
+
+cygwindir:
+	@mkdir -p $(CYGWINPATH)
+
+# ------------------------------------------------------------------------------
+
+uncygwin:
+	rm -fr $(CYGWINPATH)
+
+# ------------------------------------------------------------------------------
+
+distclean: uncygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	cd $(SOURCEPATH)/main; $(MAKE) distclean

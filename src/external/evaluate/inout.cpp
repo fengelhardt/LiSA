@@ -27,6 +27,7 @@ extern class character *mycharacter;
 
 int Tk_myMain(int argc, char **argv) {
   interp = Tcl_CreateInterp();
+  Tcl_FindExecutable(argv[0]);
   if (  Tcl_myAppInit( argc, argv, interp ) != TCL_OK ) 
     {
       fprintf( stderr, "\nUnexpected application error!" );
