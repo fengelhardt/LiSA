@@ -16,7 +16,11 @@
 
 using namespace std;
 
+//**************************************************************************
+
 #define MAXSTRING 1200
+
+//**************************************************************************
 
 TCValues::TCValues(Tcl_Interp *interp,string canv,string horizontal_canvas, 
 		   string vertical_canvas,string label_name) {
@@ -28,11 +32,15 @@ TCValues::TCValues(Tcl_Interp *interp,string canv,string horizontal_canvas,
   label= new Lisa_Label(label_name,interp);
 }
 
+//**************************************************************************
+
 TCValues::~TCValues() {
   delete main_canvas;
   delete canv_horizontal; 
   delete canv_vertikal;
 }
+
+//**************************************************************************
 
 void TCValues::draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT, 
 		    Lisa_Matrix<bool> *mySIJ, Lisa_Vector<TIMETYP> *myRD, 
@@ -129,7 +137,9 @@ void TCValues::draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT,
   }
 }
 
- /// draw value on row xpos and column ypos
+//**************************************************************************
+
+/// draw value on row xpos and column ypos
 void TCValues::draw_entry(int xpos,int ypos,string value) {
   main_canvas->clear("mark");
   main_canvas->clear(entrywidth*(xpos+1)-entryheight,
@@ -137,6 +147,8 @@ void TCValues::draw_entry(int xpos,int ypos,string value) {
 
   main_canvas->text((float) entrywidth*(xpos+1)-entryheight,(float) entryheight*(ypos+0.5),value,"Black");
 }
+
+//**************************************************************************
 
 TCScheduleList::TCScheduleList(Tcl_Interp *interp,string canv,
 		       string horizontal_canvas, string vertical_canvas,
@@ -149,11 +161,15 @@ TCScheduleList::TCScheduleList(Tcl_Interp *interp,string canv,
   label=new Lisa_Label(label_name,interp);
  }
 
+//**************************************************************************
+
 TCScheduleList::~TCScheduleList() {
   delete main_canvas;
   delete canv_horizontal;
   delete canv_vertikal;
 }
+
+//**************************************************************************
 
 void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) { 
   Lisa_ProblemType myProblemType;
@@ -226,6 +242,8 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
 
 }
 
+//**************************************************************************
+
 TCSchedule::TCSchedule(Tcl_Interp *interp,string canv,
 		       string horizontal_canvas, string vertical_canvas,
 		       string label_name) {
@@ -237,11 +255,15 @@ TCSchedule::TCSchedule(Tcl_Interp *interp,string canv,
   label=new Lisa_Label(label_name,interp);
  }
 
+//**************************************************************************
+
 TCSchedule::~TCSchedule() {
   delete main_canvas;
   delete canv_horizontal;
   delete canv_vertikal;
 }
+
+//**************************************************************************
 
 void TCSchedule::draw( Lisa_MO *myMO,
 		       Lisa_Matrix<int> *myP,
@@ -313,12 +335,16 @@ void TCSchedule::draw( Lisa_MO *myMO,
     }
 }
 
+//**************************************************************************
+
 /// draw value on row xpos and column ypos
 void TCSchedule::draw_entry(int xpos,int ypos,string value) {
   main_canvas->clear("mark");
   main_canvas->clear( entrywidth*(xpos+1)-entryheight,(float) entryheight*(ypos+0.5));
   main_canvas->text((float) entrywidth*(xpos+1)-entryheight,(float) entryheight*(ypos+0.5),value,"Black");
 }
+
+//**************************************************************************
 
 TCCMatrix::TCCMatrix(Tcl_Interp *interp,string canv,string horizontal_canvas, string vertical_canvas) {
   entrywidth= ENTRYWIDTH;
@@ -328,11 +354,15 @@ TCCMatrix::TCCMatrix(Tcl_Interp *interp,string canv,string horizontal_canvas, st
   canv_vertikal =new Lisa_Canvas(vertical_canvas.c_str(),interp);
 }
 
+//**************************************************************************
+
 TCCMatrix::~TCCMatrix() {
   delete main_canvas;
   delete canv_horizontal;
   delete canv_vertikal;
 }
+
+//**************************************************************************
 
 void TCCMatrix::draw(Lisa_Matrix<TIMETYP> *myC, 
 		     Lisa_Matrix<bool> *myCP) {  
@@ -375,13 +405,18 @@ void TCCMatrix::draw(Lisa_Matrix<TIMETYP> *myC,
   }
 }
 
+//**************************************************************************
 
 TCGraph::TCGraph() {
   vertice_radius=VERTICE_RADIUS;
 }
 
+//**************************************************************************
+
 TCGraph::~TCGraph() {
  }
+
+//**************************************************************************
 
 TCSeqGraph::TCSeqGraph(Tcl_Interp *interp,string canv,
 		       string horizontal_canvas, string vertical_canvas) {
@@ -390,11 +425,15 @@ TCSeqGraph::TCSeqGraph(Tcl_Interp *interp,string canv,
   canv_vertikal =new Lisa_Canvas(vertical_canvas.c_str(),interp);
 }
 
+//**************************************************************************
+
 TCSeqGraph::~TCSeqGraph() {
  delete main_canvas;
  delete canv_horizontal;
  delete canv_vertikal;
 }
+
+//**************************************************************************
 
 void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
 		  Lisa_OsSchedule &myOsSchedule,
@@ -483,7 +522,5 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
  }
 }
 
-
-
-
+//**************************************************************************
 

@@ -13,6 +13,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_DataBase::Lisa_DataBase(string name)
 {
   int      i=0;
@@ -44,6 +46,8 @@ Lisa_DataBase::Lisa_DataBase(string name)
   delete [] line;
   delete [] bibstr;
 }
+
+//**************************************************************************
 
 int
 Lisa_DataBase::bib_entry(char *bibstr, int i)
@@ -158,6 +162,7 @@ Lisa_DataBase::bib_entry(char *bibstr, int i)
   return(0);
 }
 
+//**************************************************************************
 
 int 
 Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
@@ -417,6 +422,8 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
   return(0);
 }
 
+//**************************************************************************
+
 int
 Lisa_DataBase::output(void)
 {
@@ -478,6 +485,8 @@ Lisa_DataBase::output(void)
   return(0);
 }
 
+//**************************************************************************
+
 int 
 Lisa_DataBase::error_output(int rec,int pn)
 {
@@ -494,3 +503,6 @@ Lisa_DataBase::error_output(int rec,int pn)
 			   SYNTAX_ERROR);
   return(0);
 }
+
+//**************************************************************************
+

@@ -13,11 +13,11 @@
 
 using namespace std;
 
-// ************************ Definitions ***********************
+//**************************************************************************
+
 #define MAXSTRING 1200
 
-
-// ************************* Functions ***********************
+//**************************************************************************
 
 Lisa_Canvas::Lisa_Canvas(const char * name,Tcl_Interp * tclinterp){
   cv_name = new char[200];
@@ -52,15 +52,21 @@ Lisa_Canvas::Lisa_Canvas(const char * name,Tcl_Interp * tclinterp){
   strcpy(color[22],"#4992a6");
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::clear(){
   sprintf(command, "%s delete all",cv_name);
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::clear( string tag ) {
   sprintf(command, "%s delete %s",cv_name,(char*) tag.c_str());
   Tcl_Eval(cv_interp,command);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::clear( double xpos,double ypos ) {
   sprintf(command, "%s delete [%s find overlapping %f %f %f %f]",
@@ -68,15 +74,21 @@ void Lisa_Canvas::clear( double xpos,double ypos ) {
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,int col) {
   line(x1,x2,y1,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,char * col){
   sprintf(command, "%s create line %3.0f %3.0f %3.0f %3.0f -fill %s",
 	  cv_name,x1,y1,x2,y2,col);
   Tcl_Eval(cv_interp,command);
 }
+
+//**************************************************************************
 
 void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,
 			string tag, char * col){
@@ -85,10 +97,13 @@ void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
 
 void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,int col) {
   line_rel(x1,y1,x2,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,char * col){
   sprintf(command, "%s create line %3.0f %3.0f %3.0f %3.0f  -fill %s",
@@ -96,6 +111,8 @@ void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,char * col){
 	  x2/100.*width,(100.-y2)/100.*height,col);
   Tcl_Eval(cv_interp,command);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::dashed_hline_rel(double x1, double x2, double y)
 {
@@ -119,9 +136,13 @@ void Lisa_Canvas::dashed_hline_rel(double x1, double x2, double y)
   return;
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,int col) {
   arrow(x1,x2,y1,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,char* col){
  sprintf(command, 
@@ -130,9 +151,13 @@ void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,char* col){
  Tcl_Eval(cv_interp,command); 
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,int col) {
   arrow_rel(x1,x2,y1,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,char* col) {
   sprintf(command, 
@@ -142,6 +167,7 @@ void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,char* col) {
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
 
 void Lisa_Canvas::arc_arrow(float x1,float y1,float x2,float y2,float d,char *col){
   // Eine gerichtete, gebogene Kante eines Graphen  
@@ -160,9 +186,13 @@ void Lisa_Canvas::arc_arrow(float x1,float y1,float x2,float y2,float d,char *co
   Tcl_Eval(cv_interp,command);  
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,int col) {
   rect(x1,x2,y1,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,char * col){
   sprintf(command, 
@@ -171,9 +201,13 @@ void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,int col) {
   rect_rel(x1,y1,x2,y2,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,char * col){
   sprintf(command, "%s create rect %3.0f %3.0f %3.0f %3.0f -fill %s -outline black",
@@ -182,9 +216,13 @@ void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::text(float x,float y,char *txt, int col){
   text(x,y,txt,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::text(float x,float y,char *txt, char * col){
   sprintf(command, 
@@ -193,10 +231,13 @@ void Lisa_Canvas::text(float x,float y,char *txt, char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::text_rel(float x,float y,char *txt, int col){
   text_rel(x,y,txt,color[col%(MAX_CANV_COLORS)]);
 }
 
+//**************************************************************************
 
 void Lisa_Canvas::text_rel(float x,float y,char *txt, char * col){
   sprintf(command, 
@@ -205,9 +246,13 @@ void Lisa_Canvas::text_rel(float x,float y,char *txt, char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::text(float x,float y,string txt, int col){
   text_rel(x,y,txt,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::text(float x,float y,string text, char * col){
   sprintf(command, 
@@ -216,9 +261,13 @@ void Lisa_Canvas::text(float x,float y,string text, char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::text_rel(float x,float y,string text, int col){
   text_rel(x,y,text,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::text_rel(float x,float y,string text, char * col){
   sprintf(command, 
@@ -227,15 +276,20 @@ void Lisa_Canvas::text_rel(float x,float y,string text, char * col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
 
 void Lisa_Canvas::point(float x,float y,char col){
  // empty
   cout << "point(" << x << "," << y << "," << col << ")\n";
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::circle(float x,float y,float rad,int  col) {
   circle(x,y,rad,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::circle(float x,float y,float rad,char* col){
   sprintf(command, 
@@ -244,9 +298,13 @@ void Lisa_Canvas::circle(float x,float y,float rad,char* col){
   Tcl_Eval(cv_interp,command);
 }
 
+//**************************************************************************
+
 void Lisa_Canvas::fil_circle(float x,float y,float rad,int  col) {
   fil_circle(x,y,rad,color[col%(MAX_CANV_COLORS)]);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::fil_circle(float x,float y,float rad,char* col){
   sprintf(command, 
@@ -254,6 +312,8 @@ void Lisa_Canvas::fil_circle(float x,float y,float rad,char* col){
 	  cv_name,x-rad,y-rad,x+rad,y+rad,col,col);
   Tcl_Eval(cv_interp,command);
 }
+
+//**************************************************************************
 
 void Lisa_Canvas::set_wh(int ext_width, int ext_height){
   sprintf(command, "%s config -scrollregion { 0 0 %d %d }",
@@ -264,19 +324,25 @@ void Lisa_Canvas::set_wh(int ext_width, int ext_height){
   height=ext_height;
 }
 
+//**************************************************************************
 
 int Lisa_Canvas::get_width() {
   return( (int) width);
 }
 
+//**************************************************************************
+
 int Lisa_Canvas::get_height() {
   return( (int) height);
 }
+
+//**************************************************************************
 
 Lisa_Canvas::~Lisa_Canvas(){
   // done  automaticly
 }
 
+//**************************************************************************
 
 textobj::textobj(){
   cv_interp=NULL;
@@ -285,6 +351,8 @@ textobj::textobj(){
   // command = new char[246];
   sprintf(cv_name, "%s",".textaus.fra22.tex23");
  }
+
+//**************************************************************************
 
 textobj::textobj(Tcl_Interp * tclinterp){
   cv_name = new char[200];
@@ -295,6 +363,8 @@ textobj::textobj(Tcl_Interp * tclinterp){
   height=500;
 }
 
+//**************************************************************************
+
 textobj::textobj(char * name,Tcl_Interp * tclinterp){
   cv_name = new char[200];
   command = "";
@@ -304,34 +374,41 @@ textobj::textobj(char * name,Tcl_Interp * tclinterp){
   height=500;
 }
 
+//**************************************************************************
+
 void textobj::clear(){
   command= (string) cv_name+ " " + " delete 1.0 end";
   Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
+//**************************************************************************
 
 void textobj::text(const char *text) {
  command= (string) cv_name+ " insert end { " + (string) text + " }"; 
    Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
+//**************************************************************************
+
 void textobj::text(const string text){
   command= (string) cv_name+ " insert end { " + text + " }"; 
   Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
+//**************************************************************************
 
 textobj::~textobj() {
   // nothing to do
 }
 
-
-// **************************** Lisa_Label ************************
+//**************************************************************************
 
 Lisa_Label::Lisa_Label(string name,Tcl_Interp * tclinterp) {
   label_interp=tclinterp;
   label_name=name;
 }
+
+//**************************************************************************
 
 void Lisa_Label::set_text(string text) {
   string command=label_name+" config -text "+  text;
@@ -339,13 +416,19 @@ void Lisa_Label::set_text(string text) {
 
 }
 
+//**************************************************************************
+
 Lisa_Label::~Lisa_Label() {
   // nothing to do
 }
 
+//**************************************************************************
+
 TCGraphic::TCGraphic() {
 main_canvas=canv_horizontal=canv_vertikal=NULL;
 }
+
+//**************************************************************************
 
 void TCGraphic::clear() {
 if ( main_canvas!=NULL) main_canvas->clear();
@@ -353,12 +436,15 @@ if (  canv_horizontal!=NULL) canv_horizontal->clear();
 if (  canv_vertikal!=NULL)canv_vertikal->clear();
 }
 
+//**************************************************************************
+
 void  TCGraphic::set_wh(int width,int height) {
   main_canvas->set_wh(width,height);
   canv_horizontal->set_wh(width,50);
   canv_vertikal->set_wh(50,height);
 }
 
+//**************************************************************************
 
 TCGraphic::~TCGraphic() {
 // delete main_canvas;
@@ -366,10 +452,14 @@ TCGraphic::~TCGraphic() {
 // delete canv_vertikal;
 }
 
+//**************************************************************************
+
 TCTable::TCTable() {
    entrywidth= ENTRYWIDTH;
    entryheight=ENTRYHEIGHT ;
  }
+
+//**************************************************************************
 
 void TCTable::draw_table (int m, int n) {
   int i,j;
@@ -397,6 +487,8 @@ void TCTable::draw_table (int m, int n) {
   }   
   position= entrywidth*m;
 }
+
+//**************************************************************************
 
 void TCTable::mark(int row, int column) {
 
@@ -427,3 +519,6 @@ void TCTable::mark(int row, int column) {
 		      "mark","BLACK");
 
 }
+
+//**************************************************************************
+

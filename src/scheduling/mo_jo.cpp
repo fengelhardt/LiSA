@@ -96,13 +96,10 @@ int Lisa_OrderWithoutRepetition::read_rank(Lisa_Vector<int>* rank)
 Lisa_OrderWithoutRepetition::~Lisa_OrderWithoutRepetition(){
     if(succv) delete succv;
 }
- 
 
 //**************************************************************************
-//**************************************************************************
-//**************************************************************************
+
 /// Classes Lisa_MO and Lisa_JO are not to be confused with each other!
-
 Lisa_MO::Lisa_MO(const int n_in, const int m_in)
   {
     n=n_in; m=m_in;
@@ -194,9 +191,6 @@ Lisa_MO::~Lisa_MO()
   }
 
 //**************************************************************************
-//**************************************************************************
-//**************************************************************************
-// #################### class Lisa_JO #########################
 
 Lisa_JO::Lisa_JO(const int n_in, const int m_in){
     n=n_in; m=m_in;

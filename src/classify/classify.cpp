@@ -12,6 +12,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 string 
 Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file) 
 {
@@ -75,6 +77,8 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
   return(output);
 }
 
+//**************************************************************************
+
 string
 Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file) 
 {
@@ -131,6 +135,8 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
   return(full_ref);
 }
 
+//**************************************************************************
+
 string
 result_text(int np,int mm_flag)
 {
@@ -178,6 +184,8 @@ result_text(int np,int mm_flag)
   return(s);
 }
 
+//**************************************************************************
+
 string
 reference_output(int i,int j,Lisa_DataBase* mybase)
 {
@@ -189,4 +197,5 @@ reference_output(int i,int j,Lisa_DataBase* mybase)
   return(s);
 }
 
+//**************************************************************************
 

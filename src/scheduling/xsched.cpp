@@ -5,6 +5,8 @@
 
 #include "xsched.hpp"
 
+//**************************************************************************
+
 Lisa_XSchedule::Lisa_XSchedule(){
   CP=NULL;
   PG=NULL;
@@ -14,6 +16,8 @@ Lisa_XSchedule::Lisa_XSchedule(){
   CS=NULL;
   IKL=NULL;
 }
+
+//**************************************************************************
 
 Lisa_XSchedule::Lisa_XSchedule(class Lisa_Schedule *Pl){
   P=Pl; // connect Lisa_XSchedule with Lisa_Schedule
@@ -27,6 +31,8 @@ Lisa_XSchedule::Lisa_XSchedule(class Lisa_Schedule *Pl){
   PG=new Lisa_SGraph(m,n); // important: order of the parameter not like Lisa_Matrix
 }
 
+//**************************************************************************
+
 void Lisa_XSchedule::init(){
   // if the maschine number or job number has changed
   n=P->get_n(); m=P->get_m();
@@ -36,10 +42,14 @@ void Lisa_XSchedule::init(){
   PG=new Lisa_SGraph(m,n);
 }
 
+//**************************************************************************
+
 void Lisa_XSchedule::make_CP() {
   init();
   if (CP) return; CP=new Lisa_Matrix<bool>(n,m); CP->fill(0);
 }
+
+//**************************************************************************
 
 /*double Lisa_XSchedule::objfkt(int objective_name, 
 			      Lisa_Matrix<bool> *SIJ, 
@@ -111,6 +121,9 @@ void Lisa_XSchedule::make_CP() {
   return 0;
 }
 */
+
+//**************************************************************************
+
 int Lisa_XSchedule::P_to_PG(){
   // Lisa_Schedule to CS-Graph
   // CS-Graph to Lisa_SGraph
@@ -130,6 +143,8 @@ int Lisa_XSchedule::P_to_PG(){
   }
   return 1;
 }
+
+//**************************************************************************
 
 int Lisa_XSchedule::PG_to_LR(Lisa_Matrix<bool> *SIJ){
   int v,vi,vj,i;
@@ -151,6 +166,8 @@ int Lisa_XSchedule::PG_to_LR(Lisa_Matrix<bool> *SIJ){
   return 1;
 }
 
+//**************************************************************************
+
 Lisa_XSchedule::~Lisa_XSchedule(){
   if (PG) delete PG;
   if (CG) delete CG;
@@ -159,4 +176,6 @@ Lisa_XSchedule::~Lisa_XSchedule(){
   if (CS) delete CS;
   if (IKL) delete IKL;
 }
+
+//**************************************************************************
 

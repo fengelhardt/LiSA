@@ -5,6 +5,8 @@
 
 #include "fp_vect.hpp"
 
+//**************************************************************************
+
 // no return type specified:
 fp_vector::fp_vector(int x)
  { 
@@ -20,6 +22,8 @@ fp_vector::fp_vector(int x)
    (*neighbour)[2*n]=0;
  }
 
+//**************************************************************************
+
 const fp_vector& fp_vector::operator=(fp_vector& other)
  { 
    n=other.n;
@@ -28,6 +32,8 @@ const fp_vector& fp_vector::operator=(fp_vector& other)
    (*neighbour)=(*(other.neighbour));
    return *this;
  }
+
+//**************************************************************************
 
 void fp_vector::set_element(int pos, int el)
  {
@@ -56,6 +62,8 @@ void fp_vector::set_element(int pos, int el)
    (*v)[pos]=el;
   }
 
+//**************************************************************************
+
 bool smalldistance(int i, int j)
   {
     if (i==j) return 1;
@@ -67,8 +75,6 @@ bool smalldistance(int i, int j)
                 }
     return 1;
   }
-    
 
-
-
+//**************************************************************************
 

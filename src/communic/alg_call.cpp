@@ -11,6 +11,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, string output_file, string result_file,
 	     Lisa_Preferences & G_Preferences,
 	     Lisa_ProblemType & G_ProblemType,
@@ -56,4 +58,5 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   return OK;
 }
 
+//**************************************************************************
 

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 fp_set::fp_set(int ni, int sigmai)
   {
     int i;
@@ -26,6 +28,8 @@ fp_set::fp_set(int ni, int sigmai)
        (*covered)[vectors[0]->get_neighbour(i)]=sigma;
   } 
 
+//**************************************************************************
+
 const fp_set& fp_set::operator=(fp_set& other)
  { 
    int i;
@@ -37,6 +41,9 @@ const fp_set& fp_set::operator=(fp_set& other)
    (*covered)=(*(other.covered));
    return *this;
  }
+
+//**************************************************************************
+
 fp_vector* fp_set::replace_vector(int pos , fp_vector * nv)
   {
     int i;
@@ -49,6 +56,8 @@ fp_vector* fp_set::replace_vector(int pos , fp_vector * nv)
          vectors[pos]=nv;
     return ov;
   }
+
+//**************************************************************************
 
 void fp_set::spread()
   {
@@ -90,6 +99,8 @@ void fp_set::spread()
     delete other;  
   }
 
+//**************************************************************************
+
 void fp_set::random(long * seed)
   {
     int i,j;
@@ -102,6 +113,8 @@ void fp_set::random(long * seed)
        }
     delete other;  
   }
+
+//**************************************************************************
 
 void fp_set::random2(long * seed)
   {
@@ -121,6 +134,8 @@ void fp_set::random2(long * seed)
     delete other;  
   }
 
+//**************************************************************************
+
 void fp_set::write(ostream& strm) const
   {
     int i;
@@ -130,6 +145,8 @@ void fp_set::write(ostream& strm) const
     strm << slack << " vectors not covered.\n";
   }
 
+//**************************************************************************
+
 fp_set::~fp_set()
   {
     int i; 
@@ -138,4 +155,6 @@ fp_set::~fp_set()
     delete[] vectors;
     delete covered;
   }
+
+//**************************************************************************
 

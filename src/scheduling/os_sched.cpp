@@ -10,9 +10,13 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
   {
   }
+
+//**************************************************************************
 
 // returns an empty feasible schedule to *Pin with MIJ=emptyset 
 Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)
@@ -43,6 +47,8 @@ Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)
        ScheduleOK=TRUE;
      }
 
+//**************************************************************************
+
 Lisa_OsSchedule::~Lisa_OsSchedule()
      { 
        delete head;
@@ -54,6 +60,7 @@ Lisa_OsSchedule::~Lisa_OsSchedule()
           delete tail;
      }
 
+//**************************************************************************
  
 void Lisa_OsSchedule::operator=(Lisa_OsSchedule &other)
      { 
@@ -80,6 +87,8 @@ void Lisa_OsSchedule::operator=(Lisa_OsSchedule &other)
        lastinsi=other.lastinsi; lastinsj=other.lastinsj;  
        value=other.value;
      }
+
+//**************************************************************************
 
 int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
     { 
@@ -131,6 +140,8 @@ int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
   	 }
       return(xyz); 
     }
+
+//**************************************************************************
 
 void Lisa_OsSchedule::exclude(int i, int j)
     { 
@@ -190,6 +201,8 @@ void Lisa_OsSchedule::exclude(int i, int j)
         }  
     }
 
+//**************************************************************************
+
 int Lisa_OsSchedule::read_LR(Lisa_Matrix<int> * lr)
  {
    int i, j, r;
@@ -204,6 +217,8 @@ int Lisa_OsSchedule::read_LR(Lisa_Matrix<int> * lr)
    ScheduleOK=TRUE;
    return OK;
  }
+
+//**************************************************************************
 
 int Lisa_OsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
  {
@@ -247,7 +262,5 @@ int Lisa_OsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
    return OK;
   }
 
+//**************************************************************************
 
-
-
- 

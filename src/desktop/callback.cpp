@@ -17,7 +17,7 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+//**************************************************************************
 
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
@@ -30,7 +30,8 @@ extern class Lisa_Canvas *G_MWCanvas;
 extern Tcl_Interp *interp;
 extern class Lisa_TCLVar G_TclVar;
 
-// *********************** functions *************************
+//**************************************************************************
+
 void new_problemtype() {
   if (G_ProblemType.output_problem()!="no valid Problem") {
     Tcl_Eval(interp,"tupelinit; dpinit");
@@ -70,6 +71,8 @@ void new_problemtype() {
   // show_output();
 }
 
+//**************************************************************************
+
 void no_schedule() {
   //G_ScheduleList->clear();
    while(!(G_ScheduleList->empty())) 
@@ -93,6 +96,8 @@ void no_schedule() {
   show_output();
 }
 
+//**************************************************************************
+
 void no_values() {
   G_Values.valid=FALSE;
   if (interp!=NULL) {
@@ -100,6 +105,8 @@ void no_values() {
   }
   show_output();
 }
+
+//**************************************************************************
 
 void new_schedule() {
   G_Schedule->valid_LR(G_Values.SIJ);
@@ -110,6 +117,8 @@ void new_schedule() {
     show_output();
   } 
 }
+
+//**************************************************************************
 
 /* some entries in Lisa_Value has changed*/
 void new_values() {
@@ -134,6 +143,8 @@ void new_values() {
 //  delete G_XSchedule;
 //   G_XSchedule = new Lisa_XSchedule(G_Schedule);
 }
+
+//**************************************************************************
 
 // the number of machines or jobs has changed:
 void new_mn() {
@@ -160,10 +171,14 @@ void new_mn() {
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
 }
 
+//**************************************************************************
+
 // machine or job number is 0
 void no_mn() {
   Tcl_Eval(interp,"mw_no_mn");
 }
+
+//**************************************************************************
 
 void show_output() {
   string mw_output;
@@ -262,6 +277,7 @@ void show_output() {
   }
 }
 
+//**************************************************************************
 
 TIMETYP update_objective(Lisa_OsSchedule &myOsSchedule ) {
   TIMETYP objective=0;
@@ -309,6 +325,8 @@ TIMETYP update_objective(Lisa_OsSchedule &myOsSchedule ) {
   return objective;
 }
 
+//**************************************************************************
+
 void update_LR() {
   int i=0, j=0, n=G_Values.get_n(), m= G_Values.get_m();
   int number_of_operations=0,rank=0;
@@ -342,6 +360,8 @@ void update_LR() {
   new_schedule();
 }
 
+//**************************************************************************
+
 /// generate MO with Flow Shop Order
 void gen_fs( ) {
   int n=G_Values.get_n();
@@ -356,57 +376,5 @@ void gen_fs( ) {
   G_Values.MO->read_rank(G_TclVar.MO_as_Matrix);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -9,8 +9,7 @@
 
 using namespace std;
 
-/* up to now key is copied, perhaps better write an access function for 
-   matrix or vector */
+//**************************************************************************
 
 Lisa_Order::Lisa_Order(int nin)
   {
@@ -21,6 +20,8 @@ Lisa_Order::Lisa_Order(int nin)
     for (h=n; ((*index)[h]=h); h-- );
   }
 
+//**************************************************************************
+
 Lisa_Order::Lisa_Order(int nin, int min)
   {
     int h;
@@ -30,12 +31,18 @@ Lisa_Order::Lisa_Order(int nin, int min)
     for (h=anz; ((*index)[h]=h); h-- );
   }
 
+//**************************************************************************
+
 Lisa_Order::~Lisa_Order()      
   {
     delete index;
     delete key;
   }
 
+//**************************************************************************
+
+/* up to now key is copied, perhaps better write an access function for 
+   matrix or vector */
 void Lisa_Order::read(Lisa_Matrix<int> * ma)
   {
     int h,k;
@@ -47,6 +54,8 @@ void Lisa_Order::read(Lisa_Matrix<int> * ma)
           } 
   }
 
+//**************************************************************************  
+  
 void Lisa_Order::read(Lisa_Matrix<double> * ma)
   {
     int h,k;
@@ -58,6 +67,8 @@ void Lisa_Order::read(Lisa_Matrix<double> * ma)
           } 
   }
 
+//**************************************************************************  
+ 
 void Lisa_Order::read(Lisa_Matrix<float> * ma)
   {
     int h,k;
@@ -69,6 +80,8 @@ void Lisa_Order::read(Lisa_Matrix<float> * ma)
           } 
   }
 
+//**************************************************************************  
+
 void Lisa_Order::read(Lisa_Vector<int> * ve)
   {
     int h;
@@ -79,6 +92,8 @@ void Lisa_Order::read(Lisa_Vector<int> * ve)
        } 
   }
 
+//**************************************************************************  
+
 void Lisa_Order::read(Lisa_Vector<float> * ve)
   {
     int h;
@@ -88,6 +103,8 @@ void Lisa_Order::read(Lisa_Vector<float> * ve)
         (*key)[h]=(*ve)[h];
        } 
   }
+
+//**************************************************************************  
 
 void  Lisa_Order::sort()
  {
@@ -106,6 +123,8 @@ void  Lisa_Order::sort()
          (*index)[j]=vi;
        }
  }
+
+//**************************************************************************  
    
 void  Lisa_Order::group()
  {
@@ -131,8 +150,5 @@ void  Lisa_Order::group()
      }
  }
 
-
-
-
-
+//**************************************************************************
 

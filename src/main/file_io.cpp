@@ -17,7 +17,7 @@
 
 using namespace std;
 
-// ********************** external variables ********************
+//**************************************************************************
 
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
@@ -25,7 +25,7 @@ extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_List<ScheduleNode> *G_ScheduleList;
 extern class Lisa_XSchedule * G_XSchedule;
 
-// *********************** functions *************************
+//**************************************************************************
 
 int read(string dname) {
   int oldm=G_Values.get_m();
@@ -128,6 +128,8 @@ int read(string dname) {
   return 0;
 }
 
+//**************************************************************************
+
 int save(string dname) {
   ofstream fout(dname.c_str());
   if (fout==NULL) {
@@ -145,6 +147,5 @@ int save(string dname) {
   return 0;
 }
 
-
-
+//**************************************************************************
 

@@ -14,6 +14,8 @@ using namespace std;
 
 extern string G_ExtraException;
 
+//**************************************************************************
+
 void error(string message )
 { 
   cerr << "\nERROR: " << message << endl;

@@ -15,6 +15,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int main(int argc, char *argv[]) 
  {
    //   G_ExceptionList.set_output_to_cerr(); 
@@ -88,6 +90,5 @@ int main(int argc, char *argv[])
    return 0;
  }  
 
-
-
+//**************************************************************************
 

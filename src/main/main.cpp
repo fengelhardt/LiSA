@@ -20,6 +20,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 ///global data, our current problem type
 class Lisa_ProblemType G_ProblemType;
 
@@ -47,8 +49,9 @@ class Lisa_TCLVar G_TclVar;
 /// pointer to the tcl interpreter running our main window
 Tcl_Interp *interp;  
 
+//**************************************************************************
 
-/// LiSA's main routine, the program starts here ;)
+/// LiSA's main routine, the fun begins here ;)
 int main(int argc, char *argv[]) {
   if(argc < 2){
       cerr << "Usage: " << argv[0] << " [config file] " << endl;
@@ -100,4 +103,6 @@ int main(int argc, char *argv[]) {
   delete G_ScheduleList;
   return(0);
 }
+
+//**************************************************************************
 

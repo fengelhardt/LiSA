@@ -12,13 +12,19 @@
 
 using namespace std;
 
+//**************************************************************************
+
 ScheduleNode::ScheduleNode() {
   actual_schedule=NULL;
   schedule_info=new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
   schedule_info->fill(0);
 }
 
+//**************************************************************************
+
 int ScheduleNode::sinfo_pointer =0;
+
+//**************************************************************************
 
 ScheduleNode::ScheduleNode(Lisa_Schedule* l_schedule) {
   actual_schedule=l_schedule;
@@ -26,12 +32,15 @@ ScheduleNode::ScheduleNode(Lisa_Schedule* l_schedule) {
   schedule_info->fill(0);
 }
 
+//**************************************************************************
+
 ScheduleNode::ScheduleNode(const ScheduleNode &myschedulenode) {
   actual_schedule=myschedulenode.actual_schedule;
   schedule_info=new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
   (*schedule_info) = (*myschedulenode.schedule_info);
 }
 
+//**************************************************************************
 
 bool ScheduleNode::operator<=(const ScheduleNode &other ) const {
   if (schedule_info!=NULL && other.schedule_info!=NULL && 
@@ -40,12 +49,16 @@ bool ScheduleNode::operator<=(const ScheduleNode &other ) const {
 return 1;
 } 
 
+//**************************************************************************
+
 bool ScheduleNode::operator>=(const ScheduleNode &other ) const {
   if (schedule_info!=NULL && other.schedule_info!=NULL && 
       sinfo_pointer>=0 && sinfo_pointer<=LENGHT_OF_INFO_VECTOR)
     return ((*schedule_info)[sinfo_pointer]>= (*other.schedule_info)[sinfo_pointer]);
 return 1;
 } 
+
+//**************************************************************************
 
 bool ScheduleNode::operator<(const ScheduleNode &other ) const {
   if (schedule_info!=NULL && other.schedule_info!=NULL && 
@@ -54,6 +67,8 @@ bool ScheduleNode::operator<(const ScheduleNode &other ) const {
 return 1;
 } 
 
+//**************************************************************************
+
 bool ScheduleNode::operator==(const ScheduleNode & other) const {
  if (schedule_info!=NULL && other.schedule_info!=NULL && 
       sinfo_pointer>=0 && sinfo_pointer<=LENGHT_OF_INFO_VECTOR)
@@ -61,12 +76,16 @@ bool ScheduleNode::operator==(const ScheduleNode & other) const {
  return 1;
 }
 
+//**************************************************************************
+
 bool ScheduleNode::operator!=(const ScheduleNode & other) const {
  if (schedule_info!=NULL && other.schedule_info!=NULL && 
       sinfo_pointer>=0 && sinfo_pointer<=LENGHT_OF_INFO_VECTOR)
     return ((*schedule_info)[sinfo_pointer]!= (*other.schedule_info)[sinfo_pointer]);
  return 1;
 }
+
+//**************************************************************************
 
 const ScheduleNode & ScheduleNode::operator=( const ScheduleNode & other) {
   delete actual_schedule;
@@ -81,14 +100,20 @@ const ScheduleNode & ScheduleNode::operator=( const ScheduleNode & other) {
  return  other;
 }
 
+//**************************************************************************
+
 void ScheduleNode::write(ostream & strm) const {
   if (actual_schedule)
     strm << *actual_schedule << endl;
 }
 
+//**************************************************************************
+
 void ScheduleNode::read(istream & strm) {
   strm >> *actual_schedule;
 }
+
+//**************************************************************************
 
 //ScheduleNode * ScheduleNode::copy() {
 //   ScheduleNode * myScheduleNode;
@@ -97,6 +122,8 @@ void ScheduleNode::read(istream & strm) {
 //   return myScheduleNode;
 // return NULL;
 //}
+
+//**************************************************************************
 
 ScheduleNode::~ScheduleNode(){
  //  cout << "delete" << endl;
@@ -108,7 +135,7 @@ ScheduleNode::~ScheduleNode(){
   delete schedule_info;
 }
 
-//######################## Lisa_Schedule #####################################
+//**************************************************************************
 
 Lisa_Schedule::Lisa_Schedule(int n_in,int m_in) {
   semiactive=TRUE;
@@ -120,6 +147,8 @@ Lisa_Schedule::Lisa_Schedule(int n_in,int m_in) {
   NJO=NULL;
   CIJ=NULL; 
 }
+
+//**************************************************************************
 
 Lisa_Schedule::Lisa_Schedule(Lisa_Schedule & other) {
   semiactive=other.semiactive;
@@ -144,20 +173,31 @@ Lisa_Schedule::Lisa_Schedule(Lisa_Schedule & other) {
   } else CIJ=NULL;
 }
 
+//**************************************************************************
 
 void Lisa_Schedule::make_LR() {
   if (LR) return; LR=new Lisa_Matrix<int>(n,m); LR->fill(0); 
 }
 
+//**************************************************************************
+
 void Lisa_Schedule::make_NMO() {
   if (NMO) return; NMO=new Lisa_Matrix<int>(n,m); NMO->fill(0); 
 }
+
+//**************************************************************************
+
 void Lisa_Schedule::make_NJO() {
   if (NJO) return; NJO=new Lisa_Matrix<int>(n,m); NJO->fill(0); 
 }
+
+//**************************************************************************
+
 void Lisa_Schedule::make_CIJ() {
   if (CIJ) return; CIJ=new Lisa_Matrix<TIMETYP>(n,m); CIJ->fill(0); 
 }
+
+//**************************************************************************
 
 void Lisa_Schedule::init(int n_in, int m_in) {
   if (n!=n_in||m!=m_in)
@@ -172,6 +212,8 @@ void Lisa_Schedule::init(int n_in, int m_in) {
   valid=FALSE;
 }
 
+//**************************************************************************
+
 void Lisa_Schedule::write(ostream& strm) const {
   strm << "\n<SCHEDULE>\n";
   strm << "m= " << m << "\n";
@@ -184,6 +226,8 @@ void Lisa_Schedule::write(ostream& strm) const {
   if (CIJ) strm << "CIJ= " << *CIJ << "\n"; // Matrix with the end time for each operation
   strm << "</SCHEDULE>\n ";
 }
+
+//**************************************************************************
 
 int Lisa_Schedule::valid_LR(Lisa_Matrix<bool> *SIJ) { 
   int i=0,j=0;
@@ -200,6 +244,8 @@ int Lisa_Schedule::valid_LR(Lisa_Matrix<bool> *SIJ) {
   valid=TRUE;
   return OK;
 }
+
+//**************************************************************************
 
 int Lisa_Schedule::get_property(int property) {
   int value=0;
@@ -239,6 +285,8 @@ int Lisa_Schedule::get_property(int property) {
     }
   return value;
 }
+
+//**************************************************************************
 
 void Lisa_Schedule::read(istream& strm) {
   if (strm==NULL) {
@@ -309,6 +357,8 @@ void Lisa_Schedule::read(istream& strm) {
    valid=TRUE;
 }
 
+//**************************************************************************
+
 Lisa_Schedule::~Lisa_Schedule() {
   delete LR;
   delete NMO;
@@ -316,6 +366,5 @@ Lisa_Schedule::~Lisa_Schedule() {
   delete CIJ;
 }
 
-
-
+//**************************************************************************
 

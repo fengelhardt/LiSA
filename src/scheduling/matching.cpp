@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_BipartMatching::Lisa_BipartMatching(const Lisa_Matrix<bool> *in){
 
  graph = new Lisa_Matrix<bool>(*in);
@@ -37,7 +39,7 @@ Lisa_BipartMatching::Lisa_BipartMatching(const Lisa_Matrix<bool> *in){
  calculated = 0;
 }
 
-//****************************************************
+//**************************************************************************
 
 Lisa_BipartMatching::Lisa_BipartMatching(const int n_in,const int m_in){
 
@@ -70,7 +72,7 @@ Lisa_BipartMatching::Lisa_BipartMatching(const int n_in,const int m_in){
  calculated = 0;
 }
 
-//****************************************************
+//**************************************************************************
 
 Lisa_BipartMatching::~Lisa_BipartMatching(){
   delete graph;
@@ -84,7 +86,8 @@ Lisa_BipartMatching::~Lisa_BipartMatching(){
   delete in_I;
 }
 
-//****************************************************
+//**************************************************************************
+
 void inline Lisa_BipartMatching::ordered_start_matching(){
  
   (*I_matched).fill(UNMATCHED);
@@ -144,7 +147,7 @@ void inline Lisa_BipartMatching::ordered_start_matching(){
   delete J_keys;
 }
 
-//*********************************************************
+//**************************************************************************
 
 void inline Lisa_BipartMatching::simple_start_matching(){
 
@@ -173,7 +176,7 @@ void inline Lisa_BipartMatching::simple_start_matching(){
   }
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BipartMatching::calculate(){
   
@@ -283,7 +286,7 @@ void Lisa_BipartMatching::calculate(){
   calculated = 1;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<bool>* Lisa_BipartMatching::get_S(){
   // if needed calculate new matching 
@@ -296,7 +299,7 @@ const Lisa_Vector<bool>* Lisa_BipartMatching::get_S(){
   return S;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<bool>* Lisa_BipartMatching::get_T(){
   // if needed calculate new matching 
@@ -309,27 +312,27 @@ const Lisa_Vector<bool>* Lisa_BipartMatching::get_T(){
   return T;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_BipartMatching::get_matching_I(){
   if (!calculated) calculate();
   return I_matched;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_BipartMatching::get_matching_J(){
   if (!calculated) calculate();
   return J_matched;
 }
 
-//****************************************************
+//**************************************************************************
 
 bool inline Lisa_BipartMatching::get_edge(const int i,const int j) const{
   return (*graph)[i][j];
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_BipartMatching::set_edge(const int i,const int j,const bool value){
   // reset flag
@@ -337,14 +340,14 @@ void inline Lisa_BipartMatching::set_edge(const int i,const int j,const bool val
   (*graph)[i][j] = value;
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_BipartMatching::set_all_edges(const bool value){
   calculated = 0;
   graph->fill(value);
 }
 
-//****************************************************
+//**************************************************************************
 
 bool Lisa_BipartMatching::is_perfect(){
   // if all vertex in the smaller set are matched 
@@ -368,7 +371,7 @@ bool Lisa_BipartMatching::is_perfect(){
   return 1;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BipartMatching::write(ostream & strm) const {
   strm << "<BIPARTMATCHING>"<<endl;
@@ -405,10 +408,11 @@ void Lisa_BipartMatching::write(ostream & strm) const {
   strm << "</BIPARTMATCHING>"<<endl;
 }
 
-//****************************************************
-//****************************************************
+//**************************************************************************
 
 const TIMETYP Lisa_Matching::REMOVED = -MAXOBJECTIVE;
+
+//**************************************************************************
 
 Lisa_WeightedMatching::Lisa_WeightedMatching(const Lisa_Matrix<TIMETYP> *in){
   
@@ -433,7 +437,7 @@ Lisa_WeightedMatching::Lisa_WeightedMatching(const Lisa_Matrix<TIMETYP> *in){
   inverted = 0;
 }
 
-//****************************************************
+//**************************************************************************
 
 Lisa_WeightedMatching::Lisa_WeightedMatching(const int n_in, const int m_in){
   
@@ -454,7 +458,7 @@ Lisa_WeightedMatching::Lisa_WeightedMatching(const int n_in, const int m_in){
   inverted = 0;
 } 
 
-//****************************************************
+//**************************************************************************
 
 Lisa_WeightedMatching::~Lisa_WeightedMatching(){
   delete I_mark;
@@ -463,21 +467,21 @@ Lisa_WeightedMatching::~Lisa_WeightedMatching(){
   delete bipart;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_WeightedMatching::get_matching_J(){
   if (!calculated) calculate();
   return (*bipart).get_matching_J();
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_WeightedMatching::get_matching_I(){
   if (!calculated) calculate();
   return (*bipart).get_matching_I();
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_WeightedMatching::calculate(){
   
@@ -501,7 +505,7 @@ void inline Lisa_WeightedMatching::calculate(){
   calculated = 1;
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_WeightedMatching::calc_start_marks(){
   TIMETYP ma,ms;
@@ -535,7 +539,7 @@ void inline Lisa_WeightedMatching::calc_start_marks(){
   }
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_WeightedMatching::calc_new_marks(){
   const Lisa_Vector<bool> *Sv = (*bipart).get_S();
@@ -564,7 +568,7 @@ void inline Lisa_WeightedMatching::calc_new_marks(){
 
 }
 
-//****************************************************
+//**************************************************************************
 
 TIMETYP Lisa_WeightedMatching::get_edge(const int i,const int j) const{
   TIMETYP out = (*graph)[i][j];
@@ -572,7 +576,7 @@ TIMETYP Lisa_WeightedMatching::get_edge(const int i,const int j) const{
   return out;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_WeightedMatching::set_edge(const int i,const int j,const TIMETYP value){
   calculated = 0;
@@ -582,7 +586,7 @@ void Lisa_WeightedMatching::set_edge(const int i,const int j,const TIMETYP value
   }
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_WeightedMatching::set_all_edges(const Lisa_Matrix<TIMETYP>* in){
   calculated = 0;
@@ -601,14 +605,15 @@ void Lisa_WeightedMatching::set_all_edges(const Lisa_Matrix<TIMETYP>* in){
   }
 
 }
-//****************************************************
+
+//**************************************************************************
 
 void Lisa_WeightedMatching::remove(const int i,const int j){
   calculated = 0;
   (*graph)[i][j] = REMOVED;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_WeightedMatching::invert(){
   calculated = 0;
@@ -627,7 +632,7 @@ void Lisa_WeightedMatching::invert(){
 
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_WeightedMatching::write(ostream & strm) const {
   
@@ -705,8 +710,7 @@ void Lisa_WeightedMatching::write(ostream & strm) const {
   strm << "</WBIPARTMATCHING>" << endl;
 }
 
-//****************************************************
-//****************************************************
+//**************************************************************************
 
 Lisa_BottleneckMatching::Lisa_BottleneckMatching(const Lisa_Matrix<TIMETYP>* in){
   
@@ -751,7 +755,7 @@ Lisa_BottleneckMatching::Lisa_BottleneckMatching(const Lisa_Matrix<TIMETYP>* in)
   sorted = 0;
 }
 
-//****************************************************  
+//**************************************************************************
 
 Lisa_BottleneckMatching::~Lisa_BottleneckMatching(){
   delete lst;
@@ -760,7 +764,7 @@ Lisa_BottleneckMatching::~Lisa_BottleneckMatching(){
   delete bipart;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::calculate(){
   
@@ -835,7 +839,7 @@ void Lisa_BottleneckMatching::calculate(){
   calculated = 1;
 }
 
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_BottleneckMatching::inc_next(){
   lst->next();
@@ -843,8 +847,7 @@ void inline Lisa_BottleneckMatching::inc_next(){
   bipart->set_edge(current.i,current.j,1);
 }
 
-
-//****************************************************
+//**************************************************************************
 
 void inline Lisa_BottleneckMatching::rem_curr(){
   Lisa_BottleneckNode& current = lst->get();
@@ -852,21 +855,21 @@ void inline Lisa_BottleneckMatching::rem_curr(){
   lst->previous();
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_BottleneckMatching::get_matching_I(){
   if (!calculated) calculate();
   return I_matched;
 }
 
-//****************************************************
+//**************************************************************************
 
 const Lisa_Vector<int>* Lisa_BottleneckMatching::get_matching_J(){
   if (!calculated) calculate();
   return J_matched;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::invert(){
   calculated = 0;
@@ -880,7 +883,7 @@ void Lisa_BottleneckMatching::invert(){
   }while(lst->next());
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::remove(const int i,const int j){
   if(lst->empty()) return;
@@ -895,7 +898,7 @@ void Lisa_BottleneckMatching::remove(const int i,const int j){
   }while(lst->next());
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::set_edge(const int i,const int j,const TIMETYP value){
   sorted = 0;
@@ -911,7 +914,7 @@ void Lisa_BottleneckMatching::set_edge(const int i,const int j,const TIMETYP val
   }while(lst->next());
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::set_all_edges(const Lisa_Matrix<TIMETYP>* in){
   if (lst->empty()) return;
@@ -927,7 +930,7 @@ void Lisa_BottleneckMatching::set_all_edges(const Lisa_Matrix<TIMETYP>* in){
   }while(lst->next());
 }
 
-//****************************************************
+//**************************************************************************
 
 TIMETYP Lisa_BottleneckMatching::get_edge(const int i,const int j)const{
   lst->reset();
@@ -939,7 +942,7 @@ TIMETYP Lisa_BottleneckMatching::get_edge(const int i,const int j)const{
   return REMOVED;
 }
 
-//****************************************************
+//**************************************************************************
 
 void Lisa_BottleneckMatching::write(ostream & strm) const{
   strm << "<BOTTLENECKMATCHING>" << endl;
@@ -948,15 +951,5 @@ void Lisa_BottleneckMatching::write(ostream & strm) const{
   strm << "</BOTTLENECKMATCHING>" << endl;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -10,6 +10,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
    {
      int i, j;
@@ -74,13 +76,15 @@ Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin )
        }
    }
 
+//**************************************************************************
+
 Lisa_JsProblem::~Lisa_JsProblem()
    {
      delete MOsucc;
      delete MOpred;
    }
 
-// ############ schedule #################################################
+//**************************************************************************
 
 // returns an empty feasible schedule to *Pin with MIJ=emptyset 
 Lisa_JsSchedule::Lisa_JsSchedule(Lisa_JsProblem* Pin)
@@ -110,6 +114,8 @@ Lisa_JsSchedule::Lisa_JsSchedule(Lisa_JsProblem* Pin)
  
      }
 
+//**************************************************************************
+
 Lisa_JsSchedule::~Lisa_JsSchedule()
      { 
        delete head;
@@ -118,6 +124,8 @@ Lisa_JsSchedule::~Lisa_JsSchedule()
        if (tail)
           delete tail;
      }
+
+//**************************************************************************
 
 void Lisa_JsSchedule::InitHeadsTails()
 {
@@ -150,6 +158,8 @@ void Lisa_JsSchedule::InitHeadsTails()
       while ( M != 0 );
     }
 }
+
+//**************************************************************************
  
 void Lisa_JsSchedule::operator=(Lisa_JsSchedule &other)
      { 
@@ -176,6 +186,8 @@ void Lisa_JsSchedule::operator=(Lisa_JsSchedule &other)
        lastinsi=other.lastinsi; lastinsj=other.lastinsj;  
        value=other.value;
      }
+
+//**************************************************************************
 
 int Lisa_JsSchedule::insert( int i, int j, int woi )
 { 
@@ -227,6 +239,8 @@ int Lisa_JsSchedule::insert( int i, int j, int woi )
     }
   return(xyz); 
 }
+
+//**************************************************************************
 
 void Lisa_JsSchedule::exclude(int i, int j)
     { int pi,si, pj, sj;
@@ -281,6 +295,8 @@ void Lisa_JsSchedule::exclude(int i, int j)
         }  
     }
 
+//**************************************************************************
+
 int Lisa_JsSchedule::read_LR(Lisa_Matrix<int> * lr)
  {
    int i, j, r;
@@ -296,6 +312,8 @@ int Lisa_JsSchedule::read_LR(Lisa_Matrix<int> * lr)
    ScheduleOK=TRUE;
    return OK;
  }
+
+//**************************************************************************
 
 int Lisa_JsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
  {
@@ -340,11 +358,5 @@ int Lisa_JsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
    return OK;
   }
 
-
-
-
-
-
-
-
+//**************************************************************************
 

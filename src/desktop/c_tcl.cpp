@@ -18,14 +18,14 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+//**************************************************************************
 
 extern class Lisa_Preferences G_Preferences;
 extern Tcl_Interp *interp;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_ProblemType G_ProblemType;
 
-// *********************** functions *************************
+//**************************************************************************
 
 int Tk_myMain(int argc, char **argv) {
   interp = Tcl_CreateInterp();
@@ -40,6 +40,8 @@ int Tk_myMain(int argc, char **argv) {
     }
   return 1;
 }
+
+//**************************************************************************
 
 int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
   int         retcode;
@@ -184,16 +186,22 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
  return 0;  
 }
 
+//**************************************************************************
+
 /// open a message window and display a message
 void message(string title,string text) {
   string command="showmessage " + title + " \"" + text+"\"";
   Tcl_Eval(interp,(char*) command.c_str());
 }
 
+//**************************************************************************
+
 // open a message window and display a message
 void message(string text) {
   message("",text);
 }
+
+//**************************************************************************
 
 // Translate the word in the actual language.
 // The function returns the value of $Name(word) which has to defined
@@ -202,10 +210,14 @@ string translate(string word) {
   return Tcl_GetVar2(interp,"Name",(char*) word.c_str(),0);
 }
 
+//**************************************************************************
+
 // open main window:
 void open_main_window() {
   Tcl_Eval(interp,"Window show .lisa");
 }
+
+//**************************************************************************
 
 // open dialog to problem input
 void open_problem_window() {
@@ -213,17 +225,23 @@ void open_problem_window() {
   Tcl_Eval(interp,"Window show .dprob");
 }
 
+//**************************************************************************
+
 // prints a message on the label position in the main window:
 void mw_set_label(string text) {
   string command="mw_set_label \"" + text+"\"";
   Tcl_Eval(interp,(char*) command.c_str());
 }
 
+//**************************************************************************
+
 // prints a message on the objective value position in the main window:
 void mw_set_objective(string text) {
   string command="mw_set_objective \"" + text+"\"";
   Tcl_Eval(interp,(char*) command.c_str());
 }
+
+//**************************************************************************
 
 // print error to stdout or in a message window
 void print_error() {
@@ -237,6 +255,8 @@ void print_error() {
   Tcl_Eval(interp,(char*) command.c_str());
   }
 
+//**************************************************************************
+
 int mw_height() {
   int height=1;
   Tcl_Eval(interp, "set_height");
@@ -245,6 +265,8 @@ int mw_height() {
    sscanf(str.c_str(),"%d",&height);
   return height-153; // magic number corrected from 160 (trail and error)
 }
+
+//**************************************************************************
 
 int mw_width() {
   int width=1;
@@ -255,14 +277,5 @@ int mw_width() {
   return width-75; // magic number corrected from 160 (trail and error)
 }
 
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

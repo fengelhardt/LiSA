@@ -10,6 +10,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
 {
   int i,j;
@@ -87,6 +89,8 @@ Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
   else di->fill(MAXTIME);
 }
 
+//**************************************************************************
+
 Lisa_ShpProblem::~Lisa_ShpProblem()
    {
      delete time;
@@ -97,9 +101,7 @@ Lisa_ShpProblem::~Lisa_ShpProblem()
      delete sij;
    }
 
-
-// ############ Lisa_ShpSchedule ############################################
-
+//**************************************************************************
 
 void  Lisa_ShpSchedule::ComputeHeadsTails(bool h, bool t)
      { 
@@ -115,6 +117,8 @@ void  Lisa_ShpSchedule::ComputeHeadsTails(bool h, bool t)
 	    tail->fill( 0 );
           }
      }
+
+//**************************************************************************
      
 int Lisa_ShpSchedule::pushhead(int i, int j, TIMETYP newhead)
      { 
@@ -148,8 +152,9 @@ int Lisa_ShpSchedule::pushhead(int i, int j, TIMETYP newhead)
        return (OK);
      }
 
-// same procedure for tails (easier to read when separate)
+//**************************************************************************
 
+// same procedure for tails (easier to read when separate)
 int Lisa_ShpSchedule::pushtail(int i, int j, TIMETYP newtail)
      { 
        int h;
@@ -182,8 +187,9 @@ int Lisa_ShpSchedule::pushtail(int i, int j, TIMETYP newtail)
        return (OK);
      }
 
-// pull-functions: slower but more flexibel
+//**************************************************************************
 
+// pull-functions: slower but more flexibel
 int Lisa_ShpSchedule::pullhead(int i, int j)
     { 
       int   h;
@@ -224,8 +230,9 @@ int Lisa_ShpSchedule::pullhead(int i, int j)
       return OK;
     }
 
-// again, same function for tails
+//**************************************************************************
 
+// again, same function for tails
 int Lisa_ShpSchedule::pulltail(int i, int j)
     { 
       int   h;
@@ -262,6 +269,8 @@ int Lisa_ShpSchedule::pulltail(int i, int j)
       return OK;
     }
 
+//**************************************************************************
+
 bool Lisa_ShpSchedule::exists(int i, int j)
     { 
       // returns 0 for not, 1 for inserted operation
@@ -270,6 +279,7 @@ bool Lisa_ShpSchedule::exists(int i, int j)
       // test uses JO because it has to work for job shop too
     }
 
+//**************************************************************************
 
 void Lisa_ShpSchedule::SetValue(int function_type)
     { 
@@ -348,6 +358,8 @@ void Lisa_ShpSchedule::SetValue(int function_type)
 	}
     }
 
+//**************************************************************************
+
 void Lisa_ShpSchedule::push_LR(Lisa_Matrix<int> * LR, int i, int j, int k) 
 const
  {
@@ -356,6 +368,8 @@ const
    if ((*JOsucc)[i][j]) push_LR(LR, (*JOsucc)[i][j], j, k+1);
    if ((*MOsucc)[i][j]) push_LR(LR, i, (*MOsucc)[i][j], k+1);
  }
+
+//**************************************************************************
    
 void Lisa_ShpSchedule::write_LR(Lisa_Matrix<int> * LR) const
  {
@@ -365,6 +379,8 @@ void Lisa_ShpSchedule::write_LR(Lisa_Matrix<int> * LR) const
    for (j=1; j<=P->m; j++) 
       if ((*JOsucc)[SOURCE][j]) push_LR(LR, (*JOsucc)[SOURCE][j], j, 1);
  }
+
+//**************************************************************************
 
 void Lisa_ShpSchedule::write(ostream& strm) const 
  {
@@ -378,6 +394,7 @@ void Lisa_ShpSchedule::write(ostream& strm) const
    delete LR;   
  }
 
+//**************************************************************************
 
 void Lisa_ShpSchedule::HeadsFromTails()
 { 
@@ -390,6 +407,8 @@ void Lisa_ShpSchedule::HeadsFromTails()
     (*head)[i][SINK]=MAXTIME-(*tail)[i][(*MOpred)[i][SINK]];
 }
 
+//**************************************************************************
+
 void Lisa_ShpSchedule::TailsFromHeads()
  { 
    int i,j;
@@ -399,6 +418,8 @@ void Lisa_ShpSchedule::TailsFromHeads()
    for (i=P->n; i;  i--)
       (*tail)[i][SOURCE]=MAXTIME-(*head)[i][(*MOsucc)[i][SOURCE]];
  }
+
+//**************************************************************************
 
 void Lisa_ShpSchedule::pushstart(int i, int j, TIMETYP v)
  { 
@@ -410,6 +431,8 @@ void Lisa_ShpSchedule::pushstart(int i, int j, TIMETYP v)
    sti=i; stj=j; started=FALSE;
    pushhead(i,j,v);
  }
+
+//**************************************************************************
   
 void Lisa_ShpSchedule::pushstop(int i, int j, TIMETYP v)
  { 
@@ -426,14 +449,6 @@ void Lisa_ShpSchedule::pushstop(int i, int j, TIMETYP v)
    sti=i; stj=j; started=FALSE;
    pushtail(i,j,v);
  }
-  
-     
 
-
-
-
-
-
-
-
+//**************************************************************************
 

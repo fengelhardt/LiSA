@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_1Problem::Lisa_1Problem( Lisa_Values * Pin )
   {
     n = Pin->get_n();
@@ -59,6 +61,8 @@ Lisa_1Problem::Lisa_1Problem( Lisa_Values * Pin )
      else di->fill(MAXTIME);
   }
 
+//**************************************************************************
+
 Lisa_1Problem::~Lisa_1Problem()
   {
     delete time;
@@ -68,9 +72,7 @@ Lisa_1Problem::~Lisa_1Problem()
     delete prec;
   }
 
-
-
-//############ Lisa_1Schedule ############################
+//**************************************************************************
 
 Lisa_1Schedule::Lisa_1Schedule( Lisa_1Problem *PPi )
   { 
@@ -120,6 +122,8 @@ Lisa_1Schedule::Lisa_1Schedule( Lisa_1Problem *PPi )
     get_Ci(1);
   }
 
+//**************************************************************************
+
 Lisa_1Schedule::~Lisa_1Schedule()
   {
     delete sequ;
@@ -130,6 +134,8 @@ Lisa_1Schedule::~Lisa_1Schedule()
     if (tail)
       delete tail;
   }
+
+//**************************************************************************
 
 void  Lisa_1Schedule::ComputeHeadsTails(bool h, bool t)
   { 
@@ -165,6 +171,8 @@ void Lisa_1Schedule::get_Ci(int pos)
 	(*Ci)[i]= (t += (*PP->time)[i]);
       }
   }
+
+//**************************************************************************
 
 int Lisa_1Schedule::SetValue( int ZF )
   {
@@ -216,6 +224,8 @@ int Lisa_1Schedule::SetValue( int ZF )
     return OK;
   }
 
+//**************************************************************************
+
 TIMETYP Lisa_1Schedule::GetValue()
   {
     return value;
@@ -231,6 +241,8 @@ int Lisa_1Schedule::get_sequ(int pos)
     return (*sequ)[pos];
   }
 
+//**************************************************************************
+
 bool Lisa_1Schedule::exists( int i )
     { 
       // returns 0 for not, 1 for inserted operation
@@ -238,6 +250,8 @@ bool Lisa_1Schedule::exists( int i )
       return ((*JOpred)[i]) || (i==(*JOsucc)[SOURCE]);
       // test uses JO because it has to work for job shop too
     }
+
+//**************************************************************************
 
 int Lisa_1Schedule::insert( int i, int woi )
   { 
@@ -280,6 +294,8 @@ int Lisa_1Schedule::insert( int i, int woi )
       }
     return(xyz); 
   }
+
+//**************************************************************************
 
 void Lisa_1Schedule::exclude( int i )
   { 
@@ -326,6 +342,8 @@ void Lisa_1Schedule::exclude( int i )
       }  
   }
 
+//**************************************************************************
+
 int Lisa_1Schedule::pushhead(int i, TIMETYP newhead)
   { 
     int h;
@@ -347,8 +365,9 @@ int Lisa_1Schedule::pushhead(int i, TIMETYP newhead)
     return (OK);
   }
 
-// same procedure for tails (easier to read when separate)
+//**************************************************************************
 
+// same procedure for tails (easier to read when separate)
 int Lisa_1Schedule::pushtail(int i, TIMETYP newtail)
   { 
     int h;
@@ -369,6 +388,8 @@ int Lisa_1Schedule::pushtail(int i, TIMETYP newtail)
     else (*tail)[SOURCE]=newtail; 
     return (OK);
   }
+
+//**************************************************************************
 
 int Lisa_1Schedule::pullhead( int i )
   { 
@@ -400,8 +421,9 @@ int Lisa_1Schedule::pullhead( int i )
     return OK;
   }
 
-// again, same function for tails
+//**************************************************************************
 
+// again, same function for tails
 int Lisa_1Schedule::pulltail( int i )
   { 
     int   h;
@@ -432,6 +454,8 @@ int Lisa_1Schedule::pulltail( int i )
     return OK;
   }
 
+//**************************************************************************
+
 int Lisa_1Schedule::shift(int a, int b)
   {
     int c,i;
@@ -460,6 +484,8 @@ int Lisa_1Schedule::shift(int a, int b)
     return OK;
   }
 
+//**************************************************************************
+
 void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
   {
     int i;
@@ -476,6 +502,8 @@ void Lisa_1Schedule::operator=(Lisa_1Schedule &other)
        }
   }
 
+//**************************************************************************
+
 void Lisa_1Schedule::write_sequ()
   {
     int i=1, succ=0;
@@ -488,10 +516,13 @@ void Lisa_1Schedule::write_sequ()
       }
   }
 
+//**************************************************************************
+
 void Lisa_1Schedule::print(void)
   {
     cout << "\nvalue= "<< value;
     cout << "\nsequ="<< *sequ; 
   }
 
+//**************************************************************************
 

@@ -7,6 +7,8 @@
 
 #include "redgraph.hpp"
 
+//**************************************************************************
+
 Lisa_RedGraph::Lisa_RedGraph(void)
 {
   int g,i,j;
@@ -69,6 +71,8 @@ Lisa_RedGraph::Lisa_RedGraph(void)
   Graph[OBJECTIVE][SUM_TI][0]=SUM_WITI; Graph[OBJECTIVE][SUM_UI][0]=SUM_WIUI;
 }
 
+//**************************************************************************
+
 int
 Lisa_RedGraph::output(void) // debug output of reduction graphs
 {
@@ -88,6 +92,8 @@ Lisa_RedGraph::output(void) // debug output of reduction graphs
   return(0);
 }
 
+//**************************************************************************
+
 int
 Lisa_RedGraph::visit(int GrNo, int first, int second)
 {
@@ -104,6 +110,8 @@ Lisa_RedGraph::visit(int GrNo, int first, int second)
     }
   return(FALSE);
 }
+
+//**************************************************************************
 
 int
 Lisa_RedGraph::reducible(Lisa_ProblemType* first, Lisa_ProblemType* second)
@@ -128,6 +136,8 @@ Lisa_RedGraph::reducible(Lisa_ProblemType* first, Lisa_ProblemType* second)
   return(FALSE);
 }
 
+//**************************************************************************
+
 int
 Lisa_RedGraph::compare(Lisa_ProblemType* t1, Lisa_ProblemType* t2)
 {
@@ -143,6 +153,5 @@ Lisa_RedGraph::compare(Lisa_ProblemType* t1, Lisa_ProblemType* t2)
       return(NOT_CMP);
 }
 
-
-
+//**************************************************************************
 

@@ -134,7 +134,6 @@ int Travel_RPI_Neighbourhood::do_move(){
 }
 
 //**************************************************************************
-//**************************************************************************
 
 int Travel_API_Neighbourhood::prepare_move(const int type){
   /// we will switch a random city with its successor

@@ -12,6 +12,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_Values::Lisa_Values()
   {
     valid=TRUE;
@@ -25,6 +27,8 @@ Lisa_Values::Lisa_Values()
     WI2=NULL;
     EXTRA=NULL;
   }
+
+//**************************************************************************
 
 void Lisa_Values::init(int nin, int min)
 {
@@ -109,6 +113,8 @@ void Lisa_Values::init(int nin, int min)
   valid=TRUE;
 }
 
+//**************************************************************************
+
 void Lisa_Values::write(ostream& strm) const {
   if (valid==FALSE) {
     G_ExceptionList.lthrow("Lisa_Values not valid",ANY_ERROR);
@@ -128,6 +134,8 @@ void Lisa_Values::write(ostream& strm) const {
   if (EXTRA)  strm << "EXTRA= " << *EXTRA << "\n"; // second type of weights
   strm << "</VALUES>\n ";
 }
+
+//**************************************************************************
 
 void Lisa_Values::read(istream& strm) {
   if (strm==NULL) {
@@ -209,10 +217,13 @@ void Lisa_Values::read(istream& strm) {
    valid=TRUE;
 }
 
+//**************************************************************************
 
 void Lisa_Values::make_PT(void) { 
   if (PT) return; PT=new Lisa_Matrix<TIMETYP>(n,m); PT->fill(0); 
 }
+
+//**************************************************************************
 
 // void Lisa_Values::make_PTl(void) { 
 //   Lisa_List<TIMETYP> mylist;
@@ -221,10 +232,13 @@ void Lisa_Values::make_PT(void) {
 //   PTl=new Lisa_MatrixOfLists<TIMETYP>(n,m);
 // }
 
+//**************************************************************************
 
 void Lisa_Values::make_MO(void) { 
   if (MO) return; MO=new Lisa_MO(n,m); 
 }
+
+//**************************************************************************
 
 int Lisa_Values::valid_MO(void) { 
   int i=0,j=0;
@@ -244,51 +258,73 @@ int Lisa_Values::valid_MO(void) {
   return OK;
 }
 
+//**************************************************************************
+
 void Lisa_Values::no_MO(void) { 
   if (MO) delete MO;
   MO=NULL;
 }
+
+//**************************************************************************
 
 void Lisa_Values::no_RD(void) { 
   if (RD) delete RD;
   RD=NULL;
 }
 
+//**************************************************************************
+
 void Lisa_Values::no_DD(void) { 
   if (DD) delete DD;
   DD=NULL;
 }
+
+//**************************************************************************
 
 void Lisa_Values::no_WI(void) { 
   if (WI) delete WI;
   WI=NULL;
 }
 
+//**************************************************************************
+
 void Lisa_Values::make_SIJ(void) { 
   if (SIJ) return; SIJ=new Lisa_Matrix<bool>(n,m); SIJ->fill(0); 
 }
+
+//**************************************************************************
 
 void Lisa_Values::make_RD(void) { 
   if (RD) return; RD=new Lisa_Vector<TIMETYP>(n); RD->fill(0); 
 }
 
+//**************************************************************************
+
 void Lisa_Values::make_DD(void) { 
   if (DD) return; DD=new Lisa_Vector<TIMETYP>(n); DD->fill(MAXTIME); 
 }
+
+//**************************************************************************
 
 void Lisa_Values::make_WI(void) { 
   if (WI) return; WI=new Lisa_Vector<double>(n); WI->fill(1); 
 } 
 
+//**************************************************************************
+
 void Lisa_Values::make_WI2(void) { 
   if (WI2) return; WI2=new Lisa_Vector<double>(n); WI2->fill(1); 
 } 
+
+//**************************************************************************
 
 void Lisa_Values::make_EXTRA(void) { 
   if (EXTRA) return; 
   EXTRA=new Lisa_Vector<double>(LENGHT_OF_EXTRA_VECTOR); 
   EXTRA->fill(1); 
 } 
+
+//**************************************************************************
 
 void Lisa_Values::PT_to_SIJ() {
   int i,j;
@@ -310,6 +346,8 @@ void Lisa_Values::PT_to_SIJ() {
     }
 }   
 
+//**************************************************************************
+
 Lisa_Values::~Lisa_Values()
     { 
        if (PT) delete PT;       if (RD) delete RD;
@@ -318,6 +356,5 @@ Lisa_Values::~Lisa_Values()
      //   if (PTl) delete PTl;
     }
 
-
-
+//**************************************************************************
 

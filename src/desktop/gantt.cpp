@@ -17,12 +17,16 @@
 
 using namespace std;
 
+//**************************************************************************
+
 const bool MACHINE=1;
 const bool JOB=0;
 const int BEGIN=0;
 const int MIDDLE=1;
 const int END=2;
 const int LINE=3;
+
+//**************************************************************************
 
 void TCGantt::init(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule, 
 		   bool orientation)
@@ -72,6 +76,7 @@ void TCGantt::init(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule,
     y_interval=1;
 }
 
+//**************************************************************************
 
 void TCGantt::set_y_geometry()
 {
@@ -99,6 +104,7 @@ void TCGantt::set_y_geometry()
   box_height=((*y_geometry)[0][END]-(*y_geometry)[0][BEGIN])/y_extent;
 }
 
+//**************************************************************************
 
 double TCGantt::scaling(TIMETYP final_value, int step_number)
 {
@@ -129,6 +135,7 @@ double TCGantt::scaling(TIMETYP final_value, int step_number)
   return(signum*curr_value);
 }
 
+//**************************************************************************
 
 int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, bool orientation, 
 		       int color_type, Lisa_Vector<int> *active_path)
@@ -161,6 +168,7 @@ int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, bool orientation,
   return(color);
 }
 
+//**************************************************************************
 
 void TCGantt::x_scaling()
 {
@@ -186,6 +194,7 @@ void TCGantt::x_scaling()
 			"black");
 }
 
+//**************************************************************************
 
 void TCGantt::y_scaling(bool orientation)
 {
@@ -203,6 +212,7 @@ void TCGantt::y_scaling(bool orientation)
   main_canvas->line_rel(0,10-y_extent,0,95+3*y_extent,"black");  
 }
 
+//**************************************************************************
 
 void TCGantt::draw_x_lines()
 {
@@ -222,6 +232,7 @@ void TCGantt::draw_x_lines()
     }
 }
 
+//**************************************************************************
 
 void TCGantt::draw_box(TIMETYP end, TIMETYP time, int x_value, int y_value, 
 		       int color, char *text_color)
@@ -239,6 +250,7 @@ void TCGantt::draw_box(TIMETYP end, TIMETYP time, int x_value, int y_value,
 			    ztos(x_value+1),text_color);
 }
 
+//**************************************************************************
 
 void TCGantt::draw_DD(Lisa_Vector<TIMETYP> *DD)
 {
@@ -267,6 +279,7 @@ void TCGantt::draw_DD(Lisa_Vector<TIMETYP> *DD)
   
 }
 
+//**************************************************************************
 
 void TCGantt::draw_RD(Lisa_Vector<TIMETYP> *RD)
 {
@@ -298,6 +311,7 @@ void TCGantt::draw_RD(Lisa_Vector<TIMETYP> *RD)
     }
 }  
 
+//**************************************************************************
 
 bool TCGantt::check_x_value(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule,
 			    int x, int y, TIMETYP time)
@@ -312,12 +326,7 @@ bool TCGantt::check_x_value(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule,
   return(1);
 }
 
-
-
-//---------------------------------------------------------------------------
-//                              public:
-//---------------------------------------------------------------------------
-
+//**************************************************************************
 
 TCGantt::TCGantt(Tcl_Interp *interp,string canv,string horizontal_canvas, 
 		 string vertikal_canvas)
@@ -327,6 +336,7 @@ TCGantt::TCGantt(Tcl_Interp *interp,string canv,string horizontal_canvas,
   canv_vertikal =new Lisa_Canvas(vertikal_canvas.c_str(),interp);
 }
 
+//**************************************************************************
 
 void TCGantt::draw(Lisa_Matrix<bool> *CP,
 		   Lisa_Values *G_Values,
@@ -404,6 +414,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
     }
 }
 
+//**************************************************************************
 
 operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
 				  Lisa_Values *G_Values, 
@@ -484,6 +495,7 @@ operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
   return(&my_data);
 }
 
+//**************************************************************************
 
 void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
 		   Lisa_Schedule *G_Schedule,bool orientation)
@@ -558,6 +570,7 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
   return;
 }
 
+//**************************************************************************
 
 TCGantt::~TCGantt()
 {
@@ -568,14 +581,5 @@ TCGantt::~TCGantt()
   delete canv_vertikal;
 }
 
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 fp_nb::fp_nb(int ni, int sigmai)
  {
    n=ni; sigma=sigmai;
@@ -20,6 +22,8 @@ fp_nb::fp_nb(int ni, int sigmai)
    modification= new fp_vector(n);
    best_modification= new fp_vector(n);
  }  
+
+//**************************************************************************
 
 TIMETYP fp_nb::get_objective_value( int i )
  {
@@ -33,11 +37,15 @@ TIMETYP fp_nb::get_objective_value( int i )
               }
  }   
 
+//**************************************************************************
+
 int fp_nb::accept_solution()
  {
    modification=solution->replace_vector(repl_i, modification);
    return 0;
  }
+
+//**************************************************************************
   
 int fp_nb::put_orig_to_best()
  {
@@ -45,11 +53,15 @@ int fp_nb::put_orig_to_best()
    return 0;
  }
 
+//**************************************************************************
+
 int fp_nb::accept_best_ngh()
  {
    best_modification=solution->replace_vector(best_repl_i, best_modification);
    return 0;
  }
+
+//**************************************************************************
 
 int fp_nb::put_work_to_best_ngh()
  {
@@ -58,6 +70,8 @@ int fp_nb::put_work_to_best_ngh()
    best_chpos=chpos;
    return 0;
  }
+
+//**************************************************************************
    
 int   fp_nb::prepare_move( int )
  {
@@ -69,6 +83,8 @@ int   fp_nb::prepare_move( int )
    if (elem==-1) elem=2;
    return OK;
  }
+
+//**************************************************************************
 
 int fp_nb::do_move( )
  {
@@ -93,15 +109,21 @@ int fp_nb::do_move( )
    return OK;
  }	  
 
+//**************************************************************************
+
 int fp_nb::anti_neighbor()
  {
    return OK;
  }
 
+//**************************************************************************
+
 void fp_nb::set_objective_type( int o )
  {
    objective_type = o;
  }
+
+//**************************************************************************
 
 int fp_nb::init_tabulist( unsigned int i)
  {
@@ -110,25 +132,35 @@ int fp_nb::init_tabulist( unsigned int i)
    return 0;
  }
 
+//**************************************************************************
+
 int fp_nb:: use_tabulist()
  { 
    return tabu->use(repl_i, chpos, elem,0);
  }
 
+//**************************************************************************
+
 int    fp_nb::set_tabulist()
  {
    return tabu->set(best_repl_i, best_chpos, old_elem,0);
  }
+
+//**************************************************************************
 	
 void    fp_nb::store_tabu_param()
  {
    old_elem=(solution->get_vector(repl_i)).get_element(chpos);
  }
+
+//**************************************************************************
        
 void   fp_nb:: clean_tabu_param() 
  {
    old_elem=3;
  }
+
+//**************************************************************************
 
 fp_nb::~fp_nb()
  { 
@@ -138,17 +170,5 @@ fp_nb::~fp_nb()
    delete best_modification;
  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -8,6 +8,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 //Spalte 0 :
 //x=Anfang der succ-Liste
 //y=Anfang ist Ende der succ-Liste 
@@ -20,11 +22,15 @@ using namespace std;
 //x Zeiger in Vorwaertsrichtung
 //y Zeiger in Rueckwaertsrichtung 
 
+//**************************************************************************
+
 Lisa_Graph::~Lisa_Graph()
 {
   delete matrix;
   delete succ_pred_pointer;
 }
+
+//**************************************************************************
 
 Lisa_Graph::Lisa_Graph(int number_of_knots)
 {
@@ -32,6 +38,8 @@ Lisa_Graph::Lisa_Graph(int number_of_knots)
   succ_pred_pointer=0;
   init(number_of_knots);
 }
+
+//**************************************************************************
 
 Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
 {
@@ -47,6 +55,8 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
   }
 }
 
+//**************************************************************************
+
 Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
 {
   matrix=0;
@@ -61,6 +71,8 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
   }
 }
 
+//**************************************************************************
+
 /*
 Lisa_Graph::Lisa_Graph(Lisa_JsProblem* jpro)
 {
@@ -71,32 +83,42 @@ Lisa_Graph::Lisa_Graph(Lisa_JsProblem* jpro)
   iy=jpro->m;
 */
 
+//**************************************************************************
+
 int Lisa_Graph::get_knots() const
 {
   return n;
 }
 
+//**************************************************************************
 
 int Lisa_Graph::get_first_successor(int knot)
 {
   return ((*matrix)[knot][0].x);
 }
 
+//**************************************************************************
+
 int Lisa_Graph::get_last_successor(int knot)
 {
   return ((*matrix)[knot][0].y);
 }
+
+//**************************************************************************
 
 int Lisa_Graph::get_first_predecessor(int knot)
 {
   return ((*matrix)[0][knot].x);
 }
 
+//**************************************************************************
+
 int Lisa_Graph::get_last_predecessor(int knot)
 {
   return ((*matrix)[0][knot].y);
 }
 
+//**************************************************************************
 
 int Lisa_Graph::signum(int start, int end) const
 {
@@ -112,6 +134,7 @@ int Lisa_Graph::signum(int start, int end) const
     }
 }
 
+//**************************************************************************
 
 int  Lisa_Graph::get_connection(int start, int end)
 {
@@ -143,7 +166,7 @@ int  Lisa_Graph::get_connection(int start, int end)
     }
 }
 
-
+//**************************************************************************
 
 bool Lisa_Graph::insert_arc(int start, int end)
 {
@@ -193,6 +216,8 @@ bool Lisa_Graph::insert_arc(int start, int end)
   }
   return false;
 }
+
+//**************************************************************************
 
 bool Lisa_Graph::insert_edge(int start, int end)
 {  
@@ -244,6 +269,8 @@ bool Lisa_Graph::insert_edge(int start, int end)
   }
   return false;
 }
+
+//**************************************************************************
 
 bool Lisa_Graph::exclude_edge(int start, int end)
 {
@@ -299,6 +326,8 @@ bool Lisa_Graph::exclude_edge(int start, int end)
   }
   return false;
 }
+
+//**************************************************************************
 
 bool Lisa_Graph::exclude_arc(int start, int end)
 {
@@ -365,7 +394,7 @@ bool Lisa_Graph::exclude_arc(int start, int end)
   return false;
 }
 
-
+//**************************************************************************
 
 void Lisa_Graph::show()
 {
@@ -379,6 +408,8 @@ void Lisa_Graph::show()
       cout<<endl;
     }
 } 
+
+//**************************************************************************
   
 bool Lisa_Graph::valid()
 {
@@ -665,6 +696,8 @@ bool Lisa_Graph::valid()
   delete[] knot_list;  
   return true;
 }
+
+//**************************************************************************
   
 Lisa_Matrix<int>* Lisa_Graph::get_ADJ_Matrix( Lisa_Matrix<int> *adj) const
 {
@@ -681,6 +714,7 @@ Lisa_Matrix<int>* Lisa_Graph::get_ADJ_Matrix( Lisa_Matrix<int> *adj) const
   return adj;
 }
 
+//**************************************************************************
 
 void Lisa_Graph::init(int n_in) 
 {
@@ -713,6 +747,8 @@ void Lisa_Graph::init(int n_in)
   
 }
 
+//**************************************************************************
+
 bool Lisa_Graph::init_succ_pointer(int knot)
 {
   if((knot<=0)||(knot>n)){return false;}
@@ -721,6 +757,8 @@ bool Lisa_Graph::init_succ_pointer(int knot)
   (*succ_pred_pointer)[knot-1].x=knot;
   return true;
 }
+
+//**************************************************************************
 
 const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other) 
 {
@@ -741,7 +779,7 @@ const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other)
   return *this;
 }      
 
-
+//**************************************************************************
 
 bool Lisa_Graph::init_pred_pointer(int knot)
 {
@@ -750,6 +788,8 @@ bool Lisa_Graph::init_pred_pointer(int knot)
   (*succ_pred_pointer)[knot-1].y=knot;
   return true;
 }
+
+//**************************************************************************
 
 int Lisa_Graph::get_next_successor(int knot)
 {
@@ -781,6 +821,8 @@ int Lisa_Graph::get_next_successor(int knot)
 	
 }
 
+//**************************************************************************
+
 int Lisa_Graph::get_next_predeccessor(int knot)
 {
   int old_knot=(*succ_pred_pointer)[knot-1].y;
@@ -809,6 +851,8 @@ int Lisa_Graph::get_next_predeccessor(int knot)
 	
 }
 
+//**************************************************************************
+
 int Lisa_Graph::get_next_edge(int knot)
 {
   int next_knot=get_next_successor(knot);
@@ -818,6 +862,7 @@ int Lisa_Graph::get_next_edge(int knot)
   return next_knot;
 }
 
+//**************************************************************************
 
 bool Lisa_Graph::no_edges()
 {
@@ -829,6 +874,8 @@ bool Lisa_Graph::no_edges()
 
   return true;
 }
+
+//**************************************************************************
 
 int Lisa_Graph::number_of_succ(int knot)
 {
@@ -842,6 +889,8 @@ int Lisa_Graph::number_of_succ(int knot)
   return succ_count;
 }
 
+//**************************************************************************
+
 int Lisa_Graph::number_of_pred(int knot)
 {
   int pred_count=0;
@@ -854,6 +903,7 @@ int Lisa_Graph::number_of_pred(int knot)
   return pred_count;
 }
 
+//**************************************************************************
 
 bool Lisa_Graph::remove_all_con(int knot)
 {
@@ -884,7 +934,7 @@ bool Lisa_Graph::remove_all_con(int knot)
   return true;
 }
 
-
+//**************************************************************************
 
 bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
 { 
@@ -936,8 +986,7 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
   }
 }
 
-
-
+//**************************************************************************
 
 void Lisa_Graph::read_ADJ(Lisa_Matrix<int>* adj)
 {
@@ -964,6 +1013,8 @@ void Lisa_Graph::read_ADJ(Lisa_Matrix<int>* adj)
 	}
     }
 }
+
+//**************************************************************************
 
 bool Lisa_Graph::transitive_hull(Lisa_Graph* target)
 {
@@ -1005,6 +1056,7 @@ bool Lisa_Graph::transitive_hull(Lisa_Graph* target)
   return true;
 }
 
+//**************************************************************************
 
 void Lisa_Graph::write(ostream & strm) const 
 {
@@ -1018,6 +1070,8 @@ void Lisa_Graph::write(ostream & strm) const
 
   delete out;
 }
+
+//**************************************************************************
 
 void Lisa_Graph::read(istream & strm)
 {
@@ -1073,13 +1127,5 @@ void Lisa_Graph::read(istream & strm)
 
 }
 
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -12,6 +12,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 // small function to find certain string in stream:
 bool locate_string(istream& strm, string what)
 {
@@ -27,13 +29,14 @@ bool locate_string(istream& strm, string what)
   return TRUE;
 }
 
-
-// ########################### Class Lisa_ProblemType ########################
+//**************************************************************************
 
 Lisa_ProblemType::Lisa_ProblemType() 
 {
   reset();  
 } 
+
+//**************************************************************************
 
 void Lisa_ProblemType::reset()
 {
@@ -41,6 +44,8 @@ void Lisa_ProblemType::reset()
   for(i=0; i<TUPEL_INDEX; i++) tupel[i]=EMPTY;
   vld=FALSE;
 }
+
+//**************************************************************************
 
 int Lisa_ProblemType::set_property(const int prop, const int value)
 {
@@ -142,6 +147,8 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
   return rv;
 }
 
+//**************************************************************************
+
 int Lisa_ProblemType::get_property_old(const int prop) const
 {
   if ((prop!=M_ENV) || ((!tupel[M_MPT]) && (!tupel[M_MPM])))
@@ -173,6 +180,8 @@ int Lisa_ProblemType::get_property_old(const int prop) const
   return FALSE;
 }
 
+//**************************************************************************
+
 string Lisa_ProblemType::output_alpha() const
 {
   string str="";
@@ -183,6 +192,8 @@ string Lisa_ProblemType::output_alpha() const
     str+=name(M_NUMBER,tupel[M_NUMBER]);
   return str;
 }
+
+//**************************************************************************
 
 string Lisa_ProblemType::output_beta() const 
 {
@@ -200,12 +211,16 @@ string Lisa_ProblemType::output_beta() const
   return str;
 }
 
+//**************************************************************************
+
 string Lisa_ProblemType::output_gamma() const 
 {
   string str="";
   str+=name(OBJECTIVE,tupel[OBJECTIVE]);
   return str;
 }
+
+//**************************************************************************
 
 string Lisa_ProblemType::output_problem() const {
   string str;
@@ -217,6 +232,8 @@ string Lisa_ProblemType::output_problem() const {
   str+=output_gamma();
   return(str);
 }
+
+//**************************************************************************
 
 int Lisa_ProblemType::setalpha(string al) 
 {
@@ -272,6 +289,8 @@ int Lisa_ProblemType::setalpha(string al)
   return (tupel[M_ENV]==EMPTY);
 }
 
+//**************************************************************************
+
 int Lisa_ProblemType::setbeta(string be) 
 {
   int tuplepos, meaning=0, i,j;
@@ -322,16 +341,22 @@ int Lisa_ProblemType::setbeta(string be)
   } */
 }
 
+//**************************************************************************
+
 void Lisa_ProblemType::delbeta() {
   int i;
   for (i=NUMBER_ALPHA; i<NUMBER_ALPHA+NUMBER_BETA; i++)
     tupel[i]=0;
 }
 
+//**************************************************************************
+
 int Lisa_ProblemType::delbeta(int nr) {
   tupel[nr]=0;
   return(0);
 }
+
+//**************************************************************************
 
 int Lisa_ProblemType::setgamma(string ga) {
   string str;
@@ -346,6 +371,7 @@ int Lisa_ProblemType::setgamma(string ga) {
   return(1);
 }
 
+//**************************************************************************
 
 string Lisa_ProblemType::name(int tupelEntry, int identifier) const 
 {
@@ -528,6 +554,8 @@ string Lisa_ProblemType::name(int tupelEntry, int identifier) const
   return "TupelEntry unknown";
 }
 
+//**************************************************************************
+
 int Lisa_ProblemType::name(int tupelEntry, string identifier) const {
   int i;
   
@@ -538,6 +566,8 @@ int Lisa_ProblemType::name(int tupelEntry, string identifier) const {
   cerr << identifier << " not found \n";
   return -1;
 }
+
+//**************************************************************************
   
 void Lisa_ProblemType::write(ostream& strm) const{
   if (vld) {
@@ -547,6 +577,8 @@ void Lisa_ProblemType::write(ostream& strm) const{
   }
   else cerr << "Lisa_ProblemType not valid\n";
 }
+
+//**************************************************************************
 
 // following function rewritten (TAU 15.3.99)
 void Lisa_ProblemType::read(istream& strm) 
@@ -619,5 +651,5 @@ void Lisa_ProblemType::read(istream& strm)
   vld=TRUE;
 }
 
-
+//**************************************************************************
 

@@ -10,6 +10,101 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/lsaobjct.hpp"
 
+// An example for using LiSA's neighbourhood algorithms  
+/* This is an example for using LiSA's neighbourhood algorithms to solve
+    other (non scheduling) optimization problems. It can create solutions 
+    for the symmetrical traveling salesman problem. The source code files 
+    are located in the directory LiSA/src/utility/travel/ .
+    
+    It consists of one class describing a problem (travel_graph.cpp,
+    travel_graph.hpp), two classes describing two different neighbourhoods 
+    (travel_neighbourhood.cpp,travel_neighbourhood.hpp) and a main routine 
+    for reading an input file, running the algorithm and write the results 
+    to an output file (travel.cpp). Some sample input files are located in 
+    the files/ subdirectory. 
+    
+    After compiling the executable will be located in the same directory 
+    where the source code is. It may than be called:
+
+    - travel [input file] [output file]
+
+    While running some progress info will be printed to the console All 
+    algorithm/neighbourhood parameters have to be set in the input file.
+    An example for an input file is:
+
+    <CONTROLPARAMETERS>
+    string METHOD TA
+    string NGBH RPI
+    long STEPS 100000
+    long NUMB_STUCKS 1000000
+    double ABORT_BOUND 0
+    long PROB 40
+    long MAX_STUCK 3000
+    </CONTROLPARAMETERS>
+
+    <TRAVELGRAPH>
+    vertices= 3
+    graph= {
+    { 0 65 21 }
+    { 0 0 40 }
+    { 0 0 0 }
+    }
+    </TRAVELGRAPH>
+      
+    The first part contains the algorithm and neighbourhood parameters, the second part is the actual 
+    traveling salesman problem. For more examples of the problem input see the documentation for
+    the Travel_Graph class.
+    
+    Parameters that have to be set always:
+    
+    - string METHOD [II SA SA_anti TA TS] the algorithm you want to use
+      - II: iterative improvement
+      - SA: simulated annealing
+      - SA_anti: simmulated annealing with anti neighbour
+      - TA: threshold accepting
+      - TS: tabu search
+    
+    - string NGHB [RPI API]
+      - RPI: random pair interchange
+      - API: adjacent pair interchange
+    
+    - long STEPS: the number of steps after which the algorithm should abort
+    
+    - long NUMB_STUCKS: the number of stucks after which the algorithm should abort
+
+    - double ABORT_BOUND: a lower bound for the objective, if reached the algorithm will abort
+    
+    Parameters that have to be set for II:
+    
+    - string NGBH_TYPE [ENUM RAND]
+      - RAND: random generation of neighbours
+      - ENUM: enumerative generation of neighbours
+
+    Parameters that have to be set for SA, SA_anti and TA:
+    
+    - long PROB: the start propability for accepting solutions with a worse objective
+    
+    - long MAX_STUCK: the number of stucks after which the threshold/temperature will be raised
+    
+    Parameters that have to be set for TS:
+    
+    - string NGBH_TYPE [ENUM RAND]
+    
+    - long TABU_LENGTH: the length of the tabu list
+
+    - long NUMB_NGB: the number of neighbours to generate with each step
+    
+    Further information about the modelling of the problem and the neighbourhoods can be
+    found in the documentation for the classes Travel_Graph , Travel_RPI_Neighbourhood 
+    and Travel_API_Neighbourhood.
+    
+    The documentation for LiSA's neighbourhood algorithms can be found in the classes
+    Lisa_Neighborhood , Lisa_Iterator and Lisa_Tabu.
+  
+    @author Marc Mörig
+    @version 2.3pre3
+*/
+
 /// Traveling Salesman Problem Object
 /** This object serves mostly for writing and reading a problem.
     It can also contain a solution and calculate the objective 

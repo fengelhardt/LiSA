@@ -7,8 +7,12 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Lisa_Preferences::Lisa_Preferences() {
 }
+
+//**************************************************************************
 
 void Lisa_Preferences::init(Tcl_Interp *interp) {
   LISA_HOME = Tcl_GetVar2(interp,"env","LISAHOME",0);
@@ -18,4 +22,6 @@ void Lisa_Preferences::init(Tcl_Interp *interp) {
   gantt_colors = new Lisa_Vector<int>(5);
   gantt_colors->fill(0);
 }
+
+//**************************************************************************
 

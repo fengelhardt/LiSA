@@ -8,7 +8,11 @@
 
 #include "insert.hpp"
 
+//**************************************************************************
+
 const int SHIFT_STEPS=10; 
+
+//**************************************************************************
 
 void js_inserter::init(Lisa_JsSchedule * in_sched, int in_zfn)
   {
@@ -19,6 +23,7 @@ void js_inserter::init(Lisa_JsSchedule * in_sched, int in_zfn)
     order=new Lisa_Order(P->n, P->m);
   }
 
+//**************************************************************************
     
 void js_inserter::rattle( int job )
 {
@@ -73,6 +78,7 @@ void js_inserter::rattle( int job )
     }
 }     
 
+//**************************************************************************
      
 void js_inserter::insert()
 {
@@ -129,6 +135,7 @@ void js_inserter::insert()
     }
 }
 
+//**************************************************************************
 
 void js_inserter::simple_order()
   {
@@ -154,12 +161,15 @@ void js_inserter::simple_order()
 
   } 
 
+//**************************************************************************
+
 js_inserter::~js_inserter()
   { 
     delete order;
     delete sched2;
   }
 
+//**************************************************************************
 
 void rattle_js( Lisa_JsSchedule * sched)
 {
@@ -216,12 +226,5 @@ void rattle_js( Lisa_JsSchedule * sched)
   delete sched2;
 }     
 
-
-
-
-
-
-
-
-
+//**************************************************************************
 

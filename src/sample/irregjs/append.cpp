@@ -7,6 +7,8 @@
 
 #include "append.hpp"
 
+//**************************************************************************
+
 void ECT_reverse(Lisa_JsSchedule * sched)
 {
   int i, bestjob, j;
@@ -65,12 +67,5 @@ void ECT_reverse(Lisa_JsSchedule * sched)
      sched->pushstart(i, sched->GetMOsucc(i,SOURCE),0);
 }
 
-
-
-
-
-
-
-
-
+//**************************************************************************
 

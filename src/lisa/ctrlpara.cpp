@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 void Lisa_ControlParameters::add_key(const string name, long int value) 
  {
    if (IntKeyList.search_first(name)) 
@@ -18,6 +20,8 @@ void Lisa_ControlParameters::add_key(const string name, long int value)
    IntList.append(value);
    IntKeyList.append(name);
  }
+
+//**************************************************************************
 
 void Lisa_ControlParameters::add_key(const string name, double value) 
  {
@@ -31,6 +35,8 @@ void Lisa_ControlParameters::add_key(const string name, double value)
    DoubleKeyList.append(name);
  }
 
+//**************************************************************************
+
 void Lisa_ControlParameters::add_key(const string name, string value) 
  {
    if (StringKeyList.search_first(name)) 
@@ -43,6 +49,8 @@ void Lisa_ControlParameters::add_key(const string name, string value)
    StringKeyList.append(name);
  }
 
+//**************************************************************************
+
 long int  Lisa_ControlParameters::get_int(const string name)
  {
   if (!IntKeyList.search_first(name)) 
@@ -52,6 +60,8 @@ long int  Lisa_ControlParameters::get_int(const string name)
     }
   return IntList[IntKeyList.get_index()]; 
  }
+
+//**************************************************************************
 
 double Lisa_ControlParameters::get_double(const string name)
  {
@@ -63,6 +73,8 @@ double Lisa_ControlParameters::get_double(const string name)
   return DoubleList[DoubleKeyList.get_index()]; 
  }
 
+//**************************************************************************
+
 string Lisa_ControlParameters::get_string(const string name)
  {
    if (!StringKeyList.search_first(name)) 
@@ -73,6 +85,8 @@ string Lisa_ControlParameters::get_string(const string name)
   return StringList[StringKeyList.get_index()]; 
  }
 
+//**************************************************************************
+
 int Lisa_ControlParameters::defined(const string name)
  {
    if (IntKeyList.search_first(name)) return INT;
@@ -80,6 +94,8 @@ int Lisa_ControlParameters::defined(const string name)
    if (StringKeyList.search_first(name)) return STRING;
    return UNDEFINED;
  }
+
+//**************************************************************************
 
 void Lisa_ControlParameters::write(ostream & strm) const
  {
@@ -114,6 +130,8 @@ void Lisa_ControlParameters::write(ostream & strm) const
      }
    strm << "</CONTROLPARAMETERS>\n";
  }
+
+//**************************************************************************
 
 void Lisa_ControlParameters::read(istream& strm) 
  {
@@ -178,10 +196,5 @@ void Lisa_ControlParameters::read(istream& strm)
     }
  }
 
-
-
-
-
-
-
+//**************************************************************************
 

@@ -10,13 +10,19 @@
 
 using namespace std;
 
+//**************************************************************************
+
 NM_JsProblem::NM_JsProblem(Lisa_Values * Pin) : Lisa_JsProblem( Pin ) 
   {
   }
 
+//**************************************************************************
+
 NM_JsSchedule::NM_JsSchedule(Lisa_JsProblem * Pin) : Lisa_JsSchedule( Pin ) 
   {
   }
+
+//**************************************************************************
 
 void NM_JsProblem::read(istream& strm) 
      {      
@@ -53,6 +59,8 @@ void NM_JsProblem::read(istream& strm)
        ri->fill(0);
      }
 
+//**************************************************************************
+
 void NM_JsSchedule::read(istream& strm) 
   {      
     int i,j,k;
@@ -72,3 +80,6 @@ void NM_JsSchedule::read(istream& strm)
     read_Cij(cij); // cout << "ERROR: input not correct" << endl;
     delete cij;
   }
+  
+//**************************************************************************
+
