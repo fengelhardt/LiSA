@@ -24,7 +24,8 @@ PATCH_LEVEL=$(VERSION)$(RELEASE_LEVEL_LETTER)$(RELEASE_SERIAL)
 
 TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
-ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
+DATAPATH=$(TOPPROGRAMPATH)/data
+ALGPATH=$(DATAPATH)/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
@@ -161,6 +162,7 @@ distclean: uncygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) distclean; cd ../..; done
+	rm -fr $(DATAPATH)
 	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------

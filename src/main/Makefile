@@ -14,7 +14,8 @@ INSTALLNAME=lisa
 
 TOPPROGRAMPATH=../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
+DATAPATH=$(TOPPROGRAMPATH)/data
+ALGPATH=$(DATAPATH)/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
@@ -60,10 +61,14 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir algdir docdir
+install: bindir datadir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(INSTALLNAME) $(BINPATH)/$(INSTALLNAME)
 	chmod 755 $(BINPATH)/$(INSTALLNAME)
+	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)
+	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)
+	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)
+	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
 	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_english.alg $(ALGPATH)/language/english/disp3.alg
@@ -76,6 +81,11 @@ install: bindir algdir docdir
 
 bindir:
 	@mkdir -p $(BINPATH)
+
+# ------------------------------------------------------------------------------
+
+datadir:
+	@mkdir -p $(DATAPATH)
 
 # ------------------------------------------------------------------------------
 
@@ -93,6 +103,10 @@ docdir:
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
+	rm -f $(DATAPATH)/classify.bib
+	rm -f $(DATAPATH)/classify.bst
+	rm -f $(DATAPATH)/classify.tex
+	rm -f $(DATAPATH)/default.lsa
 	rm -f $(ALGPATH)/language/*/disp*.alg
 	rm -f $(DOCPATH)/lisa/*.html
 
