@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="SingleMachine" type="constructive" call="single" code="external" help_file="algorithm/single.html">
+  <exact>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+  </exact>
+  <alg_controls>
+    <choice name="SPEED" caption="Speed">
+      <item name="SLOW"/>
+      <item name="FAST"/>
+    </choice>
+  </alg_controls>
+</algorithm>
