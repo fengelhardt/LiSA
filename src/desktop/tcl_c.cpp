@@ -915,17 +915,14 @@ int TC_problem_reduction(ClientData /* clientData */,
         // cerr<<G_ProblemType.output_problem();  
         
 	if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
-             (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 &&
-              G_ProblemType.output_beta()== myProblemType.output_beta() &&
+             (G_ProblemType.output_beta()== myProblemType.output_beta() &&
               G_ProblemType.output_gamma()== myProblemType.output_gamma()))
 	{
 	  sprintf(interp->result, "%d",1);
 	}
          // see if there are unit processing times to handle
-        else if (G_ProblemType.output_beta().find("p_ij=1")>=0 &&
-                 G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 ||
-                         G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
+        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
+                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
                 {
                         if (( myProblemType.output_beta()+ "p_ij=1" == G_ProblemType.output_beta()) ||
                               (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")  )
@@ -934,10 +931,8 @@ int TC_problem_reduction(ClientData /* clientData */,
                                 }
                 }
         // see if there are constant processing times to handle : p_ij=p
-        else if (G_ProblemType.output_beta().find("p_ij=p")>=0 &&
-                 G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 ||
-                         G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
+        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
+                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
                 {
                         if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
                               (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  )
@@ -981,17 +976,14 @@ int TC_problem_reduction(ClientData /* clientData */,
 	fin >> myProblemType;
         //cerr<<G_ProblemType.output_problem(); 
         if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
-             (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 &&
-              G_ProblemType.output_beta()== myProblemType.output_beta() &&
+             (G_ProblemType.output_beta()== myProblemType.output_beta() &&
               G_ProblemType.output_gamma()== myProblemType.output_gamma()))
 	{
 	  sprintf(interp->result, "%d",1);
 	}
         // see if there are unit processing times to handle : p_ij=1
-        else if (G_ProblemType.output_beta().find("p_ij=1")>=0 &&
-                 G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 ||
-                         G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
+        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
+                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
                 {
                         if (( myProblemType.output_beta()+ "p_ij=1" == G_ProblemType.output_beta()) ||
                               (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")  )
@@ -1000,10 +992,8 @@ int TC_problem_reduction(ClientData /* clientData */,
                                 }
                 }
         // see if there are constant processing times to handle : p_ij=p
-        else if (G_ProblemType.output_beta().find("p_ij=p")>=0 &&
-                 G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 ||
-                         G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
+        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
+                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
                 {
                         if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
                               (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  )
