@@ -523,7 +523,7 @@ void Lisa_MatrixListGraph::exclude_arc(const int start,const int end){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_connection(const int start,const int end){
+int Lisa_MatrixListGraph::get_connection(const int start,const int end)const{
 #ifdef LISA_DEBUG
   if( start<=0 || start>size || end<=0 || end>size ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+

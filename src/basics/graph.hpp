@@ -69,7 +69,7 @@ public:
       - ARC 1
       - CRA -1 which is an arc from end to start ;)
       - EDGE 2 */
-  virtual int get_connection(const int start,const int end)=0;
+  virtual int get_connection(const int start,const int end)const=0;
 
   ///initialize the pointer for the successors list of a given vertex
   virtual void init_succ_pointer(const int vertex)=0;
@@ -243,7 +243,7 @@ public:
       - ARC 1
       - CRA -1 which is an arc from end to start ;)
       - EDGE 2 */
-  int get_connection(const int start,const int end);
+  int get_connection(const int start,const int end)const;
 
   ///initialize the pointer for the successors list of a given vertex
   void init_succ_pointer(const int vertex);
@@ -312,7 +312,7 @@ public:
  
       This Method however does it the other way around, so that i is 
       the position while (*knot_sequence)[i] contains the vertex. */
-  static bool topsort_inverse(Lisa_MatrixListGraph* graph,Lisa_Vector<int>* knot_sequence){
+  static bool topsort_inverse(Lisa_Graph* graph,Lisa_Vector<int>* knot_sequence){
     const int vert = graph->get_vertices();
     
     Lisa_Vector<int> sort(vert);
@@ -324,7 +324,7 @@ public:
   }
                       
     /// Replaces each ARC with an EDGE.
-  static void build_semigraph(Lisa_MatrixListGraph* graph){
+  static void build_semigraph(Lisa_Graph *const graph){
     const int vert = graph->get_vertices();
     int c;
     
@@ -386,7 +386,7 @@ public:
       at least one more edge. Both graph's need to contain no arc's, 
       have the same number of vertices and those are fixed. 
       This method does NOT test if the graphs are isomorph. */
-  static bool smaller(Lisa_MatrixListGraph* first,Lisa_MatrixListGraph* second){
+  static bool smaller(const Lisa_Graph *const first,const Lisa_Graph *const second){
     const int vert = first->get_vertices();
     int fc,sc;
     bool missing=0;
@@ -410,7 +410,7 @@ public:
       is also contained in the second graph, and vice versa. Both 
       graph's need to have the same number of vertices and they are 
       fixed. This method does NOT test if the graphs are isomorph. */
-  static bool equal(Lisa_MatrixListGraph* first,Lisa_MatrixListGraph* second){
+  static bool equal(const Lisa_Graph *const first,const Lisa_Graph *const second){
     const int vert = first->get_vertices();
     
     for (int i=1;i<=vert;i++){
