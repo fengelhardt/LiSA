@@ -128,9 +128,9 @@ void Read_Data(char *FileName){
       minmax_match = -1;
       head_match = 1;
     }else if(Parameter.get_string("HEURISTIC") == "LB_PREC_RULE"){
-      //Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE;
+      Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE;
     }else if(Parameter.get_string("HEURISTIC") == "LB_PREC_RULE_VAR"){
-       //Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE_VAR;
+      Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE_VAR;
     }else{
       G_ExceptionList.lthrow("Unknows value for HEURISTIC Parameter, using defaults.",
                              Lisa_ExceptionList::WARNING);  
@@ -259,10 +259,7 @@ void Write_Solution(char * FileName){
   o_strm.close();
   
   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-  //pipe objects to this
   xmlOutput << Problem << Values << Parameter << Schedule;
-  //write content to a file
   xmlOutput.write(FileName);
-  
 }
 
