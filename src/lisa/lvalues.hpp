@@ -27,9 +27,6 @@ public:
   /// processing time matrix
   Lisa_Matrix<TIMETYP> *PT; 
   
-  // processing time matrix (with preemtion)
-  // Lisa_MatrixOfLists<TIMETYP> *PTl;
-  
   /// machine order
   Lisa_MO *MO;
   /// set of operations 
@@ -44,9 +41,6 @@ public:
   Lisa_Vector<double> * EXTRA;
   /// construct processing time matrix
   void make_PT(void);
-  
-  // construct processing time matrix (with preemtion)
-  //void make_PTl(void);	
   
   /// construct machine order
   void make_MO(void);

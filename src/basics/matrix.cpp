@@ -97,34 +97,34 @@ const Lisa_Vector<T>& Lisa_Vector<T>::operator=(const Lisa_Vector<T>& other)
 //**************************************************************************
     
 template<class T>
-void Lisa_Vector<T>::write(ostream& strm) const 
-     {
-       unsigned int i;
-       strm << "{ ";
-       for (i=0 ; i<m ; i++)
-          { 
-            strm<<contents[i] << " ";
-          }
-       strm << "}\n";
-     }
+void Lisa_Vector<T>::write(ostream& strm)const{
+  strm << "{ ";
+  for (unsigned int i=0 ; i<m ; i++){
+    strm.width(3); // write matrices with small entries in a nice way ;)
+    strm << contents[i] << " ";
+  }
+  strm << "} " << endl;
+}
 
 //**************************************************************************
 
 template<class T>
-void Lisa_Vector<T>::read(istream& strm) 
-     {
-       unsigned int i;
-       string S;
+void Lisa_Vector<T>::read(istream& strm){
+
+  string S="";
+  strm >> S; 
+  if (S!="{"){ 
+    G_ExceptionList.lthrow("'{' expected in Lisa_Vector::read(), found '"+S+"'.",SYNTAX_ERROR);
+    return;
+  }
   
-       S="";strm >> S; 
-       if (S!="{") 
-          G_ExceptionList.lthrow("{ expected in vector.read",SYNTAX_ERROR);
-       for (i=0;i<m;i++)
-          strm >> contents[i];
-       S="";strm >> S; 
-       if (S!="}")
-          G_ExceptionList.lthrow("} expected in vector.read",SYNTAX_ERROR);
-     }
+  for (unsigned int i=0;i<m;i++) strm >> contents[i];
+  
+  S="";
+  strm >> S; 
+  
+  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Vector::read(), found '"+S+"'.",SYNTAX_ERROR);
+}
 
 //**************************************************************************
 
@@ -226,34 +226,32 @@ const Lisa_Matrix<T>& Lisa_Matrix<T>::operator=(const Lisa_Matrix<T>& other)
 //**************************************************************************
 
 template<class T>
-void Lisa_Matrix<T>::write(ostream& strm) const 
-     {
-       unsigned int i;
-       strm << "{\n";
-       for (i=0 ; i<n ; i++) 
-          strm << " " << row[i];
-       strm << "}\n";
-     }
+void Lisa_Matrix<T>::write(ostream& strm)const{
+
+  strm << "{ " << endl;
+  for (unsigned int i=0 ; i<n ; i++)  strm << " " << row[i];
+  strm << "} " << endl;
+}
 
 //**************************************************************************
 
 template<class T>
-void Lisa_Matrix<T>::read(istream& strm) 
-     {
-       unsigned int i;
-       string S;
+void Lisa_Matrix<T>::read(istream& strm){
+ 
+  string S="";
+  strm >> S; 
+  if (S!="{"){
+   G_ExceptionList.lthrow("'{' expected in Lisa_Matrix::read(), found '"+S+"'.",SYNTAX_ERROR);
+   return;
+  }
   
-       S="";strm >> S; 
-       if (S!="{")           
-         G_ExceptionList.lthrow("} expected in vector.read",SYNTAX_ERROR);
-       for (i=0;i<n;i++)
-          {
-	    strm >> row[i];
-          }
-       S="";strm >> S; 
-       if (S!="}")           
-         G_ExceptionList.lthrow("} expected in vector.read",SYNTAX_ERROR);
-     } 
+  for(unsigned int i=0;i<n;i++) strm >> row[i];
+    
+  S="";
+  strm >> S; 
+  
+  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Matrix::read(), found '"+S+"'.",SYNTAX_ERROR); 
+} 
 
 //**************************************************************************
 
