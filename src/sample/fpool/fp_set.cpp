@@ -124,7 +124,7 @@ void fp_set::random2(long * seed)
     delete other;  
   }
 
-void fp_set::write(ostream& strm = cout) const
+void fp_set::write(ostream& strm) const
   {
     int i;
     for (i=0; i<sigma; i++)
