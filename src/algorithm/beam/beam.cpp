@@ -40,9 +40,10 @@ enum InsertionMethod {
   insert2
 };
 
-//this is not working due to the wierd sorting of Lisa_Order (what is a bug in my eyes)
-//static const double DOUBLE_INF = numeric_limits<double>::infinity();
-static const double DOUBLE_INF = 10000000.;
+// this is not working due to the wierd sorting of Lisa_Order (what is a bug in my eyes)
+// it should now -marc-
+static const double DOUBLE_INF = numeric_limits<double>::infinity();
+//static const double DOUBLE_INF = 10000000.;
 
 CostFunc costFunc = CObjective;
 int myproblemtype = O;
@@ -368,6 +369,7 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
 		if(iord == queens)
 				return makeQueenSweep(ops,os_problem);
 		Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
+                order->init_keys(DOUBLE_INF);
 		int l = os_problem->n * os_problem->m;
 		//use system time for independent random numbers
   //this is not reversable
@@ -432,7 +434,9 @@ Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem){
 		int n = os_problem->n, m = os_problem->m;
 		int l = n*m;
 		Lisa_Order *order = new Lisa_Order(n,m);
+                order->init_keys(DOUBLE_INF);
 		Lisa_Order *ECT = new Lisa_Order(n,m);
+                ECT->init_keys(DOUBLE_INF);
 		double *compl_times = new double[l];
 		//initialize order and times
 		for(int i = 0; i< n; i++)
@@ -501,6 +505,7 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 		int n = os_problem->n, m = os_problem->m;
 		int l = n*m;
 		Lisa_Order *order = new Lisa_Order(n,m);
+                order->init_keys(DOUBLE_INF);
 		int pos = 0;
 		//horizontal sweep
 		if(m >= n){
