@@ -252,7 +252,8 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  // now construct the start-schedule:
 	  // from LR
 	  Lisa_Order *LROrder;
-	  int MOPred[os_Prob->n+1], JOPred[os_Prob->m+1];
+	  int* MOPred = new int[os_Prob->n+1];
+      int* JOPred = new int[os_Prob->m+1];
 	  if ( !(LROrder = new Lisa_Order(os_Prob->n, os_Prob->m)) )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
@@ -453,6 +454,8 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  delete plan_in;
 	  
 	  delete os_Plan;
+      delete[]  MOPred;
+      delete[] JOPred;
 	} // NUMB_PLANS
       delete os_Prob;
     } // NUMB_PROBLEMS
@@ -516,8 +519,8 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  // now construct the start-schedule:
 	  // from LR
 	  Lisa_Order *LROrder;
-	  int JOPred[js_Prob->m+1];
-	  int MOPred[js_Prob->n+1];
+	  int* JOPred = new int[js_Prob->m+1];
+	  int* MOPred = new int[js_Prob->n+1];
 	  if ( !(LROrder = new Lisa_Order(js_Prob->n, js_Prob->m)) )
 	    {
 	      G_ExceptionList.lthrow("out of memory",2);
@@ -789,6 +792,8 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  delete plan_in;
 	    
 	  delete js_Plan;
+      delete[] JOPred;
+	  delete[] MOPred;
 	} // NUMB_PLANS
       delete js_Prob;
     } // NUMB_PROBLEMS   

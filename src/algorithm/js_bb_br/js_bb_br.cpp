@@ -123,8 +123,9 @@ int main(int argc, char *argv[])
   //cout << "m = " << m << "\n";
   //cout << "n = " << n << "\n";
   
-  int m_nr[m];
-  TIMETYP ptime[m];
+  int *m_nr = new int[m];
+  TIMETYP *ptime = new TIMETYP[m];
+  
   for (i=0; i<n; i++)
     {
       counter = 0;
@@ -272,8 +273,10 @@ int main(int argc, char *argv[])
   for (i=0; i<n; i++)
     for (j=0; j<m; j++)
       (*MJ)[i][j] = (*MO)[i][j] + (*JO)[i][j];
-  int row[n];
-  int col[m];
+      
+  int* row = new int[n];
+  int* col = new int[m];
+  
   int count;
   count = 0; // counts the entrys
   int count_2 ;
@@ -335,6 +338,13 @@ int main(int argc, char *argv[])
   delete best_schedule;
   delete prob_type;
   delete js_Prob;
+  
+  delete[] m_nr;
+  delete[] ptime;
+  
+  delete[] row;
+  delete[] col;
+  
   return 0;
 }
 

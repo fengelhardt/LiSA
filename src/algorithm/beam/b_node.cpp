@@ -50,7 +50,7 @@ ostream & operator << ( ostream & os , B_Node & b){
 
 
 KList::KList(int k) {
-  list = new (B_Node*)[k];
+  list = new B_Node*[k];
   in_list = 0;
   worst_in_list = -1;
   this->k = k;

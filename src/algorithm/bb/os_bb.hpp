@@ -20,7 +20,7 @@
 class OS_BB: public Lisa_GenericBb
   {
     public:  
-      OS_BB::OS_BB();
+      OS_BB();
       /// exclude reverse schedules (only for O||C_max)
       void set_exclude_reverse(bool i) { exclude_reverse=i; }  
       /// start of the recursion

@@ -49,7 +49,7 @@ public:
   Lisa_SGraph(class CSgraph & myCSG);
   ~Lisa_SGraph();
   void new_graph();
-  void Lisa_SGraph::ausplan(Lisa_Schedule * PL);
+  void ausplan(Lisa_Schedule * PL);
   int hsucc(int i);
   int vsucc(int i);
   int hpred(int i);

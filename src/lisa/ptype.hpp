@@ -76,9 +76,9 @@ public:
   /// erase all tupel entries:
   void reset();
   /// Number of maschines (if fixed)
-  int m_no; 
+  unsigned int m_no; 
   /// Number of jobs (if fixed)
-  int n_no; 
+  unsigned int n_no; 
   /// write the whole problem in a string
   string output_problem() const;
   /// write the maschine environment in a string

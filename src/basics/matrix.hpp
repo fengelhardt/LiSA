@@ -93,9 +93,9 @@ public:
   void write(ostream& = cout) const;
   void read(istream& = cin);
   /// search index of maximal vector element
-  int Lisa_Vector<T>::index_of_max() const;
+  int index_of_max() const;
   /// search index of minimal vector element
-  int Lisa_Vector<T>::index_of_min() const;
+  int index_of_min() const;
   ~Lisa_Vector();
   T* get_first() const { return contents; }
   T* get_last() const { return contents+m; }

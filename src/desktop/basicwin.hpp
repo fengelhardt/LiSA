@@ -68,7 +68,7 @@ public:
   /// Delete all ements with tag or id
   void clear(string tag);
   /// Delete element on position xpos ypos
-  void Lisa_Canvas::clear( double xpos, double ypos );
+  void clear( double xpos, double ypos );
   /**@name line: */
   //@{
   /// Line

@@ -20,7 +20,7 @@ enum InsertionOrder{
   lpt,
   rndm,
   line_by_line,
-  diagonal,
+  diagonal
 };
 
 enum InsertionMethod {

@@ -375,7 +375,7 @@ void Lisa_Graph::show()
 bool Lisa_Graph::valid()
 {
   int el_of_list;
-  int knot_list[n];
+  int* knot_list = new int[n];
   int count=-1;
 
   for(int knot=1; knot<=n; knot++)
@@ -386,42 +386,69 @@ bool Lisa_Graph::valid()
 
       el_of_list=(*matrix)[knot][0].x;
 
-      if(el_of_list==0){return false;};
+      if(el_of_list==0){
+        delete[] knot_list;
+        return false;
+      }
     
       if(el_of_list==n+1)
 	{	  
-	  if((*matrix)[knot][0].y!=n+1){cout<<" matrix "<<endl;
-	    return false;};
+	  if((*matrix)[knot][0].y!=n+1){
+          cout<<" matrix "<<endl;
+	      delete[] knot_list;
+          return false;
+      }
 	}
       else
 	{
-	  if((*matrix)[knot][0].y==n+1){return false;};
+	  if((*matrix)[knot][0].y==n+1){
+        delete[] knot_list;
+        return false;
+      }
 	  
 	  while(el_of_list!=n+1)
 	    {
 	      count++;
 	      knot_list[count]=el_of_list;
 
-	      if(el_of_list==0) {return false;};
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }
 	      
-	      if(get_connection(el_of_list,knot)!=CRA){return false;};
+	      if(get_connection(el_of_list,knot)!=CRA){
+            delete[] knot_list;
+            return false;
+          }
 	      
 	      el_of_list=(*matrix)[knot][el_of_list].x;
-	    };
+	    }
 	  
 	  //Rueckrichtung
 
 	  el_of_list=(*matrix)[knot][0].y;
 
-	  if(el_of_list==0) {return false;};
+	  if(el_of_list==0) {
+        delete[] knot_list;
+        return false;
+      }
 	  
-	  if((*matrix)[knot][el_of_list].x!=n+1){return false;};
+	  if((*matrix)[knot][el_of_list].x!=n+1){
+          delete[] knot_list;
+          return false;
+      }
 	  
 	  while(el_of_list!=n+1)
 	    {
-	      if(count<0){return false;};
+	      if(count<0){
+              delete[] knot_list;
+              return false;
+          }
 	      
-	      if(el_of_list!=knot_list[count]){return false;};
+	      if(el_of_list!=knot_list[count]){
+            delete[] knot_list;
+            return false;
+          }
 	          
 	      knot_list[count]=0;
 	      
@@ -429,10 +456,16 @@ bool Lisa_Graph::valid()
 	      
 	      el_of_list=(*matrix)[knot][el_of_list].y;
 
-	      if(el_of_list==0) {return false;};
-	    };
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }
+	    }
 	  count++;
-	  if(count!=0){return false;};                      
+	  if(count!=0){
+        delete[] knot_list;
+        return false;
+      }                      
 	  
 	};
     
@@ -444,42 +477,69 @@ bool Lisa_Graph::valid()
 
       el_of_list=(*matrix)[0][knot].x;
 
-      if(el_of_list==0) {return false;};
+      if(el_of_list==0) {
+        delete[] knot_list;  
+        return false;
+      }
 
       if(el_of_list==(n+1))
 	{
-	  if((*matrix)[0][knot].y!=(n+1)){return false;};
+	  if((*matrix)[0][knot].y!=(n+1)){
+        delete[] knot_list;
+        return false;
+      }
 	}
       else
 	{
-	  if((*matrix)[0][knot].y==(n+1)){return false;};
+	  if((*matrix)[0][knot].y==(n+1)){
+        delete[] knot_list;
+        return false;
+      }
 
 	  while(el_of_list!=(n+1))
 	    {
 	      count++;
 	      knot_list[count]=el_of_list;
 	      
-	      if(get_connection(el_of_list,knot)!=ARC){return false;};
+	      if(get_connection(el_of_list,knot)!=ARC){
+               delete[] knot_list;
+               return false;
+          }
 
 	      el_of_list=-((*matrix)[knot][el_of_list].x);
 	      
-	      if(el_of_list==0) {return false;};	      
-	    }; 
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }	      
+	    }
 	  
 	  //Rueckrichtung
 
 	  el_of_list=(*matrix)[0][knot].y;
 
-	  if(el_of_list==0) {return false;};
+	  if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+      }
 	  
-	  if((*matrix)[knot][el_of_list].x!=-(n+1)){return false;};
+	  if((*matrix)[knot][el_of_list].x!=-(n+1)){
+        delete[] knot_list;
+        return false;
+      }
   
 	  while(el_of_list!=(n+1))
 	    {
 	   
-	      if(count<0){return false;};
+	      if(count<0){
+              delete[] knot_list;
+              return false;
+          }
 	      
-	      if(el_of_list!=knot_list[count]){return false;};
+	      if(el_of_list!=knot_list[count]){
+            delete[] knot_list;
+            return false;
+          }
 	      
 	      knot_list[count]=0;
 	      
@@ -487,11 +547,17 @@ bool Lisa_Graph::valid()
 	      
 	      el_of_list=-((*matrix)[knot][el_of_list].y);
 
-	      if(el_of_list==0) {return false;};
-	    };
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }
+	    }
 
 	  count++;
-	  if(count!=0){return false;}
+	  if(count!=0){
+        delete[] knot_list;
+        return false;
+      }
 	
 	}
       count=-1;
@@ -502,42 +568,69 @@ bool Lisa_Graph::valid()
 
       el_of_list=(*matrix)[knot][knot].x;
 
-      if(el_of_list==0) {return false;};
+      if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+      }
 
       if(el_of_list==(n+1))
 	{
-	  if((*matrix)[knot][knot].y!=(n+1)){return false;};
+	  if((*matrix)[knot][knot].y!=(n+1)){
+        delete[] knot_list;
+        return false;
+      }
 	}
       else
 	{
-	  if((*matrix)[knot][knot].y==(n+1)){return false;};
+	  if((*matrix)[knot][knot].y==(n+1)){
+        delete[] knot_list;
+        return false;
+      }
 
 	  while(el_of_list!=(n+1))
 	    {
 	      count++;
 	      knot_list[count]=el_of_list;
 	      
-	      if(get_connection(el_of_list,knot)!=EDGE){return false;};
+	      if(get_connection(el_of_list,knot)!=EDGE){
+            delete[] knot_list;
+            return false;
+          }
 
 	      el_of_list=(*matrix)[knot][el_of_list].x;
 	      
-	      if(el_of_list==0) {return false;};      
-	    };
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }      
+	    }
 	  
 	  //Rueckrichtung
 
 	  el_of_list=(*matrix)[knot][knot].y;
 
-	  if(el_of_list==0) {return false;};
+	  if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+      }
 	  
-	  if((*matrix)[knot][el_of_list].x!=n+1){return false;};
+	  if((*matrix)[knot][el_of_list].x!=n+1){
+        delete[] knot_list;
+        return false;
+      }
   
 	  while(el_of_list!=n+1)
 	    {
 	   
-	      if(count<0){return false;};
+	      if(count<0){
+              delete[] knot_list;
+              return false;
+          }
 	      
-	      if(el_of_list!=knot_list[count]){return false;};
+	      if(el_of_list!=knot_list[count]){
+              delete[] knot_list;
+              return false;
+          }
 	      
 	      knot_list[count]=0;
 	      
@@ -545,15 +638,23 @@ bool Lisa_Graph::valid()
 	      
 	      el_of_list=(*matrix)[knot][el_of_list].y;
 
-	      if(el_of_list==0) {return false;};
-	    };
+	      if(el_of_list==0) {
+            delete[] knot_list;
+            return false;
+          }
+	    }
 	  
 	  count++;
-	  if(count!=0){return false;}
+	  if(count!=0){
+        delete[] knot_list;
+        return false;
+      }
 	  
 	}
       count=-1;
-    }    
+    }
+    
+  delete[] knot_list;  
   return true;
 }
   

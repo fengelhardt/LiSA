@@ -279,7 +279,7 @@ int Lisa_ProblemType::setalpha(string al)
     else 
       {
 	tupel[M_NUMBER]=M_VAL;
-	sscanf((char*) m_number.c_str(),"%d",&m_no);
+	sscanf((char*) m_number.c_str(),"%u",&m_no);
       }
   //  cout << "got M_ENV=" << name(M_ENV, tupel[M_ENV])
   //     << " MPT=" << tupel[M_MPT] << " MPM=" << tupel[M_MPM] 
@@ -312,7 +312,7 @@ int Lisa_ProblemType::setbeta(string be)
         }
   // special procedure for n=[number]:
   if( (!tuplepos) && (be.substr(0,2)=="n="))       
-    if (sscanf((char*) (be.substr(2,be.length()-2)).c_str(),"%d",&n_no))
+    if (sscanf((char*) (be.substr(2,be.length()-2)).c_str(),"%u",&n_no))
       {
 	tuplepos=JOB_NR; meaning=VALUE;
       } 

@@ -97,7 +97,7 @@ private:
       void y_scaling(bool orientation);
 
 /// draws the lines betwen the rows 
-      void TCGantt::draw_x_lines();
+      void draw_x_lines();
 
 /// draws a colored box
       void draw_box(TIMETYP end, TIMETYP time, int x_value, int y_value, 

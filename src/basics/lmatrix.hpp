@@ -134,13 +134,13 @@ public:
   void write(ostream& = cout) const;
   void read(istream& = cin);
   /// search index of maximal vector element
-  int Lisa_VectorOfLists<T>::index_of_max() const;
-  int Lisa_VectorOfLists<T>::index_of_maxsum() const;
-  int Lisa_VectorOfLists<T>::index_of_maxlast() const;
+  int index_of_max() const;
+  int index_of_maxsum() const;
+  int index_of_maxlast() const;
   /// search index of minimal vector element
-  int Lisa_VectorOfLists<T>::index_of_min() const;
-  int Lisa_VectorOfLists<T>::index_of_minsum() const;
-  int Lisa_VectorOfLists<T>::index_of_minlast() const;
+  int index_of_min() const;
+  int index_of_minsum() const;
+  int index_of_minlast() const;
   ~Lisa_VectorOfLists();
   Lisa_nestedList<T>* get_first() const { return contents; }
   Lisa_nestedList<T>* get_last() const { return contents+m; }
