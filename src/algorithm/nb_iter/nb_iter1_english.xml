@@ -172,7 +172,7 @@
     <integer name="NUMB_NGHB" caption="Number of Neighbours (Only for TS)" default="40"/>
     <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
     <choice name="NGBH" caption="Neighbourhood">
-      <item name="SWAP"/>
+      <item name="PI"/>
       <item name="TRANS"/>
       <item name="CR_TRANS"/>
       <item name="CR_TRANS_MIX"/>

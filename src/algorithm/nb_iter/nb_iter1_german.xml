@@ -172,7 +172,7 @@
     <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn (nur fuer TS)" default="40"/>
     <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
     <choice name="NGBH" caption="Nachbarschaft">
-      <item name="SWAP"/>
+      <item name="PI"/>
       <item name="TRANS"/>
       <item name="CR_TRANS"/>
       <item name="CR_TRANS_MIX"/>
