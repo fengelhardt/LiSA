@@ -55,6 +55,11 @@ Tcl_Interp *interp;
 
 /// LiSA's main routine, the fun begins here ;)
 int main(int argc, char *argv[]) {
+
+#ifdef LISA_DEBUG
+  G_ExceptionList.set_output_to_cout();
+#endif  
+  
   if(argc < 2){
       cerr << "Usage: " << argv[0] << " [config file] " << endl;
       return -1;
