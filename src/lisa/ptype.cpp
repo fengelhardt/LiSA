@@ -358,7 +358,7 @@ int Lisa_ProblemType::setgamma(string ga) {
     str=name(OBJECTIVE,i);
     if(ga==str) {tupel[OBJECTIVE]=i;return 0;} 
   }
-  if (tupel[OBJECTIVE]==0) cerr << ga << "as objective function unknown\n";
+  if (tupel[OBJECTIVE]==0) cerr << "'" << ga << "'as objective function unknown\n";
   return(1);
 }
 
@@ -647,7 +647,7 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S;
   if(setgamma(S)){
-    G_ExceptionList.lthrow("Incorrect beta entry '"+S+"'.", 
+    G_ExceptionList.lthrow("Incorrect gamma entry '"+S+"'.", 
                            Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
