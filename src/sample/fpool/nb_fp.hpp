@@ -34,7 +34,7 @@ class fp_nb: public Lisa_Neighborhood
         /// construct only with given number and lenght of vectors:
         fp_nb( int , int);
         /// compute objective function of type param1 to solution param2
-	virtual void    set_objective_type( int, int ){};
+	virtual void    set_objective_type( int, int ){}
 	/// returns objective value of solution nr.
 	virtual TIMETYP get_objective_value( int );
 	/// call constructor for solution nr. 

@@ -24,7 +24,7 @@ fp_nb::fp_nb(int ni, int sigmai)
    best_modification= new fp_vector(n);
  }  
 
-float fp_nb::get_objective_value( int i )
+TIMETYP fp_nb::get_objective_value( int i )
  {
    switch (i) {
                 case ORIG_SOLUTION: return solution->get_slack();
