@@ -63,6 +63,9 @@ public:
   /** Delete any connection between vertex start and vertex end. */
   virtual void remove_all(const int start,const int end)=0;
 
+  /// delete all ARC's CRA's and EDGE's connected with that vertice
+  virtual void clear(const int vertex)=0;
+  
   /// get the kind of connection between two vertices 
   /** possible return values are:
       - NO 0
@@ -100,10 +103,7 @@ public:
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
   virtual int next_neighbour(const int vertex)=0;
-  
-  /// delete all ARC's CRA's and EDGE's connected with that vertice
-  virtual void clear(const int vertex)=0;
-    
+      
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
   virtual int get_successors(const int vertex)=0;
@@ -111,6 +111,10 @@ public:
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
   virtual int get_predecessors(const int vertex)=0;
+  
+  /// returns the number of predecessors for a vertice
+  /** This is the sum of edges and backwards arcs (CRA's). */
+  virtual int get_neighbours(const int vertex)=0;
 
   /// write the object to a stream 
   void write(std::ostream& = std::cout) const;
@@ -242,7 +246,10 @@ public:
   /// remove any connection between to vertices
   /** Delete any connection between vertex start and vertex end. */
   void remove_all(const int start,const int end);
-
+  
+  /// delete all ARC's CRA's and EDGE's connected with that vertice
+  void clear(const int vertex);
+  
   /// get the kind of connection between two vertices 
   /** possible return values are:
       - NONE
@@ -280,9 +287,6 @@ public:
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
   int next_neighbour(const int vertex);
-
-  /// delete all ARC's CRA's and EDGE's connected with that vertice
-  void clear(const int vertex);
   
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
@@ -291,6 +295,10 @@ public:
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
   int get_predecessors(const int vertex);
+  
+  /// returns the number of neighbours for a vertice
+  /** This is the sum of edges */
+  int get_neighbours(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */

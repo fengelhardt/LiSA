@@ -534,6 +534,42 @@ void Lisa_MatrixListGraph::remove_all(const int start,const int end){
 
 //**************************************************************************
 
+void Lisa_MatrixListGraph::clear(const int knot){
+
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_MatrixListGraph::remove_all_con().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  //EDGES
+  int next=(*matrix)[knot][knot].x;
+  while(next<=size){
+    remove_edge(knot,next);
+    next=(*matrix)[knot][knot].x;
+  }
+
+  //ARCS
+  next=(*matrix)[knot][0].x;
+  while(next<=size){
+    remove_arc(knot,next);
+    next=(*matrix)[knot][0].x;
+  } 
+
+  //CRA
+  next=(*matrix)[0][knot].x;
+  while(next<=size){
+    remove_arc(next,knot);
+    next=(*matrix)[0][knot].x;
+  } 
+  
+}
+
+//**************************************************************************
+
 int Lisa_MatrixListGraph::get_connection(const int start,const int end)const{
 #ifdef LISA_DEBUG
   if( start<=0 || start>size || end<=0 || end>size ){
@@ -720,42 +756,6 @@ int Lisa_MatrixListGraph::next_neighbour(const int knot){
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::clear(const int knot){
-
-#ifdef LISA_DEBUG
-  if( knot<=0 || knot>size ){
-    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_MatrixListGraph::remove_all_con().",
-                           Lisa_ExceptionList::OUT_OF_RANGE);
-    return;
-  }
-#endif
-
-  //EDGES
-  int next=(*matrix)[knot][knot].x;
-  while(next<=size){
-    remove_edge(knot,next);
-    next=(*matrix)[knot][knot].x;
-  }
-
-  //ARCS
-  next=(*matrix)[knot][0].x;
-  while(next<=size){
-    remove_arc(knot,next);
-    next=(*matrix)[knot][0].x;
-  } 
-
-  //CRA
-  next=(*matrix)[0][knot].x;
-  while(next<=size){
-    remove_arc(next,knot);
-    next=(*matrix)[0][knot].x;
-  } 
-  
-}
-
-//**************************************************************************
-
 int Lisa_MatrixListGraph::get_successors(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
@@ -783,12 +783,11 @@ int Lisa_MatrixListGraph::get_successors(const int knot){
       }
     }
     
-    if(next_knot==size+1){
-      break;
-    }else{
-      old_knot=next_knot;
-      succ_count++;
-    }
+    if(next_knot==size+1) break;
+
+    old_knot=next_knot;
+    succ_count++;
+    
      
   }
   
@@ -801,7 +800,7 @@ int Lisa_MatrixListGraph::get_predecessors(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::number_of_pred().",
+                           " out of range in Lisa_Graph::get_predecessors().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return 0;
   }
@@ -824,17 +823,58 @@ int Lisa_MatrixListGraph::get_predecessors(const int knot){
       }
     }
     
-    if(next_knot==size+1){
-      break;
-    }else{
-      old_knot=next_knot;
-      pred_count++;
-    }
+    if(next_knot==size+1) break;
+
+    old_knot=next_knot;
+    pred_count++;
+
     
   }
 
   return pred_count;
 }
+
+//**************************************************************************
+
+int Lisa_MatrixListGraph::get_neighbours(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::get_neighbours().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
+  
+  int neigh_count = 0,old_knot= knot,next_knot;
+  
+  for(;;){
+    
+    next_knot = (*matrix)[knot][old_knot].x;
+    
+    if(next_knot==size+1){
+      //START OF AN EDGE LIST
+      if(old_knot==knot){
+        next_knot=(*matrix)[knot][0].x;
+      }else{//END OF AN EDGE LIST
+        if(old_knot==(*matrix)[knot][knot].y){
+          next_knot=(*matrix)[knot][0].x; 
+        }
+      }
+    }
+    
+    if(next_knot==size+1) break;
+
+    if(get_connection(knot,next_knot)!=EDGE) break;
+    
+    old_knot=next_knot;
+    neigh_count++;
+    
+    
+  }
+  
+  return neigh_count;
+}  
 
 //**************************************************************************
 
@@ -1120,6 +1160,8 @@ bool Lisa_MatrixListGraph::valid(){
   return true;
 }
 
+//**************************************************************************
+//**************************************************************************
 //**************************************************************************
 
 bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
