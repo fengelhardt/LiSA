@@ -34,11 +34,11 @@
     @author Martin Harborth
     @version 2.3final
 */
-std::string Lisa_classify(Lisa_ProblemType* G_Problem,
+std::string Lisa_classify(const Lisa_ProblemType& G_Problem,
                           std::string home,std::string file);  
 
 /// output of complete reference list concerning current problem
-std::string Lisa_full_ref(Lisa_ProblemType* G_Problem,
+std::string Lisa_full_ref(const Lisa_ProblemType& G_Problem,
                           std::string home,std::string file);  
 
 /// output of results

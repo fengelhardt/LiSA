@@ -9,6 +9,8 @@
 
 #include "../main/global.hpp"
 #include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
 
 #include "../basics/graph.hpp"
 
@@ -218,7 +220,7 @@ public:
 		bool isSane() const {return valid;}
 		
 		///output the tree
-		virtual void write(ostream&) const;
+		virtual void write(std::ostream&) const;
 };
 
 #endif

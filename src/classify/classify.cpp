@@ -24,7 +24,7 @@ const int PATHMAX=500;
 //**************************************************************************
 
 string 
-Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file) 
+Lisa_classify(const Lisa_ProblemType& G_Problem,string home,string file) 
 {
   int           i, j, comp, cplx, open=true;
   string        db_path, output="";
@@ -51,7 +51,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
   for (i=0; i<mybase->entries; i++)
     for (j=0; j<mybase->E[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,&mybase->E[i].problem[j]);
+   	comp = mygraph->compare(G_Problem,mybase->E[i].problem[j]);
 	cplx = mybase->E[i].tex_an[j].np_flag;
    	switch (comp)
    	  {
@@ -90,7 +90,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
 //**************************************************************************
 
 string
-Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file) 
+Lisa_full_ref(const Lisa_ProblemType& G_Problem,string home,string file) 
 {
   int           i, j, comp, cplx, open=true, notice=-1;
   string        db_path, full_ref="";
@@ -111,7 +111,7 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
   for (i=0; i<mybase->entries; i++)
     for (j=0; j<mybase->E[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,&mybase->E[i].problem[j]);
+   	comp = mygraph->compare(G_Problem,mybase->E[i].problem[j]);
 	cplx = mybase->E[i].tex_an[j].np_flag;
    	switch (comp)
    	  {

@@ -3,6 +3,7 @@
 #define _file_io_h 
 
 #include <string>
+#include <vector>
 
 class Lisa_ProblemType;
 class Lisa_ControlParameters;

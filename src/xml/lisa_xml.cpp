@@ -29,10 +29,12 @@
 #include "Lisa_NativeDataHandler.hpp"
 #include "Lisa_IO_Factory.hpp"
 
+using namespace std;
+
 #define MAP_PAIRS(PROP, PROP_VAL, ATTR, ATTR_VAL) 		WriteMap[pair<int,int>((PROP),(PROP_VAL))] = pair<string,string >((ATTR),(ATTR_VAL)); \
 ReadMap[pair<string,string>((ATTR),(ATTR_VAL))] = pair<int,int >((PROP),(PROP_VAL))
 
-const std::string VALUE_ATTRIBUTE = "";
+const string VALUE_ATTRIBUTE = "";
 
 void LisaXmlFile::init_maps()
 {
@@ -55,9 +57,9 @@ void LisaXmlFile::init_maps()
 		MAP_PAIRS(M_ENV,R,"env","R");
 		
 		//Multi-purpose stuff
-		MAP_PAIRS(M_MPT,TRUE,"mpt","yes");
+		MAP_PAIRS(M_MPT,1,"mpt","yes");
 		//		MAP_PAIRS(M_MPT,FALSE,"mpt","no");
-		MAP_PAIRS(M_MPM,TRUE,"mpm","yes");
+		MAP_PAIRS(M_MPM,1,"mpm","yes");
 		//		MAP_PAIRS(M_MPM,FALSE,"mpm","no");
 		
 		//Machine number
@@ -70,7 +72,7 @@ void LisaXmlFile::init_maps()
 		// +++++++++++++++++++++++++++++++
 		
 		//Preemtion
-		MAP_PAIRS(PMTN,TRUE,"pmtn","yes");
+		MAP_PAIRS(PMTN,1,"pmtn","yes");
 		//		MAP_PAIRS(PMTN,FALSE,"pmtn","no");
 		
 		//Preceedence
@@ -83,11 +85,11 @@ void LisaXmlFile::init_maps()
 		MAP_PAIRS(PRECEDENCE,PREC,"prec","yes");
 		
 		//Release times
-		MAP_PAIRS(RI,TRUE,"release_times","yes");
+		MAP_PAIRS(RI,1,"release_times","yes");
 		//		MAP_PAIRS(RI,FALSE,"release_times","no");
 		
 		//Due dates
-		MAP_PAIRS(DI,TRUE,"due_dates","yes");
+		MAP_PAIRS(DI,1,"due_dates","yes");
 		//		MAP_PAIRS(DI,FALSE,"due_dates","no");
 		
 		//Processing times
@@ -102,7 +104,7 @@ void LisaXmlFile::init_maps()
 		
 		//Bounded Batch
 		//		MAP_PAIRS(BOUNDED_BATCH,FALSE,"batch_bounded","no");
-		MAP_PAIRS(BOUNDED_BATCH,TRUE,"batch_bounded","yes");
+		MAP_PAIRS(BOUNDED_BATCH,1,"batch_bounded","yes");
 		
 		//Job number
 		//		MAP_PAIRS(JOB_NR,J_ARB,"n","arbitrary");
@@ -110,11 +112,11 @@ void LisaXmlFile::init_maps()
 		MAP_PAIRS(JOB_NR,J_FIX,"n","fixed");
 		
 		//No wait
-		MAP_PAIRS(NO_WAIT,TRUE,"no-wait","yes");
+		MAP_PAIRS(NO_WAIT,1,"no-wait","yes");
 		//		MAP_PAIRS(NO_WAIT,FALSE,"no-wait","no");
 
 		//Size --what's that ?
-		MAP_PAIRS(SIZE,TRUE,"size","yes");
+		MAP_PAIRS(SIZE,1,"size","yes");
 		//		MAP_PAIRS(SIZE,FALSE,"size","no");
 
 		//Timelags
@@ -428,7 +430,7 @@ void LisaXmlFile::write(const Lisa_Schedule& S)
 		pipe.str("");
 		pipe.clear();
 		
-		if(S.semiactive == TRUE) 
+		if(S.semiactive == 1) 
 				xmlSetProp(l_parent,(const xmlChar *) "semiactive", (const xmlChar *) "yes");
 		else
 				xmlSetProp(l_parent,(const xmlChar *) "semiactive", (const xmlChar *) "no");
@@ -614,7 +616,7 @@ void LisaXmlFile::write(const Lisa_Graph& G)
 {
 		xmlNodePtr graphPtr;
 		stringstream pipe;
-		pipe << G.get_knots();
+		pipe << G.get_vertices();
 		xmlSetProp(graphPtr,(const xmlChar *) "n", (const xmlChar *) pipe.str().c_str());
 		xmlSetProp(graphPtr,(const xmlChar *) "model", (const xmlChar *) coding.c_str());
 		//get the hanlder for the model
@@ -778,10 +780,10 @@ bool LisaXmlFile::read(Lisa_Schedule& S)
 						raiseError(MISSING_SIZE,"schedule");
 						return false;
 				}
-		S.semiactive=FALSE;
+		S.semiactive=0;
 		if(attr_sem && xmlStrEqual(attr_sem, (const xmlChar *) "yes"))
 				{
-						S.semiactive=TRUE;
+						S.semiactive=1;
 						xmlFree(attr_sem);
 				}
 		
@@ -829,7 +831,7 @@ bool LisaXmlFile::read(Lisa_Schedule& S)
 								}
 						delete dh;
 				}
-		S.valid = TRUE;
+		S.valid = 1;
 		return true;
 }
 
@@ -1006,7 +1008,7 @@ bool LisaXmlFile::read(Lisa_Graph& G)
 }
 
 
-bool LisaXmlFile::read_ExtAlg(Lisa_ExtAlg& Alg, const std::string& filename)
+bool LisaXmlFile::read_ExtAlg(Lisa_ExtAlg& Alg, const string& filename)
 {	
 		xmlDocPtr Document = xmlParseFile(filename.c_str());
 		if(Document == NULL)
@@ -1365,7 +1367,7 @@ bool LisaXmlFile::read_ExtAlg(Lisa_ExtAlg& Alg, const std::string& filename)
 		return true;
 }
 
-void LisaXmlFile::write_ExtAlg(const Lisa_ExtAlg& Alg, const std::string& filename)
+void LisaXmlFile::write_ExtAlg(const Lisa_ExtAlg& Alg, const string& filename)
 {	
 		
 		
@@ -1583,8 +1585,8 @@ void LisaXmlFile::write_ExtAlg(const Lisa_ExtAlg& Alg, const std::string& filena
 }
 
 void  LisaXmlFile::raiseError(ERROR_MODE error, 
-																														std::string info1, 
-																														std::string info2)
+																														string info1, 
+																														string info2)
 {
 		stringstream output;
 		switch(error)
@@ -1649,7 +1651,7 @@ void  LisaXmlFile::raiseError(ERROR_MODE error,
 
 
 
-xmlChar* string2xmlChar(const std::string& input){
+xmlChar* string2xmlChar(const string& input){
 		//cout << "converting string \"" << input << "\"\t\t->  ";
 		int temp, size, out_size;
 		temp = size = input.size() + 1; /*terminating null included*/
@@ -1664,7 +1666,7 @@ xmlChar* string2xmlChar(const std::string& input){
 		return out;
 }
 
-bool xmlChar2string(const xmlChar* in , std::string& result)
+bool xmlChar2string(const xmlChar* in , string& result)
 {
 		//cout << "converting string \"" << (const char*) in  << "\"\t\t->  ";
 		int chars   = xmlUTF8Strlen(in);

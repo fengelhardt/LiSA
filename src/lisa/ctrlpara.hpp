@@ -9,6 +9,8 @@
 #include "../basics/list.hpp"
 #include "lsaobjct.hpp"
 
+#include "../xml/LisaXmlFile.hpp"
+
 /// Organizes communication between LiSA and its external modules.     
 /** You can define keywords and values of type string, double or long for each
     of these words. Lisa_ControlParameters holds these values and can write and 
@@ -71,6 +73,12 @@ enum{UNDEFINED /** unknown type */ =0
     
     /// read from stream
     void read(std::istream& = std::cin);
+    
+    friend void LisaXmlFile::write(const Lisa_ControlParameters&);
+    friend bool LisaXmlFile::read(Lisa_ControlParameters&);
+
+   
+    
 
 };
 

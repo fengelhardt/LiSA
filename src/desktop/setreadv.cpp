@@ -437,7 +437,7 @@ int TC_getvar(ClientData /* clientData */,
     sscanf(argv[3],"%d",&column);
     str=ztos(G_TclVar.JOpred);
   }else if (name=="REFERENCES") {
-     str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
+     str=Lisa_full_ref(G_ProblemType,G_Preferences.LISA_HOME,
                        "/data/classify/classify.bib");
      int stringlength=str.length();
      if (stringlength>250) {

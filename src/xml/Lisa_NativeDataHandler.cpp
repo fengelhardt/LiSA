@@ -80,8 +80,8 @@ bool Lisa_NativeDataHandler::write_to_stream(const Lisa_Values& V,   std::string
 
 bool Lisa_NativeDataHandler::write_to_stream(const Lisa_Graph& G,    std::string tag, std::ostream &out)
 {
-		Lisa_Matrix<int>* outM=new Lisa_Matrix<int> (G.get_knots(),G.get_knots());
-  outM=G.get_ADJ_Matrix(outM);
+		Lisa_Matrix<int>* outM=new Lisa_Matrix<int> (G.get_vertices(),G.get_vertices());
+		G.get_adjacency_matrix(outM);
 		out << *outM;
 		delete outM;
 		return true;
@@ -174,9 +174,9 @@ bool Lisa_NativeDataHandler::read_from_stream(Lisa_Values& V,    std::string tag
 
 bool Lisa_NativeDataHandler::read_from_stream(Lisa_Graph& G,     std::string tag, std::istream &in)
 {
-		Lisa_Matrix<int>* adj_Matrix = new Lisa_Matrix<int> (G.get_knots(),G.get_knots());
+		Lisa_Matrix<int>* adj_Matrix = new Lisa_Matrix<int> (G.get_vertices(),G.get_vertices());
 		in >> adj_Matrix;
-		G.read_ADJ(adj_Matrix);
+		G.set_adjacency_matrix(adj_Matrix);
 		delete adj_Matrix;
 		return true;
 }

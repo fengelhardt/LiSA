@@ -8,6 +8,7 @@
 #include <signal.h>
 
 #include <string>
+#include <vector>
 #include <fstream>
 
 #include "../misc/except.hpp"
@@ -650,7 +651,7 @@ int TC_classify(ClientData /* clientData */,
   Lisa_TextObject mytext(interp);
   mytext.clear();
   string str;
-  str=Lisa_classify(&G_ProblemType,G_Preferences.LISA_HOME,
+  str=Lisa_classify(G_ProblemType,G_Preferences.LISA_HOME,
 		     "/data/classify/classify.bib");
    // str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
    //		    "/data/classify/classify.bib");
@@ -664,7 +665,7 @@ int TC_references(ClientData /* clientData */,
 	    Tcl_Interp * interp ,
 		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   string str2="";
-  string str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
+  string str=Lisa_full_ref(G_ProblemType,G_Preferences.LISA_HOME,
 			   "/data/classify/classify.bib");
   if (str!="") {
     str2="lisa_text  $Name(References) {" + str + "}" ;
