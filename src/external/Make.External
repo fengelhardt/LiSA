@@ -76,7 +76,6 @@ algdir:
 docdir:
 	@mkdir -p $(DOCPATH)/language/english
 	@mkdir -p $(DOCPATH)/language/german
-	@mkdir -p $(DOCPATH)/language/german_u
 
 # ------------------------------------------------------------------------------
 
