@@ -259,6 +259,19 @@ TIMETYP sum(Lisa_Matrix<TIMETYP>* pt){
   
   return retval;
 }
+
+//**************************************************************************
+
+// convert int to string .. add leading zeros with respect to numberproblems,
+// so outputfiles are correctly sorted by filesystem
+std::string fstr(const int i){
+  const static unsigned int l = ((std::string) ztos(numberproblems)).length(); 
+  
+  std::string retval(ztos(i));
+  while(retval.length() < l) retval = "0"+retval;
+  
+  return retval;
+}
   
 //**************************************************************************
 
@@ -318,10 +331,10 @@ int main(int argc, char *argv[]){
    Lisa_OsSchedule os(&op);
      
    //open output file, write generated problem + comments
-   std::ofstream out_file(((std::string)argv[1]+"."+ztos(i+1)+".lsa").c_str());
+   std::ofstream out_file(((std::string)argv[1]+"."+fstr(i+1)+".lsa").c_str());
    if(!out_file){
      G_ExceptionList.lthrow((std::string)"Could not open '"+argv[1]+"."+
-                            ztos(i+1)+".lsa"+"' for reading.",FILE_NOT_FOUND);
+                            fstr(i+1)+".lsa"+"' for reading.",FILE_NOT_FOUND);
      exit(-1);
    }
    
