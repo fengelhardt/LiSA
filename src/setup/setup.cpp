@@ -9,10 +9,12 @@
 
 #include <tk.h>
 
+#include "../misc/lisa_str.hpp"
+
 int main(int argc, char* argv[])
      {
 
-     char* tclFileName = "bin/setup.tcl";
+     string tclFileName = "bin/setup.tcl";
 
      Tcl_Interp* interp = Tcl_CreateInterp();
 
@@ -31,9 +33,10 @@ int main(int argc, char* argv[])
           exit(1);
           }
 
-     char* cmd = strcat(strdup("file dirname "), argv[0]);
+     string cmd = "file dirname ";
+     cmd.append(argv[0]);
 
-     if (Tcl_Eval(interp, cmd) == TCL_OK)
+     if (Tcl_Eval(interp, strdup(cmd.c_str())) == TCL_OK)
           {
           char* dir = strcat(strdup(interp->result), "/..");
           chdir(dir);
@@ -44,7 +47,7 @@ int main(int argc, char* argv[])
           exit(1);
           }
 
-     if (Tcl_EvalFile(interp, tclFileName) != TCL_OK)
+     if (Tcl_EvalFile(interp, strdup(tclFileName.c_str())) != TCL_OK)
           {
           cerr << "error in \"" << tclFileName << "\": " << interp->result << endl;
           exit(1);

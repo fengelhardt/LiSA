@@ -1,2 +1,3 @@
 CXXSOURCES=\
-	setup.cpp
+	setup.cpp \
+	../misc/lisa_str.cpp

@@ -1,2 +1,3 @@
 OBJECTS=\
-	../../obj/setup.o
+	../../obj/setup.o \
+	../../obj/lisa_str.o
