@@ -114,14 +114,16 @@ file mkdir proc
 
 ##########################
 # insert additional tcl-files for external algorithms
-read_all_desc_files
-source  $env(LISAHOME)/tcl/external/ext_alg.tcl
-if { $glob(OLD_LISAHOME) != $env(LISAHOME) || $glob(OLD_LANGUAGE) != $env(LLANGUAGE) } {
+#read_all_desc_files
+#source  $env(LISAHOME)/tcl/external/ext_alg.tcl
+#if { $glob(OLD_LISAHOME) != $env(LISAHOME) || $glob(OLD_LANGUAGE) != $env(LLANGUAGE) } {
+    cd $env(LISAHOME)/tcl
+    file mkdir external
     cd $env(LISAHOME)/tcl/external
     file delete ext_alg.tcl
     read_all_desc_files
     source  $env(LISAHOME)/tcl/external/ext_alg.tcl
-} 
+#} 
 cd $env(LISAHOME)/data
 
 ############################
