@@ -23,7 +23,7 @@ Travel_Graph::Travel_Graph(){
 
 //******************************************************************************
 
-Travel_Graph::Travel_Graph(const int vertices_in,const bool rnd=1){
+Travel_Graph::Travel_Graph(const int vertices_in,const bool rnd){
   vertices=vertices_in;
   graph = 0;
   solution = 0;
@@ -48,7 +48,7 @@ Travel_Graph::~Travel_Graph(){
 
 //******************************************************************************
 
-int Travel_Graph::get_objective(Lisa_Vector<int>* solution_in=0) const{
+int Travel_Graph::get_objective(Lisa_Vector<int>* solution_in) const{
   
   Lisa_Vector<int>* sol = solution_in ? solution_in : solution;
   
@@ -92,7 +92,7 @@ void Travel_Graph::set_solution(Lisa_Vector<int>* solution_in){
 
 //******************************************************************************
 
-void Travel_Graph::write(ostream& strm=cout) const{
+void Travel_Graph::write(ostream& strm) const{
   strm << "<TRAVELGRAPH>" << endl;
   strm << "vertices= " << vertices << endl;
   if(graph) strm << "graph= " << *graph ;
@@ -105,7 +105,7 @@ void Travel_Graph::write(ostream& strm=cout) const{
 
 //******************************************************************************
 
-void Travel_Graph::read(istream& strm=cin){    
+void Travel_Graph::read(istream& strm){    
   string S;
   int vertices_in;
 
