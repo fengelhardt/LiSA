@@ -275,8 +275,20 @@ TIMETYP sum(Lisa_Matrix<TIMETYP>* pt){
 
 // convert int to string .. add leading zeros with respect to numberproblems,
 // so outputfiles are correctly sorted by filesystem
-std::string fstr(const int i){
+std::string str_prob(const int i){
   const static unsigned int l = ((std::string) ztos(numberproblems)).length(); 
+  
+  std::string retval(ztos(i));
+  while(retval.length() < l) retval = "0"+retval;
+  
+  return retval;
+}
+
+//**************************************************************************
+
+// convert int to string .. add leading zeros with respect to numberalgorithms,
+std::string str_alg(const int i){
+  const static unsigned int l = ((std::string) ztos(numberalgorithms)).length(); 
   
   std::string retval(ztos(i));
   while(retval.length() < l) retval = "0"+retval;
@@ -287,6 +299,7 @@ std::string fstr(const int i){
 //**************************************************************************
 
 int main(int argc, char *argv[]){
+ time_t all_start = time(0);
  
  //make sure we report any errors
  G_ExceptionList.set_output_to_cout();
@@ -339,6 +352,12 @@ int main(int argc, char *argv[]){
  
   
  for(int i=0;i<numberproblems;i++){
+   
+   //save current seeds to pt so problem can be reconstructed
+   cp.add_key("TIMESEED",timeseed);
+   cp.add_key("MACHSEED",machseed);
+   
+   // generate instance 
    Lisa_Values val;
    generateValues(val,pt); 
    Lisa_Schedule sched(n,m);
@@ -352,33 +371,30 @@ int main(int argc, char *argv[]){
    // solution ...
    TIMETYP old_objective = MAXTIME;
    Lisa_List<Lisa_ScheduleNode> SchedList;
+   
    for(int j=0;j<numberalgorithms;j++){
     
     writeAlgInput(pt,cps[j],val,sched);
+    time_t start = time(0);
     system((cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
+    time_t end = time(0);
     readAlgOutput(sched);
+    SchedList.append(Lisa_ScheduleNode(&sched));
     
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
-    std::cout << "Objective after algorithm " << j+1 << ": "
+    std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
+              << str_alg(j+1) << " time " << end-start << " sek objective " 
               << os.GetValue();
     if(old_objective > os.GetValue()) std::cout << " +";
     std::cout << std::endl;
-    
     old_objective = os.GetValue();
     
-    /*
-    out_file << "************************************************************"
-             << "****************" << std::endl << std::endl
-             << "Objective of this schedule: "
-             << os.GetValue() << std::endl << std::endl
-             << cps[j] << sched  << std::endl ;
-    */
-    SchedList.append(Lisa_ScheduleNode(&sched));
+
    }
    
    //open output file, write generated problem + comments
-   std::string out_file_name = (std::string)argv[1]+"."+fstr(i+1)+".xml";
+   std::string out_file_name = (std::string)argv[1]+"."+str_prob(i+1)+".xml";
    std::ofstream out_file(out_file_name.c_str());
    if(!out_file){
      G_ExceptionList.lthrow("Could not open '"+out_file_name+"' for writing.",
@@ -400,11 +416,9 @@ int main(int argc, char *argv[]){
    
    out_file1 
    << "<!--" << std::endl
-   << "This is problem number " << i+1 << " created from the following "
-   << "initial values:" << std::endl
+   << "This problem was created from the following initial values:" << std::endl
    << pt << std::endl
    << cp << std::endl  
-   << "The sum of all processing times is: " << sum(val.PT) << std::endl
    << "-->";
    
    out_file1.close();
@@ -413,6 +427,8 @@ int main(int argc, char *argv[]){
  }
 
  delete[] cps;
+ time_t all_end = time(0);
+ std::cout << "AUTO_ALG: overall time " << all_end-all_start << " sek" << std::endl;
  return 0;
 }
 
