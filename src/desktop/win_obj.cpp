@@ -451,18 +451,10 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
  }
  
  // (bugfix by iroess)
- // An Lisa_OsSchedule object doesn't provide the information about it's LR
- // directly(!) - so we have to pass a container matrix to get it back filled
- // with the LR-values...
- // tbi: LR member object within class Lisa_ShpSchedule...
- Lisa_Matrix<int> *LR = new Lisa_Matrix<int>(maxn,maxm);
- myOsSchedule.write_LR(LR);
- 
- // (iroess)
  // go through the operations & do the following:
  // - get the horizontal & vertical predecessor - NOT the successor!!!
  // - do both operations lie on a critical path ?! 
- // - both LR-values have to be compared: curr_val==pred_val+1 ?	       
+ // - both Schedule-Values have to be compared: curr_head==pred_head+pred_processing_time ?	       
 	
  for(i=0;i<maxm;i++) { 
    for(j=0;j<maxn;j++) { 
@@ -478,7 +470,7 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
        int hi=myOsSchedule.GetMOpred(j+1,i+1)-1;
        if (hi>=0) {
 	 // --> critical-path-check...
-	 if ( (CP)[j][i] && ((CP)[hj][hi]) && ((*LR)[j][i]==(*LR)[hj][hi]+1))    
+	 if ( (CP)[j][i] && ((CP)[hj][hi]) &&  (myOsSchedule.GetHead(j+1,i+1)==myOsSchedule.GetHead(hj+1,hi+1)+(*(myOsSchedule.P->time))[hj+1][hi+1] ))    
 	   sprintf(color,"Red");
 	 else sprintf(color,"Black");
 	 dist=i-hi; if(dist<0) dist=-dist;
@@ -495,7 +487,7 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
        int vj=myOsSchedule.GetJOpred(j+1,i+1)-1;
        if (vj>=0) {
 	 // --> critical-path-check...	       
-	 if ( (CP)[j][i] && ((CP)[vj][vi]) && ((*LR)[j][i]==(*LR)[vj][vi]+1))
+	 if ( (CP)[j][i] && ((CP)[hj][hi]) &&  (myOsSchedule.GetHead(j+1,i+1)==myOsSchedule.GetHead(vj+1,vi+1)+(*(myOsSchedule.P->time))[vj+1][vi+1] ))    
 	   sprintf(color,"Red");
 	 else sprintf(color,"Black");
 	 dist=j-vj; if(dist<0) dist=-dist;
@@ -510,7 +502,6 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
      }
    }
  }
- delete LR;
 }
 
 
