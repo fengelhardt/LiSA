@@ -10,39 +10,36 @@
 #include "../../misc/except.hpp"
 #include "../../basics/matrix.hpp"
 
-/** @name Partitionize Sets
 
-    The arcs of a plangraph have to be partitionized into disjunktive
-    sets, the implication classes. This object helps doing exactly that.
-
-*/
-//@{
-/**
-  Partitionize sets of entitys.
+/// Partitionize sets of entitys.
   
-  The arcs of a plangraph have to be partitionized into disjunktive sets, the 
-  implication classes. This object helps doing exactly that.
+/** The arcs of a plangraph have to be partitionized into disjunktive sets, the 
+    implication classes. This object helps doing exactly that.
 
-  A partition object can be generated with a given size. Each number between 
-  and including 0 and size-1 represents an entity. You can then tell the object 
-  which entitys belong together forming disjunkive sets of entitiys. 
+    A partition object can be generated with a given size. Each number between 
+    and including 0 and size-1 represents an entity. You can then tell the
+    object which entitys belong together forming disjunkive sets of entitiys. 
 
-  These sets can then be requested from the object.
+    These sets can then be requested from the object.
 
-  @author Marc Moerig
-  @version 2.3pre3
+    @author Marc Moerig
+    @version 2.3pre3
 */
 class Lisa_Partition : public Lisa_GenericObject{
 private:
+  /// pointer behind part
   int* pstop;
+  /// pointer to first element of part
   int* pstart;
+  /// maximum number == number of partitions-1 in part vector 
   int max;
+  /// holding our partitions
+  /** i is in partition part[i] */
   Lisa_Vector<int>* part;
 public:
 
   /// constructor
-  /** Create this object for a given size. 
-  */
+  /** Create this object for a given size. */
   Lisa_Partition(const int in);
 
   /// destructor
@@ -60,11 +57,10 @@ public:
   /// returns the number of partitions
   int get_num_of_partitions();
 
-  /** writes the object data to a stream ...
-      Mostly used for debugging. */
+  /// writes the object data to a stream
+  /** Mostly used for debugging. */
   void write(std::ostream& strm = std::cout) const;
 };
 
-//@}
 #endif
 

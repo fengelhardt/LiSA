@@ -21,48 +21,45 @@ const int MO = 2;
 //@}
 
 
-/** General Problem Independent Neighborhood Class.
+/// General Problem Independent Neighborhood Class.
 
-    This is the problem independent neighborhood class.
-    Observe, that every problem dependent neighborhood must be inherited
-    from this class. All functions here are dummys.
+/** This is the problem independent neighborhood class. Observe, that every 
+    problem dependent neighborhood must be inherited from this class. All 
+    functions here are dummys.
     
-    The communication between prepare_move(), do_move(), 
-    use_tabulist(), set_tabulist() and all other functions
-    has to be be implemented internally (not public).
+    The communication between prepare_move(), do_move(), use_tabulist(), 
+    set_tabulist() and all other functions has to be be implemented internally 
+    (not public).
 
-    You should take care than every method does 
-    what it should do ;). Otherwise the algorithms might
-    (and most times will) not work. The comments 
-    should make clear what every method is intended to do,
-    additionally there are several examples which will show
-    that it is not really that hard to do.
+    You should take care than every method does what it should do ;). Otherwise
+    the algorithms might (and most times will) not work. The comments should 
+    make clear what every method is intended to do, additionally there are 
+    several examples which will show that it is not really that hard to do.
 
-    The class should have the ability to represent and handle 
-    at least 4 different solutions which are indicated by the flags 
-    ORIG_SOLUTION,WORK_SOLUTION,BEST_SOLUTION and BEST_NGH_SOLUTION.
+    The class should have the ability to represent and handle  at least 4 
+    different solutions which are indicated by the flags ORIG_SOLUTION,
+    WORK_SOLUTION,BEST_SOLUTION and BEST_NGH_SOLUTION.
 
     ORIG_SOLUTION is the one for which neighbours are created. If enumerated 
     neighbours are created you need to keep track of that.
 
-    Additionally 2 representations for moves or solutions that are 
-    tabu (I will call them work_tabu and copy_tabu) and of course 
-    a tabu list will be needed if you want to use this neighbourhood
-    with tabu search.
+    Additionally 2 representations for moves or solutions that are tabu (I will 
+    call them work_tabu and copy_tabu) and of course a tabu list will be needed
+    if you want to use this neighbourhood with tabu search.
     
     When creating a neighbourhood object you will have to initialize work_tabu, 
-    copy_tabu, ORIG_SOLUTION and WORK_SOLUTION internally. The solution you want 
-    to start with has to be placed in ORIG_SOLUTION. 
+    copy_tabu, ORIG_SOLUTION and WORK_SOLUTION internally. The solution you
+    want to start with has to be placed in ORIG_SOLUTION. 
 
-    A commented example can be found in LiSA/src/utility/travel/.
-    The implementations for the Open Shop, Job Shop and Single Machine problems 
-    found in subdirectories from the directory where this file is located
-    can serve as examples as well.
+    A commented example can be found in LiSA/src/utility/travel/. The 
+    implementations for the Open Shop, Job Shop and Single Machine problems 
+    found in subdirectories from the directory where this file is located can
+    serve as examples as well.
 
     @see Lisa_Tabu
     @see Lisa_Iterator
     
-    @author Thomas Tautenhahn and Andreas Winkler
+    @author Thomas Tautenhahn, Andreas Winkler
     @version 2.3pre3
 */
 class Lisa_Neighborhood{ 
@@ -149,26 +146,26 @@ public:
   /** This function should create a tabu list with the specified length.
       Please note that LiSA already has a tabu list Lisa_Tabu which can be used 
       here.*/
-  virtual int init_tabulist(unsigned int length) {return OK;}
+  virtual int init_tabulist(unsigned int length){return OK;}
   
   /// test if a move/solution is in the tabu list
   /**  This function should check whether work_tabu is in the tabu list.
       It should return OK if work_tabu IS NOT in the tabu list, if 
       work_tabu IS in the list it should return !OK. */
-  virtual int use_tabulist() {return OK;}
+  virtual int use_tabulist(){return OK;}
 
   /// put a move/solution in the tabu list 
   /**  Put copy_tabu into the tabu list. OK should be returned if that was done 
       successfully, otherwise !OK should be returned. */
-  virtual int set_tabulist() {return OK;}
+  virtual int set_tabulist(){return OK;}
   
   /// handle tabu representations
   /** Copy work_tabu to copy_tabu so it can be put into the tabu list later. */
-  virtual void store_tabu_param() {}
+  virtual void store_tabu_param(){}
 
   /// clean tabu representations
   /** Reset work_tabu to some initial value. */
-  virtual void clean_tabu_param() {}
+  virtual void clean_tabu_param(){}
 
   /// destructor
   /** Just a virtual destructor*/

@@ -15,8 +15,7 @@ enum{NOMETHOD /** none  */ =0
     ,SA_anti /** simulated annealing with antineighbor */
     };
 
-/// Problem-independent Neighborhood-Iteration-Class.
-
+/// Problem independent neighbourhood iteration class.
 /** This class provides several neighbourhood search algorithms. 
     They can be used with any class inherited from Lisa_Neighborhood.
 
@@ -61,14 +60,34 @@ enum{NOMETHOD /** none  */ =0
 */
 class Lisa_Iterator {
 private: 
-
-  int   method, abort_stuck, max_stuck;
-  float factor0;
+  
+  /// algorithm parameter, as given by init() methods
+  int   method, max_stuck;
+  
+  /// algorithm parameter as given by set_abort_at_stuck()
+  int abort_stuck;
+  
+  /// algorithm parameter as given by set_abort_at_bound()
   TIMETYP abort_at_bound;
+  
+  /// parameter for SA and TS  
+  float factor0;
+  
+  /// random number generator seed
   long  seed;
-  int   search_type;  
-  int   number_neighbors, tabu_lenght;
+  
+  /// RAND or ENUM
+  int search_type;
+  
+  /// number of neighbours to generate as given by init() methods
+  int number_neighbors;
+  
+  /// length of tabu list as given by init() method
+  int tabu_lenght;
+  
+  /// sa with anti neighbours ?
   bool  anti_neighbor;
+  
   void run_start();
   void run_stop();
 

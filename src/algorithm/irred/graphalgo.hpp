@@ -3,19 +3,12 @@
 #define graphalgo_h
 
 #include "../../basics/graph.hpp"
-/** @name Some helpful operations on Graphs
 
-  Just some helpfull operations on graphs that are needed for the irreducibility
-  test. 
- 
-*/
-//@{
-/**
-  Just some helpfull operations on graphs that are needed for the irreducibility test.
-   
-  @see Lisa_Graph
-  @version 2.3pre3
-  @author Marc Moerig   
+/// Just some helpfull operations on graphs.
+/** Needed for the irreducibility test.
+    @see Lisa_Graph
+    @version 2.3pre3
+    @author Marc Moerig   
  */
 class Lisa_GraphAlgorithms{
 public:
@@ -148,6 +141,5 @@ public:
   
 };
 
-//@}
 #endif
 

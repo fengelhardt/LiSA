@@ -9,24 +9,14 @@
 #include "../../lisa/ptype.hpp"
 #include "graphalgo.hpp"
 
-/** @name Create The Corresponding Graph's For A Problem
-    
-    The irreducibility test runs completly on graphs. Therefore 
-    we need to create the disjunctive graph for a given problem
-    and we need a tool to convert schedules to to graphs and vice versa.
+/// convert schedules to graphs
+/** The irreducibility test runs completly on graphs. Therefore we need to 
+    create the disjunctive graph for a given problem and we need a tool to 
+    convert schedules to to graphs and vice versa.
 
-*/
-
-//@{
-/** convert schedules to graphs ...
-
-    The irreducibility test runs completly on graphs. Therefore 
-    we need to create the disjunctive graph for a given problem
-    and we need a tool to convert schedules to to graphs and vice versa.
-
-    This object can create the disjunctive graph describing a problem.
-    It also serves as tool to convert schedules for that problem into 
-    graphs and vice versa.
+    This object can create the disjunctive graph describing a problem. It also
+    serves as tool to convert schedules for that problem into graphs and vice 
+    versa.
 
     @author Marc Moerig
     @version 2.3pre3
@@ -50,7 +40,7 @@ private:
   Lisa_Matrix<int>* lookup;
   
   //@{
-  // at which coordinate is vertice v ?
+  /// at which coordinate is vertice v ?
   Lisa_Vector<int>* I_lookup;
   Lisa_Vector<int>* J_lookup;
   //@}
@@ -59,7 +49,8 @@ private:
   Lisa_Graph* disjkt;
   
   //@{
-  /// intern method's ... one for each different problemtype we can handle
+  /// intern convertion method
+  /** one for each different problemtype we can handle */
   void initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_CMAX(Lisa_Matrix<bool>* SIJ);
   void plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
@@ -110,8 +101,6 @@ public:
   void write(std::ostream& strm = std::cout) const;
 
 };
-
-//@}
 
 #endif
 

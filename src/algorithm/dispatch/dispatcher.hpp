@@ -1,12 +1,3 @@
-/*
- * ************** dispatch.hpp *******************************
- * 
- * priority rules for jobshop
- *
- * @author Thomas Tautenhahn
- *
- * 10.9.1999
-*/
 
 #ifndef _dispatch_h
 #define _dispatch_h
@@ -17,63 +8,91 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 
-const int NUMBER_RULES=9;
-const int RAND=0;
-const int FCFS=1;
-const int EDD=2;
-const int LQUE=3;
-const int SPT=4;
-const int WSPT=5;
-const int ECT=6;
-const int WI=7;
-const int LPT=8;
+//******************************************************************************
+
+/// which priority rules are implemented + how many are implemented
+enum{RAND=0,FCFS,EDD,LQUE,SPT,WSPT,ECT,WI,LPT
+    ,NUMBER_RULES /// number of rules
+    };
+
+//******************************************************************************
 
 /// some strings to describe the dispatching rules
 const char RULE_NAMES[NUMBER_RULES][5]= { "RAND","FCFS","EDD","LQUE","SPT",
 					  "WSPT","ECT","WI","LPT"};
 
-/** Priority dispatching rules for different problem types. The output of the 
-    algorithm for semiactive schedules is only written as an LR!
+//******************************************************************************
+
+/// Priority dispatching rules for different problem types.
+/** The output of the algorithm for semiactive schedules is only written as a 
+    LR!
 
     @author Thomas Tautenhahn
     @version 2.3pre3
     @see Lisa_List
-    @see Lisa_GenericList */ 
-class Lisa_Dispatcher
-  { 	
-    private: 
-      int rule, n, m;
-      long myseed;
-      int my_problem;
-      Lisa_Vector<TIMETYP> * jstart;
-      Lisa_Vector<TIMETYP> * mstart;
-      Lisa_ShpProblem * problem;
-      Lisa_ShpSchedule * schedule;
-      TIMETYP priority(int, int); 
-      Lisa_Schedule * LSchedule;
-      void os_dispatch_active();
-      void js_dispatch_active();
-      void os_dispatch();
-      void js_dispatch();
+ */ 
+class Lisa_Dispatcher{ 	
+private:
+  /// by which rule are we dispatching ? 
+  int rule;
+  /// problem size
+  int n, m;
+  /// seed for random number generation
+  long myseed;
+  /// machine enviroment
+  /** open shop or job shop ? */
+  int my_problem;
+  
+  /// when is a job free again
+  Lisa_Vector<TIMETYP> * jstart;
+  /// when is a machine free again ?
+  Lisa_Vector<TIMETYP> * mstart;
+  
+  /// returns priority for operation (i,j) according to current rule
+  TIMETYP priority(int i, int j); 
+  
+  /// pointer to schedule given by SetProblem()
+  Lisa_Schedule * LSchedule;
+  /// internal object holding problem data
+  Lisa_ShpProblem * problem;
+  /// internal object holding schedule for problem
+  Lisa_ShpSchedule * schedule;
+  
+  /// internal active schedule dispatcher for open shop
+  void os_dispatch_active();
+  /// internal active schedule dispatcher for job shop
+  void js_dispatch_active();
+  /// internal semiactive schedule dispatcher for open shop  
+  void os_dispatch();
+  /// internal semiactive schedule dispatcher for job shop  
+  void js_dispatch();
    
-    public:
-      Lisa_Dispatcher();
-      /// setting up problem and target schedule (needed to run the algorithm)
-      bool SetProblem(Lisa_ProblemType*, Lisa_Values*, Lisa_Schedule*);
-      /// chooses the priority rule (default SPT)
-      void SetRule(std::string r);
-      /** At each time a machine or job becomes available, schedule the 
-          operation with the highest priority among the available ones. The 
-          resulting schedule will be active. **/ 
-      void dispatch_active();
-      /** Among all unscheduled operations (with no unscheduled predecessors), 
-          schedule one with the highest priority. The resulting schedule is 
-          semiactive, but in general not active. **/
-      void dispatch();
-      ~Lisa_Dispatcher();  
-   };
-      
-Lisa_JsSchedule * dispatch_active(Lisa_JsProblem * Pi, int rule);
+public:
+  /// constructor
+  Lisa_Dispatcher();
+  /// destructor
+  ~Lisa_Dispatcher();
+  
+  /// setting up problem and target schedule (needed to run the algorithm)
+  bool SetProblem(Lisa_ProblemType* pt, Lisa_Values* val, Lisa_Schedule* sched);
+  /// chooses the priority rule (default SPT)
+  void SetRule(std::string rule);
+  
+  /// active schedule dispatcher
+  /** At each time a machine or job becomes available, schedule the operation 
+      with the highest priority among the available ones. The resulting 
+      schedule will be active. */ 
+  void dispatch_active();
+  
+  /// semiactive schedule dispatcher
+  /** Among all unscheduled operations (with no unscheduled predecessors), 
+      schedule one with the highest priority. The resulting schedule is 
+      semiactive, but in general not active. */
+  void dispatch();
+
+};
+
+//******************************************************************************
       
 #endif
 

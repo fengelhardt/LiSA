@@ -7,15 +7,7 @@
 #include "../../basics/graph.hpp"
 #include "graphalgo.hpp"
 
-/** @name Holding Results In A List
-
-    The test algorithm generates plangraphs, which can be saved and returned 
-    later. These object helps to hold these results. Additionaly they help to 
-    filter plangraphs which are known to be reducible so those can be deleted. 
-    This saves alot of time and memory.
-
- */
-//@{
+/// Hold results of an irreducibilitytest.
 /** A node can hold the plangraph and the comparability graph for a given 
     schedule so they can be put in a list.
   
@@ -52,6 +44,7 @@ public:
   void write(std::ostream& strm = std::cout) const;
 };
 
+/// Hold results of an irreducibility test
 /** The test algorithm generates plangraphs, which can be saved and returned 
     later. These object helps to hold these results. Additionaly they help to 
     filter plangraphs which are known to be reducible so those can be deleted. 
@@ -66,7 +59,7 @@ public:
 */
 class Lisa_IrredResult : public Lisa_GenericObject{
 private:
-  /// filter flag 
+  /// applied filter flag 
   const int ins_method;
 public:
 
@@ -101,8 +94,6 @@ public:
   /** Mostly used for debugging */
   void write(std::ostream& strm = std::cout)const;
 };
-
-//@}
 
 #endif
 

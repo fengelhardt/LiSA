@@ -5,19 +5,18 @@
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 
-/** Problem Independent Tabulist.
-    
-    This tabu list is used with all of LiSA's neighbourhoods. You may also 
-    use it to implement your own neighbourhood for use with LiSA's 
-    neighbourhood algorithms.
+/// Problem Independent Tabulist. 
+/** This tabu list is used with all of LiSA's neighbourhoods. You may also use
+    it to implement your own neighbourhood for use with LiSA's neighbourhood 
+    algorithms.
     
     There are two ways to use this object. You can either create a list with a 
-    given length. In that case every entry in the tabu list contains 4 integers. 
-    You will have to use the functions use() and set() then. Otherwise you can 
-    create a list with a given length AND an entry length. In that case any 
-    entry contains as much integers as you have specified. Entrys are then given
-    as vectors and you will have to use the functions use_vector() and 
-    set_vector().
+    given length. In that case every entry in the tabu list contains 4
+    integers. You will have to use the functions use() and set() then. 
+    Otherwise you can create a list with a given length AND an entry length.
+    In that case any entry contains as much integers as you have specified. 
+    Entrys are then given as vectors and you will have to use the functions 
+    use_vector() and set_vector().
     
     This is also an example of how to implement your own tabu list.
 
@@ -27,14 +26,24 @@
     @version 2.3pre3
 */  
 class Lisa_Tabu{
+  //@{
+  /// single tabu lists
+  Lisa_Vector<int> *tabu_1;
+  Lisa_Vector<int> *tabu_2;
+  Lisa_Vector<int> *tabu_3;
+  Lisa_Vector<int> *tabu_4;
+  //@}
   
-  Lisa_Vector<int> *tabu_1;     // tabulist
-  Lisa_Vector<int> *tabu_2;     //
-  Lisa_Vector<int> *tabu_3;     //
-  Lisa_Vector<int> *tabu_4;     //
-  Lisa_Matrix<int> *tabu;       // tabulist of vector
+  /// tabulist of vector
+  Lisa_Matrix<int> *tabu;
+  
+  /// at which position are we in tabulist 
   int pos;
-  unsigned int length, vector_length;
+  
+  /// length of tabu list
+  unsigned int length;
+  /// number of entrys in vector tabu list
+  unsigned int vector_length;
   
 public:
 

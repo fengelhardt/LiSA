@@ -15,30 +15,16 @@
 #include "lpartition.hpp"
 #include "irrednode.hpp"
 
-/* Irreducibility Test
-   
-This algorithm checks if a given schedule for a problem is irreducible. A 
-schedule S* reduces another schedule S if its objective is better than that for 
-S for any given set of processing types. S is therefore irreducible if no such 
-schedule S* exists.
-
-It works for open, job and flow shop problems, in combination with release 
-dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and SumWiTi 
-objectives.
-
-*/
-
-/** @name The Test Algorithm
-  This object runs the irreducibility test.
-  
-  A plangraph is split up into implication classes. By turning them around and 
-  recombining them new plans are generated. Those can be similar to or may 
-  reduce the original plan. Results can be send to a list for storage and later 
-  retrivial.
-*/
-//@{
+///Just runs the irreducibility test.
 /**
-  This object just runs the irreducibility test.
+  This algorithm checks if a given schedule for a problem is irreducible. A 
+  schedule S* reduces another schedule S if its objective is better than that
+  for S for any given set of processing types. S is therefore irreducible if no
+  such schedule S* exists.
+  
+  It works for open, job and flow shop problems, in combination with release 
+  dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and 
+  SumWiTi objectives.
 
   A plangraph is split up into implication classes. By turning them around and 
   recombining them new plans are generated. Those can be similar to or may 
@@ -61,14 +47,13 @@ public:
 
 
   /// Flags for the algorithm.
-  /** @param GENERATE_ALL Generate all plangraphs.
-      @param JUST_TEST Abort if one reducing plangraph was found.
-      @param JUST_TEST_RANDOM Abort if one reducing plangraph was found. 
-             Generate plangraphs in random order.
-      @param GENERATE_SIMILAR Generate all plangraphs similar to the input 
-             plangraph. No reducing plans will be generated.                   
-   */
-  enum{GENERATE_ALL=0,JUST_TEST,JUST_TEST_RANDOM,GENERATE_SIMILAR};
+  enum{GENERATE_ALL /** Generate all plangraphs.*/ =0
+      ,JUST_TEST /// Abort if one reducing plangraph was found.
+      ,JUST_TEST_RANDOM /** Abort if one reducing plangraph was found. 
+                         Generate plangraphs in random order. */
+      ,GENERATE_SIMILAR /** Generate all plangraphs similar to the input 
+                         plangraph. No reducing plans will be generated. */     
+      };
     
   /// constructor
   Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in);
@@ -99,6 +84,5 @@ public:
   void write(std::ostream& strm = std::cout) const;
 };
 
-//@}
 #endif
 

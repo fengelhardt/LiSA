@@ -13,7 +13,7 @@ using namespace std;
 
 TIMETYP Lisa_Dispatcher::priority(int i, int j)
 {
-  // sometimes we add one to make shure that priority>-MAXTIME holds
+  // sometimes we add one to make sure that priority>-MAXTIME holds
   switch(rule)
     {
     case RAND: return lisa_random(0,1000,&myseed);
@@ -85,7 +85,7 @@ bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT,
       if (PT->get_property(M_ENV)==ONE)
 	G_ExceptionList.lcatch(INCONSISTENT_INPUT);      
       break;
-    default: G_ExceptionList.lthrow("wrong Problemtyp for Lisa_dispatcher");
+    default: G_ExceptionList.lthrow("wrong problemtype for Lisa_Dispatcher");
       return FALSE;
     }
   delete mstart; delete jstart;
@@ -332,6 +332,9 @@ void Lisa_Dispatcher::dispatch()
   // write the result to the output object
   schedule->write_LR(LSchedule->LR);
 }
+
+//**************************************************************************
+ 
 void Lisa_Dispatcher::dispatch_active()
 {
   if (my_problem==J) js_dispatch_active();
