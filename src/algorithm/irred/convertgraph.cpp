@@ -136,14 +136,14 @@ Lisa_ConvertGraph::~Lisa_ConvertGraph(){
 
 //**************************************************************************
 
-Lisa_Graph*  Lisa_ConvertGraph::get_disjkt(){
+Lisa_MatrixGraph*  Lisa_ConvertGraph::get_disjkt(){
   return disjkt;
 }
 
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
-                                   Lisa_Graph* plangraph){
+                                   Lisa_MatrixGraph* plangraph){
                                      
   plangraph->clear();
 
@@ -179,7 +179,7 @@ void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
 
 //**************************************************************************
 
-void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,
+void Lisa_ConvertGraph::graph2plan(Lisa_MatrixGraph* plangraph,
                                    Lisa_Matrix<int>* plan){
                                      
   plan->fill(0);
@@ -226,7 +226,7 @@ void Lisa_ConvertGraph::write(ostream& strm) const{
 void Lisa_ConvertGraph::initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   morevert = vert;
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(vert);
+  disjkt = new Lisa_MatrixGraph(vert);
   
   Lisa_Matrix<int> my_mo(n,m);
   MO->write_rank(&my_mo);
@@ -255,7 +255,7 @@ void Lisa_ConvertGraph::initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
 void Lisa_ConvertGraph::initialize_O_CMAX(Lisa_Matrix<bool>* SIJ){
   morevert = vert;
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(vert);
+  disjkt = new Lisa_MatrixGraph(vert);
   for (int i=0;i<n;i++){
     for (int j=0;j<m;j++){
       if ((*SIJ)[i][j]){ //connect it with all other vertice which follow 
@@ -277,7 +277,7 @@ void Lisa_ConvertGraph::initialize_O_CMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_CMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_Graph* plangraph){
+                                          Lisa_MatrixGraph* plangraph){
                                             
   for (int v=1;v<=vert;v++){
     
@@ -302,7 +302,7 @@ void Lisa_ConvertGraph::initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   morevert = vert+n;
  
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   
   Lisa_Matrix<int> my_mo(n,m);
   MO->write_rank(&my_mo);
@@ -333,7 +333,7 @@ void Lisa_ConvertGraph::initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
 void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
   morevert = vert+n+1;
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   for (int i=0;i<n;i++){
     for (int j=0;j<m;j++){
       if ((*SIJ)[i][j]){ //connect it with all other vertice which follow 
@@ -358,7 +358,7 @@ void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_Graph* plangraph){
+                                          Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -383,7 +383,7 @@ void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_LMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_Graph* plangraph){
+                                          Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -411,7 +411,7 @@ void Lisa_ConvertGraph::initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,
   morevert = vert+n;
  
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   
   Lisa_Matrix<int> my_mo(n,m);
   MO->write_rank(&my_mo);
@@ -441,7 +441,7 @@ void Lisa_ConvertGraph::initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,
 void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
  morevert = vert+n+1;
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   for (int i=0;i<n;i++){
     for (int j=0;j<m;j++){
       if ((*SIJ)[i][j]){ //connect it with all other vertice which follow 
@@ -466,7 +466,7 @@ void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_Graph* plangraph){
+                                             Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -491,7 +491,7 @@ void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_Graph* plangraph){
+                                             Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -518,7 +518,7 @@ void Lisa_ConvertGraph::initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,
   morevert = vert+2*n;
  
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   
   Lisa_Matrix<int> my_mo(n,m);
   MO->write_rank(&my_mo);
@@ -552,7 +552,7 @@ void Lisa_ConvertGraph::initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,
 void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
  morevert = vert+2*(n+1);
   // create disjkt
-  disjkt = new Lisa_MatrixListGraph(morevert);
+  disjkt = new Lisa_MatrixGraph(morevert);
   for (int i=0;i<n;i++){
     for (int j=0;j<m;j++){
       if ((*SIJ)[i][j]){ //connect it with all other vertice which follow 
@@ -579,7 +579,7 @@ void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_Graph* plangraph){
+                                             Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -609,7 +609,7 @@ void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_Graph* plangraph){
+                                             Lisa_MatrixGraph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];

@@ -9,10 +9,10 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
+Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_MatrixGraph* disjkt_in){
   vert = disjkt_in->get_vertices();
   
-  disjkt = new Lisa_MatrixListGraph(*disjkt_in);
+  disjkt = new Lisa_MatrixGraph(*disjkt_in);
   
   result = 0;
 }
@@ -31,7 +31,7 @@ void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res){
 
 //**************************************************************************
 
-bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,
+bool Lisa_IrreducibilityTest::test(Lisa_MatrixGraph* plan, Lisa_MatrixGraph* comp,
 const int param){
   
   int edges = 0;
@@ -53,11 +53,11 @@ const int param){
   for (int i=1;i<=vert;i++){
     for (int j=i+1;j<=vert;j++){
       b = plan->get_connection(i,j);
-      if(b==Lisa_Graph::ARC){  // there should be only ARC and CRA
+      if(b==Lisa_MatrixGraph::ARC){  // there should be only ARC and CRA
         lookup[i][j] = a;
         start_v[a]=i;
         end_v[a++]=j;
-      }else if(b==Lisa_Graph::CRA){ 
+      }else if(b==Lisa_MatrixGraph::CRA){ 
         lookup[j][i] = a;
         start_v[a]=j;
         end_v[a++]=i;
@@ -78,7 +78,7 @@ const int param){
     plan->init_successor(a);
     c = plan->next_successor(a);
     while(c!=vert+1){
-      if (comp->get_connection(c,b)==Lisa_Graph::NONE){
+      if (comp->get_connection(c,b)==Lisa_MatrixGraph::NONE){
         party.join(i,lookup[a][c]);
       }
       c = plan->next_successor(a);
@@ -87,7 +87,7 @@ const int param){
     plan->init_predecessor(b);
     c = plan->next_predecessor(b);
     while(c!=vert+1){
-      if (comp->get_connection(c,a)==Lisa_Graph::NONE){
+      if (comp->get_connection(c,a)==Lisa_MatrixGraph::NONE){
         party.join(i,lookup[c][b]);
       }
       c = plan->next_predecessor(b);
@@ -118,7 +118,7 @@ const int param){
     currpos = curr[0];
     turnable = 1;
     for (int j=1;j<=currpos;j++){
-      if (disjkt->get_connection(start_v[curr[j]],end_v[curr[j]])!=Lisa_Graph::EDGE){
+      if (disjkt->get_connection(start_v[curr[j]],end_v[curr[j]])!=Lisa_MatrixGraph::EDGE){
         turnable = 0;
         all = 0;
         break;
@@ -141,7 +141,7 @@ const int param){
     }
   }
   
-  Lisa_MatrixListGraph newplan(plan);
+  Lisa_MatrixGraph newplan(plan);
   num = implic->length();
   Lisa_Vector<bool> turned(num);
   Lisa_Vector<int> topsortvec(vert);
@@ -199,7 +199,7 @@ const int param){
     
     if (Lisa_GraphAlg::topsort(&newplan,&topsortvec)){  // check whether the newplan graph contains a cycle
       
-      Lisa_MatrixListGraph newcomp(vert);
+      Lisa_MatrixGraph newcomp(vert);
       Lisa_GraphAlg::build_compgraph(&newplan,&newcomp);
       
       if (Lisa_GraphAlg::smaller(&newcomp,comp)){ // does it reduce the original plan ?
