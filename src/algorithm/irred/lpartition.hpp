@@ -1,5 +1,5 @@
 /*
- * ************** partition.hpp *******************************
+ * ************** lpartition.hpp *******************************
  *
  * Owner: Marc Moerig
  *
@@ -7,8 +7,8 @@
  * last changed 26.02.01
  */
 
-#ifndef partition_h
-#define partition_h
+#ifndef lpartition_h
+#define lpartition_h
 
 #include<stdlib.h>
 #include<iostream.h>
