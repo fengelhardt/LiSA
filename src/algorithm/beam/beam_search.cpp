@@ -265,19 +265,12 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
   return false;
 }
 
-//#define BE_DISPATCHER
+#define BE_STRICT_NON_DELAY
 
 void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, InsertionList& ins){
   ins.clear();
   OpRankPos pos;
   Operation insOp = op;
-#ifdef BE_DISPATCHER
-  //test against dispatcher
-  pos.first = parent.GetJOpred(SINK,op.second);
-  pos.second = parent.GetMOpred(op.first,SINK);
-  ins.push_back(OpInsertion(insOp,pos));
-  return;
-#endif
   TIMETYP head = std::max<TIMETYP>(parent.GetHead(op.first,SINK),parent.GetHead(SINK,op.second));
   switch(attach){
   case jobs:
@@ -285,12 +278,17 @@ void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, In
     pos.second = parent.GetMOpred(insOp.first,SINK);
     for (int j=1; j<=parent.P->m; j++)
       if (((*problem->sij)[insOp.first][j]) && 
-	  !parent.exists(insOp.first,j) && 
-	  (head >=  parent.GetHead(SINK,j))){
-	pos.first = parent.GetJOpred(SINK,j);
-	insOp.second = j;
-	ins.push_back(OpInsertion(insOp,pos));
-      }
+	  !parent.exists(insOp.first,j) &&
+#ifdef BE_STRICT_NON_DELAY
+	  (head ==  std::max<TIMETYP>(parent.GetHead(op.first,SINK),parent.GetHead(SINK,j))))
+#else
+	(head >=  parent.GetHead(SINK,j)))
+#endif
+    {
+      pos.first = parent.GetJOpred(SINK,j);
+      insOp.second = j;
+      ins.push_back(OpInsertion(insOp,pos));
+    }
     break;
   case machines:
     //find the job numbers of all non-delay insertables
@@ -298,11 +296,16 @@ void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, In
     for (int i=1; i<=parent.P->n; i++)
       if (((*problem->sij)[i][insOp.second]) &&  
 	  !parent.exists(i,insOp.second) && 
-	  (parent.GetHead(i,SINK) <=  head)){
-	pos.second = parent.GetMOpred(i,SINK);
-	insOp.first = i;
-	ins.push_back(OpInsertion(insOp,pos));
-      }
+#ifdef BE_STRICT_NON_DELAY
+	  (head ==  std::max<TIMETYP>(parent.GetHead(i,SINK),parent.GetHead(SINK,op.second)))){
+#else
+	(parent.GetHead(i,SINK) <=  head)){
+#endif
+      
+      pos.second = parent.GetMOpred(i,SINK);
+      insOp.first = i;
+      ins.push_back(OpInsertion(insOp,pos));
+    }
     break;
   default:
     return;
