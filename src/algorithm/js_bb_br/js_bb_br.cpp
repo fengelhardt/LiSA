@@ -2,11 +2,11 @@
 /*                                                                           */
 /*                               main program                                */
 /*                                                                           */
-//   @version 2.3final
 /* ************************************************************************* */
 
 
 #include <stdlib.h>
+
 #include <malloc.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <fstream>
+
+#include "../../xml/LisaXmlFile.hpp"
 
 #include "../../basics/matrix.hpp"
 #include "../../scheduling/js_sched.hpp"
@@ -77,7 +79,7 @@ void run_stop()
 
 int main(int argc, char *argv[])
 {
-  G_ExceptionList.set_output_to_cout();
+  //G_ExceptionList.set_output_to_cout();
   abort_algorithm = false;
   // the follow code is addited by A.Winkler
 
@@ -90,125 +92,142 @@ int main(int argc, char *argv[])
   
   cout << "PID= " << getpid() << endl;  
   
-  ifstream strm(argv[1]);      // the input file contains the problem, schedule and some parameters
-  if (!strm){
-      G_ExceptionList.lthrow("ERROR: Could not open file for reading: "+string(argv[1]));
-      exit(1);
-  }
-  
-  ofstream fplan_o(argv[2]);   // this file returns the best computed schedule
-  if (!fplan_o){
-      G_ExceptionList.lthrow("ERROR: Could not open file for writing: "+string(argv[2]));
-      exit(1);
-  }
+ ifstream i_strm(argv[1]);
+   ofstream o_strm(argv[2]);
+   if (!i_strm)
+     {
+       cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+       exit(1);
+     }
+   if (!o_strm)
+     {
+       cout << "ERROR: cannot find output file " << argv[1] << "." << endl;
+       exit(1);
+     }
+			i_strm.close();
+			o_strm.close();
+			
+			LisaXmlFile::initialize();
+			LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
 
+			Lisa_ProblemType Problem;
+			Lisa_ControlParameters Parameter;   
+			Lisa_Values Values;
+			
+			xmlInput.read(argv[1]);
+			LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+			
+			if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+					{
+							cout << "ERROR: cannot read input , aborting program." << endl;
+							exit(1);
+					}
+			if( !(xmlInput >> Problem))
+					{
+							cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+							exit(1);
+					}
+			if( !(xmlInput >> Parameter))
+					{
+							cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+							exit(1);
+					}
+			if( !(xmlInput >> Values))
+					{
+							cout << "ERROR: cannot read Values , aborting program." << endl;
+							exit(1);
+					}
+			
+   if (!G_ExceptionList.empty())
+     {
+       cout << "ERROR: cannot read input , aborting program." << endl;
+       exit(1);
+     }
+			
+			ofstream js_in("js_in.dat"); // the Brucker input file we have to write
+			if (!js_in){
+					G_ExceptionList.lthrow("ERROR: Could not open file for writing: js_in.dat");
+					exit(1);
+			}
   
-  ofstream js_in("js_in.dat"); // the Brucker input file we have to write
-  if (!js_in){
-      G_ExceptionList.lthrow("ERROR: Could not open file for writing: js_in.dat");
-      exit(1);
-  }
-  
-  Lisa_ProblemType *prob_type;
-  if ( !( prob_type = new Lisa_ProblemType ) ){
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
-  strm.seekg(0);
-  strm >> (*prob_type);
-  fplan_o << (*prob_type);
-
-  // do you really have a job shop problem ?
-  const int OBJ_TYPE = prob_type->get_property(OBJECTIVE);
-  const int PROB_TYPE = prob_type->get_property(M_ENV);
-
-  if ( (OBJ_TYPE != CMAX) || ((PROB_TYPE != J) && (PROB_TYPE != F)) ){
-      G_ExceptionList.lthrow("Wrong Problemtype or Objective function.",Lisa_ExceptionList::INCONSISTENT_INPUT);
-      exit(7);
-  }
-
-  // now write an input file for Bruckers procedure Read_Data():
-  // first read the problem data from a LiSA file
-  Lisa_Values *problem_in;
-  if ( !( problem_in = new Lisa_Values() ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
-  strm >> (*problem_in);
-  strm.close();
+			// do you really have a job shop problem ?
+			const int OBJ_TYPE = Problem.get_property(OBJECTIVE);
+			const int PROB_TYPE = Problem.get_property(M_ENV);
+			
+			if ( (OBJ_TYPE != CMAX) || ((PROB_TYPE != J) && (PROB_TYPE != F)) ){
+					G_ExceptionList.lthrow("Wrong Problemtype or Objective function.",2);
+					exit(7);
+			}
+			
+			// now write an input file for Bruckers procedure Read_Data():
+			// first read the problem data from a LiSA file
    
-  if ( !(problem_in->MO)){
-      G_ExceptionList.lthrow("You must define a MO for a job-shop-problem !");
-      exit( 7 );
-  }
-  
-  fplan_o << (*problem_in);
-
-  // the new Bruckers data file:
-  Lisa_JsSchedule *best_schedule;
-  int i, j, k, counter, mo, maschine;
-  const int m = problem_in->get_m();
-  const int n = problem_in->get_n();
+			if ( !(Values.MO)){
+					G_ExceptionList.lthrow("You must define a MO for a job-shop-problem !");
+					exit( 7 );
+			}
+			
+			// the new Bruckers data file:
+			Lisa_JsSchedule *best_schedule;
+			int i, j, k, counter, mo, maschine;
+			const int m = Values.get_m();
+			const int n = Values.get_n();
  
-  if(m > MaxNumOfMachines || n > MaxNumOfJobs ){
-      G_ExceptionList.lthrow("This Algorithm does not support Problems with more than "
-                             +ztos(MaxNumOfMachines)+" Machines or " +ztos(MaxNumOfJobs)+ " Jobs. Recompile it to change this.");
-      exit( 7 );
-  }
+			if(m > MaxNumOfMachines || n > MaxNumOfJobs ){
+					G_ExceptionList.lthrow("This Algorithm does not support Problems with more than "
+																												+ztos(MaxNumOfMachines)+" Machines or " +ztos(MaxNumOfJobs)+ " Jobs. Recompile it to change this.");
+					exit( 7 );
+			}
   
-  js_in << m << " ";
-  js_in << n << " ";
-  
-  int *m_nr = new int[m];
-  TIMETYP *ptime = new TIMETYP[m];
-  
-  for (i=0; i<n; i++){
-      counter = 0;
-      mo = -1;
-      if (problem_in->MO->succ(i,mo) != -1){
-          do{
-              mo = problem_in->MO->succ(i,mo);
-              //cout << "counter = " << counter << "; mo = " << mo << "\n";
-              if ( mo != -1 ){
-                  ptime[counter] = (*problem_in->PT)[i][mo];
+			js_in << m << " ";
+			js_in << n << " ";
+			
+			int *m_nr = new int[m];
+			TIMETYP *ptime = new TIMETYP[m];
+			
+			for (i=0; i<n; i++){
+					counter = 0;
+					mo = -1;
+					if (Values.MO->succ(i,mo) != -1){
+							do{
+									mo = Values.MO->succ(i,mo);
+									//cout << "counter = " << counter << "; mo = " << mo << "\n";
+									if ( mo != -1 ){
+											ptime[counter] = (*Values.PT)[i][mo];
                   m_nr [counter] = mo+1;
                   counter += 1;
-              }
-          }while ( mo != -1 );
-      }
-      js_in << counter << " ";
-      //cout << "output " << counter << "\n";
-      if (counter > 0)
-          for (j=0; j<counter; j++)
-              js_in << ptime[j] << " " << m_nr[j] << " ";
-  }
-  js_in.close();
-
-  // the best schedule:
-  Lisa_JsProblem *js_Prob;
-  if ( !( js_Prob = new Lisa_JsProblem( problem_in ) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
-  if ( !( best_schedule = new Lisa_JsSchedule( js_Prob ) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
-  delete problem_in;
-  
-  // original program code by P.Brucker:
-  struct BranchList  *DeleteBranch;
- 
-  Initialize();
-  if ( !Read_Data("js_in.dat") ) {
-    printf("Not able to read data !\n");
-    return(1);
-  }
-
+									}
+							}while ( mo != -1 );
+					}
+					js_in << counter << " ";
+					//cout << "output " << counter << "\n";
+					if (counter > 0)
+							for (j=0; j<counter; j++)
+									js_in << ptime[j] << " " << m_nr[j] << " ";
+			}
+			js_in.close();
+			
+			// the best schedule:
+			Lisa_JsProblem *js_Prob;
+			if ( !( js_Prob = new Lisa_JsProblem(&Values ) ) ){  
+					G_ExceptionList.lthrow("out of memory",2);
+					exit( 7 );
+			}
+			
+			if ( !( best_schedule = new Lisa_JsSchedule( js_Prob ) ) ){  
+					G_ExceptionList.lthrow("out of memory",2);
+					exit( 7 );
+			}
+			
+			// original program code by P.Brucker:
+			struct BranchList  *DeleteBranch;
+			
+			Initialize();
+			if ( !Read_Data("js_in.dat") ) {
+					printf("Not able to read data !\n");
+					return(1);
+			}
+			
   // starting time:
   // clock_t time1, time2;
   time_t time1, time2;
@@ -272,34 +291,34 @@ int main(int argc, char *argv[])
   
   Lisa_Matrix<int> *LR;
   if ( !( LR = new Lisa_Matrix<int>(n,m) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
+				G_ExceptionList.lthrow("out of memory",2);
+				exit( 7 );
   }
   
   Lisa_Matrix<int> *JO;
   if( !( JO = new Lisa_Matrix<int>(n,m) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
+				G_ExceptionList.lthrow("out of memory",2);
+				exit( 7 );
   }
   
   Lisa_Matrix<int> *MO;
   if ( !( MO = new Lisa_Matrix<int>(n,m) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
+				G_ExceptionList.lthrow("out of memory",2);
+				exit( 7 );
   }
   
   Lisa_Matrix<int> *MJ;
   if ( !( MJ = new Lisa_Matrix<int>(n,m) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+				G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
   }
   
   for (i=0; i<n; i++){
-      maschine = SOURCE;
-      for (j=1; j<=m; j++){
-          maschine = (*js_Prob->MOsucc)[i+1][maschine];
-          (*MO)[i][maschine-1] = j;
-      }
+				maschine = SOURCE;
+				for (j=1; j<=m; j++){
+						maschine = (*js_Prob->MOsucc)[i+1][maschine];
+						(*MO)[i][maschine-1] = j;
+				}
   }
  
   // read machine order from algortihm output file !!!
@@ -341,7 +360,7 @@ int main(int argc, char *argv[])
 	    }
       if ( count_2 == 0 )
 	{  
-	  G_ExceptionList.lthrow("ERROR: Cycle in LR !");
+	  G_ExceptionList.lthrow("ERROR: Cycle in LR !",2);
 	  exit( 7 );
 	}
       for (i=0; i<n; i++)
@@ -358,30 +377,34 @@ int main(int argc, char *argv[])
   Lisa_Schedule * plan_in;
   
   if ( !( plan_in = new Lisa_Schedule( n, m ) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+      G_ExceptionList.lthrow("out of memory",2);
       exit( 7 );
   }
   
   plan_in->make_LR();
   best_schedule->write_LR( plan_in->LR );
-  fplan_o << (*plan_in);
-  //cout << (*plan_in);
-
-  fplan_o << "<TIME>\n";
-  fplan_o << "TIME= " << time2 << "\n";
-  fplan_o << "</TIME>\n";
+  
+		LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+		xmlOutput << Problem << Values << Parameter << *plan_in;
+		xmlOutput.write(argv[2]);
+  
+		//time is not read - so don't write it
+		/*
+				fplan_o << "<TIME>\n";
+				fplan_o << "TIME= " << time2 << "\n";
+				fplan_o << "</TIME>\n";
+		*/
+		
 
   //fplan_o << (*best_schedule);
- 
-  fplan_o.close();
- 
+		
+		
   delete LR;
   delete MO;
   delete JO;
   delete MJ;
   delete best_schedule;
-  delete prob_type;
-  delete js_Prob;
+		delete js_Prob;
   
   delete[] m_nr;
   delete[] ptime;

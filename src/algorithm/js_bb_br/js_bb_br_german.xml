@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Brucker's Job-Shop B&amp;B" type="constructive" call="js_bb_br" code="external" help_file="algorithm/js_bb_br.html">
+  <exact>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls/>
+</algorithm>
