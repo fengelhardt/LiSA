@@ -7,7 +7,7 @@
  *
  * 19.9.1998
 */
-
+#include <stdlib.h>
 #include <string>
 
 using namespace std;

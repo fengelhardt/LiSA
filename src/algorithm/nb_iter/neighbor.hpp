@@ -19,6 +19,7 @@
 #define _nghbour_h
 
 #include "../../main/global.hpp"
+#include <stdlib.h>
 #include <stdio.h>
 
 const int ORIG_SOLUTION     = 0;

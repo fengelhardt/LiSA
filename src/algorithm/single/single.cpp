@@ -5,7 +5,7 @@
  *
  * 23.02.2000
 */
-
+#include <stdlib.h>
 #include<iostream>
 #include<string.h>
 #include<time.h>

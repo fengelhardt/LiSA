@@ -2,6 +2,7 @@
 
 using namespace std;
 
+#include <stdlib.h>
 #include "fp_set.hpp"
 #include "fp_vect.hpp"
 #include "nb_fp.hpp"

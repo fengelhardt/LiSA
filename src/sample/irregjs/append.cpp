@@ -7,7 +7,7 @@
  *
  * 19.9.1998
 */
-
+#include <stdlib.h>
 #include "append.hpp"
 
 void ECT_reverse(Lisa_JsSchedule * sched)

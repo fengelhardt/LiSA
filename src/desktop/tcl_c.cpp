@@ -12,6 +12,7 @@
 
 
 // ********************* System Includes ********************
+#include <stdlib.h>
 #include <string>
 // used in TC_open_schedule():
 #include <fstream>

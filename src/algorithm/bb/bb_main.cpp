@@ -8,7 +8,7 @@
  * 25.10.1999
 */
 
-
+#include <stdlib.h>
 #include<iostream>
 #include"os_bb.hpp"
 #include"js_bb.hpp"

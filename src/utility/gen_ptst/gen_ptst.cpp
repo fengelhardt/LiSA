@@ -12,6 +12,7 @@
 
 // *********************** functions *************************
 
+#include <stdlib.h>
 #include "gen_ptst.hpp"
 
 /// test some parameters of an external algorithm

@@ -8,7 +8,8 @@
  * date:             20.10.1998
  *
  */
-
+ 
+#include <stdlib.h>
 #include "tabu.hpp"
 
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength )

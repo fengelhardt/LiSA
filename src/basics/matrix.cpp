@@ -10,6 +10,7 @@
  * history: 21.10.99  made several methods const
 */
 
+#include <string.h>
 #include <string>
 
 using namespace std;

@@ -226,7 +226,7 @@ public:
   /** get_graph() will return this value if an edge has
       been removed from the set of edges
    */
-  static const TIMETYP REMOVED = -MAXOBJECTIVE;
+  static const TIMETYP REMOVED;
   
   /// destructs this object 
   virtual ~Lisa_Matching(){};

@@ -413,6 +413,8 @@ void Lisa_BipartMatching::write(ostream & strm) const {
 //****************************************************
 //****************************************************
 
+const TIMETYP Lisa_Matching::REMOVED = -MAXOBJECTIVE;
+
 Lisa_WeightedMatching::Lisa_WeightedMatching(const Lisa_Matrix<TIMETYP> *in){
   
   n = (*in).get_n();

@@ -7,7 +7,7 @@
  *
  * 11.09.2000
 */
-
+#include <stdlib.h>
 #include<iostream>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"

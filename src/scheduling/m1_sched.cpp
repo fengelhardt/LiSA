@@ -8,7 +8,8 @@
  * date:             10. 11.1998
  *
  */
-
+ 
+#include <stdlib.h>
 #include "../main/global.hpp"
 #include "m1_sched.hpp"
 

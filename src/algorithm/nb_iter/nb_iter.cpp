@@ -13,7 +13,8 @@
     @version 2.3pre2
 */
 #include "nb_iter.hpp"
-#include<unistd.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 /* at first three procedures for the iteration of 
      - one machine problems

@@ -12,6 +12,7 @@
 
 // ********************* System Includes ********************
 // string used in string file
+#include <stdlib.h>
 #include <string>
 
 using namespace std;

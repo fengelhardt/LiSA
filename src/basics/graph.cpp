@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include"graph.hpp"
 
 //Spalte 0 :
