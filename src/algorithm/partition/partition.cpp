@@ -22,9 +22,14 @@ using namespace std;
 int main(int argc, char *argv[]) 
 {
 
-    // comment out following line to send error messages to console
-    G_ExceptionList.set_output_to_cout();   
-
+    //write errors so lisa can pick them up
+    G_ExceptionList.set_output_to_cout(); 
+    
+    if(argc != 3){
+     cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
+     exit(1);
+    }
+    
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
     Lisa_ControlParameters * sp = new Lisa_ControlParameters;
     Lisa_Values * my_werte=new Lisa_Values;
@@ -32,8 +37,11 @@ int main(int argc, char *argv[])
     cout << "PID= " << getpid() << endl; 
 
     ifstream i_strm(argv[1]);
-    ofstream o_strm(argv[2]);
-
+    if (!i_strm){
+     cout << "ERROR: cannot open file '" << argv[1] << "' for reading." << endl;
+     exit(1);
+    }
+    
     // read problem description 
     i_strm >> (*lpr);
 
@@ -42,6 +50,12 @@ int main(int argc, char *argv[])
 
     // read problem instance:
     i_strm >> (*my_werte);
+    i_strm.close();
+    
+    if (!G_ExceptionList.empty()){
+     cout << "ERROR: cannot read problem data, aborting program." << endl;
+     exit(1);
+    }
     
     // LiSA  schedule object for storing results
     Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),
@@ -137,9 +151,16 @@ int main(int argc, char *argv[])
     //cout << "WARNING: Iss" << sp->get_string("NAME")<< endl;
 
     // write results to output file:
+    ofstream o_strm(argv[2]);
+    if(!o_strm){
+     cout << "Could not open '"<<argv[2]<<"' for writing." << endl;
+     exit(1);
+    }
     o_strm << *lpr;
     o_strm << *my_werte;
     o_strm << *out_schedule;
+    o_strm.close();
+    
     delete out_schedule;
     delete my_werte;
     delete lpr;
