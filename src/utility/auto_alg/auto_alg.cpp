@@ -15,11 +15,12 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/ctrlpara.hpp"
 #include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
 
 //**************************************************************************
 
 int m=10,n=11;
-long seed=918273645;
+long timeseed=987654321,machseed=123456789;
 int lowerrange=1,upperrange=100;
 int numberproblems=1;
 int numberalgorithms=1;
@@ -29,11 +30,18 @@ int numberalgorithms=1;
 // get parameters into global var's, warn if undefined
 void parseParameters(Lisa_ControlParameters &cp){
   
-  if(cp.defined("SEED")==Lisa_ControlParameters::LONG){
-    seed = cp.get_long("SEED");
+  if(cp.defined("TIMESEED")==Lisa_ControlParameters::LONG){
+    timeseed = cp.get_long("TIMESEED");
   }else{
-    G_ExceptionList.lthrow((std::string)"No SEED parameter defined,"+
-                           " using default '"+ztos(seed)+"'.",WARNING);
+    G_ExceptionList.lthrow((std::string)"No TIMESEED parameter defined,"+
+                           " using default '"+ztos(timeseed)+"'.",WARNING);
+  }
+  
+  if(cp.defined("MACHSEED")==Lisa_ControlParameters::LONG){
+    machseed = cp.get_long("MACHSEED");
+  }else{
+    G_ExceptionList.lthrow((std::string)"No MACHSEED parameter defined,"+
+                           " using default '"+ztos(machseed)+"'.",WARNING);
   }
   
   if(cp.defined("M")==Lisa_ControlParameters::LONG){
@@ -127,6 +135,46 @@ void checkAlgo(Lisa_ControlParameters &cp){
 
 //**************************************************************************
 
+// generate values with respect to seed,m,n,lowerrange,upperrange and the 
+// problemtype .. only problemtypes that can be handled here should be accepted 
+// by checkProblemType()
+void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
+  val.init(n,m);
+  val.make_PT();
+  val.make_SIJ();
+  val.SIJ->fill(1);
+  
+  // taken from tcl_c.cpp, TC_genpt()
+  if(lowerrange==upperrange){
+    val.PT->fill(lowerrange);
+  }else{
+    
+    Lisa_Vector<int> zeg(m), mg(m);
+    for(int j=0; j<n; j++) {
+      
+      for(int i=0; i<m; i++) {
+        zeg[i] = lisa_random((long)lowerrange,(long)upperrange, &timeseed);
+        mg[i]=i;
+      }
+      
+      for(int i=0; i<m; i++) {
+        int u = lisa_random(i+1, m, &machseed) -1 ;
+        int temp = mg[i];
+        mg[i]=mg[u];
+        mg[u]=temp;
+      }
+      
+      for(int i=0; i<m; i++) if((*val.SIJ)[j][mg[i]]) (*val.PT)[j][mg[i]]= zeg[i];
+    }
+  
+  }
+  
+  std::cout << *val.PT;
+  
+}
+
+//**************************************************************************
+
 int main(int argc, char *argv[]){
  
  //make sure we report any errors
@@ -166,10 +214,16 @@ int main(int argc, char *argv[]){
    checkAlgo(cps[i]);
  }
  
- // were done reading -> close input file
+ // were done reading
  in_file.close();
-
  
+  
+ for(int i=0;i<numberproblems;i++){
+   Lisa_Values val;
+   generateValues(val,pt);
+   
+ }
+
  delete[] cps;
  return 0;
 }
