@@ -20,6 +20,7 @@
 bool inttst(const double wert){
   const long int n = (long int) wert;
   const double diff=wert-(double)n;
+  
   if(diff<=0.001 && diff>=-0.001) return 1;
   else return 0;
 }
@@ -32,7 +33,7 @@ string ztos(const double wert){
   if(inttst(wert)) sprintf(umwd,"%0.0f",wert);
   else sprintf(umwd,"%0.2f",wert);
   
-  string S = umwd;
+  string S(umwd);
   return S;
 }
 
@@ -44,7 +45,7 @@ string ztofs(const double wert){
   if(inttst(wert)) sprintf(umwd,"%4.0f",wert);
   else sprintf(umwd,"%4.2f",wert);
   
-  string S = umwd;
+  string S(umwd);
   return S;
 }
 
