@@ -31,7 +31,7 @@ using namespace std;
 int main(int argc, char *argv[]){
 
   G_ExceptionList.set_output_to_cout();
-  cout << "This is the LiSA irreducibility test module.";
+  cout << "This is the LiSA irreducibility test module." << endl;
   cout << "PID= " << getpid() << endl; 
   
   // open files and assure existence:
