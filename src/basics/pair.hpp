@@ -5,7 +5,7 @@
 #include "../lisa/lsaobjct.hpp"
 
 /// ordered pair
-/** ordered pairs are often used as basic type
+/** ordered pairs are often used as basictype
     
     @author            Per Willenius
     @version 2.3pre3

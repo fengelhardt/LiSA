@@ -47,16 +47,18 @@ public:
   class Lisa_Matrix<bool> *CP;
   /// sequence graph
   class Lisa_SGraph *PG; 
+/*  
   /// Comparability Graph
   class Cgraph *CG; 
   /// transitive closure
   class Cgraph *TH; 
   /// reverse transitive closure
-  class Cgraph *TH_V;
+  class Cgraph *TH_V; */
   /// complete sequence graph
   class CSgraph *CS; 
-  /// Implicationclasses
+/*  /// Implicationclasses
   class Lisa_ImplicationClass *IKL; 
+  */
   /// constructor
   Lisa_XSchedule();
   /// constructor

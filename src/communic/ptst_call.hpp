@@ -32,19 +32,12 @@
 #include "../scheduling/schedule.hpp"
 #include "../desktop/tclhack.hpp"
 
-/** @name TCL/TK Commands
-
-    contains functions, which was called by the TCL/TK interpreter
-
-    @author Andreas Winkler
-    @version 2.3pre3
-*/ 
-
-//@{
-
 //**************************************************************************
 
 /// starts external algorithm parameter test
+/** @author Andreas Winkler
+    @version 2.3pre3
+*/ 
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
 		int /*argc*/, TCL_HACK_CHAR *argv[]);
@@ -52,6 +45,9 @@ int TC_startparam(ClientData /* clientData */,
 //**************************************************************************
 
 /// call external algorithm parameter test
+/** @author Andreas Winkler
+    @version 2.3pre3
+*/ 
 int start_paratest(Tcl_Interp *interp, 
                    std::string name_of_algo,
                    std::string algo_call,
@@ -64,8 +60,6 @@ int start_paratest(Tcl_Interp *interp,
                    Lisa_Values & G_Values);
 
 //**************************************************************************
-
-//@}
 
 #endif
 

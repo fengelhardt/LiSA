@@ -704,10 +704,23 @@ void vertice_set::del_all(){
   for(i=0;i<number_of_vertices;i++) v_set[i]=0;
 }
 
+//**************************************************************************
+
 vertice_set::~vertice_set(){ delete [] v_set;}
+
+//**************************************************************************
+
 void vertice_set::add_vertice(int v){ v_set[v]=1;}
+
+//**************************************************************************
+
 void vertice_set::del_vertice(int v){ v_set[v]=0;}
+
+//**************************************************************************
+
 int vertice_set::tst_vertice(int v){ return v_set[v];}
+
+//**************************************************************************
 
 int vertice_set::operator <=(vertice_set & zweite){
   int i;

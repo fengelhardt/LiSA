@@ -10,11 +10,11 @@
 Lisa_XSchedule::Lisa_XSchedule(){
   CP=NULL;
   PG=NULL;
-  CG=NULL;
-  TH=NULL;
-  TH_V=NULL;
+//  CG=NULL;
+//  TH=NULL;
+//  TH_V=NULL;
   CS=NULL;
-  IKL=NULL;
+//  IKL=NULL;
 }
 
 //**************************************************************************
@@ -22,11 +22,11 @@ Lisa_XSchedule::Lisa_XSchedule(){
 Lisa_XSchedule::Lisa_XSchedule(class Lisa_Schedule *Pl){
   P=Pl; // connect Lisa_XSchedule with Lisa_Schedule
   n=P->get_n(); m=P->get_m();
-  CG=NULL;
-  TH=NULL;
-  TH_V=NULL;
+//  CG=NULL;
+//  TH=NULL;
+//  TH_V=NULL;
   CS=NULL;
-  IKL=NULL;
+//  IKL=NULL;
   CP=new Lisa_Matrix<bool>(n,m); 
   PG=new Lisa_SGraph(m,n); // important: order of the parameter not like Lisa_Matrix
 }
@@ -170,11 +170,11 @@ int Lisa_XSchedule::PG_to_LR(Lisa_Matrix<bool> *SIJ){
 
 Lisa_XSchedule::~Lisa_XSchedule(){
   if (PG) delete PG;
-  if (CG) delete CG;
-  if (TH) delete TH;
-  if (TH_V) delete TH_V;
+ // if (CG) delete CG;
+ // if (TH) delete TH;
+ // if (TH_V) delete TH_V;
   if (CS) delete CS;
-  if (IKL) delete IKL;
+ // if (IKL) delete IKL;
 }
 
 //**************************************************************************

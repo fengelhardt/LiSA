@@ -11,7 +11,7 @@ using namespace std;
 
 //**************************************************************************
 
-fp_nb::fp_nb(int ni, int sigmai)
+FP_Neighbourhood::FP_Neighbourhood(int ni, int sigmai)
  {
    n=ni; sigma=sigmai;
    fixed=1;
@@ -25,7 +25,7 @@ fp_nb::fp_nb(int ni, int sigmai)
 
 //**************************************************************************
 
-TIMETYP fp_nb::get_objective_value( int i )
+TIMETYP FP_Neighbourhood::get_objective_value( int i )
  {
    switch (i) {
                 case ORIG_SOLUTION: return solution->get_slack();
@@ -39,7 +39,7 @@ TIMETYP fp_nb::get_objective_value( int i )
 
 //**************************************************************************
 
-int fp_nb::accept_solution()
+int FP_Neighbourhood::accept_solution()
  {
    modification=solution->replace_vector(repl_i, modification);
    return 0;
@@ -47,7 +47,7 @@ int fp_nb::accept_solution()
 
 //**************************************************************************
   
-int fp_nb::put_orig_to_best()
+int FP_Neighbourhood::put_orig_to_best()
  {
    (*best_solution)=(*solution);
    return 0;
@@ -55,7 +55,7 @@ int fp_nb::put_orig_to_best()
 
 //**************************************************************************
 
-int fp_nb::accept_best_ngh()
+int FP_Neighbourhood::accept_best_ngh()
  {
    best_modification=solution->replace_vector(best_repl_i, best_modification);
    return 0;
@@ -63,7 +63,7 @@ int fp_nb::accept_best_ngh()
 
 //**************************************************************************
 
-int fp_nb::put_work_to_best_ngh()
+int FP_Neighbourhood::put_work_to_best_ngh()
  {
    (*best_modification)=(*modification);
    best_repl_i=repl_i;
@@ -73,7 +73,7 @@ int fp_nb::put_work_to_best_ngh()
 
 //**************************************************************************
    
-int   fp_nb::prepare_move( int )
+int   FP_Neighbourhood::prepare_move( int )
  {
    repl_i=lisa_random(0, sigma-1, &seed);
    chpos=lisa_random(0, n-1, &seed);
@@ -86,7 +86,7 @@ int   fp_nb::prepare_move( int )
 
 //**************************************************************************
 
-int fp_nb::do_move( )
+int FP_Neighbourhood::do_move( )
  {
    int e;
    (*modification)=solution->get_vector(repl_i);
@@ -111,21 +111,21 @@ int fp_nb::do_move( )
 
 //**************************************************************************
 
-int fp_nb::anti_neighbor()
+int FP_Neighbourhood::anti_neighbor()
  {
    return OK;
  }
 
 //**************************************************************************
 
-void fp_nb::set_objective_type( int o )
+void FP_Neighbourhood::set_objective_type( int o )
  {
    objective_type = o;
  }
 
 //**************************************************************************
 
-int fp_nb::init_tabulist( unsigned int i)
+int FP_Neighbourhood::init_tabulist( unsigned int i)
  {
    delete tabu;
    tabu=new Lisa_Tabu(i);
@@ -134,35 +134,35 @@ int fp_nb::init_tabulist( unsigned int i)
 
 //**************************************************************************
 
-int fp_nb:: use_tabulist()
+int FP_Neighbourhood:: use_tabulist()
  { 
    return tabu->use(repl_i, chpos, elem,0);
  }
 
 //**************************************************************************
 
-int    fp_nb::set_tabulist()
+int    FP_Neighbourhood::set_tabulist()
  {
    return tabu->set(best_repl_i, best_chpos, old_elem,0);
  }
 
 //**************************************************************************
 	
-void    fp_nb::store_tabu_param()
+void    FP_Neighbourhood::store_tabu_param()
  {
    old_elem=(solution->get_vector(repl_i)).get_element(chpos);
  }
 
 //**************************************************************************
        
-void   fp_nb:: clean_tabu_param() 
+void   FP_Neighbourhood:: clean_tabu_param() 
  {
    old_elem=3;
  }
 
 //**************************************************************************
 
-fp_nb::~fp_nb()
+FP_Neighbourhood::~FP_Neighbourhood()
  { 
    delete solution;
    delete best_solution;

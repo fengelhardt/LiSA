@@ -1,60 +1,77 @@
-/*
- * ************** pgraph.hpp *******************************
- * description: used graph classes
- *              Sequence Graph, Complete Sequence Graph
- *              and Comparability Graph.
- *
- * @author Per Willenius
- *
- * date:18.11.1997
- * @version 2.3pre3
-*/
 
 #ifndef _pgraph_h
 #define _pgraph_h
 
-
-//  ************** Lisa Includes  ****************** 
 #include "schedule.hpp"
 
-
-//  ************** Class Definitions  ******************
-
-/** Sequence Graph
+/// Sequence Graph
+/**
+  @author Per Willenius
+  @version 2.3pre3
   */
 class Lisa_SGraph { 
-  // Einige Funktionen greifen auf das globale Feld C_BSg.SIJ zurueck
-  // Dies wurde gemacht, um auch Probleme mit nichtvollstaendiger 
-  // Operationenmenge verwalten zu koennen.
-  // Da C_BSg.SIJ bereits existiert, braucht kein neues Feld angelegt werden 
-  
 public:
-  bool ts; // flag, ob bereits TOPSORT durchgefuehrt wurde
+  /// flag, if topsort() was already done
+  bool ts;
+  
+  /// size of graph
   int n,m;
+  
+  /// graph valid ?
   int valid;
-  int * v_edge;   // gibt fuer jeden Knoten die nachfolgende vert. Kante an  
-  int * h_edge;   // gibt fuer jeden Knoten die nachfolgende hor. Kante in horadl an
-  int * v_pred;   // vertikaler Vorgaenger  
-  int * h_pred;   // horizontaler Vorgaenger  
-  int * TS;      // Liste von Knoten entsprechend TOPSORT
-
+  
+  /// contains for each vertex the vollowing vertical edge
+  int *v_edge;
+  /// contains for each vertex the following horizontal edge
+  int *h_edge;
+  /// vertical predecessor of a vertex
+  int *v_pred;
+  /// horizontal predecessor of a vertex  
+  int *h_pred;
+  /// list of vertex generetad by topsort()  
+  int *TS;
+  
+  /// default constructor
   Lisa_SGraph();
-  Lisa_SGraph(int pm,int pn); // leider nicht wie im Rest des Programmes
-  void print(void);
+  /// create a sequence graph with m x n vertices
+  Lisa_SGraph(int pm,int pn);
+  /// create sequence from a schedule
   Lisa_SGraph(Lisa_Schedule *PL);
+  /// copy constructor
   Lisa_SGraph(class CSgraph & myCSG);
+  ///destructor
   ~Lisa_SGraph();
+  
+  /// debug info output
+  void print();
+  
+  /// reinitialize graph, clears all edges
+  /** this method looks like it has a big memory leak */
   void new_graph();
+  
+  /// generate sequence graph from schedule
   void ausplan(Lisa_Schedule * PL);
+  
+  /// get horizontal successor of vertex i
   int hsucc(int i);
+  /// get vertical successor of vertex i
   int vsucc(int i);
+  /// get horizontal predecessor of vertex i
   int hpred(int i);
+  /// get vertical predecessor of vertex i
   int vpred(int i);
-  int index(int ni, int mi); // gibt Index des Knotens (ni,mi) zurueck
-  int row(int i);           // gibt Zeile des Knotens mit Index i zurueck
-  int column(int i);           // gibt Spalte des Knotens mit Index i zurueck
-  bool topsort(); // topologische Sortierung, gibt 1 zurueck, wenn Zyklen
+  
+  /// returns internal index of vertex at position ni,mi
+  int index(int ni, int mi);
+  /// returns row of vertex with index i
+  int row(int i);
+  /// returns column of vertex with index i
+  int column(int i);
+  /// sort vertice topologically, returns true if graph contains a cycle
+  bool topsort();
 };
+
+//**************************************************************************
 
 class Cgraph { // allgemeiner Graph (vor allen fuer
   // transitive Huelle und Comp_graph)
@@ -86,6 +103,8 @@ public:
 int operator <(Cgraph & zweite);
 };
 
+//**************************************************************************
+
 class vertice_set{ // Knotenmenge
 public:
   int number_of_vertices;
@@ -100,6 +119,8 @@ public:
   void del_vertice();
   int operator <=(vertice_set & zweite);
 };
+
+//**************************************************************************
 
 class ad_list{
 public:
@@ -119,6 +140,8 @@ public:
   ~ad_list();
 };
 
+//**************************************************************************
+
 class ad_list_el{
 public:
   ad_list_el * pred;
@@ -126,6 +149,8 @@ public:
   int adj_vertice;
   ad_list_el();
 };
+
+//**************************************************************************
 
 class Vlist{
 public: 
@@ -141,6 +166,8 @@ public:
   void reset(); // setzt aktuell zurueck
   int next(); // gibt naechstes Element zurueck
 };
+
+//**************************************************************************
 
 class CSgraph{ //Enthaelt die Kanten des CS-Graphen  
   int *h_edge; // Horizontale Kanten
@@ -174,6 +201,8 @@ public:
   int column(int i);           // gibt Spalte des Knotens mit Index i zurueck
 };
 
+//**************************************************************************
+
 class Lisa_ImplicationClass{ // Implikationsklassen
   
   // Ikl besteht aus fuenf Listen, 
@@ -200,7 +229,7 @@ public:
   ~Lisa_ImplicationClass();
 };
 
-
+//**************************************************************************
 
 class Lisa_Edge{
 public:
@@ -208,16 +237,7 @@ public:
   Lisa_Edge();
 };
 
+//**************************************************************************
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
 

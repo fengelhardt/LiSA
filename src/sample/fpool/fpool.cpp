@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
   int i;
   for (i=0; i<runs; i++)
     {
-      fp_nb* nb=new fp_nb(n,sigma);
+      FP_Neighbourhood* nb=new FP_Neighbourhood(n,sigma);
       Lisa_Iterator * it=new Lisa_Iterator();
       cout << "\nstarting run " << i+1;
       nb->solution->random2(&seed);
