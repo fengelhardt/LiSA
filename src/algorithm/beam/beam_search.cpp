@@ -256,7 +256,7 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
 	  next.first = i; next.second = j;
 	  best = head;
 	}
-	else if(head == best && (tie(next.first,next.second) < tie(i,j))){ //break tie
+	else if(head == best && (tie(next.first,next.second) > tie(i,j))){ //break tie
 	  next.first = i; next.second = j;
 	}
       }
@@ -265,7 +265,7 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
   return false;
 }
 
-#define BE_STRICT_NON_DELAY
+//#define BE_STRICT_NON_DELAY
 
 void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, InsertionList& ins){
   ins.clear();
