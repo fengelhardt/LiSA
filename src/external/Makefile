@@ -11,7 +11,7 @@ DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
-SKIP_MODULES_REGEX=/CVS$$|/evaluate$$|/irred$$|/partition$$|/sample$$
+SKIP_MODULES_REGEX=/CVS$$|/irred$$|/partition$$|/sample$$
 
 # ------------------------------------------------------------------------------
 
