@@ -26,11 +26,11 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
-CXXFLAGS=$(CXXINCL) -Wall
+CXXFLAGS=$(CXXINCL) -Wall -Wno-deprecated
 LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)
-DEPENDCXXFLAGS=$(CXXINCL) -Wall
+DEPENDCXXFLAGS=$(CXXINCL) -Wall -Wno-deprecated
 
 # ------------------------------------------------------------------------------
 

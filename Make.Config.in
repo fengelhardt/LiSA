@@ -1,4 +1,4 @@
-CXX=@CXX@ -Wno-deprecated
+CXX=@CXX@
 LD=@CXX@
 
 INCL=
