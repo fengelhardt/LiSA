@@ -89,7 +89,7 @@ protected:
   int   pushtail(int i, int j, TIMETYP time);
   int   pullhead(int i, int j);
   int   pulltail(int i, int j);
-  void  push_LR(Lisa_Matrix<int>* LR,int i,int j,int j) const;
+  void  push_LR(Lisa_Matrix<int>* LR,int i,int j,int k) const;
   //@}
 public:
   /// destructor

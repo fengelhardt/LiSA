@@ -609,7 +609,7 @@ public:
      temp=temp->succ;
    }while (temp!=first_last);
    
-   strm << ") "<<endl;
+   strm << ") "<< std::endl;
  }
 
 //**************************************************************************
