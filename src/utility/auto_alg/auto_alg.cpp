@@ -306,18 +306,18 @@ int main(int argc, char *argv[]){
      exit(-1);
    }
    
-   out_file << "This is problem number " << i+1 << " of " << numberproblems
-            << " created from the following initial values:" << std::endl
-            << std::endl;
-   out_file << cp << std::endl;
-   out_file << pt << std::endl;
-   out_file << "Generated problem instance:" << std::endl << std::endl; 
-   out_file << val << std::endl;
-   out_file << "Now follows a list of schedules for this problem, each "
-            << "preceded by the algorithm and parameters that were used to "
-            << "generate it. The first algorithm was called without an initial "
-            << "schedule, while the following algorithms get the previous "
-            << "schedule as input." << std::endl << std::endl;
+   out_file 
+   << "This is problem number " << i+1 << " created from the following initial "
+   << "values:" << std::endl << std::endl
+   << cp
+   << pt << std::endl
+   << "Generated problem instance:" << std::endl
+   << val << std::endl
+   << "Now follows a list of schedules for this problem, each preceded by the" 
+   << std::endl << "algorithm and parameters that were used to generate it. "
+   << "The first algorithm" << std::endl << "was called without an initial "
+   << "schedule, while the following algorithms get" << std::endl << "the "
+   << "previous schedule as input." << std::endl << std::endl;
    
    // run all the algorithms .. first one should be constructive, the others 
    // can be iterative to improve the solution or contructive to create a new
@@ -328,8 +328,7 @@ int main(int argc, char *argv[]){
     system((cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
     readAlgOutput(sched);
     
-    out_file << cps[j] << std::endl;
-    out_file << sched << std::endl;
+    out_file << cps[j] << sched << std::endl;
 
    }
    
