@@ -1110,7 +1110,6 @@ int TC_kill(ClientData /* clientData */,
   sscanf(argv[1],"-%d",&signal);
   sscanf(argv[2],"%d",&pid);
   kill(pid, signal);
-  cerr << "signal: " << signal << ", pid: " << pid << "\n";
   return TCL_OK;
 }
 
