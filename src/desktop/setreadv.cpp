@@ -165,195 +165,173 @@ int TC_set_Tupel(ClientData /* clientData */,
 
 // returns the values of C++ variables
 int TC_getvar(ClientData /* clientData */,
-	      Tcl_Interp *interp,
-	      int argc, TCL_HACK_CHAR *argv[]){
+	            Tcl_Interp *interp,
+              int argc, TCL_HACK_CHAR *argv[]){
           
   int temp=0,row=0,column=0,n=0,m=0,i=0;
   float xpos=0,ypos=0;
+  
   string name=argv[1],str="NOT_DEFINED",str2="",str3="",str4="";
   
   if (name=="LANGUAGE") {
     str= G_Preferences.get_string("LANGUAGE");
-  }
-  else if (name=="HTML_VIEWER") {
+  }else if (name=="HTML_VIEWER") {
     str= G_Preferences.get_string("HTML_VIEWER");
-  }
-  else if (name=="problemtype") {
+  }else if (name=="problemtype") {
     str=G_ProblemType.output_problem();
     if (str!="no valid Problem"&&G_Values.get_m()!=0&&G_Values.get_n()!=0) {
       str+="      ";
       if (G_Values.get_m()>1)
-	str+=ztos(G_Values.get_m()) + " " + translate("Machines")+"   "; 
+        str+=ztos(G_Values.get_m()) + " " + translate("Machines")+"   "; 
       str+=ztos(G_Values.get_n()) +" "+ translate("Jobs");
     }
-  }
-  else if (name=="mwwidth") sprintf(interp->result, "%d",mw_width() );
-  //G_Preferences.get_int("WIDTH"));
-  else if (name=="mwheight") sprintf(interp->result, "%d",mw_height() );
-  //G_Preferences.get_int("HEIGHT"));
-  else if (name=="get_m") sprintf(interp->result, "%d",G_Values.get_m());
-  else if (name=="get_n") sprintf(interp->result, "%d",G_Values.get_n());
-  else if (name=="get_mn") sprintf(interp->result, "%d",
-				   MIN(G_Values.get_n(),G_Values.get_m()));
-  else if (name=="alpha") {
+  }else if (name=="mwwidth"){
+    sprintf(interp->result, "%d",mw_width() );
+  }else if (name=="mwheight"){
+    sprintf(interp->result, "%d",mw_height() );
+  }else if (name=="get_m"){
+    sprintf(interp->result, "%d",G_Values.get_m());
+  }else if (name=="get_n"){
+    sprintf(interp->result, "%d",G_Values.get_n());
+  }else if (name=="get_mn"){
+    sprintf(interp->result, "%d", MIN(G_Values.get_n(),G_Values.get_m()));
+  }else if (name=="alpha") {
     str=G_ProblemType.output_alpha();
-      }
-  else if (name=="beta") {
+  }else if (name=="beta") {
     str=G_ProblemType.output_beta();
-      }
-  else if (name=="gamma") {
+  }else if (name=="gamma") {
     str=G_ProblemType.output_gamma();
-  }
-  else if (name=="schedule_row") {
+  }else if (name=="schedule_row") {
     sscanf(argv[2],"%d",&temp);
     sprintf(interp->result, "%ld", (long) temp/ENTRYHEIGHT);
-  }
- else if (name=="schedulelist_row") {
+  }else if (name=="schedulelist_row") {
     sscanf(argv[2],"%d",&temp);
     sprintf(interp->result, "%ld", (long) temp/ENTRYHEIGHT);
-  }
-  else if (name=="schedule_column") {
+  }else if (name=="schedule_column") {
     sscanf(argv[2],"%d",&temp);
     sprintf(interp->result, "%ld", (long) temp/ENTRYWIDTH);
-  }
-  else if (name=="schedule_identifier") { 
-       if (argv[2] ==NULL || argv[3]==NULL) 
-      {interp->result="0";return TCL_OK;} 
+  }else if (name=="schedule_identifier") { 
+    if (argv[2] ==NULL || argv[3]==NULL){
+      interp->result="0";
+      return TCL_OK;
+    } 
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     if (row<G_Values.get_n()&& row>=0) {
       if (column<G_Values.get_m()&& column>=0) {// valid row an column
-	str = Tcl_GetVar2(interp,"schedule","Matrix",TCL_GLOBAL_ONLY); 
+        str = Tcl_GetVar2(interp,"schedule","Matrix",TCL_GLOBAL_ONLY); 
       }
     }
-  }
-  else if (name=="semiactive_flag") {
+  }else if (name=="semiactive_flag") {
     str = ztos(G_Schedule->semiactive);
-  } 
-  else if (name=="w_row") {
+  }else if (name=="w_row") {
     sscanf(argv[2],"%d",&temp);
     sprintf(interp->result, "%ld", (long) temp/ENTRYHEIGHT);
-  }
-  else if (name=="w_column") {
+  }else if (name=="w_column") {
     sscanf(argv[2],"%d",&temp);
     sprintf(interp->result, "%ld", (long) temp/ENTRYWIDTH);
-  }
-  else if (name=="w_identifier") {
+  }else if (name=="w_identifier") {
     str="";
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     if (row<G_Values.get_n() && row>=0) {
       if (column<G_Values.get_m() && column>=0) {// either PIJ, SIJ or MO
-	str = Tcl_GetVar2(interp,"dat","Matrix",TCL_GLOBAL_ONLY); 
-      }
-      else {// DD, WI RD
-	int dd=0,wi=0,rd=0;
-	str2  = Tcl_GetVar2(interp,"dat","RI",TCL_GLOBAL_ONLY);
-	if (str2=="1") rd=1; 
-	str2  = Tcl_GetVar2(interp,"dat","DI",TCL_GLOBAL_ONLY);
-	if (str2=="1") dd=1; 
-	str2  = Tcl_GetVar2(interp,"dat","WI",TCL_GLOBAL_ONLY);
-	if (str2=="1") wi=1;
-	if (column == G_Values.get_m()) {// first one 
-	  if (rd) str = "RD";
-	  else if (dd) str = "DD";
-	  else if (wi) str = "WI";
-	  	}
-	else if(column == G_Values.get_m()+1) {// second one 
-	  if (rd) {
-	    if (dd) str = "DD";
-	    else if (wi)  str = "WI";
-	  }
-	  else {
-	    if (dd+wi==2) str = "WI";
-	  }
-	}
-	else if(column == G_Values.get_m()+2) {// third one
-	  if (rd+dd+wi==3) str = "WI";
-	}  
+        str = Tcl_GetVar2(interp,"dat","Matrix",TCL_GLOBAL_ONLY); 
+      }else {// DD, WI RD
+        int dd=0,wi=0,rd=0;
+        str2  = Tcl_GetVar2(interp,"dat","RI",TCL_GLOBAL_ONLY);
+        if (str2=="1") rd=1; 
+        str2  = Tcl_GetVar2(interp,"dat","DI",TCL_GLOBAL_ONLY);
+        if (str2=="1") dd=1; 
+        str2  = Tcl_GetVar2(interp,"dat","WI",TCL_GLOBAL_ONLY);
+        if (str2=="1") wi=1;
+        if (column == G_Values.get_m()) {// first one 
+          if (rd) str = "RD";
+          else if (dd) str = "DD";
+          else if (wi) str = "WI";
+        }else if(column == G_Values.get_m()+1) {// second one 
+          if (rd) {
+            if (dd) str = "DD";
+            else if (wi)  str = "WI";
+          }else{
+            if (dd+wi==2) str = "WI";
+          }
+        }else if(column == G_Values.get_m()+2) {// third one
+          if (rd+dd+wi==3) str = "WI";
+        }  
       }
     }
-  }
-  else if (name=="w_entry") {
+  }else if (name=="w_entry") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str2 = Tcl_GetVar2(interp,"dat","Matrix",TCL_GLOBAL_ONLY);
     if (row<G_Values.get_n()&& column<G_Values.get_m() && row>=0 && column>=0 ) {
       if (str2=="PIJ") {
-	str=ztos((*G_Values.PT)[row][column]);
+        str=ztos((*G_Values.PT)[row][column]);
       }
       if (str2=="SIJ") {
-	str=ztos((*G_Values.SIJ)[row][column]);
+        str=ztos((*G_Values.SIJ)[row][column]);
       }
       if (str2=="MO") {
-	if (G_TclVar.MO_as_Matrix!=NULL)
-	  str=ztos((*G_TclVar.MO_as_Matrix)[row][column]);
-	else str="0";
+        if (G_TclVar.MO_as_Matrix!=NULL)
+          str=ztos((*G_TclVar.MO_as_Matrix)[row][column]);
+        else str="0";
       }
     }
-  }
-  else if (name=="Cij") {
+  }else if (name=="Cij") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos((*G_Schedule->CIJ)[row][column]);
-  }
- else if (name=="pij") {
+  }else if (name=="pij") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos((*G_Values.PT)[row][column]);
-  }
- else if (name=="critical") {
+  }else if (name=="critical") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     if (G_XSchedule->CP) {
-    str=ztos((*G_XSchedule->CP)[row][column]);
-    } else str="0";
-  }
-  else if (name=="schedule_entry") {
+      str=ztos((*G_XSchedule->CP)[row][column]);
+    }else{ 
+      str="0";
+    }
+  }else if (name=="schedule_entry") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str2 = Tcl_GetVar2(interp,"schedule","Matrix",TCL_GLOBAL_ONLY);
     if (row<G_Values.get_n()&& column<G_Values.get_m() && row>=0 && column>=0) {
       if (str2=="LR") {
- 	str=ztos((*G_Schedule->LR)[row][column]);
+        str=ztos((*G_Schedule->LR)[row][column]);
       }
       if (str2=="SCHEDULE") {
- 	str=ztos((*G_Schedule->CIJ)[row][column]);
+        str=ztos((*G_Schedule->CIJ)[row][column]);
       }
       if (str2=="MO") {
-	//	puts "MO gefragt" << endl;
-	if (G_TclVar.MO_as_Matrix!=NULL)
-	  str=ztos((*G_TclVar.MO_as_Matrix)[row][column]);
-	else str="0";
-	}
+        //	puts "MO gefragt" << endl;
+        if (G_TclVar.MO_as_Matrix!=NULL)
+          str=ztos((*G_TclVar.MO_as_Matrix)[row][column]);
+        else str="0";
+      }
       if (str2=="JO") {
-	str="0";
+        str="0";
       }
     }
-  }
-  else if (name=="entry_in_ptupel") {
+  }else if (name=="entry_in_ptupel") {
     str3=argv[2];
     str=ztos(G_ProblemType.get_property(stoz(str3)));
-  }
-  else if (name=="DD") {
+  }else if (name=="DD") {
     sscanf(argv[2],"%d",&row);
     str=ztos((*G_Values.DD)[row]);
-  }
-  else if (name=="RD") {
+  }else if (name=="RD") {
     sscanf(argv[2],"%d",&row);
     str=ztos((*G_Values.RD)[row]);
-  }
-  else if (name=="WI") {
+  }else if (name=="WI") {
     sscanf(argv[2],"%d",&row);
     str=ztos((*G_Values.WI)[row]);
-  }
-  else if (name=="time_seed") {
+  }else if (name=="time_seed") {
     str=ztos(G_Status.time_seed);
-  }
- else if (name=="mach_seed") {
+  }else if (name=="mach_seed") {
     str=ztos(G_Status.mach_seed);
-  }
-   else if (name=="upper_bound") {
+  }else if (name=="upper_bound") {
      if (G_Schedule->valid) {
        while (G_ExceptionList.empty()==0) print_error();
        Lisa_OsProblem  myOsProblem(&G_Values);
@@ -361,9 +339,9 @@ int TC_getvar(ClientData /* clientData */,
        G_ExceptionList.lcatch(INCONSISTENT_INPUT);
        str=ztos(update_objective(myOsSchedule));
      } else str= "schedule_not_valid";
- }else if (name=="lower_bound"){
+  }else if (name=="lower_bound"){
     str=" ";
- }else if (name=="job_from_gantt"){
+  }else if (name=="job_from_gantt"){
    
    sscanf(argv[2],"%f",&xpos);
    sscanf(argv[3],"%f",&ypos);
@@ -407,17 +385,13 @@ int TC_getvar(ClientData /* clientData */,
     
     mydata=myTCGantt.get_data(normalx,normaly,&G_Values,G_Schedule, G_Preferences.gantt_orient);
     str=ztos(mydata->machine);
-  }
-  else if (name=="no_solutions") {
+  }else if (name=="no_solutions") {
     str=ztos(G_ScheduleList->length());
-  }
-  else if (name=="PROGRESS_INDICATOR_STEPS") {
+  }else if (name=="PROGRESS_INDICATOR_STEPS") {
     str=ztos(PROGRESS_INDICATOR_STEPS);
-  }
-  else if (name=="M_ENV") {
+  }else if (name=="M_ENV") {
     str=ztos(G_ProblemType.get_property(M_ENV));
-  }
-  else if (name=="ptupel_number") {
+  }else if (name=="ptupel_number") {
     if (argc==3) {
       str2= argv[2];
       if (str2=="alpha") str=ztos(NUMBER_ALPHA);
@@ -425,19 +399,14 @@ int TC_getvar(ClientData /* clientData */,
       else if (str2=="gamma") str=ztos(NUMBER_GAMMA);
       else if (str2=="misc") str=ztos(NUMBER_MISC);
       else {
-	for (i=0;i<TUPEL_INDEX;i++) {
-	  if (str2== (string) name_of_tupelindex[i])
-	    str=ztos(NUMBER[i]);
-	}
+        for (i=0;i<TUPEL_INDEX;i++) {
+          if (str2== (string) name_of_tupelindex[i])
+            str=ztos(NUMBER[i]);
+        }
       }
     }
-  //   if (argc==4) {
-//       str2= argv[2];
-//       str3= argv[3];
-//     }
-    
-  }
-  else if (name=="ptupel_name") {
+     
+  }else if (name=="ptupel_name") {
     if (argc==3) {
       str2= argv[2];
       n=stoz(str2);
@@ -450,47 +419,41 @@ int TC_getvar(ClientData /* clientData */,
       m=stoz(str3);
       str=name_of_tupelentry[n][m];
     }
-  }
-  else if (name=="JO_succ") {
+  }else if (name=="JO_succ") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos(G_TclVar.JOsucc);
-  }
-  else if (name=="MO_succ") {
+  }else if (name=="MO_succ") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos(G_TclVar.MOsucc);
-  }
-  else if (name=="MO_pred") {
+  }else if (name=="MO_pred") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos(G_TclVar.MOpred);
-  }
-  else if (name=="JO_pred") {
+  }else if (name=="JO_pred") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos(G_TclVar.JOpred);
-  }
-   else if (name=="REFERENCES") {
+  }else if (name=="REFERENCES") {
      str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
-		       "/data/classify/classify.bib");
+                       "/data/classify/classify.bib");
      int stringlength=str.length();
      if (stringlength>250) {
        str.erase(250,stringlength);
      }
-   }
-  else if (name=="SIJ") {
+   }else if (name=="SIJ") {
     sscanf(argv[2],"%d",&row);
     sscanf(argv[3],"%d",&column);
     str=ztos((*G_Values.SIJ)[row][column]);
-  }
-  else if (name=="VALID_SCHEDULE") {
+  }else if (name=="VALID_SCHEDULE") {
     str=ztos(G_Schedule->valid);
   }else if(name=="VALID_PROBLEMTYPE"){
     str=ztos(G_ProblemType.valid());
+  }else{
+    cerr << "in TC_getvar: Variable " <<name <<"unknown\n";
   }
-
-  else cerr << "in TC_getvar: Variable " <<name <<"unknown\n";
+  
   if (str!="NOT_DEFINED") sprintf(interp->result, "%s", str.c_str() );
   return TCL_OK; 
 }
