@@ -346,11 +346,11 @@ proc {read_all_desc_files} { } {
     foreach filename $filelist {
 	set filename [string trimright $filename ".alg"]
 	genparawin "$descr_dir/$filename.alg" "$source_dir/$filename.tcl" $filename
-	puts $ext_alg "source \"$source_dir/$filename.tcl\""
+	puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$filename.tcl\""
 	set ptst_filename "$filename\_ptst"
 	
  	genparatestwin "$descr_dir/$filename.alg" "$source_dir/$ptst_filename.tcl" $filename
- 	puts $ext_alg "source \"$source_dir/$ptst_filename.tcl\""
+ 	puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$ptst_filename.tcl\""
     }
     puts $ext_alg "set lsa_status(OLD_LISAHOME) $env(LISAHOME)"
     puts $ext_alg "set lsa_status(OLD_LANGUAGE) $env(LLANGUAGE)"
