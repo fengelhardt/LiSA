@@ -18,15 +18,7 @@ CXXSOURCES=\
 	jsp/jsp_blsh.cpp \
 	jsp/jsp_3_cr.cpp \
 	single_neighbourhoods.cpp \
-	osp/osp_3api.cpp \
-	osp/osp_3_cr.cpp \
-	osp/osp_api.cpp \
-	osp/osp_cr_r.cpp \
-	osp/osp_crpi.cpp \
-	osp/osp_blpi.cpp \
-	osp/osp_blsh.cpp \
-	osp/osp_crsh.cpp \
-	osp/osp_shft.cpp \
+  openshop_neighbourhoods.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

@@ -22,15 +22,7 @@
 
 #include "single_neighbourhoods.hpp"
 
-#include "osp/osp_api.hpp"
-#include "osp/osp_3api.hpp"
-#include "osp/osp_3_cr.hpp"
-#include "osp/osp_crpi.hpp"
-#include "osp/osp_blpi.hpp"
-#include "osp/osp_blsh.hpp"
-#include "osp/osp_shft.hpp"
-#include "osp/osp_crsh.hpp"
-#include "osp/osp_cr_r.hpp"
+#include "openshop_neighbourhoods.hpp"
 
 #include "jsp/jsp_api.hpp"
 #include "jsp/jsp_swap.hpp"

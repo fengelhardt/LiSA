@@ -18,15 +18,7 @@ OBJECTS=\
 	../../../obj/jsp_blsh.o \
 	../../../obj/jsp_3_cr.o \
 	../../../obj/single_neighbourhoods.o \
-	../../../obj/osp_3api.o \
-	../../../obj/osp_3_cr.o \
-	../../../obj/osp_api.o \
-	../../../obj/osp_cr_r.o \
-	../../../obj/osp_crpi.o \
-	../../../obj/osp_blpi.o \
-	../../../obj/osp_blsh.o \
-	../../../obj/osp_crsh.o \
-	../../../obj/osp_shft.o \
+	../../../obj/openshop_neighbourhoods.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \
