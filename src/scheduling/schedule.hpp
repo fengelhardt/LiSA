@@ -71,12 +71,12 @@ public:
   void make_NJO();
   /// construct set of operations
   void make_CIJ();
-  /// construct maschine order
-  int LR_to_MO(); 
-  /// construct job order
-  int LR_to_JO(); 
-  /// construct latin rectangle
-  int MO_JO_to_LR(); 
+  // construct maschine order
+  //int LR_to_MO(); 
+  // construct job order
+  //int LR_to_JO(); 
+  // construct latin rectangle
+  //int MO_JO_to_LR(); 
   
   /// return some properties of the schedule
   int get_property(int property);
