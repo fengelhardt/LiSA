@@ -13,7 +13,7 @@
 /// maximal number of BiBTeX entries.
 const int MAX_REC=200;
 /// maximal number of characters per line.
-const int LINE=82;
+const int LINE=800;
 /// maximal number of characters per BiBTeX entry.
 const int BIBENTRY=60*LINE;
 /// maximal characters per author item. 
@@ -84,7 +84,7 @@ private:
   /// translate problem given in annote notation into Lisa_ProblemType notation
   int    prbl_into_tupel(char*,int,int);
   /// error output function for errors while reading the database
-  int    error_output(int,int);
+  int    error_output(int,int,std::string);
 
 public:
  

@@ -31,7 +31,7 @@ Lisa_DataBase::Lisa_DataBase(string name)
       if (strchr(line,'@')) // if '@' is found, take next input as
 	{	            // new bib-entry.
 	  bib_entry(bibstr,i); 
-	  *bibstr='\0';
+    *bibstr='\0';
 	  i++;
 	}
       if (!strchr(line,'%'))
@@ -87,7 +87,7 @@ Lisa_DataBase::bib_entry(char *bibstr, int i)
 	}
       // error if author and title are not available
       else 
-	error_output(i,NO_AUTHOR);
+	error_output(i,NO_AUTHOR,string("no_author"));
     }
   if (strstr(bibstr,"YEAR =") || strstr(bibstr,"year ="))
     {
@@ -130,7 +130,7 @@ Lisa_DataBase::bib_entry(char *bibstr, int i)
 		      prbl_into_tupel(annote,i,pn);	      
 		    }   
 		  else                 
-		    error_output(i,pn);   
+		    error_output(i,pn,string(annote));   
 		    // This error can occur if the leading '$' or a '|' 
                     // is missing in the problem type.
 		}
@@ -144,17 +144,17 @@ Lisa_DataBase::bib_entry(char *bibstr, int i)
 		else if (strcmp(annote,"P_{pseudo}")==0)
 		  E[i].tex_an[pn].np_flag=PS_POLYN;
 		else
-		  error_output(i,pn);
+		  error_output(i,pn,string(annote));
 	    }
 	  strcpy(annote,helpstr);
 	}
       if (k%2!=0)
-	error_output(i,pn);
+	error_output(i,pn,string("k%2 != 0"));
       E[i].no_of_prbls=k/2;
     }
   else
     {
-      error_output(i,NO_ANNOTE);
+      error_output(i,NO_ANNOTE,string("no_annotate"));
       return(1);
     }
   delete [] annote;
@@ -237,7 +237,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       else if (*alpha=='R')
 	E[dsatz].problem[nr].set_property(M_ENV,R);
       else
-	error_output(dsatz,nr);
+	error_output(dsatz,nr,string(alpha));
       strcpy(alpha,alpha+1);
     }
   if ((*alpha=='\0') || (*alpha==';'))
@@ -257,7 +257,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	      strcpy(alpha,alpha+2);
 	    }
 	  else 
-	    error_output(dsatz,nr);
+	    error_output(dsatz,nr,string(alpha));
 	}
     }   
   else if (*alpha=='m')
@@ -272,7 +272,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       strcpy(alpha,alpha+1);
     }
   else 
-    error_output(dsatz,nr);
+    error_output(dsatz,nr,string(alpha));
   if (*alpha==';')
     {
       strcpy(alpha,alpha+1);
@@ -281,10 +281,10 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       else if (strcmp(alpha,"S1")==0)
 	E[dsatz].problem[nr].set_property(M_ENV,P_CS);
       else 
-	error_output(dsatz,nr);
+	error_output(dsatz,nr,string(alpha));
     } 
   else if (*alpha!='\0')
-    error_output(dsatz,nr);
+    error_output(dsatz,nr,string(alpha));
   
   // beta entry ------------------------------------------------
 
@@ -328,7 +328,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	  else if (strcmp(beta,"prec")==0)
 	    E[dsatz].problem[nr].set_property(PRECEDENCE,PREC);
 	  else
-	    error_output(dsatz,nr);
+	    error_output(dsatz,nr,string(beta));
 	  if (strcmp(hlpstr,"(1)")==0)
 	    E[dsatz].problem[nr].set_property(TIME_LAGS,UNIT_TL);
 	  else if (strcmp(hlpstr,"(l)")==0)
@@ -336,15 +336,15 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	  else if (strcmp(hlpstr,"(l_{ij})")==0)
 	    E[dsatz].problem[nr].set_property(TIME_LAGS,GENERAL_TL);
 	  else
-	    error_output(dsatz,nr);      
+	    error_output(dsatz,nr,string(hlpstr));      
 	}
       else if (strcmp(beta,"r_i")==0)
 	E[dsatz].problem[nr].set_property(RI,true);
       else if (strcmp(beta,"d_i")==0)
 	E[dsatz].problem[nr].set_property(DI,true);	  
-      else if (strcmp(beta,"p_{ij}=1")==0)
+      else if (strcmp(beta,"p_{ij}=1")==0 || strcmp(beta,"p_i=1")==0) // handle pij = pi as the same
 	E[dsatz].problem[nr].set_property(PIJ,PIJ_1);  
-      else if (strcmp(beta,"p_{ij}=p")==0)
+      else if (strcmp(beta,"p_{ij}=p")==0 || strcmp(beta,"p_i=p")==0) // handle pij=pi as the same
 	E[dsatz].problem[nr].set_property(PIJ,PIJ_P);  
       else if (strcmp(beta,"s-batch")==0)
 	E[dsatz].problem[nr].set_property(BATCH,S_BATCH);
@@ -390,10 +390,10 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	E[dsatz].problem[nr].set_property(SERVER_FLAGS,SI);        
       else if (strcmp(beta,"s_i=1")==0)
 	E[dsatz].problem[nr].set_property(SERVER_FLAGS,SI_1);      
-      else if (strcmp(beta,"s_i=s")==0)
+  else if (strcmp(beta,"s_i=s")==0)
 	E[dsatz].problem[nr].set_property(SERVER_FLAGS,SI_S);    
       else
-	error_output(dsatz,nr);
+	error_output(dsatz,nr,string(beta));
       strcpy(beta,substr);
     }
 
@@ -416,7 +416,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
   else if (strcmp(gamma,"\\sum{w_iT_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WITI);
   else
-    error_output(dsatz,nr); 
+    error_output(dsatz,nr,string(gamma)); 
   delete [] substr;
 
   return(0);
@@ -443,7 +443,7 @@ Lisa_DataBase::output(void)
 	  else if (E[j].tex_an[k].np_flag==PS_POLYN)
 	    cout << "pseudo-polynomially solvable";
 	  else 
-	    error_output(j,k);
+	    error_output(j,k,string("hardness unknown"));
 	  cout << "\nM_ENV:           " 
 	       << E[j].problem[k].get_property_old(M_ENV);
 	  cout << "\nM_NUMBER:        " 
@@ -488,20 +488,20 @@ Lisa_DataBase::output(void)
 //**************************************************************************
 
 int 
-Lisa_DataBase::error_output(int rec,int pn)
+Lisa_DataBase::error_output(int rec,int pn,string error_token)
 {
  
   G_ExceptionList.lfthrow(
-     "Error while reading BibTeX database!\nSyntax error in record "+
-     ztos(rec+1)+":\n\n"+(string) E[rec].author+", "+
-     (string) E[rec].year+",\nProblem Number "+ztos(pn+1)+
-     "\n\n",Lisa_ExceptionList::SYNTAX_ERROR); 
+     "Error while reading BibTeX database! Syntax error in record "+
+     ztos(rec+1)+": "+(string) E[rec].author+", "+
+     (string) E[rec].year+", Problem Number "+ztos(pn+1)+
+     "  Error at: "+error_token,Lisa_ExceptionList::SYNTAX_ERROR); 
   if (pn==NO_ANNOTE)
-    G_ExceptionList.lfthrow("ANNOTE entry is missing!\n\n",
-                            Lisa_ExceptionList::SYNTAX_ERROR);
+    G_ExceptionList.lfthrow("ANNOTE entry is missing in record "+
+                            ztos(rec+1)+" .",Lisa_ExceptionList::SYNTAX_ERROR);
   else if (pn==NO_AUTHOR)
-    G_ExceptionList.lfthrow("AUTHOR and TITLE entry is missing!\n\n",
-			                      Lisa_ExceptionList::SYNTAX_ERROR);
+    G_ExceptionList.lfthrow("AUTHOR and TITLE entry is missing in record "+
+                            ztos(rec+1)+" .",Lisa_ExceptionList::SYNTAX_ERROR);
   return(0);
 }
 
