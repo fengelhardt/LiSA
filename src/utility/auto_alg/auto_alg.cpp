@@ -248,6 +248,20 @@ void readAlgOutput(Lisa_Schedule &sched){
   
 //**************************************************************************
 
+TIMETYP sum(Lisa_Matrix<TIMETYP>* pt){
+  TIMETYP retval = 0;
+  
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      retval += (*pt)[i][j];
+    }
+  }
+  
+  return retval;
+}
+  
+//**************************************************************************
+
 int main(int argc, char *argv[]){
  
  //make sure we report any errors
@@ -318,6 +332,8 @@ int main(int argc, char *argv[]){
    << cp << std::endl  
    << "Generated problem instance:" << std::endl
    << val << std::endl
+   << "The sum of all processing times is: " << sum(val.PT) << std::endl
+   << std::endl
    << "Now follows a list of schedules for this problem, each preceded by the" 
    << std::endl << "algorithm and parameters that were used to generate it. "
    << "The first algorithm" << std::endl << "was called without an initial "
