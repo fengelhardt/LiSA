@@ -1156,7 +1156,10 @@ Lisa_MatrixGraph::Lisa_MatrixGraph(const int number_of_vertices){
 Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph *const othergraph){
   matrix = 0;
   init(othergraph->size);
-  set_adjacency_matrix(othergraph->matrix);
+  
+  Lisa_Matrix<int> out(size,size);
+  othergraph->get_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
 }
 
 //**************************************************************************
@@ -1175,7 +1178,10 @@ Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_Graph *const othergraph){
 Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph & othergraph){
   matrix = 0;
   init(othergraph.size);
-  set_adjacency_matrix(othergraph.matrix);
+  
+  Lisa_Matrix<int> out(size,size);
+  othergraph.get_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
 }
 
 //**************************************************************************
