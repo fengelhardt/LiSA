@@ -1,22 +1,53 @@
 
 <!-- Syntax for xml problem notation -->
 
+<!-- problem structure -->
 <!ELEMENT problem (alpha, beta, gamma)>
+<!-- problem namespace -->
 <!ATTLIST problem xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!-- instance structure -->
 <!ELEMENT instance (problem,values,controls?)>
+<!-- instance namespace -->
 <!ATTLIST instance xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!-- solution structure -->
 <!ELEMENT solution (problem,values,controls?,schedule+)>
+<!-- structure namespace -->
 <!ATTLIST solution xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
 
+<!-- alpha element structure -->
+<!-- Follows the structure of the common alpha|beta|gamma notation -->
 <!ELEMENT alpha EMPTY>
+
+<!-- alpha element attributes ... -->
+<!-- env : machine environment -->
+<!-- mpt : enable/disable multi purpose tasks -->
+<!-- mpm : enable/disable multi purpose machines -->
+<!-- m   : machine number tag (default is arbitrary) -->
+<!--       set this to a number or "fixed" --> 
 <!ATTLIST alpha
 env              (1|O|F|J|X|
-                 G|P|Q|R)      #REQUIRED
+                 G|P|Q|R)      #REQUIRED 
 mpt              (yes|no)      #IMPLIED
 mpm              (yes|no)      #IMPLIED
 m                CDATA         #IMPLIED>
 
+<!-- beta element structure -->
 <!ELEMENT beta EMPTY>
+<!-- beta             : element attributes ... -->
+<!-- pmtn             : enable/disable preemtion -->
+<!-- prec             : enable/disable precedence constraints -->
+<!--  release_times   : enable/disable release times -->
+<!-- due_dates        : enable/disable due dates -->
+<!-- processing_times : set special processing times flag -->
+<!-- batch            : specify batch environment -->
+<!-- batch_bounded    : enable/disable bounded batch -->
+<!-- n                : job number tag (default is arbitrary) -->
+<!--                    set this to a number or "fixed" -->
+<!-- no-wait          : enable/disable "no-wait" schedule constraint -->
+<!-- size             : enable/disable size constraint -->
+<!-- time-lags        : enable/disable time lags -->
+<!-- transp-delays    : specify transportaion delay requirements -->
+<!-- server-flags     : specify server specific properties -->
 <!ATTLIST beta
 pmtn             (yes|no)      #IMPLIED
 prec             (yes|no|intree|outtree|tree|sp_graph|chains)       #IMPLIED
@@ -39,18 +70,15 @@ transp-delays    (no|t_ik--T|
 server-flags     (no|yes|1|s)  #IMPLIED
 >
 
-
-<!-- 
-for m and n you can use "fixed" to specify
-that machine number or job number is fixed, respectively.
--->
-
-
+<!-- gamma element structure -->
 <!ELEMENT gamma EMPTY>
+<!-- gamma element attributes ... -->
+<!-- objective : set objective of problem -->
 <!ATTLIST gamma
 objective (Cmax|Lmax|Sum_Ci|Sum_wiCi|Sum_Ui|Sum_wiUi|Sum_Ti|Sum_wiTi|irreg_1|irreg_2) #REQUIRED
 >
 
+<!-- structure of values element -->
 <!ELEMENT values (
 processing_times,
 operation_set,
@@ -61,7 +89,9 @@ weights?,
 weights_2?,
 extra? ) >
 
-
+<!-- values element needs size of problem to be set ... -->
+<!-- m  :  number of machines  -->
+<!-- n  :  number of jobs  -->
 <!ATTLIST values
 m CDATA #REQUIRED
 n CDATA #REQUIRED>
@@ -83,60 +113,23 @@ n CDATA #REQUIRED>
 <!ELEMENT extra (#PCDATA)>
 <!ATTLIST extra model CDATA "lisa_native">
 
-
-<!-- Syntax for Algorithm description file -->
-
-<!ELEMENT algorithm (((heuristic, exact )| heuristic | exact), alg_controls?)>
-<!ATTLIST algorithm 
-name CDATA #REQUIRED
-type CDATA #REQUIRED
-code CDATA #REQUIRED
-call CDATA #REQUIRED
-help_file CDATA #IMPLIED>
-
-<!ELEMENT heuristic (problem)*>
-<!ELEMENT exact (problem)*>
-
-<!ELEMENT alg_controls (integer*, real*, choice*, fixed*)>
-<!ELEMENT integer EMPTY>
-<!ATTLIST integer
-name CDATA #REQUIRED
-caption CDATA #REQUIRED
-default CDATA #REQUIRED
->
-
-<!ELEMENT real EMPTY>
-<!ATTLIST real
-name CDATA #REQUIRED
-caption CDATA #REQUIRED
-default CDATA #REQUIRED
->
-
-<!ELEMENT choice (item+)>
-<!ATTLIST choice
-name CDATA #REQUIRED
-caption CDATA #REQUIRED
->
-
-<!ELEMENT item EMPTY>
-<!ATTLIST item name CDATA #REQUIRED>
-
-<!ELEMENT fixed EMPTY>
-<!ATTLIST fixed 
-name CDATA #REQUIRED
-value CDATA #REQUIRED>
-
 <!-- Syntax for paramter notation -->
-
 <!ELEMENT controls (parameter)* >
+<!-- namespace -->
 <!ATTLIST controls xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!-- no content -->
 <!ELEMENT parameter EMPTY>
 
+<!-- paramter element attributes ... -->
+<!-- type  :  data type of the parameter -->
+<!-- name  :  identifier of the parameter -->
+<!-- value :  value of the paramter -->
 <!ATTLIST parameter
 type (integer|real|string) #REQUIRED
 name CDATA #REQUIRED
 value CDATA #REQUIRED>
 
+<!--schedule element structure -->
 <!ELEMENT schedule (
 plan?,
 machine_sequences?,
@@ -153,8 +146,85 @@ completion_times?
 <!ELEMENT completion_times (#PCDATA)>
 <!ATTLIST completion_times model CDATA "lisa_native">
 
+<!-- schedule needs size specification ... -->
+<!-- m          :  number of machines -->
+<!-- n          :  number of jobs -->
+<!-- semiactive :  semiactive property flag -->
 <!ATTLIST schedule 
 m CDATA #REQUIRED
 n CDATA #REQUIRED
 semiactive (yes|no) #IMPLIED
 >
+
+
+
+<!-- Syntax for Algorithm description file -->
+
+<!-- algorithm element structure -->
+<!ELEMENT algorithm (((heuristic, exact )| heuristic | exact), alg_controls?)>
+<!-- attributes of an algorithm ...-->
+<!-- name       :  name of the algorithm (as displayed in selection menu etc.) -->
+<!-- type       :  calculation approach, e.g. "constructive" or "iterative" -->
+<!-- code       :  what kind of implementation, in most cases "external" -->
+<!-- call       :  name of the executable file name (without extension) -->
+<!-- help_file  :  file name of the HTML file to be browsed when user requests help -->
+<!ATTLIST algorithm 
+name CDATA #REQUIRED
+type CDATA #REQUIRED
+code CDATA #REQUIRED
+call CDATA #REQUIRED
+help_file CDATA #IMPLIED>
+
+<!-- list problems the algorithm can approximate -->
+<!ELEMENT heuristic (problem)*>
+<!-- list problems the algorithm can solve exactly -->
+<!ELEMENT exact (problem)*>
+
+<!-- user interface definition -->
+<!ELEMENT alg_controls (integer*, real*, choice*, fixed*)>
+
+<!-- integer value parameter ...-->
+<!ELEMENT integer EMPTY>
+<!-- name     :  identifier of the parameter -->
+<!-- caption  :  caption of the GUI element -->
+<!-- default  :  guess what! (default value) -->
+<!ATTLIST integer
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+default CDATA #REQUIRED
+>
+
+<!-- real value parameter -->
+<!ELEMENT real EMPTY>
+<!-- name     :  identifier of the parameter -->
+<!-- caption  :  caption of the GUI element -->
+<!-- default  :  guess what! (default value) -->
+<!ATTLIST real
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+default CDATA #REQUIRED
+>
+
+<!-- choice of a list of strings -->
+<!ELEMENT choice (item+)>
+
+<!-- name     :  identifier of the parameter -->
+<!-- caption  :  caption of the GUI element -->
+<!ATTLIST choice
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+>
+
+<!-- item to be chosen from in a choice box -->
+<!ELEMENT item EMPTY>
+<!-- name of the item, i.e. the value of the parameter if selected -->
+<!ATTLIST item name CDATA #REQUIRED>
+
+<!-- a fixed control element (not displayed) -->
+<!ELEMENT fixed EMPTY>
+<!-- name  : identifier of parameter -->
+<!-- value : fixed value of parameter -->
+<!ATTLIST fixed 
+name CDATA #REQUIRED
+value CDATA #REQUIRED>
+
