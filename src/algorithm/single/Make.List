@@ -2,7 +2,6 @@ CXXSOURCES=\
 	single.cpp\
 	Single_Machine_BB.cpp\
 	../../basics/graph.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
 	../../lisa/ctrlpara.cpp\

@@ -1,6 +1,5 @@
 OBJECTS=\
 	../../../obj/open2.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/pair.o \
 	../../../obj/ctrlpara.o \

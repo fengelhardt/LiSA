@@ -1,5 +1,4 @@
 CXXSOURCES=\
-	../../basics/list.cpp \
 	../../basics/lmatrix.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \

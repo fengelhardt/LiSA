@@ -11,7 +11,6 @@ using namespace std;
 //**************************************************************************
 
 Lisa_ExceptionList G_ExceptionList;
-string G_ExtraException="";
 
 //**************************************************************************
 
@@ -74,13 +73,7 @@ std::list<Lisa_ExceptionNode>::iterator Lisa_ExceptionList::search_first(const i
 //**************************************************************************
 
 string Lisa_ExceptionList::lcatch(){
-    
-  if(G_ExtraException!=""){
-    string tempstring=G_ExtraException;
-    G_ExtraException="";
-    return tempstring;
-  }
-  
+
   if (Messages.empty()) return "No error messages in list.";
     
   Lisa_ExceptionNode en = Messages.front();

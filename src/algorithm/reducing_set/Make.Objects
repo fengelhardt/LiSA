@@ -1,6 +1,5 @@
 OBJECTS=\
 	../../../obj/reducing_set.o \
-	../../../obj/list.o \
 	../../../obj/lmatrix.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \

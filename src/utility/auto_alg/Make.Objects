@@ -3,7 +3,6 @@ OBJECTS=\
 	../../../obj/ctrlpara.o \
 	../../../obj/lvalues.o \
 	../../../obj/global.o \
-	../../../obj/list.o \
 	../../../obj/int2str.o \
 	../../../obj/except.o \
 	../../../obj/matrix.o \

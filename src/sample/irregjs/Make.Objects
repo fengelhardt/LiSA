@@ -1,5 +1,4 @@
 OBJECTS=\
-	../../../obj/list.o \
 	../../../obj/lmatrix.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \

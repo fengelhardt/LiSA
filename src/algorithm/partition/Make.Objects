@@ -1,6 +1,5 @@
 OBJECTS=\
 	../../../obj/partition.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/pair.o \
 	../../../obj/ctrlpara.o \

@@ -3,7 +3,6 @@ CXXSOURCES=\
 	os_bb.cpp \
 	js_bb.cpp \
 	bb_env.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

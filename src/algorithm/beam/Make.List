@@ -1,7 +1,6 @@
 CXXSOURCES=\
 	beam.cpp \
 	b_node.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

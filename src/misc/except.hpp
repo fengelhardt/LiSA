@@ -7,9 +7,6 @@
 #include <list>
 #include <iterator>
 
-// extra error message for objects which cannot use Lisa_ExceptionList 
-extern std::string G_ExtraException;
-
 struct Lisa_ExceptionNode{
   std::string message;
   int code;  
@@ -66,7 +63,7 @@ public:
   std::string lcatch(const int code);
   
   /// test whether error is registered
-  inline bool empty() { return (Messages.empty()&&(G_ExtraException=="")); }
+  inline bool empty() { return Messages.empty(); }
   
   /// test whether error with given code is in list
   inline bool empty(const int code) { return search_first(code) == Messages.end(); }

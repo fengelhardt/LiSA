@@ -3,7 +3,6 @@ CXXSOURCES=\
   ../../lisa/ctrlpara.cpp \
   ../../lisa/lvalues.cpp \
   ../../main/global.cpp \
-  ../../basics/list.cpp \
   ../../misc/int2str.cpp \
   ../../misc/except.cpp \
   ../../basics/matrix.cpp \

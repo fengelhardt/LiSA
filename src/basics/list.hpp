@@ -7,11 +7,7 @@
 
 #include "../main/global.hpp"
 #include "../lisa/lsaobjct.hpp"
-
-//**************************************************************************
-
-/// throw an error from list
-void error(std::string);
+#include "../misc/except.hpp"
 
 //**************************************************************************
 
@@ -253,7 +249,7 @@ public:
     {
       if (i>=size) 
 	{ 
-	  error( "list index out of range");
+	  G_ExceptionList.lthrow("list index out of range");
 	  current_node=first_last->succ;
           return;
 	}   
@@ -274,7 +270,7 @@ public:
       it is valid */
   int get_index()
     { 
-      if (!where_ok) error("undefined list index used");
+      if (!where_ok) G_ExceptionList.lthrow("undefined list index used");
       
       return where; 
     }
@@ -504,7 +500,7 @@ public:
   T min()
     {
       if (!size) 
-	  error( "minimium over an empty list undefined");
+	    G_ExceptionList.lthrow( "minimium over an empty list undefined");
       Lisa_Node<T> *test;
       where_ok=FALSE;
       current_node=test=first_last->succ;
@@ -524,7 +520,7 @@ public:
   T max()
     {
       if (!size) 
-	  error( "maximum over an empty list undefined");
+	    G_ExceptionList.lthrow( "maximum over an empty list undefined");
       Lisa_Node<T> *test;
       where_ok=FALSE;
       current_node=test=first_last->succ;
@@ -545,7 +541,7 @@ public:
     {
       T result=0;
       if (!size)
-	  error( "sum over an empty list undefined");
+	    G_ExceptionList.lthrow( "sum over an empty list undefined");
       Lisa_Node<T> *test;
       where_ok=FALSE;
       test=first_last->succ;
@@ -630,7 +626,7 @@ void read(std::istream& strm){
     
   std::string S = "";
   strm >> S;
-  if (S!="(") error ("( expected in Lisa_List::read().");
+  if (S!="(") G_ExceptionList.lthrow("( expected in Lisa_List::read().");
   
   std::streampos pos = strm.tellg();
   strm >> S;
@@ -645,7 +641,7 @@ void read(std::istream& strm){
     strm >> S; 
   }
   
-  if (S!=")") error(") expected in Lisa_List::read().");
+  if (S!=")") G_ExceptionList.lthrow(") expected in Lisa_List::read().");
 }
 
 //**************************************************************************

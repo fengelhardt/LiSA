@@ -2,7 +2,6 @@ OBJECTS=\
 	../../../obj/single.o \
 	../../../obj/Single_Machine_BB.o \
 	../../../obj/graph.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/pair.o \
 	../../../obj/ctrlpara.o \

@@ -4,7 +4,6 @@ CXXSOURCES=\
 	fp_vect.cpp \
 	nb_fp.cpp \
 	../../algorithm/nb_iter/iterate.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
 	../../lisa/ctrlpara.cpp \

@@ -4,7 +4,6 @@ CXXSOURCES=\
 	lisapref.cpp \
 	main.cpp \
 	status.cpp \
-	../basics/list.cpp \
 	../basics/matrix.cpp \
 	../basics/order.cpp \
 	../basics/pair.cpp \

@@ -2,7 +2,6 @@ CXXSOURCES=\
 	bottle.cpp\
 	Shifting_Bottleneck.cpp\
 	../../basics/graph.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
 	../../lisa/ctrlpara.cpp\

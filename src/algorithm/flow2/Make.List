@@ -1,6 +1,5 @@
 CXXSOURCES=\
 	flow2.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
 	../../lisa/ctrlpara.cpp\

@@ -28,7 +28,6 @@ CXXSOURCES=\
 	osp/osp_blsh.cpp \
 	osp/osp_crsh.cpp \
 	osp/osp_shft.cpp \
-	../../basics/list.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

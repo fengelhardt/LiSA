@@ -5,7 +5,6 @@ OBJECTS=\
 	../../../obj/irrednode.o \
 	../../../obj/irredtest.o \
 	../../../obj/graph.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

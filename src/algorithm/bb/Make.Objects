@@ -3,7 +3,6 @@ OBJECTS=\
 	../../../obj/os_bb.o \
 	../../../obj/js_bb.o \
 	../../../obj/bb_env.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

@@ -13,7 +13,6 @@ OBJECTS=\
 	../../../obj/jb_sort.o \
 	../../../obj/jb_stack.o \
 	../../../obj/jb_table.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

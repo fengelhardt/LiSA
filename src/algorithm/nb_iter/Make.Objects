@@ -28,7 +28,6 @@ OBJECTS=\
 	../../../obj/osp_blsh.o \
 	../../../obj/osp_crsh.o \
 	../../../obj/osp_shft.o \
-	../../../obj/list.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

@@ -4,7 +4,6 @@ OBJECTS=\
 	../../obj/lisapref.o \
 	../../obj/main.o \
 	../../obj/status.o \
-	../../obj/list.o \
 	../../obj/matrix.o \
 	../../obj/order.o \
 	../../obj/pair.o \
