@@ -1157,40 +1157,21 @@ bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
   }
 #endif
   
+  Lisa_MatrixListGraph top(g);
+
   knot_sequence->fill(0);
   
-  //graph copy
-  Lisa_MatrixListGraph top(g);
-  //stores the number of successors of knot i in i-1
-  Lisa_Vector<int> pred(top.get_vertices());
-  
-  int source=0,v=0,next=1;
-  
+  int next=1,v=1;
   while(v<=top.get_vertices()){
-    //new predeccessors
-    for(v=1; v<=top.get_vertices(); v++){
-      if((*knot_sequence)[v-1]==0){
-        pred[v-1]=top.get_predecessors(v);
-      }
-    }
-    v=1;
-    source=0;
-    //find first source
-    while((v<=top.get_vertices())&&(source==0)){
-      if(((*knot_sequence)[v-1]==0)&&(pred[v-1]==0)){
-        source=1;
-      }
-      else{
-        v++;
-      }
-    }
     
-    //remove all connections of the first source found
-    if(v<=top.get_vertices()){
+    if(((*knot_sequence)[v-1]==0)&&(top.get_predecessors(v)==0)){
       top.clear(v);
       (*knot_sequence)[v-1]=next;
       next++;
+      v=0;
     }
+    
+    v++;
   }
   
   return (next==top.get_vertices()+1);
