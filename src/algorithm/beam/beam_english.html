@@ -1,10 +1,280 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>Hilfe zum Branch and Bound - Fenster</title>
+</head>
+<body bgcolor="#E3E3E3" background="../../../../img/lisa.gif">
+<h2>
+The Beam Search Algorithm -<b><i><font size=+1> O&nbsp; | |&nbsp; C</font><font size=+0>max</font><font size=+1>&nbsp;&nbsp;&nbsp;
+and&nbsp;&nbsp; F | |&nbsp; C</font><font size=+0>max</font></i></b></h2>
 
-<HTML>
-  <HEAD>
-    <TITLE>beam - LiSA module</TITLE>
-  </HEAD>
-  <BODY>
-    <P>no help available yet</P>
-  </BODY>
-</HTML>
+<p><br>The Beam Search Algorithm is a heuristical incomplete search technique.
+Hence it will not always dicover an optimal solution. The quality of the
+solution found by Beam-Search depends on the particular problem, as well
+as the several <a href="#settings">user settings</a>.
+<br>&nbsp;
+<h2>
+procedure:</h2>
+
+<ul>
+<li>
+create an <a href="#Insertion order">insertion order</a> of the operations</li>
+
+<li>
+for each of the operations :</li>
+
+<ol>
+<li>
+create new partial schedules by:</li>
+
+<ul>
+<li>
+inserting the operation as first Job in job-order and machine-order</li>
+
+<li>
+inserting the operation as immediate succsessor of an existing operation
+in the mashine-order</li>
+
+<li>
+inserting the operation as immediate succsessor of an existing operation
+in the job-order</li>
+</ul>
+
+<li>
+<a href="#Choice method">choose</a> the <a href="#Choice criterion">"best"</a>
+of them and consider next operation</li>
+</ol>
+</ul>
+The choice of the "best" schedules is completely determined by the users
+settings of the <a href="#Beamwidth">Beamwidth</a> and the <a href="#Choice criterion">Choice
+criterion</a>.
+<h2>
+<a NAME="settings"></a>settings:</h2>
+
+<dl>
+<ul>
+<li>
+<a NAME="Beamwidth"></a><b><i>Beamwidth:</i></b></li>
+
+<ul>Determines how many of the new created schedules are kept for further
+expansions.
+<br>Note : Which of them is kept depends on the choice method/criterion.</ul>
+
+<li>
+<a NAME="Insertion order"></a><b><i>Insertion order:</i></b></li>
+
+<ul>the order the operations are considered to be inserted :
+<ul>
+<li>
+<b>LPT</b></li>
+</ul>
+
+<dd>
+ordered by nondecreasing processing times</dd>
+
+<ul>
+<li>
+<b>RANDOM</b></li>
+</ul>
+
+<dd>
+randomly generated order</dd>
+
+<ul>
+<li>
+<b>DIAGONAL1</b></li>
+
+<br>Example:
+<ul>&nbsp;
+<table BORDER CELLPADDING=2 COLS=6 WIDTH="100" NOSAVE >
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td NOSAVE><b><font color="#3333FF">13</font></b></td>
+
+<td NOSAVE><b><font color="#CC33CC">7</font></b></td>
+
+<td><b><font color="#FF0000">1</font></b></td>
+
+<td><b><font color="#009900">19</font></b></td>
+
+<td><b><font color="#3333FF">14</font></b></td>
+
+<td><b><font color="#CC33CC">8</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td NOSAVE><b><font color="#009900">20</font></b></td>
+
+<td><b><font color="#3333FF">15</font></b></td>
+
+<td><b><font color="#CC33CC">9</font></b></td>
+
+<td><b><font color="#FF0000">2</font></b></td>
+
+<td><b><font color="#009900">21</font></b></td>
+
+<td><b><font color="#3333FF">16</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td><b><font color="#FF0000">3</font></b></td>
+
+<td><b><font color="#009900">22</font></b></td>
+
+<td NOSAVE><b><font color="#3333FF">17</font></b></td>
+
+<td><b><font color="#CC33CC">10</font></b></td>
+
+<td><b><font color="#FF0000">4</font></b></td>
+
+<td><b><font color="#009900">23</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td><b><font color="#CC33CC">11</font></b></td>
+
+<td><b><font color="#FF0000">5</font></b></td>
+
+<td ALIGN=CENTER VALIGN=CENTER NOSAVE><b><font color="#009900">24</font></b></td>
+
+<td><b><font color="#3333FF">18</font></b></td>
+
+<td><b><font color="#CC33CC">12</font></b></td>
+
+<td><b><font color="#FF0000">6</font></b></td>
+</tr>
+</table>
+</ul>
+<b><font color="#33CCFF"></font></b>
+<br><b><font color="#33CCFF"></font></b>&nbsp;
+<li>
+<b>DIAGONAL2</b></li>
+
+<br>Similar to DIAGONAL1 but more straight forward:
+<ul><b><font color="#33CCFF"></font></b>&nbsp;
+<table BORDER CELLPADDING=2 COLS=6 WIDTH="100" NOSAVE >
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td NOSAVE><b><font color="#FF0000">1</font></b></td>
+
+<td NOSAVE><b><font color="#3333FF">5</font></b></td>
+
+<td><b><font color="#009900">9</font></b></td>
+
+<td><b><font color="#CC33CC">13</font></b></td>
+
+<td><b><font color="#FFCC00">17</font></b></td>
+
+<td><b><font color="#33CCFF">21</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td NOSAVE><b><font color="#33CCFF">22</font></b></td>
+
+<td><b><font color="#FF0000">2</font></b></td>
+
+<td><b><font color="#3333FF">6</font></b></td>
+
+<td><b><font color="#009900">10</font></b></td>
+
+<td><b><font color="#CC33CC">14</font></b></td>
+
+<td><b><font color="#FFCC00">18</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td><b><font color="#FFCC00">19</font></b></td>
+
+<td><b><font color="#33CCFF">23</font></b></td>
+
+<td NOSAVE><b><font color="#FF0000">3</font></b></td>
+
+<td><b><font color="#3333FF">7</font></b></td>
+
+<td><b><font color="#009900">11</font></b></td>
+
+<td><b><font color="#CC33CC">15</font></b></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td><b><font color="#CC33CC">16</font></b></td>
+
+<td><b><font color="#FFCC00">20</font></b></td>
+
+<td ALIGN=CENTER VALIGN=CENTER NOSAVE><b><font color="#33CCFF">24</font></b></td>
+
+<td><b><font color="#FF0000">4</font></b></td>
+
+<td><b><font color="#3333FF">8</font></b></td>
+
+<td><b><font color="#009900">12</font></b></td>
+</tr>
+</table>
+<b><font color="#33CCFF"></font></b>
+<br>&nbsp;</ul>
+
+<li>
+&nbsp;<b>MACHINEWISE</b></li>
+
+<br>column by column</ul>
+</ul>
+
+<li>
+<a NAME="Choice method"></a><b><i>Choice method:</i></b></li>
+
+<ul>Determines which schedules are kept
+<ul>
+<li>
+<b>INSERT1</b></li>
+
+<br>choose from the created new schedules according to the choice criterion
+<li>
+<b>INSERT2</b></li>
+
+<br>similar to INSERT1, but take only one new schedule for each base schedule</ul>
+</ul>
+
+<li>
+<a NAME="Choice criterion"></a><b><i>Choice criterion:</i></b></li>
+
+<ul>Determines the cost function of a partial schedule
+<ul>
+<li>
+<b>CMAX</b></li>
+
+<br>costs of the longest path in the schedule
+<li>
+<b>CLAST</b></li>
+
+<br>costs of the longest path through the last inserted operation</ul>
+</ul>
+</ul>
+
+<h2>
+remarks:</h2>
+As mentioned above the Beam-Search is a heuristic technique. Hence a partial
+schedule leading to an optimal solution could be thrown away. In this case
+we found other partial schedules with lower costs exhausting the <a href="#Beamwidth">beamwidth</a>.
+<br>Note that the <a href="#Choice criterion">choice criterion</a> CLAST
+does not yield monotonically non-decreasing costs, however it is more suitable
+with respect to the influence of the insertion of a particular operation,
+because with the CMAX criterion the last inserted operation has not to
+lie on the longest path in the partial schedule.
+<br>&nbsp;
+<h2>advices:</h2>
+It is recommended to have several trials with different <a href="#settings">settings</a>.
+In case you get an obviously unsatisfying solution you might have used
+an improper <a href="#Insertion order">insertion order</a> for that particular
+problem [ or the wrong algorithm :-)&nbsp; ].
+<br>To increase probability of optimal results you should increase the<a href="#Beamwidth">beamwidth</a>.
+But note that very large values would lead to long running times.
+<br>Except CLAST the other settings do not have implicit effect on the
+running time ( CLAST uses Heads/Tails).</dl>
+
+<a href="../main.html">Table of Contents</a>
+<br>
+<hr>authors: <a href="mailto:tusch@cs.uni-magdeburg.de">Jan Tusch</a> and
+<a href="mailto:aherms@cs.uni-magdeburg.de">Andre Herms</a> 28.05.01
+<br>sources: "Constructive Heuristic Algorithms for the Open Shop Problem"
+by H. Br&auml;sel, T. Tautenhahn, F.Werner - 1992
+</body>
+</html>
