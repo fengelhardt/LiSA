@@ -19,17 +19,17 @@ USERHOME=${HOME:-"/tmp"}
 if test ! -w "${USERHOME}"; then
      USERHOME="/tmp"
      fi
-LISACONFIG=${USERHOME}/.lisa
+LISACONFIG="${USERHOME}/.lisa"
 if test ! -d "${LISACONFIG}"; then
-     rm -fr  "${LISACONFIG}"
+     rm -fr "${LISACONFIG}"
      mkdir "${LISACONFIG}"
      fi
 if test ! -d "${LISACONFIG}/proc"; then
-     rm -fr  "${LISACONFIG}/proc"
+     rm -fr "${LISACONFIG}/proc"
      mkdir "${LISACONFIG}/proc"
      fi
 if test ! -f "${LISACONFIG}/default.lsa"; then
-     rm -fr  "${LISACONFIG}/default.lsa"
+     rm -fr "${LISACONFIG}/default.lsa"
      cp "${LISAHOME}/data/default.lsa" "${LISACONFIG}"
      fi
 
