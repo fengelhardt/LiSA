@@ -323,7 +323,12 @@ public:
       The targetgraph is supposed to have the same number of vertice as the 
       inputgraph, but no edges or arcs at all.*/ 
   static void build_compgraph(Lisa_Graph *const source,Lisa_Graph *const target);
-  
+
+  /// Create a transitive hull
+  /** The targetgraph is supposed to have the same number of vertice as the 
+      inputgraph, but no edges or arcs at all.*/ 
+  static void transitive_hull(Lisa_Graph *const source,Lisa_Graph *const target);
+ 
   /// Compare graphs. 
   /** This method returns true,1 if any edge in the first graph 
       is also contained in the second graph, and the second graph has 

@@ -1217,6 +1217,55 @@ void Lisa_GraphAlg::build_compgraph(Lisa_Graph *const source,Lisa_Graph *const t
 
 //**************************************************************************
 
+void Lisa_GraphAlg::transitive_hull(Lisa_Graph *const source,Lisa_Graph *const target){
+#ifdef LISA_DEBUG
+  if(source->get_vertices() != target->get_vertices()){
+    G_ExceptionList.lthrow("Size mismatch in Lisa_GraphAlgo::transitive_hull().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
+#endif
+  
+  const int end = source->get_vertices()+1;
+  
+  Lisa_Vector<int> queue(end);
+  Lisa_Vector<bool> done(end);
+  int qs,qe,curr;
+  int succ;
+  
+  for (int i=1; i<end; i++){
+    queue.fill(0);  
+    done.fill(0);
+    qs = qe = 0;
+    
+    source->init_succ_pointer(i);
+    succ=source->get_next_successor(i);
+        
+    while(succ<end){
+      queue[qe++] = succ;
+      done[succ] = 1;
+      succ=source->get_next_successor(i);
+    }  
+    
+    while(qs<qe){
+      curr = queue[qs++];
+      target->insert_arc(i,curr);
+      source->init_succ_pointer(curr);
+      succ=source->get_next_successor(curr);
+      while(succ<end){
+        if(!done[succ]){
+          done[succ]=1;
+          queue[qe++]=succ;
+        }
+        succ=source->get_next_successor(curr);
+      }
+    }
+  }
+
+}
+
+//**************************************************************************
+
 bool Lisa_GraphAlg::smaller(const Lisa_Graph *const first,const Lisa_Graph *const second){
 #ifdef LISA_DEBUG
   if(first->get_vertices() != second->get_vertices()){

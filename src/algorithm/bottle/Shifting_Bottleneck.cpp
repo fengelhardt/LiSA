@@ -219,7 +219,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 
     // update the transitive hull t, 
     // to get the new priorities for the next single machine problem 
-    transitive_hull(Plan,t);
+    Lisa_GraphAlg::transitive_hull(Plan,t);
 
     // store the schedule in a JobshopSchedule,
     // computes the new HEADS and TAILS
@@ -234,50 +234,6 @@ void Shifting_Bottleneck::shifting_bottleneck()
   
   delete schedule;
   delete t;
-}
-
-//**************************************************************************
-
-bool Shifting_Bottleneck::transitive_hull(Lisa_MatrixListGraph* source,Lisa_MatrixListGraph* target)
-{  
-  const int end = source->get_vertices()+1;
-  
-  Lisa_Vector<int> queue(end);
-  Lisa_Vector<bool> done(end);
-  int qs,qe,curr;
-  int succ;
-  
-  for (int i=1; i<end; i++){
-    queue.fill(0);  
-    done.fill(0);
-    qs = qe = 0;
-    
-    source->init_succ_pointer(i);
-    succ=source->get_next_successor(i);
-    
-    //alle Nachfolger des Knotens
-    
-    while(succ<end){
-      queue[qe++] = succ;
-      done[succ] = 1;
-      succ=source->get_next_successor(i);
-    }  
-    
-    while(qs<qe){
-      curr = queue[qs++];
-      target->insert_arc(i,curr);
-      source->init_succ_pointer(curr);
-      succ=source->get_next_successor(curr);
-      while(succ<end){
-        if(!done[succ]){
-          done[succ]=1;
-          queue[qe++]=succ;
-        }
-        succ=source->get_next_successor(curr);
-      }
-    }
-  }
-  return true;
 }
 
 //**************************************************************************
