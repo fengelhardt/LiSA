@@ -1,12 +1,13 @@
 proc set_default_var { } {
-    global prnt;
-    global gantt;
-    global system;
-    global dat;
-    global glob;
-    global pt;
+    global prnt
+    global gantt
+    global system
+    global dat
+    global glob
+    global pt
     global env
     global sij
+    global schedule
 
     set pt(min) 1
     set pt(max) 99
@@ -29,6 +30,8 @@ proc set_default_var { } {
     set glob(machines) "0"
     set glob(jobs) "0"
     set sij(prob) "100"
+
+    set schedule(Matrix) "LR"
 }
 
 set_default_var
