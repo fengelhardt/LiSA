@@ -182,14 +182,14 @@ const int param){
         turned[i]=0;
         for (int j=0;j<currvec->get_m();j++){
           currpos = (*currvec)[j];
-          newplan.exclude_arc(end_v[currpos],start_v[currpos]);
+          newplan.remove_arc(end_v[currpos],start_v[currpos]);
           newplan.insert_arc(start_v[currpos],end_v[currpos]);
         }
       }else{
         turned[i]=1;
         for (int j=0;j<currvec->get_m();j++){
           currpos = (*currvec)[j];
-          newplan.exclude_arc(start_v[currpos],end_v[currpos]);
+          newplan.remove_arc(start_v[currpos],end_v[currpos]);
           newplan.insert_arc(end_v[currpos],start_v[currpos]);
         }
         break;

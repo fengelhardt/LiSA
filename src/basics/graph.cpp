@@ -289,10 +289,10 @@ void Lisa_MatrixListGraph::insert_edge(const int start,const int end){
   
   if(con!=EDGE){
     if(con==ARC){
-      exclude_arc(start,end);
+      remove_arc(start,end);
     }
     if(con==CRA){
-      exclude_arc(end,start);
+      remove_arc(end,start);
     }
     
     int end_of_NB_List;
@@ -348,7 +348,7 @@ void Lisa_MatrixListGraph::insert_arc(const int start,const int end){
   //Test ob arc schon vorhanden
   if((con!=ARC)&&(con!=EDGE)){
     if(con==CRA){
-      exclude_arc(end,start);
+      remove_arc(end,start);
       insert_edge(start,end);
     }else{
       //Einfuegen des Bogens
@@ -382,35 +382,10 @@ void Lisa_MatrixListGraph::insert_arc(const int start,const int end){
   }
 
 }
-//**************************************************************************
-
-void Lisa_MatrixListGraph::exclude_all(const int start,const int end){
-#ifdef LISA_DEBUG
-  if( start<=0 || start>size || end<=0 || end>size ){
-    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_MatrixListGraph::exclude_all().",
-                           Lisa_ExceptionList::OUT_OF_RANGE);
-    return;
-  }
-#endif
-
-  if(start==end) return;
-  
-  int con=get_connection(start,end);
-  
-  if(con==EDGE){
-    exclude_edge(start,end);
-  }else if(con==ARC){
-    exclude_arc(start,end);
-  }else if(con==CRA){
-    exclude_arc(end,start);
-  }
-
-}
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::exclude_edge(const int start,const int end){
+void Lisa_MatrixListGraph::remove_edge(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>size || end<=0 || end>size ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
@@ -470,7 +445,7 @@ void Lisa_MatrixListGraph::exclude_edge(const int start,const int end){
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::exclude_arc(const int start,const int end){
+void Lisa_MatrixListGraph::remove_arc(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>size || end<=0 || end>size ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
@@ -525,10 +500,36 @@ void Lisa_MatrixListGraph::exclude_arc(const int start,const int end){
     (*matrix)[end][start].y=0;
     
   }else if(con==EDGE){
-    exclude_edge(start, end);
+    remove_edge(start, end);
     insert_arc(end, start);
   }
   
+}
+
+//**************************************************************************
+
+void Lisa_MatrixListGraph::remove_all(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixListGraph::exclude_all().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  if(start==end) return;
+  
+  int con=get_connection(start,end);
+  
+  if(con==EDGE){
+    remove_edge(start,end);
+  }else if(con==ARC){
+    remove_arc(start,end);
+  }else if(con==CRA){
+    remove_arc(end,start);
+  }
+
 }
 
 //**************************************************************************
@@ -733,21 +734,21 @@ void Lisa_MatrixListGraph::clear(const int knot){
   //EDGES
   int next=(*matrix)[knot][knot].x;
   while(next<=size){
-    exclude_edge(knot,next);
+    remove_edge(knot,next);
     next=(*matrix)[knot][knot].x;
   }
 
   //ARCS
   next=(*matrix)[knot][0].x;
   while(next<=size){
-    exclude_arc(knot,next);
+    remove_arc(knot,next);
     next=(*matrix)[knot][0].x;
   } 
 
   //CRA
   next=(*matrix)[0][knot].x;
   while(next<=size){
-    exclude_arc(next,knot);
+    remove_arc(next,knot);
     next=(*matrix)[0][knot].x;
   } 
   

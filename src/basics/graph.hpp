@@ -45,23 +45,23 @@ public:
       start and end it will be an EDGE afterwards, if there ist no connection,
       an ARC will be created. All other connections will remain unchanged.*/
   virtual void insert_arc(const int start,const int end)=0;
-  
-  /// remove any connection between to vertices
-  /** Delete any connection between vertex start and vertex end. */
-  virtual void exclude_all(const int start,const int end)=0;
-  
+    
   /// remove an edge from the graph 
   /** Delete edge from vertex start to vertex end. This only works 
       if there is an EDGE between start and end, an ARC or CRA will not
       be removed. */
-  virtual void exclude_edge(const int start,const int end)=0;
+  virtual void remove_edge(const int start,const int end)=0;
 
   /// remove an arc from the graph
   /** Delete arc from vertice start to vertice end. If there is an
       ARC from start to end it will be deleted, if there is an EDGE it
       will be converted into a CRA. In any other case the connection will 
       remain unchanged. */
-  virtual void exclude_arc(const int start,const int end)=0;
+  virtual void remove_arc(const int start,const int end)=0;
+  
+  /// remove any connection between to vertices
+  /** Delete any connection between vertex start and vertex end. */
+  virtual void remove_all(const int start,const int end)=0;
 
   /// get the kind of connection between two vertices 
   /** possible return values are:
@@ -225,23 +225,23 @@ public:
       start and end it will be an EDGE afterwards, if there ist no connection,
       an ARC will be created. All other connections will remain unchanged.*/
   void insert_arc(const int start,const int end);
-  
-  /// remove any connection between to vertices
-  /** Delete any connection between vertex start and vertex end. */
-  void exclude_all(const int start,const int end);
-  
+    
   /// remove an edge from the graph 
   /** Delete edge from vertex start to vertex end. This only works 
       if there is an EDGE between start and end, an ARC or CRA will not
       be removed. */
-  void exclude_edge(const int start,const int end);
+  void remove_edge(const int start,const int end);
 
   /// remove an arc from the graph
   /** Delete arc from vertice start to vertice end. If there is an
       ARC from start to end it will be deleted, if there is an EDGE it
       will be converted into a CRA. In any other case the connection will 
       remain unchanged. */
-  void exclude_arc(const int start,const int end);
+  void remove_arc(const int start,const int end);
+  
+  /// remove any connection between to vertices
+  /** Delete any connection between vertex start and vertex end. */
+  void remove_all(const int start,const int end);
 
   /// get the kind of connection between two vertices 
   /** possible return values are:
