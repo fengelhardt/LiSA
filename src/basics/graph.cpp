@@ -92,7 +92,7 @@ void Lisa_MatrixListGraph::init(const int n_in) {
   if(matrix) delete matrix;
   matrix= new Lisa_Matrix<Lisa_Pair>(size+1,size+1);
   
-  if(succ_pred_pointer){delete succ_pred_pointer;}
+  if(succ_pred_pointer) delete succ_pred_pointer;
   succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(size);
   
   for (int i=0; i<=size; i++){
@@ -117,7 +117,14 @@ void Lisa_MatrixListGraph::init(const int n_in) {
 //**************************************************************************
   
 void Lisa_MatrixListGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
-  
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_MatrixListGraph::get_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
   for(int i=1; i<=size; i++){
     for(int j=1; j<=size; j++){
       
@@ -135,21 +142,29 @@ void Lisa_MatrixListGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)cons
 //**************************************************************************
 
 void Lisa_MatrixListGraph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
-  if((adj->get_n())==size){
-    for(int i=0; i<size; i++){
-      for(int j=0; j<size; j++){
-        //Test ob Verbindung existiert
-        if((i!=j)&&((*adj)[i][j]==1)) {
-          //Test ob Kante oder Bogen
-          if((*adj)[j][i]==1){
-            insert_edge(i+1,j+1);
-          }else{
-            insert_arc(i+1,j+1);
-          }
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_MatrixListGraph::read_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif  
+  
+  
+  for(int i=0; i<size; i++){
+    for(int j=0; j<size; j++){
+    
+      if((i!=j)&&((*adj)[i][j]==1)){ // connection exists ?  
+        if((*adj)[j][i]==1){ // arc or edge ?
+          insert_edge(i+1,j+1);
+        }else{
+          insert_arc(i+1,j+1);
         }
       }
+      
     }
   }
+
 }
 
 //**************************************************************************

@@ -8,7 +8,8 @@
 #include "matrix.hpp"
 #include "pair.hpp"
 
-/// flags indicating various possible connections between knots
+
+/// flags indicating various possible connections between a pair of vertice
 enum{CRA=-1 /// backwards ARC ;)
     ,NO
     ,ARC
