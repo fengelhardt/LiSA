@@ -21,7 +21,7 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 NONGUI_MODULES=algorithm utility sample
 GUI_MODULES=main setup
 MODULES=$(GUI_MODULES) $(NONGUI_MODULES)
-RESEARCH_MODULES=algorithm/irred algorithm/partition algorithm/reducing_set sample/fpool sample/irregjs
+RESEARCH_MODULES=algorithm/irred algorithm/partition algorithm/reducing_set sample/fpool sample/irregjs utility/auto_alg
 
 # ------------------------------------------------------------------------------
 

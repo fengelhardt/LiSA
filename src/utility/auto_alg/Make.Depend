@@ -1,0 +1,1 @@
+../../../obj/auto_alg.o: auto_alg.cpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/auto_alg.o auto_alg.cpp
