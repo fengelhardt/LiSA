@@ -16,8 +16,8 @@
 /*                                                                           */
 /*  FUNCTION: Put ActualNode onto the Stack                                  */
 /* ************************************************************************* */
-
-void Push ();
+/// Put ActualNode onto the Stack
+void Push();
 
 
 /* ************************************************************************* */
@@ -28,8 +28,8 @@ void Push ();
 /*  FUNCTION: Delete ActualNode and assign the top of the stack to           */
 /*            ActualNode                                                     */
 /* ************************************************************************* */
-
-void Pop ();
+/// Delete ActualNode and assign the top of the stack to ActualNode                                           
+void Pop();
 
 #endif
 

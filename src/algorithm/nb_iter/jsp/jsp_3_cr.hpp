@@ -8,7 +8,7 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/// Job-Shop 3-time-critical-API Neighbourhood.
+/// job shop 3-time-critical-API neighbourhood
 /** This is a problem dependent API neighbourhood class for the 
     open shop problem, where we swap two adjacent operations on the critical 
     way and additional we swap also the direct predecence and the direct 
@@ -22,43 +22,39 @@
 */
 class JSHOP_3_CR_Ngbh: public JSHOP_API_Ngbh{       
 private: 
-
+  /// private data, needs documentation
   Lisa_Order *ROrd;
+  /// private data, needs documentation
   int   OrdCount;
+  /// private data, needs documentation
 	int   NewOrder;
-  int   swaps[3][5]; // that the 3 proposed swaps:
-				   // for JO-swap:
-	         // swaps[][0]=JO
-				   // swaps[][1] machine1
-				   // swaps[][2] job1
-				   // swaps[][3] job2
-				   // swaps[][4] OK ?
+  /// for the 3 proposed swaps
+  /** for JO-swap:
+	    - swaps[][0]=JO
+			- swaps[][1] machine1
+			- swaps[][2] job1
+			- swaps[][3] job2
+			- swaps[][4] OK ? */
+  int   swaps[3][5];
+  /// head and tail for a operation
 	TIMETYP head, tail;
-	int   machine2, machine3;
+	/// machines
+  int   machine2, machine3;
+  /// job
 	int   job3;
-	        Lisa_JsSchedule  *temp_schedule;
+	/// basic problem data
+  Lisa_JsSchedule  *temp_schedule;
 public:	
-	/// construct JSHOP_3_CR_Ngbh with a start schedule and specified problem data
+	/// construct JSHOP_3_CR_Ngbh 
+  /** with a start schedule and specified problem data */
 	JSHOP_3_CR_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
   /// destructor
   ~JSHOP_3_CR_Ngbh();
-	/// propose a possible move,
-	/** parameter is ENUM or RAND for enumerative or random generation of neighbour
-        
-      it proposes an interchange of two adjacent operations (in the job-order) 
-      on the Cmax critical way, and additional, if possible and useful, an 
-      interchange of the successive operations and an interchange of the 
-      predecence operations on the critical way
-      
-	    @return OK or !OK   */
+
 	int   prepare_move(int);
-	// do the proposed move  it returns OK or !OK
 	int   do_move();
-	// search in the tabulist  it returns OK or !OK
 	int   use_tabulist();
-	// set a tabulist-entry
 	int   set_tabulist();
-	// set initial tabu_param datas
 	void clean_tabu_param();
 };
 

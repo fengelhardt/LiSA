@@ -22,8 +22,8 @@
 /*                                                                           */
 /*  FUNCTION: Calculation of the heads and tails                             */
 /* ************************************************************************* */
-
-boolean Compute_Head_Tail ();
+/// Calculation of the heads and tails     
+boolean Compute_Head_Tail();
 
 
 #endif

@@ -19,8 +19,9 @@
 /*   FUNCTION: Reads data from file and stores it in global variables.       */
 /*             If the file-read is correct Read_Data returns TRUE.           */
 /* ************************************************************************* */
-
-boolean Read_Data (char *);
+/// Reads data from file and stores it in global variables.
+/** If the file-read is correct Read_Data returns TRUE. */
+boolean Read_Data(char *);
 
 
 #endif

@@ -28,12 +28,19 @@ class OSHOP_3_CR_Ngbh: public OSHOP_API_Ngbh{
     Lisa_Order *ROrd;
 		int   OrdCount;
 		int   NewOrder;
-    int   swaps[3][5];
 		TIMETYP head, tail;
 		int   machine3;
 		int   job3;
 	  Lisa_OsSchedule  *temp_schedule;
     //@}
+    /// for the 3 proposed swaps
+    /** for JO-swap:
+	    - swaps[][0]=JO
+			- swaps[][1] machine1
+			- swaps[][2] job1
+			- swaps[][3] job2
+			- swaps[][4] OK ? */   
+    int   swaps[3][5];
 	public:	
 		/// construct OSHOP_3_CR_Ngbh
     /** with a start schedule and specified problem datas   */

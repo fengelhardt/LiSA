@@ -1,13 +1,3 @@
-/*
- * ******************** jsp_swap.hpp ******************************
- * 
- * description:      job shop SWAP neighbourhood
- * 
- * @author            Andreas Winkler
- *
- * date:             19.09.2000
- *
- */
 
 #ifndef _jsp_swap_h
 #define _jsp_swap_h
@@ -17,8 +7,8 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop SWAP Neighbourhood.
-    This is the problem dependent SWAP neighbourhood class for the 
+/// job shop SWAP neighbourhood
+/** This is the problem dependent SWAP neighbourhood class for the 
     job shop problem (i.e. these neighbourhood swaps two arbitrary operations
     on a machine).
     It is inherited from the class JSHOP_API_Ngbh.
@@ -27,28 +17,22 @@
     @version 2.3pre3
     @see Lisa_Neighbourhood
 */
-class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh
-     {
-                int   pos1, pos2;
-                Lisa_Vector<int> *JOrd;
-	public:	
-		/** construct JSHOP_swap_Ngbh with a start schedule
-		    and specified problem datas   */
-		JSHOP_swap_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
-                ~JSHOP_swap_Ngbh(); 
-		/** propose a possible move,
-		    parameter is only RAND for random
-		    generation of a neighbour;
-		    it propose an interchange of two arbitrary not necessary 
-   		    adjacent operations in the job-order of one machine;
-		    it returns OK or !OK   */
-		int   prepare_move(int);
-		/// do the proposed move  it returns OK or !OK
-		int   do_move();
-     };
+class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh{
+private:
+  /// positions
+  int   pos1, pos2;
+  /// job order
+  Lisa_Vector<int> *JOrd;
+public:	
+  /// construct JSHOP_swap_Ngbh
+  /** with a start schedule and specified problem data */
+  JSHOP_swap_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
+  /// destructor
+  ~JSHOP_swap_Ngbh(); 
+
+  int   prepare_move(int);
+  int   do_move();
+};
 
 #endif
-
-
-
 

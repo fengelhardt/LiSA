@@ -1,13 +1,3 @@
-/*
- * ******************** jsp_blsh.hpp ******************************
- * 
- * description:      job shop critical-block-SHIFT neighbourhood
- * 
- * @author            Andreas Winkler
- *
- * date:             11.01.1999
- *
- */
 
 #ifndef _jshp_bl_shift_h
 #define _jshp_bl_shift_h
@@ -17,8 +7,8 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop critical-block-SHIFT Neighbourhood.
-    This is the problem dependent SHIFT neighbourhood class for the 
+/// job shop critical-block-SHIFT neighbourhood
+/** This is the problem dependent SHIFT neighbourhood class for the 
     job shop problem, where we take a swap only for a critical block 
     operation.
     It is inherited from the class JSHOP_API_Ngbh.
@@ -28,33 +18,30 @@
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
-class JSHOP_cr_bl_shift_Ngbh: public JSHOP_API_Ngbh
-     {
-                int   *cr_list_j;
-		int   *cr_list_m;  
-		int   *direction;  // set of critical operations
-		int   count;       // number of critical operations
-		int   pos1, pos2;
-                Lisa_Vector<int> *JOrd;
-	public:	
-		/** construct JSHOP_cr_bl_shift_Ngbh with a start schedule
-		    and specified problem datas   */
-		JSHOP_cr_bl_shift_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
-		~JSHOP_cr_bl_shift_Ngbh();
-		/** propose a possible move,
-		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;
-		    it propose an exchange of a block-end-operation on the
-		    Cmax-critical way (in a job-order of a machine) with an 
-		    other operation on the same machine;
-		    it returns OK or !OK   */
-		int   prepare_move(int);
-		/// do the proposed move  it returns OK or !OK
-		int   do_move();
-     };
+class JSHOP_cr_bl_shift_Ngbh: public JSHOP_API_Ngbh{
+private:
+  /// set of critical operations
+  int   *cr_list_j;
+  /// set of critical operations
+  int   *cr_list_m;
+  /// set of critical operations
+  int   *direction;
+  /// number of critical operations
+  int   count;
+  /// where to swap ?  
+  int   pos1, pos2;
+  /// job order
+  Lisa_Vector<int> *JOrd;
+public:	
+  /// construct JSHOP_cr_bl_shift_Ngbh
+  /** with a start schedule and specified problem data */
+  JSHOP_cr_bl_shift_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
+  /// destructor 
+  ~JSHOP_cr_bl_shift_Ngbh();
+  
+  int   prepare_move(int);
+  int   do_move();
+};
 
 #endif
-
-
-
 

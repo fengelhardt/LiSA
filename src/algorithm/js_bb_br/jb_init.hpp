@@ -18,7 +18,7 @@
 /*  FUNCTION: Initialization of global variables;                            */
 /*            Initialization of the file "output.dat"                        */
 /* ************************************************************************* */
-
+/// Initialization of global variables, Initialization of the file "output.dat" 
 void Initialize();
 
 

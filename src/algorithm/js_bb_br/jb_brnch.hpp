@@ -22,7 +22,8 @@
 /*  FUNCTION: Calculation of the Before- and After-Candidates. They are      */
 /*            in the order of non-decreasing heads/tails in SonNode->order.  */
 /* ************************************************************************* */
-
+/// Calculation of the Before- and After-Candidates.
+/** They are in the order of non-decreasing heads/tails in SonNode->order. */
 void Compute_BranchList ();
 
 #endif

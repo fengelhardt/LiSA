@@ -26,9 +26,14 @@
 /*            (n|1|r_i >= 0, q_i >= 0|preempt,prec|C_max) problem based on   */
 /*            the operations in op_array                                     */
 /* ************************************************************************* */
-
-
-int Preemptive_Schedule (int[] , int, int[]);
+/// Calculation of the makespan
+/** of the (n|1|r_i >= 0, q_i >= 0|preempt,prec|C_max) problem based on the 
+    operations in op_array
+    @param op_array    Array of operations              
+    @param num         number of operations in op_array 
+    @param head        array of heads                   
+ */                                  
+int Preemptive_Schedule(int op_array[], int num, int head[]);
 
 /* ************************************************************************* */
 /*                      Procedure   Compute_LowerBound()                     */
@@ -39,8 +44,10 @@ int Preemptive_Schedule (int[] , int, int[]);
 /*            (n|1|r_i >= 0, q_i >= 0|preempt,prec|C_max) problem for all    */
 /*            machines                                                       */
 /* ************************************************************************* */
-
-int Compute_LowerBound ();
+/// Calculation of a lower bound for SonNode
+/** by solving the (n|1|r_i >= 0, q_i >= 0|preempt,prec|C_max) problem for all
+    machines */                                                   
+int Compute_LowerBound();
 
 
 #endif

@@ -24,10 +24,12 @@
 /*  INPUT : l          linked list of integers                               */ 
 /*          Op         integer                                               */ 
 /*                                                                           */
-/*  FUNCTION: Op is appended at the end of l if member(l,Op) == false        */
+/*  FUNCTION: Op is appended at the end of l if Member(l,Op) == false        */
 /* ************************************************************************* */
-
-struct List *Insert (struct List *, int);
+/// Op is appended at the end of l if Member(l,Op) == false
+/** @param l          linked list of integers 
+    @param Op         integer */
+struct List *Insert(struct List *l, int Op);
 
 
 /* ************************************************************************* */
@@ -38,8 +40,10 @@ struct List *Insert (struct List *, int);
 /*                                                                           */
 /*  FUNCTION: Op is appended at the begining of l                            */
 /* ************************************************************************* */
-
-struct List *InsertBefore (struct List *, int);
+/// Op is appended at the begining of l
+/** @param l          linked list of integers 
+    @param Op         integer */
+struct List *InsertBefore(struct List *l, int Op);
 
 
 /* ************************************************************************* */
@@ -50,8 +54,10 @@ struct List *InsertBefore (struct List *, int);
 /*                                                                           */
 /*  FUNCTION: Op is deleted from l                                           */
 /* ************************************************************************* */
-
-struct List *Delete (struct List *, register int);
+/// Op is deleted from l
+/** @param l          linked list of integers 
+    @param Op         integer */
+struct List *Delete(struct List *l, register int Op);
 
 
 /* ************************************************************************* */
@@ -61,8 +67,9 @@ struct List *Delete (struct List *, register int);
 /*                                                                           */
 /*  FUNCTION: l is deleted                                                   */
 /* ************************************************************************* */
-
-struct List *Makeempty (register struct List *);
+/// l is deleted      
+/** @param l          linked list of integers */
+struct List *Makeempty(register struct List *l);
 
 
 /* ************************************************************************* */
@@ -73,8 +80,10 @@ struct List *Makeempty (register struct List *);
 /*                                                                           */
 /*  FUNCTION: Check whether Op is in l or not                                */
 /* ************************************************************************* */
-
-boolean Member (struct List *, register int);
+/// Check whether Op is in l or not
+/** @param l          linked list of integers 
+    @param Op         integer */
+boolean Member(struct List *l, register int Op);
 
 
 /* ************************************************************************* */
@@ -85,7 +94,7 @@ boolean Member (struct List *, register int);
 /*  FUNCTION: Deletes all invalid disjunctive arcs in ActualNode during      */
 /*            the backtracking.                                              */
 /* ************************************************************************* */
-
-void Update_DisjArcs ();
+/// Deletes all invalid disjunctive arcs in ActualNode during the backtracking. 
+void Update_DisjArcs();
 
 #endif

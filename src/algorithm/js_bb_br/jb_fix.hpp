@@ -21,7 +21,11 @@
 /*  FUNCTION: The disjunctive arcs of SonNode are stored in DisjArcs.        */
 /*            The number of the disjunctive arcs ard stored in SonNode.      */
 /* ************************************************************************* */
-void Fix_Disjunctions (int, char);
+///The disjunctive arcs of SonNode are stored in DisjArcs.  
+/** The number of the disjunctive arcs ard stored in SonNode.
+    @param MoveOp (operation to be moved)
+    @param Direc  (before / after) */        
+void Fix_Disjunctions (int MoveOp, char Direc);
 
 #endif
 

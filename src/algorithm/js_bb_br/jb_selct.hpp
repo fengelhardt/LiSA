@@ -22,8 +22,9 @@
 /*            Pinson. The largest calculated lower bound is returned to      */
 /*            the  main program.                                             */
 /* ************************************************************************* */
-
-int Additional_DisjArcs ();
+/// Fixation of additional disjunctive arcs due to Carlier and Pinson.
+/** The largest calculated lower bound is returned to the  main program. */                                        
+int Additional_DisjArcs();
 
 
 #endif

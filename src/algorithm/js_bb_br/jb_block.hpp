@@ -22,6 +22,8 @@
 /*            in SonNode.                                                    */
 /* ************************************************************************* */
 
+/// Calculation of the blocks on the critical path      
+/** The blocks are stored in the order of non-decreasing in SonNode. */                                         
 void Compute_Blocks ();
 
 #endif

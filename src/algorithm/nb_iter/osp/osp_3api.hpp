@@ -23,7 +23,13 @@
 */
 class OSHOP_3_API_Ngbh: public OSHOP_API_Ngbh{
 private:
-  /// where are we swapping
+  /// for the 3 proposed swaps
+  /** for JO-swap:
+	    - swaps[][0]=JO
+			- swaps[][1] machine1
+			- swaps[][2] job1
+			- swaps[][3] job2
+			- swaps[][4] OK ? */
   int swaps[3][5];
 public:	
   /// construct OSHOP_3_API_Ngbh

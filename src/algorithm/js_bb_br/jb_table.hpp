@@ -9,6 +9,8 @@
 
 #ifndef _TABLE_H
 #define _TABLE_H
+//@{
+/// global variables
 extern	struct Operation         OpData[MaxNumOfOperations+1];
 extern	struct List              *OpsOnMachine[MaxNumOfMachines+1],
 	                         *CriticalPath; 
@@ -20,6 +22,7 @@ extern	int                      head[MaxNumOfOperations+1],
 	                         NumOfJobs, NumOfMachines, NumOfOperations,
 	                         SearchTreeNodes;
 extern	struct StackElement      *FirstOfStack;       
-extern	struct NodeType          *ActualNode, *SonNode; 
+extern	struct NodeType          *ActualNode, *SonNode;
+//@}
 #endif
 

@@ -1,13 +1,3 @@
-/*
- * ******************** jsp_blpi.hpp ******************************
- * 
- * description:      job shop critical-block-API neighbourhood
- * 
- * @author            Andreas Winkler
- *
- * date:             5.01.1999
- *
- */
 
 #ifndef _jshp_bl_api_h
 #define _jshp_bl_api_h
@@ -17,8 +7,8 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop critical-block-API Neighbourhood.
-    This is the problem dependent API neighbourhood class for the 
+/// job shop critical-block-API neighbourhood
+/** This is the problem dependent API neighbourhood class for the 
     open shop problem, where we take a swap only for a critical block 
     operation.
     It is inherited from the class JSHOP_API_Ngbh.
@@ -28,30 +18,26 @@
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
-class JSHOP_cr_bl_API_Ngbh: public JSHOP_API_Ngbh
-     {
-                int   *cr_list_j;
-		int   *cr_list_m;  
-		int   *direction;  // set of critical operations
-		int   count;       // number of critical operations
-	public:	
-		/** construct JSHOP_cr_bl_API_Ngbh with a start schedule
-		    and specified problem datas   */
-		JSHOP_cr_bl_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
-		~JSHOP_cr_bl_API_Ngbh();
-		/** propose a possible move,
-		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;
-		    it propose an exchange of a block-end-operation on the
-		    Cmax-critical way with a block-internal-operation (in the 
-		    job-order of a machine);
-		    it returns OK or !OK   */
-		int   prepare_move(int);
-		/// do the proposed move  it returns OK or !OK
-		int   do_move();
-     };
+class JSHOP_cr_bl_API_Ngbh: public JSHOP_API_Ngbh{
+private:
+  /// set of critical operations
+  int   *cr_list_j;
+  /// set of critical operations
+  int   *cr_list_m;
+  /// set of critical operations
+  int   *direction;
+  /// number of critical operations 
+  int   count;      
+public:	
+  /// construct JSHOP_cr_bl_API_Ngbh
+  /** with a start schedule and specified problem data */
+  JSHOP_cr_bl_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
+  /// destructor
+  ~JSHOP_cr_bl_API_Ngbh();
+
+  int   prepare_move(int);
+  int   do_move();
+};
 
 #endif
-
-
 
