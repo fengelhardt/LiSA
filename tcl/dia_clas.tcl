@@ -53,7 +53,7 @@ proc vTclWindow.textaus {base} {
         -command {TC_references} \
         -padx 11 -pady 4 -text $Name(References) 
     button $base.fra19.but20 \
-        -command {lisa_help classify.htm} \
+        -command {lisa_help classify.html} \
         -padx 11 -pady 4 -text $Name(Help) 
     button $base.fra19.but18 \
         -command {destroy .textaus} \

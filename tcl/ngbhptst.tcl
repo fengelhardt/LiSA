@@ -376,7 +376,7 @@ if { $neighbor(METHOD)=="TS" } {
 		  destroy .ngbh_paratst}
     button $base.fra77.but80 \
 	-padx 11 -pady 4 -text $Name(Help) \
-	-command { lisa_help nb_ptest.htm }
+	-command { lisa_help external/gen_ptst.html }
     ###################
     # SETTING GEOMETRY
     ###################

@@ -65,8 +65,8 @@ objdir:
 
 install: bindir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp gen_ptst_english.html $(TOPPROGRAMPATH)/doc/external/language/english/gen_ptst.html
-	cp gen_ptst_german.html $(TOPPROGRAMPATH)/doc/external/language/german/gen_ptst.html
+	cp gen_ptst_english.html $(TOPPROGRAMPATH)/doc/lisa/english/external/gen_ptst.html
+	cp gen_ptst_german.html $(TOPPROGRAMPATH)/doc/lisa/german/external/gen_ptst.html
 #	rm -f $(BINPATH)/$(INSTALLNAME)
 #	ln -s $(ABSOLUTE_BINPATH)/$(PROGRAMNAME) $(BINPATH)/$(INSTALLNAME)
 #	rm -f $(bindir)/$(INSTALLNAME)
@@ -83,6 +83,8 @@ uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
 	rm -f $(bindir)/$(INSTALLNAME)
+	rm -f $(TOPPROGRAMPATH)/doc/lisa/english/external/gen_ptst.html
+	rm -f $(TOPPROGRAMPATH)/doc/lisa/german/external/gen_ptst.html
 
 # ------------------------------------------------------------------------------
 

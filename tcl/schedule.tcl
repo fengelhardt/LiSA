@@ -99,7 +99,7 @@ proc vTclWindow.schedulewin {base} {
 #         -label "modify"
     button $base.fra19.but22 -text "$Name(Adopt)" -pady 3 -command adopt_seq
     button $base.fra19.but23 -text "$Name(Help)" -pady 3 \
-	-command { lisa_help schedule.htm }
+	-command { lisa_help schedule.html }
     frame $base.fra22 \
 	-borderwidth 2 -width 125 
     frame $base.fra22.fra25 \

@@ -14,8 +14,8 @@ INSTALLNAME=evaluate
 
 TOPPROGRAMPATH=../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop/eval
-OBJPATH=$(TOPPROGRAMPATH)/compiled
+DOCPATH=$(TOPPROGRAMPATH)/doc
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------

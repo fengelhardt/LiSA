@@ -117,7 +117,7 @@ proc vTclWindow.man_oper {base} {
     button $base.but38 \
         -padx 4 -pady 4 -text $Name(Close) -command { destroy .man_oper;TC_draw_output }
     button $base.but40 \
-        -padx 4 -pady 4 -text $Name(Help) -command { lisa_help man_oper.htm }
+        -padx 4 -pady 4 -text $Name(Help) -command { lisa_help man_oper.html }
   #   button $base.but39 \
 #         -padx 2 -pady 4 -text $Name(Cancel) -command {destroy .man_oper}
     ###################

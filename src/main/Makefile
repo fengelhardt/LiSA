@@ -15,7 +15,7 @@ INSTALLNAME=lisa
 TOPPROGRAMPATH=../..
 BINPATH=$(TOPPROGRAMPATH)/bin
 ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
-DOCPATH=$(TOPPROGRAMPATH)/doc/lisa
+DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
@@ -73,7 +73,7 @@ install: bindir algdir docdir
 	cp $(SOURCEPATH)/algo/disp1_german_u.alg $(ALGPATH)/language/german_u/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_german_u.alg $(ALGPATH)/language/german_u/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_german_u.alg $(ALGPATH)/language/german_u/disp3.alg
-	cp -r $(SOURCEPATH)/doc/language $(DOCPATH)
+	cp -r $(SOURCEPATH)/doc/* $(DOCPATH)/lisa
 
 # ------------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ algdir:
 # ------------------------------------------------------------------------------
 
 docdir:
-	@mkdir -p $(DOCPATH)
+	@mkdir -p $(DOCPATH)/lisa
 
 # ------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
 	rm -f $(ALGPATH)/language/*/disp*.alg
-	rm -fr $(DOCPATH)
+	rm -f $(DOCPATH)/lisa/*.html
 
 # ------------------------------------------------------------------------------
 
@@ -135,5 +135,5 @@ develdoc: develdocdir
 # ------------------------------------------------------------------------------
 
 develdocdir:
-	@mkdir -p $(DOCPATH)/develop/$(PROGRAMNAME)
+	@mkdir -p $(DOCPATH)/devel/$(PROGRAMNAME)
 

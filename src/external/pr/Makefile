@@ -14,7 +14,7 @@ PROGRAMNAME=pr
 TOPPROGRAMPATH=../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
 ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
-DOCPATH=$(TOPPROGRAMPATH)/doc/external
+DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 
 # ------------------------------------------------------------------------------
@@ -69,8 +69,8 @@ install: bindir algdir docdir
 	cp $(PROGRAMNAME)1_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)1.alg
 	cp $(PROGRAMNAME)2_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)3.alg
-	cp $(PROGRAMNAME)_english.html $(DOCPATH)/language/english/$(PROGRAMNAME).html
-	cp $(PROGRAMNAME)_german.html $(DOCPATH)/language/german/$(PROGRAMNAME).html
+	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/external/$(PROGRAMNAME).html
+	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/external/$(PROGRAMNAME).html
     
 # ------------------------------------------------------------------------------
 
@@ -87,16 +87,15 @@ algdir:
 # ------------------------------------------------------------------------------
 
 docdir:
-	@mkdir -p $(DOCPATH)/language/english
-	@mkdir -p $(DOCPATH)/language/german
-	@mkdir -p $(DOCPATH)/language/german_u
+	@mkdir -p $(DOCPATH)/lisa/english/external
+	@mkdir -p $(DOCPATH)/lisa/german/external
 
 # ------------------------------------------------------------------------------
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.alg
-	rm -f $(DOCPATH)/language/*/$(PROGRAMNAME).html
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME).alg
+	rm -f $(DOCPATH)/lisa/*/external/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
@@ -132,5 +131,5 @@ develdoc: develdocdir
 # ------------------------------------------------------------------------------
 
 develdocdir:
-	@mkdir -p $(DOCPATH)/develop/$(PROGRAMNAME)
+	@mkdir -p $(DOCPATH)/devel/$(PROGRAMNAME)
 

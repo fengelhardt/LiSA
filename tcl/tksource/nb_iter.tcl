@@ -10,7 +10,7 @@ proc vTclWindow.neighbor {base} {
     set neighbor(ALGO_CALL) nb_iter
     set neighbor(NAME) "Neighborhood Search (neighbor(NAME), obsolet?)"
     set neighbor(CODE) external
-    set neighbor(HELPFILE) german_u/neighbor.html
+    set neighbor(HELPFILE) external/nb_iter.html
 
     global system
     if {$base == ""} {
@@ -207,7 +207,7 @@ proc vTclWindow.neighbor {base} {
     button $base.fra57.but60 \
          -borderwidth 4 \
          -padx 11 -pady 4 -text $Name(Help) \
-	-command { lisa_help neighbor.htm }
+	-command { lisa_help external/nb_iter.html }
     ###################
     # SETTING GEOMETRY
     ###################

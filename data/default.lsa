@@ -1,5 +1,5 @@
 <CONTROLPARAMETERS>
-string  LANGUAGE english
+string LANGUAGE english
 long WIDTH 600
 long HEIGHT 500
 string HTML_VIEWER netscape

@@ -823,7 +823,7 @@ proc lisa_about { } {
     Window show .write_text
     wm title .write_text $Name(About)
     .write_text.mmenf.tex23  delete 1.0 end
-    set myfile [open  $env(LISAHOME)/doc/lisa/language/$env(LLANGUAGE)/about.txt "r"]
+    set myfile [open  $env(LISAHOME)/doc/lisa/$env(LLANGUAGE)/about.txt "r"]
     .write_text.mmenf.tex23  insert end [read $myfile]
     .write_text.mmenf.tex23 configure -state disabled
     .write_text.mmenf.tex23 configure -takefocus 0
@@ -897,7 +897,7 @@ proc vTclWindow.write_text {base} {
 }
 
 proc lisa_docu { } {
-    lisa_help main.htm
+    lisa_help main.html
 }
 
 proc lisa_page { } {
@@ -918,7 +918,7 @@ proc lisa_help { helpfile } {
     } else {
         set start_node ""
     }
-	exec $html_viewer $start_node$env(LISAHOME)/doc/language/$lang/$helpfile &
+	exec $html_viewer $start_node$env(LISAHOME)/doc/lisa/$lang/$helpfile &
 }
 
 proc close_all_open_windows { } {
