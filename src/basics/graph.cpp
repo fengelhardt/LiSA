@@ -397,11 +397,11 @@ void Lisa_MatrixListGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const ad
   for(int i=0; i<size; i++){
     for(int j=i+1; j<size; j++){
     
-      if((*adj)[i][j] == 1 && (*adj)[j][i] == 1){
+      if( (*adj)[i][j] && (*adj)[j][i] ){
         ins_edge(i+1,j+1);
-      }else if((*adj)[i][j] == 1){
+      }else if( (*adj)[i][j] ){
         ins_arc(i+1,j+1);
-      }else if((*adj)[j][i] == 1){
+      }else if( (*adj)[j][i] ){
         ins_arc(j+1,i+1);
       }
       
@@ -1257,8 +1257,8 @@ void Lisa_MatrixGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const adj){
   
   for(int i=1;i<=size;i++){
     for(int j=i+1;j<=size;j++){
-      (*matrix)[i][j] = (*adj)[i-1][j-1];
-      (*matrix)[j][i] = (*adj)[j-1][i-1];
+      (*matrix)[i][j] = (*adj)[i-1][j-1] ? 1 : 0;
+      (*matrix)[j][i] = (*adj)[j-1][i-1] ? 1 : 0;
     }
   }
 }
