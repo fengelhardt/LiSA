@@ -35,10 +35,7 @@ class Lisa_MatrixListGraph  : public Lisa_FileEntry {
 private:
 
   ///number of vertices
-  int n;
-  
-  /// end (number of vertices + 1) 
-  int end;
+  int size;
   
   ///storage for the predecessor and successor lists of every vertex
   /** this is an adjacency matrix, however entries in the matrix are not only
@@ -90,7 +87,7 @@ public:
   const Lisa_MatrixListGraph& operator=(const Lisa_MatrixListGraph& other);
 
   /// return the number of vertices
-  inline int get_vertices()const{return n;};
+  inline int get_vertices()const{return size;};
 
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
