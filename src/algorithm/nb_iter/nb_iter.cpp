@@ -21,24 +21,8 @@
 #include "../../misc/except.hpp"
 
 #include "single_neighbourhoods.hpp"
-
 #include "openshop_neighbourhoods.hpp"
-
-#include "jsp/jsp_api.hpp"
-#include "jsp/jsp_swap.hpp"
-#include "jsp/jsp_3api.hpp"
-#include "jsp/jsp_crpi.hpp"
-#include "jsp/jsp_s_pi.hpp"
-#include "jsp/jsp_blpi.hpp"
-#include "jsp/jsp_shft.hpp"
-#include "jsp/jsp_trns.hpp"
-#include "jsp/jsp_crtr.hpp"
-#include "jsp/jsp_crtm.hpp"
-#include "jsp/jsp_s_tr.hpp"
-#include "jsp/jsp_crsh.hpp"
-#include "jsp/jsp_crsm.hpp"
-#include "jsp/jsp_blsh.hpp"
-#include "jsp/jsp_3_cr.hpp"
+#include "jobshop_neighbourhoods.hpp"
 
 #include "iterate.hpp"
 

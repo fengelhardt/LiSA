@@ -2,23 +2,9 @@ OBJECTS=\
 	../../../obj/nb_iter.o \
 	../../../obj/iterate.o \
 	../../../obj/tabu.o \
-	../../../obj/jsp_api.o \
-	../../../obj/jsp_swap.o \
-	../../../obj/jsp_shft.o \
-	../../../obj/jsp_trns.o \
-	../../../obj/jsp_crtr.o \
-	../../../obj/jsp_crtm.o \
-	../../../obj/jsp_s_tr.o \
-	../../../obj/jsp_3api.o \
-	../../../obj/jsp_crpi.o \
-	../../../obj/jsp_s_pi.o \
-	../../../obj/jsp_blpi.o \
-	../../../obj/jsp_crsh.o \
-	../../../obj/jsp_crsm.o \
-	../../../obj/jsp_blsh.o \
-	../../../obj/jsp_3_cr.o \
 	../../../obj/single_neighbourhoods.o \
 	../../../obj/openshop_neighbourhoods.o \
+	../../../obj/jobshop_neighbourhoods.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

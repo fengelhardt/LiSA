@@ -2,23 +2,9 @@ CXXSOURCES=\
 	nb_iter.cpp \
 	iterate.cpp \
 	tabu.cpp \
-	jsp/jsp_api.cpp \
-	jsp/jsp_swap.cpp \
-	jsp/jsp_shft.cpp \
-	jsp/jsp_trns.cpp \
-	jsp/jsp_crtr.cpp \
-	jsp/jsp_crtm.cpp \
-	jsp/jsp_s_tr.cpp \
-	jsp/jsp_3api.cpp \
-	jsp/jsp_crpi.cpp \
-	jsp/jsp_s_pi.cpp \
-	jsp/jsp_blpi.cpp \
-	jsp/jsp_crsh.cpp \
-	jsp/jsp_crsm.cpp \
-	jsp/jsp_blsh.cpp \
-	jsp/jsp_3_cr.cpp \
 	single_neighbourhoods.cpp \
   openshop_neighbourhoods.cpp \
+  jobshop_neighbourhoods.cpp \
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \
