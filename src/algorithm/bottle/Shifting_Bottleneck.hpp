@@ -1,14 +1,3 @@
-/*
- * **************Bottleneck.h*******************************
- * 
- * Shifting_Bottleneck heuristic
- *
- * @author Christian Schulz
- * @version 2.3pre3
- *
- * 14.5.2001
- *
-*/
 
 #ifndef _bottleneck_h 
 #define _bottleneck_h 
@@ -25,34 +14,38 @@
 #include "../../basics/order.hpp"
 
 
-/** Shifting_Bottleneck object for Lisa, using the Shifting_Bottleneck 
-    heuristic to solve scheduling problems 
-
+/// Shifting_Bottleneck object for Lisa
+/** use the Shifting_Bottleneck heuristic to solve job shop problems 
+    @version 2.3pre3
     @author Christian Schulz
 */ 
-class Shifting_Bottleneck
-{
+class Shifting_Bottleneck{
+private:
   /// running mode for single machine problem
   bool single_machine_mode;
+  /// our problem
   Lisa_JsProblem* JsPro;
+  /// our schedule
   Lisa_JsSchedule* JsSch;
   /// stores the machines, for which the schedule is determined
   Lisa_Vector<int>* Done_Machines;
   /// contains the already computed parts of the final schedule
   Lisa_Graph* Plan;
-  /// initialize the Lisa_Graph* Plan
+  /// initialize Plan
   void init_graph();
   /// fast algorithm for shifting_bottleneck heuristic
   void shifting_bottleneck();
 public:
-  /** initialize the Shifting_Bottleneck object with
-      parameters from Lisa_JsSchedule* pJsSch 
-  */
+  /// constructor
+  /** initialize the Shifting_Bottleneck object with parameters from 
+      Lisa_JsSchedule* pJsSch */
   Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m=false);
+  /// destructor
   ~Shifting_Bottleneck();
-  /** start the bottleneck heuristic and ... 
-      store the result in Lisa_Schedule* pSch */
+  /// start the bottleneck heuristic 
+  /** store the result in Lisa_Schedule* pSch */
   void run(Lisa_Schedule* pSch);
 };
+
 #endif
 

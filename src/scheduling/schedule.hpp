@@ -24,7 +24,7 @@ const int NO_OF_IKL =12;
 
 /// schedule class for communication with algorithms
 /** @author Per Willenius, Thomas Tautenhahn
-    @version 2.3pre3 
+    @version 2.3pre3
  */
 class Lisa_Schedule  : public Lisa_FileEntry{
 protected:
@@ -98,7 +98,7 @@ public:
     Used to store Schedules in a Lisa_List
     
     @author Per Willenius, Thomas Tautenhahn
-    @version 2.3pre3 
+    @version 2.3pre3
  */
 class Lisa_ScheduleNode  : public Lisa_FileEntry{
 public:

@@ -74,7 +74,7 @@ public:
 /// Class for calculating maximum matchings on unweighted bipartite graphs.
 /** It also works if |I| != |J|.
    @author Marc Moerig
-   @version 2.3pre3   
+   @version 2.3pre3
 */
 class Lisa_BipartMatching : public Lisa_GenericObject{
 private: 
@@ -198,7 +198,7 @@ public:
 /** This interface provides a unified way to use Lisa_WeightedMatching and
     Lisa_BottleneckMatching. 
    @author Marc Moerig
-   @version 2.3pre3   
+   @version 2.3pre3
 */
 class Lisa_Matching : public Lisa_GenericObject{
 protected:
