@@ -54,6 +54,8 @@ int main(int argc, char *argv[]) {
     
   //  G_ExceptionList.set_output_to_cerr();
   Pref >> G_Preferences;
+  Pref.close();
+  
   G_Schedule= new Lisa_Schedule(1,1);
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
   G_Schedule->make_LR();
@@ -79,7 +81,7 @@ int main(int argc, char *argv[]) {
       new_mn();
       G_Values.PT_to_SIJ();
     }
-    else cerr << "no Startfile:" << G_Preferences.get_string("STARTFILE") << "found\n";
+    else cerr << "No Startfile: '" << G_Preferences.get_string("STARTFILE") << "' found." << cerr;
   }
   Tk_myMain( argc, argv );
   delete G_Schedule;
