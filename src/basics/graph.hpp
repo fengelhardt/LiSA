@@ -199,6 +199,10 @@ public:
   /// constructor
   /** Create a graph as the copy of another graph. */
   Lisa_MatrixListGraph(const Lisa_MatrixListGraph & othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixListGraph(const Lisa_Graph& othergraph);
 
   /// destructor
   ~Lisa_MatrixListGraph();

@@ -236,6 +236,18 @@ Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_MatrixListGraph& othergrap
 
 //**************************************************************************
 
+Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_Graph & othergraph){
+  matrix=0;
+  succ_pred_pointer=0;
+  init(othergraph.get_vertices());
+  
+  Lisa_Matrix<int> out(size,size);
+  othergraph.get_adjacency_matrix(&out);
+  read_adjacency_matrix(&out);
+}
+
+//**************************************************************************
+
 Lisa_MatrixListGraph::~Lisa_MatrixListGraph(){
   delete matrix;
   delete succ_pred_pointer;
