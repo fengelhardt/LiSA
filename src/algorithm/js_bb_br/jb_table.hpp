@@ -6,6 +6,7 @@
 /* ************************************************************************* */
 
 #include "jb_dtstr.hpp"
+#include "../../basics/matrix.hpp"
 
 #ifndef _TABLE_H
 #define _TABLE_H
@@ -23,6 +24,8 @@ extern	int                      head[MaxNumOfOperations+1],
 	                         SearchTreeNodes;
 extern	struct StackElement      *FirstOfStack;       
 extern	struct NodeType          *ActualNode, *SonNode;
+
+extern Lisa_Matrix<bool> *SIJ;
 //@}
 #endif
 

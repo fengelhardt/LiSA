@@ -80,7 +80,6 @@ void Heuristic_Schedule (int problem_n, int problem_m )
   struct List  *Cut,
                *help,
                *UpdateList;
-  FILE         *fp;
   int          MinReadyTime,
                MinReadyTimeMachine,
                PriorityOp,
@@ -257,70 +256,56 @@ void Heuristic_Schedule (int problem_n, int problem_m )
   }
 
   if (C_max < UpperBound) {     
-
-    // create the JMO-Matrix
-    Lisa_Matrix<int> *JO;
-    if ( !( JO = new Lisa_Matrix<int>(problem_n,problem_m) ) )
-      {  
-	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	exit( 7 );
-      }
-    JO->fill(0);
-    Lisa_Vector<int> *JO_help;
-    if ( !( JO_help = new Lisa_Vector<int>(problem_n) ) )
-      {  
-	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	exit( 7 );
-      }
-    JO_help->fill(0);
-    Lisa_Order *JOOrder;
-     if ( !(JOOrder = new Lisa_Order(problem_n)) )
-       {
-	 G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	 exit( 7 );
-       }
-
-
      UpperBound = C_max;
-     //printf("Upper Bound = %4d\n",C_max);
      cout << "OBJECTIVE= " << C_max << endl;
+     
+    // create the JMO-Matrix
+    Lisa_Matrix<int> JO(problem_n,problem_m);
+    JO.fill(0);
+
      for(i = 1; i <= NumOfOperations; ++i) CurrentBest[i] = Selection[i];
-     fp = fopen("output.dat","a");
-     fprintf(fp,"\nUpper bound %d after %d search tree nodes\n",
-                          UpperBound, SearchTreeNodes);
-     for (i = 0; i <= NumOfMachines; ++i) 
-        OutputList[i] = NIL; 
+
+     for (i = 0; i <= NumOfMachines; ++i) OutputList[i] = NIL; 
      for (i = 1; i <= NumOfOperations; ++i) 
         OutputList[ OpData[CurrentBest[i]].machine_nr ] =
           Insert(OutputList[OpData[CurrentBest[i]].machine_nr], CurrentBest[i]);
+     
      for (i = 1; i <= NumOfMachines; ++i) {
-        fprintf(fp,"MaschineNo %3d :  ",i);
+
         help = OutputList[i];
-	j = 0;
+        j = 0;
         while (help != NIL) {
-           fprintf(fp,"%3d ",help->number);
-	   (*JO_help)[j] = help->number;
-	   j++;
-           help = help->next;
+          j++;
+          help = help->next;
         }
-	// create the JO
-	JOOrder->read( JO_help );
-	JOOrder->sort();
-	for (j=0; j<problem_n; j++)
-	  (*JO)[j][i-1] = (*JOOrder)[j]+1;
-	// JO ready
-        fprintf(fp,"\n");
+        
+        Lisa_Order ord(j);
+        help = OutputList[i];
+        j = 0;
+        while(help != NIL){
+          ord.read_one_key(j,help->number);
+          help = help->next;
+          j++;
+        }
+        
+        // create the JO
+        
+        ord.sort();
+        j = 0;
+        for (int k=0; k<problem_n; k++)
+          if((*SIJ)[k][i-1]){
+            JO[k][i-1] = ord[j]+1;
+            j++;
+          }
      } 
+     
      for (i = 0; i <= NumOfMachines; ++i) 
         OutputList[i] = Makeempty(OutputList[i]); 
-     fclose(fp);
+     
 
      ofstream JO_out("jo_out.dat");
-     JO_out << *JO;
+     JO_out << JO;
      JO_out.close();
-     delete JOOrder;
-     delete JO;
-     delete JO_help;
  }
 }
 

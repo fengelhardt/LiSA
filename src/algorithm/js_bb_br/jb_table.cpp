@@ -18,5 +18,7 @@ int                      head[MaxNumOfOperations+1],
                          NumOfJobs, NumOfMachines, NumOfOperations,
                          SearchTreeNodes = 1;
 struct StackElement      *FirstOfStack;       
-struct NodeType          *ActualNode, *SonNode; 
+struct NodeType          *ActualNode, *SonNode;
+
+Lisa_Matrix<bool> *SIJ;
 
