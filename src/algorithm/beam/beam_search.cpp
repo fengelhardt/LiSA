@@ -25,7 +25,7 @@ void BeamSearch::clear(){
   beam_width = 5;
   insertionMethod = insert1;
   iord = lpt;
-  attatch = both;
+  attach = both;
   if(problem){ delete problem; problem = NULL; }
   if(result){ delete result; result = NULL; }
   if(order){ delete order; order = NULL; }
@@ -91,20 +91,20 @@ bool BeamSearch::init(LisaXmlFile& xmlInput){
   else if (Parameter.get_string("INS_ORDER")=="QUEEN_SWEEP") iord = queens;
   else if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
   else if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
-  else if (Parameter.get_string("INS_ORDER")=="ATTATCH") iord = att;
+  else if (Parameter.get_string("INS_ORDER")=="ATTACH") iord = att;
   else{
     cout << "ERROR: \"" << Parameter.get_string("INS_ORDER")
 	 << "\" unknown Insertion Order. Aborting." << endl;
     return false;
   }
   
-  if (iord == att && Parameter.defined("ATTATCH_WHAT")) {
-    if (Parameter.get_string("ATTATCH_WHAT")=="Machines") attatch=machines;
-    else if (Parameter.get_string("ATTATCH_WHAT")=="Jobs") attatch=jobs;
-    else if (Parameter.get_string("ATTATCH_WHAT")=="Machines+Jobs") attatch=both;
+  if (iord == att && Parameter.defined("ATTACH_WHAT")) {
+    if (Parameter.get_string("ATTACH_WHAT")=="Machines") attach=machines;
+    else if (Parameter.get_string("ATTACH_WHAT")=="Jobs") attach=jobs;
+    else if (Parameter.get_string("ATTACH_WHAT")=="Machines+Jobs") attach=both;
     else{
-      cout << "ERROR: \"" << Parameter.get_string("ATTATCH_WHAT")
-	   << "\" unknown Attatchment rule. Aborting." << endl;
+      cout << "ERROR: \"" << Parameter.get_string("ATTACH_WHAT")
+	   << "\" unknown Attachment rule. Aborting." << endl;
       return false;
     }
   }
@@ -160,7 +160,7 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
     return true;
   }
   else { //dynamic next
-    //attatchment minimum head is first machine/job
+    //attachment minimum head is first machine/job
     TIMETYP best = std::numeric_limits<TIMETYP>::infinity(), head;
     next.first = next.second = 1;
     for (int i=1; i<=parent->P->n; i++)
@@ -183,7 +183,7 @@ void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, In
   OpRankPos pos;
   Operation insOp = op;
   TIMETYP head = std::max<TIMETYP>(parent.GetHead(op.first,SINK),parent.GetHead(SINK,op.second));
-  switch(attatch){
+  switch(attach){
   case jobs:
     //find the machine numbers of all non-delay insertables
     pos.second = parent.GetMOpred(insOp.first,SINK);

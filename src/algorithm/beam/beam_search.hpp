@@ -31,13 +31,13 @@ public:
     machines,
     jobs,
     both
-  } AttatchmentRule;
+  } AttachmentRule;
 
   int problemtype;
   int beam_width;
   InsertionMethod insertionMethod;
   InsertionOrder iord;
-  AttatchmentRule attatch;
+  AttachmentRule attach;
   CostFunc costFunc;
   int destObjective;
   

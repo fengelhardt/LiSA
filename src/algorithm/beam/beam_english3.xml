@@ -40,13 +40,13 @@
       <item name="LPT"/>
       <item name="ECT"/>
       <item name="SPT"/>
-      <item name="ATTATCH"/>
+      <item name="ATTACH"/>
     </choice>
     <choice name="INS_METHOD" caption="Choice method">
       <item name="INSERT1"/>
       <item name="INSERT2"/>
     </choice>
-    <choice name="ATTATCH_WHAT" caption="Attatch at">
+    <choice name="ATTACH_WHAT" caption="Attach at">
 	<item name="Machines"/>
 	<item name="Jobs"/>
 	<item name="Machines+Jobs"/>

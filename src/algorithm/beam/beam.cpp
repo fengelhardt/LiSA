@@ -69,15 +69,15 @@ int main(int argc, char *argv[]){
     exit(1);
   //set progress window height
   cout << "OBJECTIVE= "<< search.guessObjective() << endl;
-  if(search.iord == att && search.attatch == BeamSearch::both){
+  if(search.iord == att && search.attach == BeamSearch::both){
     //first run with machine order
-    search.attatch = BeamSearch::machines;
+    search.attach = BeamSearch::machines;
     search.step = 0;
     if(!search.run()) exit(1);
     TIMETYP r1 = search.value;
     Lisa_Schedule* res1 = new Lisa_Schedule(*search.result);
     //second run with jobs
-    search.attatch = BeamSearch::jobs;
+    search.attach = BeamSearch::jobs;
     search.step = 0;
     if(!search.run()) exit(1);
     
