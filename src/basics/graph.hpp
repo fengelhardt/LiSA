@@ -415,6 +415,87 @@ public:
 
 //**************************************************************************
 
+class Lisa_WeightedGraph : public Lisa_FileEntry{
+private:
+  /// number of vertices in our graph
+  int size;
+  
+  /// adjacency matrix
+  Lisa_Matrix<int>* adj;
+  
+  /// weight matrix
+  Lisa_Matrix<TIMETYP> weights;
+ 
+public:
+  
+  /// flags indicating various possible connections between a pair of vertice
+  /** as returned by get_connection() */
+  enum {CRA=-1 /// backwards ARC ;)
+       ,NONE /// no connection
+       ,ARC // an arc
+       };
+  
+  /// constructor
+  /** Create a graph object for a number of vertices. */
+  Lisa_WeightedGraph(const int number_of_vertices);
+
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_WeightedGraph(const Lisa_WeightedGraph *const othergraph);
+
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_WeightedGraph(const Lisa_WeightedGraph& othergraph);
+
+  /// destructor
+  ~Lisa_WeightedGraph();
+
+  inline int get_vertices()const{return size;}
+  
+  void init(const int number_of_vertex);
+
+  void clear();  
+  
+  void get_adjacency_matrix(Lisa_Matrix<int> *const adj)const;
+
+  void set_adjacency_matrix(const Lisa_Matrix<int> *const adj);
+  
+  void get_weight_matrix(Lisa_Matrix<TIMETYP> *const weights)const;
+
+  void set_weight_matrix(const Lisa_Matrix<TIMETYP> *const adj); 
+
+  void insert_arc(const int start,const int end,const TIMETYP weight=0);
+
+  void remove_arc(const int start,const int end);
+  
+  void clear(const int vertex);
+  
+  int get_connection(const int start,const int end)const;
+
+  void set_weight(const int start,const int end,const TIMETYP weight=0);
+  
+  TIMETYP get_weight(const int start,const int end)const;
+  
+  void init_successor(const int vertex);
+
+  int next_successor(const int vertex);
+  
+  void init_predecessor(const int vertex);
+  
+  int next_predecessor(const int vertex);
+  
+  /// write a Lisa_WeightedGraph to a stream
+  /** The data is written as an adjacency matrix and weight matrix, as returned
+      by get_adjacency_matrix() and get_weight_matrix(). */
+  void write(std::ostream& = std::cout) const;
+
+  /// read a Lisa_Graph from a stream
+  void read(std::istream& = std::cin);
+
+};
+
+//**************************************************************************
+
 /// convert between one and two dimensional indices
 /** Each operation in a scheduling problem can be found in LR,CIJ,SIJ etc with 
     two indices, the machine and job number, those are usually numbered 
