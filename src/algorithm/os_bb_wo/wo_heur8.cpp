@@ -10,11 +10,11 @@
 /* ************************************************************************ */
 
 #include <stdio.h>
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "low.h"
-#include "heur.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_low.hpp"
+#include "wo_heur.hpp"
 
 
 static int    op_array[MaxOpProM_And_J+1],

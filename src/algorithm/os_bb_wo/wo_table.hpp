@@ -4,7 +4,7 @@
 /*    Export: Globale Variablen                                              */
 /* ************************************************************************* */
 
-#include "data.h"
+#include "wo_data.hpp"
 
 #ifndef _TABLE_H
 #define _TABLE_H

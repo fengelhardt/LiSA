@@ -7,12 +7,12 @@
 /* ************************************************************************* */
 
 
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "head.h"
-#include "sort.h"
-#include "select.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_head.hpp"
+#include "wo_sort.hpp"
+#include "wo_select.hpp"
 
 
 static int Jackson_Immediate_Selection(number, Head, Tail, m_or_j)	

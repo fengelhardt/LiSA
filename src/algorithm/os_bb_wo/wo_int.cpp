@@ -7,9 +7,9 @@
 
 #include <stdio.h>
 #include <malloc.h>
-#include "data.h"
-#include "table.h"
-#include "init.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_init.hpp"
 
 /* ************************************************************************ */
 /*                           Procedure  Initialize()                        */

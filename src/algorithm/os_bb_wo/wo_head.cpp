@@ -7,11 +7,11 @@
 /* ************************************************************************* */
 
 
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "sort.h"
-#include "head.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_sort.hpp"
+#include "wo_head.hpp"
 
 
 

@@ -10,11 +10,11 @@
 /* ************************************************************************* */
 
 #include <stdio.h>
-#include "data.h"
-#include "calc.h"     
-#include "table.h"
-#include "list.h"
-#include "heur.h"
+#include "wo_data.hpp"
+#include "wo_calc.hpp"    
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_heur.hpp"
 
 static struct arcs {
 		      int s, t;

@@ -5,10 +5,10 @@
 /*                     Berechnung der festgelegeten Kanten in SonNode 	    */ 
 /* ************************************************************************ */
 
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "fix.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_fix.hpp"
 
 
 /* ************************************************************************ */

@@ -13,7 +13,7 @@
 #ifndef _LIST_H
 #define _LIST_H
 
-#include "data.h"
+#include "wo_data.hpp"
 
 /* ************************************************************************* */
 /*                          Procedure  Insert()                              */

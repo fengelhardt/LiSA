@@ -10,10 +10,10 @@
 /* ************************************************************************ */
 
 
-#include "data.h"
-#include "table.h"
-#include "sort.h"
-#include "low.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_sort.hpp"
+#include "wo_low.hpp"
 
 
 /* ************************************************************************* */

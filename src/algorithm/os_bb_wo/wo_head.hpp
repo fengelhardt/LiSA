@@ -10,7 +10,7 @@
 #ifndef _HEAD_H
 #define _HEAD_H
 
-#include "data.h"
+#include "wo_data.hpp"
 
 /* ************************************************************************* */
 /*                      Procedure Compute_Head_Tail()                        */

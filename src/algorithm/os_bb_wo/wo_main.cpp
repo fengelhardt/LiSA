@@ -8,19 +8,19 @@
 
 #include <malloc.h>
 #include <stdio.h>
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "init.h"
-#include "read.h"
-#include "head.h"
-#include "heur.h"
-#include "block.h"
-#include "branch.h"
-#include "stack.h"
-#include "fix.h"
-#include "select.h"
-#include "low.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_init.hpp"
+#include "wo_read.hpp"
+#include "wo_head.hpp"
+#include "wo_heur.hpp"
+#include "wo_block.hpp"
+#include "wo_branch.hpp"
+#include "wo_stack.hpp"
+#include "wo_fix.hpp"
+#include "wo_select.hpp"
+#include "wo_low.hpp"
 
 
 /* ************************************************************************* */

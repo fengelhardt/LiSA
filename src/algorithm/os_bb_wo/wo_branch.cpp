@@ -8,10 +8,10 @@
 
 #include <malloc.h>
 #include <stdio.h>
-#include "data.h"
-#include "table.h"
-#include "list.h"
-#include "branch.h"
+#include "wo_data.hpp"
+#include "wo_table.hpp"
+#include "wo_list.hpp"
+#include "wo_branch.hpp"
 
 
 
