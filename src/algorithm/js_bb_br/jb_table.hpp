@@ -26,6 +26,7 @@ extern	struct StackElement      *FirstOfStack;
 extern	struct NodeType          *ActualNode, *SonNode;
 
 extern Lisa_Matrix<bool> *SIJ;
+extern Lisa_Matrix<int> *JO;
 //@}
 #endif
 

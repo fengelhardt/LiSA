@@ -259,9 +259,7 @@ void Heuristic_Schedule (int problem_n, int problem_m )
      UpperBound = C_max;
      cout << "OBJECTIVE= " << C_max << endl;
      
-    // create the JMO-Matrix
-    Lisa_Matrix<int> JO(problem_n,problem_m);
-    JO.fill(0);
+    JO->fill(0);
 
      for(i = 1; i <= NumOfOperations; ++i) CurrentBest[i] = Selection[i];
 
@@ -288,13 +286,11 @@ void Heuristic_Schedule (int problem_n, int problem_m )
           j++;
         }
         
-        // create the JO
-        
         ord.sort();
         j = 0;
         for (int k=0; k<problem_n; k++)
           if((*SIJ)[k][i-1]){
-            JO[k][i-1] = ord[j]+1;
+            (*JO)[k][i-1] = ord[j]+1;
             j++;
           }
      } 
@@ -302,10 +298,6 @@ void Heuristic_Schedule (int problem_n, int problem_m )
      for (i = 0; i <= NumOfMachines; ++i) 
         OutputList[i] = Makeempty(OutputList[i]); 
      
-
-     ofstream JO_out("jo_out.dat");
-     JO_out << JO;
-     JO_out.close();
  }
 }
 

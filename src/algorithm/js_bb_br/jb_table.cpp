@@ -21,4 +21,5 @@ struct StackElement      *FirstOfStack;
 struct NodeType          *ActualNode, *SonNode;
 
 Lisa_Matrix<bool> *SIJ;
+Lisa_Matrix<int> *JO;
 

@@ -165,9 +165,7 @@ int main(int argc, char *argv[]){
     exit( 7 );
   }
   
-  SIJ = Values.SIJ;
-  
-  // the new Bruckers data file:
+    // the new Bruckers data file:
   int i, j, counter, mo;
   const int m = Values.get_m();
   const int n = Values.get_n();
@@ -175,6 +173,13 @@ int main(int argc, char *argv[]){
   if(m > MaxNumOfMachines || n > MaxNumOfJobs ){
     G_ExceptionList.lthrow("This Algorithm does not support Problems with more than "
     +ztos(MaxNumOfMachines)+" Machines or " +ztos(MaxNumOfJobs)+ " Jobs. Recompile it to change this.");
+    exit( 7 );
+  }
+ 
+  SIJ = Values.SIJ;
+  JO = new Lisa_Matrix<int>(n,m);
+  if(!JO){  
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     exit( 7 );
   }
   
@@ -269,31 +274,14 @@ int main(int argc, char *argv[]){
   }
   run_stop();
   
-  
-  Lisa_Matrix<int> *JO;
-  if( !( JO = new Lisa_Matrix<int>(n,m) ) ){  
-    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-    exit( 7 );
-  }
-  
+ 
   Lisa_Matrix<int> *MO;
   if ( !( MO = new Lisa_Matrix<int>(n,m) ) ){  
     G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     exit( 7 );
   }
   Values.MO->write_rank(MO);
-  
-  // read machine order from algortihm output file !!!
-  // this data is written in jb_heur.cpp
-  ifstream JO_in("jo_out.dat");
-  if (!JO_in){
-    G_ExceptionList.lthrow("ERROR: Could not open file for reading: jo_out.dat");
-    exit(1);
-  }
-  JO->read( JO_in );
-  JO_in.close();
-  
-  
+    
   Lisa_Schedule plan_in(n,m);
   plan_in.make_LR();
   bool feasible = plan_in.MO_JO_to_LR(plan_in.LR,Values.SIJ,MO,JO);
