@@ -34,8 +34,6 @@
 int main(int argc, char *argv[]) 
 {
 
-    cout << "PID= " << getpid() << endl;
-
     // print a message that the program has started:
     cout << "This is the LiSA Sample Module" << endl;
 
@@ -50,6 +48,8 @@ int main(int argc, char *argv[])
         cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
         exit(1);
       }
+
+    cout << "PID= " << getpid() << endl;
 
     // Define the objects for the file communication 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;

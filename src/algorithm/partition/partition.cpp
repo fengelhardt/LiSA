@@ -22,8 +22,6 @@
 int main(int argc, char *argv[]) 
 {
 
-    cout << "PID= " << getpid() << endl; 
-
     // comment out following line to send error messages to console
     //G_ExceptionList.set_output_to_cout();   
 
@@ -31,6 +29,8 @@ int main(int argc, char *argv[])
     Lisa_ControlParameters * sp = new Lisa_ControlParameters;
     Lisa_Values * my_werte=new Lisa_Values;
     
+    cout << "PID= " << getpid() << endl; 
+
     ifstream i_strm(argv[1]);
     ofstream o_strm(argv[2]);
 

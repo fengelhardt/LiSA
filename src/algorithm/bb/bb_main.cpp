@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
 
    // print a message that the programm started:
    cout << "This is the LiSA-Branch&Bound Module Version 10.11.1999" << endl;
-   cout << "PID= " << getpid() << endl; 
    G_ExceptionList.set_output_to_cout();   
 
    // open files and assure existence:
@@ -38,6 +37,7 @@ int main(int argc, char *argv[])
        cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
        exit(1);
      }
+   cout << "PID= " << getpid() << endl; 
    ifstream i_strm(argv[1]);
    ofstream o_strm(argv[2]);
    if (!i_strm)

@@ -52,12 +52,12 @@ int main(int argc, char *argv[])
   // print a message that the programm started:
   cout << "This is the Branch & Bound Module for Job Shop by P.Brucker.\n";
   cout << "Many thanks for the program code" << endl;
-  cout << "PID= " << getpid() << endl;  
   if (argc != 3) 
     {
       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
       exit(7);
     }
+  cout << "PID= " << getpid() << endl;  
   ifstream strm(argv[1]);    // this file contains the problem, schedule and 
                              // some parameters
   ifstream JO_in("jo_out.lsa");

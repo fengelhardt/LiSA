@@ -31,8 +31,6 @@ int objective_function;
 int main(int argc, char *argv[]) 
 {
 
-  cout << "PID= " << getpid() << endl; 
-
   G_ExceptionList.set_output_to_cout();   
   // open files and assure existence:
   if (argc != 3) 
@@ -40,6 +38,7 @@ int main(int argc, char *argv[])
       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
       exit(1);
     }
+  cout << "PID= " << getpid() << endl; 
   ifstream i_strm(argv[1]);
   ofstream o_strm(argv[2]);
   if (!i_strm)

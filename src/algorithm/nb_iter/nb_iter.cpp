@@ -805,13 +805,14 @@ int main(int argc, char *argv[])
 
    // print a message that the programm started:
    cout << "This is the LiSA-Neighborhood-Search Module Version 05.01.1999" << endl;
-  cout << "PID= " << getpid() << endl;  
   if (argc != 3) 
     {
       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
       exit(7);
     }
  
+  cout << "PID= " << getpid() << endl;  
+
   ifstream strm(argv[1]);    // this file contains the problem, schedule and 
                              // some parameters
   ofstream fplan_o(argv[2]); // this file returns the best computed schedule
