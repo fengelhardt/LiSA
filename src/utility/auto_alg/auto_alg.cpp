@@ -242,7 +242,7 @@ void readAlgOutput(Lisa_Schedule &sched){
  //check for successful parsing and valid document type   
  LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
  if( !xmlInput || !(type == LisaXmlFile::SOLUTION) || !(xmlInput >> sched)){
-   G_ExceptionList.lthrow("ERROR: Could not read solution.",
+   G_ExceptionList.lthrow("Could not read solution.",
                           Lisa_ExceptionList::INCONSISTENT_INPUT);
    exit(-1);
   }
