@@ -1,0 +1,35 @@
+TEST_OBJ=\
+	../../obj/file_io.o \
+	../../obj/global.o \
+	../../obj/lisapref.o \
+	../../obj/status.o \
+	../../obj/list.o \
+	../../obj/matrix.o \
+	../../obj/order.o \
+	../../obj/pair.o \
+	../../obj/classify.o \
+	../../obj/database.o \
+	../../obj/redgraph.o \
+	../../obj/alg_call.o \
+	../../obj/ptst_call.o \
+	../../obj/basicwin.o \
+	../../obj/c_tcl.o \
+	../../obj/callback.o \
+	../../obj/gantt.o \
+	../../obj/setreadv.o \
+	../../obj/tcl_c.o \
+	../../obj/tclvar.o \
+	../../obj/win_obj.o \
+	../../obj/ctrlpara.o \
+	../../obj/lvalues.o \
+	../../obj/ptype.o \
+	../../obj/except.o \
+	../../obj/int2str.o \
+	../../obj/js_sched.o \
+	../../obj/mo_jo.o \
+	../../obj/os_sched.o \
+	../../obj/pgraph.o \
+	../../obj/schedule.o \
+	../../obj/sp_sched.o \
+	../../obj/xsched.o \
+	../../obj/LisaXmlFile.o

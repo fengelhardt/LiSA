@@ -1,0 +1,17 @@
+EXT_OBJECTS=\
+	../../obj/ptype.o \
+	../../obj/except.o \
+	../../obj/lvalues.o \
+	../../obj/schedule.o \
+	../../obj/lisapref.o \
+	../../obj/graph.o \
+	../../obj/ctrlpara.o \
+	../../obj/list.o \
+	../../obj/matrix.o \
+	../../obj/order.o \
+	../../obj/pair.o \
+	../../obj/mo_jo.o \
+	../../obj/int2str.o \
+	../../obj/redgraph.o \
+	../../obj/transform.o \
+	

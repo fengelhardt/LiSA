@@ -1,0 +1,5 @@
+OBJECTS=\
+	../../obj/LisaXmlFile.o \
+	../../obj/lisa_xml.o \
+	../../obj/Lisa_IO_Factory.o \
+	../../obj/Lisa_NativeDataHandler.o

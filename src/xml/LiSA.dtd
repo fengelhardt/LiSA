@@ -1,0 +1,160 @@
+
+<!-- Syntax for xml problem notation -->
+
+<!ELEMENT problem (alpha, beta, gamma)>
+<!ATTLIST problem xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!ELEMENT instance (problem,values,controls?)>
+<!ATTLIST instance xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!ELEMENT solution (problem,values,controls?,schedule+)>
+<!ATTLIST solution xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+
+<!ELEMENT alpha EMPTY>
+<!ATTLIST alpha
+env              (1|O|F|J|X|
+                 G|P|Q|R)      #REQUIRED
+mpt              (yes|no)      #IMPLIED
+mpm              (yes|no)      #IMPLIED
+m                CDATA         #IMPLIED>
+
+<!ELEMENT beta EMPTY>
+<!ATTLIST beta
+pmtn             (yes|no)      #IMPLIED
+prec             (yes|no|intree|outtree|tree|sp_graph|chains)       #IMPLIED
+release_times    (yes|no)      #IMPLIED
+due_dates        (yes|no)      #IMPLIED
+processing_times (arbitrary|unit|uniform) #IMPLIED
+batch            (s_batch|p_batch)      #IMPLIED
+batch_bounded    (yes|no)      #IMPLIED
+n                CDATA         #IMPLIED
+no-wait          (yes|no)      #IMPLIED
+size             (yes|no)      #IMPLIED
+time-lags        (no|unit|constant|given)        #IMPLIED
+transp-delays    (no|t_ik--T| 
+                 t_ikl--T|
+                 t_i--T_1-T_2|
+                 t_kl--t_lk| 
+                 t_ikl--t_ilk|
+                 t_i |t_k|t_kl|
+                 t_ik|t_ikl)   #IMPLIED
+server-flags     (no|yes|1|s)  #IMPLIED
+>
+
+
+<!-- 
+for m and n you can use "fixed" to specify
+that machine number or job number is fixed, respectively.
+-->
+
+
+<!ELEMENT gamma EMPTY>
+<!ATTLIST gamma
+objective (Cmax|Lmax|Sum_Ci|Sum_wiCi|Sum_Ui|Sum_wiUi|Sum_Ti|Sum_wiTi|irreg_1|irreg_2) #REQUIRED
+>
+
+<!ELEMENT values (
+processing_times,
+operation_set,
+machine_order?,
+release_times?,
+due_dates?,
+weights?,
+weights_2?,
+extra? ) >
+
+
+<!ATTLIST values
+m CDATA #REQUIRED
+n CDATA #REQUIRED>
+
+<!ELEMENT processing_times (#PCDATA)>
+<!ATTLIST processing_times model CDATA "lisa_native">
+<!ELEMENT operation_set (#PCDATA)>
+<!ATTLIST operation_set model CDATA "lisa_native">
+<!ELEMENT machine_order  (#PCDATA)>
+<!ATTLIST machine_order model CDATA "lisa_native">
+<!ELEMENT release_times (#PCDATA)>
+<!ATTLIST release_times model CDATA "lisa_native">
+<!ELEMENT due_dates (#PCDATA)>
+<!ATTLIST due_dates model CDATA "lisa_native">
+<!ELEMENT weights (#PCDATA)>
+<!ATTLIST weights model CDATA "lisa_native">
+<!ELEMENT weights_2 (#PCDATA)>
+<!ATTLIST weights_2 model CDATA "lisa_native">
+<!ELEMENT extra (#PCDATA)>
+<!ATTLIST extra model CDATA "lisa_native">
+
+
+<!-- Syntax for Algorithm description file -->
+
+<!ELEMENT algorithm (((heuristic, exact )| heuristic | exact), alg_controls?)>
+<!ATTLIST algorithm 
+name CDATA #REQUIRED
+type CDATA #REQUIRED
+code CDATA #REQUIRED
+call CDATA #REQUIRED
+help_file CDATA #IMPLIED>
+
+<!ELEMENT heuristic (problem)*>
+<!ELEMENT exact (problem)*>
+
+<!ELEMENT alg_controls (integer*, real*, choice*, fixed*)>
+<!ELEMENT integer EMPTY>
+<!ATTLIST integer
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+default CDATA #REQUIRED
+>
+
+<!ELEMENT real EMPTY>
+<!ATTLIST real
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+default CDATA #REQUIRED
+>
+
+<!ELEMENT choice (item+)>
+<!ATTLIST choice
+name CDATA #REQUIRED
+caption CDATA #REQUIRED
+>
+
+<!ELEMENT item EMPTY>
+<!ATTLIST item name CDATA #REQUIRED>
+
+<!ELEMENT fixed EMPTY>
+<!ATTLIST fixed 
+name CDATA #REQUIRED
+value CDATA #REQUIRED>
+
+<!-- Syntax for paramter notation -->
+
+<!ELEMENT controls (parameter)* >
+<!ATTLIST controls xmlns:LiSA CDATA #FIXED "http://lisa.math.uni-magdeburg.de">
+<!ELEMENT parameter EMPTY>
+
+<!ATTLIST parameter
+type (integer|real|string) #REQUIRED
+name CDATA #REQUIRED
+value CDATA #REQUIRED>
+
+<!ELEMENT schedule (
+plan?,
+machine_sequences?,
+job_sequences?,
+completion_times?
+)>
+
+<!ELEMENT plan (#PCDATA)>
+<!ATTLIST plan model CDATA "lisa_native">
+<!ELEMENT machine_sequences (#PCDATA)>
+<!ATTLIST machine_sequences model CDATA "lisa_native">
+<!ELEMENT job_sequences (#PCDATA)>
+<!ATTLIST job_sequences model CDATA "lisa_native">
+<!ELEMENT completion_times (#PCDATA)>
+<!ATTLIST completion_times model CDATA "lisa_native">
+
+<!ATTLIST schedule 
+m CDATA #REQUIRED
+n CDATA #REQUIRED
+semiactive (yes|no) #IMPLIED
+>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE controls PUBLIC "" "LiSA.dtd">
+<controls xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
+  <parameter type="integer" name="WIDTH" value="600"/>
+  <parameter type="integer" name="HEIGHT" value="500"/>
+  <parameter type="string" name="LANGUAGE" value="german"/>
+  <parameter type="string" name="HTML_VIEWER" value="konqueror"/>
+</controls>

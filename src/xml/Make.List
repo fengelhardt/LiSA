@@ -1,0 +1,5 @@
+CXXSOURCES= \
+	LisaXmlFile.cpp \
+	lisa_xml.cpp \
+	Lisa_IO_Factory.cpp \
+	Lisa_NativeDataHandler.cpp
