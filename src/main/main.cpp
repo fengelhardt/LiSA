@@ -15,6 +15,7 @@
 #include "../desktop/c_tcl.hpp"
 #include "../desktop/callback.hpp"
 #include "../misc/except.hpp"
+#include "../classify/classify.hpp"
 
 #include "status.hpp"
 #include "file_io.hpp"
@@ -47,6 +48,9 @@ class Lisa_Status G_Status;
 
 ///global data, tcl variables needed in c++ code
 class Lisa_TCLVar G_TclVar;
+
+///global classification object
+class Lisa_Classify *G_Classify=0;
 
 /// pointer to the tcl interpreter running our main window
 Tcl_Interp *interp;  
@@ -84,8 +88,12 @@ int main(int argc, char *argv[]) {
     cerr << "Could not open config file: '" << argv[1] << "'. Exiting." << endl;
     return -1;
   }
-  
   delete conf;
+  
+  G_Classify = Lisa_Classify::make_instance(std::string(getenv("LISAHOME"))+"/data/classify/classify.bib");
+  if(G_Classify == 0){
+    G_ExceptionList.lthrow("Could not create classify object.",Lisa_ExceptionList::ANY_ERROR);
+  }
   
   G_Schedule= new Lisa_Schedule(1,1);
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
@@ -117,6 +125,7 @@ int main(int argc, char *argv[]) {
   
   Tk_myMain( argc, argv );
   
+  if(G_Classify) delete G_Classify;
   delete G_Schedule;
   delete G_XSchedule;
   delete G_ScheduleList;

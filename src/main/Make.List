@@ -10,7 +10,6 @@ CXXSOURCES=\
 	../basics/graph.cpp \
 	../basics/lmatrix.cpp \
 	../classify/classify.cpp \
-	../classify/database.cpp \
 	../classify/redgraph.cpp \
 	../classify/transform.cpp \
 	../communic/alg_call.cpp \

@@ -38,6 +38,9 @@ public:
 
   /// constructor 
   Lisa_ProblemType();
+  
+  /// copy constructor
+  Lisa_ProblemType(const Lisa_ProblemType& other);
 
   /// returns if the current problemtype is valid
   bool inline valid() const { return vld; }

@@ -47,6 +47,7 @@ extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
 extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
+extern class Lisa_Classify *G_Classify;
 
 //**************************************************************************
 
@@ -611,11 +612,8 @@ int TC_classify(ClientData /* clientData */,
   mw_set_label ("$Name(Classification");
   Lisa_TextObject mytext(interp);
   mytext.clear();
-  string str;
-  str=Lisa_classify(G_ProblemType,G_Preferences.LISA_HOME,
-		     "/data/classify/classify.bib");
-   // str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
-   //		    "/data/classify/classify.bib");
+  std::string str;
+  if(G_Classify != 0) str=G_Classify->classify(G_ProblemType);
   mytext.text(str.c_str());
   return TCL_OK; 
 }
@@ -625,15 +623,15 @@ int TC_classify(ClientData /* clientData */,
 int TC_references(ClientData /* clientData */,
 	    Tcl_Interp * interp ,
 		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
-  string str2="";
-  string str=Lisa_full_ref(G_ProblemType,G_Preferences.LISA_HOME,
-			   "/data/classify/classify.bib");
+  
+  std::string str;
+  if(G_Classify != 0) str=G_Classify->full_reference(G_ProblemType);
   if (str!="") {
-    str2="lisa_text  $Name(References) {" + str + "}" ;
+    std::string str2="lisa_text  $Name(References) {" + str + "}" ;
     Tcl_Eval(interp, (char *) str2.c_str());
+  }else{
+    G_ExceptionList.lthrow("No references found",Lisa_ExceptionList::ANY_ERROR);
   }
-    else G_ExceptionList.lthrow("No references found",
-                                Lisa_ExceptionList::ANY_ERROR);
   return TCL_OK; 
 }
 

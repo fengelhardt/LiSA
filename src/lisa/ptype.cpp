@@ -21,10 +21,18 @@ Lisa_ProblemType::Lisa_ProblemType()
 
 //**************************************************************************
 
+Lisa_ProblemType::Lisa_ProblemType(const Lisa_ProblemType& other){
+  for(int i=0;i<TUPEL_INDEX;i++) tupel[i] = other.tupel[i];
+  vld = other.vld;
+  m_no = other.m_no;
+  n_no = other.n_no;
+}
+
+//**************************************************************************
+
 void Lisa_ProblemType::reset()
 {
-  int i;
-  for(i=0; i<TUPEL_INDEX; i++) tupel[i]=EMPTY;
+  for(int i=0; i<TUPEL_INDEX; i++) tupel[i]=EMPTY;
   vld=false;
   m_no = 0;
   n_no = 0;

@@ -10,7 +10,6 @@ OBJECTS=\
 	../../obj/graph.o \
 	../../obj/lmatrix.o \
 	../../obj/classify.o \
-	../../obj/database.o \
 	../../obj/redgraph.o \
 	../../obj/transform.o \
 	../../obj/alg_call.o \
