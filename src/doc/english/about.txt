@@ -1,0 +1,31 @@
+
+                        ================================
+                        Library of Scheduling Algorithms
+                        ================================
+
+                       http://lisa.math.uni-magdeburg.de
+                     lisagroup@lisa.math.uni-magdeburg.de
+
+                   Version 2.3pre3 released on Sep. 9, 2002
+
+The software package LiSA was developed within the framework of the research 
+project Latin Rectangles in Scheduling Theory (supported by the German State
+Sachsen-Anhalt). This distribution is licensed under the GNU public license.
+
+Project Supervisor: Heidemarie Braesel
+
+Programming - Research Assistents: Martin Harborth,
+                                   Thomas Tautenhahn,
+                                   Per Willenius
+
+Programming - Students:  Lars Dornheim, Ines Wasmund, Andreas Winkler,
+                         Ivo Roessling, Sandra Kutz, Marc Moerig
+
+Contact Address: 
+                 Heidemarie Braesel, 
+                 Otto-von-Guericke-Universitaet Magdeburg,
+                 Institut fuer Algebra und Geometrie
+                 PSF 4120
+                 D-39016 Magdeburg
+                 Germany
+
