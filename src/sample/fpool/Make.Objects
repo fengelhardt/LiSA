@@ -1,0 +1,12 @@
+OBJECTS=\
+	../../../obj/main.o \
+	../../../obj/fp_set.o \
+	../../../obj/fp_vect.o \
+	../../../obj/nb_fp.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/iterate.o \
+	../../../obj/tabu.o \
+	../../../obj/matrix.o \
+	../../../obj/ctrlpara.o
