@@ -64,15 +64,15 @@ install: bindir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(INSTALLNAME) $(BINPATH)/$(INSTALLNAME)
 	chmod 755 $(BINPATH)/$(INSTALLNAME)
-	cp $(SOURCEPATH)/algo/disp1_engl.alg $(ALGPATH)/language/english/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_engl.alg $(ALGPATH)/language/english/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_engl.alg $(ALGPATH)/language/english/disp3.alg
-	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/language/german/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/language/german/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/language/german/disp3.alg
-	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/language/german_u/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/language/german_u/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/language/german_u/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_english.alg $(ALGPATH)/language/english/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_german.alg $(ALGPATH)/language/german/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_german.alg $(ALGPATH)/language/german/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_german.alg $(ALGPATH)/language/german/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_german_u.alg $(ALGPATH)/language/german_u/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_german_u.alg $(ALGPATH)/language/german_u/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_german_u.alg $(ALGPATH)/language/german_u/disp3.alg
 	cp -r $(SOURCEPATH)/doc/language $(DOCPATH)
 
 # ------------------------------------------------------------------------------
