@@ -415,6 +415,12 @@ public:
 
 //**************************************************************************
 
+/// convert between one and two dimensional indices
+/** Each operation in a scheduling problem can be found in LR,CIJ,SIJ etc with 
+    two indices, the machine and job number, those are usually numbered 
+    0...jobs-1,0..machines-1. LiSA's Graph objects however only accept one
+    index for a vertex in the range from 1...vertices. This object creates for
+    a given set of operations two lookup tables to convert between those. */
 class Lisa_HammingGraphIndex : public Lisa_GenericObject{
 private:
 
@@ -425,12 +431,13 @@ private:
   int* index2j;   
   //@}
 
-  /// size of our arrays
+  /// number of indices created
   int indices;
   
 public:
-  
+  /// number of machines
   const int m;
+  /// number of jobs
   const int n;
 
   /// constructor
@@ -443,7 +450,7 @@ public:
   /// return number of indices
   inline int get_indices()const{ return indices; }
 
-  /// get the machine for the one dimensional index
+  /// get the job number for the one dimensional index
   inline int i(const int index)const{
 #ifdef LISA_DEBUG
     if(index <= 0 || index >= indices+1){
@@ -456,7 +463,7 @@ public:
     return index2i[index];
   }
   
-  /// get the job for the one dimensional index
+  /// get the machine number for the one dimensional index
   inline int j(const int index)const{
 #ifdef LISA_DEBUG
     if(index <= 0 || index >= indices+1){
@@ -469,9 +476,10 @@ public:
     return index2j[index];  
   }
   
-  /// get the one dimensional index for a an operation
+  /// get the one dimensional index for an operation
   /** this will either return the one dimensional index for the operation or
-      indices+1 if the operation does not exists */
+      get_indices()+1 if the operation does not exists (similar to the graph
+      object returning get_vertices()+1) */
   inline int index(const int i,const int j)const{
 #ifdef LISA_DEBUG
     if(i < 0 || i >= n || j < 0 || j >= m){
