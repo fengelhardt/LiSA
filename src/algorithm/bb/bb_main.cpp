@@ -191,8 +191,11 @@ int main(int argc, char *argv[])
    Lisa_Schedule * out_schedule = new Lisa_Schedule;
    out_schedule->init(n, m);
    
-   if (results->empty())
+   type = LisaXmlFile::SOLUTION; 
+   if (results->empty()){
      G_ExceptionList.lthrow("no schedules found (maybe upper bound wrong?)");
+     type = LisaXmlFile::INSTANCE;
+   }
    
    Lisa_List<Lisa_ScheduleNode> SchedList;
    
@@ -206,8 +209,10 @@ int main(int argc, char *argv[])
    delete out_schedule;
    delete results;
    
-   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-   xmlOutput << lpr << my_values << sp << SchedList;
+   LisaXmlFile xmlOutput(type);
+   xmlOutput << lpr << my_values << sp;
+   if(type == LisaXmlFile::SOLUTION)
+   xmlOutput << SchedList;
    xmlOutput.write(argv[2]);
 
    // end of program:  
