@@ -9,7 +9,7 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_MatrixListGraph* disjkt_in){
+Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
   vert = disjkt_in->get_vertices();
   
   disjkt = new Lisa_MatrixListGraph(*disjkt_in);
@@ -31,7 +31,7 @@ void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res){
 
 //**************************************************************************
 
-bool Lisa_IrreducibilityTest::test(Lisa_MatrixListGraph* plan, Lisa_MatrixListGraph* comp,
+bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,
 const int param){
   
   int edges = 0;

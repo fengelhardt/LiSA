@@ -38,7 +38,7 @@ private:
   // how many vertice ??
   int vert;
   // the disjuntive graph for the current problem
-  Lisa_MatrixListGraph* disjkt;
+  Lisa_Graph* disjkt;
   // store results in here
   Lisa_IrredResult* result;
   
@@ -55,19 +55,19 @@ public:
       };
     
   /// constructor
-  Lisa_IrreducibilityTest(Lisa_MatrixListGraph* disjkt_in);
+  Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in);
   /// destructor
   ~Lisa_IrreducibilityTest();
   
   /// Test this plan for irreducibility.
   /** Run the algorithm for a given plangraph, the corresponding comparability 
       graph and a parameter indicating what to do. */ 
-  bool test(Lisa_MatrixListGraph* plan,Lisa_MatrixListGraph* comp,const int param);
+  bool test(Lisa_Graph* plan,Lisa_Graph* comp,const int param);
   
   /// Test this plan for irreducibility.
   /** Run the algorithm for a given plangraph and a parameter indicating what 
       to do. The corresponding comparability graph will be generated.*/ 
-  inline bool test(Lisa_MatrixListGraph* plan,const int param){
+  inline bool test(Lisa_Graph* plan,const int param){
     
     Lisa_MatrixListGraph comp(vert);
     Lisa_GraphAlg::build_compgraph(plan,&comp);

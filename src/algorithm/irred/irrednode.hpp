@@ -28,12 +28,12 @@ public:
   int status;
 
   /// graph representing our schedule
-  Lisa_MatrixListGraph* plangraph;
+  Lisa_Graph* plangraph;
   /// the comparability graph for that schedule
-  Lisa_MatrixListGraph* compgraph;
+  Lisa_Graph* compgraph;
   
   /// Constructor ... Create a new node.
-  Lisa_IrredNode(Lisa_MatrixListGraph* plangraph_in, Lisa_MatrixListGraph* compgraph_in, 
+  Lisa_IrredNode(Lisa_Graph* plangraph_in, Lisa_Graph* compgraph_in, 
                  const int status_in);
 
   /// Destructor ...  Delete a node.
@@ -80,7 +80,7 @@ public:
   ~Lisa_IrredResult();
 
   /// inserts a new plangraph into the list ... Filter rules apply
-  void insert(Lisa_MatrixListGraph* plangraph,Lisa_MatrixListGraph* compgraph);
+  void insert(Lisa_Graph* plangraph,Lisa_Graph* compgraph);
 
   /// compares all graphs in the list with each other
   /** This may classify some graphs to be reducible. */

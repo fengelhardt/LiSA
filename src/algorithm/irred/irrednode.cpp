@@ -9,8 +9,8 @@ using namespace std;
 
 //**************************************************************************
   
-Lisa_IrredNode::Lisa_IrredNode(Lisa_MatrixListGraph* plangraph_in, 
-                               Lisa_MatrixListGraph* compgraph_in, const int status_in){
+Lisa_IrredNode::Lisa_IrredNode(Lisa_Graph* plangraph_in, 
+                               Lisa_Graph* compgraph_in, const int status_in){
                                  
   plangraph = new Lisa_MatrixListGraph(*plangraph_in);
   compgraph = new Lisa_MatrixListGraph(*compgraph_in);
@@ -56,8 +56,8 @@ Lisa_IrredResult::~Lisa_IrredResult(){
 
 //**************************************************************************
 
-void Lisa_IrredResult::insert(Lisa_MatrixListGraph* plangraph_in,
-                              Lisa_MatrixListGraph* compgraph_in){
+void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,
+                              Lisa_Graph* compgraph_in){
 
   static int lastsize = 0;	
   //static int countall=0;countall++;cout<<"inserted:"<<results->length()

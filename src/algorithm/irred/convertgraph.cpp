@@ -136,14 +136,14 @@ Lisa_ConvertGraph::~Lisa_ConvertGraph(){
 
 //**************************************************************************
 
-Lisa_MatrixListGraph*  Lisa_ConvertGraph::get_disjkt(){
+Lisa_Graph*  Lisa_ConvertGraph::get_disjkt(){
   return disjkt;
 }
 
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
-                                   Lisa_MatrixListGraph* plangraph){
+                                   Lisa_Graph* plangraph){
                                      
   plangraph->clear();
 
@@ -179,7 +179,7 @@ void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
 
 //**************************************************************************
 
-void Lisa_ConvertGraph::graph2plan(Lisa_MatrixListGraph* plangraph,
+void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,
                                    Lisa_Matrix<int>* plan){
                                      
   plan->fill(0);
@@ -277,7 +277,7 @@ void Lisa_ConvertGraph::initialize_O_CMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_CMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_MatrixListGraph* plangraph){
+                                          Lisa_Graph* plangraph){
                                             
   for (int v=1;v<=vert;v++){
     
@@ -358,7 +358,7 @@ void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_MatrixListGraph* plangraph){
+                                          Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -383,7 +383,7 @@ void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_LMAX(Lisa_Matrix<int>* plan,
-                                          Lisa_MatrixListGraph* plangraph){
+                                          Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -466,7 +466,7 @@ void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_MatrixListGraph* plangraph){
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -491,7 +491,7 @@ void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_MatrixListGraph* plangraph){
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -579,7 +579,7 @@ void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_MatrixListGraph* plangraph){
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -609,7 +609,7 @@ void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,
 //**************************************************************************
 
 void Lisa_ConvertGraph::plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,
-                                             Lisa_MatrixListGraph* plangraph){
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
