@@ -14,7 +14,7 @@
 
 //****************************************************************************************
 
-Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0){
+Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   // sort problemtype out 
 
   int new_pt;
@@ -69,7 +69,7 @@ Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matr
 
 //****************************************************************************************
 
-Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0)
+Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO)
   :curr_pt(new_pt),m(SIJ->get_m()),n(SIJ->get_n()){
   // build lookup tables, 
   // call initialize for the according problemtype
@@ -215,7 +215,7 @@ void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,Lisa_Matrix<int>* plan)
  
 //****************************************************************************************
 
-void Lisa_ConvertGraph::write(ostream& strm = cout) const{
+void Lisa_ConvertGraph::write(ostream& strm) const{
   cout << "<ConvertGraph>"<< endl;
   cout << *lookup << *I_lookup << *J_lookup << *disjkt;
   cout << "</ConvertGraph>" << endl;

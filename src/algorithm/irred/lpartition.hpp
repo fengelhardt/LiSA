@@ -11,8 +11,8 @@
 #define lpartition_h
 
 #include<stdlib.h>
-#include<iostream.h>
-#include<fstream.h>
+#include<iostream>
+#include<fstream>
 #include"../../main/global.hpp"
 #include"../../misc/except.hpp"
 #include"../../basics/matrix.hpp"

@@ -26,7 +26,7 @@ Lisa_IrredNode::~Lisa_IrredNode(){
 
 //**********************************************************************************************
 
-void Lisa_IrredNode::write(ostream& strm = cout) const{
+void Lisa_IrredNode::write(ostream& strm) const{
   strm << "<IrredNode>" << endl;
   strm << *plangraph << *compgraph;
   strm << "</IrredNode>" << endl;
@@ -142,7 +142,7 @@ void Lisa_IrredResult::delete_reducible(){
 
 //**********************************************************************************************
 
-void Lisa_IrredResult::write(ostream& strm = cout)const{
+void Lisa_IrredResult::write(ostream& strm)const{
   strm << "<IrredResult>" << endl;
   if(!results->empty()){
     Lisa_IrredNode* curr;

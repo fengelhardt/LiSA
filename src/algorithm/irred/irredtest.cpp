@@ -27,7 +27,7 @@ Lisa_IrreducibilityTest::~Lisa_IrreducibilityTest(){
 
 //*****************************************************************************
 
-void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res=0){
+void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res){
   result = res;
 }
 
@@ -237,7 +237,7 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
 
 //*****************************************************************************
 
-void Lisa_IrreducibilityTest::write(ostream& strm = cout) const{
+void Lisa_IrreducibilityTest::write(ostream& strm) const{
   strm << "<IrreducibilityTest>" << endl;
   strm << *disjkt;
   if (result) strm << *result;

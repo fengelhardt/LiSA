@@ -76,7 +76,7 @@ int Lisa_Partition::get_partition_size(const int num){
 
 //**************************************************************
   
-void Lisa_Partition::write(ostream& strm = cout) const{
+void Lisa_Partition::write(ostream& strm) const{
   strm << "<PARTITION>" << endl;
   strm << *part;
   strm << "</PARTITION>" << endl;
