@@ -96,8 +96,10 @@ public:
   virtual void get_adjacency_matrix(Lisa_Matrix<int> *const adj)const=0;
 
   /// completely overwrite graph with values from an adjacency matrix
-  /** This function expects a matrix of size get_vertices() x get_vertices() in
-      the same format as delivered by get_adjacency_matrix(). 
+  /** This function expects a matrix of size get_vertices() x get_vertices()
+      the same format as delivered by get_adjacency_matrix(). All non zero
+      entrys will be interpreted as 1 though, so that it is possible to feed
+      weighted adjacency matrices to this function.
       
       You can use this function to convert between different implementatzions
       of a Lisa_Graph. */
