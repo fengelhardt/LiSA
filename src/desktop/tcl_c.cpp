@@ -863,148 +863,110 @@ int TC_startalg(ClientData /* clientData */,
 }
 
 
-int TC_problem_reduction(ClientData /* clientData */,
-	 Tcl_Interp *interp,
-	 int /*argc*/, const char *argv[])  
-{
-  int i;
-  string type="", filename="";
+int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
+int /*argc*/, const char *argv[]){
+  
   Lisa_ProblemType myProblemType;
-  type=argv[1];
-  filename=argv[2];
-  ifstream fin(filename.c_str());
+  
+  const string type=argv[1];
+  const string filename=argv[2];
+  
+  // set return value to false
   sprintf(interp->result, "%d",0);
+  
+  ifstream fin(filename.c_str());
+  
   if (fin==NULL) {
     G_ExceptionList.lthrow("cannot open file: "+filename+"\n",END_OF_FILE);
-    return 1;
+    return TCL_OK;
   }
-  string S;
-  int number_of_heursolv_probl=0;
-  int number_of_exactsolv_probl=0;
   
-  if (type=="heuristic") {
-    for (;;)
-      {
-	S=""; 
-	fin >>S;
-	if (S=="") 
-	  { 
-	    G_ExceptionList.lthrow("no extry: </HEURISTIC> in file: "+filename+"\n",END_OF_FILE);
-	    return TCL_OK;
-	  } 
-	if (S=="<PROBLEMTYPE>") number_of_heursolv_probl++;
-	if (S=="<HEURISTIC>") number_of_heursolv_probl=0;
-	if (S=="</HEURISTIC>") break;
+
+  
+  string S;
+  int number_of_solv_probl=0;
+  
+  string starttag,endtag;
+  
+  if(type=="heuristic"){
+    starttag="<HEURISTIC>";
+    endtag="</HEURISTIC>";
+  }else if(type=="exact"){
+    starttag="<EXACT>";
+    endtag="</EXACT>";
+  }else{
+    return TCL_OK;
+  }
+  
+
+    // parse files for problem entries
+    for (;;){
+      
+      S=""; 
+      fin >> S;
+      
+      if (S==""){ 
+        G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",END_OF_FILE);
+        return TCL_OK;
+      }else if(S=="<PROBLEMTYPE>"){
+        number_of_solv_probl++;
+      }else if(S==starttag){
+        number_of_solv_probl=0;
+      }else if(S==endtag){
+        break;
       }
+    }
     
-    if (number_of_heursolv_probl==0) return TCL_OK;
-    else { 
-      // test by reduction
-      // open again, to be on top of the file
-      // ifstream fin(filename.c_str());
+    // none found
+    if (number_of_solv_probl==0){
+      return TCL_OK;
+    }else{  
+      //no more test by reduction, alg problem type and current problem type 
+      //have to match exactly
+    
+      //rewind file
       fin.seekg(0);
-      for (;;)
-      {
-	S=""; 
-	fin >>S;
-	if (S=="<HEURISTIC>") break;
+      for (;;){
+        S=""; 
+        fin >>S;
+        if (S==starttag) break;
       }
+      
       // now read problemtupel
-      for (i=1;i<= number_of_heursolv_probl;i++) {
-	fin >> myProblemType;
-        // cerr<<G_ProblemType.output_problem();  
+      for (int j=0;j<number_of_solv_probl;j++) {
+	      fin >> myProblemType;
         
-	if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
-             (G_ProblemType.output_beta()== myProblemType.output_beta() &&
-              G_ProblemType.output_gamma()== myProblemType.output_gamma()))
-	{
-	  sprintf(interp->result, "%d",1);
-	}
-         // see if there are unit processing times to handle
-        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
-                {
-                        if (( myProblemType.output_beta()+ "p_ij=1" == G_ProblemType.output_beta()) ||
-                              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")  )
-                        	{
-                                        sprintf(interp->result, "%d",1);
-                                }
-                }
-        // see if there are constant processing times to handle : p_ij=p
-        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
-                {
-                        if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
-                              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  )
-                        	{
-                                        sprintf(interp->result, "%d",1);
-                                }
-                }
+        // cerr<<G_ProblemType.output_problem() << endl;
+        // cerr<<myProblemType.output_problem() << endl;
+        
+        
+        // check if problemtypes match exactly
+        if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
+          sprintf(interp->result, "%d",1);
+        
+        }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
+                 G_ProblemType.output_gamma()==myProblemType.output_gamma()){
+        
+          // the following looks like a minimal reduction, but to me it seems 
+          // totally bullshit ... shouldn't the G_ProblemType have the p_ij.. 
+          // attached ?
+          
+          // see if there are unit processing times to handle
+          if ((myProblemType.output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
+              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")){
+            sprintf(interp->result, "%d",1);
+          }
+
+          // see if there are constant processing times to handle : p_ij=p
+          if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
+             (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  ){
+            sprintf(interp->result, "%d",1);
+          }              
+        }
         
       }      
     }
-  }
-  if (type=="exact") {
-    for (;;)
-      {
-	S=""; 
-	fin >>S;
-	if (S=="") 
-	  { 
-	    G_ExceptionList.lthrow("no extry: </EXACT> in file: "+filename+"\n",END_OF_FILE);
-	    sprintf(interp->result, "%d",0);
-	    return TCL_OK;
-	  } 
-	if (S=="<PROBLEMTYPE>") number_of_exactsolv_probl++;
-	if (S=="<EXACT>") number_of_exactsolv_probl=0;
-	if (S=="</EXACT>") break;
-      }
-    if (number_of_exactsolv_probl==0)  sprintf(interp->result, "%d",0);
-    else {
-      // test by reduction
-      // open again, to be on top of the file
-      // ifstream fin(filename.c_str());
-      fin.seekg(0);
-      for (;;)
-	{
-	  S=""; 
-	  fin >>S;
-	  if (S=="<EXACT>") break;
-	}
-      // now read problemtupel
-      for (i=1;i<= number_of_exactsolv_probl;i++) {
-	fin >> myProblemType;
-        //cerr<<G_ProblemType.output_problem(); 
-        if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
-             (G_ProblemType.output_beta()== myProblemType.output_beta() &&
-              G_ProblemType.output_gamma()== myProblemType.output_gamma()))
-	{
-	  sprintf(interp->result, "%d",1);
-	}
-        // see if there are unit processing times to handle : p_ij=1
-        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
-                {
-                        if (( myProblemType.output_beta()+ "p_ij=1" == G_ProblemType.output_beta()) ||
-                              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")  )
-                        	{
-                                        sprintf(interp->result, "%d",1);
-                                }
-                }
-        // see if there are constant processing times to handle : p_ij=p
-        else if (G_ProblemType.output_gamma()== myProblemType.output_gamma() && 
-                        (G_ProblemType.output_alpha()== myProblemType.output_alpha())  ) 
-                {
-                        if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
-                              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  )
-                        	{
-                                        sprintf(interp->result, "%d",1);
-                                }
-                }
-      }
-    }
-  } 
-  // sprintf(interp->result, "%d",1);
+
   return TCL_OK; 
 }
 
