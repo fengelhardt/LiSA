@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Aktiver Plan" type="constructive" call="dispatch" code="external" help_file="algorithm/dispatch.html">
+  <exact>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes" processing_times="unit"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls>
+    <choice name="ACTIVE" caption="Aktiven Plan erzeugen">
+      <item name="TRUE"/>
+    </choice>
+    <choice name="RULE" caption="Prioritaetsregel">
+      <item name="RAND"/>
+      <item name="FCFS"/>
+    </choice>
+  </alg_controls>
+</algorithm>
