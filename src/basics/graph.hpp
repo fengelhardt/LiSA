@@ -229,7 +229,19 @@ private:
   
   ///determine the signum of a connection
   int signum(const int start,const int end) const;
-
+  
+  ///insert EDGE, only if connection was NONE before
+  void ins_edge(const int start,const int end);
+  
+  ///insert ARC, only if connection was NONE before
+  void ins_arc(const int start,const int end);
+  
+  ///remove EDGE, only of connection was EDGE before
+  void rem_edge(const int start,const int end);
+  
+  ///remove ARC, only if connection was ARC before
+  void rem_arc(const int start,const int end);
+  
 public:
   
   /// constructor

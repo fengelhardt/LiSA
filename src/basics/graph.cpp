@@ -102,6 +102,146 @@ int Lisa_MatrixListGraph::signum(const int start,const int end)const{
 
 //**************************************************************************
 
+void Lisa_MatrixListGraph::ins_edge(const int start,const int end){
+  
+  int end_of_NB_List=(*matrix)[start][start].y;
+  
+  if( end_of_NB_List == size+1){
+    (*matrix)[start][start].x=end;
+  }else{
+    (*matrix)[start][end_of_NB_List].x=end;
+  }
+  
+  (*matrix)[start][start].y=end;
+  (*matrix)[start][end].x=size+1;
+  (*matrix)[start][end].y=end_of_NB_List;
+  
+  end_of_NB_List=(*matrix)[end][end].y;
+  
+  if( end_of_NB_List == size+1){
+    (*matrix)[end][end].x=start;
+  }else{
+    (*matrix)[end][end_of_NB_List].x=start;
+  }
+  
+  (*matrix)[end][end].y=start;
+  (*matrix)[end][start].x=size+1;
+  (*matrix)[end][start].y=end_of_NB_List;
+    
+}
+  
+//**************************************************************************  
+
+void Lisa_MatrixListGraph::ins_arc(const int start,const int end){
+  
+  int end_of_Succ_List=(*matrix)[start][0].y;
+  if( end_of_Succ_List== size+1){
+    (*matrix)[start][0].x=end;
+  }else{
+    (*matrix)[start][end_of_Succ_List].x=end;
+  }
+  
+  (*matrix)[start][0].y=end;
+  (*matrix)[start][end].x=size+1;
+  (*matrix)[start][end].y=end_of_Succ_List;
+  
+  
+  
+  int end_of_Pred_List=(*matrix)[0][end].y;
+  if( end_of_Pred_List == size+1){
+    (*matrix)[0][end].x=start;
+  }else{
+    (*matrix)[end][end_of_Pred_List].x=-start;
+  }
+  
+  (*matrix)[0][end].y=start;
+  (*matrix)[end][start].x=-(size+1);
+  (*matrix)[end][start].y=-end_of_Pred_List;
+  
+}
+  
+//**************************************************************************
+  
+void Lisa_MatrixListGraph::rem_edge(const int start,const int end){
+  int succ_of_edge=(*matrix)[start][end].x;
+  int pred_of_edge=(*matrix)[start][end].y;
+  
+  if(succ_of_edge==size+1){
+    (*matrix)[start][start].y=pred_of_edge;
+  }else{
+    (*matrix)[start][succ_of_edge].y=pred_of_edge;
+  }
+  
+  if(pred_of_edge==size+1){
+    (*matrix)[start][start].x=succ_of_edge;
+  }else{
+    (*matrix)[start][pred_of_edge].x=succ_of_edge;
+  }
+  
+  (*matrix)[start][end].x=0;
+  (*matrix)[start][end].y=0;
+    
+  succ_of_edge=(*matrix)[end][start].x;
+  pred_of_edge=(*matrix)[end][start].y;
+  
+  if(succ_of_edge==size+1){
+    (*matrix)[end][end].y=pred_of_edge;
+  }else{
+    (*matrix)[end][succ_of_edge].y=pred_of_edge;
+  }
+  
+  if(pred_of_edge==size+1){
+    (*matrix)[end][end].x=succ_of_edge;
+  }else{
+    (*matrix)[end][pred_of_edge].x=succ_of_edge;
+  }
+  
+  (*matrix)[end][start].x=0;
+  (*matrix)[end][start].y=0;
+}
+  
+//**************************************************************************
+
+void Lisa_MatrixListGraph::rem_arc(const int start,const int end){
+  int succ_of_arc=(*matrix)[start][end].x;
+  int pred_of_arc=(*matrix)[start][end].y;
+  
+  if(succ_of_arc==size+1){
+    (*matrix)[start][0].y=pred_of_arc;
+  }else{
+    (*matrix)[start][succ_of_arc ].y=pred_of_arc;
+  }
+  
+  if(pred_of_arc==size+1){
+    (*matrix)[start][0].x=succ_of_arc;
+  }else{
+    (*matrix)[start][pred_of_arc].x=succ_of_arc;
+  }
+  
+  (*matrix)[start][end].x=0;
+  (*matrix)[start][end].y=0;
+  
+  succ_of_arc=(*matrix)[end][start].x;
+  pred_of_arc=(*matrix)[end][start].y;
+  
+  if(succ_of_arc==-(size+1)){
+    (*matrix)[0][end].y=-pred_of_arc;
+  }else{
+    (*matrix)[end][-succ_of_arc].y=pred_of_arc;
+  }
+  
+  if(pred_of_arc==-(size+1)){
+    (*matrix)[0][end].x=-succ_of_arc;
+  }else{
+    (*matrix)[end][-pred_of_arc ].x=succ_of_arc ;
+  }
+  
+  (*matrix)[end][start].x=0;
+  (*matrix)[end][start].y=0;
+}
+  
+//**************************************************************************
+
 Lisa_MatrixListGraph::Lisa_MatrixListGraph(const int number_of_knots){
   matrix=0;
   succ_pred_pointer=0;
@@ -255,14 +395,14 @@ void Lisa_MatrixListGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const ad
   clear();
   
   for(int i=0; i<size; i++){
-    for(int j=0; j<size; j++){
+    for(int j=i+1; j<size; j++){
     
-      if((i!=j)&&((*adj)[i][j]==1)){ // connection exists ?  
-        if((*adj)[j][i]==1){ // arc or edge ?
-          insert_edge(i+1,j+1);
-        }else{
-          insert_arc(i+1,j+1);
-        }
+      if((*adj)[i][j] == 1 && (*adj)[j][i] == 1){
+        ins_edge(i+1,j+1);
+      }else if((*adj)[i][j] == 1){
+        ins_arc(i+1,j+1);
+      }else if((*adj)[j][i] == 1){
+        ins_arc(j+1,i+1);
       }
       
     }
@@ -284,48 +424,18 @@ void Lisa_MatrixListGraph::insert_edge(const int start,const int end){
   
   if(start==end) return;
   
-  int con=get_connection(start, end);
+  const int con=get_connection(start, end);
   
-  if(con!=EDGE){
-    if(con==ARC){
-      remove_arc(start,end);
-    }
-    if(con==CRA){
-      remove_arc(end,start);
-    }
-    
-    int end_of_NB_List;
-    
-    //Aendern der Kantenliste von start
-    
-    end_of_NB_List=(*matrix)[start][start].y;
-    
-    if( end_of_NB_List == size+1){
-      (*matrix)[start][start].x=end;
-    }else{
-      (*matrix)[start][end_of_NB_List].x=end;
-    }
-    
-    (*matrix)[start][start].y=end;
-    (*matrix)[start][end].x=size+1;
-    (*matrix)[start][end].y=end_of_NB_List;
-    
-    //Aendern der Kantenliste von end
-    
-    end_of_NB_List=(*matrix)[end][end].y;
-    
-    if( end_of_NB_List == size+1){
-      (*matrix)[end][end].x=start;
-    }else{
-      (*matrix)[end][end_of_NB_List].x=start;
-    }
-    
-    (*matrix)[end][end].y=start;
-    (*matrix)[end][start].x=size+1;
-    (*matrix)[end][start].y=end_of_NB_List;
-    
+  if(con==ARC){
+    rem_arc(start,end);
+    ins_edge(start,end);
+  }else if(con==CRA){
+    rem_arc(end,start);
+    ins_edge(start,end);
+  }else if(con==NONE){
+    ins_edge(start,end);
   }
-
+  
 }
 
 //**************************************************************************
@@ -342,42 +452,13 @@ void Lisa_MatrixListGraph::insert_arc(const int start,const int end){
 
   if(start==end) return;
   
-  int con=get_connection(start, end);
+  const int con=get_connection(start, end);
   
-  //Test ob arc schon vorhanden
-  if((con!=ARC)&&(con!=EDGE)){
-    if(con==CRA){
-      remove_arc(end,start);
-      insert_edge(start,end);
-    }else{
-      //Einfuegen des Bogens
-      //Aendern der Succ-Liste von start
-      
-      int end_of_Succ_List=(*matrix)[start][0].y;
-      if( end_of_Succ_List== size+1){
-        (*matrix)[start][0].x=end;
-      }else{
-        (*matrix)[start][end_of_Succ_List].x=end;
-      }
-      
-      (*matrix)[start][0].y=end;
-      (*matrix)[start][end].x=size+1;
-      (*matrix)[start][end].y=end_of_Succ_List;
-      
-      //Aendern der Pred-Liste von end
-      
-      int end_of_Pred_List=(*matrix)[0][end].y;
-      if( end_of_Pred_List == size+1){
-        (*matrix)[0][end].x=start;
-      }else{
-        (*matrix)[end][end_of_Pred_List].x=-start;
-      }
-      
-      (*matrix)[0][end].y=start;
-      (*matrix)[end][start].x=-(size+1);
-      (*matrix)[end][start].y=-end_of_Pred_List;
-      
-    }
+  if(con==CRA){
+    rem_arc(end,start);
+    ins_edge(start,end);
+  }else if(con==NONE){
+    ins_arc(start,end);
   }
 
 }
@@ -396,52 +477,14 @@ void Lisa_MatrixListGraph::remove_edge(const int start,const int end){
 
   if(start==end) return;
 
-  //Test ob Kante vorhanden
-  int con=get_connection(start,end);
+  const int con=get_connection(start,end);
   
   if(con==EDGE){
-    int succ_of_edge=(*matrix)[start][end].x;
-    int pred_of_edge=(*matrix)[start][end].y;
-    
-    if(succ_of_edge==size+1){
-      (*matrix)[start][start].y=pred_of_edge;
-    }else{
-      (*matrix)[start][succ_of_edge].y=pred_of_edge;
-    }
-    
-    if(pred_of_edge==size+1){
-      (*matrix)[start][start].x=succ_of_edge;
-    }else{
-      (*matrix)[start][pred_of_edge].x=succ_of_edge;
-    }
-    
-    (*matrix)[start][end].x=0;
-    (*matrix)[start][end].y=0;
-    
-    //Aendern der end-Kantenliste
-    
-    succ_of_edge=(*matrix)[end][start].x;
-    pred_of_edge=(*matrix)[end][start].y;
-    
-    if(succ_of_edge==size+1){
-      (*matrix)[end][end].y=pred_of_edge;
-    }else{
-      (*matrix)[end][succ_of_edge].y=pred_of_edge;
-    }
-    
-    if(pred_of_edge==size+1){
-      (*matrix)[end][end].x=succ_of_edge;
-    }else{
-      (*matrix)[end][pred_of_edge].x=succ_of_edge;
-    }
-    
-    (*matrix)[end][start].x=0;
-    (*matrix)[end][start].y=0;
-
+    rem_edge(start,end);
   }else if(con==ARC){
-    remove_arc(start,end);
+    rem_arc(start,end);
   }else if(con==CRA){
-    remove_arc(end,start);
+    rem_arc(end,start);
   }
 
 }
@@ -461,50 +504,13 @@ void Lisa_MatrixListGraph::remove_arc(const int start,const int end){
   if(start==end) return;
   
   //Test ob Bogen vorhanden
-  int con=get_connection(start,end);
+  const int con=get_connection(start,end);
   
   if(con==ARC){
-    int succ_of_arc=(*matrix)[start][end].x;
-    int pred_of_arc=(*matrix)[start][end].y;
-    
-    if(succ_of_arc==size+1){
-      (*matrix)[start][0].y=pred_of_arc;
-    }else{
-      (*matrix)[start][succ_of_arc ].y=pred_of_arc;
-    }
-    
-    if(pred_of_arc==size+1){
-      (*matrix)[start][0].x=succ_of_arc;
-    }else{
-      (*matrix)[start][pred_of_arc].x=succ_of_arc;
-    }
-    
-    (*matrix)[start][end].x=0;
-    (*matrix)[start][end].y=0;
-    
-    //Aendern der predecessor-Liste
-    
-    succ_of_arc=(*matrix)[end][start].x;
-    pred_of_arc=(*matrix)[end][start].y;
-    
-    if(succ_of_arc==-(size+1)){
-      (*matrix)[0][end].y=-pred_of_arc;
-    }else{
-      (*matrix)[end][-succ_of_arc].y=pred_of_arc;
-    }
-    
-    if(pred_of_arc==-(size+1)){
-      (*matrix)[0][end].x=-succ_of_arc;
-    }else{
-      (*matrix)[end][-pred_of_arc ].x=succ_of_arc ;
-    }
-    
-    (*matrix)[end][start].x=0;
-    (*matrix)[end][start].y=0;
-    
+    rem_arc(start,end);
   }else if(con==EDGE){
-    remove_edge(start, end);
-    insert_arc(end, start);
+    rem_edge(start, end);
+    ins_arc(end, start);
   }
   
 }
