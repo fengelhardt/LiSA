@@ -1,5 +1,5 @@
 /*
- * ************** buildgraph.hpp *******************************
+ * ************** convertgraph.hpp *******************************
  *
  * this class will create the graph to a given plan and problem type and vice versa 
  *

@@ -349,7 +349,7 @@ void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
       }
     } 
    
-    disjkt->insert_edge(vert+i+1,morevert);
+    disjkt->insert_arc(morevert,vert+i+1);
   }
 }
 
@@ -454,7 +454,7 @@ void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
       }
     } 
    
-    disjkt->insert_edge(morevert,vert+i+1);
+    disjkt->insert_arc(vert+i+1,morevert);
   }
 }
 
@@ -562,9 +562,9 @@ void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
       }
     } 
 
-    disjkt->insert_edge(vert+i+1,vert+n+i+2);
-    disjkt->insert_edge(vert+i+1,vert+n+1);
-    disjkt->insert_edge(morevert,vert+n+i+2);
+    disjkt->insert_arc(vert+i+1,vert+n+i+2);
+    disjkt->insert_arc(vert+i+1,vert+n+1);
+    disjkt->insert_arc(morevert,vert+n+i+2);
   }
 }
 
