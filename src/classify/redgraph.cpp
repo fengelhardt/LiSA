@@ -229,15 +229,13 @@ Lisa_RedGraph::compare(const Lisa_ProblemType& t1, const Lisa_ProblemType& t2)
       return(NOT_CMP);
 }
 
-		
-void Lisa_RedGraph::getReductions(const Lisa_ProblemType& from,
+int Lisa_RedGraph::getReductions(const Lisa_ProblemType& from,
 																																		const Lisa_ProblemType& to,
 																																		const Lisa_ReductionTree*  reductions[TUPEL_INDEX])
 {
   initializeGraph();
+		int ret = -1;
 		for(int i = 0; i < TUPEL_INDEX; reductions[i++] =NULL);
-		if(!reducible(from,to))
-				return;
 		int source, target;
 		Lisa_ReductionTree* t;
 		for(int i = 0; i < TUPEL_INDEX; i++)
@@ -245,11 +243,15 @@ void Lisa_RedGraph::getReductions(const Lisa_ProblemType& from,
 						source = from.get_property(i);
 						target = to.get_property(i);
 						t =  new Lisa_ReductionTree(i,source,target);
-						if(t->isSane())
+						if(t->isSane()){
 								reductions[i] = t;
+								if(ret < 0)
+										ret = i ;
+						}
 						else
 								delete t;
 				}
+		return ret;
 }
 		
 bool Lisa_ReductionTree::initialized = false;

@@ -79,15 +79,18 @@ class Lisa_RedGraph
   static int compare(const Lisa_ProblemType& first ,const Lisa_ProblemType& second);
 		
   /** 
-   *  If a graph does not provide reduction for the given problems its entry is set to NULL
+   *  If a graph does not provide reduction for the given problems its entry is set to NULL.
+			*  In this case there either is no polynomial time reduction or the requiered 
+			*  transform is not implemented.
    *  Note : The deletion of the trees is on behalf of the caller. You should check for
    *  redicbility of the problems with the compare() function in advance.
    *  @param source problem 
    *  @param target problem
    *  @param rts array of pojnters to reduction trees
+			*  @return index of the first NULL entry or -1 if all trees are sane
    */
   /// Obtain the reduction trees for a given pair of problems for each property graph.
-  static void getReductions(const Lisa_ProblemType& source,
+  static int getReductions(const Lisa_ProblemType& source,
 			    const Lisa_ProblemType& target,
 			    const Lisa_ReductionTree* rts[TUPEL_INDEX]);
 		
