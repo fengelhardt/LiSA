@@ -1,8 +1,3 @@
-/** @name LisaXmlFile 
-				This section contains LisaXmlFile class. 
-				It is responsible for all LiSA's file IO.
-*/
-//@{
 #ifndef _LISAXMLFILE_HPP_
 #define _LISAXMLFILE_HPP_
 
@@ -38,289 +33,341 @@ typedef  unsigned char xmlChar;
 #endif
 
 
-/** LisaXmlFile class.  
-				This class represents an XML document that can be written to	or read from a file. 
-				It provides functionality for submission and retrieval of LiSA objects.
-				It also can validate documents against LiSA's DTD.
-    @author Jan Tusch
-    @version 2.3pre3
-*/
 
+//@{
+/*! 
+ *  This class represents an XML ( http://www.xmlsoft.org ) document that can be written to	or read from a file.\n
+ *		It provides functionality for submission and retrieval of LiSA objects.\n
+ *  Here are some things to notice befor using this class.
+ *
+ *  - Document types\n
+ *  XML imposes a document type on each document. 
+ *  The type of a document in turn imposes a structure on the document itself.
+ *  This structure is given in a so called Document Type Description (DTD).
+ *  You define the type of a document at construction time. 
+ *  Hence, you only can submit or retrieve data that is given in a document of such a type.
+ *  After reading a document you should ask for the type to know what information is provided.
+ *  
+ *		- Validation\n
+ *		It also can validate documents against LiSA's DTD.
+ *		If validation is active it first attempts to validate the document against the DTD
+ *		the document commits to. On failure another validation against the internal DTD is done.
+ *		Validation is done both before writing and after reading a document.
+ *
+ *  - Consistency\n
+ *  You may permorm subsequent sumissions to a single document. 
+ *  If there may be only one of the object you submit the current (if existing) one is replaced.
+ *  Otherwise it is inserted in the tree.
+ *  The consitency is checked roughly at submission time. 
+ *  An inaproriate operation will invalidate the object and make it unusable.
+ *
+ *  - Encoding\n
+ *  To know what character set is used in a document it crucial for further processing the text.
+ *  The current implementation uses the "ISO-8859-1" character set for central europe.
+ *  You should avoid to change the encoding if not neccessary.
+ *
+ *  - Error Handling\n
+ *  After every operation you perform on the object you should check its validity.
+ *  If an error occured the object is invalidated and an error message is printed 
+ *  to the Standard Output.
+ *  
+ *
+ *		@author Jan Tusch
+ *		@version 2.3pre3
+ */
+//@}
+
+
+
+//@{
+
+/// Handler class for XML based file IO.
 class LisaXmlFile {
 
-public:		
+ public:		
 		
-		/// write an algorithm description file
-		static void write_ExtAlg(const struct Lisa_ExtAlg&, const std::string& file);
-		
-
-		/// read an algorithm description file
-		static bool read_ExtAlg(struct Lisa_ExtAlg&, const std::string& file);
-		
-		//@{
-		/** Enumeration of valid document types.
-						See the DTD for more information.
-			*/
-		enum DOC_TYPE {
-				/// LiSA configuration document.
-				PREFERENCES = 0,
-				/// Document contains a problem definition.
-				PROBLEM,
-				/// Document contains a problem instance, i.e. problem + values.
-				INSTANCE,
-				/// Document contains a solution for a problem, i.e. problem + values + schedule.
-				SOLUTION,
-				/// Use this type to determine the actual type at read -time.
-				IMPLICIT //must be last one -> does not have a name !!
-		};
-		//@}
-
-		/// The coding used for the textual representation of entries in the document
-		typedef std::string WriteCoding;
-
-public:
-		
-		/** Contructor for an empty document
-						@param docType the desired document type
-						@see DOC_TYPE
-		*/
-		explicit LisaXmlFile (DOC_TYPE docType = IMPLICIT);
-		
-		/// Destructor
-		~LisaXmlFile();
-		
-		/** Write the internal document tree to a file.
-						@param filename name of the output file
-						@return true on success, false otherwise
-			*/
-		bool write(std::string filename);
-
-		/** Read a document from a file
-						@param filename name of the input file
-						@return true on success, false otherwise
-			*/
-		bool read (std::string filename);
-		
-		/** Submit preferences to the internal document tree
-						@param Pref reference to a preferences object
-		*/
-		LisaXmlFile& operator<<(const Lisa_Preferences& Pref);
-		
-		/** Retrieve preferences from the internal document tree
-						@param Pref reference to a preferences object
-		*/
-		LisaXmlFile& operator>>(Lisa_Preferences& Pref);
+  /// write an algorithm description file
+  static void write_ExtAlg(const struct Lisa_ExtAlg&, const std::string& file);
 		
 
-		/** Set the coding for the document entries
-						The default is LiSA's native coding.
-						@param newCoding Alternative coding identifier
-			*/
-		LisaXmlFile& operator<<(const WriteCoding newCoding){
-				coding = newCoding;
-				return *this;
-		}
+  /// read an algorithm description file
+  static bool read_ExtAlg(struct Lisa_ExtAlg&, const std::string& file);
 		
-		/** Submit problem to the internal document tree
-						@param Problem reference to a problem object
-			*/
-		LisaXmlFile& operator<<(const Lisa_ProblemType& Problem);
+  /** The structure of a document with one of the enumerated types is imposed by the DTD.
+      See the DTD for more information.
+  */
+  /// Enumeration of valid document types.
+  enum DOC_TYPE {
+    /// LiSA configuration document.
+    PREFERENCES = 0,
+    /// Document contains a problem definition.
+    PROBLEM,
+    /// Document contains a problem instance, i.e. problem + values.
+    INSTANCE,
+    /// Document contains a solution for a problem, i.e. problem + values + schedule.
+    SOLUTION,
+    /// Use this type to determine the actual type at read -time.
+    IMPLICIT //must be last one -> does not have a name !!
+  };
+  
+  /** The coding used for the textual representation of the entries in the document.
+      The string is used to identify the model to store the data.
+  */
+  /// type for a data model identifier
+  typedef std::string WriteCoding;
+
+ public:
 		
-		/** Retrieve problem from the internal document tree
-						@param Problem reference to a problem object
-		*/
-		LisaXmlFile& operator>>(Lisa_ProblemType& Problem);
+  /** If you use docType = IMPLICIT the object will be usable for reading a document from a file and obtain the
+      thereby given document type.
+      Note that you can not change the document type after contruction.   
+      @param docType the desired document type
+      @see DOC_TYPE, getDocumentType()
+  */
+  /// Contructor for an empty document tree.
+  explicit LisaXmlFile (DOC_TYPE docType = IMPLICIT);
 		
-		/** Submit values to the internal document tree
-						@param Values reference to a values object
-			*/
-		LisaXmlFile& operator<<(const Lisa_Values& Values);
-
-		/** Retrieve values from the internal document tree
-						@param Values reference to a values object
-		*/
-		LisaXmlFile& operator>>(Lisa_Values& Values);
-
-		/** Submit controls to the internal document tree
-						@param Controls reference to a controls object
-		*/
-		LisaXmlFile& operator<<(const Lisa_ControlParameters& Controls);
-
-		/** Retrieve controls from the internal document tree
-						@param Controls reference to a controls object
-		*/
-		LisaXmlFile& operator>>(Lisa_ControlParameters& Controls);
+  /// Destructor
+  ~LisaXmlFile();
 		
-		/** Submit schedule to the internal document tree
-						@param Schedule reference to a schedule object
-			*/
-		LisaXmlFile& operator<<(const Lisa_Schedule& Schedule);
+  /*! Errors occur in the following cases :
+   *  - File handling failed (e.g. permission or other I/O problems)
+   *  - An attempt to write an invalid tree
+   *  - If validation is active and (guess what ...) the document ist invalid
+   *  @param filename name of the output file
+   *  @return true on success, false otherwise
+  */
+  /// Write the internal document tree to a file.
+  bool write(std::string filename);
 
-		/** Retrieve a (the firts) schedule from the internal document tree
-						@param Schedule reference to a schedule object
-		*/
-		LisaXmlFile& operator>>(Lisa_Schedule& Schedule);
-
-		/** Submit a list of schedules to the internal document tree
-						@param ScheduleList reference to a list of schedules
-		*/
-		LisaXmlFile& operator<<(const Lisa_List<Lisa_ScheduleNode> & ScheduleList);
-
-		/** Retrieve all schedules from the internal document tree
-						@param ScheduleList reference to a list of schedules object
-		*/
-		LisaXmlFile& operator>>(Lisa_List<Lisa_ScheduleNode>& ScheduleList);
+  /*! Errors occur in the following cases :
+   *  - File handling failed (e.g. permission or other I/O problems)
+   *  - The object's document type does not match the type of the document to be read (use IMPLICT, to avoid this).\n
+   *    How could you know the type in advance? 
+   *  - If validation is active and (guess what ...) the document ist invalid
+   *  @param filename name of the input file
+   *  @return true on success, false otherwise
+  */
+  /// Read a document from a file.
+  bool read (std::string filename);
 		
-		/** Determine internal state.
-						This might change after any operation and should be checked frequently.
-						Note: A once invalidated object cannot be used further and all subsequent 
-						operations will fail.
-		*/
-		operator bool() {return valid;}
+  /** @param Pref reference to a preferences object
+  */
+  /// Submit preferences object's data to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_Preferences& Pref);
 		
-		/** Determine document type.
-						This is either set in the contructor or (if used IMPLICIT) when reading from a file
-						@return the type of the internal document tree
-						@see DOC_TYPE
-		*/
-		DOC_TYPE getDocumentType(){return type;}
+  /** @param Pref reference to a preferences object
+  */
+  /// Retrieve preferences from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_Preferences& Pref);
+		
 
-		/** Class initializer.
-						If you use validation it sets the path to find the DTD
-						@param TOP_PROGRAM_PATH LiSA's root directory
-		*/
-		static void initialize(std::string TOP_PROGRAM_PATH = "");
+  /** The default is LiSA's native coding.
+      @param newCoding Alternative coding identifier
+  */
+  /// Set the coding for the document entries.
+  LisaXmlFile& operator<<(const WriteCoding newCoding){
+    coding = newCoding;
+    return *this;
+  }
 		
-		/// Flag for validation of a document (both after reading, and before writing)
-		static bool validate;
+  /** @param Problem reference to a problem object
+  */
+  /// Submit problem to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_ProblemType& Problem);
+		
+  /** @param Problem reference to a problem object
+  */
+  /// Retrieve problem from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_ProblemType& Problem);
+		
+  /** @param Values reference to a values object
+  */
+  /// Submit values to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_Values& Values);
 
-protected:
+  /** @param Values reference to a values object
+  */
+  /// Retrieve values from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_Values& Values);
 
+  /** @param Controls reference to a controls object
+  */
+  /// Submit controls to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_ControlParameters& Controls);
+
+  /** @param Controls reference to a controls object
+  */
+  /// Retrieve controls from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_ControlParameters& Controls);
 		
-		/// Mappings from problem tupels to xml-tags
-		static std::map< std::pair<int,int> , std::pair <std::string ,std::string> > WriteMap;
-		/// Mappings from xml-tags to problem tupels
-		static std::map< std::pair<std::string,std::string> , std::pair <int ,int> > ReadMap;
-		/// xml-tags for the different document types
-		static std::vector<std::string> DOC_TYPE_NAMES;
+  /** @param Schedule reference to a schedule object
+  */
+  /// Submit schedule to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_Schedule& Schedule);
+
+  /** In case there are multiple schedules listed, the data of the first schedule found is returned. 
+      @param Schedule reference to a schedule object
+  */
+  /// Retrieve schedule from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_Schedule& Schedule);
+
+  /** @param ScheduleList reference to a list of schedules
+  */
+  /// Submit a list of schedules to the internal document tree.
+  LisaXmlFile& operator<<(const Lisa_List<Lisa_ScheduleNode> & ScheduleList);
+
+  /** @param ScheduleList reference to a list of schedule objects
+  */
+  /// Retrieve all schedules from the internal document tree.
+  LisaXmlFile& operator>>(Lisa_List<Lisa_ScheduleNode>& ScheduleList);
 		
-		/// internal error codes
-		enum ERROR_MODE {
-				UNKNOWN,
-				LIB_XML,
-				MISSING_ATTRIBUTE,
-				BAD_ROOT,
-				BAD_NODE,
-				BAD_ATTRIBUTE,
-				BAD_ATTR_VALUE,
-				MISSING_SIZE,
-				NO_DATA_TO_WRITE,
-				NO_DATA_FOR_READ,
-				WRITE_INVALID_DOCUMENT,
-				READ_EMPTY_DOCUMENT,
-				READ_DOC_OBJ_MISSMATCH,
-				WRITE_DOC_OBJ_MISSMATCH,
-				READ_BAD_DOC_TYPE,
-				READ_ENTRY_FROM_INVALID,
-				WRITE_ENTRY_TO_INVALID,
-				BAD_MODEL
-		};
+  /** This might change after any operation and should be checked frequently.\n
+      This is the operation state of the object and has nothing to to with validity in terms of the XML tree.\n
+      Note: A once invalidated object cannot be used further and all subsequent 
+      operations will fail.
+  */
+  /// Determine internal validity state.
+  operator bool() {return valid;}
+		
+  /** This is either set in the contructor or (if used IMPLICIT) when reading from a file
+      @return the type of the internal document tree
+  */
+  /// Determine document type.
+  DOC_TYPE getDocumentType(){return type;}
+
+  /** If you use validation it sets the path to find the internal DTD.
+      @param TOP_PROGRAM_PATH LiSA's root directory
+  */
+  /// Class initializer.
+  static void initialize(std::string TOP_PROGRAM_PATH = "");
+		
+  /// Flag for validation of a document (both after reading, and before writing)
+  static bool validate;
+
+ private:
+		
+  /// Mappings from problem tupels to xml-tags
+  static std::map< std::pair<int,int> , std::pair <std::string ,std::string> > WriteMap;
+  /// Mappings from xml-tags to problem tupels
+  static std::map< std::pair<std::string,std::string> , std::pair <int ,int> > ReadMap;
+  /// xml-tags for the different document types
+  static std::vector<std::string> DOC_TYPE_NAMES;
+		
+  /// internal error codes
+  enum ERROR_MODE {
+    UNKNOWN,
+    LIB_XML,
+    MISSING_ATTRIBUTE,
+    BAD_ROOT,
+    BAD_NODE,
+    BAD_ATTRIBUTE,
+    BAD_ATTR_VALUE,
+    MISSING_SIZE,
+    NO_DATA_TO_WRITE,
+    NO_DATA_FOR_READ,
+    WRITE_INVALID_DOCUMENT,
+    READ_EMPTY_DOCUMENT,
+    READ_DOC_OBJ_MISSMATCH,
+    WRITE_DOC_OBJ_MISSMATCH,
+    READ_BAD_DOC_TYPE,
+    READ_ENTRY_FROM_INVALID,
+    WRITE_ENTRY_TO_INVALID,
+    BAD_MODEL
+  };
 
 	
-protected:
-		/// XML : DTD PUBLIC ID
-		static const std::string DTD_EXTERN_PHRASE;
-		/// XML : DTD SYSTEM ID
-		static const std::string DTD_SYSTEM_PHRASE;
-		/// XML: Namesace URL
-		static const std::string NAMESPACE;
-		/// XML : Namespace prefix
-		static const std::string NAMESPACE_PREFIX;
+  /// XML : DTD PUBLIC ID
+  static const std::string DTD_EXTERN_PHRASE;
+  /// XML : DTD SYSTEM ID
+  static const std::string DTD_SYSTEM_PHRASE;
+  /// XML: Namesace URL
+  static const std::string NAMESPACE;
+  /// XML : Namespace prefix
+  static const std::string NAMESPACE_PREFIX;
 		
-		/// Encoding (using latin-1, i.e. western-europe character set)
-		static const std::string ENCODING;
+  /// Encoding (using latin-1, i.e. western-europe character set)
+  static const std::string ENCODING;
 		
-		/// LiSA's root directory (to locate the DTD)
-		static std::string TOP_PROGRAM_PATH;
+  /// LiSA's root directory (to locate the DTD)
+  static std::string TOP_PROGRAM_PATH;
 
-		/// Document type
-		DOC_TYPE type;
+  /// Document type
+  DOC_TYPE type;
 		
-		/// Checks validity of the internal document tree
-		bool validateDocument();
+  /// Checks validity of the internal document tree
+  bool validateDocument();
 		
-		/// XML : Pointer to the document structure
-		xmlDocPtr Doc;
-		/// XML : Pointer to a xml-node structure for attatchment of further entries
-		xmlNodePtr Hook;
-		/// XML : Pointer to Namespace structure
-		xmlNsPtr NsPtr;
-		/// XML : Pointer to DTD structure
-		static xmlDtdPtr DtdPtr;
+  /// XML : Pointer to the document structure
+  xmlDocPtr Doc;
+  /// XML : Pointer to a xml-node structure for attatchment of further entries
+  xmlNodePtr Hook;
+  /// XML : Pointer to Namespace structure
+  xmlNsPtr NsPtr;
+  /// XML : Pointer to DTD structure
+  static xmlDtdPtr DtdPtr;
 		
-		/// Internal validity flag
-		bool valid;
+  /// Internal validity flag
+  bool valid;
 
-		/// Coding identifier (posted to the IO-Factory)
-		WriteCoding coding;
+  /// Coding identifier (posted to the IO-Factory)
+  WriteCoding coding;
 		
-		/// Method to raise an error
-		static void raiseError(ERROR_MODE = UNKNOWN,
-																									std::string info1 = std::string(),
-																									std::string info2 = std::string());
+  /// Method to raise an error
+  static void raiseError(ERROR_MODE = UNKNOWN,
+			 std::string info1 = std::string(),
+			 std::string info2 = std::string());
 
-		/// Initialize the mappings between LiSA-objects and xml-tags
-		static	void init_maps();
+  /// Initialize the mappings between LiSA-objects and xml-tags
+  static	void init_maps();
 		
-private:
-		
-		/// Flag to make sure class is initialized
-		static bool initialized;
+  /// Flag to make sure class is initialized
+  static bool initialized;
 
-		/// Filename of the DTD, i.e. the XML-SystemID
-		static std::string dtd_file;
+  /// Filename of the DTD, i.e. the XML-SystemID
+  static std::string dtd_file;
 
-		/// add entry to the internal document tree
-		void write(const Lisa_ProblemType&);
+  /// add entry to the internal document tree
+  void write(const Lisa_ProblemType&);
 		
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_ProblemType&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_ProblemType&);
 		
-		/// add entry to the internal document tree		
-		void write(const Lisa_Values&);
+  /// add entry to the internal document tree		
+  void write(const Lisa_Values&);
 
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_Values&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_Values&);
 		
-		/// add entry to the internal document tree
-		void write(const Lisa_Schedule&);
+  /// add entry to the internal document tree
+  void write(const Lisa_Schedule&);
 
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_Schedule&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_Schedule&);
 		
-		/// add entry to the internal document tree
-		void write(const Lisa_ScheduleNode&);
+  /// add entry to the internal document tree
+  void write(const Lisa_ScheduleNode&);
 
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_ScheduleNode&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_ScheduleNode&);
 		
-		/// add entry to the internal document tree
-		void write(const Lisa_Preferences&);
+  /// add entry to the internal document tree
+  void write(const Lisa_Preferences&);
 
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_Preferences&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_Preferences&);
 		
-		/// add entry to the internal document tree
-		void write(const Lisa_Graph&);
+  /// add entry to the internal document tree
+  void write(const Lisa_Graph&);
 		
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_Graph&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_Graph&);
 		
-		/// add entry to the internal document tree
-		void write(const Lisa_ControlParameters&);
+  /// add entry to the internal document tree
+  void write(const Lisa_ControlParameters&);
 
-		/// find and obtain data from the internal document tree
-		bool read(Lisa_ControlParameters&);
+  /// find and obtain data from the internal document tree
+  bool read(Lisa_ControlParameters&);
 		
 }; // end class
 

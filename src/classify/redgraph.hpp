@@ -17,40 +17,49 @@
 /// maximal number of nodes of reduction graph
 //const int V_MAX=25;
 
-/// flags: how are problems related ?
-enum{SECOND_TO_FIRST /** the second problem polynomially reduces to the first problem */ =-1
-    ,NOT_CMP /// the problems are not comparable
-    ,FIRST_TO_SECOND /// the first problem polynomially reduces to the second problem
-    ,IDENT /// the problems are identical
-    };
+/// flags: how are problems related
+enum{
+  /// the second problem polynomially reduces to the first problem 
+  SECOND_TO_FIRST = -1,
+  /// the problems are not comparable  
+  NOT_CMP,
+  /// the first problem polynomially reduces to the second problem
+  FIRST_TO_SECOND,
+  /// the problems are identical
+  IDENT
+};
 
 /// reduction graph class
 /** This class contains the reduction graphs
-    as well as methods for evaluating the complexity status of input
-    problem objects with the aid of the reduction graphs.
-    
-    @author Martin Harborth 
-    @version 2.3final
-    
-    changes by Jan Tusch - 10-08-2003
-		- made Graph static to avoid its repetive construction
-		  and static initializers
-		- made Graph a lookup table instead of listed trees
-		- added consts for whole class
-		- made all inputs const references
-		- added friend class Lisa_ReductionTree
-		- added methods to retrieve reduction trees for given problem pair
+ *  as well as methods for evaluating the complexity status of input
+ *  problem objects with the aid of the reduction graphs.
+ *  
+ *  @author Martin Harborth , Jan Tusch
+ *  @version 2.3final
+ * 
  */
- 
+
+/*
+    changes by Jan Tusch - 10-08-2003
+    - made Graph static to avoid its repetive construction
+    and static initializers
+    - made Graph a lookup table instead of listed trees
+    - added consts for whole class
+    - made all inputs const references
+    - added friend class Lisa_ReductionTree
+    - added methods to retrieve reduction trees for given problem pair
+*/ 
+
+
 class Lisa_RedGraph
 { 
-private:
+ private:
   /// contains the reduction graphs
-		static unsigned char* Graph[TUPEL_INDEX];
-		/// initiaializes reduction graphs
-		static void initializeGraph();
-		/// flag to avoid repetitive graph construction
-		static bool isInitialized;
+  static unsigned char* Graph[TUPEL_INDEX];
+  /// initiaializes reduction graphs
+  static void initializeGraph();
+  /// flag to avoid repetitive graph construction
+  static bool isInitialized;
   /// for recursive visits of nodes
   static int visit(int,int,int);    
   /// returns TRUE if first tupel is polynomial reducible to second tupel
@@ -59,28 +68,30 @@ private:
  public: 
   /// output of reduction graphs 
   static int output(void);             
-  /** Comparison of two problems concerning the complexity status.  This 
-      function takes two problems as input and returns the relation between 
-      these problems with respect to polynomial reducibility. 
-      @param Lisa_Problem first input problem object
-      @param Lisa_Problem second input problem object
-      @return IDENT, FIRST_TO_SECOND, SECOND_TO_FIRST, NOT_CMP
-  */
-  static int compare(const Lisa_ProblemType& ,const Lisa_ProblemType&);
+  /** 
+   *  This function takes two problems as input and returns the relation between 
+   *  these problems with respect to polynomial reducibility. 
+   *  @param first input problem object
+   *  @param second input problem object
+   *  @return One of #IDENT, #FIRST_TO_SECOND, #SECOND_TO_FIRST, #NOT_CMP
+   */
+  /// Comparison of two problems concerning the complexity status.  
+  static int compare(const Lisa_ProblemType& first ,const Lisa_ProblemType& second);
 		
-		/** Obtain the reduction trees of a given pair of problems for each property graph.
-						If a graph does not provide reduction for the given problems its entry is set to NULL
-						Note : The deletion of the trees is on behalf of the caller. You should check for
-						redicbility of the problems with the reducible(...) function in advance.
-						@param Lisa_Problem source problem 
-      @param Lisa_Problem target problem
-						@param Lisa_Problem array of pojnters to reduction trees
-  */
-		static void getReductions(const Lisa_ProblemType&,
-																					const Lisa_ProblemType&,
-																					const Lisa_ReductionTree* [TUPEL_INDEX]);
+  /** 
+   *  If a graph does not provide reduction for the given problems its entry is set to NULL
+   *  Note : The deletion of the trees is on behalf of the caller. You should check for
+   *  redicbility of the problems with the compare() function in advance.
+   *  @param source problem 
+   *  @param target problem
+   *  @param rts array of pojnters to reduction trees
+   */
+  /// Obtain the reduction trees for a given pair of problems for each property graph.
+  static void getReductions(const Lisa_ProblemType& source,
+			    const Lisa_ProblemType& target,
+			    const Lisa_ReductionTree* [TUPEL_INDEX] rts);
 		
-		friend class Lisa_ReductionTree;
+  friend class Lisa_ReductionTree;
 		
 };
 

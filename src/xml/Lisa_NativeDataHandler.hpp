@@ -7,20 +7,31 @@
 
 #include "Lisa_DataHandler.hpp"
 
+//@{
+/**
+ * Implementation of the native way of storing LiSA data.
+ * Essentially this is done by writing matrices to stream in a textual fashion.
+ *
+ * The documentation is provided in the Lisa_DataHandler class.
+ * 
+ * @author Jan Tusch
+ * @version 2.3pre3
+*/
+/// IO-Handler for Lisa Native Data Model
 class Lisa_NativeDataHandler : public Lisa_DataHandler {
-
-public:		
-
-		static std::string getName() {return "lisa_native";}
-
-		virtual bool write_to_stream(const Lisa_Schedule&, std::string tag, std::ostream &);
-		virtual bool write_to_stream(const Lisa_Values&,   std::string tag, std::ostream &);
-		virtual bool write_to_stream(const Lisa_Graph&,    std::string tag, std::ostream &);
-		
-		virtual bool read_from_stream(Lisa_Schedule&,  std::string tag, std::istream &);
-		virtual bool read_from_stream(Lisa_Values&,    std::string tag, std::istream &);
-		virtual bool read_from_stream(Lisa_Graph&,     std::string tag, std::istream &);
-		
+  
+ protected:		
+  static std::string getName() {return "lisa_native";}
+  virtual bool write_to_stream(const Lisa_Schedule& S, std::string tag, std::ostream & out);
+  virtual bool write_to_stream(const Lisa_Values& V,   std::string tag, std::ostream & out);
+  virtual bool write_to_stream(const Lisa_Graph& G,    std::string tag, std::ostream & out);
+  
+  virtual bool read_from_stream(Lisa_Schedule& S,  std::string tag, std::istream & in);
+  virtual bool read_from_stream(Lisa_Values& V,    std::string tag, std::istream & in);
+  virtual bool read_from_stream(Lisa_Graph& G,     std::string tag, std::istream & in);
+  
 };
 
+
+//@}
 #endif
