@@ -4,6 +4,7 @@
  */
  
 #include <stdio.h>
+#include <vector>
 
 #include "../main/global.hpp"
 #include "../misc/except.hpp"
@@ -254,6 +255,78 @@ int Lisa_Schedule::valid_LR(Lisa_Matrix<bool> *SIJ) {
   return OK;
 }
 
+bool Lisa_Schedule::MO_JO_to_LR(Lisa_Matrix<int> *const LR,
+                                const Lisa_Matrix<bool> *const SIJ_in,
+                                const Lisa_Matrix<int> *const MO,
+                                const Lisa_Matrix<int> *const JO){
+  const int n = LR->get_n();
+  const int m = LR->get_m();
+
+#ifdef LISA_DEBUG
+  if(   n != MO->get_n() || m != MO->get_m() 
+     || n != JO->get_n() || m != JO->get_m()
+     || n !=SIJ_in->get_n() || m !=SIJ_in->get_m()){
+    G_ExceptionList.lthrow("Size mismatch in Lisa_Schedule::MO_JO_to_LR.");
+    return false;
+  }
+#endif
+
+  Lisa_Matrix<bool> SIJ(*SIJ_in);
+    
+  Lisa_Matrix<int> MJ(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(SIJ[i][j]){
+        MJ[i][j] = (*MO)[i][j]+(*JO)[i][j];
+      }
+    }
+  }
+  
+  std::vector<int> z(n);
+  std::vector<int> s(m);
+  
+
+  
+  unsigned int k=1;
+  bool found;
+  do{
+    
+    for(int i=0;i<n;i++) z[i] = 0;
+    for(int j=0;j<m;j++) s[j] = 0;
+        
+    found = false;
+    for(int i=0;i<n;i++){
+      for(int j=0;j<m;j++){
+        if(SIJ[i][j] && MJ[i][j]==2){
+          (*LR)[i][j] = k;
+          z[i] = s[j] = 1;
+          SIJ[i][j] = false;
+          found = true;
+        }
+      }
+    }
+    if(!found){
+      G_ExceptionList.lthrow("Job order and machine order infeasible in Lisa_Schedule::MO_JO_to_LR.");
+      return false;
+    }
+    
+    k++;
+    
+    found = false;
+    for(int i=0;i<n;i++){
+      for(int j=0;j<m;j++){
+        if(SIJ[i][j]){
+          MJ[i][j] = MJ[i][j] - z[i] - s[j];
+          found = true;
+        }
+      }
+    }
+
+  }while(found);
+  
+  return true;
+} 
+                         
 //**************************************************************************
 
 int Lisa_Schedule::get_property(int property) {

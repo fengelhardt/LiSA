@@ -75,8 +75,13 @@ public:
   //int LR_to_MO(); 
   // construct job order
   //int LR_to_JO(); 
-  // construct latin rectangle
-  //int MO_JO_to_LR(); 
+  /// construct latin rectangle from machine and job order
+  /** Returns true if the combination is feasible, false otherwise. In the case
+      the contents of LR are undefined. */
+  static bool MO_JO_to_LR(Lisa_Matrix<int> *const LR,
+                         const Lisa_Matrix<bool> *const SIJ,
+                         const Lisa_Matrix<int> *const MO,
+                         const Lisa_Matrix<int> *const JO); 
   
   /// return some properties of the schedule
   int get_property(int property);
