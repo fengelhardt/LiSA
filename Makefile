@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-VERSION=2.3rc1
+VERSION=2.3pre3
 
 # ------------------------------------------------------------------------------
 
@@ -173,10 +173,11 @@ dist-cygwin:
 	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)/LiSA
 	rm -fr $(CYGWINPATH)/LiSA/tcl/external
 	cp /bin/cygwin1.dll $(CYGWINPATH)/LiSA/bin
-	cp /bin/cygtcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
-	cp /bin/cygtk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/tcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/tk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tcl* -maxdepth 0`
-	cp -r /usr/share/tcl*/init.tcl $(CYGWINPATH)/LiSA/share/tcl*
+	cp -r /usr/share/tcl*/tclIndex $(CYGWINPATH)/LiSA/share/tcl*
+	cp -r /usr/share/tcl*/*.tcl $(CYGWINPATH)/LiSA/share/tcl*
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tk* -maxdepth 0`
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*

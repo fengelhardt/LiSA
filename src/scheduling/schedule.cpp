@@ -362,6 +362,8 @@ void Lisa_Schedule::read(istream& strm) {
         if (!CIJ) make_CIJ();
         strm >> *CIJ;
       }
+    }else{
+      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",SYNTAX_ERROR);
     }
 
   }

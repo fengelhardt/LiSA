@@ -227,6 +227,8 @@ void Lisa_Values::read(istream& strm) {
         if (!EXTRA) make_EXTRA();
         strm >> *EXTRA;
       }
+    }else{
+      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",SYNTAX_ERROR);
     }
   }
   
