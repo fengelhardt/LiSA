@@ -18,7 +18,7 @@
 #include "../../basics/order.hpp"
 #include "../../basics/graph.hpp"
 #include "graphalgo.hpp"
-#include "partition.hpp"
+#include "lpartition.hpp"
 #include "irrednode.hpp"
 /** @name The Test Algorithm
  

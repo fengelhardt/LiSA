@@ -1,5 +1,5 @@
 <GENERAL>
-Name= Irreduzibilitätstest
+Name= Irreduzibilitätstest (Research)
 Type= iterative
 Call= irred
 Code= external

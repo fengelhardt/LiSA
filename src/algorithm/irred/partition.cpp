@@ -7,7 +7,7 @@
  * last changed 26.02.01
  */
 
-#include "partition.hpp"
+#include "lpartition.hpp"
   
 Lisa_Partition::Lisa_Partition(const int in){
   part = new Lisa_Vector<int>(in);

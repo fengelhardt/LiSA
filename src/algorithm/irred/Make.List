@@ -1,6 +1,6 @@
 CXXSOURCES=\
 	irred.cpp \
-	partition.cpp \
+	lpartition.cpp \
 	convertgraph.cpp \
 	irrednode.cpp \
 	irredtest.cpp \
