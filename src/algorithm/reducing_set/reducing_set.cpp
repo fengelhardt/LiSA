@@ -198,12 +198,17 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 
 //**************************************************************************
 
-int main(int argc, char *argv[]) 
-{
-
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
+int main(int argc, char *argv[]){
+  
+    // write error messages so lisa can pick them up
     G_ExceptionList.set_output_to_cout();   
 
+    if(argc < 3){
+      cout << "Usage: " << argv[0] << " [input file] [output file]" << endl;
+      exit(1);
+    }
+    
+    
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
     //    Lisa_ControlParameters * sp = new Lisa_ControlParameters;
     Lisa_Values * my_werte=new Lisa_Values;
@@ -211,14 +216,23 @@ int main(int argc, char *argv[])
     cout << "PID= " << getpid() << endl; 
 
     ifstream i_strm(argv[1]);
-    ofstream o_strm(argv[2]);
-
+    if(!i_strm){
+      cout << "Could not open '" << argv[1] << "' for reading." << endl;
+      exit(1);
+    }
+    
     // read problem description 
     i_strm >> (*lpr);
     // read control parameters: 
     // i_strm >> (*sp);
     // read problem instance:
     i_strm >> (*my_werte);
+    i_strm.close();
+    
+    if(!G_ExceptionList.empty()){
+     cout << "ERROR: cannot read input data, aborting program." << endl;
+     exit(1);
+    }  
     
     n=my_werte->get_n();
     m=my_werte->get_m();
@@ -333,12 +347,18 @@ int main(int argc, char *argv[])
     /**                                                     **
      **  ok - here the algorithm itself finishes...         **
      *********************************************************/
-
+    ofstream o_strm(argv[2]);
+    if(!o_strm){
+      cout << "Could not open '" << argv[2] << "' for writing." << endl;
+      exit(1);      
+    }
 
     // writing the result to file or stdout...
     o_strm <<"pmtnP= " << *result_pmtnP;
     o_strm <<"pmtnLR= " << *result_pmtnLR;      
     o_strm <<"level= " << level<<endl;
+    
+    o_strm.close();
     
 
     //cleaning up...
