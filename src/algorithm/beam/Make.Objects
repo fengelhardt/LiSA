@@ -10,7 +10,7 @@ OBJECTS=\
 	../../../obj/ptype.o \
 	../../../obj/global.o \
 	../../../obj/except.o \
-	../../../obj/lisa_str.o \
+	../../../obj/int2str.o \
 	../../../obj/mo_jo.o \
 	../../../obj/os_sched.o \
 	../../../obj/schedule.o \

@@ -37,7 +37,7 @@ OBJECTS=\
 	../../../obj/ptype.o \
 	../../../obj/global.o \
 	../../../obj/except.o \
-	../../../obj/lisa_str.o \
+	../../../obj/int2str.o \
 	../../../obj/js_sched.o \
 	../../../obj/m1_sched.o \
 	../../../obj/mo_jo.o \

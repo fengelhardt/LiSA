@@ -229,7 +229,7 @@ int OSHOP_API_Ngbh::prepare_move( int typ )
        return OK;
 
      }
-   G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");
+   G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return !OK;
   }
 
@@ -289,7 +289,7 @@ void OSHOP_API_Ngbh::set_objective( int z, int a)
  {
    if ((a<0) || (a>=4))
      {
-      G_ExceptionList.lthrow("wrong plan in set_objective_type("+string(a)+")");
+      G_ExceptionList.lthrow("wrong plan in set_objective_type("+ztos(a)+")");
       exit( 7 );
      }
    P[a]->SetValue(z);
@@ -299,7 +299,7 @@ TIMETYP OSHOP_API_Ngbh::get_objective_value( int a)
  {
   if ((a<0) || (a>=4))
     {
-     G_ExceptionList.lthrow("wrong plan in get_objective_type("+string(a)+")");
+     G_ExceptionList.lthrow("wrong plan in get_objective_type("+ztos(a)+")");
      exit( 7 );
     }
   return P[a]->GetValue();

@@ -1,2 +1,1 @@
 ../../obj/setup.o: setup.cpp ../misc/lisa_str.hpp; $(CXX) -c $(CXXFLAGS) -o ../../obj/setup.o setup.cpp
-../../obj/lisa_str.o: ../misc/lisa_str.cpp ../misc/lisa_str.hpp; $(CXX) -c $(CXXFLAGS) -o ../../obj/lisa_str.o ../misc/lisa_str.cpp

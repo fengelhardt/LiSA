@@ -26,7 +26,6 @@ CXXSOURCES=\
 	../lisa/ptype.cpp \
 	../misc/except.cpp \
 	../misc/int2str.cpp \
-	../misc/lisa_str.cpp \
 	../scheduling/js_sched.cpp \
 	../scheduling/mo_jo.cpp \
 	../scheduling/os_sched.cpp \

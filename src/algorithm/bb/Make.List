@@ -12,7 +12,7 @@ CXXSOURCES=\
 	../../lisa/ptype.cpp \
 	../../main/global.cpp \
 	../../misc/except.cpp \
-	../../misc/lisa_str.cpp \
+	../../misc/int2str.cpp \
 	../../scheduling/js_sched.cpp \
 	../../scheduling/mo_jo.cpp \
 	../../scheduling/os_sched.cpp \

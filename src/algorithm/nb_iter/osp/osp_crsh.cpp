@@ -131,7 +131,7 @@ int OSHOP_cr_shift_Ngbh::prepare_move( int typ )
        exit(7);
       }
 
-   G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");
+   G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return !OK;
  };
 

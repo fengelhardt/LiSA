@@ -1071,7 +1071,7 @@ int main(int argc, char *argv[])
   my_special = new Lisa_ControlParameters;
   int i = 1;
   while (!(G_ExceptionList.empty()))
-    my_special->add_key("EXCEPTION"+string(i++), G_ExceptionList.lcatch());
+    my_special->add_key("EXCEPTION"+ztos(i++), G_ExceptionList.lcatch());
   fplan_o << (*my_special);
   delete my_special;
 

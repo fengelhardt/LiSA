@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../misc/lisa_str.hpp"
+#include "../misc/int2str.hpp"
 #include <string.h>
 #include <fstream.h>
 #include "database.hpp"
@@ -476,8 +477,8 @@ Lisa_DataBase::error_output(int rec,int pn)
  
   G_ExceptionList.lfthrow(
      "Error while reading BibTeX database!\nSyntax error in record "+
-     (string) (rec+1)+":\n\n"+(string) E[rec].author+", "+
-     (string) E[rec].year+",\nProblem Number "+(string) (pn+1)+
+     ztos(rec+1)+":\n\n"+(string) E[rec].author+", "+
+     (string) E[rec].year+",\nProblem Number "+ztos(pn+1)+
      "\n\n",SYNTAX_ERROR); 
   if (pn==NO_ANNOTE)
     G_ExceptionList.lfthrow("ANNOTE entry is missing!\n\n",SYNTAX_ERROR);

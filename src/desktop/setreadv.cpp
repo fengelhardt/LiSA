@@ -335,7 +335,7 @@ int TC_getvar(ClientData /* clientData */,
   }
   else if (name=="entry_in_ptupel") {
     str3=argv[2];
-    str=ztos(G_ProblemType.get_property(str3.toint()));
+    str=ztos(G_ProblemType.get_property(stoz(str3)));
   }
   else if (name=="DD") {
     sscanf(argv[2],"%d",&row);
@@ -444,14 +444,14 @@ int TC_getvar(ClientData /* clientData */,
   else if (name=="ptupel_name") {
     if (argc==3) {
       str2= argv[2];
-      n=str2.toint();
+      n=stoz(str2);
       str=name_of_tupelindex[n];
     }
     if (argc==4) {
       str2= argv[2];
-      n=str2.toint();
+      n=stoz(str2);
       str3= argv[3];
-      m=str3.toint();
+      m=stoz(str3);
       str=name_of_tupelentry[n][m];
     }
   }

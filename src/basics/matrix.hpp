@@ -14,6 +14,7 @@
 
 #include <iostream.h>
 #include "../misc/except.hpp"
+#include "../misc/int2str.hpp"
 
 // remove the following line in the final program:
 #define DEBUG
@@ -58,8 +59,8 @@ public:
       #ifdef DEBUG
       if (j>=m) 
 	{
-	  G_ExceptionList.lthrow("element "+string((int)j)+" of a "+
-				 string((int)m)+"-element vector requested",
+	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+				 ztos((int)m)+"-element vector requested",
 				 OUT_OF_RANGE);
 	  return contents[0];
 	}
@@ -71,8 +72,8 @@ public:
       #ifdef DEBUG
       if (j>=m) 
 	{
-	  G_ExceptionList.lthrow("element "+string((int)j)+" of a "+
-				 string((int)m)+"-element vector requested",
+	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+				 ztos((int)m)+"-element vector requested",
 				 OUT_OF_RANGE);
 	  return contents[0];
 	}
@@ -120,8 +121,8 @@ public:
       #ifdef DEBUG
       if (i>=n)
 	{
-	  G_ExceptionList.lthrow("row "+string((int)i)+" of a "+
-				 string((int)n)+"-row matrix requested",
+	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
+				 ztos((int)n)+"-row matrix requested",
 				 OUT_OF_RANGE);
 	  return row[0];
 	}
@@ -133,8 +134,8 @@ public:
       #ifdef DEBUG
       if (i>=n)
 	{
-	  G_ExceptionList.lthrow("row "+string((int)i)+" of a "+
-				 string((int)n)+"-row matrix requested",
+	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
+				 ztos((int)n)+"-row matrix requested",
 				 OUT_OF_RANGE);
 	  return row[0];
 	}

@@ -806,7 +806,7 @@ int TC_sort_sl(ClientData /* clientData */,
   if (argc>1) {
     string str;
     str=argv[1];
-    obj_name=str.toint();
+    obj_name=stoz(str);
     G_ScheduleList->pop().sinfo_pointer=obj_name;
     G_ScheduleList->sort();
   }

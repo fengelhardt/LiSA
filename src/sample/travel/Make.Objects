@@ -10,4 +10,4 @@ OBJECTS=\
 	../../../obj/ctrlpara.o \
 	../../../obj/global.o \
 	../../../obj/except.o \
-	../../../obj/lisa_str.o
+	../../../obj/int2str.o

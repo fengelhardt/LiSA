@@ -10,6 +10,6 @@ CXXSOURCES=\
 	../../lisa/ctrlpara.cpp \
 	../../main/global.cpp \
 	../../misc/except.cpp \
-	../../misc/lisa_str.cpp \
+	../../misc/int2str.cpp \
      ../../algorithm/nb_iter/tabu.cpp
 

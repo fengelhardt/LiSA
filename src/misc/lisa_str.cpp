@@ -175,7 +175,7 @@ CopyMemory(&Text[0], &CString[0], StringLength);
 }
 
 
-string::string(int InitNumber)
+string::ztos(int InitNumber)
 
 {
 Allocate(0);

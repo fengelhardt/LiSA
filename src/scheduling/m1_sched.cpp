@@ -19,7 +19,7 @@ Lisa_1Problem::Lisa_1Problem( Lisa_Values * Pin )
     n = Pin->get_n();
     if ( n < 1 )
       {
-	G_ExceptionList.lthrow("wrong dimension = "+string(n)+" for the problem");
+	G_ExceptionList.lthrow("wrong dimension = "+ztos(n)+" for the problem");
 	exit( 7 );
       }
     int i,j;
@@ -156,7 +156,7 @@ void Lisa_1Schedule::get_Ci(int pos)
   {
     if ((pos<1) || (pos>PP->n))
       {
-	G_ExceptionList.lthrow("wrong position in function get_Ci("+string(pos)+")");
+	G_ExceptionList.lthrow("wrong position in function get_Ci("+ztos(pos)+")");
 	exit( 7 );
       }
     TIMETYP t;
@@ -230,7 +230,7 @@ int Lisa_1Schedule::get_sequ(int pos)
   {
     if ((pos>=PP->n+1)||(pos<1))
       { 
-	G_ExceptionList.lthrow("wrong position in get_sequ("+string(pos)+").");
+	G_ExceptionList.lthrow("wrong position in get_sequ("+ztos(pos)+").");
 	exit( 7 );
       }    
     return (*sequ)[pos];
@@ -252,7 +252,7 @@ int Lisa_1Schedule::insert( int i, int woi )
 #ifdef debug
     if (exists(i))
       { 
-	G_ExceptionList.lthrow("job "+string(i)+" is already inserted!");
+	G_ExceptionList.lthrow("job "+ztos(i)+" is already inserted!");
 	return(ERROR);
       }
     if ( !(exists(woi)) )
@@ -293,7 +293,7 @@ void Lisa_1Schedule::exclude( int i )
 #ifdef debug
     if (!exists(i))
       { 
-	G_ExceptionList.lthrow("job "+string(i)+" is not inserted!");
+	G_ExceptionList.lthrow("job "+ztos(i)+" is not inserted!");
 	return;
       }
 #endif
@@ -442,7 +442,7 @@ int Lisa_1Schedule::shift(int a, int b)
     int c,i;
     if ((b>=PP->n+1)||(a<1)||(a>=PP->n+1)||(b<1)||(a==b))
       { 
-	G_ExceptionList.lthrow("wrong position in shift("+string(a)+string(b)+").");
+	G_ExceptionList.lthrow("wrong position in shift("+ztos(a)+ztos(b)+").");
 	exit( 7 );
       }
     // test, wether exists(a) and exists(b) !

@@ -141,7 +141,7 @@ int shift_Neighborhood::prepare_move( int typ )
        else
 	 return NO_NGHBOURS;
      }
-   G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");
+   G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
    return NO_NGHBOURS;
   };
 

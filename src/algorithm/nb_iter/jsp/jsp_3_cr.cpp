@@ -126,7 +126,7 @@ int JSHOP_3_CR_Ngbh::prepare_move( int typ )
        G_ExceptionList.lthrow("enumerativ method not implemented in osp_3tst.cpp");
        exit(7);
      }
-    G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");
+    G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
     return !OK;
   }
 
