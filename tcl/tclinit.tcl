@@ -54,7 +54,7 @@ set ptupel_number(misc) [TC_getvar ptupel_number misc]
 set TUPEL_INDEX [expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_number(gamma)+$ptupel_number(misc) ]
 set  ptupel_number(TUPEL_INDEX) $TUPEL_INDEX
 
-for {set i 0} {$i<=$TUPEL_INDEX} {incr i 1} {
+for {set i 0} {$i<$TUPEL_INDEX} {incr i 1} {
     set name [TC_getvar ptupel_name $i]
     set ptupel_name($i) $name
     set number [TC_getvar ptupel_number $name ]

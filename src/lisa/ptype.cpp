@@ -43,6 +43,8 @@ void Lisa_ProblemType::reset()
   int i;
   for(i=0; i<TUPEL_INDEX; i++) tupel[i]=EMPTY;
   vld=FALSE;
+  m_no = 0;
+  n_no = 0;
 }
 
 //**************************************************************************

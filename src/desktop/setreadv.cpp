@@ -75,17 +75,22 @@ int TC_set_prob(ClientData /* clientData */,
 	       int /*argc*/, TCL_HACK_CHAR ** /*argv[]*/)  
 {
   const char *ms,*ns;
-  int m,n,mold,nold;
+  int m=0,n=0,mold,nold;
   
   ms = Tcl_GetVar2(interp,"glob","machines",TCL_GLOBAL_ONLY);
   ns = Tcl_GetVar2(interp,"glob","jobs",TCL_GLOBAL_ONLY);
-  sscanf(ms,"%d",&m);
-  sscanf(ns,"%d",&n);
-  mold=G_Values.get_m();nold=G_Values.get_n();
+  
+  if(ms != 0) sscanf(ms,"%d",&m);
+  if(ns != 0) sscanf(ns,"%d",&n);
+  
+  mold=G_Values.get_m();
+  nold=G_Values.get_n();
+  
   if(mold!=m||nold!=n) {
     G_Values.init(n,m);
     new_mn();
   }
+  
   return TCL_OK;
 }
 
@@ -161,11 +166,12 @@ int TC_set_Tupel(ClientData /* clientData */,
 // returns the values of C++ variables
 int TC_getvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int argc, TCL_HACK_CHAR *argv[])  {
+	      int argc, TCL_HACK_CHAR *argv[]){
+          
   int temp=0,row=0,column=0,n=0,m=0,i=0;
   float xpos=0,ypos=0;
-  string name="",str="NOT_DEFINED",str2="",str3="",str4="";
-  name=argv[1];
+  string name=argv[1],str="NOT_DEFINED",str2="",str3="",str4="";
+  
   if (name=="LANGUAGE") {
     str= G_Preferences.get_string("LANGUAGE");
   }

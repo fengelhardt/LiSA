@@ -259,7 +259,7 @@ proc tupelinit { } {
     global ptupel_name;
     global ptupel_number;
     set TUPEL_INDEX [expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_number(gamma)+$ptupel_number(misc) ]
-    for {set i 0} {$i<=$TUPEL_INDEX} {incr i 1} {
+    for {set i 0} {$i<$TUPEL_INDEX} {incr i 1} {
 	set name $ptupel_name($i)
 	set tupel($name) [TC_getvar entry_in_ptupel $i]
     } 
@@ -314,22 +314,25 @@ proc dpset { } {
     global ptupel_name;
     global ptupel_number;
 
-     set glob(gamma) dpw(e_gamma) 
-     if { $tupel(M_ENV) == "1"}  {
-	 set glob(machines) 1
- 	 set tupel(M_NUMBER) 0
-	 catch {
-	     .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_FIX) -state disabled
-	     .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_ARB) -state disabled
-	     .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_VAL) -state disabled
-	 }
-     } else {
- 	if { $glob(machines)==1 } { set glob(machines) 2 }
-     }
-   set TUPEL_INDEX [expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_number(gamma) ]
-    for {set i $TUPEL_INDEX } {$i<=[expr $TUPEL_INDEX+1]} {incr i 1} {
-	if {$ptupel_name($i) == "M_NO" } { TC_set_Tupel $i $glob(machines) }
-	if {$ptupel_name($i) == "N_NO" } { TC_set_Tupel $i $glob(jobs) }
+    set glob(gamma) dpw(e_gamma) 
+    
+    if { $tupel(M_ENV) == "1"}  {
+      set glob(machines) 1
+      set tupel(M_NUMBER) 0
+      catch {
+        .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_FIX) -state disabled
+        .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_ARB) -state disabled
+        .dprob.topframe.fra59.men61.m entryconfigure  $Name(M_NUMBER,M_VAL) -state disabled
+      }
+    } else {
+      if { $glob(machines)==1 } {
+        set glob(machines) 2 
+      }
+    }
+    set TUPEL_INDEX [expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_number(gamma)+$ptupel_number(misc) ]
+    for {set i 0 } {$i < $TUPEL_INDEX} {incr i 1} {
+      if {$ptupel_name($i) == "M_NO" } { TC_set_Tupel $i $glob(machines) }
+      if {$ptupel_name($i) == "N_NO" } { TC_set_Tupel $i $glob(jobs) }
     }    
     TC_set_prob
     dpinit
@@ -356,7 +359,7 @@ proc read_tupelname { } {
     set ptupel_number(misc) [TC_getvar ptupel_number misc]
     set TUPEL_INDEX [expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_number(gamma)+$ptupel_number(misc) ]
     set  ptupel_number(TUPEL_INDEX) $TUPEL_INDEX
-    for {set i 0} {$i<=$TUPEL_INDEX} {incr i 1} {
+    for {set i 0} {$i<$TUPEL_INDEX} {incr i 1} {
 	set name [TC_getvar ptupel_name $i]
 	set ptupel_name($i) $name
 	set number [TC_getvar ptupel_number $name ]

@@ -7,6 +7,7 @@
 
 #include "../main/global.hpp"
 #include "filentry.hpp"
+#include "../misc/except.hpp"
 
 /// Problem Description
 /** contains machine environment, additional constraints and objective function 
@@ -49,7 +50,15 @@ public:
   int set_property(const int prop, const int value);
 
   /// get tuple entry back
-  inline int get_property(const int prop) const {return tupel[prop];}
+  inline int get_property(const int prop) const {
+#ifdef LISA_DEBUG
+    if(prop<0 || prop >= TUPEL_INDEX){
+      G_ExceptionList.lthrow("Index out of range in Lisa_ProblemType::get_property()",OUT_OF_RANGE);
+      return EMPTY;
+    }
+#endif
+    return tupel[prop];
+  }
 
   /// program parts which are not up to date need obsolet definitions:
   int get_property_old(const int prop) const;
