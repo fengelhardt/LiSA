@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Irreduzibilitaetstest (Research)" type="iterative" call="irred" code="external" help_file="algorithm/irred.html">
+  <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <choice name="TYPE" caption="Erzeuge Plaene:">
+      <item name="SIMILAR"/>
+      <item name="ALL_REDUCING"/>
+      <item name="ITERATIVE_REDUCING"/>
+    </choice>
+    <choice name="RETURN" caption="Gib folgende Plaene zurueck:">
+      <item name="ONLY_IRREDUCIBLE"/>
+      <item name="ALL"/>
+    </choice>
+    <choice name="RNDM" caption="Erzeuge Plaene in zufaelliger Reihenfolge:">
+      <item name="NO"/>
+      <item name="YES"/>
+    </choice>
+  </alg_controls>
+</algorithm>
