@@ -79,7 +79,7 @@ const int MO = 2;
     @see Lisa_Iterator
     
     @author Thomas Tautenhahn and Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
 */
 class Lisa_Neighborhood{ 
 protected:

@@ -13,7 +13,7 @@
     open shop problem.
     
     @author Thomas Tautenhahn and Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
     @see Lisa_ShpSchedule
 */  
 

@@ -14,7 +14,7 @@
     WARNING: jobs are internally indexed 1,2,3, ...
 
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
 */  
 
 //@{

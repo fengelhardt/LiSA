@@ -18,7 +18,7 @@
     Include file LiSA/src/lisa_dt/ptype.hpp, it uses iostream and string.
 
     @author Per Willenius, Thomas Tautenhahn and Martin Harborth
-    @version 2.3pre2
+    @version 2.3pre3
 */ 
 
 //@{

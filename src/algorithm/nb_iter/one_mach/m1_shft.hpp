@@ -31,7 +31,7 @@
     jobs on the machine).
 
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
     @see Lisa_Neighborhood
     @see API_Neighborhood
 */

@@ -20,7 +20,7 @@
     To call this program use: #nb_iter [input file] [output file]# 
     
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
 */  
 
 #include <fstream>

@@ -6,7 +6,7 @@
                        http://lisa.math.uni-magdeburg.de
                   Email: lisagroup@lisa.math.uni-magdeburg.de
 
-                   Version 2.3pre2 released on Sep. 9, 2002
+                   Version 2.3pre3 released on Sep. 9, 2002
 
 The software package LiSA  is developed within the framework of the research 
 project Latin Rectangles in Scheduling Theory (supported by the German State

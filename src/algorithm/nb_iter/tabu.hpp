@@ -40,7 +40,7 @@ using namespace std;
     @see Lisa_Neighborhood
     @see Lisa_Iterator
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
 */  
 class Lisa_Tabu{
   

@@ -20,7 +20,7 @@
     contains functions, which was called by the TCL/TK interpreter
 
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
 */ 
 
 //@{ 

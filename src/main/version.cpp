@@ -8,7 +8,7 @@ Date: 26.10.1998
 /**
 @name LiSA version management
 @author Lars Dornheim
-@version 2.3pre2
+@version 2.3pre3
 **/ 
 
 #include "version.hpp"

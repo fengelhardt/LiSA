@@ -52,7 +52,7 @@ public:
     T be a pointer to the desired type.
 
     @author Thomas Tautenhahn
-    @version 2.3pre2
+    @version 2.3pre3
     @see Lisa_GenericList
     @see Lisa_BasicList
 */ 

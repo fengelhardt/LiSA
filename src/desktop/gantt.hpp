@@ -17,7 +17,7 @@
   include: win_obj.hpp, xschedule.hpp, problem.hpp, matrix.hpp, int2str.hpp, 
 	   lisapref.hpp, c_tcl.hpp basicwin.hpp and except.hpp
   @author Ines Wasmund
-  @version 2.3pre2
+  @version 2.3pre3
  */
 
 //@{

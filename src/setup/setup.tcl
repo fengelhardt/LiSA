@@ -343,7 +343,7 @@ tkwait window .top64
 }
 
 proc init {argc argv} {
-     set version "2.3pre2"
+     set version "2.3pre3"
      global lisaVersionText
      set lisaVersionText "LiSA $version"
      global installDir

@@ -32,7 +32,7 @@ using namespace std;
     Include file LiSA/src/lisa_dt/lsaobjkt.h, it uses iostream, 
 
     @author Per Willenius 
-    @version 2.3pre2
+    @version 2.3pre3
 */ 
 
 /** Lisa_GenericObject has only a virtual write-function and schould 

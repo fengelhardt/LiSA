@@ -24,7 +24,7 @@
     It is inherited from the class OSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3pre2
+    @version 2.3pre3
     @see Lisa_Neighborhood
     @see OSHOP_API_Ngbh
 */
