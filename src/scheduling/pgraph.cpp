@@ -16,12 +16,8 @@ extern class Lisa_Values G_Values;
 
 //**************************************************************************
 
-void ende(char * string);
-
-//**************************************************************************
-
-void ende(char * string){
-  cerr << "Kein Speicher frei. Abbruch bei " << string << "\n";
+void ende(char * str){
+  cerr << "Kein Speicher frei. Abbruch bei " << str << "\n";
 }
 
 //**************************************************************************

@@ -1,27 +1,4 @@
-/*
- * ************** ptype.hpp *******************************
- * 
- * description:    definition of class Lisa_ProblemType, 
- *                 
- * @author          Per Willenius
- *
- * date:           27.9.1999
- *
- * version:        V 1.0  
- * 
- * history:         7.  9. 98 kleinere Anpassungen TAU
- *                 19. 10. 99 Zugriffsfunktionen, Konsistenztest TAU
-*/
 
-/**  @name Classes for Communication of LiSA Modules
- 
-    Include file LiSA/src/lisa_dt/ptype.hpp, it uses iostream and string.
-
-    @author Per Willenius, Thomas Tautenhahn and Martin Harborth
-    @version 2.3pre3
-*/ 
-
-//@{
 #ifndef _ptype_h 
 #define _ptype_h 
 
@@ -31,26 +8,29 @@
 #include "../main/global.hpp"
 #include "filentry.hpp"
 
-/** Problem Description
-    contain machine environment, additional constraints and objective function 
+/// Problem Description
+/** contains machine environment, additional constraints and objective function 
     as tupel with TUPEL_INDEX entries
+    
+    @author Per Willenius, Thomas Tautenhahn, Martin Harborth
+    @version 2.3pre3
 */
 class Lisa_ProblemType : public Lisa_FileEntry{
 private:
 
-  // set  maschine environment corresponding to al 
+  /// set  maschine environment corresponding to al 
   int setalpha(std::string al); 
 
-  // set additional constraints corresponding to be 
+  /// set additional constraints corresponding to be 
   int setbeta(std::string be); 
 
-  // set objective function  corresponding to ga
+  /// set objective function  corresponding to ga
   int setgamma(std::string ga);
 
-  // flag to indicate consistence of tupel
+  /// flag to indicate consistence of tupel
   bool vld;
 
-  // maschine environment, additional constraints and objective function
+  /// maschine environment, additional constraints and objective function
   int tupel[TUPEL_INDEX];
 
 public:
@@ -58,16 +38,17 @@ public:
   /// constructor 
   Lisa_ProblemType();
 
-  /// Lisa_ProblemType is valid iff valid==TRUE
-  bool valid() const { return vld; }
+  /// returns if the current problemtype is valid
+  bool inline valid() const { return vld; }
 
-  /** Main manipulation method, sets property and checks tuple for 
-      consistency. Older properties which cannot be used in connection 
-      with new property are deleted or altered in a sensible way. Return 
-      value is number of old properties which are altered.              */  
+  /// Main manipulation method.
+  /** Sets property and checks tuple for consistency. Older properties which 
+      cannot be used in connection with new property are deleted or altered in 
+      a sensible way. Return value is number of old properties which are
+      altered. */  
   int set_property(const int prop, const int value);
 
-  /// get tuple entry back:
+  /// get tuple entry back
   int get_property(const int prop) const {return tupel[prop];}
 
   /// program parts which are not up to date need obsolet definitions:
@@ -114,6 +95,4 @@ public:
 };
 
 #endif
-
-//@}
 

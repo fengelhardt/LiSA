@@ -10,7 +10,7 @@
   @version 2.3pre3
   */
 class Lisa_SGraph { 
-public:
+private:
   /// flag, if topsort() was already done
   bool ts;
   
@@ -28,9 +28,9 @@ public:
   int *v_pred;
   /// horizontal predecessor of a vertex  
   int *h_pred;
+public:
   /// list of vertex generetad by topsort()  
-  int *TS;
-  
+  int *TS;  
   /// default constructor
   Lisa_SGraph();
   /// create a sequence graph with m x n vertices
@@ -92,72 +92,161 @@ public:
 
 //**************************************************************************
 
+
+/// adjacency list graph object
+/**
+  @author Per Willenius
+  @version 2.3pre3
+  */
 class AD_List{
-public:
+private:
+
+//@{
+  ///private data, needs documentation
   int m,n;
   AD_List_Node * leer;
   AD_List_Node * first;
   AD_List_Node * actual;
   AD_List_Node * last;
-  AD_List_Node ** all; // Zeigt fuer jeden Knoten auf das
-  // entsprechende AD_List_Node 
-  // 0, wenn v nicht adjazent  
-  void add_e( int v); // Fuegt Kante hinzu
+  AD_List_Node ** all;
+//@}
+
+public:  
+  /// inserts edge
+  void add_e( int v);
+  /// removes edge
   void del_e( int v); // entfernt Kante
+  
+  /// constructor
   AD_List(int m, int n);
-  void reset();  // setzt den aktuellen Nachbarknoten zurueck
-  int next(); // naechster Nachbarknoten
+  
+  /// resets current neighbourvertex
+  void reset();
+  
+  /// goto next neighbour vertex
+  int next();
+  
+  /// destructor
   ~AD_List();
 };
 
 //**************************************************************************
 
+/// vertex list
+/**
+  @author Per Willenius
+  @version 2.3pre3
+  */
 class V_List{
-public: 
+private: 
+  /// private data, needs documentation
   int actual;
+  /// private data, needs documentation
   int *feld;
-  int *succ;  // Enthaelt Index des naechsten
-  int ef; // Zeigt auf den ersten freien
-
-  V_List(int groesse);
-  void insert(int ki, int rank);
+  /// contains index of next
+  int *succ;
+  /// points to the first free
+  int ef;
+public:
+  /// constructor
+  /** create vlist with given size */
+  V_List(int size);
+  /// destructor
   ~V_List();
-  void reset(); // setzt aktuell zurueck
-  int next(); // gibt naechstes Element zurueck
+  
+  /// insert
+  void insert(int ki, int rank);
+
+  /// reset current
+  void reset();
+  
+  /// returns next element
+  int next();
 };
 
 //**************************************************************************
 
-class Lisa_CSGraph{ //Enthaelt die Kanten des CS-Graphen  
-  int *h_edge; // Horizontale Kanten
-  int *v_edge;  // Vertikale Kanten
-  class AD_List ** v_adlst;     // Adjazenzliste (vertikale Kanten) fuer jeden Knoten
-  class AD_List ** h_adlst;     // Adjazenzliste (horizontale Kanten) fuer jeden Knoten
-  int i_index,j_index; // Zur Knotenzaehlung
+/// contains the edges of the CS graph
+/**
+  @author Per Willenius
+  @version 2.3pre3
+  */
+class Lisa_CSGraph{
+private:
+  /// horizontal edges
+  int *h_edge;
+  /// vertical edges
+  int *v_edge;
+  /// adjacencylist for each vertex
+  /** vertical edges */
+  AD_List ** v_adlst;
+  /// adjacencylist for each vertex
+  /** horizontal edges */
+  AD_List ** h_adlst;
+  /// for counting vertice
+  int i_index,j_index;
 public:
+  /// size
   int m,n;
+  /// default constructor
   Lisa_CSGraph();
-  void new_graph();
+  /// create graph from given plan
   Lisa_CSGraph(Lisa_Schedule *PL);
+  /// create graph from given plan  
   Lisa_CSGraph(Lisa_Schedule *PL, int tst);
-  void add_edge(int v, int w); // Fuegt Kante hinzu
+  /// destructor
+  ~Lisa_CSGraph(); 
+  
+  /// reinitialize graph data
+  /** this again looks like a big memory leak */
+  void new_graph();
+  
+  /// add an edge
+  void add_edge(int v, int w);
+  
+  /// add an edge
   void add_vedge(int column, int i, int j);
+  /// add an edge
   void add_hedge(int row, int i, int j);
+  
+  /// returns true is there is an edge between i and j in column
   int tst_vedge(int column, int i, int j);
-  int tst_hedge(int column, int i, int j);
+  /// returns true is there is an edge between i and j in row  
+  int tst_hedge(int row, int i, int j);
+  
+  /// delete edge
   void del_edge(int v, int w);
+  
+  /// jump to next vertice
   int next_vertice();
+  
+  /// reset vertice 
   void reset_vertice();
+  
+  /// needs documentation
   int next(int v);
-  int next_v(int v); // naechste vertikale Kante
-  int next_h(int v); // naechste horizontale Kante
+  
+  /// next vertical edge
+  int next_v(int v);
+  /// next horizontal edge
+  int next_h(int v);
+  
+  /// edge between v and w ?
   int edge(int v, int w);
+  
+  /// reset
   void reset(int v);
+  
+  /// debug output
   void print();
-  ~Lisa_CSGraph();
-  int index(int ni, int mi); // gibt Index des Knotens (ni,mi) zurueck
-  int row(int i);           // gibt Zeile des Knotens mit Index i zurueck
-  int column(int i);           // gibt Spalte des Knotens mit Index i zurueck
+
+  /// returns index of vertex at ni,mi
+  int index(int ni, int mi);
+  
+  /// returns row of vertex with index i
+  int row(int i);
+  /// returns colum of vertex with index i
+  int column(int i);
 };
 
 //**************************************************************************

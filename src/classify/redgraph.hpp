@@ -1,9 +1,3 @@
-/** @name Reduction Graphs for Polynomial Reducibility
-    This section contains the reduction graph class and varibales used for 
-    the reduction graphs. These graphs are needed for the classification 
-    of scheduling problems. 
-*/
-//@{
 
 #ifndef _redgraph_h
 #define _redgraph_h
@@ -18,25 +12,22 @@ const int SUCC_MAX=4;
 /// maximal number of nodes of reduction graph
 const int V_MAX=25;
 
-/// flag: the problems are identical
-const int IDENT=2;
-/// flag: the first problem polynomially reduces to the second problem
-const int FIRST_TO_SECOND=1;
-/// flag: the problems are not comparable
-const int NOT_CMP=0;
-/// flag: the second problem polynomially reduces to the first problem
-const int SECOND_TO_FIRST=-1;
+/// flags: how are problems related ?
+enum{SECOND_TO_FIRST /** the second problem polynomially reduces to the first problem */ =-1
+    ,NOT_CMP /// the problems are not comparable
+    ,FIRST_TO_SECOND /// the first problem polynomially reduces to the second problem
+    ,IDENT /// the problems are identical
+    };
 
-
-/** Reduction graph class.  This class contains the reduction graphs
+/// reduction graph class
+/** This class contains the reduction graphs
     as well as methods for evaluating the complexity status of input
     problem objects with the aid of the reduction graphs.
     
     @author Martin Harborth 
     @version 2.3pre3
 */
-class Lisa_RedGraph
-{ 
+class Lisa_RedGraph{ 
 private:
   /// contains the reduction graphs
   int Graph[TUPEL_INDEX][V_MAX+1][SUCC_MAX]; 
@@ -50,21 +41,14 @@ public:
   Lisa_RedGraph(void);              
   /// output of reduction graphs 
   int output(void);             
-  /** Comparison of two problems concerning the complexity status.  This 
-      function takes two problems as input and returns the relation between 
-      these problems with respect to polynomial reducibility. 
+  /// Comparison of two problems concerning the complexity status.
+  /** This function takes two problems as input and returns the relation
+      between these problems with respect to polynomial reducibility. 
       @param t1 first input problem object
       @param t2 second input problem object
-      @return IDENT, FIRST_TO_SECOND, SECOND_TO_FIRST, NOT_CMP
-  */
+      @return IDENT, FIRST_TO_SECOND, SECOND_TO_FIRST, NOT_CMP */
   int compare(Lisa_ProblemType* t1,Lisa_ProblemType* t2);  
 };
 
 #endif
-//@}
-
-
-
-
-
 
