@@ -200,9 +200,9 @@ const int param){
     if (Lisa_GraphAlg::topsort(&newplan,&topsortvec)){  // check whether the newplan graph contains a cycle
       
       Lisa_MatrixListGraph newcomp(vert);
-      Lisa_MatrixListGraphAlgorithms::build_compgraph(&newplan,&newcomp);
+      Lisa_GraphAlg::build_compgraph(&newplan,&newcomp);
       
-      if (Lisa_MatrixListGraphAlgorithms::smaller(&newcomp,comp)){ // does it reduce the original plan ?
+      if (Lisa_GraphAlg::smaller(&newcomp,comp)){ // does it reduce the original plan ?
         if (result){ // ok, output is wanted
           if (param!=GENERATE_SIMILAR) result->insert(&newplan,&newcomp);
           irre = 0;
@@ -212,7 +212,7 @@ const int param){
           goto ready_to_go;
         }
       }else if(param==GENERATE_SIMILAR){
-        if(result && Lisa_MatrixListGraphAlgorithms::equal(&newcomp,comp)){
+        if(result && Lisa_GraphAlg::equal(&newcomp,comp)){
           result->insert(&newplan,&newcomp);
         }
       }

@@ -71,8 +71,8 @@ void Lisa_IrredResult::insert(Lisa_MatrixListGraph* plangraph_in,
     if (!results->empty()){
       results->reset();
       do{
-	if (Lisa_MatrixListGraphAlgorithms::smaller(results->get()->compgraph,compgraph_in)) return;
-	if (Lisa_MatrixListGraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_GraphAlg::smaller(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_GraphAlg::equal(results->get()->compgraph,compgraph_in)) return;
       }while(results->next());
     }
     
@@ -89,7 +89,7 @@ void Lisa_IrredResult::insert(Lisa_MatrixListGraph* plangraph_in,
     if (!results->empty()){
       results->reset();
       do{
-	if (Lisa_MatrixListGraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_GraphAlg::equal(results->get()->compgraph,compgraph_in)) return;
       }while(results->next());
     }
     
@@ -117,7 +117,7 @@ void Lisa_IrredResult::compare_all(){
 	results->reset();
 	
 	do{
-	  if (Lisa_MatrixListGraphAlgorithms::smaller(results->get()->compgraph,curr->compgraph)){
+	  if (Lisa_GraphAlg::smaller(results->get()->compgraph,curr->compgraph)){
 	    curr->status = Lisa_IrredNode::NOT_IRREDUCIBLE;
 	  }
 	}while(results->next());

@@ -71,7 +71,7 @@ public:
   inline bool test(Lisa_MatrixListGraph* plan,const int param){
     
     Lisa_MatrixListGraph comp(vert);
-    Lisa_MatrixListGraphAlgorithms::build_compgraph(plan,&comp);
+    Lisa_GraphAlg::build_compgraph(plan,&comp);
     
     return test(plan,&comp,param);
   }

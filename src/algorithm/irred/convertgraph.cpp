@@ -185,7 +185,7 @@ void Lisa_ConvertGraph::graph2plan(Lisa_MatrixListGraph* plangraph,
   plan->fill(0);
   
   Lisa_Vector<int> sort(morevert);
-  Lisa_MatrixListGraphAlgorithms::topsort(plangraph,&sort); 
+  Lisa_GraphAlg::topsort_inverse(plangraph,&sort); 
   
   //cout << sort;
   Lisa_Vector<int> imax(n);
