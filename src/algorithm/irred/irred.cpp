@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
   cout << pg;
   convert->graph2plan(&pg,my_schedule.LR);
   cout << *my_schedule.LR;
- */
+  */
   
   Lisa_IrredResult* res;
   if (alg_param==Lisa_IrreducibilityTest::GENERATE_SIMILAR){ 
@@ -132,47 +132,52 @@ int main(int argc, char *argv[])
   bool irre = my_test.test(&pg,alg_param);
   
   if (irre && alg_param!=Lisa_IrreducibilityTest::GENERATE_SIMILAR){
-    cout << "WARNING: Plan is irreducible ! No new plans returned." << endl;
+    cout << "WARNING: Plan is irreducible !" << endl;
+    cout << my_schedule;
   }else{
     if(alg_param==Lisa_IrreducibilityTest::JUST_TEST ||
        alg_param==Lisa_IrreducibilityTest::JUST_TEST_RANDOM){
+         
       res->results->reset();
       do{
-	Lisa_IrredNode* curr = res->results->get();
-	if(curr->status == Lisa_IrredNode::UNKNOWN){
-	  irre = my_test.test(curr->plangraph,curr->compgraph,alg_param);
-	  if (irre) curr->status = Lisa_IrredNode::IRREDUCIBLE;
-	  else curr->status = Lisa_IrredNode::NOT_IRREDUCIBLE;
-	}
+        Lisa_IrredNode* curr = res->results->get();
+        if(curr->status == Lisa_IrredNode::UNKNOWN){
+          irre = my_test.test(curr->plangraph,curr->compgraph,alg_param);
+          if (irre) curr->status = Lisa_IrredNode::IRREDUCIBLE;
+          else curr->status = Lisa_IrredNode::NOT_IRREDUCIBLE;
+        }
       }while(res->results->next());
+      
     }else{
+      
       if(!return_all){
-	res->compare_all();
-	res->delete_reducible();
-	res->results->reset();
-	do{
-	  res->results->get()->status = Lisa_IrredNode::IRREDUCIBLE; 
-	}while(res->results->next());
+        res->compare_all();
+        res->delete_reducible();
+        res->results->reset();
+        do{
+          res->results->get()->status = Lisa_IrredNode::IRREDUCIBLE; 
+        }while(res->results->next());
       }
+      
     }
-
+    
     if(alg_param==Lisa_IrreducibilityTest::GENERATE_SIMILAR){ 
       if(irre) cout << "WARNING: Plan is irreducible !" << endl;
       o_strm << my_schedule;
     }
-
+    
     res->results->reset();
     do{
       if(res->results->get()->status == Lisa_IrredNode::IRREDUCIBLE){
-	convert->graph2plan(res->results->get()->plangraph,my_schedule.LR);
-	o_strm << my_schedule;
+        convert->graph2plan(res->results->get()->plangraph,my_schedule.LR);
+        o_strm << my_schedule;
       }else if(return_all){
-      	convert->graph2plan(res->results->get()->plangraph,my_schedule.LR);
-	o_strm << my_schedule;
+        convert->graph2plan(res->results->get()->plangraph,my_schedule.LR);
+        o_strm << my_schedule;
       }
     }while(res->results->next());
-//  cout << "WARNING: Plan is NOT irreducible ! " << count 
-//       << " irreducible plan(s) found." <<endl;
+    //  cout << "WARNING: Plan is NOT irreducible ! " << count 
+    //       << " irreducible plan(s) found." <<endl;
   }
  
   delete convert;
