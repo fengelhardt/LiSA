@@ -8,8 +8,9 @@
  * 19.9.1998
 */
 
+#include <limits.h>
+
 #include "insert.hpp"
-#include <values.h>
 
 const int SHIFT_STEPS=10; 
 
@@ -89,7 +90,7 @@ void js_inserter::insert()
   for (k=0; k<anzop; k++)
     {     
       i=order->row(k)+1; j=order->col(k)+1;
-      bestvalue=MAXLONG;
+      bestvalue=LONG_MAX;
       inspos=SOURCE;
       do                                                   // for all inspos
 	{ 
