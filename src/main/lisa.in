@@ -43,4 +43,3 @@ export LISACONFIG
 
 exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.lsa"
 
-
