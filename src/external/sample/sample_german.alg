@@ -3,7 +3,7 @@ Name= Rangminimaler Plan
 Type= constructive
 Call= sample
 Code= external
-Help= sample.html
+Help= external/sample.html
 </GENERAL>
 
 <EXACT>

@@ -3,7 +3,7 @@ Name= Aktiver Plan
 Type= constructive
 Code= internal
 Call= dispatch
-Help= dispatch.htm
+Help= dispatch.html
 </GENERAL>
 
 <HEURISTIC>

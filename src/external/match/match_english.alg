@@ -3,7 +3,7 @@ Name= Matching Heuristics
 Type= constructive
 Call= match
 Code= external
-Help= match.htm
+Help= external/match.html
 </GENERAL>
 
 <EXACT>

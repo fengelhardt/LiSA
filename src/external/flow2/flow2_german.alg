@@ -3,7 +3,7 @@ Name= Johnsonsche Regel
 Type= constructive
 Call= flow2
 Code= external
-Help= flow2.html
+Help= external/flow2.html
 </GENERAL>
 
 <EXACT>

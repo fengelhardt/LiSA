@@ -3,7 +3,7 @@ Name= Irreduzibilitaetstest
 Type= iterative
 Call= irred
 Code= external
-Help= irred.htm
+Help= external/irred.html
 </GENERAL>
 
 <EXACT>

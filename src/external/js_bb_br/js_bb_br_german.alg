@@ -3,7 +3,7 @@ Name= Brucker's Job-Shop B&B
 Type= constructive
 Call= js_bb_br
 Code= external
-Help= bbwindow.htm
+Help= external/js_bb_br.html
 </GENERAL>
 
 <EXACT>

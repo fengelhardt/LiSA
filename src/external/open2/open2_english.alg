@@ -3,7 +3,7 @@ Name= open2-module
 Type= constructive
 Call= open2
 Code= external
-Help= open2.html
+Help= external/open2.html
 </GENERAL>
 
 <EXACT>

@@ -3,7 +3,7 @@ Name= Flow Shop Heuristic
 Type= constructive
 Call= fsheur
 Code= external
-Help= fsheur.htm
+Help= external/fsheur.html
 </GENERAL>
 
 <EXACT>

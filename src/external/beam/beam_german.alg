@@ -3,7 +3,7 @@ Name= Beam Search
 Type= constructive
 Call= beam
 Code= external
-Help= main.htm
+Help= external/beam.html
 </GENERAL>
 
 <EXACT>

@@ -3,9 +3,9 @@ Name= Neighborhood Search
 Type= iterative
 Call= nb_iter
 Code= external
-Help= german/neighbor.html
-TKfile= neighbor.tcl
-TKfile_test= ngbhptst.tcl
+Help= external/nb_iter.html
+TKfile= nb_iter.tcl
+TKfile_test= nb_iter_t.tcl
 </GENERAL>
 
 <EXACT>

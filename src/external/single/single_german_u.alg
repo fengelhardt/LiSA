@@ -3,7 +3,7 @@ Name= SingleMachine
 Type= constructive
 Call= single
 Code= external
-Help= singleHilfe.htm
+Help= external/single.html
 </GENERAL>
 
 <EXACT>

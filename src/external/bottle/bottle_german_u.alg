@@ -3,7 +3,7 @@ Name= ShiftingBottleneck
 Type= constructive
 Call= bottle
 Code= external
-Help= bottleHilfe.htm
+Help= external/bottle.html
 </GENERAL>
 
 <EXACT>

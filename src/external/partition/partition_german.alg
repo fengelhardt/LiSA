@@ -3,7 +3,7 @@ Name= partition-module
 Type= constructive
 Call= partition
 Code= external
-Help= partition.html
+Help= external/partition.html
 </GENERAL>
 
 <EXACT>

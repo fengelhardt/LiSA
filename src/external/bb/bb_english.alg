@@ -3,7 +3,7 @@ Name= Branch & Bound
 Type= constructive
 Call= bb
 Code= external
-Help= bbwindow.htm
+Help= external/bb.html
 </GENERAL>
 
 <EXACT>

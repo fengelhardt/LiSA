@@ -3,7 +3,7 @@ Name= Smith Rule
 Type= constructive
 Call= dispatch
 Code= internal
-Help= dispatch.htm
+Help= dispatch.html
 </GENERAL>
 
 <HEURISTIC>
