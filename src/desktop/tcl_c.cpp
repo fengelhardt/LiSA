@@ -43,7 +43,7 @@ extern class Lisa_Preferences G_Preferences;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
-extern class Lisa_List<ScheduleNode> *G_ScheduleList;
+extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 
 //**************************************************************************
 
@@ -138,19 +138,19 @@ int TC_open_schedule(ClientData /* clientData*/ ,
     //    G_ScheduleList->clear();
      while(!(G_ScheduleList->empty())) 
 	{
-          ScheduleNode dummynode;
+          Lisa_ScheduleNode dummynode;
           dummynode=G_ScheduleList->pop();
           if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
 	}
     Lisa_Schedule *mySchedule=0;
-    ScheduleNode *myScheduleNode;
+    Lisa_ScheduleNode *myLisa_ScheduleNode;
     int i=0;
     for(i=1;i<=no_schedules;i++) {
       mySchedule = new Lisa_Schedule(1,1);
       fin >> (*mySchedule);
-      myScheduleNode= new ScheduleNode(mySchedule);
-      G_ScheduleList->append(*myScheduleNode);
-       delete myScheduleNode;
+      myLisa_ScheduleNode= new Lisa_ScheduleNode(mySchedule);
+      G_ScheduleList->append(*myLisa_ScheduleNode);
+       delete myLisa_ScheduleNode;
     }
     G_Schedule=mySchedule;
     new_schedule();
@@ -506,7 +506,7 @@ int TC_draw_schedule_list(ClientData /* clientData */,
 	       int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  {
   int no_schedules=G_ScheduleList->length();
   if (no_schedules>=1) {
-    ScheduleNode myScheduleNode;
+    Lisa_ScheduleNode myLisa_ScheduleNode;
     int j=0;
     double objective=0;
     int weights_exists=0,duedates_exists=0, objective_name=0;
@@ -524,7 +524,7 @@ int TC_draw_schedule_list(ClientData /* clientData */,
       Lisa_OsProblem  myOsProblem(&G_Values);
       Lisa_OsSchedule  myOsSchedule(&myOsProblem);
       G_ExceptionList.lcatch(INCONSISTENT_INPUT);
-      //myScheduleNode=G_ScheduleList->get();
+      //myLisa_ScheduleNode=G_ScheduleList->get();
       G_Schedule=G_ScheduleList->get().actual_schedule;
       (*G_ScheduleList->get().schedule_info)[0]=j+1;
       // CMAX-Objective:
@@ -838,11 +838,11 @@ int TC_sort_sl(ClientData /* clientData */,
   }
   /*
     Lisa_Node * myLisa_Node=NULL;
-    ScheduleNode * myScheduleNode=NULL;
+    Lisa_ScheduleNode * myLisa_ScheduleNode=NULL;
     if (str=="Objective") {
       myLisa_Node=G_Schedule->ScheduleList->first();
-      myScheduleNode=(ScheduleNode *) myLisa_Node;
-      myScheduleNode->sinfo_pointer=1;
+      myLisa_ScheduleNode=(Lisa_ScheduleNode *) myLisa_Node;
+      myLisa_ScheduleNode->sinfo_pointer=1;
     }
     G_Schedule->ScheduleList->isort();
   }
@@ -1013,31 +1013,33 @@ int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
 //**************************************************************************
 
 /// exclude sequences from list
-int TC_exclude(ClientData /* clientData */,
-		Tcl_Interp */*interp*/,
-		int argc, TCL_HACK_CHAR *argv[]) {
+int TC_exclude(ClientData /* clientData */, Tcl_Interp */*interp*/,
+		           int argc, TCL_HACK_CHAR *argv[]) {
 
-  if (argc <2 ) {
+  if(argc<2){
     G_ExceptionList.lthrow("Wrong number of arguments in TC_exclude",TCLTK_ERROR);
     return TCL_OK;  
-  } 
+  }
+  
   string str= argv[1];
+  
   if (str=="clear_list") {
-    Lisa_Schedule * my_schedule;
-    my_schedule = new Lisa_Schedule(*G_Schedule);
+    
+    //Lisa_Schedule * my_schedule = new Lisa_Schedule(*G_Schedule);
     // G_ScheduleList->clear(); 
-     while(!(G_ScheduleList->empty())) 
-	{
-          ScheduleNode dummynode;
-          dummynode=G_ScheduleList->pop();
-          if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
-	}
+    
+    while(!(G_ScheduleList->empty())){
+      Lisa_ScheduleNode dummynode=G_ScheduleList->pop();
+      if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
+    }
+    
     // G_Schedule=my_schedule;
-    ScheduleNode *myScheduleNode;
-    myScheduleNode= new ScheduleNode(G_Schedule);
-    G_ScheduleList->append(*myScheduleNode);
-    delete myScheduleNode;
+    Lisa_ScheduleNode *myLisa_ScheduleNode= new Lisa_ScheduleNode(G_Schedule);
+    G_ScheduleList->append(*myLisa_ScheduleNode);
+    
+    delete myLisa_ScheduleNode;
     delete G_XSchedule;
+    
     G_XSchedule = new Lisa_XSchedule(G_Schedule);
   }
   return TCL_OK; 

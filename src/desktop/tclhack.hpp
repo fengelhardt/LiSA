@@ -1,11 +1,3 @@
-/*
- * ***************** tclhack.hpp ******************************
- *
- * @author              Marc Mörig
- *
- * date:               07.03.2003
- * @version 2.3pre3
- */ 
 
 #ifndef _tclhack_h 
 #define _tclhack_h
@@ -14,8 +6,8 @@
 
 //**************************************************************************
 
-/** Tcl version hack.
-    Determine whether we need to use char** oder const char** in our tcl2cpp
+/// Tcl version hack.
+/** Determine whether we need to use char** oder const char** in our tcl2cpp
     callback functions. */
 #if TCL_MAJOR_VERSION < 8
  #define TCL_HACK_CHAR char

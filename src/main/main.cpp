@@ -35,7 +35,7 @@ class Lisa_Schedule *G_Schedule;
 class Lisa_XSchedule * G_XSchedule;
 
 ///global data, list of schedules if algorithm returns more than one solution
-class Lisa_List<ScheduleNode> *G_ScheduleList;
+class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 
 ///global data, preferences, read from default.lsa file
 class Lisa_Preferences G_Preferences;
@@ -71,14 +71,14 @@ int main(int argc, char *argv[]) {
   G_Schedule= new Lisa_Schedule(1,1);
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
   G_Schedule->make_LR();
-  ScheduleNode *myScheduleNode;
-  myScheduleNode = new ScheduleNode(G_Schedule);
-  G_ScheduleList = new Lisa_List<ScheduleNode>;
-  G_ScheduleList->append(*myScheduleNode);
-  delete myScheduleNode;
+  Lisa_ScheduleNode *myLisa_ScheduleNode;
+  myLisa_ScheduleNode = new Lisa_ScheduleNode(G_Schedule);
+  G_ScheduleList = new Lisa_List<Lisa_ScheduleNode>;
+  G_ScheduleList->append(*myLisa_ScheduleNode);
+  delete myLisa_ScheduleNode;
   while(!(G_ScheduleList->empty())) 
 	{
-          ScheduleNode dummynode;
+          Lisa_ScheduleNode dummynode;
           dummynode=G_ScheduleList->pop();
           if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
 	}

@@ -1,26 +1,3 @@
-/*
- * ****************** xsched.hpp *******************************
- * 
- * description:        Class Lisa_XSchedule
- *
- * @author              Per Willenius
- *
- * date:               28.9.1999
- *
- * version:            V 1.0
-*/
-
-/**  @name Extended Schedule
- 
-    Include file LiSA/src/lisa_dt/xsched.hpp, 
-    it uses:
-    lisa_dt/problem.h basics/matrix.h  basics/pgraph.h
-
-    @author Per Willenius 
-    @version 2.3pre3
-*/ 
-
-//@{
 
 #ifndef _xsched_h 
 #define _xsched_h 
@@ -31,47 +8,52 @@
 #include "schedule.hpp"
 #include "pgraph.hpp"
 
-/** Lisa_XSchedule is an extension of Lisa_Schedule.
-    To guarantee the communication with Lisa_Schedule
-    Lisa_XSchedule contain a pointer to an instance of Lisa_Schedule
-    */  
-class Lisa_XSchedule
-{
+/// extended schedule
+/** Lisa_XSchedule is an extension of Lisa_Schedule. To guarantee the 
+    communication with Lisa_Schedule Lisa_XSchedule contains a pointer to an 
+    instance of Lisa_Schedule.
+
+    @author Per Willenius 
+    @version 2.3pre3
+  */  
+class Lisa_XSchedule{
 protected:
-  /// the Schedule
+  /// the schedule
   class Lisa_Schedule *P; 
-  /// Groesse der Matritzen
+  /// size of matrices
   int n,m;
 public:
   /// critical path
-  class Lisa_Matrix<bool> *CP;
+  Lisa_Matrix<bool> *CP;
+  
   /// sequence graph
-  class Lisa_SGraph *PG; 
+  Lisa_SGraph *PG; 
 
   /// complete sequence graph
-  class Lisa_CSGraph *CS; 
+  Lisa_CSGraph *CS; 
 
-  /// constructor
+  /// default constructor
   Lisa_XSchedule();
   /// constructor
+  /** create with a given schedule */
   Lisa_XSchedule(class Lisa_Schedule *Pl);
-  /// if maschine or job number changed
+
+  /// destructor
+  ~Lisa_XSchedule();
+
+  /// if machine or job number changed
   void init();
   /// refresh the internal structure
   void updateLR(Lisa_Matrix<bool> *SIJ) {P_to_PG();PG_to_LR(SIJ); P->valid=TRUE;} 
   
-  /// mekes the critical path
+  /// makes the critical path
   void make_CP();
 
-  /// generate Sequence Graph
+  /// generate sequence graph
   int P_to_PG();
-  /// generate Latin Rectangle
+  /// generate latin rectangle
   int PG_to_LR(Lisa_Matrix<bool> *SIJ); 
-  /// destructor
-  ~Lisa_XSchedule();
 };
 
 #endif
-
-//@}
 

@@ -22,7 +22,7 @@ using namespace std;
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
-extern class Lisa_List<ScheduleNode> *G_ScheduleList;
+extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 extern class Lisa_XSchedule * G_XSchedule;
 
 //**************************************************************************
@@ -87,12 +87,12 @@ int read(string dname) {
     }
 
     Lisa_Schedule *mySchedule = 0;
-    ScheduleNode *myScheduleNode;
+    Lisa_ScheduleNode *myLisa_ScheduleNode;
     int i;
     //G_ScheduleList->clear();
     while(!(G_ScheduleList->empty())) 
 	{
-          ScheduleNode dummynode;
+          Lisa_ScheduleNode dummynode;
           dummynode=G_ScheduleList->pop();
           if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
 	}
@@ -105,8 +105,8 @@ int read(string dname) {
 	mySchedule = new Lisa_Schedule(1,1);
 	fin >> (*mySchedule);
 	if (mySchedule->get_property(NO_OF_SINKS) <=1) {
-	  myScheduleNode= new ScheduleNode(mySchedule);
-	  G_ScheduleList->append(*myScheduleNode);
+	  myLisa_ScheduleNode= new Lisa_ScheduleNode(mySchedule);
+	  G_ScheduleList->append(*myLisa_ScheduleNode);
 	  actual_number++;
 	}
       }
@@ -116,8 +116,8 @@ int read(string dname) {
 	mySchedule = new Lisa_Schedule(1,1);
 	fin >> (*mySchedule);
 	//      cout << "myschedule" << *mySchedule << endl;
-	myScheduleNode= new ScheduleNode(mySchedule);
-	G_ScheduleList->append(*myScheduleNode);
+	myLisa_ScheduleNode= new Lisa_ScheduleNode(mySchedule);
+	G_ScheduleList->append(*myLisa_ScheduleNode);
       }
     }
       G_Schedule=mySchedule;

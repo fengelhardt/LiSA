@@ -1,27 +1,3 @@
-/*
- * ************** schedule.hpp *******************************
- * 
- * description:    definition of class Lisa_Schedule
- *
- * @author          Per Willenius
- *
- * date:           17.9.1999
- *
- * version:        V 1.0  
- * 
- * history:         7. 9. 98 kleinere Anpassungen TAU
-*/
-
-/**  @name Classes for Communication of LiSA Modules
- 
-    Include file LiSA/src/lisa_dt/problem.h, it uses iostream and string.
-
-    @author Per Willenius and Thomas Tautenhahn
-    @version 2.3pre3
-*/ 
-
-//@{
-
 
 #ifndef _schedule_h 
 #define _schedule_h 
@@ -33,49 +9,60 @@
 #include "../basics/list.hpp"
 #include "../lisa/filentry.hpp"
 
-
+/// length of Lisa_ScheduleNode::schedule_info
 const int LENGHT_OF_INFO_VECTOR = 15;
+
+//@{
+/// flag, needs documentation
 const int LENGHT_OF_OBJECTIVE = 8;
-// only regular objective
 const int NUMBER_INFO = 0;
 const int MAXRANK_INFO = 9;
 const int NO_OF_SOURCES = 10;
 const int NO_OF_SINKS = 11;
 const int NO_OF_IKL =12;
+//@}
 
-
-
-/** Lisa_Schedule 
+/// schedule class for communication with algorithms
+/** @author Per Willenius, Thomas Tautenhahn
+    @version 2.3pre3 
  */
-class Lisa_Schedule  : public Lisa_FileEntry
-{
+class Lisa_Schedule  : public Lisa_FileEntry{
 protected:
-  int m, n; // for Matrix-Handling 
+  /// size of matrices
+  int m, n;
 public:
-  /// Lisa_Schedule is valid iff valid==TRUE
+  /// Lisa_Schedule is valid if valid==TRUE
   int valid;
   /// get number of maschines
-  int get_m(void) const {return m;}
+  int inline get_m() const {return m;}
   /// get number of jobs
-  int get_n(void) const {return n;}
-  /// semiactive==TRUE iff Lisa_Schedule is defined as a semiactive Schedule
+  int inline get_n() const {return n;}
+  /// semiactive==TRUE if Lisa_Schedule is defined as a semiactive Schedule
   bool semiactive;
   /// constructor
+  /** create a schedule for a given size */
   Lisa_Schedule(int n_ein=0,int m_ein=0); 
   /// constructor
+  /** create a schedule as copy of other schedule */
   Lisa_Schedule(Lisa_Schedule &other); 
   /// the latin rectangle
-  Lisa_Matrix<int> *LR; 
-  /// the latin rectangle (for preemtion)
+  Lisa_Matrix<int> *LR;
+  
+  // the latin rectangle (for preemtion)
   //Lisa_MatrixOfLists<int> *LRpmt;
+  
   ///  MO, JO  as matrices (direct successor)
-  Lisa_Matrix<int> *NMO,*NJO;  
-  /// C-matrix
+  Lisa_Matrix<int> *NMO,*NJO;
+  
+  /// CIJ matrix
   Lisa_Matrix<TIMETYP> *CIJ;
+  
   /// construct latin rectangle
   void make_LR();
+  
   /// test, if latin rectangle is valid
   int valid_LR(Lisa_Matrix<bool> *SIJ);
+  
   /// construct maschine order
   void make_NMO();
   /// construct job oreder
@@ -88,56 +75,87 @@ public:
   int LR_to_JO(); 
   /// construct latin rectangle
   int MO_JO_to_LR(); 
+  
   /// return some properties of the schedule
   int get_property(int property);
+  
   /// inititialize Lisa_Schedule with new number of jobs and maschines 
   void init(int DEFAULT_M, int DEFAULT_N);
-  virtual void write(std::ostream& = std::cout) const;
-  virtual void read(std::istream& = std::cin);
+  
+  void write(std::ostream& = std::cout) const;
+  void read(std::istream& = std::cin);
+ 
   /// destructor
-  virtual ~Lisa_Schedule();
+  ~Lisa_Schedule();
 };
 
-/** Schedule_Node 
-Contain the schedule as latin rectangle as C-matrix and an
-additional vector for some additional informations
+//**************************************************************************
+
+/// a wrapper for Lisa_Schedule
+/** Contains the schedule as latin rectangle as CIJ matrix and an additional 
+    vector for some additional informations
+    
+    Used to store Schedules in a Lisa_List
+    
+    @author Per Willenius, Thomas Tautenhahn
+    @version 2.3pre3 
  */
-class ScheduleNode  : public Lisa_FileEntry
-{
-protected:
+class Lisa_ScheduleNode  : public Lisa_FileEntry{
 public:
-  /// The Schedule
+  /// the Schedule
   Lisa_Schedule *actual_schedule;
-  /// an vector to hold some informations
+  
+  /// a vector to hold some additional information
   Lisa_Vector<int> *schedule_info;
-  /// the pointer to an entry of schedule_info;
+  
+  /// index to an entry of schedule_info
   static int sinfo_pointer;
-  ScheduleNode();
-  ScheduleNode(Lisa_Schedule*);
-  ScheduleNode(const ScheduleNode&);
-   /// assignment
-   const ScheduleNode & operator=( const ScheduleNode & other); 
-  /// to order entries in List
-   bool operator<=( const ScheduleNode & other) const;
-  /// to order entries in List
-   bool operator>=( const ScheduleNode & other) const;
-  /// to order entries in List
-   bool operator<( const ScheduleNode & other) const;
-  /// compare only schedule_info[sinfo_pointer]
-   bool operator==( const ScheduleNode & other) const;
-  /// compare only schedule_info[sinfo_pointer]
-   bool operator!=( const ScheduleNode & other) const;
-   /// output to stream (stream operator itself is already defined)
-   virtual void write(std::ostream & = std::cout) const;
-  /// input from stream (stream operator itself is already defined)
-   virtual void read(std::istream &  = std::cin);
-   /// construct copy of (*this) and return pointer to this copy
-  //ScheduleNode* copy();
-   /// You have to implement a destructor if your node uses dynamic memory!
-   ~ScheduleNode();
+  
+  /// default constructor
+  Lisa_ScheduleNode();
+  
+  /// constructor
+  /** create object from a given schedule */
+  Lisa_ScheduleNode(Lisa_Schedule* schedule);
+  
+  /// copy constructor
+  Lisa_ScheduleNode(const Lisa_ScheduleNode&);
+  
+   /// assignment operator
+   const Lisa_ScheduleNode & operator=( const Lisa_ScheduleNode & other); 
+   
+   /// compare operator
+   /** to order entries in Lisa_List, compare only 
+       schedule_info[sinfo_pointer] */
+   bool operator<=( const Lisa_ScheduleNode & other) const;
+   /// compare operator
+   /** to order entries in Lisa_List, compare only 
+       schedule_info[sinfo_pointer] */
+   bool operator>=( const Lisa_ScheduleNode & other) const;
+   /// compare operator
+   /** to order entries in Lisa_List, compare only 
+       schedule_info[sinfo_pointer] */
+   bool operator<( const Lisa_ScheduleNode & other) const;
+   /// compare operator
+   /** to order entries in Lisa_List, compare only 
+       schedule_info[sinfo_pointer] */
+   bool operator==( const Lisa_ScheduleNode & other) const;
+   /// compare operator
+   /** to order entries in Lisa_List, compare only 
+       schedule_info[sinfo_pointer] */
+   bool operator!=( const Lisa_ScheduleNode & other) const;
+   
+   /// output to stream
+   void write(std::ostream & = std::cout) const;
+   /// input from stream
+   void read(std::istream &  = std::cin);
+
+   // construct copy of (*this) and return pointer to this copy
+   //Lisa_ScheduleNode* copy();
+
+   /// destructor
+   ~Lisa_ScheduleNode();
 };
 
 #endif
-
-//@}
 

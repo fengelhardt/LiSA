@@ -171,7 +171,7 @@ TCScheduleList::~TCScheduleList() {
 
 //**************************************************************************
 
-void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) { 
+void TCScheduleList::draw(Lisa_List<Lisa_ScheduleNode> * myScheduleList) { 
   Lisa_ProblemType myProblemType;
   int i,j,no_schedules,no_columns;
   int width,height;
@@ -191,7 +191,7 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
 
   //  cout << (*G_ScheduleList->get().schedule_info)[NO_OF_IKL] << endl;
 
-  ScheduleNode myScheduleNode;
+  Lisa_ScheduleNode myLisa_ScheduleNode;
   if (no_schedules<=1) return;
   main_canvas->line(1,1,entrywidth*no_columns,1,"Grey");
   main_canvas->line(1,1,1,entryheight*no_schedules,"Grey");
@@ -199,7 +199,7 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
   for(j=0;j<no_schedules;j++) {
     main_canvas->line(1,entryheight*(j+1),entrywidth*no_columns,entryheight*(j+1),"Grey");
     //myLisa_Node=(*G_Schedule.ScheduleList)[j];
-    myScheduleNode=myScheduleList->get();
+    myLisa_ScheduleNode=myScheduleList->get();
     canv_vertikal->text(25,entryheight*(j+0.5),(string) ztos((*myScheduleList->get().schedule_info)[0]) ,"Black");
     myScheduleList->next();
   }
@@ -213,7 +213,7 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
       str="";
       main_canvas->rect(entrywidth*(i),entryheight*(j),entrywidth*(i+1),entryheight*(j+1),"White");
       //myLisa_Node=(*G_Schedule.ScheduleList)[j];
-      //myScheduleNode=(ScheduleNode *) myLisa_Node;
+      //myLisa_ScheduleNode=(Lisa_ScheduleNode *) myLisa_Node;
          str=ztos((* myScheduleList->get().schedule_info)[i+1]);
 	 main_canvas->text(entrywidth*(i+1)-entryheight,entryheight*(j+0.5),str,"Black");
 	 myScheduleList->next();
@@ -233,7 +233,7 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
       str="#";
       main_canvas->rect(entrywidth*(i),entryheight*(j),entrywidth*(i+1),entryheight*(j+1),"White");
       //myLisa_Node=(*G_Schedule.ScheduleList)[j];
-      //myScheduleNode=(ScheduleNode *) myLisa_Node;
+      //myLisa_ScheduleNode=(Lisa_ScheduleNode *) myLisa_Node;
       str=ztos((* myScheduleList->get().schedule_info)[i]);
       main_canvas->text(entrywidth*(i+1)-entryheight,entryheight*(j+0.5),str,"Blue");
       myScheduleList->next();

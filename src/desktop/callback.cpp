@@ -24,7 +24,7 @@ extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_Status G_Status;
 extern class Lisa_XSchedule *G_XSchedule;
-extern class Lisa_List<ScheduleNode> *G_ScheduleList;
+extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 extern class Lisa_Preferences G_Preferences;
 extern class Lisa_Canvas *G_MWCanvas;
 extern Tcl_Interp *interp;
@@ -77,16 +77,16 @@ void no_schedule() {
   //G_ScheduleList->clear();
    while(!(G_ScheduleList->empty())) 
 	{
-          ScheduleNode dummynode;
+          Lisa_ScheduleNode dummynode;
           dummynode=G_ScheduleList->pop();
           if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
 	}
    int m=G_Values.get_m();
    int n=G_Values.get_n();
   G_Schedule = new Lisa_Schedule(n,m);
-  ScheduleNode *myScheduleNode;
-  myScheduleNode= new ScheduleNode(G_Schedule);
-  G_ScheduleList->append(*myScheduleNode);
+  Lisa_ScheduleNode *myLisa_ScheduleNode;
+  myLisa_ScheduleNode= new Lisa_ScheduleNode(G_Schedule);
+  G_ScheduleList->append(*myLisa_ScheduleNode);
   G_Schedule->valid=FALSE;
   delete G_XSchedule;
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
@@ -137,9 +137,9 @@ void new_values() {
   G_Values.valid=TRUE;
  //  G_ScheduleList->clear();
 //   G_Schedule = new Lisa_Schedule(G_Values.get_n(),G_Values.get_m());
-//   ScheduleNode *myScheduleNode;
-//   myScheduleNode= new ScheduleNode(G_Schedule);
-//   G_ScheduleList->append(*myScheduleNode);
+//   Lisa_ScheduleNode *myLisa_ScheduleNode;
+//   myLisa_ScheduleNode= new Lisa_ScheduleNode(G_Schedule);
+//   G_ScheduleList->append(*myLisa_ScheduleNode);
 //  delete G_XSchedule;
 //   G_XSchedule = new Lisa_XSchedule(G_Schedule);
 }
@@ -159,14 +159,14 @@ void new_mn() {
   //G_ScheduleList->clear();
   while(!(G_ScheduleList->empty())) 
     {
-      ScheduleNode dummynode;
+      Lisa_ScheduleNode dummynode;
       dummynode=G_ScheduleList->pop();
       if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
     }
   G_Schedule = new Lisa_Schedule(G_Values.get_n(),G_Values.get_m());
-  ScheduleNode *myScheduleNode;
-  myScheduleNode= new ScheduleNode(G_Schedule);
-  G_ScheduleList->append(*myScheduleNode);
+  Lisa_ScheduleNode *myLisa_ScheduleNode;
+  myLisa_ScheduleNode= new Lisa_ScheduleNode(G_Schedule);
+  G_ScheduleList->append(*myLisa_ScheduleNode);
    delete G_XSchedule;
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
 }

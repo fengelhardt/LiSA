@@ -10,8 +10,9 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/lsaobjct.hpp"
 
-// An example for using LiSA's neighbourhood algorithms  
-/* This is an example for using LiSA's neighbourhood algorithms to solve
+/// Traveling Salesman Problem Object
+
+/** This is an example for using LiSA's neighbourhood algorithms to solve
     other (non scheduling) optimization problems. It can create solutions 
     for the symmetrical traveling salesman problem. The source code files 
     are located in the directory LiSA/src/utility/travel/ .
@@ -28,7 +29,7 @@
 
     - travel [input file] [output file]
 
-    While running some progress info will be printed to the console All 
+    While running some progress info will be printed to the console. All 
     algorithm/neighbourhood parameters have to be set in the input file.
     An example for an input file is:
 
@@ -51,9 +52,9 @@
     }
     </TRAVELGRAPH>
       
-    The first part contains the algorithm and neighbourhood parameters, the second part is the actual 
-    traveling salesman problem. For more examples of the problem input see the documentation for
-    the Travel_Graph class.
+    The first part contains the algorithm and neighbourhood parameters, the 
+    second part is the actual traveling salesman problem. For more examples of 
+    the problem input see the documentation for the Travel_Graph class.
     
     Parameters that have to be set always:
     
@@ -94,19 +95,14 @@
 
     - long NUMB_NGB: the number of neighbours to generate with each step
     
-    Further information about the modelling of the problem and the neighbourhoods can be
-    found in the documentation for the classes Travel_Graph , Travel_RPI_Neighbourhood 
-    and Travel_API_Neighbourhood.
+    Further information about the modelling of the problem and the 
+    neighbourhoods can be found in the documentation for the classes 
+    Travel_Graph , Travel_RPI_Neighbourhood and Travel_API_Neighbourhood.
     
-    The documentation for LiSA's neighbourhood algorithms can be found in the classes
-    Lisa_Neighborhood , Lisa_Iterator and Lisa_Tabu.
+    The documentation for LiSA's neighbourhood algorithms can be found in the 
+    classes Lisa_Neighborhood , Lisa_Iterator and Lisa_Tabu.
   
-    @author Marc Mörig
-    @version 2.3pre3
-*/
-
-/// Traveling Salesman Problem Object
-/** This object serves mostly for writing and reading a problem.
+    This object serves mostly for writing and reading a problem.
     It can also contain a solution and calculate the objective 
     for any given solution to that problem.
     
@@ -122,15 +118,16 @@
     
     describes a problem with 4 citys.
 
-    A solution for a Problem with n citys is given as a vector
-    of length n. That vector has to contain all numbers between (and including)
-    0 and n-1. 
+    A solution for a Problem with n citys is given as a vector of length n. 
+    That vector has to contain all numbers between (and including) 0 and n-1. 
     
-    For example A = { 0 1 2 3 } is a valid solution for P. Each number 
-    in that vector represents a city, therefore in A city 0 is visited first, then city 1 and so
-    on until city 3 is visited. Then our salesman has to return to city 0 of course.
+    For example A = { 0 1 2 3 } is a valid solution for P. Each number in that
+    vector represents a city, therefore in A city 0 is visited first, then city
+    1 and so on until city 3 is visited. Then our salesman has to return to 
+    city 0 of course.
     
-    So the objective for solution A is P(0,1) + P(1,2) + P(2,3) + P(0,3) = 4 + 3 + 4 + 6 = 17
+    So the objective for solution A is 
+    P(0,1) + P(1,2) + P(2,3) + P(0,3) = 4 + 3 + 4 + 6 = 17
     
     @version 2.3pre3
     @author Marc Moerig   
@@ -138,23 +135,23 @@
 class Travel_Graph : public Lisa_Object{
 private:
 
-  // number of vertices e.g. citys
+  /// number of vertices e.g. citys
   int vertices;
 
-  // the graph with the weights
+  /// the graph with the weights
   Lisa_Matrix<int>* graph;
   
-  // contains all citys in the order they are visited
+  /// contains all citys in the order they are visited
   Lisa_Vector<int>* solution;
 
-  // create a new graph .. eg if reading from a file
+  /// create a new graph .. eg if reading from a file
   void inline init_graph(){
     if(graph) delete graph;
     graph = new Lisa_Matrix<int>(vertices,vertices);
     graph->fill(0);
   }
 
-  // same for solution vector
+  /// same for solution vector
   void inline init_solution(){
     if(solution) delete solution;
     solution = new Lisa_Vector<int>(vertices);

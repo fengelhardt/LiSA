@@ -1,40 +1,42 @@
-/*
- * ****************** status.h *******************************
- * 
- * description:     spezific system values
- * 
- * @author           Per Willenius
- *
- * date:            16.09.1998
- *
- * @version 2.3pre3
-*/
 
 #ifndef _status_h 
 #define _status_h 
 
+/// maximum width for Lisa_Canvas
 const int MAX_CANV_WIDTH = 200000;
+/// maximum height for Lisa_Canvas
 const int  MAX_CANV_HEIGHT = 150000;
 
 
-/** Contain informations of LiSA system values
+/// contains information on LiSA system values
+/** @author  Per Willenius
+    @version 2.3pre3
   */
-class Lisa_Status
-{
+class Lisa_Status{
 public:
-  /// seed value for Lisa_random()
+  /// seed value for lisa_random()
   long seed;
-  /// time seed (used for random generating of all types of data
-  /// and for generating the sequence
+  
+  /// time seed 
+  /** used for random generating of all types of data and for generating the 
+      sequence */
   long time_seed;
-  /// machine seed (used in random generating the processing times)
-  /// to get the values of the Taillard Examples
+  
+  /// machine seed
+  /** used in random generating the processing times to get the values of the 
+      Taillard Examples */
   long mach_seed;
-  /// A Flag which is used to mark that the size and Position of the
-  /// Lisa_Canvas is set by Lisa
-  bool zoom; 
-  /// width and height of the Canvas in the main-Window
+  
+  /// a flag
+  /** used to mark that the size and position of the Lisa_Canvas is set by 
+      LiSA */
+  bool zoom;
+  
+  /// width and height of the canvas in the main window
   float width,height;
+  
+  ///constructor
+  /** sets default values */
   Lisa_Status();
 };
 

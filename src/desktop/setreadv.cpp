@@ -35,7 +35,7 @@ extern class Lisa_Preferences G_Preferences;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
-extern class Lisa_List<ScheduleNode> *G_ScheduleList;
+extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 
 //**************************************************************************
 

@@ -5,7 +5,7 @@
 #include "win_obj.hpp"
 
 /// holding operation data
-struct data{
+struct O_Data{
   //@{
   /// oparation data
   int machine;
@@ -15,7 +15,7 @@ struct data{
 };
 
 /// just a typedef
-typedef struct data operation_data;
+typedef struct O_Data operation_data;
 
 /// Gantt Chart.
 /** graphical output of schedules
