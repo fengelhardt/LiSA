@@ -27,7 +27,7 @@
 #ifndef _m1_sched_h
 #define _m1_sched_h
 
-#include"../basics/global.hpp"
+#include"../main/global.hpp"
 #include"../basics/matrix.hpp"
 #include"../lisa/ptype.hpp"
 #include"schedule.hpp"

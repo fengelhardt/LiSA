@@ -33,8 +33,8 @@
 #define _iterate_h
 
 #include "neighbor.hpp"
-#include "../../basics/global.hpp"
-#include "../../basics/except.hpp"
+#include "../../main/global.hpp"
+#include "../../misc/except.hpp"
 
 const int NOMETHOD = 0;
 // iterative improvement

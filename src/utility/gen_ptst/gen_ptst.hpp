@@ -10,11 +10,11 @@
  */
 
 #include "../../basics/matrix.hpp"
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/ptype.hpp"
-#include "../../lisa_dt/schedule.hpp"
-#include "../../lisa_dt/lvalues.hpp"
-#include "../../lisa_dt/ctrlpara.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../lisa/ctrlpara.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
 
 #include <fstream.h>
