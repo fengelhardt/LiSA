@@ -101,6 +101,11 @@ source $env(LISAHOME)/tcl/mng_ealg.tcl
 source $env(LISAHOME)/tcl/options.tcl
 
 
+##########################
+# create algorithm communication dir
+cd $env(LISACONFIG)
+file mkdir proc
+
 ############################
 # open icon window
 #  if {$system(os)=="unix"} {
