@@ -83,16 +83,12 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
 	case P:
 	case Q:
 	case R:
-	  if (tupel[PIJ]==PIJ_1) { tupel[PIJ]=PI_1; rv++; }
-          if (tupel[PIJ]==PIJ_P) { tupel[PIJ]=PI_P; rv++; }
 	  break;
 	case O:
 	case J:
 	case F:
 	case X:
 	case G:
-	  if (tupel[PIJ]==PI_1) { tupel[PIJ]=PIJ_1; rv++; }
-          if (tupel[PIJ]==PI_P) { tupel[PIJ]=PIJ_P; rv++; }
 	  if (m_no<=1) { tupel[M_NUMBER]=EMPTY;  m_no=2; }
 	  break;
 	}
@@ -109,16 +105,12 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
 	case P:
 	case Q:
 	case R:
-	  if (tupel[PIJ]==PIJ_1) { tupel[PIJ]=PI_1; rv++; }
-          if (tupel[PIJ]==PIJ_P) { tupel[PIJ]=PI_P; rv++; }
 	  break;
 	case O:
 	case J:
 	case F:
 	case X:
 	case G:
-	  if (tupel[PIJ]==PI_1) { tupel[PIJ]=PIJ_1; rv++; }
-          if (tupel[PIJ]==PI_P) { tupel[PIJ]=PIJ_P; rv++; }
 	  if (m_no<=1) { tupel[M_NUMBER]=EMPTY;  m_no=2; }
 	  break;
 	}
@@ -127,21 +119,7 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
     case M_MPM:
       if (tupel[M_ENV]==ONE) { tupel[M_ENV]=P; rv++; }  
     case PIJ:
-      {
-	int my_value=value;
-        if ((tupel[M_ENV]==ONE)||(tupel[M_ENV]==P)||
-	    (tupel[M_ENV]==Q)  ||(tupel[M_ENV]==R))
-	  {
-	    if (value==PIJ_1) my_value=PI_1;
-	    if (value==PIJ_P) my_value=PI_P;
-	  }
-	else 
-	  {
-	    if (value==PI_1) my_value=PIJ_1;
-	    if (value==PI_P) my_value=PIJ_P;
-	  }
-        tupel[PIJ]=my_value;
-      }
+        tupel[PIJ]=value;
       break;
     case BATCH:
       if ((value==EMPTY)&& tupel[BOUNDED_BATCH])
@@ -467,8 +445,6 @@ string Lisa_ProblemType::name(int tupelEntry, int identifier) const
        switch(identifier)
 	{
 	case EMPTY: return "";
-	case PI_1: return "p_i=1";
-	case PI_P: return "p_i=p";
 	case PIJ_1: return "p_ij=1";
 	case PIJ_P: return "p_ij=p";
 	}

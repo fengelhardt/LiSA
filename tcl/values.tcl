@@ -298,9 +298,9 @@ proc vTclWindow.datawin {base} {
     
     if {$dat(Matrix)=="MO"} {.datawin.fra19.but22 configure -state active}
     
-    if { [string match "*p_ij=1*" [TC_getvar "beta"]] || [string match "*p_i=1*" [TC_getvar "beta"]] } {
+    if { [string match "*p_ij=1*" [TC_getvar "beta"]] } {
 	TC_genpt 1 1
-    } elseif { [string match "*p_ij=p*" [TC_getvar "beta"]] ||  [string match "*p_i=p*" [TC_getvar "beta"]] } {
+    } elseif { [string match "*p_ij=p*" [TC_getvar "beta"]] } {
 	set myvalue [TC_get_pt 0 0] 
 	TC_genpt $myvalue $myvalue
     } 
@@ -394,9 +394,9 @@ proc  w_set_entry { } {
 		} else { TC_draw_dat_entry $dat(row)  $dat(column) $dat(entry) }
 		
 		if { $identifier == "PIJ" } {
-		    if {  [string match "*p_ij=1*"  [TC_getvar "beta"] ] || [string match "*p_i=1*"  [TC_getvar "beta"] ] } {
+		    if {  [string match "*p_ij=1*"  [TC_getvar "beta"] ]  } {
 			TC_set_pt $dat(row) $dat(column) 1
-		    } elseif  { [string match "*p_ij=p*"  [TC_getvar "beta"] ] || [string match "*p_i=p*"  [TC_getvar "beta"] ] } {
+		    } elseif  { [string match "*p_ij=p*"  [TC_getvar "beta"] ] } {
 			TC_genpt $dat(entry) $dat(entry)
 			TC_draw_dat
 		    } else { TC_set_pt $dat(row) $dat(column) $dat(entry)}
@@ -439,10 +439,10 @@ proc generate_PT { } {
     global glob
     global dat
     set glob(generate) PT; 
-    if { [string match "*p_ij=1*" [TC_getvar "beta"]] || [string match "*p_i=1*" [TC_getvar "beta"]] } {
+    if { [string match "*p_ij=1*" [TC_getvar "beta"]] } {
 	TC_genpt 1 1
 	TC_draw_dat
-    } elseif { [string match "*p_ij=p*" [TC_getvar "beta"]] || [string match "*p_i=p*" [TC_getvar "beta"]]} {
+    } elseif { [string match "*p_ij=p*" [TC_getvar "beta"]] } {
  	Window show .gen_const_pij
     } else  {
 	Window show .erzpt

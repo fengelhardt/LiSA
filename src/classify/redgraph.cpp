@@ -32,8 +32,8 @@ Lisa_RedGraph::Lisa_RedGraph(void)
   
   Graph[DI][FALSE][0]=TRUE;
   
-  Graph[PIJ][PIJ_1][0]=PI_1; Graph[PIJ][PI_1][0]=PI_P;
-  Graph[PIJ][PI_P][0]=FALSE;
+  Graph[PIJ][PIJ_1][0]=PIJ_P;
+  Graph[PIJ][PIJ_P][0]=FALSE;
   
   Graph[BOUNDED_BATCH][FALSE][0]=TRUE;
   

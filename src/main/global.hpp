@@ -74,7 +74,7 @@ const int NUMBER[TUPEL_INDEX]={
         7,  // PRECEDENCE
         2,  // RI
         2,  // DI
-        5,  // PIJ
+        3,  // PIJ
         3,  // BATCH
         2,  // BOUNDED_BATCH
         3,  // JOB_NR
@@ -147,10 +147,8 @@ const int PREC=6;
 // Problem[DI]: only TRUE and FALSE
 
 // Problem[PIJ]:
-const int PI_1=1;
-const int PI_P=2;
-const int PIJ_1=3;
-const int PIJ_P=4;
+const int PIJ_1=1;
+const int PIJ_P=2;
 
 // Problem[BATCH]:
 const int S_BATCH=1;
@@ -251,7 +249,7 @@ const char name_of_tupelentry[TUPEL_INDEX][MAX_NUMBER][MAX_STRING] = {
   // DI
 {  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // PIJ 
-{  "EMPTY", "PI_1", "PI_P", "PIJ_1",  "PIJ_P",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
+{  "EMPTY", "PIJ_1", "PIJ_P", "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // BATCH
 {  "EMPTY", "S_BATCH", "P_BATCH", "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // BOUNDED_BATCH 

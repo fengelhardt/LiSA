@@ -329,10 +329,6 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	E[dsatz].problem[nr].set_property(RI,TRUE);
       else if (strcmp(beta,"d_i")==0)
 	E[dsatz].problem[nr].set_property(DI,TRUE);	  
-      else if (strcmp(beta,"p_i=1")==0)
-	E[dsatz].problem[nr].set_property(PIJ,PI_1);
-      else if (strcmp(beta,"p_i=p")==0)
-	E[dsatz].problem[nr].set_property(PIJ,PI_P);
       else if (strcmp(beta,"p_{ij}=1")==0)
 	E[dsatz].problem[nr].set_property(PIJ,PIJ_1);  
       else if (strcmp(beta,"p_{ij}=p")==0)
