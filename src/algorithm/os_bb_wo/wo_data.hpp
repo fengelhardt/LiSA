@@ -11,8 +11,6 @@
 #define MaxNumOfMachines     30
 #define MaxNumOfJobs         30
 #define MaxOpProM_And_J      30
-#define true                  1
-#define false                 0
 #define NIL                   0
 #define MaxInt            32000
 
