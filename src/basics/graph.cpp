@@ -87,11 +87,11 @@ const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
 //**************************************************************************
 
 void Lisa_Graph::init(const int n_in) {
-  n=n_in;
-  end=n+1;
+  n = n_in;
+  end = n+1;
   
-  if(matrix){delete matrix;}
-  matrix= new Lisa_Matrix<Lisa_Pair>(n+1,n+1);
+  if(matrix) delete matrix;
+  matrix= new Lisa_Matrix<Lisa_Pair>(end,end);
   
   if(succ_pred_pointer){delete succ_pred_pointer;}
   succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(n);
@@ -99,17 +99,16 @@ void Lisa_Graph::init(const int n_in) {
   for (int i=0; i<=n; i++){
     for (int j=0; j<=n; j++){
       if((i==0||j==0)||(i==j)){
-        (*matrix)[i][j].x=n+1;
-        (*matrix)[i][j].y=n+1;
-      }
-      else{
+        (*matrix)[i][j].x=end;
+        (*matrix)[i][j].y=end;
+      }else{
         (*matrix)[i][j].x=0;
         (*matrix)[i][j].y=0;
       }
     }
   }
   
-  for (int i=0; i<n; i++){
+  for(int i=0; i<n; i++){
     (*succ_pred_pointer)[i].x=i+1;
     (*succ_pred_pointer)[i].y=i+1;
   }
