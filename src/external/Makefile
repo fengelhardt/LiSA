@@ -22,7 +22,7 @@ all:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) all
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) all
 	cd $(SOURCEPATH)/external/travel $(MAKE) all
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) all
+	cd $(SOURCEPATH)/external/js_bb_br_br; $(MAKE) all
 	cd $(SOURCEPATH)/external/match; $(MAKE) all
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) all
 	cd $(SOURCEPATH)/external/beam; $(MAKE) all
@@ -40,7 +40,7 @@ compile:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) compile
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) compile
 	cd $(SOURCEPATH)/external/travel $(MAKE) compile
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) compile
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) compile
 	cd $(SOURCEPATH)/external/match; $(MAKE) compile
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) compile
 	cd $(SOURCEPATH)/external/beam; $(MAKE) compile
@@ -58,7 +58,7 @@ install:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) install
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) install
 	cd $(SOURCEPATH)/external/travel $(MAKE) install
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) install
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) install
 	cd $(SOURCEPATH)/external/match; $(MAKE) install
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) install
 	cd $(SOURCEPATH)/external/beam; $(MAKE) install
@@ -76,7 +76,7 @@ uninstall:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/travel $(MAKE) uninstall	
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) uninstall
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/match; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/beam; $(MAKE) uninstall
@@ -95,7 +95,7 @@ distclean:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/travel $(MAKE) distclean
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) distclean
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/match; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/beam; $(MAKE) distclean
@@ -118,7 +118,7 @@ depend:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) depend
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) depend
 	cd $(SOURCEPATH)/external/travel; $(MAKE) depend
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) depend
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) depend
 	cd $(SOURCEPATH)/external/match; $(MAKE) depend
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) depend
 	cd $(SOURCEPATH)/external/beam; $(MAKE) depend
@@ -136,7 +136,7 @@ develdoc:
 	cd $(SOURCEPATH)/external/nb_iter; $(MAKE) develdoc
 	cd $(SOURCEPATH)/external/gen_ptst; $(MAKE) develdoc
 	cd $(SOURCEPATH)/external/travel; $(MAKE) develdoc
-	cd $(SOURCEPATH)/external/js_bb; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/js_bb_br; $(MAKE) develdoc
 	cd $(SOURCEPATH)/external/match; $(MAKE) develdoc
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) develdoc
 	cd $(SOURCEPATH)/external/beam; $(MAKE) develdoc
