@@ -91,9 +91,9 @@ int main(int argc, char *argv[])
   PROB_TYPE = prob_type->get_property(M_ENV);
   //cout << "OBJ_TYPE = " << OBJ_TYPE << "\n";
   //cout << "PROB_TYPE = " << PROB_TYPE << "\n";
-  if ((OBJ_TYPE != CMAX) || ( !((PROB_TYPE = J) && (PROB_TYPE = F)) ))
+  if ( (OBJ_TYPE != CMAX) || ((PROB_TYPE != J) && (PROB_TYPE != F))  )
     {
-      G_ExceptionList.lthrow("Wrong Problemtype or Objective function",2);
+      G_ExceptionList.lthrow("Wrong Problemtype or Objective function.",2);
       exit(7);
     }
 
