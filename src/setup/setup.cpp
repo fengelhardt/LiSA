@@ -12,7 +12,7 @@
 int main(int argc, char* argv[])
      {
 
-     char* tclFileName = "setup.tcl";
+     char* tclFileName = "bin/setup.tcl";
 
      Tcl_Interp* interp = Tcl_CreateInterp();
 
