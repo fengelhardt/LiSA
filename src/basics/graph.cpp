@@ -1157,9 +1157,12 @@ Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph *const othergraph){
   matrix = 0;
   init(othergraph->size);
   
-  Lisa_Matrix<int> out(size,size);
-  othergraph->get_adjacency_matrix(&out);
-  set_adjacency_matrix(&out);
+  for(int i=1;i<=size;i++){
+    for(int j=i+1;j<=size;j++){
+      (*matrix)[i][j] = (*othergraph->matrix)[i][j];
+      (*matrix)[j][i] = (*othergraph->matrix)[j][i];
+    }
+  }
 }
 
 //**************************************************************************
@@ -1179,9 +1182,12 @@ Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph & othergraph){
   matrix = 0;
   init(othergraph.size);
   
-  Lisa_Matrix<int> out(size,size);
-  othergraph.get_adjacency_matrix(&out);
-  set_adjacency_matrix(&out);
+  for(int i=1;i<=size;i++){
+    for(int j=i+1;j<=size;j++){
+      (*matrix)[i][j] = (*othergraph.matrix)[i][j];
+      (*matrix)[j][i] = (*othergraph.matrix)[j][i];
+    }
+  }
 }
 
 //**************************************************************************
