@@ -108,9 +108,6 @@
       <item name="IterativeImprovement"/>
       <item name="SimulatedAnnealing"/>
     </choice>
-    <choice name="TYPE" caption="Create Neighbour">
-      <item name="ENUM"/>
-      <item name="RAND"/>
-    </choice>
+    <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>
