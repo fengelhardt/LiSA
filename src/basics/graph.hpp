@@ -415,7 +415,7 @@ public:
 
 //**************************************************************************
 
-class Lisa_HammingGraphIndex{
+class Lisa_HammingGraphIndex : public Lisa_GenericObject{
 private:
 
   //@{
@@ -434,11 +434,14 @@ public:
   const int n;
 
   /// constructor
-  /** create an index from the set of oberations */
+  /** create an index from the set of operations */
   Lisa_HammingGraphIndex(const Lisa_Matrix<bool> *const SIJ);
   
   /// destructor
   ~Lisa_HammingGraphIndex();
+  
+  /// return number of indices
+  inline int get_indices()const{ return indices; }
 
   /// get the machine for the one dimensional index
   inline int i(const int index)const{
@@ -480,6 +483,10 @@ public:
 #endif
     return ij2index[i*m+j];
   }
+  
+  /// write object information to a stream
+  /** used for debugging */
+  void write(std::ostream& = std::cout) const;
   
 };
 

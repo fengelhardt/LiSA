@@ -1606,6 +1606,8 @@ Lisa_HammingGraphIndex::Lisa_HammingGraphIndex(const Lisa_Matrix<bool> *const SI
   index2i = new int[indices+1];
   index2j = new int[indices+1];
 
+  index2i[0] = index2j[0] = 0;
+  
   for(int i=0;i<n;i++){
     for(int j=0;j<m;j++){
       if(ij2index[i*m+j] == 0){
@@ -1626,7 +1628,29 @@ Lisa_HammingGraphIndex::~Lisa_HammingGraphIndex(){
   delete[] index2i;
   delete[] ij2index;
 }
- 
+
+//**************************************************************************
+
+void Lisa_HammingGraphIndex::write(ostream& strm)const{
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      strm.width(4);
+      strm << ij2index[i*m+j];
+    }
+    strm << endl;
+  }
+  strm << endl;
+
+  for(int i=0;i<indices+1;i++){
+    strm << "(";
+    strm.width(4);
+    strm << index2i[i] << ",";
+    strm.width(4);
+    strm << index2j[i] << ") ";
+  }
+  strm << endl;
+} 
+
 //**************************************************************************
 //**************************************************************************
 //**************************************************************************
