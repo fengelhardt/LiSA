@@ -1,0 +1,46 @@
+\documentclass[a4paper,11pt]{article} 
+\usepackage{amstex}
+\oddsidemargin0,5cm \headsep0cm \topmargin0cm \textwidth15,1cm 
+\textheight22,7cm
+%\parindent0cm
+\pagestyle{plain}
+\newcommand{\NP}{N\!P}
+
+\begin{document}
+
+\noindent{\bfseries Remarks on the keys and annotations of the following
+  database:} Each key of a database entry consists of the
+corresponding Mathematical Reviews Number (e.\,g.\ MR22:1461) or
+Zentralblatt Number (e.\,g.\ 184.23303), if available. Otherwise the
+key is built from the author(s) and the publication year (e.g.\ 
+baker:1974).  The abbreviations for the classes in the annotation
+records are as follows:
+\begin{center}
+  \begin{tabular}{ll}
+    \bf Class & \bf Meaning \\[1ex]
+    $P$ & polynomially solvable \\
+    $P_{pseudo}$ & pseudo-polynomially solvable \\
+    $\NP$-hard & $\NP$-hard in the ordinary sense \\
+    $*\NP$-hard & strongly $\NP$-hard.
+  \end{tabular}
+\end{center}
+
+\vspace{5ex}
+%\bibliographystyle{plain}
+\bibliographystyle{classify}
+
+\def\refname{\Large\bf Scheduling Problem Classification\\[1ex]
+  \normalsize\rm  (\today)\vspace{3ex}}
+
+\nocite{*}
+\bibliography{classify}
+
+
+\end{document}
+
+
+%%% Local IspellParsing: latex-mode ~.tex
+
+
+
+

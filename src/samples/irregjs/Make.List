@@ -1,0 +1,23 @@
+CXXSOURCES=\
+	../../basics/global.cpp \
+	../../basics/except.cpp \
+	../../basics/lisa_str.cpp \
+	../../basics/tlist.cpp \
+	../../basics/order.cpp \
+	../../basics/blist.cpp \
+	../../basics/matrix.cpp \
+	../../basics/lmatrix.cpp \
+	../../lisa_dt/mo.cpp \
+	../../lisa_dt/problem.cpp \
+	irregjs.cpp \
+	insert.cpp \
+	i_main.cpp \
+	../../lisa_dt/schedule/sp_sched.cpp \
+	../../lisa_dt/schedule/js_sched.cpp \ 
+
+DOCSOURCES=\
+     fp_set.cpp
+
+
+
+

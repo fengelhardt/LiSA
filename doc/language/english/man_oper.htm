@@ -1,0 +1,69 @@
+<HTML>
+<HEAD> <TITLE>Help on Sequence Editor</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Sequence Editor</H2>
+LiSA allows you to manipulate any computed sequence manually by
+shifting operations in a job order or machine order, respectively.
+<P>
+<H2>How to invoke the Sequence Editor:</H2> 
+Choose an operation by double clicking on its entry in the latin
+square in the <A HREF="schedule.htm"> schedule window</A> (not in the 
+main window) or on the corresponding rectangle in the gantt chart. In
+the gantt chart this operation will be marked by a black border.
+<P>
+<H2>How to Shift an Operation:</H2>
+To shift the choosen operation (i,j), use the following buttons in the 
+sequence manipulation window
+<DL>
+<DT>Source <DD>
+   Operation (i,j) becomes a source in the sequence granph, i.e., no
+   other operation is predecessor of (i,j).
+<DT>Sink <DD>
+   Operation (i,j) becomes a sink in the sequence granph, i.e., no
+   other operation is successor of (i,j).
+<DT><img src="../../../img/lleft.xbm" BORDER=0><DD>
+   Operation (i,j) is scheduled first in the machine order of job i,
+   i.e. job i starts on machine j.
+<DT> <img src="../../../img/left.xbm" BORDER=0><DD>
+   Operation (i,j) is scheduled one position earlier in the machine
+   order of job i.
+<DT><img src="../../../img/rright.xbm" BORDER=0><DD>
+    Operation (i,j) is scheduled last in the machine order of job i,
+   i.e. job i is completed  on machine j.
+<DT><img src="../../../img/right.xbm" BORDER=0><DD>
+   Operation (i,j) is scheduled one position later in the machine
+   order of job i.
+<DT>Vertical Arrows:<DD>
+   Same as the corresponding horizontical ones, but affect the job
+   order of machine j instead of the machine order of job i.
+<DT><img src="../../../img/reset.xbm" BORDER=0><DD>
+   Restore the sequence as it was before invoking the sequence editor.
+</DL>
+
+<H2>If this does not work</H2>
+
+<UL>
+<LI> In a job shop or flow shop problem the machine orders of all jobs
+   are prescribed. Thus, the correspondig buttons cannot be choosen.
+<LI> Shifting an operation can create a cycle in the sequence
+   graph. In this case an error message is printed and the shift is
+   not carried out.
+</UL>
+
+<HR>
+<A HREF="main.htm"> Table of Contents </A>
+<HR>
+15.02.2000 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

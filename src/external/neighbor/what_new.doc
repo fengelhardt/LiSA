@@ -1,0 +1,18 @@
+   NEUE NAMEN
+
+	alt			neu
+
+shp_plan.h
+	KREIS			CYCLE
+	shp_problem		Lisa_ShpProblem
+	shp_plan		Lisa_ShpPlan
+os_plan.h
+	osproblem		Lisa_OsProblem
+	osplan			Lisa_OsPlan
+js_plan.h
+	jsproblem		Lisa_JsProblem
+	jsplan			Lisa_JsPlan
+m1_plan.h
+	M1_plan			Lisa_SingleMPlan
+m1_prob.h
+	single_m_problem	Lisa_SingleMProblem

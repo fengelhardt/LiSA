@@ -1,0 +1,18 @@
+#fuer das Problem-Klassifikations-Programm:
+set Name(TEXTAUSGABE) "Problemklassifikation"
+
+set Name(SENTENCE_START) "Das aktuelle Problem ist"
+set Name(NP_HARD) "NP-schwer"
+set Name(STR_NP_HARD) "NP-schwer (im starken Sinn)"
+set Name(POLYN) "polynomial loesbar"
+set Name(PS_POLYN) "pseudo-polynomial loesbar"
+set Name(SENTENCE_CONT1) "denn folgendes Problem ist"
+set Name(HARD_CONT1) "bereits"
+set Name(EASY_CONT1) "noch"
+set Name(OPEN_TEXT) "Die Komplexitaet dieses Problems ist unbekannt. "
+set Name(MIN) "minimal"
+set Name(MAX) "maximal"
+set Name(SEE) "siehe"
+set Name(BIBTEX) "BiBTeX-File auslesen"
+set Name(SCHLIESSEN) "Fenster schliessen"
+set Name(GANTT) "Gantt Diagramm"

@@ -1,0 +1,10 @@
+OBJECTS=\
+	../../../compiled/evaluate.o \
+	../../../compiled/inout.o \
+	../../../compiled/matrix.o \
+	../../../compiled/basicwin.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/int2str.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/list.o \
+	../../../compiled/except.o

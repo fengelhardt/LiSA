@@ -1,0 +1,19 @@
+OBJECTS=\
+	../../../compiled/irred.o \
+	../../../compiled/partition.o \
+	../../../compiled/convertgraph.o \
+	../../../compiled/irrednode.o \
+	../../../compiled/irredtest.o \
+	../../../compiled/graph.o \
+	../../../compiled/pair.o \
+	../../../compiled/order.o \
+	../../../compiled/global.o \
+	../../../compiled/except.o \
+	../../../compiled/matrix.o \
+	../../../compiled/list.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/ptype.o \
+	../../../compiled/mo.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/schedule.o

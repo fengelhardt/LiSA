@@ -1,0 +1,64 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zur Problemtyp-Eingabe</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Eingabe des Problemtyps</H2>
+Um ein Scheduling-Problem mit LiSA behandeln zu k&ouml;nnen, muss
+zuerst der Problemtyp in der 3-Feld-Notation nach Graham et
+al. eingegeben werden. Hier geben Sie auch Maschinen- und Jobanzahl
+ein. Dabei gilt ein Problemtyp als zul&auml;ssig, wenn mindestens eine
+Maschinenumgebung und eine Zielfunktion gew&auml;hlt wurde.
+Wurde zus&auml;tzlich eine Maschinen- und Aufragsanzahl angegeben, kann sp&auml;ter 
+das <A HREF="values.htm"> Parameterfenster </A> zur Eingabe
+und Ver&auml;nderung der problemspezifischen Daten angew&auml;hlt werden.
+
+<H2>So kommen Sie hierher:</H2>
+W&auml;hlen Sie den Men&uuml;punkt <I>Datei|Neu</I> zur Eingabe eines
+neuen Problems oder <I> Bearbeiten|Problemtyp</I> um den vorhandenen
+Problemtyp zu editieren. 
+
+<H2>Einstellm&ouml;glichkeiten</H2>
+Die Problemeingabe folgt den in jedem Scheduling-Lehrbuch
+&uuml;blichen Konventionen.
+<BR>Zus&auml;tzlich k&ouml;nnen Sie folgende Zielfunktionen angeben
+<UL>
+<LI> IRREG1= Sum |C_i - d_i |
+<LI> IRREG2= w_late * L_max + w_early * max (d_i - C_i)^+ + Sum w_i
+     T_i + Sum wi_early (d_i - C_i)^+ <BR>
+     Beachten Sie, da&szlig; die in dieser Zielfunktion vorkommenden
+     zus&auml;tzlichen Gewichte von einem externen Problemgenerator
+     erzeugt werden m&uuml;ssen. 
+</UL>
+<H2>Ausnahmen</H2>
+<UL>
+<LI> LiSA versucht stets, Ihre letzte Eingabe umzusetzen. Wenn Sie
+eine inkonsistente Eingabe machen, modifiziert LiSA gegebenenfalls
+fr&uuml;here Eingaben. Geben Sie zum Beispiel f&uuml;r ein
+Einmaschinenproblem Mehrmaschinenauftr&auml;ge an, so wird der Problemtyp 
+automatisch auf P ge&auml;ndert.
+<LI> Da die Klassifikation st&auml;ndig erweitert wird, kann es sein
+da&szlig; bestimmte Felder noch nicht implementiert sind. LiSA
+erlaubt schon jetzt die Eingabe von mehreren zehntausend verschiedenen
+Problemtypen.
+<LI> Nicht zu jedem ausw&auml;hlbaren Problemtyp existiert auch ein
+L&ouml;sungsverfahren. Ob ein passendes Algorithmus existiert kann leicht durch
+Betrachtung der Untermen&uuml;s von <I>Algorithmen|Exakte Verfahren</I> 
+und <I>Algorithmen|Heuristische Verfahren</I> &uuml;berpr&uuml;ft werden.
+</UL>
+
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU, 26.11.99 PW
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

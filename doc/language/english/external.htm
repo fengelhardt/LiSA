@@ -1,0 +1,54 @@
+<HTML>
+<HEAD> <TITLE>Help on incorporating external algorithms</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Incorporating external algorithms</H2>
+To use LiSA as an environment for your own algorithms, including such
+highlights as automated parameter test and context sensitive menus,
+please follow these steps.
+
+<H2>Implement communication</H2>
+LiSA external algorithms are given two parameters, the name of an
+input and an output file. All further parameters passed to the program
+are in the input file. For reading and writing <A HREF="lsafile.htm"> 
+.lsa-files </A> you may use the corresponding objects from the
+library. Please refere to the <A HREF="../../develop/html/aindex.html"> 
+developer's manual</A>. Further communication can be done via printing
+lines to the standard output: 
+<UL>
+ <LI> A line stating the PID of the external algorithm in the form
+ "PID=2345" enables LiSA to send signals to abort it.
+ <LI> A line beginning with "ERROR: " is displayed in the LiSA error
+      window.
+ <LI> A line beginning with "objective= " moves the progress indicator
+      in the external algorithm window.
+</UL>
+
+<H2>Write an .alg-file</H2>
+You have to give some very basic information about your algorithm in
+form of an algorithm description file. Just copy the following 
+<A HREF="example.alg"> Example </A> and modify it. If you are using
+LiSA in more than one language, you have to translate this file into
+each language you require.
+
+<H2>Copy files</H2>
+Copy your .alg-file into the $LISAHOME/data/alg_desc/language/english 
+directory and your executable file into $LISAHOME/bin (unless statet
+otherwise in the .alg-file). With the next call of LiSA a menue
+compiler will be invoked which modifies the LiSA menues to include
+your algorithm. 
+<HR>
+<A HREF="main.htm"> Table of Contents</A>
+<HR>
+9.02.2000 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+

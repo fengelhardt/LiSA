@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+# LiSA version information substitute shell script
+# Copyright Lars Dornheim 1998
+# E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+# WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
+
+# just do it
+
+rm -f ${2}.temp
+gawk "BEGIN {ORS=\"\"; print \"$2 ... checking version ... \"; ORS=\"\\n\"; action=\"not found\"; }; {if (index(\$0, \"@version \")!=0) {sub(\"@version .*\", \"@version \", \$0); print \$0 \"$1\" >> \"${2}.temp\"; action=\"substituted\"; } else print \$0 >> \"${2}.temp\"; }; END {print action; };" $2
+mv ${2}.temp ${2}

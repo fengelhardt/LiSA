@@ -1,0 +1,46 @@
+#!/bin/sh
+
+
+# LiSA start shell script
+# Copyright Lars Dornheim 1998, 1999
+# E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+# WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
+
+# setting the LiSA home path
+
+LISAHOME="@PROGRAMPATH@"
+export LISAHOME
+
+
+# checking the LiSA configuration
+
+USERHOME=${HOME:-"/tmp"}
+if test ! -w "${USERHOME}"; then
+     USERHOME="/tmp"
+     fi
+LISACONFIG=${USERHOME}/.lisa
+if test ! -d "${LISACONFIG}"; then
+     rm -fr  "${LISACONFIG}"
+     mkdir "${LISACONFIG}"
+     fi
+if test ! -d "${LISACONFIG}/proc"; then
+     rm -fr  "${LISACONFIG}/proc"
+     mkdir "${LISACONFIG}/proc"
+     fi
+if test ! -f "${LISACONFIG}/default.lsa"; then
+     rm -fr  "${LISACONFIG}/default.lsa"
+     cp "${LISAHOME}/data/default.lsa" "${LISACONFIG}"
+     fi
+
+
+# setting the LiSA config path
+
+export LISACONFIG
+
+
+# starting LiSA
+
+exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.lsa"
+
+

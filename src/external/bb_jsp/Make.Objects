@@ -1,0 +1,31 @@
+OBJECTS=\
+	../../../compiled/js_bb_br.o \
+	../../../compiled/jb_block.o \
+	../../../compiled/jb_brnch.o \
+	../../../compiled/jb_fix.o \
+	../../../compiled/jb_hd_tl.o \
+	../../../compiled/jb_heur.o \
+	../../../compiled/jb_init.o \
+	../../../compiled/jb_list.o \
+	../../../compiled/jb_low.o \
+	../../../compiled/jb_rd_dt.o \
+	../../../compiled/jb_selct.o \
+	../../../compiled/jb_sort.o \
+	../../../compiled/jb_stack.o \
+	../../../compiled/jb_table.o \
+	../../../compiled/global.o \
+	../../../compiled/list.o \
+	../../../compiled/matrix.o \
+	../../../compiled/pair.o \
+	../../../compiled/order.o \
+	../../../compiled/except.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/mo.o \
+	../../../compiled/ptype.o \
+	../../../compiled/schedule.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/js_sched.o \
+	../../../compiled/m1_sched.o \
+	../../../compiled/os_sched.o \
+	../../../compiled/sp_sched.o

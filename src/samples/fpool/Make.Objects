@@ -1,0 +1,14 @@
+OBJECTS=\
+	../../../compiled/main.o \
+	../../../compiled/fp_set.o \
+	../../../compiled/fp_vector.o \
+	../../../compiled/nb_fp.o \
+	../../../compiled/global.o \
+	../../../compiled/except.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/tlist.o \
+	../../../compiled/blist.o \
+	../../../compiled/iterate.o \
+	../../../compiled/tabu.o \
+	../../../compiled/matrix.o \
+	../../../compiled/ctrlpara.o

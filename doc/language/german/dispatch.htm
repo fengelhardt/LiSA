@@ -1,0 +1,78 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zu Reihungsregeln</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+<H2> Reihungsregeln</H2>
+
+Dies sind schnelle Algorithmen zur n&auml;herungsweisen oder in
+einigen F&auml;llen auch exakten L&ouml;sung von
+Scheduling-Problemen. Nutzen Sie diese immer, falls sie als exakte
+Algorithmen aufgelistet werden (abh&auml;ngig vom Problemtyp) oder
+falls Sie auf kurze Laufzeit Wert legen. 
+<P>
+<H2>So werden Reihungsregeln gestartet:</H2> 
+<P>
+Stellen Sie sicher, da&szlig; ein 
+<A HREF="problem.html"> Problemtyp </A> und alle 
+<A HREF="values.html"> Problemparameter </A> 
+definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
+<I> Algorithmen|Heuristische Verfahren|Reihungsregeln </I> und
+dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>. Je nach
+Problemtyp erscheinen bestimmte Priorit&auml;tsregeln auch im
+Men&uuml; <I> Algorithmen|Exakte Verfahren </I>. Dann sind eventuell 
+keine Einstellungen vorhanden.
+
+<P>
+<H2>Einstellungen:</H2>
+<DL>
+<DT> Aktiven Plan erzeugen <DD>
+   Hier bestimmen Sie den Algorithmus.
+   <DL>
+   <DT> TRUE <DD> Es wird zu jeden
+   Zeitpunkt, an dem ein Job oder eine Maschine bereit wird, von allen
+   momentan bereitstehenden Operationen die mit höchster
+   Priorit&auml;t angeordnet. Der erzeugte Plan ist aktiv.
+   <DT>FALSE <DD> An den partiellen Plan wird die
+   Operation mit höchster Priorit&auml;t aus der Menge aller
+   unangeordneten Operationen ohne unangeordneten Vorg&auml;nger
+   angeh&auml;ngt. Der erzeugte Plan ist semiaktiv, aber im
+   allgemeinen nicht aktiv.
+   </DL>
+<DT>Priorit&auml;tsregel<DD>
+   W&auml;hlen Sie eine der folgenden Definitionen der
+   Priorit&auml;t. Angeordnet wird die Operation, die
+ <DL>
+   <DT> RAND <DD> zuf&auml;llig bestimmt wurde,
+   <DT> FCFS <DD> schon am l&auml;ngsten bereitsteht,
+   <DT> EDD  <DD> den kleinsten F&auml;lligkeitstermin hat,
+   <DT> LQUE  <DD> die kleinste Differenz F&auml;lligkeitstermin -
+        (Bearbeitungszeit+Tail) hat, 
+   <DT> SPT  <DD> den kleinste  Bearbeitungszeit hat,
+   <DT> WSPT <DD> den kleinsten Quotionten Bearbeitungszeit/Gewicht hat,
+   <DT> ECT  <DD> am schnellsten fertiggestellt werden kann,
+   <DT> WI   <DD> am wichtigsten ist,
+   <DT> LPT  <DD> die l&auml;ngste Bearbeitungszeit hat.
+   </DL>
+</DL>
+<P>
+<H2>Wenn etwas nicht geht:</H2>
+<UL>
+<LI> Falls Sie die Regeln als exakten Algorithmus aufrufen, gibt es
+  meist keine Einstellungen. Um w&auml;hlen zu k&ouml;nnen, rufen sie 
+  <I> Algorithmen|Heuristische Verfahren|Reihungsregeln </I> auf.
+<LI> Priorit&auml;tsregeln erscheinen nicht im Men&uuml;, falls f&uuml;r 
+  den aktuellen Problemtyp kein entsprechender Algorithmus
+  implementiert ist. 
+</UL>
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+

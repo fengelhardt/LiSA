@@ -1,0 +1,49 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zur Algorithmeneinbindung</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Einbindung von externen Algorithmen</H2>
+Um ihre eigenen Scheduling-Algorithmen unter der Oberfl&auml;che von
+LiSA (einschlie&szlig;lich solcher Highlights wie 
+<A HREF="gen_ptst.htm"> automatischer Parametertest </A>) laufen zu
+lassen, folgen Sie dieser Anleitung:
+
+<H2>Kommunikation zwischen Programmteilen anpassen </H2>
+Alle externen Algorithemen werden mit zwei Parametern aufgerufen:
+den Namen der Eingabe- und Ausgabedatei. Weitere Parameter k&ouml;nnen
+nur im Feld <CONTROL_PARAMETERS> der Eingebedatei &uuml;bergeben
+werden. Das Lesen und Schreiben einer <A HREF="lsafile.htm"> 
+.lsa-Datei</A> kann durch vorgefertigte Klassen erfolgen, die in der 
+<A HREF="../../develop/html/aindex.html"> Anleitung f&uuml;r
+Entwickler</A> genauer beschrieben sind. Weiterhin sollte ein externer 
+Algorithmus folgende Zeilen auf die Standardausgabe schreiben:
+<UL>
+<LI> PID=43432 (d.h. Nennung der eigenen PID), damit LiSA
+Abbruchsignale senden kann, 
+<LI> ERROR: (Fehlermeldung) um eine Fehlermeldung im
+LiSA-Fehlerfenster anzuzeigen und
+<LI> objective= (Wert), um den Fortschrittsanzeiger von LiSA zu
+bewegen.
+</UL>
+
+<H2>Algorithmen-Kenndatei schreiben </H2>
+Folgen sie daf&uuml;r den Anweisungen in der beiliegenden 
+<A HREF="example.alg"> Beispieldatei </A>. Nach dem Ausf&uuml;llen
+kopieren Sie diese Datei in das Verzeichnis 
+$LISA_HOME/data/alg_descr/language/german und starten LiSA neu.
+
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+

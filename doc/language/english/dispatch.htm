@@ -1,0 +1,69 @@
+<HTML>
+<HEAD> <TITLE>Help on Dispatching Rules</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+<H2>Dispatching Rules</H2>
+
+These are fast algorithms for solving a scheduling problem exactly or 
+heuristically. Use a dispatching rule if it solves your problem
+exactly or if you need a very fast algorithm.
+<P>
+<H2>What you have to do:</H2> 
+<P>
+Make sure that both a 
+<A HREF="problem.html"> problem type </A> and all 
+<A HREF="values.html"> parameters </A> 
+are defined. Choose <I>Heuristic Algortihms|Dispatching Rules</I> from
+the menu <I>Algorithms</I> and after editing the options press <I>OK</I>.
+Dependent on the current problem type, special dispatching rules may
+also be listed as exact algorithms.
+<P>
+<H2>Options:</H2>
+<DL>
+<DT> construct active schedule <DD>
+   Choose an algorithm:
+   <DL>
+   <DT> TRUE <DD> At each time a job or machine becomes ready schedule
+   the ready unscheduled operation with highest priority. The
+   resulting schedule is active.
+   <DT>FALSE <DD> To extend a partial schedule, among all unscheduled 
+   operations without unscheduled predecessor the one with highest
+   priority is appended to the schedule. The resulting
+   schedule is semiactive, but in general not activ.
+   </DL>
+<DT>Priority<DD>
+   Choose one of the following definitions of priority. The algorithm
+   will schedule the operation
+ <DL>
+   <DT> RAND <DD> which is randomly determined,
+   <DT> FCFS <DD> which became ready first,
+   <DT> EDD  <DD> with the smallest due date,
+   <DT> LQUE  <DD> with smallest difference du date-(processing time +
+   tail),
+   <DT> SPT  <DD> with smallest processing time
+   <DT> WSPT <DD> with smallest ratio (processing time / weight)
+   <DT> ECT  <DD> which can be completed first
+   <DT> WI   <DD> with biggest weight,
+   <DT> LPT  <DD> with longest processing time
+   </DL>
+</DL>
+<P>
+<H2>But...</H2>
+<UL>
+<LI> If you call a dispatching rule as exact algorithm, normally you
+  cannot choose the priority or rule type. If you want to choose, call
+  <I>Algorithms|Heuristic Algorithms|Dispatching Rules</I>.
+<LI> Dispatching rules will not appear in any menue if the current
+  problem type cannot be handled by the implemented algorithm.
+</UL>
+<P>
+<HR>
+<A HREF="main.htm"> Table of Contents </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+

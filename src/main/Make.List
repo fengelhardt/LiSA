@@ -1,0 +1,49 @@
+CXXSOURCES=\
+	lisa.cpp \
+	../basics/list.cpp \
+	../basics/global.cpp \
+	../basics/matrix.cpp \
+	../basics/order.cpp \
+	../basics/pgraph.cpp \
+	../basics/status.cpp \
+	../basics/except.cpp \
+	../basics/lisa_str.cpp \
+	../basics/pair.cpp \
+	../communic/alg_call.cpp \
+	../communic/ngbhptst.cpp \
+	../desktop/c_tcl.cpp \
+	../desktop/setreadv.cpp \
+	../desktop/callback.cpp \
+	../desktop/file_io.cpp \
+	../desktop/tcl_c.cpp \
+	../desktop/basicwin.cpp \
+	../desktop/win_obj.cpp \
+	../graphics/gantt.cpp \
+	../lisa_dt/lisapref.cpp \
+	../lisa_dt/mo.cpp \
+	../lisa_dt/ptype.cpp \
+	../lisa_dt/lvalues.cpp \
+	../lisa_dt/schedule.cpp \
+	../lisa_dt/ctrlpara.cpp \
+	../lisa_dt/tclvar.cpp \
+	../lisa_dt/xsched.cpp \
+	../lisa_dt/schedule/os_sched.cpp \
+	../lisa_dt/schedule/js_sched.cpp \
+	../lisa_dt/schedule/sp_sched.cpp \
+	../misc/int2str.cpp \
+	../algo/dispatch.cpp \
+	../classify/classify.cpp \
+	../classify/database.cpp \
+	../classify/redgraph.cpp \
+
+DOCSOURCES=\
+     doc_main.hpp
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+LiSA-Installation (UNIX):
+
+	o  make sure that tcl/tk and the g++ compiler are installed
+	   on your machine
+
+	o  gunzip lisa.tar.gz
+
+	o  tar -xvf lisa.tar
+
+	o  cd LiSA
+
+	o  ./configure
+
+	o  edit Make.Config if configure is unable to find some of
+	   the includes or libraries.
+
+	o  make
+
+	o  bin/lisa

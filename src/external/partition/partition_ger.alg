@@ -1,0 +1,20 @@
+<GENERAL>
+Name= partition-module
+Type= constructive
+Call= partition
+Code= external
+Help= partition.html
+</GENERAL>
+
+<EXACT>
+<PROBLEMTYPE> 
+Lisa_ProblemType= { O2 /  / Cmax }
+Lisa_ProblemType= { P2 /  / Cmax }
+</PROBLEMTYPE>
+</EXACT>
+
+<HEURISTIC>
+</HEURISTIC>
+
+<PARAMETERS>
+</PARAMETERS>

@@ -1,0 +1,13 @@
+CXXSOURCES=\
+	evaluate.cpp \
+	inout.cpp \
+	../../basics/matrix.cpp \
+	../../desktop/basicwin.cpp \
+	../../lisa_dt/ctrlpara.cpp \
+	../../misc/int2str.cpp \
+	../../basics/lisa_str.cpp \
+	../../basics/list.cpp \
+	../../basics/except.cpp
+DOCSOURCES=\
+     doc_eval.hpp
+

@@ -1,0 +1,21 @@
+CXXSOURCES=\
+	main.cpp \
+        fp_set.cpp \
+	fp_vector.cpp \
+	nb_fp.cpp \
+	../../basics/global.cpp \
+	../../basics/except.cpp \
+	../../basics/lisa_str.cpp \
+	../../basics/tlist.cpp \
+	../../basics/blist.cpp \
+	../../external/neighbor/iterate.cpp \
+        ../../external/neighbor/tabu.cpp \
+	../../basics/matrix.cpp \
+	../../lisa_dt/ctrlpara.cpp \
+
+DOCSOURCES=\
+     fp_set.cpp
+
+
+
+

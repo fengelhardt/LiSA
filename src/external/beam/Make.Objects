@@ -1,0 +1,17 @@
+OBJECTS=\
+	../../../compiled/beam.o \
+	../../../compiled/b_node.o \
+	../../../compiled/global.o \
+	../../../compiled/except.o \
+	../../../compiled/matrix.o \
+	../../../compiled/list.o \
+	../../../compiled/order.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/ptype.o \
+	../../../compiled/mo.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/schedule.o \
+	../../../compiled/os_sched.o \
+	../../../compiled/sp_sched.o \
+	../../../compiled/pair.o

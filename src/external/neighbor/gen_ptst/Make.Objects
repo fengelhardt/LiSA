@@ -1,0 +1,18 @@
+OBJECTS=\
+	../../../../compiled/gen_ptst.o \
+	../../../../compiled/global.o \
+	../../../../compiled/list.o \
+	../../../../compiled/matrix.o \
+	../../../../compiled/pair.o \
+	../../../../compiled/order.o \
+	../../../../compiled/except.o \
+	../../../../compiled/lisa_str.o \
+	../../../../compiled/ctrlpara.o \
+	../../../../compiled/mo.o \
+	../../../../compiled/ptype.o \
+	../../../../compiled/schedule.o \
+	../../../../compiled/lvalues.o \
+	../../../../compiled/js_sched.o \
+	../../../../compiled/m1_sched.o \
+	../../../../compiled/os_sched.o \
+	../../../../compiled/sp_sched.o

@@ -1,0 +1,13 @@
+OBJECTS=\
+	../../../compiled/flow2.o \
+	../../../compiled/global.o \
+	../../../compiled/except.o \
+	../../../compiled/matrix.o \
+	../../../compiled/pair.o \
+	../../../compiled/list.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/ptype.o \
+	../../../compiled/mo.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/schedule.o

@@ -1,0 +1,252 @@
+
+Upper bound 926 after 1 search tree nodes
+MaschineNo   1 :   82   2  53  63  24  15  75  46  38 100 
+MaschineNo   2 :   81  61  51  32  22  74  95   7  20  49 
+MaschineNo   3 :   93  42  64  54  18  36   9  79  30  90 
+MaschineNo   4 :   11  41  62  72  94  85   4  34  28  60 
+MaschineNo   5 :   91  21  52   3  33  84  17  68  47  80 
+MaschineNo   6 :   71  14  86   8  99  27  48  40  59  70 
+MaschineNo   7 :    1  13  43  73  56  96  37  26  69  89 
+MaschineNo   8 :   83  45  25   5  66  76  97  57  19  39 
+MaschineNo   9 :   92  23  16   6  35  67  77  88  58  50 
+MaschineNo  10 :   31  12  44  65  55  87  98  78  10  29 
+
+Upper bound 923 after 8 search tree nodes
+MaschineNo   1 :   82   2  24  53  75  63  15  46  38 100 
+MaschineNo   2 :   81  32  61  22  51  74  95   7  20  49 
+MaschineNo   3 :   93  42  54  64  36  18  30  90  79   9 
+MaschineNo   4 :   11  41  72  94  85  62  34   4  28  60 
+MaschineNo   5 :   91  21  33  84  52   3  17  68  47  80 
+MaschineNo   6 :   71  14  86  27  99  59   8  40  48  70 
+MaschineNo   7 :    1  13  73  43  26  96  56  37  89  69 
+MaschineNo   8 :   83  25  45  76  97   5  57  66  39  19 
+MaschineNo   9 :   92  23  88  35  16   6  58  67  77  50 
+MaschineNo  10 :   31  12  44  87  55  65  98  29  78  10 
+
+Upper bound 913 after 8 search tree nodes
+MaschineNo   1 :   82   2  24  53  75  63  15  46  38 100 
+MaschineNo   2 :   81  32  51  22  61  74  95   7  49  20 
+MaschineNo   3 :   93  42  54  64  36  18  30  79  90   9 
+MaschineNo   4 :   11  41  72  94  85  62  34   4  28  60 
+MaschineNo   5 :   91  33  21  84  52   3  17  47  68  80 
+MaschineNo   6 :   71  14  86  27  99  59   8  48  40  70 
+MaschineNo   7 :    1  13  73  43  26  96  56  37  89  69 
+MaschineNo   8 :   83  25  45  76  97   5  57  66  39  19 
+MaschineNo   9 :   92  23  88  35  77  16   6  58  67  50 
+MaschineNo  10 :   31  12  44  87  55  65  98  29  78  10 
+
+Upper bound 909 after 9 search tree nodes
+MaschineNo   1 :   82   2  24  53  75  63  46  15  38 100 
+MaschineNo   2 :   81  32  51  22  61  74  95   7  49  20 
+MaschineNo   3 :   93  42  54  64  36  30  79  90  18   9 
+MaschineNo   4 :   11  41  72  94  85  62  34   4  28  60 
+MaschineNo   5 :   91  21  33  84  52   3  47  68  17  80 
+MaschineNo   6 :   71  14  86  27  99  59   8  48  40  70 
+MaschineNo   7 :    1  13  73  43  26  96  56  37  89  69 
+MaschineNo   8 :   83  25  45  76  97   5  57  66  39  19 
+MaschineNo   9 :   92  23  88  35  77   6  58  67  16  50 
+MaschineNo  10 :   31  12  44  87  55  65  98  29  78  10 
+
+Upper bound 905 after 16 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   93  42  64  54  36  30  18  79   9  90 
+MaschineNo   4 :   41  11  62  94  72  85  34   4  28  60 
+MaschineNo   5 :   91  21  52  84  33   3  47  68  17  80 
+MaschineNo   6 :   71  14  27  86  99  48   8  59  40  70 
+MaschineNo   7 :    1  13  43  26  96  73  37  56  69  89 
+MaschineNo   8 :   83  25  45  66  97   5  57  76  39  19 
+MaschineNo   9 :   92  23  16  35  67   6  88  77  58  50 
+MaschineNo  10 :   31  12  44  65  55  87  98  29  78  10 
+
+Upper bound 902 after 18 search tree nodes
+MaschineNo   1 :   82  24  63  53   2  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  32  51  95  74   7  49  20 
+MaschineNo   3 :   93  42  64  54  36  30  18  79   9  90 
+MaschineNo   4 :   11  41  62  94  72  85  34   4  28  60 
+MaschineNo   5 :   91  21  84  52  33   3  68  17  47  80 
+MaschineNo   6 :   71  14  27  86  99  59   8  48  70  40 
+MaschineNo   7 :    1  13  43  26  96  73  56  37  69  89 
+MaschineNo   8 :   83  25  45  66  97   5  57  76  39  19 
+MaschineNo   9 :   92  23  67  35  16   6  58  77  88  50 
+MaschineNo  10 :   31  12  44  65  55  98  87  29  78  10 
+
+Upper bound 897 after 18 search tree nodes
+MaschineNo   1 :   82  24  63   2  53  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  32  51  95  74   7  49  20 
+MaschineNo   3 :   93  42  64  54  36  30  18  79   9  90 
+MaschineNo   4 :   11  41  62  94  72  85  34   4  28  60 
+MaschineNo   5 :   91  21  84  52  33   3  68  47  17  80 
+MaschineNo   6 :   71  14  27  86  99  48   8  59  40  70 
+MaschineNo   7 :    1  13  43  26  96  73  56  37  69  89 
+MaschineNo   8 :   83  25  66  45  97   5  57  76  39  19 
+MaschineNo   9 :   92  23  67  35  16   6  88  77  58  50 
+MaschineNo  10 :   31  12  44  65  87  55  98  29  78  10 
+
+Upper bound 888 after 18 search tree nodes
+MaschineNo   1 :   82  24  63   2  53  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  32  51  95  74   7  49  20 
+MaschineNo   3 :   93  42  64  54  36  30  90  18  79   9 
+MaschineNo   4 :   11  41  62  94  85  72  34   4  28  60 
+MaschineNo   5 :   91  21  84  52  33   3  47  68  17  80 
+MaschineNo   6 :   71  14  86  27  99  48   8  59  70  40 
+MaschineNo   7 :    1  13  43  26  96  73  56  37  89  69 
+MaschineNo   8 :   83  25  45  66  97   5  57  76  39  19 
+MaschineNo   9 :   92  23  88  35  16   6  67  77  58  50 
+MaschineNo  10 :   31  12  44  65  87  55  98  29  78  10 
+
+Upper bound 887 after 23 search tree nodes
+MaschineNo   1 :   82   2  24  53  75  63  46  15  38 100 
+MaschineNo   2 :   81  51  32  22  61  74  95   7  49  20 
+MaschineNo   3 :   93  42  54  64  36  30  79  90  18   9 
+MaschineNo   4 :   41  72  11  94  85  62  34   4  28  60 
+MaschineNo   5 :   91  21  52  84  33   3  47  68  17  80 
+MaschineNo   6 :   71  86  14  27  99  48   8  40  59  70 
+MaschineNo   7 :    1  73  13  43  26  96  56  37  89  69 
+MaschineNo   8 :   83  25  76  45  97   5  66  57  39  19 
+MaschineNo   9 :   92  23  88  35   6  77  67  16  58  50 
+MaschineNo  10 :   31  12  44  55  87  65  98  29  78  10 
+
+Upper bound 878 after 45 search tree nodes
+MaschineNo   1 :   82   2  24  53  75  63  46  15  38 100 
+MaschineNo   2 :   81  51  32  22  61  74  95   7  49  20 
+MaschineNo   3 :   93  42  54  64  36  30  18  90  79   9 
+MaschineNo   4 :   41  72  11  94  85  62  34   4  28  60 
+MaschineNo   5 :   91  21  52  84  33   3  47  17  68  80 
+MaschineNo   6 :   71  86  14  27  48  99   8  40  59  70 
+MaschineNo   7 :    1  73  13  43  26  96  56  37  89  69 
+MaschineNo   8 :   83  25  45  76  97   5  66  57  39  19 
+MaschineNo   9 :   92  23  88  35   6  16  67  77  58  50 
+MaschineNo  10 :   31  12  44  55  87  65  98  29  78  10 
+
+Upper bound 877 after 89 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  46  15  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   42  93  64  54  36  18   9  79  30  90 
+MaschineNo   4 :   41  11  62  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  47  68  17  80 
+MaschineNo   6 :   71  14  86  48   8  99  27  40  59  70 
+MaschineNo   7 :    1  43  13  73  56  96  37  26  69  89 
+MaschineNo   8 :   83  45  25  66   5  97  57  76  39  19 
+MaschineNo   9 :   92  23  67   6  35  16  88  77  58  50 
+MaschineNo  10 :   31  12  44  65  55  87  98  78  10  29 
+
+Upper bound 868 after 95 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  15  75  46  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   93  64  42  54  36  18  30   9  79  90 
+MaschineNo   4 :   41  11  62  94  72   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  68  17  47  80 
+MaschineNo   6 :   71  14  27  86   8  99  48  59  70  40 
+MaschineNo   7 :    1  13  26  43  73  96  56  37  69  89 
+MaschineNo   8 :   83  25  66   5  45  97  57  76  39  19 
+MaschineNo   9 :   92  23  67   6  16  35  88  77  58  50 
+MaschineNo  10 :   31  12  65  44  55  87  29  98  78  10 
+
+Upper bound 867 after 108 search tree nodes
+MaschineNo   1 :   82   2  63  24  53  15  75  46  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   93  64  42  54  36  18  30  79   9  90 
+MaschineNo   4 :   41  62  11  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  68  17  47  80 
+MaschineNo   6 :   71  14  86  27   8  99  59  48  70  40 
+MaschineNo   7 :    1  13  73  43  26  96  56  37  69  89 
+MaschineNo   8 :   83  25  66   5  45  97  76  57  39  19 
+MaschineNo   9 :   92  23  67  16   6  35  88  77  58  50 
+MaschineNo  10 :   31  12  65  44  55  87  29  98  78  10 
+
+Upper bound 863 after 109 search tree nodes
+MaschineNo   1 :   82   2  63  24  53  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   93  64  42  54  36  30  18  79   9  90 
+MaschineNo   4 :   41  62  11  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  68  47  17  80 
+MaschineNo   6 :   71  14  86  27  48   8  99  59  70  40 
+MaschineNo   7 :    1  13  73  43  26  96  56  37  69  89 
+MaschineNo   8 :   83  25  66  45   5  97  76  57  39  19 
+MaschineNo   9 :   92  23  67  16   6  35  88  77  58  50 
+MaschineNo  10 :   31  12  65  44  55  87  29  98  78  10 
+
+Upper bound 862 after 113 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  75  46  15  38 100 
+MaschineNo   2 :   81  61  22  51  32  74  95   7  49  20 
+MaschineNo   3 :   42  93  64  54  36  30  18  79   9  90 
+MaschineNo   4 :   41  72  62  85  11  94   4  34  28  60 
+MaschineNo   5 :   91  21  84  52   3  33  47  68  17  80 
+MaschineNo   6 :   71  86  27  14   8  99  48  59  70  40 
+MaschineNo   7 :    1  43  73  26  13  96  56  37  69  89 
+MaschineNo   8 :   83  25  45   5  66  97  76  57  39  19 
+MaschineNo   9 :   92  23  88   6  35  67  16  77  58  50 
+MaschineNo  10 :   31  44  12  87  65  55  29  98  78  10 
+
+Upper bound 860 after 114 search tree nodes
+MaschineNo   1 :   82   2  24  53  63  46  75  15  38 100 
+MaschineNo   2 :   81  51  22  61  32  74  95   7  49  20 
+MaschineNo   3 :   42  93  54  64  36  30  18  79   9  90 
+MaschineNo   4 :   41  72  62  85  11  94   4  34  28  60 
+MaschineNo   5 :   21  91  52  84   3  33  47  68  17  80 
+MaschineNo   6 :   71  86  27  14  48   8  99  59  70  40 
+MaschineNo   7 :    1  43  73  26  13  56  96  37  69  89 
+MaschineNo   8 :   83  25  45   5  66  97  76  57  39  19 
+MaschineNo   9 :   23  92  88   6  35  67  16  77  58  50 
+MaschineNo  10 :   31  44  12  87  55  65  29  98  78  10 
+
+Upper bound 859 after 119 search tree nodes
+MaschineNo   1 :   82   2  24  63  15  53  46  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   42  93  64  54  18  36  30  79   9  90 
+MaschineNo   4 :   41  11  62  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  17  68  47  80 
+MaschineNo   6 :   71  14  27  86  48   8  99  59  70  40 
+MaschineNo   7 :    1  13  43  73  26  96  56  37  69  89 
+MaschineNo   8 :   83  25  45  66   5  97  76  57  39  19 
+MaschineNo   9 :   92  23  16  67   6  35  88  77  58  50 
+MaschineNo  10 :   31  12  44  65  55  87  29  98  78  10 
+
+Upper bound 855 after 120 search tree nodes
+MaschineNo   1 :   82   2  63  24  15  53  46  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  95  74   7  49  20 
+MaschineNo   3 :   42  93  64  54  18  36  30  79   9  90 
+MaschineNo   4 :   41  11  62  72  94  85   4  34  28  60 
+MaschineNo   5 :   91  21  84  52   3  33  17  47  68  80 
+MaschineNo   6 :   71  14  86  27  48   8  99  59  70  40 
+MaschineNo   7 :    1  43  13  73  26  96  56  37  69  89 
+MaschineNo   8 :   83  45  25  66   5  97  76  57  39  19 
+MaschineNo   9 :   92  23  16  67   6  35  88  77  58  50 
+MaschineNo  10 :   31  12  44  65  87  55  29  98  78  10 
+
+Upper bound 854 after 160 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  15  46  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  74  95   7  49  20 
+MaschineNo   3 :   42  93  64  54  36  18  30  79   9  90 
+MaschineNo   4 :   11  41  62  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  47  68  17  80 
+MaschineNo   6 :   71  14  27  86  48  59   8  99  70  40 
+MaschineNo   7 :    1  13  43  73  26  56  96  69  37  89 
+MaschineNo   8 :   83  25  45  66   5  57  97  76  19  39 
+MaschineNo   9 :   92  23  16  67   6  58  35  77  88  50 
+MaschineNo  10 :   31  12  44  65  55  87  29  98  78  10 
+
+Upper bound 852 after 213 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  46  75  15  38 100 
+MaschineNo   2 :   81  61  22  51  32  74  95   7  49  20 
+MaschineNo   3 :   42  93  64  54  36  30  79  18   9  90 
+MaschineNo   4 :   41  11  62  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  47  68  17  80 
+MaschineNo   6 :   71  14  86  27  48   8  59  99  70  40 
+MaschineNo   7 :    1  43  13  73  26  56  96  37  69  89 
+MaschineNo   8 :   83  45  25  66   5  76  57  97  39  19 
+MaschineNo   9 :   92  23  67   6  77  35  58  16  88  50 
+MaschineNo  10 :   31  12  44  65  55  87  78  29  98  10 
+
+Upper bound 848 after 213 search tree nodes
+MaschineNo   1 :   82   2  24  63  53  46  15  75  38 100 
+MaschineNo   2 :   81  61  22  51  32  74  95   7  49  20 
+MaschineNo   3 :   42  93  64  54  36  30  18   9  79  90 
+MaschineNo   4 :   41  11  62  72  94   4  85  34  28  60 
+MaschineNo   5 :   91  21  52   3  84  33  47  68  17  80 
+MaschineNo   6 :   71  14  27  86  48   8  59  99  70  40 
+MaschineNo   7 :    1  43  13  73  26  56  96  37  69  89 
+MaschineNo   8 :   83  45  25  66   5  57  76  97  19  39 
+MaschineNo   9 :   92  23  67   6  16  35  58  77  88  50 
+MaschineNo  10 :   31  12  44  65  55  29  87  98  78  10 

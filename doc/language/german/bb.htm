@@ -1,0 +1,78 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zum Branch and Bound - Fenster</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+<H2> Allgemeiner Branch &amp; Bound Algorithmus </H2>
+
+Benutzen Sie diesen Algorithmus, um eine regul&auml;re Zielfunktion f&uuml;r 
+ein Flowshop-, Jobshop- oder Openshop- oder Einmaschinenproblem exakt
+oder n&auml;herungsweise zu zu minimieren, falls f&uuml;r diesen
+Problemtyp kein spezifischer Algorithmus
+verf&uuml;gbar ist. 
+<P>
+<H2>So kommen Sie hierher:</H2> 
+Stellen Sie sicher, da&szlig; ein 
+<A HREF="problem.htm"> Problemtyp </A> und alle 
+<A HREF="values.htm"> Problemparameter </A> 
+definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
+<I> Algorithmen|Exakte Verfahren|Branch_&amp;_Bound</I> und
+dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>.
+<P>
+<H2>Einstellungen:</H2>
+<DL>
+<DT> Anzahl der L&ouml;sungen: <DD>
+   Der Algorithmus kann alle optimalen Pl&auml;ne berechnen. Wenn Sie dies 
+   nicht w&uuml;nschen oder Zeit und Speicher sparen m&ouml;chten, geben Sie 
+   hier eine obere Schranke f&uuml;r die Anzahl der auszugebenden Pl&auml;ne 
+   an, gew&ouml;hnlich 1.
+<DT>Untere Schranke:<DD>
+   Geben Sie bekannte untere Schranken hier an. LisaBB behandelt dann jeden 
+   Plan, dessen Zielfunktionswert diesen Wert nicht &uuml;berschreitet, als 
+   optimal. Falls Sie hier einen zu hohen Wert eingeben, erhalten Sie
+   m&ouml;glicherweise ein falsches Ergebenis. 
+<DT>Obere Schranke:<DD>
+   Wenn Sie bereits einen Plan kennen, geben Sie dessen Zielfunktionswert hier
+   an. LisaBB verwirft dann alle Teilpl&auml;ne mit gr&ouml;&szlig;erem 
+   Zielfunktionswert.
+<DT>Einf&uuml;gereihenfolge:<DD>
+   W&auml;hlen Sie die Reihenfolge, in der LisaBB die Operationen 
+   ber&uuml;cksichtigt. M&ouml;glich sind:
+   <DL>
+   <DT>LPT <DD> geordnet nach monoton nichtsteigenden Bearbeitungszeiten 
+   <DT>RANDOM <DD> in zuf&auml;lliger Reihenfolge
+   </DL>
+<DT>Art der unteren Schranke:<DD>
+   Bestimmen Sie, mit welcher Prozedur LisaBB untere Schranken f&uuml;r den 
+   Zielfunktionswert berechnet.
+   <DL>
+   <DT> NORMAL <DD> Zielfunktionswert des Teilplans 
+   <DT> EXTENDED <DD> noch nicht implementiert
+   </DL>
+</DL>
+<H2>Wenn LisaBB zu langsam ist:</H2>
+<UL>
+<LI> LisaBB ist eine Universalsolver und deshalb sehr aufwendig. Benutzen Sie 
+  einen problemspezifischen Algorithmus sofern m&ouml;glich. 
+<LI> Brechen Sie den Algorithmus w&auml;hrend der Laufzeit ab, Sie erhalten 
+  eine N&auml;herungsl&ouml;sung.
+<LI> Variieren Sie Art der Schranke und Einf&uuml;gereihenfolge.
+<LI> Suchen Sie den optimalen Zielfunktionswert mit der Einstellung
+  "Anzahl der L&ouml;sungen = 1" und berechnen Sie weitere 
+  Optimall&ouml;sungen erst in einem zweiten Lauf.
+<LI> Wenn eine exakte L&ouml;sung nicht m&ouml;glich ist, stellen Sie Fragen 
+  der Art: gibt es eine L&ouml;sung mit Zielfunktionswert im Intervall [x,y], 
+  indem Sie x und y als untere bzw. obere Schranke vorgeben. Vorsicht: 
+  eventuell berechnet LisaBB dann gar keinen Plan.
+</UL>
+<P>
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+

@@ -1,0 +1,68 @@
+<HTML>
+<HEAD> <TITLE>Help on entering problem data</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Input Problem Data</H2>
+In order to solve a problem instance, you have to enter all needed parameters
+like processing times, due dates etc.. 
+ 
+<H2>Basic handling:</H2>
+<UL>
+<LI> Make shure a <A HREF="problem.htm"> problem type </A> is defined 
+     and choose <I> Edit|Parameters</I>.
+<LI> In the opening window, use the <I>View</I>-menu to display the
+     desired parameter.
+<LI> Click on the item you want to edit. 
+<LI> You may generate all parameters automatically using a random
+     number generator.
+</UL>
+
+<H2>Options</H2>
+Dependend on the choosen <A HREF="problem.htm"> problem type </A> you
+may edit or generate some of the following parameters.
+
+<DL>
+<DT> Processing Times: <DD>
+   the time needed to carry out an operation
+<DT> Operation Set: <DD>
+   The entry in row i and column j is 1 if operation (i,j) exists, 0
+   otherwise.
+<DT>Machine Order: <DD>
+   A permutation of numbers 1 to m in each row 1 describes the order
+   in which job i is processed by the machines. For instance, if job 3
+   has to be processed first on machine 2 and then on maschine 5,
+   we write a 1 into row 3, column 2 and a 2 into row 3, column
+   2. After editing this matrix you have to press the button 
+   <I>Adopt Machine Orders</I>.
+<DT>Due Dates: <DD>
+   a time at which the corresponding job should be completed
+<DT>Weights: <DD>
+   are used in some objective functions
+<DT>Release Times: <DD>
+   a time r_i when job i becomes ready for processing
+</DL>
+
+
+<H2>Exceptions</H2>
+<UL>
+<LI>You may only edit or generate parameters which fit to the choosen 
+<A HREF="problem.htm"> problem type </A>.
+<LI>Machine orders are only accepted if the whole matrix is filled in 
+   correctly.
+</UL>
+<HR>
+<A HREF="main.htm"> Table of Contents </A>
+<HR>
+15.02.2000 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zur Planmanipulation</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Planmanipulation</H2>
+LiSA erm&ouml;glicht es ihnen einen bereits berechneten Plan
+nachtr&auml;glich zu manipulieren, indem Sie einzelnen Operationen in
+der jeweiligen technologischen und organisatorischen Reihenfolge verschieben. 
+<P>
+<H2>So kommen Sie hierher:</H2> 
+W&auml;hlen sie eine Operation, indem sie doppelt auf einen Eintrag des 
+Lateinischen Rechtecks im 
+<A HREF="schedule.htm"> Planfenster </A> (nicht im Hauptfenster)
+oder das entsprechende Rechteck im Gantt-Diagramm klicken.
+Falls die Ansicht auf Gantt-Diagramm gesetzt wurde,
+wird die gew&auml;hlte Operation mit einem schwarzen Rand markiert.
+
+<P>
+<H2>So verschieben Sie eine Operation:</H2>
+Im oberen Teile des Manipulationsfensters stehen mehrere Buttons
+zur Verschiebung einer Operation (i,j) zur Verf&uuml;gung:
+<DL>
+<DT>Quelle <DD>
+   Die Operation (i,j) wird zu einer Quelle im Ablaufgraphen,
+   d.h. keine weitere Operation kann Vorg&auml;nger von (i,j) sein.
+<DT>Senke <DD>
+   Die Operation (i,j) wird zu einer Senke im Ablaufgraphen,
+   d.h. keine weitere Operation kann Nachfolger von (i,j) sein.
+<DT><img src="../../../img/lleft.xbm" BORDER=0><DD>
+   Die Operation (i,j) wird als erste Operation entsprechend der 
+   technologischen Reihenfolge angeordnet.
+<DT> <img src="../../../img/left.xbm" BORDER=0><DD>
+   Operation (i,j) wird in der technologischen Reihenfolge um eine
+   Position vorgezogen. 
+<DT><img src="../../../img/rright.xbm" BORDER=0><DD>
+   Die Operation (i,j) wird als letzte Operation der technologischen
+   Reihenfolge von Job i angeordnet, d.h. Job i startet auf Maschine j.
+<DT><img src="../../../img/right.xbm" BORDER=0><DD>
+   Die Operation (i,j) wird in der technologischen Reihenfolge um eine
+   Position sp&auml;ter angeordnet.
+<DT>  <img src="../../../img/ttop.xbm" BORDER=0><DD>
+   Die Operation (i,j) wird als erste Operation der 
+   organisatorischen Reihenfolge angeordnet, d.h. als erste Operation
+   auf Maschine j bearbeitet.
+<DT><img src="../../../img/top.xbm" BORDER=0><DD> 
+   Die Operation (i,j) wird in der organisatorischen Reihenfolge um
+   eine Position fr&uuml;her angeordnet.
+<DT><img src="../../../img/bbuttom.xbm" BORDER=0><DD>
+   Die Operation (i,j) wird als letzte Operation der 
+   organisatorischen Reihenfolge von Machine j angeordnet.
+<DT><img src="../../../img/buttom.xbm" BORDER=0><DD> 
+   Die Position von (i,j) in der organisatorischen Reihenfolge wird um
+   eins vergr&ouml;&szlig;ert.
+<DT><img src="../../../img/reset.xbm" BORDER=0><DD>
+   Es wird der Plan, der vor dem &Ouml;ffnen des
+   Manipulationsfensters existiert hat, wiederhergestellt. 
+</DL>
+
+<H2>Wenn das nicht geht:</H2>
+
+<UL>
+<LI> Da in einem Job-oder Flow-Shop Problem die Technologien bereits Teil
+   der Parameter sind, und somit bereits festliegen, sind f&uuml;r diese
+   Problemtypen einige Buttons nicht anw&auml;hlbar.
+<LI> Bei der Verschiebung von Operationen k&ouml;nnen Zyklen auftreten. Es wird
+   eine entsprechende Fehlermeldung ausgegeben und die Verschiebung wird nicht
+   ausgef&uuml;hrt.   
+</UL>
+
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zur Probleminstanz-Eingabe</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Eingabe der Werte</H2>
+Hier bestimmen Sie die Parameter Ihrer Probleminstanz.
+Welche Parameter angezeigt bzw. editiert werden, kann durch Auswahl
+des entsprechenden Men&uuml;eintrages unter <I>Ansicht</I> bestimmt werden.
+Klickt man auf ein Feld in der angezeigten Tabelle, wird dieses
+editiert.
+Weiterhin ist es m&ouml;glich, alle Parameterwerte zuf&auml;llig zu erzeugen.
+
+<H2>So kommen Sie hierher:</H2>
+Stellen Sie sicher, da&szlig; ein 
+<A HREF="problem.htm"> Problemtyp </A> definiert ist und
+w&auml;hlen Sie den Men&uuml;punkt <I> Bearbeiten|Werte</I>.
+
+<H2>Eingabem&ouml;glichkeiten</H2>
+
+Abh&auml;ngig vom gew&auml;hlten Problemtype k&ouml;nnen einige 
+der folgenden Parameter bearbeitet oder generiert werden:
+ 
+<DL>
+<DT> Bearbeitungszeiten: <DD>
+   die Zeit, die eine Operation zu ihrer 
+   Ausf&uuml;hrung ben&ouml;tigt
+<DT> Operationenmenge: <DD>
+   Eintrag in Zeile i und Spalte j dieser Matrix ist 1, wenn die
+   Operation (i,j) existiert, 0 sonst 
+<DT> Technologische Reihenfolge: <DD>
+   Eine Permutation der Zahlen 1 bis m in jeder Zeile i bestimmt die 
+   Reihenfolge, in der in der Auftrag i auf den einzelnen Maschinen
+   bearbeitet wird. Soll z.B. Auftrag 3 zuerst auf Maschine 2 und dann
+   auf Maschine 5 bearbeitet werden, so steht in Zeile 3, Spalte 2
+   eine 1 und in Spalte 5 eine 2. Nach dem Editieren mu&szlig; der
+   Button <I>Technologien &uuml;bernehmen</I> bet&auml;tigt werden.
+<DT> F&auml;lligkeitstermine: <DD>
+   ein Zeitpunkt, zu dem der jeweilige Auftrag fertiggestellt sein
+   soll
+<DT> Gewichte: <DD>
+   Wichtungen der Auftr&auml;ge in bestimmten Zielfunktionen
+<DT> Bereitstellungszeiten: <DD>
+   ein Zeitpunkt r_i, zu dem Auftrag i fr$uuml;hestens bearbeitet
+   werden kann.
+</DL>
+
+
+<H2>Ausnahmen</H2>
+<UL>
+<LI>
+Sie k&ouml;nnen nur solche Parameter editieren, die in Problemen des 
+gew&auml;hlten <A HREF="problem.htm"> Problemtyps </A> vorkommen. 
+<LI>
+Technologien werden nur dann &uuml;bernommen, wenn die gesamte Matrix
+korrekt ausgef&uuml;llt ist.
+</DL>
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+
+# LiSA substitute shell script
+# Copyright Lars Dornheim 1998
+# E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+# WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
+
+# just do it
+
+gawk "{if (index(\$0, \"$1\")!=0) {sub(\"$1.*\", \"$1\", \$0); print \$0 \"$2\"; } else print \$0; };"

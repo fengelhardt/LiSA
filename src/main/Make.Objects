@@ -1,0 +1,37 @@
+OBJECTS=\
+	../../compiled/lisa.o \
+	../../compiled/list.o \
+	../../compiled/global.o \
+	../../compiled/matrix.o \
+	../../compiled/order.o \
+	../../compiled/pgraph.o \
+	../../compiled/status.o \
+	../../compiled/except.o \
+	../../compiled/lisa_str.o \
+	../../compiled/pair.o \
+	../../compiled/alg_call.o \
+	../../compiled/ngbhptst.o \
+	../../compiled/c_tcl.o \
+	../../compiled/setreadv.o \
+	../../compiled/callback.o \
+	../../compiled/file_io.o \
+	../../compiled/tcl_c.o \
+	../../compiled/basicwin.o \
+	../../compiled/win_obj.o \
+	../../compiled/gantt.o \
+	../../compiled/lisapref.o \
+	../../compiled/mo.o \
+	../../compiled/ptype.o \
+	../../compiled/lvalues.o \
+	../../compiled/schedule.o \
+	../../compiled/ctrlpara.o \
+	../../compiled/tclvar.o \
+	../../compiled/xsched.o \
+	../../compiled/os_sched.o \
+	../../compiled/js_sched.o \
+	../../compiled/sp_sched.o \
+	../../compiled/int2str.o \
+	../../compiled/dispatch.o \
+	../../compiled/classify.o \
+	../../compiled/database.o \
+	../../compiled/redgraph.o

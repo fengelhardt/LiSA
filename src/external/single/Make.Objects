@@ -1,0 +1,18 @@
+OBJECTS=\
+	../../../compiled/single.o \
+	../../../compiled/Single_Machine_BB.o \
+	../../../compiled/js_sched.o \
+	../../../compiled/sp_sched.o \
+	../../../compiled/order.o \
+	../../../compiled/global.o \
+	../../../compiled/except.o \
+	../../../compiled/matrix.o \
+	../../../compiled/pair.o \
+	../../../compiled/graph.o \
+	../../../compiled/list.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/ptype.o \
+	../../../compiled/mo.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/schedule.o

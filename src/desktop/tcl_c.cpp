@@ -1,0 +1,1067 @@
+/*
+ * ******************* tcl_c.C ******************************
+ * 
+ * description:        functions which was called as tcl/tk command
+ *
+ * owner:              Per Willenius
+ *
+ * date:               16.9.1998
+ *
+ * version:            V 1.0
+*/ 
+
+
+// ********************* System Includes ********************
+#include "../basics/lisa_str.hpp"
+// used in TC_open_schedule():
+#include <fstream.h>
+#include <unistd.h>
+
+
+// ******************** Project Includes ********************
+
+// error handling:
+#include "../basics/except.hpp"
+// some definitions in: ProblemTupel
+#include "../basics/global.hpp"
+// to respond, if anything has changed
+#include "callback.hpp"
+// to start the external Branch and Bound Algorithm
+#include "../communic/alg_call.hpp"
+// for the global variables
+//#include "../lisa_dt/xschedule.hpp"
+// order used in TC_update_seq()
+#include "../basics/order.hpp"
+#include "../lisa_dt/lisapref.hpp"
+#include "../lisa_dt/tclvar.hpp"
+#include "../lisa_dt/ptype.hpp"
+#include "../lisa_dt/lvalues.hpp"
+#include "../lisa_dt/schedule.hpp"
+#include "../lisa_dt/xsched.hpp"
+#include "../basics/status.hpp"
+// in TC_save
+#include "../desktop/file_io.hpp"
+#include "../misc/int2str.hpp"
+// translate() function
+#include "../desktop/c_tcl.hpp"
+// To generate the C-Matrix and the objective function
+#include "../lisa_dt/schedule/os_sched.hpp"
+// output of the classification scheme (in TC_classify())
+#include "../classify/classify.hpp"
+// for calculations in gantt-chart (in show_output())
+#include "../graphics/gantt.hpp"
+
+// ************************ Local Includes ********************
+#include "tcl_c.hpp"
+
+
+// ********************** Global Variables ********************
+extern class Lisa_ProblemType G_ProblemType;
+extern class Lisa_Values G_Values;
+extern class Lisa_Schedule *G_Schedule;
+extern class Lisa_XSchedule *G_XSchedule;
+extern class Lisa_Preferences G_Preferences;
+extern class Lisa_TCLVar G_TclVar;
+extern class Lisa_Canvas *G_MWCanvas;
+extern class Lisa_Status G_Status;
+extern class Lisa_List<ScheduleNode> *G_ScheduleList;
+
+// *********************** functions *************************
+
+// write MO as Matrix in Lisa_MO
+int TC_adopt_MO(ClientData /* clientData*/,
+		Tcl_Interp * /* interp*/,
+		int /*argc*/, char ** /* argv[]*/ ) {
+  
+  int i=0,j=0;
+  if (G_TclVar.MO_as_Matrix) {
+    if (G_Values.MO==NULL) {G_Values.make_MO();}
+    for(i=0;i<G_Values.get_m();i++)
+      for (j=0;j<G_Values.get_n();j++)
+	if ( (*G_Values.SIJ)[j][i]==FALSE) 
+	  (*G_TclVar.MO_as_Matrix)[j][i]=0;
+        G_Values.MO->read_rank(G_TclVar.MO_as_Matrix);
+    G_TclVar.MO_as_Matrix->fill(0);
+    G_Values.MO->write_rank(G_TclVar.MO_as_Matrix);
+        if (G_Values.valid_MO()==FALSE) 
+      G_ExceptionList.lthrow("Machine Order not valid");
+    new_values();
+  }
+  return TCL_OK;
+}
+
+// write Lisa_MO in Matrix in G_TclVar
+int TC_make_MO_Matrix(ClientData /*clientData*/,
+		      Tcl_Interp * /* interp*/,
+		      int /*argc*/, char **/* argv[]*/) {
+  if (G_Values.MO) {
+    if (G_TclVar.MO_as_Matrix==NULL) {
+      G_TclVar.make_MO(G_Values.get_n(),G_Values.get_m());
+    }
+    G_TclVar.MO_as_Matrix->fill(0);
+    G_Values.MO->write_rank(G_TclVar.MO_as_Matrix);
+  }
+  return TCL_OK;
+}
+
+int TC_open(ClientData /* clientData*/,
+	    Tcl_Interp */* interp*/,
+	    int argc, char *argv[])
+{
+  if (argc<2) return TCL_OK; // no filename given
+  string ifile;
+  // read the filename
+  ifile = argv[1];
+    // open the file
+  if (ifile=="") return TCL_OK;
+  if (read(ifile))   return  TCL_OK;
+  return TCL_OK;
+}
+
+int TC_open_schedule(ClientData /* clientData*/ ,
+	    Tcl_Interp * /* interp*/ ,
+	    int argc, char *argv[])
+{
+  if (argc<2) return TCL_OK; // no filename given
+  ifstream fin( argv[1]);
+  if (fin==NULL) { 
+    G_ExceptionList.lthrow("file:"+(string) argv[1]+" cannot be open");
+    return TCL_OK;
+  }
+  while (G_ExceptionList.empty()==0) print_error();
+  int no_schedules=0;
+  string S;
+  for (;;)
+    {
+      S=""; 
+      fin >>S;
+      if (S=="") 
+	{ 
+	  break;
+	} 
+      if (S=="<SCHEDULE>") no_schedules++;
+    }
+
+  //  fin.seekg(0);
+ fin.close();  
+  if (no_schedules>0) {
+    ifstream fin( argv[1]);
+    if (fin==NULL) { 
+      G_ExceptionList.lthrow("file:"+(string) argv[1]+" cannot be open");
+      return TCL_OK;
+    }
+    //    G_ScheduleList->clear();
+     while(!(G_ScheduleList->empty())) 
+	{
+          ScheduleNode dummynode;
+          dummynode=G_ScheduleList->pop();
+          if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
+	}
+    Lisa_Schedule *mySchedule;
+    ScheduleNode *myScheduleNode;
+    int i=0;
+    for(i=1;i<=no_schedules;i++) {
+      mySchedule = new Lisa_Schedule(1,1);
+      fin >> (*mySchedule);
+      myScheduleNode= new ScheduleNode(mySchedule);
+      G_ScheduleList->append(*myScheduleNode);
+       delete myScheduleNode;
+    }
+    G_Schedule=mySchedule;
+    new_schedule();
+    if (G_ExceptionList.empty(END_OF_FILE)==0) {
+      G_ExceptionList.lcatch(END_OF_FILE);
+      G_ExceptionList.lthrow("no schedule read");
+    } else  new_schedule();
+  }
+  fin.close();  
+  return TCL_OK;
+}
+
+
+// Priority Lists
+int TC_prior(ClientData /* clientData */,
+	    Tcl_Interp *interp,
+	     int argc, char *argv[]) {
+    if (argc<2) return TCL_OK; // no rule given
+  // only to test: sortet by pij
+    start_prior(interp,G_ProblemType,*G_Schedule,G_Values,G_Status,argv[1]);
+    update_LR();
+    
+    //new_schedule();
+    return TCL_OK;
+}
+
+int TC_save(ClientData /* clientData */,
+	    Tcl_Interp * /* interp */,
+	    int argc, char *argv[])  
+{ 
+  if (argc<2) return TCL_OK; // no filename given
+  string sfile;
+  // read the filename
+  sfile = argv[1];
+  // save the file
+  if (sfile=="") return TCL_OK;
+  if (save(sfile)) return  TCL_OK;
+  return TCL_OK;
+}
+
+// generate randomly processing time matrix with parameters min,max,step,seed1,seed2
+int TC_genpt(ClientData /* clientData */,
+	     Tcl_Interp * /*interp */,
+	     int /*argc*/, char *argv[])  
+{
+  float min,max,step;
+  int i,j;
+  int temp, u,m,n;
+  m=G_Values.get_m(); n=G_Values.get_n();
+
+  sscanf(argv[1],"%f",&min);
+  sscanf(argv[2],"%f",&max);
+  if (min==max) {
+    for (j=0; j<n; j++) {
+      for (i=0; i<m; i++) {
+	(*G_Values.PT)[j][i]=min;
+      }
+    }
+  } else {
+    sscanf(argv[3],"%f",&step);
+    sscanf(argv[4],"%ld",&G_Status.time_seed);
+    sscanf(argv[5],"%ld",&G_Status.mach_seed);
+    
+    Lisa_Vector<int> zeg(m), mg(m);
+    for (j=0; j<n; j++) {
+      for (i=0; i<m; i++) {
+	zeg[i] = lisa_random( (long) min, (long) max, &G_Status.time_seed);
+	mg[i]=i;
+      }
+      for (i=0; i<m; i++) {
+	u = lisa_random(i+1, m, &G_Status.mach_seed) -1 ;
+	temp = mg[i]; mg[i]=mg[u]; mg[u]=temp;
+      }
+      for (i=0; i<m; i++) 
+	if (  (*G_Values.SIJ)[j][ mg[i] ])
+	  (*G_Values.PT)[j][ mg[i] ]= zeg[i];
+    }
+  }
+  //new_values();
+  show_output();
+  return TCL_OK; 
+}
+
+// generate randomly column with parameters min,max,step,seed1,name
+int TC_gen_column(ClientData /* clientData */,
+	     Tcl_Interp * /*interp*/,
+	     int /*argc*/, char *argv[])  
+{
+  float min,max,step;
+  int j;
+  string name;
+
+  sscanf(argv[1],"%f",&min);
+  sscanf(argv[2],"%f",&max);
+  sscanf(argv[3],"%f",&step);
+  sscanf(argv[4],"%ld",&G_Status.time_seed);
+  name = argv[5];
+  int temp,n;
+  n=G_Values.get_n();
+  for (j=0; j<n; j++) {
+    temp = lisa_random( (long) min, (long) max, &G_Status.time_seed);
+    if (name=="DD") {
+      if (G_Values.RD!=NULL) 
+	(*G_Values.DD)[j]=temp+(*G_Values.RD)[j];
+      else
+	(*G_Values.DD)[j]=temp;
+    }
+    else if (name=="RD") {
+      if (G_Values.DD!=NULL) 
+	if (max< (*G_Values.DD)[j]) (*G_Values.RD)[j]=temp;
+	else (*G_Values.RD)[j]= lisa_random( (long) min, 
+					     (long) (*G_Values.DD)[j], 
+					     &G_Status.time_seed);
+      else (*G_Values.RD)[j]=temp;
+    }
+    else if (name=="WI") (*G_Values.WI)[j]=temp;
+    else cerr << name << " as column name unknown\n";
+  } 
+  new_values();
+  show_output();
+  return TCL_OK; 
+}
+
+// generate randomly a schedule
+int TC_gen_seq(ClientData /* clientData */,
+	      Tcl_Interp * /*interp*/,
+	      int /*argc*/, char **/*argv[]*/)  
+{
+  int m,n;
+
+  for(n=0;n<G_Values.get_n();n++)
+    for(m=0;m<G_Values.get_m();m++) {
+      if( (*G_Values.SIJ)[n][m]) 
+	(*G_Schedule->LR)[n][m]=
+	  lisa_random(1,G_Values.get_n()*G_Values.get_m(),&(G_Status.seed)); 
+    }
+  update_LR();
+  return TCL_OK; 
+}
+
+// generate randomly operation set
+int TC_gen_sij(ClientData /* clientData */,
+	      Tcl_Interp * /*interp*/,
+	      int /*argc*/, char *argv[])  
+{
+  float probab=0;
+  int m,n,i,j;
+
+  sscanf(argv[1],"%f",&probab);
+  sscanf(argv[2],"%ld",&G_Status.time_seed);
+  m=G_Values.get_m(); n=G_Values.get_n();
+
+  for (j=0; j<n; j++) {
+      for (i=0; i<m; i++) {
+	if (lisa_random( (long) 0, (long) 100, &G_Status.time_seed)<=probab )
+	  	(*G_Values.SIJ)[j][i]=1;
+	else {
+	  (*G_Values.SIJ)[j][i]=0;
+	   (*G_Values.PT)[j][i]=0;
+	}
+      }
+  }
+ no_schedule();
+  show_output();
+  return TCL_OK; 
+}
+
+// generate randomly machine order
+int TC_gen_mo(ClientData /* clientData */,
+	      Tcl_Interp * interp,
+	      int /*argc*/, char *argv[])  
+{
+  int m,n,i,j,no_of_machines,k,index;
+
+  m=G_Values.get_m(); n=G_Values.get_n();
+  G_TclVar.make_MO(G_Values.get_n(),G_Values.get_m());
+  G_TclVar.MO_as_Matrix->fill(0);
+
+  for (j=0; j<n; j++) {
+    no_of_machines=0;
+      for (i=0; i<m; i++) {
+	  if( (*G_Values.SIJ)[j][i])
+	     no_of_machines++;
+      }
+      for (k=1; k<=no_of_machines; k++) {
+	for (index=lisa_random( (long) 0, (long) m, &G_Status.time_seed); index <m;index++)
+	  if ((*G_Values.SIJ)[j][index]>0 &&  (*G_TclVar.MO_as_Matrix)[j][index]==0 )
+	    break;
+	if ( index >=m ) {
+	  for (index=0; index <m;index++)
+	      if ((*G_Values.SIJ)[j][index]>0 &&  (*G_TclVar.MO_as_Matrix)[j][index]==0 )
+	    break;
+	}
+	(*G_TclVar.MO_as_Matrix)[j][index]=k;
+      }
+  }
+  if (G_Values.MO==NULL) {G_Values.make_MO();}
+  G_Values.MO->read_rank(G_TclVar.MO_as_Matrix);
+  new_values();
+ //  Tcl_Eval(interp,"TC_draw_dat");
+//   show_output();
+  return TCL_OK; 
+}
+
+// reverse a schedule
+int TC_rev_seq(ClientData /* clientData */,
+	      Tcl_Interp */*interp*/,
+	      int /*argc*/, char **/*argv[]*/)  
+{
+  int ni,mi;
+  int max=G_Values.get_n()*G_Values.get_m();
+  for(ni=0;ni<G_Values.get_n();ni++)
+    for(mi=0;mi<G_Values.get_m();mi++)
+      if ( (*G_Values.SIJ)[ni][mi] )  (*G_Schedule->LR)[ni][mi]= max-(*G_Schedule->LR)[ni][mi]+1;
+  update_LR();
+  return TCL_OK; 
+}
+
+// update a schedule
+int TC_update_seq(ClientData /* clientData */,
+	      Tcl_Interp * /*interp*/ ,
+	      int /*argc*/, char **/*argv[]*/)  
+{
+  update_LR();
+  return TCL_OK; 
+}
+
+/// update  C-matrix
+int TC_update_cij(ClientData /* clientData */,
+		  Tcl_Interp * /*interp*/,
+		  int /*argc*/, char **/*argv[]*/) {
+  Lisa_OsProblem myOsProblem(&G_Values);
+  Lisa_OsSchedule myOsSchedule(&myOsProblem);
+  myOsSchedule.ComputeHeadsTails(TRUE,TRUE);
+  if (myOsSchedule.read_Cij(G_Schedule->CIJ)!=OK) {
+    G_ExceptionList.lthrow("Cij-Matrix not valid",ANY_ERROR);
+  }
+ return TCL_OK;
+}
+
+
+// refresh the output
+int TC_draw_output(ClientData /* clientData */,
+	      Tcl_Interp *interp,
+	      int /*argc*/, char **/*argv[]*/)  
+{
+  if ( ( (string) Tcl_GetVar2(interp,"mw","mwout",0)=="Sequence Graph" ||
+	 (string) Tcl_GetVar2(interp,"mw","mwout",0)=="Gantt Diagram")  &&
+       (G_Schedule->valid) )
+    Tcl_Eval(interp, "activate_zoom");
+  else  Tcl_Eval(interp, "disable_zoom");
+									
+  show_output();
+  return TCL_OK; 
+}
+
+// Draw Value Window
+int TC_draw_dat(ClientData /* clientData */,
+	       Tcl_Interp *interp,
+	       int /*argc*/, char **/*argv[]*/)  {
+  TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
+  Lisa_Matrix<int> *myMO=NULL;
+  Lisa_Matrix<TIMETYP> *myPT=NULL;
+  Lisa_Matrix<bool> *mySIJ=NULL;
+  Lisa_Vector<TIMETYP> *myRD=NULL, *myDD=NULL; 
+  Lisa_Vector<double> * myWI=NULL;  
+  string str;
+  
+  str = Tcl_GetVar2(interp,"dat","Matrix",TCL_GLOBAL_ONLY); 
+  mySIJ=G_Values.SIJ;
+  if (str=="MO") {
+    if (G_TclVar.MO_as_Matrix==NULL) 
+      G_TclVar.make_MO(G_Values.get_n(),G_Values.get_m());
+    myMO=G_TclVar.MO_as_Matrix;
+  }
+  else if (str=="PIJ") myPT=G_Values.PT;
+  else if (str=="PrecGraph") { cerr << "PrecGraph output not implemented\n";return TCL_OK;}
+  str  = Tcl_GetVar2(interp,"dat","RI",TCL_GLOBAL_ONLY);
+  if (str=="1") myRD=G_Values.RD; 
+  str  = Tcl_GetVar2(interp,"dat","DI",TCL_GLOBAL_ONLY);
+  if (str=="1") myDD=G_Values.DD; 
+  str  = Tcl_GetVar2(interp,"dat","WI",TCL_GLOBAL_ONLY);
+  if (str=="1") myWI=G_Values.WI; 
+  myValues.draw(myMO,myPT,mySIJ,myRD,myDD,myWI);
+  return TCL_OK; 
+}
+
+
+/// Update an entry in the value Window
+int TC_draw_dat_entry(ClientData /* clientData */,
+		      Tcl_Interp *interp,
+		      int argc, char *argv[]) {
+  TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
+  int xpos=0,ypos=0;
+  string value;
+  if (argc<4) {return TCL_OK;}
+  sscanf(argv[2],"%d",&xpos);
+  sscanf(argv[1],"%d",&ypos);
+  value=argv[3];
+  myValues.draw_entry(xpos,ypos,value);
+  return TCL_OK; 
+}
+
+// Mark an entry in the Value Window
+int TC_mark_value_entry(ClientData /* clientData */,
+			Tcl_Interp *interp,
+			int /*argc*/, char *argv[])  {
+  int row=0,column=0;
+  TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
+  sscanf(argv[1],"%d",&row);
+  sscanf(argv[2],"%d",&column);
+  myValues.mark(row,column);
+  return TCL_OK; 
+}
+
+// Draw Schedule Window
+int TC_draw_schedule(ClientData /* clientData */,
+	       Tcl_Interp *interp,
+	       int /*argc*/, char **/*argv[]*/)  {
+    TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
+    string str = Tcl_GetVar2(interp,"schedule","Matrix",TCL_GLOBAL_ONLY); 
+    Lisa_Matrix<TIMETYP> *myCIJ=NULL;
+    Lisa_MO *myMO=NULL;
+    Lisa_Matrix<int> *myLR=NULL;
+    Lisa_JO *myJO=NULL;
+    if (str=="LR")   {
+      G_Schedule->make_LR();
+      myLR=G_Schedule->LR;
+    }
+    else if (str=="SCHEDULE") myCIJ=G_Schedule->CIJ;
+    else return TCL_OK; 
+    mySchedule.draw(myMO,myLR,myJO,myCIJ,G_Values.SIJ);
+    return TCL_OK; 
+}
+
+// Draw List of Schedules
+int TC_draw_schedule_list(ClientData /* clientData */,
+	       Tcl_Interp *interp,
+	       int /*argc*/, char **/*argv[]*/)  {
+  int no_schedules=G_ScheduleList->length();
+  if (no_schedules>=1) {
+    ScheduleNode myScheduleNode;
+    int j=0;
+    double objective=0;
+    int weights_exists=0,duedates_exists=0, objective_name=0;
+    
+    objective_name=G_ProblemType.get_property(OBJECTIVE);
+    if (objective_name==SUM_WICI||objective_name==SUM_WIUI||objective_name==SUM_WITI) 
+      weights_exists=1;
+    if (objective_name==LMAX||objective_name==SUM_UI||
+	objective_name==SUM_WIUI||objective_name==SUM_TI||
+	objective_name==SUM_WITI)
+      duedates_exists=1;
+    G_ScheduleList->reset();
+    for(j=0;j<no_schedules;j++) {
+      while (G_ExceptionList.empty()==0) print_error();
+      Lisa_OsProblem  myOsProblem(&G_Values);
+      Lisa_OsSchedule  myOsSchedule(&myOsProblem);
+      G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+      //myScheduleNode=G_ScheduleList->get();
+      G_Schedule=G_ScheduleList->get().actual_schedule;
+      (*G_ScheduleList->get().schedule_info)[0]=j+1;
+      // CMAX-Objective:
+      G_ProblemType.set_property(OBJECTIVE,CMAX);
+      objective=update_objective(myOsSchedule);
+      (*G_ScheduleList->get().schedule_info)[CMAX]= (int) objective;
+      // SUM_CI-Objective:
+      G_ProblemType.set_property(OBJECTIVE,SUM_CI);
+      objective=update_objective(myOsSchedule);
+      (*G_ScheduleList->get().schedule_info)[SUM_CI]=(int) objective;
+      if (weights_exists) {
+	// SUM_WICI-Objective:
+	G_ProblemType.set_property(OBJECTIVE,SUM_WICI);
+	objective=update_objective(myOsSchedule);
+	(*G_ScheduleList->get().schedule_info)[SUM_WICI]=(int) objective;
+      }
+      if (duedates_exists) {
+	// LMAX-Objective
+	G_ProblemType.set_property(OBJECTIVE,LMAX);
+	objective=update_objective(myOsSchedule);
+	(*G_ScheduleList->get().schedule_info)[LMAX]=(int) objective;
+	// SUM_UI-Objective
+	G_ProblemType.set_property(OBJECTIVE,SUM_UI);
+	objective=update_objective(myOsSchedule);
+	(*G_ScheduleList->get().schedule_info)[SUM_UI]=(int) objective;
+	// SUM_TI-Objective
+	G_ProblemType.set_property(OBJECTIVE,SUM_TI);
+	objective=update_objective(myOsSchedule);
+	(*G_ScheduleList->get().schedule_info)[SUM_TI]=(int) objective;
+	if (weights_exists) {
+	  // SUM_WIUI-Objective
+	  G_ProblemType.set_property(OBJECTIVE,SUM_WIUI);
+	  objective=update_objective(myOsSchedule);
+	  (*G_ScheduleList->get().schedule_info)[SUM_WIUI]=(int) objective;
+	  // SUM_WITI-Objective
+	  G_ProblemType.set_property(OBJECTIVE,SUM_WITI);
+	  objective=update_objective(myOsSchedule);
+	  (*G_ScheduleList->get().schedule_info)[SUM_WITI]=(int) objective;
+	}
+      }
+	  (*G_ScheduleList->get().schedule_info)[MAXRANK_INFO ]=G_Schedule->get_property(MAXRANK_INFO);
+	  (*G_ScheduleList->get().schedule_info)[NO_OF_SOURCES]= G_Schedule->get_property(NO_OF_SOURCES);
+	  (*G_ScheduleList->get().schedule_info)[NO_OF_SINKS]=G_Schedule->get_property(NO_OF_SINKS);
+	  (*G_ScheduleList->get().schedule_info)[NO_OF_IKL]=(int) 4;
+	  //cout << "no sources:" << (*G_ScheduleList->get().schedule_info)[NO_OF_SOURCES]<< endl;
+	  G_ScheduleList->next();
+    }
+    
+    G_ProblemType.set_property(OBJECTIVE,objective_name);
+    
+    TCScheduleList myScheduleList(interp,SLW_MAINCANV,SLW_HORICANV,SLW_VERTCANV,SLW_LABEL);
+    myScheduleList.draw(G_ScheduleList);
+  }
+  return TCL_OK; 
+}
+
+// Update an entry in the schedule Window
+int TC_draw_schedule_entry(ClientData /* clientData */,
+		      Tcl_Interp *interp,
+		      int argc, char *argv[]) {
+  TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
+  int xpos=0,ypos=0;
+  string value;
+  if (argc<4) {return TCL_OK;}
+  sscanf(argv[2],"%d",&xpos);
+  sscanf(argv[1],"%d",&ypos);
+  value=argv[3];
+  mySchedule.draw_entry(xpos,ypos,value);
+  return TCL_OK; 
+}
+
+// If new ProblemType defined
+int TC_new_problem(ClientData /* clientData */,
+		   Tcl_Interp * /*interp*/,
+		   int /*argc*/, char **/*argv[]*/) {
+  new_problemtype();
+  return TCL_OK; 
+}
+
+// If new Lisa_Values defined
+int TC_new_values(ClientData /* clientData */,
+		  Tcl_Interp * /*interp*/,
+		  int /*argc*/, char **/*argv[]*/) {
+  new_values();
+  return TCL_OK; 
+}
+
+// Mark an entry in the schedule window
+int TC_mark_schedule_entry(ClientData /* clientData */,
+			   Tcl_Interp *interp,
+			   int /*argc*/, char *argv[])  {
+  int row=0,column=0;
+  TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
+  sscanf(argv[1],"%d",&row);
+  sscanf(argv[2],"%d",&column);
+  mySchedule.mark(row,column);
+  return TCL_OK; 
+}
+
+
+int TC_exit(ClientData /* clientData */,
+		Tcl_Interp * /*interp*/,
+		int /*argc*/, char **/*argv[]*/) {  
+  G_TclVar.alive=0;
+  return TCL_OK;
+}
+
+
+/// Problem Classification
+int TC_classify(ClientData /* clientData */,
+	    Tcl_Interp * interp ,
+		int /*argc*/, char **/*argv[]*/) {
+  Tcl_Eval(interp, "Window show .textaus");
+  mw_set_label ("$Name(Classification");
+  textobj mytext(interp);
+  mytext.clear();
+  string str;
+  str=Lisa_classify(&G_ProblemType,G_Preferences.LISA_HOME,
+		     "/data/classify.bib");
+   // str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
+   //		    "/data/classify.bib");
+  mytext.text(str.c_str());
+  return TCL_OK; 
+}
+
+int TC_references(ClientData /* clientData */,
+	    Tcl_Interp * interp ,
+		int /*argc*/, char **/*argv[]*/) {
+  string str2="";
+  string str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
+			   "/data/classify.bib");
+  if (str!="") {
+    str2="lisa_text  $Name(References) {" + str + "}" ;
+    Tcl_Eval(interp, (char *) str2.c_str());
+  }
+    else G_ExceptionList.lthrow("No references found",ANY_ERROR);
+  return TCL_OK; 
+}
+
+
+
+
+/// If an error in the Tk- Application occour
+int TC_error(ClientData /* clientData */,
+	    Tcl_Interp * /*interp*/,
+		int /*argc*/, char *argv[]) {
+  G_ExceptionList.lthrow(argv[1],ANY_ERROR);
+  return TCL_OK; 
+}
+
+/// Delete all global objects
+int TC_new(ClientData /* clientData */,
+	   Tcl_Interp * /*interp*/,
+	   int /*argc*/, char **/*argv[]*/) {
+  int i;
+  for(i=0;i<TUPEL_INDEX;i++) G_ProblemType.set_property(i,EMPTY);
+  //  G_ProblemType.valid=FALSE;
+   G_Values.init(0,0);
+ //   G_Schedule->init(0,0);
+   // no_schedule();
+   show_output();
+   return TCL_OK; 
+}
+
+/// write G_Schedule.LR in G_TCLVar.LR
+int  TC_save_old_sequence(ClientData /* clientData */,
+	   Tcl_Interp * /*interp*/,
+	   int /*argc*/, char ** /*argv[]*/) {
+  G_TclVar.make_LR(G_Values.get_n(),G_Values.get_m());
+  *(G_TclVar.LR)=*(G_Schedule->LR);
+ return TCL_OK; 
+}
+
+/// move operation
+int TC_move_operation(ClientData /* clientData */,
+	   Tcl_Interp * interp,
+	   int /*argc*/, char *argv[]) {
+  string type="";
+  int return_value=ERROR;
+  int row=0,column=0;
+  int JOsucc=0,MOsucc=0,JOpred=0,MOpred=0;
+  type=argv[1];
+  if (type=="reset") {
+    *(G_Schedule->LR)=*(G_TclVar.LR);
+    new_schedule();
+return TCL_OK;
+  }
+
+  sscanf(argv[2],"%d",&row);
+  sscanf(argv[3],"%d",&column);
+  
+  if (G_Schedule->valid) {
+    row++;column++;
+    while (G_ExceptionList.empty()==0) print_error();
+    Lisa_OsProblem  myOsProblem(&G_Values);
+    Lisa_OsSchedule  myOsSchedule(&myOsProblem);
+    G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+    myOsSchedule.read_LR(G_Schedule->LR);
+
+    JOsucc=myOsSchedule.GetJOsucc(row,column);
+    MOsucc=myOsSchedule.GetMOsucc(row,column);
+    JOpred=myOsSchedule.GetJOpred(row,column);
+    MOpred=myOsSchedule.GetMOpred(row,column);
+
+    G_TclVar.JOsucc= JOsucc;
+    G_TclVar.MOsucc= MOsucc;
+    G_TclVar.JOpred= JOpred;
+    G_TclVar.MOpred= MOpred; 
+    myOsSchedule.exclude(row,column);
+    if (type=="right") {
+      if (MOsucc!=SINK)
+      return_value=myOsSchedule.insert(row,column,JOpred,MOsucc);
+    } else if (type=="rright") {
+      return_value=myOsSchedule.insert(row,column,JOpred,
+				       myOsSchedule.GetMOpred(row,SINK));
+    } else if (type=="left") {
+      if ( MOpred!=SOURCE)
+	return_value=myOsSchedule.insert(row,column,JOpred,
+					 myOsSchedule.GetMOpred(row,MOpred));
+    } else if (type=="lleft") {
+      return_value=myOsSchedule.insert(row,column,JOpred,SOURCE);
+    } else if (type=="top") {
+      if (JOsucc!=SINK)
+	return_value=myOsSchedule.insert(row,column,JOsucc,MOpred);
+    } else if (type=="ttop") {
+      return_value=myOsSchedule.insert(row,column,
+				       myOsSchedule.GetJOpred(SINK,column),MOpred);
+    } else if (type=="buttom") {
+      if (JOpred!=SOURCE)
+	return_value=myOsSchedule.insert(row,column,
+					 myOsSchedule.GetJOpred(JOpred,column),
+					 MOpred);
+    }else if (type=="bbuttom") {
+      return_value=myOsSchedule.insert(row,column,SOURCE,MOpred);
+    } else if (type=="source") {
+      return_value=myOsSchedule.insert(row,column,SOURCE,SOURCE);
+    } else if (type=="sink") {
+      return_value=myOsSchedule.insert(row,column,
+				       myOsSchedule.GetJOpred(SINK,column),
+				       myOsSchedule.GetMOpred(row,SINK));
+    } else return TCL_OK;
+    
+    if (return_value==CYCLE) {
+      G_ExceptionList.lthrow("cycle: modification not possible",ANY_ERROR);
+      return TCL_OK; 
+    }
+    if (return_value==ERROR) {
+      return TCL_OK; 
+    }
+    myOsSchedule.write_LR(G_Schedule->LR);
+    new_schedule();
+  }
+  string zoomflag=Tcl_GetVar2(interp,"mw","zoom",TCL_GLOBAL_ONLY);
+  string mw_output= Tcl_GetVar2(interp,"mw","mwout",TCL_GLOBAL_ONLY);
+  if (mw_output=="Gantt Diagram") {
+    TCGantt myTCGantt(interp,MW_MAINCANV, MW_HORICANV,MW_VERTCANV);
+    myTCGantt.zoom=G_Status.zoom;
+    myTCGantt.set_wh((int) G_Status.width,(int) G_Status.height);
+    myTCGantt.mark(column-1,row-1,&G_Values,G_Schedule,G_Preferences.gantt_orient);
+  }
+  Tcl_Eval(interp, "man_oper_update");
+  return TCL_OK; 
+}
+
+
+
+
+/// Choose new Sequence
+int TC_choose_sequence(ClientData /* clientData */,
+		       Tcl_Interp * /*interp*/,
+		       int argc, char *argv[]) {
+   if (argc>1) {
+     int seq_no=0;
+     sscanf(argv[1],"%d",&seq_no);
+     if(seq_no<G_ScheduleList->length()&& seq_no>=0) {
+       G_Schedule=(*G_ScheduleList)[seq_no].actual_schedule;
+       new_schedule();
+     }
+  }
+    return TCL_OK; 
+}
+
+
+/// Sort list of sequences
+
+int TC_sort_sl(ClientData /* clientData */,
+	       Tcl_Interp * interp,
+	       int argc, char *argv[]) {
+  int obj_name=0;
+  
+  if (argc>1) {
+    string str;
+    str=argv[1];
+    obj_name=str.toint();
+    G_ScheduleList->pop().sinfo_pointer=obj_name;
+    G_ScheduleList->sort();
+  }
+  /*
+    Lisa_Node * myLisa_Node=NULL;
+    ScheduleNode * myScheduleNode=NULL;
+    if (str=="Objective") {
+      myLisa_Node=G_Schedule->ScheduleList->first();
+      myScheduleNode=(ScheduleNode *) myLisa_Node;
+      myScheduleNode->sinfo_pointer=1;
+    }
+    G_Schedule->ScheduleList->isort();
+  }
+  */
+  Tcl_Eval(interp, "TC_draw_schedule_list");
+  return TCL_OK; 
+}
+
+/// starts external algorithm
+int TC_startalg(ClientData /* clientData */,
+		Tcl_Interp *interp,
+		int /*argc*/, char *argv[]) {
+
+  
+  string name_of_algo,str="",type,name_of_parameter;
+  int i=0,n=0;
+  long int long_var=0;
+  double double_var=0;
+  string string_var="";
+  string code="";
+  Lisa_ControlParameters myctrlpara;
+  name_of_algo=argv[1];
+    sscanf(Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"NO_OF_ENTRYS",TCL_GLOBAL_ONLY),"%d",&n);
+    for (i=1;i<=n;i++) {
+    str= ztos(i) + ",TYPE";
+    type=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),(char*) str.c_str(),TCL_GLOBAL_ONLY);
+    str= ztos(i) + ",NAME_OF_PARAMETER";
+    name_of_parameter=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),(char*) str.c_str(),TCL_GLOBAL_ONLY);
+    if (type=="double") {
+      sscanf(Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),
+			 (char*)name_of_parameter.c_str(),TCL_GLOBAL_ONLY),"%lf",&double_var);
+      myctrlpara.add_key(name_of_parameter,double_var);
+    }
+    if (type=="string") {
+      string_var=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),
+			     (char*)name_of_parameter.c_str(),TCL_GLOBAL_ONLY);
+      myctrlpara.add_key(name_of_parameter,string_var);
+    }
+   if (type=="long") {
+      sscanf(Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),
+			 (char*)name_of_parameter.c_str(),TCL_GLOBAL_ONLY),"%ld",&long_var);
+      myctrlpara.add_key(name_of_parameter,long_var);
+    }
+  }
+    string algo_call="";
+  algo_call=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"ALGO_CALL",TCL_GLOBAL_ONLY);
+  code=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"CODE",TCL_GLOBAL_ONLY);
+  if (code=="external") {
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
+	       G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
+	       G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
+  } else  if (code=="internal") {
+    string str2 = "showdelaym \"$Name(Wait...)\" \" "+ name_of_algo + " $Name(started)\"";
+    Tcl_Eval(interp, (char*) str2.c_str());
+    Tcl_Eval(interp,"tkwait visibility .delaym");
+    Tcl_Eval(interp,"set idle_tst 1");
+    Tcl_Eval(interp,"after 20 {set idle_tst 0}");
+    Tcl_Eval(interp,"vwait idle_tst");
+    start_int_algo(name_of_algo,algo_call,
+		   G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
+    update_LR();
+    Tcl_Eval(interp,"destroy .delaym");
+  } else {
+    G_ExceptionList.lthrow( (string) "wrong code:" + code + "in description file external or internal expected (assume external)" ,SYNTAX_ERROR);
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
+		   G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
+		   G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
+  } 
+
+  return TCL_OK;
+}
+
+
+int TC_problem_reduction(ClientData /* clientData */,
+	 Tcl_Interp *interp,
+	 int /*argc*/, char *argv[])  
+{
+  int i,result=-1;
+  string type="", filename="";
+  Lisa_ProblemType myProblemType;
+  Lisa_RedGraph *myRedGraph;
+  myRedGraph = new Lisa_RedGraph;
+  type=argv[1];
+  filename=argv[2];
+  ifstream fin(filename.c_str());
+  sprintf(interp->result, "%d",0);
+  if (fin==NULL) {
+    G_ExceptionList.lthrow("cannot open file: "+filename+"\n",END_OF_FILE);
+    return 1;
+  }
+  string S;
+  int number_of_heursolv_probl=0;
+  int number_of_exactsolv_probl=0;
+  
+  if (type=="heuristic") {
+    for (;;)
+      {
+	S=""; 
+	fin >>S;
+	if (S=="") 
+	  { 
+	    G_ExceptionList.lthrow("no extry: </HEURISTIC> in file: "+filename+"\n",END_OF_FILE);
+	    return TCL_OK;
+	  } 
+	if (S=="<PROBLEMTYPE>") number_of_heursolv_probl++;
+	if (S=="<HEURISTIC>") number_of_heursolv_probl=0;
+	if (S=="</HEURISTIC>") break;
+      }
+    
+    if (number_of_heursolv_probl==0) return TCL_OK;
+    else { 
+      // test by reduction
+      // open again, to be on top of the file
+      // ifstream fin(filename.c_str());
+      fin.seekg(0);
+      for (;;)
+      {
+	S=""; 
+	fin >>S;
+	if (S=="<HEURISTIC>") break;
+      }
+      // now read problemtupel
+      for (i=1;i<= number_of_heursolv_probl;i++) {
+	fin >> myProblemType;
+	result=myRedGraph->compare(&G_ProblemType,&myProblemType);
+	if (result==FIRST_TO_SECOND||result==IDENT) {
+	  sprintf(interp->result, "%d",1);
+	}
+      }      
+    }
+  }
+  if (type=="exact") {
+    for (;;)
+      {
+	S=""; 
+	fin >>S;
+	if (S=="") 
+	  { 
+	    G_ExceptionList.lthrow("no extry: </EXACT> in file: "+filename+"\n",END_OF_FILE);
+	    sprintf(interp->result, "%d",0);
+	    return TCL_OK;
+	  } 
+	if (S=="<PROBLEMTYPE>") number_of_exactsolv_probl++;
+	if (S=="<EXACT>") number_of_exactsolv_probl=0;
+	if (S=="</EXACT>") break;
+      }
+    if (number_of_exactsolv_probl==0)  sprintf(interp->result, "%d",0);
+    else {
+      // test by reduction
+      // open again, to be on top of the file
+      // ifstream fin(filename.c_str());
+      fin.seekg(0);
+      for (;;)
+	{
+	  S=""; 
+	  fin >>S;
+	  if (S=="<EXACT>") break;
+	}
+      // now read problemtupel
+      for (i=1;i<= number_of_exactsolv_probl;i++) {
+	fin >> myProblemType;
+	result=myRedGraph->compare(&G_ProblemType,&myProblemType);
+	if (result==FIRST_TO_SECOND||result==IDENT) {
+	  sprintf(interp->result, "%d",1);
+	} 
+      }
+    }
+  } 
+  // sprintf(interp->result, "%d",1);
+  return TCL_OK; 
+}
+
+/// exclude sequences from list
+int TC_exclude(ClientData /* clientData */,
+		Tcl_Interp */*interp*/,
+		int argc, char *argv[]) {
+
+  if (argc <2 ) {
+    G_ExceptionList.lthrow("Wrong number of arguments in TC_exclude",TCLTK_ERROR);
+    return TCL_OK;  
+  } 
+  string str= argv[1];
+  if (str=="clear_list") {
+    Lisa_Schedule * my_schedule;
+    my_schedule = new Lisa_Schedule(*G_Schedule);
+    // G_ScheduleList->clear(); 
+     while(!(G_ScheduleList->empty())) 
+	{
+          ScheduleNode dummynode;
+          dummynode=G_ScheduleList->pop();
+          if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
+	}
+    // G_Schedule=my_schedule;
+    ScheduleNode *myScheduleNode;
+    myScheduleNode= new ScheduleNode(G_Schedule);
+    G_ScheduleList->append(*myScheduleNode);
+    delete myScheduleNode;
+    delete G_XSchedule;
+    G_XSchedule = new Lisa_XSchedule(G_Schedule);
+  }
+  return TCL_OK; 
+}
+
+
+/// save Lisa_Preferences in default.lsa
+int TC_save_options(ClientData,	Tcl_Interp *, int , char **) {
+  string str=G_Preferences.CONFIG_HOME+"/default.lsa";
+  ofstream fout(str.c_str());
+  if (fout==NULL) {
+    G_ExceptionList.lthrow("cannot write file: "+str+"\n",END_OF_FILE);
+    return 1;
+  }
+  fout << G_Preferences;
+ return TCL_OK; 
+}
+
+///  start Enumeration Algorithm
+// int TC_cenum(ClientData,	Tcl_Interp *, int , char **) {
+ 
+//  cenum(&G_Values);
+//  return TCL_OK; 
+// }
+
+
+///send <ctrl-C> Signal to external Algorithm
+int TC_stop_extalg(ClientData,	Tcl_Interp *, int , char **) {
+
+string str;
+str ="dir";
+string str2= " ";
+execl(str.c_str(),str2.c_str());
+//  cenum(&G_Values);
+  return TCL_OK; 
+}
+

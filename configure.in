@@ -1,0 +1,422 @@
+dnl## LiSA configure.in
+dnl## Copyright Lars Dornheim 1998, 1999
+dnl## E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+dnl## WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## Source verification
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_INIT(src/main/lisa.cpp)
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## Intro
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_MSG_RESULT()
+AC_MSG_RESULT(""####  ****   @@@@@@@@@@@@ XXXXXXXXXXXX "")
+AC_MSG_RESULT(""####  ****   @@@@@@@@@@@@ XXXXXXXXXXXX "")
+AC_MSG_RESULT(""XXXX  ####   %%%%         @@@@    **** "")
+AC_MSG_RESULT(""XXXX  ####   %%%%         @@@@    **** "")
+AC_MSG_RESULT(""****  @@@@   ############ %%%%%%%%%%%% "")
+AC_MSG_RESULT(""****  @@@@   ############ %%%%%%%%%%%% "")
+AC_MSG_RESULT(""@@@@                 %%%% ****    #### "")
+AC_MSG_RESULT(""@@@@                 %%%% ****    #### "")
+AC_MSG_RESULT(""%%%%%%%%%%%% XXXXXXXXXXXX ####    @@@@ "")
+AC_MSG_RESULT(""%%%%%%%%%%%% XXXXXXXXXXXX ####    @@@@ "")
+AC_MSG_RESULT()
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## Argument declarations
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_ARG_WITH(tcl-includes, [  --with-tcl-includes=DIR          use Tcl/Tk includes from DIR],
+	option_tcl_includes=$withval, option_tcl_includes="")
+if test -n "$option_tcl_includes"; then
+    if test ! -d "$option_tcl_includes"; then
+        AC_MSG_ERROR(Tcl include directory $option_tcl_includes doesn't exist)
+    fi
+fi
+
+AC_ARG_WITH(tcl-libraries, [  --with-tcl-libraries=DIR          use Tcl/Tk libraries from DIR],
+	option_tcl_libraries=$withval, option_tcl_libraries="")
+if test -n "$option_tcl_libraries"; then
+    if test ! -d "$option_tcl_libraries"; then
+        AC_MSG_ERROR(Tcl library directory $option_tcl_libraries doesn't exist)
+    fi
+fi
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## Macro definitions
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_DEFUN(AC_PROG_CXX_PREFER_GNU,
+[AC_BEFORE([$0], [AC_PROG_CXXCPP])dnl
+AC_CHECK_PROGS(CXX, $CCC g++ c++ gcc CC cxx cc++, gcc)
+
+AC_PROG_CXX_WORKS
+AC_PROG_CXX_GNU
+
+if test $ac_cv_prog_gxx = yes; then
+  GXX=yes
+dnl Check whether -g works, even if CXXFLAGS is set, in case the package
+dnl plays around with CXXFLAGS (such as to build both debugging and
+dnl normal versions of a library), tasteless as that idea is.
+  ac_test_CXXFLAGS="${CXXFLAGS+set}"
+  ac_save_CXXFLAGS="$CXXFLAGS"
+  CXXFLAGS=
+  AC_PROG_CXX_G
+  if test "$ac_test_CXXFLAGS" = set; then
+    CXXFLAGS="$ac_save_CXXFLAGS"
+  elif test $ac_cv_prog_cxx_g = yes; then
+    CXXFLAGS="-g -O2"
+  else
+    CXXFLAGS="-O2"
+  fi
+else
+  GXX=
+  test "${CXXFLAGS+set}" = set || CXXFLAGS="-g"
+fi
+])
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## General variables
+dnl##
+dnl##--------------------------------------------------------------------
+
+dnl##
+dnl## Program path
+dnl##
+
+PROGRAMPATH=`pwd`
+AC_SUBST(PROGRAMPATH)
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## General autoconf checks
+dnl##
+dnl##--------------------------------------------------------------------
+
+dnl##
+dnl## Checks for programs.
+dnl##
+
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_CXX_PREFER_GNU
+
+dnl##
+dnl## Checks for libraries or library functions.
+dnl##
+
+AC_CHECK_LIB(ld, main)
+AC_CHECK_LIB(dl, main)
+AC_CHECK_LIB(m, main)
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## TCL/TK configuration
+dnl##
+dnl##--------------------------------------------------------------------
+
+if test -z "$NO_TK"; then
+
+    dnl##
+    dnl## Find X
+    dnl##
+
+    #--------------------------------------------------------------------
+    #	Derived from the Tk configure.in...
+    #
+    #	Locate the X11 header files and the X11 library archive.  Try
+    #	the ac_path_x macro first, but if it doesn't find the X stuff
+    #	(e.g. because there's no xmkmf program) then check through
+    #	a list of possible directories.  Under some conditions the
+    #	autoconf macro will return an include directory that contains
+    #	no include files, so double-check its result just to be safe.
+    #--------------------------------------------------------------------
+    AC_PATH_X
+    not_really_there=""
+    if test "$no_x" = ""; then
+        if test "$x_includes" = ""; then
+    	    AC_TRY_CPP([#include <X11/XIntrinsic.h>], , not_really_there="yes")
+        else
+    	if test ! -r $x_includes/X11/Intrinsic.h; then
+    	    not_really_there="yes"
+    	fi
+        fi
+    fi
+    
+    if test "$no_x" = "yes" -o "$not_really_there" = "yes"; then
+        AC_MSG_CHECKING(for X11 header files)
+        XINCLUDES="# no special path needed"
+        AC_TRY_CPP([#include <X11/Intrinsic.h>], , XINCLUDES="nope")
+        if test "$XINCLUDES" = nope; then
+            dirs="/usr/unsupported/include /usr/local/include /usr/localapp/include /localapp/include /opt/local/include /usr/X386/include /usr/include/X11R4 /usr/X11R5/include /usr/include/X11R5 /opt/local/X11R5/include /opt/local/X11R4/include /usr/openwin/include /usr/X11/include /opt/local/X11/include /usr/sww/include"
+            for i in $dirs ; do
+    	    if test -r $i/X11/Intrinsic.h; then
+    	        XINCLUDES=" -I$i"
+		x_includes="$i"
+                break
+    	    fi
+            done
+        fi
+        AC_MSG_RESULT($x_includes)
+    else
+        if test "$x_includes" != ""; then
+    	XINCLUDES=-I$x_includes
+        else
+    	XINCLUDES="# no special path needed"
+        fi
+    fi
+
+    if test "$XINCLUDES" = nope; then
+      AC_MSG_WARN(couldn't find any X11 include files.)
+      XINCLUDES="# no include files found"
+    fi
+    
+    if test "$no_x" = yes; then
+        AC_MSG_CHECKING(for X11 libraries)
+        XLIBSW=nope
+        if test "$XLIBSW" = nope; then
+        dirs="/usr/unsupported/lib /usr/local/lib /usr/localapp/lib /localapp/lib /opt/local/lib /usr/X386/lib /usr/lib/X11R4 /usr/X11R5/lib /usr/lib/X11R5 /opt/local/X11R5/lib /opt/local/X11R4/lib /usr/openwin/lib /usr/X11/lib /opt/local/X11/lib /usr/sww/lib"
+    	for i in $dirs ; do
+    	    if test -r $i/libX11.a; then
+    		XLIBSW="-L$i -lX11"
+                x_libraries="$i"
+    	    fi
+    	done
+        fi
+	AC_MSG_RESULT($x_libraries)
+    else
+        if test "$x_libraries" = ""; then
+    	XLIBSW=-lX11
+        else
+    	XLIBSW="-L$x_libraries -lX11"
+        fi
+    fi
+    if test "$XLIBSW" = nope ; then
+        AC_CHECK_LIB(Xwindow, XCreateWindow, XLIBSW=-lXwindow)
+    fi
+    if test "$XLIBSW" = nope ; then
+        AC_MSG_WARN(couldn't find X11 libraries.  Using -lX11.)
+        XLIBSW=-lX11
+    fi
+
+    dnl##
+    dnl## Find TCL and Tk
+    dnl##
+
+    if test -z "$option_tcl_libraries"; then
+
+        AC_CHECK_PROG(TCLSH,tclsh,tclsh)
+        if test -n "$TCLSH"; then
+            AC_MSG_CHECKING(for tcl version)
+            tcl_ext=`echo 'puts stdout [[info tclversion]]' | $TCLSH`
+            AC_MSG_RESULT($tcl_ext)
+            AC_MSG_CHECKING(for tcl lib path)
+            tcl_path=` echo 'puts stdout [[info library]]' | tclsh | sed ['s/\/[^\/]*$//']`
+            AC_MSG_RESULT($tcl_path)
+            tcl_base=`echo $tcl_path | sed ['s/\/[^\/]*$//']`
+        fi
+
+    else
+
+        AC_MSG_CHECKING(for tcl lib path)
+        tcl_path="$option_tcl_libraries"
+        AC_MSG_RESULT($tcl_path)
+        tcl_base=`echo $tcl_path | sed ['s/\/[^\/]*$//']`
+
+    fi        
+
+    ##
+    ## Find includes
+    ##
+
+    AC_MSG_CHECKING(for tcl include path)
+    if test -z "$option_tcl_includes"; then
+
+        if test -n "$tcl_base"; then
+            saved_CPPFLAGS="$CPPFLAGS"
+            CPPFLAGS="-I$tcl_base/include $CPPFLAGS"
+            AC_TRY_CPP([#include <tcl.h>],[
+                tcl_incl="-I$tcl_base/include"
+                tcl_inclp="$tcl_base/include"],
+            tcl_incl=""; tcl_inclp="")
+            CPPFLAGS="$saved_CPPFLAGS"
+        else
+            AC_TRY_CPP([#include <tcl.h>],tcl_inclp="no extra path needed",tcl_inclp="")
+        fi
+
+        if test -z "$tcl_inclp"; then
+            dirs="/usr/include /usr/local/include /usr/localapp/include /localapp/include /opt/local/include /usr/local/tcl/include /opt/local/tcl/include /usr/unsupported/include /usr/unsupported/tcl/include /usr/sww/include /usr/sww/tcl/include /loc/include /loc/tcl/include"
+            for i in $dirs ; do
+                if test -r $i/tcl.h; then
+                    tcl_incl="-I$i"
+                    tcl_inclp="$i"
+                    break
+                fi
+            done
+        fi
+
+        if test -z "$tcl_inclp"; then
+            AC_MSG_RESULT(couldn't find it)
+        else
+            AC_MSG_RESULT($tcl_inclp)
+        fi
+
+    else
+
+        tcl_incl="-I$option_tcl_includes"
+	tcl_inclp="$option_tcl_includes"
+        AC_MSG_RESULT($tcl_inclp)
+
+    fi
+
+    ##
+    ## Find libraries, first try the path we got from tclsh (or command line flag)
+    ##
+
+    if test -n "$tcl_path"; then
+        saved_LDFLAGS="$LDFLAGS"
+        LDFLAGS="-L$tcl_path $LDFLAGS"
+        for g in `ls -1 $tcl_path/libtcl* 2> /dev/null | egrep ['tcl[0-9.]'] | \
+                  sed -e 's/^.*\/libtcl/tcl/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+            tcle=`echo $g | sed 's/^tcl//'`
+            AC_CHECK_LIB(tcl$tcle,main,[
+                for f in `ls -1 $tcl_path/libtk* 2> /dev/null | egrep ['tk[0-9.]'] | \
+                          sed -e 's/^.*\/libtk/tk/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+                    ext=`echo $f | sed 's/^tk//'`
+                    AC_CHECK_LIB(tk$ext,main,[
+                        tcl_lib="-L$tcl_path -ltk$ext -ltcl$tcle"
+                        tcl_library="$tcl_path"
+                        saved_LIBS="$LIBS"
+                        LIBS="-ltcl$tcle $LIBS $dl_lib"
+                        AC_CHECK_FUNC(Tcl_GetStringResult)
+                        LIBS="$saved_LIBS"
+                        break],
+                    tcl_lib="", -ltcl$tcle $XLIBSW $dl_lib)
+                done],
+                tcl_lib="", $dl_lib)
+            if test -n "$tcl_lib"; then
+                break
+            fi
+        done
+        LDFLAGS="$saved_LDFLAGS"
+    fi
+
+    ##
+    ## if we couldn't find the tcl library using tclsh, look a little harder
+    ##
+
+    if test -z "$tcl_lib"; then
+        dirs="/usr/lib /usr/local/lib /usr/localapp/lib /localapp/lib /opt/local/lib /usr/local/tcl/lib /opt/local/tcl/lib /usr/unsupported/lib /usr/unsupported/tcl/lib /usr/sww/lib /usr/sww/tcl/lib /loc/lib /loc/tcl/lib"
+        saved_LDFLAGS="$LDFLAGS"
+        for i in $dirs ; do
+            LDFLAGS="-L$i $saved_LDFLAGS"
+            for g in `ls -1 $i/libtcl* 2> /dev/null | egrep ['tcl[0-9.]'] | \
+                      sed -e 's/^.*\/libtcl/tcl/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+                tcle=`echo $g | sed 's/^tcl//'`
+                for f in `ls -1 $i/libtk* 2> /dev/null | grep -v tkx | egrep ['tk[0-9.]'] | \
+                          sed -e 's/^.*\/libtk/tk/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+                    ext=`echo $f | sed 's/^tk//'`
+                    AC_CHECK_LIB(tk$ext,main,[
+                        tcl_lib="-L$i -ltk$ext -ltcl$tcle"
+                        tcl_library="$i"
+                        saved_LIBS="$LIBS"
+                        LIBS="-ltcl$tcle $LIBS $dl_lib"
+                        AC_CHECK_FUNC(Tcl_GetStringResult)
+                        LIBS="$saved_LIBS"
+                        break],
+                    tcl_lib="", -ltcl$tcle $XLIBSW $dl_lib)
+                done
+                if test -n "$tcl_lib"; then
+                    break
+                fi
+            done
+            if test -n "$tcl_lib"; then
+                break
+            fi
+        done
+        if test -z "$tcl_lib"; then
+            for i in $dirs ; do
+                LDFLAGS="-L$x_libraries -L$i $saved_LDFLAGS"
+                for g in `ls -1 $i/libtcl* 2> /dev/null | egrep ['tcl[0-9.]'] | \
+                          sed -e 's/^.*\/libtcl/tcl/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+                    tcle=`echo $g | sed 's/^tcl//'`
+                    for f in `ls -1 $x_libraries/libtk* 2> /dev/null | grep -v tkx | egrep ['tk[0-9.]'] | \
+                              sed -e 's/^.*\/libtk/tk/' -e ['s/\.[a-z][a-z]*$//'] | sort -u -r`; do
+                        ext=`echo $f | sed 's/^tk//'`
+                        AC_CHECK_LIB(tk$ext,main,[
+                            tcl_lib="-L$x_libraries -L$i -ltk$ext -ltcl$tcle"
+                            tcl_library="$i"
+                            saved_LIBS="$LIBS"
+                            LIBS="-ltcl$tcle $LIBS $dl_lib"
+                            AC_CHECK_FUNC(Tcl_GetStringResult)
+                            LIBS="$saved_LIBS"
+                            break],
+                        tcl_lib="", -ltcl$tcle $XLIBSW $dl_lib)
+                    done
+                    if test -n "$tcl_lib"; then
+                        break
+                    fi
+                done
+                if test -n "$tcl_lib"; then
+                    break
+                fi
+            done
+        fi
+        LDFLAGS="$saved_LDFLAGS"
+        AC_MSG_CHECKING(for tcl library)
+        if test -z "$tcl_lib"; then
+            AC_MSG_RESULT(couldn't find it)
+        else
+            AC_MSG_RESULT($tcl_library)
+        fi
+    fi
+
+    if test -z "$tcl_lib"; then
+        TK_INCL=""
+        TK_LIB=""
+    else
+        TK_INCL="$tcl_incl"
+        TK_LIB="$tcl_lib"
+    fi
+
+    #------propagate the hostname on down--------------------------------
+#   ac_configure_args="$ac_configure_args --host=$ARCH"
+    AC_CONFIG_SUBDIRS( rivet )
+else
+    XINCLUDES=""
+    XLIBSW=""
+    x_includes=""
+    x_libraries=""
+fi
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## Variable substitutions
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_SUBST(XINCLUDES)
+AC_SUBST(XLIBSW)
+AC_SUBST(TK_INCL)
+AC_SUBST(TK_LIB)
+
+dnl##--------------------------------------------------------------------
+dnl##
+dnl## File output
+dnl##
+dnl##--------------------------------------------------------------------
+
+AC_OUTPUT(Make.Config src/main/lisa src/external/eval/evaluate)

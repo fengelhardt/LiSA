@@ -1,0 +1,104 @@
+ /*
+ * ****************** alg_call.cpp ******************************
+ * 
+ * description:      manage the calling of internal and external Algorithms
+ *
+ * owner:            Per Willenius
+ *
+ * date:             19.10.1998
+ *
+ *
+*/ 
+
+//  ********************** System Includes ***************************
+#include <fstream.h>
+
+// ************************ LiSA Includes ********************
+#include "../basics/global.hpp"
+//#include "../desktop/callback.hpp"
+// error handling:
+#include "../basics/except.hpp"
+// ************************ Local Includes ********************
+#include "alg_call.hpp"
+#include "../algo/dispatch.hpp"
+
+int start_int_algo(string name_of_algo,string algo_call,
+		   Lisa_Preferences & G_Preferences,
+                   Lisa_ProblemType & G_ProblemType,
+		   Lisa_ControlParameters & parameter,
+		   Lisa_Schedule & G_Schedule, Lisa_Values & G_Values) {
+
+  if (algo_call=="dispatch") {
+    Lisa_Dispatcher * engine=new Lisa_Dispatcher();
+    engine->SetProblem(&G_ProblemType, &G_Values, &G_Schedule);
+    engine->SetRule(parameter.get_string("RULE"));
+    if (parameter.get_string("ACTIVE")=="TRUE")
+      engine->dispatch_active();
+    else 
+      engine->dispatch();
+    delete engine;
+  }
+  return OK;
+}
+
+
+void start_prior(Tcl_Interp *interp,Lisa_ProblemType & G_ProblemType,
+		 Lisa_Schedule & G_Schedule, Lisa_Values & G_Values,
+		 Lisa_Status & G_Status, string type) 
+{
+  Lisa_Dispatcher * engine=new Lisa_Dispatcher();
+  engine->SetProblem(&G_ProblemType, &G_Values, &G_Schedule);
+  engine->SetRule(type);
+  engine->dispatch_active();
+  delete engine;
+  //cout << G_Schedule;
+}
+
+
+int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, string output_file, string result_file,
+	     Lisa_Preferences & G_Preferences,
+	     Lisa_ProblemType & G_ProblemType,
+	     Lisa_ControlParameters & parameter,
+	     Lisa_Schedule & G_Schedule, Lisa_Values & G_Values) {
+
+  string str="",str2="";
+  ofstream fout(output_file.c_str());
+
+  fout << G_ProblemType;
+  fout << parameter;
+  fout << G_Values;
+  fout << G_Schedule;
+  fout.close();
+  
+    // call the external program
+  // TCL/TK does this for us
+  
+  str="set lsa_status(fid) [open \"| "+G_Preferences.LISA_HOME+"/bin/" + 
+    algo_call + " " + output_file + " " + result_file+ "\" \"r\" ]";
+
+  Tcl_Eval(interp,(char*) str.c_str());
+  
+  str="set lsa_status(algo_call) "+  algo_call;
+  Tcl_Eval(interp,(char*) str.c_str());
+  // get pid number of process and
+  // test, if algorithm exists
+  str="set lsa_status(pid) -1";
+  Tcl_Eval(interp,(char*) str.c_str());
+  str="set lsa_status(pid) [pid $lsa_status(fid)]";
+  Tcl_Eval(interp,(char*) str.c_str());
+  str2=Tcl_GetVar2(interp,"lsa_status","pid",TCL_GLOBAL_ONLY);
+  if (str2=="-1") {
+    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",END_OF_FILE);
+    return !OK;
+  }
+  
+  // external Module has started
+  // open process window and give the process handling to Tcl
+  str="fileevent $lsa_status(fid) readable \"algo_event $lsa_status(fid) " + result_file +" "+ name_of_algo + "\"";
+  Tcl_Eval(interp,(char*) str.c_str());
+  Tcl_Eval(interp,"Window show .ext_alg_graph");
+  return OK;
+}
+
+
+

@@ -1,0 +1,52 @@
+<HTML>
+<HEAD> <TITLE>Help on input problem type</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Input problem type</H2>
+To examine a scheduling problem whit LiSA first you have to specify a
+problem type in the 3 field notation according to Graham et al..
+Here you can also choose the number of jobs and machines.
+
+<H2>This is how you get here:</H2>
+Choose <I>File|New</I> to enter a new problem type or <I>
+Edit|Problem Type</I> to modify an existing one.
+
+<H2>Options</H2>
+All options follow the usual conventions of the 3 field notation as
+explained in each scheduling text book.
+<BR>In addition to the objective functions usually examined in
+classical scheduling theory, you may specify one of the following
+functions:
+<UL>
+<LI> IRREG1= Sum |C_i - d_i |
+<LI> IRREG2= w_late * L_max + w_early * max (d_i - C_i)^+ + Sum w_i
+     T_i + Sum wi_early (d_i - C_i)^+ <BR>
+     Note that this objective functions requires a problem definition
+     outside LiSA because of the additional weights.
+</UL>
+<H2>Exceptions</H2>
+<UL>
+<LI> LiSA always tries to accept your last input. In case of
+inconsistent input, some erlier inputs may be modified. For instance
+when you choose multiprocessor tasks in a one machine problem, the
+problem type is modified to parallel machines. 
+<LI> LiSA is continously extended and can display several 
+thousends of problem types. Thus it may be possible that an entered
+problem type cannot be handled in LiSA.
+</UL>
+<HR>
+<A HREF="main.htm"> Table of Contents </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+
+

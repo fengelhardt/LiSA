@@ -1,0 +1,20 @@
+OBJECTS=\
+	../../../compiled/bb_main.o \
+	../../../compiled/os_bb.o \
+	../../../compiled/js_bb.o \
+	../../../compiled/bb_env.o \
+	../../../compiled/global.o \
+	../../../compiled/list.o \
+	../../../compiled/except.o \
+	../../../compiled/matrix.o \
+	../../../compiled/pair.o \
+	../../../compiled/order.o \
+	../../../compiled/ctrlpara.o \
+	../../../compiled/lisa_str.o \
+	../../../compiled/mo.o \
+	../../../compiled/ptype.o \
+	../../../compiled/lvalues.o \
+	../../../compiled/schedule.o \
+	../../../compiled/os_sched.o \
+	../../../compiled/sp_sched.o \
+	../../../compiled/js_sched.o

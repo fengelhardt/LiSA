@@ -1,0 +1,17 @@
+
+set Name(Gantt_title) "Optionen des Gantt Diagramms"
+set Name(Orientation:) "Orientierung:"
+set Name(Special_Emphasis:) "Besondere Einstellungen:"
+set Name(None) "Keine"
+set Name(Critical_path) "Kritischer Weg"
+set Name(Assign_colors_to_some) "Definiere Farben für einige "
+set Name(machines) "Maschinen"
+set Name(jobs) "Aufträge"
+set Name(red) "Rot"
+set Name(green) "Grün"
+set Name(blue) "Blau"
+set Name(brown) "Braun"
+set Name(yellow) "Gelb"
+set Name(Job_orient) "Auftragsorientiert"
+set Name(Machine_orient) "Maschinenorientiert"
+
