@@ -1,7 +1,7 @@
 /* LD */
 
 /*
-File: version.C
+File: version.cpp
 Date: 26.10.1998
 */ 
 

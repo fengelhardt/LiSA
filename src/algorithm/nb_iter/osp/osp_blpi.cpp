@@ -1,5 +1,5 @@
 /*
- * ******************** osp_blpi.C ******************************
+ * ******************** osp_blpi.cpp ******************************
  * 
  * description:      open shop critical-block-API neighborhood
  * 

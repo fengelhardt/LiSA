@@ -1,5 +1,5 @@
 /*
- * ******************** tabu.C ******************************
+ * ******************** tabu.cpp ******************************
  * 
  * description:      general problem independent tabulist class
  * 

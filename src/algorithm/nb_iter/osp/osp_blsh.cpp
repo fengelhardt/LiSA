@@ -1,5 +1,5 @@
 /*
- * ******************** osp_blsh.C ******************************
+ * ******************** osp_blsh.cpp ******************************
  * 
  * description:      open shop critical-block-SHIFT neighborhood
  * 

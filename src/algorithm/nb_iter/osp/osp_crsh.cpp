@@ -1,5 +1,5 @@
 /*
- * ******************** osp_crft.C ******************************
+ * ******************** osp_crft.cpp ******************************
  * 
  * description:      open shop critical-SHIFT neighborhood
  * 

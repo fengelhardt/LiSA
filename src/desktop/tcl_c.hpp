@@ -1,5 +1,5 @@
 /*
- * ***************** tcl_c.C ******************************
+ * ***************** tcl_c.hpp ******************************
  * 
  * description:        functions which was called as tcl/tk command
  *

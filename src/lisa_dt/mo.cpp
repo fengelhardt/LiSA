@@ -1,5 +1,5 @@
 /*
- * ************** mo.C *******************************
+ * ************** mo.cpp *******************************
  * 
  * Classes to represent MOs and JOs as successor list (in memory) and
  * as rank matrix (on file)

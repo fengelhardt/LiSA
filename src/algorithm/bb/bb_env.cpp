@@ -1,5 +1,5 @@
 /*
- * ************** bb_env.C *******************************
+ * ************** bb_env.cpp *******************************
  * 
  * basic class for branch and bound implementations
  *

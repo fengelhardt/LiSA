@@ -1,5 +1,5 @@
 /*
- * ******************** iterate.C ******************************
+ * ******************** iterate.cpp ******************************
  * 
  * description:      The class LiSA_Iterator is the problem-independent
  *                   neighbourhood-iteration-class

@@ -1,5 +1,5 @@
 /*
- * ******************** jsp_shft.C ******************************
+ * ******************** jsp_shft.cpp ******************************
  * 
  * description:      job shop SHIFT neighborhood
  * 
@@ -106,7 +106,7 @@ int JSHOP_shift_Ngbh::prepare_move( int typ )
      }
    if ( typ == ENUM )
      {
-       G_ExceptionList.lthrow("enumerativ method not implemented in jsp_shft.C"); 
+       G_ExceptionList.lthrow("enumerativ method not implemented in jsp_shft.cpp"); 
        exit(7);
      }
    G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");

@@ -1,5 +1,5 @@
 /*
- * ******************** jsp_blsh.C ******************************
+ * ******************** jsp_blsh.cpp ******************************
  * 
  * description:      job shop critical-block-SHIFT neighborhood
  * 
@@ -166,7 +166,7 @@ int JSHOP_cr_bl_shift_Ngbh::prepare_move( int typ )
       }
     if ( typ == ENUM )
       {
-	G_ExceptionList.lthrow("enumerativ method not implemented in osp_crpi.C"); 
+	G_ExceptionList.lthrow("enumerativ method not implemented in osp_crpi.cpp"); 
 	exit(7);
       }
     G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");

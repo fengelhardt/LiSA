@@ -1,5 +1,5 @@
 /*
- * ************** lvalues.C *******************************
+ * ************** lvalues.cpp *******************************
  * 
  * description:    definition of class Lisa_Values
  *

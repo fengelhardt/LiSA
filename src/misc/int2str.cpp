@@ -1,5 +1,5 @@
 /*
- * ************** int2str.C ******************************
+ * ************** int2str.cpp ******************************
  * 
  * description:      functions to convert from int to string 
  *

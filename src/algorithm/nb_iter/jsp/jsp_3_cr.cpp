@@ -1,5 +1,5 @@
 /*
- * ******************** jsp_3_cr.C ******************************
+ * ******************** jsp_3_cr.cpp ******************************
  * 
  * description:      job shop 3-critical-API neighborhood
  * 
@@ -123,7 +123,7 @@ int JSHOP_3_CR_Ngbh::prepare_move( int typ )
      }
    if ( typ == ENUM )
      {
-       G_ExceptionList.lthrow("enumerativ method not implemented in osp_3tst.C");
+       G_ExceptionList.lthrow("enumerativ method not implemented in osp_3tst.cpp");
        exit(7);
      }
     G_ExceptionList.lthrow("wrong parameter in prepare_move("+string(typ)+")");

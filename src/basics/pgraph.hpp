@@ -1,5 +1,5 @@
 /*
- * ************** pgraph.C *******************************
+ * ************** pgraph.hpp *******************************
  * description: used graph classes
  *              Sequence Graph, Complete Sequence Graph
  *              and Comparability Graph.

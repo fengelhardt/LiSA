@@ -1,5 +1,5 @@
 /*
- * ******************** osp_crpi.C ******************************
+ * ******************** osp_crpi.cpp ******************************
  * 
  * description:      open shop critical-API neighborhood
  * 

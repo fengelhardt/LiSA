@@ -1,5 +1,5 @@
 /*
- * ************** lisapref.C ******************************
+ * ************** lisapref.cpp ******************************
  * 
  * description: class Lisa_Preferences  
  * 

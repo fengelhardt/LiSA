@@ -1,5 +1,5 @@
 /*
- * ************** lisa.C *******************************
+ * ************** lisa.cpp *******************************
  * 
  * description: Main Program
  *              declare global variables, read preferences file

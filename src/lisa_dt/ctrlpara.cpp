@@ -1,5 +1,5 @@
 /*
- * ************************* ctrlpara.C ******************************
+ * ************************* ctrlpara.cpp ******************************
  * 
  * description:      contain Class Lisa_ControlParameters 
  *                   This class can be used to hold three types of variables
