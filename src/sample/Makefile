@@ -13,7 +13,7 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 MODULENAME=sample
 MODULEPATH=$(SOURCEPATH)/$(MODULENAME)
 
-SKIP_MODULES_REGEX=/CVS$$|/fpool$$
+SKIP_MODULES_REGEX=/CVS$$
 
 # ------------------------------------------------------------------------------
 

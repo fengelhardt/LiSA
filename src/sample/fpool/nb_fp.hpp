@@ -34,11 +34,13 @@ class fp_nb: public Lisa_Neighborhood
         /// construct only with given number and lenght of vectors:
         fp_nb( int , int);
         /// compute objective function of type param1 to solution param2
-	virtual void    set_objective_type( int, int ){}
+	virtual void    set_objective( int, int ){}
 	/// returns objective value of solution nr.
 	virtual TIMETYP get_objective_value( int );
 	/// call constructor for solution nr. 
 	virtual int     get_solution( int ){ return 0;}
+	/// set the objective type
+	virtual void  set_objective_type( int );
 	/// some special copy functions:
 	/// WORK_SOLUTION to ORIG_SOLUTION
 	virtual int     accept_solution();
@@ -55,6 +57,8 @@ class fp_nb: public Lisa_Neighborhood
 	/// do the proposed move 
 	virtual int     do_move();
 	/// initialize the tabulist with specified length
+     /// create a anti-neighbor
+     virtual int     anti_neighbor();
 	virtual int     init_tabulist( unsigned int );
 	/// search in the tabulist
 	virtual int     use_tabulist();

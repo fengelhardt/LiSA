@@ -4,7 +4,9 @@ OBJECTS=\
 	../../../obj/fp_vect.o \
 	../../../obj/nb_fp.o \
 	../../../obj/iterate.o \
+	../../../obj/list.o \
 	../../../obj/matrix.o \
+	../../../obj/pair.o \
 	../../../obj/ctrlpara.o \
 	../../../obj/global.o \
 	../../../obj/except.o \
