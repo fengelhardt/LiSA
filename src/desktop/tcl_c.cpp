@@ -943,7 +943,13 @@ int /*argc*/, const char *argv[]){
         // check if problemtypes match exactly
         if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
           sprintf(interp->result, "%d",1);
-        
+          
+        // algo provides O, current problem is O2  
+        }else if(G_ProblemType.output_alpha().find(myProblemType.output_alpha()) != string::npos &&
+                 G_ProblemType.output_beta()== myProblemType.output_beta() &&
+                 G_ProblemType.output_gamma()== myProblemType.output_gamma()){
+           sprintf(interp->result, "%d",1);
+            
         }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
                  G_ProblemType.output_gamma()==myProblemType.output_gamma()){
         
