@@ -156,68 +156,58 @@ void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
 
 //**************************************************************************
 
-int Lisa_Graph::get_first_successor(int knot)
-{
-  return ((*matrix)[knot][0].x);
-}
-
-//**************************************************************************
-
-int Lisa_Graph::get_last_successor(int knot)
-{
-  return ((*matrix)[knot][0].y);
-}
-
-//**************************************************************************
-
-int Lisa_Graph::get_first_predecessor(int knot)
-{
-  return ((*matrix)[0][knot].x);
-}
-
-//**************************************************************************
-
-int Lisa_Graph::get_last_predecessor(int knot)
-{
-  return ((*matrix)[0][knot].y);
-}
-
-//**************************************************************************
-
-int  Lisa_Graph::get_connection(int start, int end)
-{
-  if((start>n)||(end>n)||(start==end)){return NOT_POSSIBLE;}
+bool Lisa_Graph::insert_edge(const int start,const int end){
   
-  if(((*matrix)[start][end].x==0)&((*matrix)[start][end].y==0))
-    {
-      return NO;
+  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
+  
+  int con=get_connection(start, end);
+  
+  if(con!=EDGE){
+    if(con==ARC){
+      exclude_arc(start,end);
     }
-  else
-    {
-      //if(((*matrix)[start][end].x<0)||((*matrix)[start][end].y<0))
-      if(signum(start, end)==-1)
-	{
-	  return CRA;
-	}
-      else
-	{
-	  //if((matrix[end][start]->x<0)||(matrix[end][start]->y<0))
-	  if(signum(end, start)==-1)
-	    {
-	      return ARC;
-	    }
-	  else
-	    {
-	      return EDGE;
-	    }
-	}
+    if(con==CRA){
+      exclude_arc(end,start);
     }
+    
+    int end_of_NB_List;
+    
+    //Aendern der Kantenliste von start
+    
+    end_of_NB_List=(*matrix)[start][start].y;
+    
+    if( end_of_NB_List == n+1){
+      (*matrix)[start][start].x=end;
+    }else{
+      (*matrix)[start][end_of_NB_List].x=end;
+    }
+    
+    (*matrix)[start][start].y=end;
+    (*matrix)[start][end].x=n+1;
+    (*matrix)[start][end].y=end_of_NB_List;
+    
+    //Aendern der Kantenliste von end
+    
+    end_of_NB_List=(*matrix)[end][end].y;
+    
+    if( end_of_NB_List == n+1){
+      (*matrix)[end][end].x=start;
+    }else{
+      (*matrix)[end][end_of_NB_List].x=start;
+    }
+    
+    (*matrix)[end][end].y=start;
+    (*matrix)[end][start].x=n+1;
+    (*matrix)[end][start].y=end_of_NB_List;
+    
+    return true;
+  }
+  return false;
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::insert_arc(int start, int end)
-{
+bool Lisa_Graph::insert_arc(const int start,const int end){
   
   if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
@@ -228,19 +218,17 @@ bool Lisa_Graph::insert_arc(int start, int end)
     if(con==CRA){
       exclude_arc(end,start);
       return (insert_edge(start,end));
-    }
-    else{
+    }else{
       //Einfuegen des Bogens
       //Aendern der Succ-Liste von start
       
       int end_of_Succ_List=(*matrix)[start][0].y;
       if( end_of_Succ_List== n+1){
-	(*matrix)[start][0].x=end;
+        (*matrix)[start][0].x=end;
+      }else{
+        (*matrix)[start][end_of_Succ_List].x=end;
       }
-      else{
-	(*matrix)[start][end_of_Succ_List].x=end;
-      }
-	  
+      
       (*matrix)[start][0].y=end;
       (*matrix)[start][end].x=n+1;
       (*matrix)[start][end].y=end_of_Succ_List;
@@ -249,10 +237,9 @@ bool Lisa_Graph::insert_arc(int start, int end)
       
       int end_of_Pred_List=(*matrix)[0][end].y;
       if( end_of_Pred_List == n+1){
-	(*matrix)[0][end].x=start;
-      }
-      else{
-	(*matrix)[end][end_of_Pred_List].x=-start;
+        (*matrix)[0][end].x=start;
+      }else{
+        (*matrix)[end][end_of_Pred_List].x=-start;
       }
       
       (*matrix)[0][end].y=start;
@@ -267,84 +254,29 @@ bool Lisa_Graph::insert_arc(int start, int end)
 
 //**************************************************************************
 
-bool Lisa_Graph::insert_edge(int start, int end)
-{  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
-
-  int con=get_connection(start, end);
-
-  if(con!=EDGE){
-    if(con==ARC){
-      exclude_arc(start,end);
-    }
-    if(con==CRA){
-      exclude_arc(end,start);
-    }
-
-    int end_of_NB_List;
-      
-    //Aendern der Kantenliste von start
-    
-    end_of_NB_List=(*matrix)[start][start].y;
-      
-    if( end_of_NB_List == n+1){
-      (*matrix)[start][start].x=end;
-    }
-    else{
-      (*matrix)[start][end_of_NB_List].x=end;
-    }
-      
-    (*matrix)[start][start].y=end;
-    (*matrix)[start][end].x=n+1;
-    (*matrix)[start][end].y=end_of_NB_List;
-    
-    //Aendern der Kantenliste von end
-    
-    end_of_NB_List=(*matrix)[end][end].y;
-    
-    if( end_of_NB_List == n+1){
-      (*matrix)[end][end].x=start;
-    }
-    else{
-      (*matrix)[end][end_of_NB_List].x=start;
-    }
-      
-    (*matrix)[end][end].y=start;
-    (*matrix)[end][start].x=n+1;
-    (*matrix)[end][start].y=end_of_NB_List;
-
-    return true;
-  }
-  return false;
-}
-
-//**************************************************************************
-
-bool Lisa_Graph::exclude_edge(int start, int end)
-{
+bool Lisa_Graph::exclude_edge(const int start,const int end){
+  
   if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
   //Test ob Kante vorhanden
   int con=get_connection(start,end);
-
+  
   if(con==EDGE){
     int succ_of_edge=(*matrix)[start][end].x;
     int pred_of_edge=(*matrix)[start][end].y;
     
     if(succ_of_edge==n+1){
       (*matrix)[start][start].y=pred_of_edge;
-    }
-    else{
+    }else{
       (*matrix)[start][succ_of_edge].y=pred_of_edge;
     }
-      
+    
     if(pred_of_edge==n+1){
       (*matrix)[start][start].x=succ_of_edge;
-    }
-    else{
+    }else{
       (*matrix)[start][pred_of_edge].x=succ_of_edge;
     }
-      
+    
     (*matrix)[start][end].x=0;
     (*matrix)[start][end].y=0;
     
@@ -352,21 +284,19 @@ bool Lisa_Graph::exclude_edge(int start, int end)
     
     succ_of_edge=(*matrix)[end][start].x;
     pred_of_edge=(*matrix)[end][start].y;
-      
+    
     if(succ_of_edge==n+1){
       (*matrix)[end][end].y=pred_of_edge;
-    }
-    else{
+    }else{
       (*matrix)[end][succ_of_edge].y=pred_of_edge;
     }
-      
+    
     if(pred_of_edge==n+1){
       (*matrix)[end][end].x=succ_of_edge;
-    }
-    else{
+    }else{
       (*matrix)[end][pred_of_edge].x=succ_of_edge;
     }
-      
+    
     (*matrix)[end][start].x=0;
     (*matrix)[end][start].y=0;
     
@@ -377,472 +307,177 @@ bool Lisa_Graph::exclude_edge(int start, int end)
 
 //**************************************************************************
 
-bool Lisa_Graph::exclude_arc(int start, int end)
-{
-
+bool Lisa_Graph::exclude_arc(const int start,const int end){
+  
   if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
   
   //Test ob Bogen vorhanden
   
   int con=get_connection(start,end);
   
-  if(con==ARC)
-    {
-      int succ_of_arc=(*matrix)[start][end].x;
-      int pred_of_arc=(*matrix)[start][end].y;
-      
-      if(succ_of_arc==n+1){
-	(*matrix)[start][0].y=pred_of_arc;
-      }
-      else{
-	(*matrix)[start][succ_of_arc ].y=pred_of_arc;
-      }
-      
-      if(pred_of_arc==n+1){
-	(*matrix)[start][0].x=succ_of_arc;
-      }
-      else{
-	(*matrix)[start][pred_of_arc].x=succ_of_arc;
-      }
-      
-      (*matrix)[start][end].x=0;
-      (*matrix)[start][end].y=0;
-      
-      //Aendern der predecessor-Liste
-      
-      succ_of_arc=(*matrix)[end][start].x;
-      pred_of_arc=(*matrix)[end][start].y;
-      
-      if(succ_of_arc==-(n+1)){
-	(*matrix)[0][end].y=-pred_of_arc;
-      }
-      else{
-	(*matrix)[end][-succ_of_arc].y=pred_of_arc;
-      }
-      
-      if(pred_of_arc==-(n+1)){
-	(*matrix)[0][end].x=-succ_of_arc;
-      }
-      else{
-	(*matrix)[end][-pred_of_arc ].x=succ_of_arc ;
-      }
-      
-      (*matrix)[end][start].x=0;
-      (*matrix)[end][start].y=0;
-      
-      return true;
+  if(con==ARC){
+    int succ_of_arc=(*matrix)[start][end].x;
+    int pred_of_arc=(*matrix)[start][end].y;
+    
+    if(succ_of_arc==n+1){
+      (*matrix)[start][0].y=pred_of_arc;
+    }else{
+      (*matrix)[start][succ_of_arc ].y=pred_of_arc;
     }
-
+    
+    if(pred_of_arc==n+1){
+      (*matrix)[start][0].x=succ_of_arc;
+    }else{
+      (*matrix)[start][pred_of_arc].x=succ_of_arc;
+    }
+    
+    (*matrix)[start][end].x=0;
+    (*matrix)[start][end].y=0;
+    
+    //Aendern der predecessor-Liste
+    
+    succ_of_arc=(*matrix)[end][start].x;
+    pred_of_arc=(*matrix)[end][start].y;
+    
+    if(succ_of_arc==-(n+1)){
+      (*matrix)[0][end].y=-pred_of_arc;
+    }else{
+      (*matrix)[end][-succ_of_arc].y=pred_of_arc;
+    }
+    
+    if(pred_of_arc==-(n+1)){
+      (*matrix)[0][end].x=-succ_of_arc;
+    }else{
+      (*matrix)[end][-pred_of_arc ].x=succ_of_arc ;
+    }
+    
+    (*matrix)[end][start].x=0;
+    (*matrix)[end][start].y=0;
+    
+    return true;
+  }
+  
   if(con==EDGE){
     exclude_edge(start, end);
     insert_arc(end, start);
     return true;
-    }
+  }
   
   return false;
 }
 
 //**************************************************************************
 
-void Lisa_Graph::show()
-{
-
-  for (int i=0; i<=n; i++)
-    {
-      for (int j=0; j<=n; j++)
-	{
-	  cout<<(*matrix)[i][j].x<<"=="<<(*matrix)[i][j].y<<"   ";
-	}
-      cout<<endl;
+int  Lisa_Graph::get_connection(const int start,const int end){
+  
+  if((start>n)||(end>n)||(start==end)){return NOT_POSSIBLE;}
+  
+  if(((*matrix)[start][end].x==0)&((*matrix)[start][end].y==0)){
+    return NO;
+  }else{
+    //if(((*matrix)[start][end].x<0)||((*matrix)[start][end].y<0))
+    if(signum(start, end)==-1){
+      return CRA;
+    }else{
+      //if((matrix[end][start]->x<0)||(matrix[end][start]->y<0))
+      if(signum(end, start)==-1){
+        return ARC;
+      }else{
+        return EDGE;
+      }
     }
-} 
-
-//**************************************************************************
+  }
   
-bool Lisa_Graph::valid()
-{
-  int el_of_list;
-  int* knot_list = new int[n];
-  int count=-1;
-
-  for(int knot=1; knot<=n; knot++)
-    {
-      //Ueberpruefen der Nachfolgerliste
-
-      //Hinrichtung
-
-      el_of_list=(*matrix)[knot][0].x;
-
-      if(el_of_list==0){
-        delete[] knot_list;
-        return false;
-      }
-    
-      if(el_of_list==n+1)
-	{	  
-	  if((*matrix)[knot][0].y!=n+1){
-          cout<<" matrix "<<endl;
-	      delete[] knot_list;
-          return false;
-      }
-	}
-      else
-	{
-	  if((*matrix)[knot][0].y==n+1){
-        delete[] knot_list;
-        return false;
-      }
-	  
-	  while(el_of_list!=n+1)
-	    {
-	      count++;
-	      knot_list[count]=el_of_list;
-
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }
-	      
-	      if(get_connection(el_of_list,knot)!=CRA){
-            delete[] knot_list;
-            return false;
-          }
-	      
-	      el_of_list=(*matrix)[knot][el_of_list].x;
-	    }
-	  
-	  //Rueckrichtung
-
-	  el_of_list=(*matrix)[knot][0].y;
-
-	  if(el_of_list==0) {
-        delete[] knot_list;
-        return false;
-      }
-	  
-	  if((*matrix)[knot][el_of_list].x!=n+1){
-          delete[] knot_list;
-          return false;
-      }
-	  
-	  while(el_of_list!=n+1)
-	    {
-	      if(count<0){
-              delete[] knot_list;
-              return false;
-          }
-	      
-	      if(el_of_list!=knot_list[count]){
-            delete[] knot_list;
-            return false;
-          }
-	          
-	      knot_list[count]=0;
-	      
-	      count--;
-	      
-	      el_of_list=(*matrix)[knot][el_of_list].y;
-
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }
-	    }
-	  count++;
-	  if(count!=0){
-        delete[] knot_list;
-        return false;
-      }                      
-	  
-	}
-    
-      count=-1;
-      
-      //Ueberpruefen der Vorgaengerliste
-
-      //Hinrichtung
-
-      el_of_list=(*matrix)[0][knot].x;
-
-      if(el_of_list==0) {
-        delete[] knot_list;  
-        return false;
-      }
-
-      if(el_of_list==(n+1))
-	{
-	  if((*matrix)[0][knot].y!=(n+1)){
-        delete[] knot_list;
-        return false;
-      }
-	}
-      else
-	{
-	  if((*matrix)[0][knot].y==(n+1)){
-        delete[] knot_list;
-        return false;
-      }
-
-	  while(el_of_list!=(n+1))
-	    {
-	      count++;
-	      knot_list[count]=el_of_list;
-	      
-	      if(get_connection(el_of_list,knot)!=ARC){
-               delete[] knot_list;
-               return false;
-          }
-
-	      el_of_list=-((*matrix)[knot][el_of_list].x);
-	      
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }	      
-	    }
-	  
-	  //Rueckrichtung
-
-	  el_of_list=(*matrix)[0][knot].y;
-
-	  if(el_of_list==0) {
-          delete[] knot_list;
-          return false;
-      }
-	  
-	  if((*matrix)[knot][el_of_list].x!=-(n+1)){
-        delete[] knot_list;
-        return false;
-      }
-  
-	  while(el_of_list!=(n+1))
-	    {
-	   
-	      if(count<0){
-              delete[] knot_list;
-              return false;
-          }
-	      
-	      if(el_of_list!=knot_list[count]){
-            delete[] knot_list;
-            return false;
-          }
-	      
-	      knot_list[count]=0;
-	      
-	      count--;
-	      
-	      el_of_list=-((*matrix)[knot][el_of_list].y);
-
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }
-	    }
-
-	  count++;
-	  if(count!=0){
-        delete[] knot_list;
-        return false;
-      }
-	
-	}
-      count=-1;
-
-      //Ueberpruefen der Kantenliste
-
-      //Hinrichtung
-
-      el_of_list=(*matrix)[knot][knot].x;
-
-      if(el_of_list==0) {
-          delete[] knot_list;
-          return false;
-      }
-
-      if(el_of_list==(n+1))
-	{
-	  if((*matrix)[knot][knot].y!=(n+1)){
-        delete[] knot_list;
-        return false;
-      }
-	}
-      else
-	{
-	  if((*matrix)[knot][knot].y==(n+1)){
-        delete[] knot_list;
-        return false;
-      }
-
-	  while(el_of_list!=(n+1))
-	    {
-	      count++;
-	      knot_list[count]=el_of_list;
-	      
-	      if(get_connection(el_of_list,knot)!=EDGE){
-            delete[] knot_list;
-            return false;
-          }
-
-	      el_of_list=(*matrix)[knot][el_of_list].x;
-	      
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }      
-	    }
-	  
-	  //Rueckrichtung
-
-	  el_of_list=(*matrix)[knot][knot].y;
-
-	  if(el_of_list==0) {
-          delete[] knot_list;
-          return false;
-      }
-	  
-	  if((*matrix)[knot][el_of_list].x!=n+1){
-        delete[] knot_list;
-        return false;
-      }
-  
-	  while(el_of_list!=n+1)
-	    {
-	   
-	      if(count<0){
-              delete[] knot_list;
-              return false;
-          }
-	      
-	      if(el_of_list!=knot_list[count]){
-              delete[] knot_list;
-              return false;
-          }
-	      
-	      knot_list[count]=0;
-	      
-	      count--;
-	      
-	      el_of_list=(*matrix)[knot][el_of_list].y;
-
-	      if(el_of_list==0) {
-            delete[] knot_list;
-            return false;
-          }
-	    }
-	  
-	  count++;
-	  if(count!=0){
-        delete[] knot_list;
-        return false;
-      }
-	  
-	}
-      count=-1;
-    }
-    
-  delete[] knot_list;  
-  return true;
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::init_succ_pointer(int knot)
-{
+bool Lisa_Graph::init_succ_pointer(const int knot){
   if((knot<=0)||(knot>n)){return false;}
 
-  //(*list_pointer)[knot-1].x=0;
   (*succ_pred_pointer)[knot-1].x=knot;
   return true;
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::init_pred_pointer(int knot)
-{
+bool Lisa_Graph::init_pred_pointer(const int knot){
   if((knot<=0)||(knot>n)){return false;}
   
   (*succ_pred_pointer)[knot-1].y=knot;
   return true;
 }
-
+ 
 //**************************************************************************
 
-int Lisa_Graph::get_next_successor(int knot)
-{
+int Lisa_Graph::get_next_successor(const int knot){
 
   int old_knot=(*succ_pred_pointer)[knot-1].x;
   int next_knot=(*matrix)[knot][old_knot].x;
-
+  
   if(next_knot==end){
     //START OF AN EDGE LIST
     if(old_knot==knot){
-	next_knot=(*matrix)[knot][0].x;
-    }
-    //END OF AN EDGE LIST
-    else{
+      next_knot=(*matrix)[knot][0].x;
+    }else{//END OF AN EDGE LIST
       if(old_knot==(*matrix)[knot][knot].y){
-	next_knot=(*matrix)[knot][0].x; 
+        next_knot=(*matrix)[knot][0].x; 
       }
     }
   }
-
+  
   if(next_knot==end){
     init_succ_pointer(knot);
-  }
-  else{
+  }else{
     (*succ_pred_pointer)[knot-1].x=next_knot;
   }
-
+  
   return next_knot;
-	
 }
 
 //**************************************************************************
 
-int Lisa_Graph::get_next_predeccessor(int knot)
-{
+int Lisa_Graph::get_next_predeccessor(const int knot){
+  
   int old_knot=(*succ_pred_pointer)[knot-1].y;
   int next_knot=abs((*matrix)[knot][old_knot].x);
+  
   if(next_knot==end){
     //START OF AN EDGE LIST
     if(old_knot==knot){
       next_knot=abs((*matrix)[0][knot].x);
-    }
-    //END OF AN EDGE LIST
-    else{
+    }else{ //END OF AN EDGE LIST
       if(old_knot==(*matrix)[knot][knot].y){
-	next_knot=abs((*matrix)[0][knot].x);
+        next_knot=abs((*matrix)[0][knot].x);
       }
     }
   }
-
+  
   if(next_knot==end){
     init_pred_pointer(knot);
-  }
-  else{
+  }else{
     (*succ_pred_pointer)[knot-1].y=next_knot;
   }
-
+  
   return next_knot;
-	
 }
 
 //**************************************************************************
 
-int Lisa_Graph::get_next_edge(int knot)
-{
+int Lisa_Graph::get_next_edge(const int knot){
   int next_knot=get_next_successor(knot);
+  
   if((next_knot!=end)&&(get_connection(knot,next_knot)!=EDGE)){  
     next_knot=end;
-  }  
+  } 
+  
   return next_knot;
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::no_edges()
-{
+bool Lisa_Graph::no_edges(){
+  
   for(int i=1; i<end; i++){
     if(((*matrix)[i][i].x)!=end){
       return false;
@@ -854,8 +489,8 @@ bool Lisa_Graph::no_edges()
 
 //**************************************************************************
 
-int Lisa_Graph::number_of_succ(int knot)
-{
+int Lisa_Graph::number_of_succ(const int knot){
+  
   int succ_count=0;
 
   init_succ_pointer(knot);
@@ -868,8 +503,8 @@ int Lisa_Graph::number_of_succ(int knot)
 
 //**************************************************************************
 
-int Lisa_Graph::number_of_pred(int knot)
-{
+int Lisa_Graph::number_of_pred(const int knot){
+  
   int pred_count=0;
 
   init_pred_pointer(knot);
@@ -882,39 +517,8 @@ int Lisa_Graph::number_of_pred(int knot)
 
 //**************************************************************************
 
-bool Lisa_Graph::remove_all_con(int knot)
-{
-  //EDGES
-  int next=(*matrix)[knot][knot].x;
-
-  while(next<end){
-    exclude_edge(knot,next);
-    next=(*matrix)[knot][knot].x;
-  }
-
-  //ARCS
-  next=(*matrix)[knot][0].x;
-   
-  while(next<end){
-    exclude_arc(knot,next);
-    next=(*matrix)[knot][0].x;
-  } 
-
-  //CRA
-  next=(*matrix)[0][knot].x;
-   
-  while(next<end){
-    exclude_arc(next,knot);
-    next=(*matrix)[0][knot].x;
-  } 
+bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
   
-  return true;
-}
-
-//**************************************************************************
-
-bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
-{ 
   knot_sequence->fill(0);
   if(no_edges()){
     //graph copy
@@ -925,31 +529,31 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
     int source=0;
     int v=0;
     int next=1;
-  
+    
     while(v<end){
       //new predeccessors
       for(v=1; v<end; v++){
-	if((*knot_sequence)[v-1]==0){
-	  (*pred)[v-1]=top->number_of_pred(v);
-	}
+        if((*knot_sequence)[v-1]==0){
+          (*pred)[v-1]=top->number_of_pred(v);
+        }
       }
       v=1;
       source=0;
       //find first source
       while((v<(end))&&(source==0)){
-	if(((*knot_sequence)[v-1]==0)&&((*pred)[v-1]==0)){
-	  source=1;
-	}
-	else{
-	  v++;
-	}
+        if(((*knot_sequence)[v-1]==0)&&((*pred)[v-1]==0)){
+          source=1;
+        }
+        else{
+          v++;
+        }
       }
       
       //remove all connections of the first founded source 
       if(v<end){
-	top->remove_all_con(v);
-	(*knot_sequence)[v-1]=next;
-	next++;
+        top->remove_all_con(v);
+        (*knot_sequence)[v-1]=next;
+        next++;
       }
     }
     
@@ -957,17 +561,328 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
     delete pred;
     delete top;
     return (next==end);
-  }
-  else{
+  }else{
     return false;
   }
 }
 
 //**************************************************************************
 
-void Lisa_Graph::write(ostream & strm) const 
-{
-  Lisa_Matrix<int>* out=new Lisa_Matrix<int> (n,n);
+bool Lisa_Graph::remove_all_con(const int knot){
+  
+  //EDGES
+  int next=(*matrix)[knot][knot].x;
+  while(next<end){
+    exclude_edge(knot,next);
+    next=(*matrix)[knot][knot].x;
+  }
+
+  //ARCS
+  next=(*matrix)[knot][0].x;
+  while(next<end){
+    exclude_arc(knot,next);
+    next=(*matrix)[knot][0].x;
+  } 
+
+  //CRA
+  next=(*matrix)[0][knot].x;
+  while(next<end){
+    exclude_arc(next,knot);
+    next=(*matrix)[0][knot].x;
+  } 
+  
+  return true;
+}
+
+//**************************************************************************
+
+void Lisa_Graph::show(){
+  
+  for (int i=0; i<=n; i++){
+    for (int j=0; j<=n; j++){
+      cout<<(*matrix)[i][j].x<<"=="<<(*matrix)[i][j].y<<"   ";
+    }
+    cout<<endl;
+  }
+  
+} 
+
+//**************************************************************************
+
+bool Lisa_Graph::valid(){
+  
+  int el_of_list;
+  int* knot_list = new int[n];
+  int count=-1;
+  
+  for(int knot=1; knot<=n; knot++){
+    //Ueberpruefen der Nachfolgerliste
+    
+    //Hinrichtung
+    
+    el_of_list=(*matrix)[knot][0].x;
+    
+    if(el_of_list==0){
+      delete[] knot_list;
+      return false;
+    }
+    
+    if(el_of_list==n+1){	  
+      if((*matrix)[knot][0].y!=n+1){
+        cout<<" matrix "<<endl;
+        delete[] knot_list;
+        return false;
+      }
+    }else{
+      if((*matrix)[knot][0].y==n+1){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=n+1){
+        count++;
+        knot_list[count]=el_of_list;
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }
+        
+        if(get_connection(el_of_list,knot)!=CRA){
+          delete[] knot_list;
+          return false;
+        }
+        
+        el_of_list=(*matrix)[knot][el_of_list].x;
+      }
+      
+      //Rueckrichtung
+      
+      el_of_list=(*matrix)[knot][0].y;
+      
+      if(el_of_list==0) {
+        delete[] knot_list;
+        return false;
+      }
+      
+      if((*matrix)[knot][el_of_list].x!=n+1){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=n+1){
+        if(count<0){
+          delete[] knot_list;
+          return false;
+        }
+        
+        if(el_of_list!=knot_list[count]){
+          delete[] knot_list;
+          return false;
+        }
+        
+        knot_list[count]=0;
+        
+        count--;
+        
+        el_of_list=(*matrix)[knot][el_of_list].y;
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }
+      }
+      count++;
+      if(count!=0){
+        delete[] knot_list;
+        return false;
+      }                      
+      
+    }
+    
+    count=-1;
+    
+    //Ueberpruefen der Vorgaengerliste
+    
+    //Hinrichtung
+    
+    el_of_list=(*matrix)[0][knot].x;
+    
+    if(el_of_list==0) {
+      delete[] knot_list;  
+      return false;
+    }
+    
+    if(el_of_list==(n+1)){
+      if((*matrix)[0][knot].y!=(n+1)){
+        delete[] knot_list;
+        return false;
+      }
+    }else{
+      if((*matrix)[0][knot].y==(n+1)){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=(n+1)){
+        count++;
+        knot_list[count]=el_of_list;
+        
+        if(get_connection(el_of_list,knot)!=ARC){
+          delete[] knot_list;
+          return false;
+        }
+        
+        el_of_list=-((*matrix)[knot][el_of_list].x);
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }	      
+      }
+      
+      //Rueckrichtung
+      
+      el_of_list=(*matrix)[0][knot].y;
+      
+      if(el_of_list==0) {
+        delete[] knot_list;
+        return false;
+      }
+      
+      if((*matrix)[knot][el_of_list].x!=-(n+1)){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=(n+1)){
+        
+        if(count<0){
+          delete[] knot_list;
+          return false;
+        }
+        
+        if(el_of_list!=knot_list[count]){
+          delete[] knot_list;
+          return false;
+        }
+        
+        knot_list[count]=0;
+        
+        count--;
+        
+        el_of_list=-((*matrix)[knot][el_of_list].y);
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }
+      }
+      
+      count++;
+      if(count!=0){
+        delete[] knot_list;
+        return false;
+      }
+    }
+    count=-1;
+    
+    //Ueberpruefen der Kantenliste
+    
+    //Hinrichtung
+    
+    el_of_list=(*matrix)[knot][knot].x;
+    
+    if(el_of_list==0) {
+      delete[] knot_list;
+      return false;
+    }
+    
+    if(el_of_list==(n+1)){
+      if((*matrix)[knot][knot].y!=(n+1)){
+        delete[] knot_list;
+        return false;
+      }
+    }else{
+      if((*matrix)[knot][knot].y==(n+1)){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=(n+1)){
+        count++;
+        knot_list[count]=el_of_list;
+        
+        if(get_connection(el_of_list,knot)!=EDGE){
+          delete[] knot_list;
+          return false;
+        }
+        
+        el_of_list=(*matrix)[knot][el_of_list].x;
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }      
+      }
+      
+      //Rueckrichtung
+      
+      el_of_list=(*matrix)[knot][knot].y;
+      
+      if(el_of_list==0) {
+        delete[] knot_list;
+        return false;
+      }
+      
+      if((*matrix)[knot][el_of_list].x!=n+1){
+        delete[] knot_list;
+        return false;
+      }
+      
+      while(el_of_list!=n+1){
+        
+        if(count<0){
+          delete[] knot_list;
+          return false;
+        }
+        
+        if(el_of_list!=knot_list[count]){
+          delete[] knot_list;
+          return false;
+        }
+        
+        knot_list[count]=0;
+        
+        count--;
+        
+        el_of_list=(*matrix)[knot][el_of_list].y;
+        
+        if(el_of_list==0) {
+          delete[] knot_list;
+          return false;
+        }
+      }
+      
+      count++;
+      if(count!=0){
+        delete[] knot_list;
+        return false;
+      }
+      
+    }
+    count=-1;
+  }
+  
+  delete[] knot_list;  
+  return true;
+}
+
+//**************************************************************************
+
+void Lisa_Graph::write(ostream & strm)const{
+  
+  Lisa_Matrix<int>* out=new Lisa_Matrix<int>(n,n);
   get_adjacency_matrix(out);
 
   strm << endl << "<GRAPH>" << endl;
@@ -980,58 +895,53 @@ void Lisa_Graph::write(ostream & strm) const
 
 //**************************************************************************
 
-void Lisa_Graph::read(istream & strm)
-{
-  if (strm==NULL)
-    {
-      G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
-      return;
-    }
-
+void Lisa_Graph::read(istream & strm){
+  if(strm==NULL){
+    G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
+  
   string S;
   int number_of_knots;
   Lisa_Matrix<int>* adj_Matrix=0;
-  for (;;)
-    {
-      S=""; 
-      strm >>S;
-      if (S=="") 
-	{ 
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
-	  return;
-	} 
-      if (S=="<GRAPH>") break;
-    }
-
+  for (;;){
+    S=""; 
+    strm >>S;
+    if (S==""){ 
+      G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
+      return;
+    } 
+    if (S=="<GRAPH>") break;
+  }
+  
   // Weiterlesen:
   
   for (;;)
+  {
+    S=""; 
+    strm >>S;  
+    if (S=="") 
     {
-      S=""; 
-      strm >>S;  
-      if (S=="") 
-	{
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
-	  return;
-	}
-      
-      if (S=="</GRAPH>") break; 
-      // Weiterlesen:
-      
-      if (S=="n=") 
-	{  
-	  strm >> number_of_knots; 
-	  init(number_of_knots);
-	  adj_Matrix=new Lisa_Matrix<int> (number_of_knots, number_of_knots);
-	} 
-      if (S=="ADJ=")
-	{  
-	  strm >> *adj_Matrix;
-	  read_adjacency_matrix(adj_Matrix);
-	  delete adj_Matrix;
-	}
+      G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
+      return;
     }
-
+    
+    if (S=="</GRAPH>") break; 
+    // Weiterlesen:
+    
+    if (S=="n=") {  
+      strm >> number_of_knots; 
+      init(number_of_knots);
+      adj_Matrix=new Lisa_Matrix<int> (number_of_knots, number_of_knots);
+    } 
+    
+    if (S=="ADJ="){  
+      strm >> *adj_Matrix;
+      read_adjacency_matrix(adj_Matrix);
+      delete adj_Matrix;
+    }
+  }
+  
 }
 
 //**************************************************************************

@@ -105,19 +105,19 @@ public:
 
   /// insert an edge into the graph
   /** Add edge from vertice start to vertice end. */
-  bool insert_edge(int start, int end);
+  bool insert_edge(const int start,const int end);
 
   /// insert an arc into the graph
   /** Add arc from vertice start to vertice  end. */
-  bool insert_arc(int start, int end);
+  bool insert_arc(const int start,const int end);
 
   /// remove an edge from the graph 
   /** Delete edge from vertice start to vertice end. */
-  bool exclude_edge(int start, int end);
+  bool exclude_edge(const int start,const int end);
 
   /// remove an arc from the graph
   /** Delete arc from vertice start to vertice end. */
-  bool exclude_arc(int start, int end);
+  bool exclude_arc(const int start,const int end);
 
   /// get the kind of connection between two vertices 
   /** possible return values are:
@@ -125,20 +125,8 @@ public:
       - ARC 1
       - CRA -1 which is an arc from end to start ;)
       - EDGE 2 */
-  int get_connection(int start, int end);
+  int get_connection(const int start,const int end);
 
-  ///access to the first element of the successor list
-  int get_first_successor(int vertex);
-
-  ///access to the last element of the successor list
-  int get_last_successor(int vertex); 
-
-  ///access to the first element of the predecessor list
-  int get_first_predecessor(int vertex);
-
-  ///access to the last element of the predecessor list
-  int get_last_predecessor(int vertex);
-  
   ///initialize the pointer for the successors list of a given vertice
   bool init_succ_pointer(const int vertex);
 
@@ -150,30 +138,34 @@ public:
       pointer to the next following successor. Returning n+1 stands for the end 
       of this vertice's successor list and for a new initialization of its 
       successor list pointer. */  
-  int get_next_successor(int vertex);
+  int get_next_successor(const int vertex);
 
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
       vertice pointer to the next following predeccessor. Returning n+1 stands
       for the end of this vertice's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
-  int get_next_predeccessor(int vertex);
+  int get_next_predeccessor(const int vertex);
 
   /// get vertices that form an edge together with the argument vertice 
   /** returns only connected edges of a vertice, returning n+1 stands for the 
-      end of this vertice's edge list */
-  int get_next_edge(int vertex);
+      end of this vertice's edge list ... it works on the successor list, so
+      you have to call init_succ_pointer() to (re)initialize and can not use
+      both at the same time*/
+  int get_next_edge(const int vertex);
 
   /// test if there are no edges in the graph
   bool no_edges();
 
   /// returns the number of successors for a vertice
-  /** This is the sum of edges and arcs. */
-  int number_of_succ(int vertex);
+  /** This is the sum of edges and arcs. It uses and reinitializes
+      the successor list. */
+  int number_of_succ(const int vertex);
 
   /// returns the number of successors for a vertice
-  /** This is the sum of edges backwards arcs (CRA's). */
-  int number_of_pred(int vertex);
+  /** This is the sum of edges and backwards arcs (CRA's). It uses and 
+      reinitializes the predecessor list. */
+  int number_of_pred(const int vertex);
 
   /// sort vertices topologically
   /** The vertices will be put in topoligical order into the 
@@ -182,10 +174,10 @@ public:
       returns true: all vertices are topsorted, graph contains no cycles
       returns false: graph contains cycle, elements of vertex_sequence are 
       undefined */ 
-  bool topsort(Lisa_Vector<int>* vertex_sequence);
+  bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
   /// delete all ARC's CRA's and edges connected with that vertice
-  bool remove_all_con(int vertex);
+  bool remove_all_con(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */
