@@ -1591,6 +1591,46 @@ int Lisa_MatrixGraph::get_neighbours(const int vertex)const{
 //**************************************************************************
 //**************************************************************************
 
+Lisa_HammingGraphIndex::Lisa_HammingGraphIndex(const Lisa_Matrix<bool> *const SIJ)
+                                              :m(SIJ->get_m()),n(SIJ->get_n()){
+  
+  indices = 0;
+  ij2index = new int[m*n];
+  
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      ij2index[i*m+j] = ((*SIJ)[i][j]) ? ++indices : 0;
+    }
+  }
+  
+  index2i = new int[indices+1];
+  index2j = new int[indices+1];
+
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(ij2index[i*m+j] == 0){
+        ij2index[i*m+j] = indices+1;
+      }else{
+        index2i[ij2index[i*m+j]] = i;
+        index2j[ij2index[i*m+j]] = j;
+      }
+    }
+  }
+ 
+}
+
+//**************************************************************************
+
+Lisa_HammingGraphIndex::~Lisa_HammingGraphIndex(){
+  delete[] index2j;
+  delete[] index2i;
+  delete[] ij2index;
+}
+ 
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
 bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
                             Lisa_Vector<int> *const knot_sequence){
 #ifdef LISA_DEBUG

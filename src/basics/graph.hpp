@@ -415,6 +415,76 @@ public:
 
 //**************************************************************************
 
+class Lisa_HammingGraphIndex{
+private:
+
+  //@{
+  /// arrays holding our indices
+  int* ij2index;
+  int* index2i;
+  int* index2j;   
+  //@}
+
+  /// size of our arrays
+  int indices;
+  
+public:
+  
+  const int m;
+  const int n;
+
+  /// constructor
+  /** create an index from the set of oberations */
+  Lisa_HammingGraphIndex(const Lisa_Matrix<bool> *const SIJ);
+  
+  /// destructor
+  ~Lisa_HammingGraphIndex();
+
+  /// get the machine for the one dimensional index
+  inline int i(const int index)const{
+#ifdef LISA_DEBUG
+    if(index <= 0 || index >= indices+1){
+      G_ExceptionList.lthrow("Index "+ztos(index)+
+                             " out of range in Lisa_HammingGraphIndex::i().",
+                             Lisa_ExceptionList::OUT_OF_RANGE);
+      return 0;
+    }
+#endif
+    return index2i[index];
+  }
+  
+  /// get the job for the one dimensional index
+  inline int j(const int index)const{
+#ifdef LISA_DEBUG
+    if(index <= 0 || index >= indices+1){
+      G_ExceptionList.lthrow("Index "+ztos(index)+
+                             " out of range in Lisa_HammingGraphIndex::j().",
+                             Lisa_ExceptionList::OUT_OF_RANGE);
+      return 0;
+    }
+#endif
+    return index2j[index];  
+  }
+  
+  /// get the one dimensional index for a an operation
+  /** this will either return the one dimensional index for the operation or
+      indices+1 if the operation does not exists */
+  inline int index(const int i,const int j)const{
+#ifdef LISA_DEBUG
+    if(i < 0 || i >= n || j < 0 || j >= m){
+      G_ExceptionList.lthrow("Operation ("+ztos(i)+","+ztos(j)+
+                             ") out of range in Lisa_HammingGraphIndex::index().",
+                             Lisa_ExceptionList::OUT_OF_RANGE);
+      return indices+1;
+    }
+#endif
+    return ij2index[i*m+j];
+  }
+  
+};
+
+//**************************************************************************
+
 /// some algorithms on graphs
 /**
     @author Marc Moerig
