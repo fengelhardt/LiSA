@@ -20,7 +20,7 @@ Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
   JsSch->InitHeadsTails();
   Done_Machines=new Lisa_Vector<int> (JsPro->m);
   Done_Machines->fill(0);
-  Plan=new Lisa_Graph((JsPro->m)*(JsPro->n));
+  Plan=new Lisa_MatrixListGraph((JsPro->m)*(JsPro->n));
   init_graph();
 }
 
@@ -69,7 +69,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
   Lisa_Vector<int>* schedule=new Lisa_Vector<int> (JsPro->n);
 
   //stores the actuall transitive hull of the current Plan
-  Lisa_Graph* t=new Lisa_Graph((JsPro->m)*(JsPro->n));  
+  Lisa_MatrixListGraph* t=new Lisa_MatrixListGraph((JsPro->m)*(JsPro->n));  
 
   double temp=0;
   double Cmax=0;
@@ -123,7 +123,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	Lisa_Matrix<double>* pt=new Lisa_Matrix<double> (count,1);
 	Lisa_Vector<double>* rd=new Lisa_Vector<double> (count);
 	Lisa_Vector<double>* dd=new Lisa_Vector<double> (count);
-	Lisa_Graph* pg=new Lisa_Graph(count);
+	Lisa_MatrixListGraph* pg=new Lisa_MatrixListGraph(count);
 	            
 	// assign new numbers to the jobs, that will be done 
 	// on machine j
@@ -155,7 +155,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	pLV->DD=dd;
 
 	// look for possible priorities within the transitive hull t 
-	// of the current Plan, store them in Lisa_Graph pg
+	// of the current Plan, store them in Lisa_MatrixListGraph pg
 	// the integers  k1, k2, c1 and c2 are used to switch 
 	// between original and new jobnumbers 
 
@@ -238,7 +238,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 
 //**************************************************************************
 
-bool Shifting_Bottleneck::transitive_hull(Lisa_Graph* source,Lisa_Graph* target)
+bool Shifting_Bottleneck::transitive_hull(Lisa_MatrixListGraph* source,Lisa_MatrixListGraph* target)
 {  
   const int end = source->get_vertices()+1;
   

@@ -30,7 +30,7 @@ private:
   /// stores the machines, for which the schedule is determined
   Lisa_Vector<int>* Done_Machines;
   /// contains the already computed parts of the final schedule
-  Lisa_Graph* Plan;
+  Lisa_MatrixListGraph* Plan;
   /// initialize Plan
   void init_graph();
   /// fast algorithm for shifting_bottleneck heuristic
@@ -39,7 +39,7 @@ private:
   /** Calculates the transitive hull for this graph and writes it into 
       the target graph. The target graph is assumed to have the same number of 
       vertices as this graph. It must not contain any edges or arcs. */
-  bool transitive_hull(Lisa_Graph* source,Lisa_Graph* target);
+  bool transitive_hull(Lisa_MatrixListGraph* source,Lisa_MatrixListGraph* target);
 public:
   /// constructor
   /** initialize the Shifting_Bottleneck object with parameters from 

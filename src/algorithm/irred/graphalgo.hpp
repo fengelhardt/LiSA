@@ -6,15 +6,15 @@
 
 /// Just some helpfull operations on graphs.
 /** Needed for the irreducibility test.
-    @see Lisa_Graph
+    @see Lisa_MatrixListGraph
     @version 2.3final
     @author Marc Moerig   
  */
-class Lisa_GraphAlgorithms{
+class Lisa_MatrixListGraphAlgorithms{
 public:
 
   /// Removes all ARC's and EDGES from the graph.
-  static inline void clear(Lisa_Graph* graph){
+  static inline void clear(Lisa_MatrixListGraph* graph){
     const int vert = graph->get_vertices();
     for (int i=1;i<=vert;i++){
       graph->remove_all_con(i);
@@ -22,7 +22,7 @@ public:
   }
    
   /// Replaces each ARC with an EDGE.
-  static inline void build_semigraph(Lisa_Graph* graph){
+  static inline void build_semigraph(Lisa_MatrixListGraph* graph){
     const int vert = graph->get_vertices();
     int c;
     
@@ -41,7 +41,7 @@ public:
   /** Build the transitive hull, then create the semigraph of it.
       The targetgraph is supposed to have the same number of vertice as the 
       inputgraph, but no edges or arcs at all.*/ 
-  static inline void build_compgraph(Lisa_Graph* source,Lisa_Graph* target){
+  static inline void build_compgraph(Lisa_MatrixListGraph* source,Lisa_MatrixListGraph* target){
     const int vert = source->get_vertices();
     
     Lisa_Vector<int> queue(vert+1);
@@ -79,13 +79,13 @@ public:
   }
   
   /// Sort vertices topologically.
-  /** The Method in the Lisa_Graph object performs this operation
+  /** The Method in the Lisa_MatrixListGraph object performs this operation
       such that if i is the vertex his position will be stored at
       (*knot_sequence)[i-1]. 
  
       This Method however does it the other way around, so that i is 
       the position while (*knot_sequence)[i] contains the vertex. */
-  static inline bool topsort(Lisa_Graph* graph,Lisa_Vector<int>* knot_sequence){
+  static inline bool topsort(Lisa_MatrixListGraph* graph,Lisa_Vector<int>* knot_sequence){
     const int vert = graph->get_vertices();
     
     Lisa_Vector<int> sort(vert);
@@ -103,7 +103,7 @@ public:
       at least one more edge. Both graph's need to contain no arc's, 
       have the same number of vertices and those are fixed. 
       This method does NOT test if the graphs are isomorph. */
-  static inline bool smaller(Lisa_Graph* first,Lisa_Graph* second){
+  static inline bool smaller(Lisa_MatrixListGraph* first,Lisa_MatrixListGraph* second){
     const int vert = first->get_vertices();
     int fc,sc;
     bool missing=0;
@@ -127,7 +127,7 @@ public:
       is also contained in the second graph, and vice versa. Both 
       graph's need to have the same number of vertices and they are 
       fixed. This method does NOT test if the graphs are isomorph. */
-  static inline bool equal(Lisa_Graph* first,Lisa_Graph* second){
+  static inline bool equal(Lisa_MatrixListGraph* first,Lisa_MatrixListGraph* second){
     const int vert = first->get_vertices();
     
     for (int i=1;i<=vert;i++){

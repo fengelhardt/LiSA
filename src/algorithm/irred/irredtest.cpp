@@ -9,10 +9,10 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
+Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_MatrixListGraph* disjkt_in){
   vert = disjkt_in->get_vertices();
   
-  disjkt = new Lisa_Graph(*disjkt_in);
+  disjkt = new Lisa_MatrixListGraph(*disjkt_in);
   
   result = 0;
 }
@@ -31,7 +31,7 @@ void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res){
 
 //**************************************************************************
 
-bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,
+bool Lisa_IrreducibilityTest::test(Lisa_MatrixListGraph* plan, Lisa_MatrixListGraph* comp,
 const int param){
   
   int edges = 0;
@@ -141,7 +141,7 @@ const int param){
     }
   }
   
-  Lisa_Graph newplan(plan);
+  Lisa_MatrixListGraph newplan(plan);
   num = implic->length();
   Lisa_Vector<bool> turned(num);
   Lisa_Vector<int> topsortvec(vert);
@@ -199,10 +199,10 @@ const int param){
     
     if (newplan.topsort(&topsortvec)){  // check whether the newplan graph contains a cycle
       
-      Lisa_Graph newcomp(vert);
-      Lisa_GraphAlgorithms::build_compgraph(&newplan,&newcomp);
+      Lisa_MatrixListGraph newcomp(vert);
+      Lisa_MatrixListGraphAlgorithms::build_compgraph(&newplan,&newcomp);
       
-      if (Lisa_GraphAlgorithms::smaller(&newcomp,comp)){ // does it reduce the original plan ?
+      if (Lisa_MatrixListGraphAlgorithms::smaller(&newcomp,comp)){ // does it reduce the original plan ?
         if (result){ // ok, output is wanted
           if (param!=GENERATE_SIMILAR) result->insert(&newplan,&newcomp);
           irre = 0;
@@ -212,7 +212,7 @@ const int param){
           goto ready_to_go;
         }
       }else if(param==GENERATE_SIMILAR){
-        if(result && Lisa_GraphAlgorithms::equal(&newcomp,comp)){
+        if(result && Lisa_MatrixListGraphAlgorithms::equal(&newcomp,comp)){
           result->insert(&newplan,&newcomp);
         }
       }

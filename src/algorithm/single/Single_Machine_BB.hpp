@@ -42,10 +42,10 @@ class SingleMachineBB{
   double bestLmax;
   Lisa_Values* pLV;
   /// contains priority relations
-  Lisa_Graph* priority; 
+  Lisa_MatrixListGraph* priority; 
   /// stores which jobs already done 
   Lisa_Vector<bool>* Done;
-  /// includes the predeccesors of every job in the Lisa_Graph priority
+  /// includes the predeccesors of every job in the Lisa_MatrixListGraph priority
   Lisa_Vector<int>* Sources;
   /// contains schedule, which is currently developed
   Lisa_Vector<int>* Schedule;
@@ -61,14 +61,14 @@ class SingleMachineBB{
 public:
   /// constructor
   /** create an object, in dependency on Lisa_Values and 
-   a possible Lisa_Graph, which contains priority relations 
+   a possible Lisa_MatrixListGraph, which contains priority relations 
    and running mode m */
-  SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph=0, bool m=false);
+  SingleMachineBB(Lisa_Values* pValues, Lisa_MatrixListGraph* pgraph=0, bool m=false);
   /// constructor
   /** create an object, in dependency on Lisa_Values and 
-   a possible Lisa_Graph, which contains priority relations 
+   a possible Lisa_MatrixListGraph, which contains priority relations 
    and running mode m */
-  SingleMachineBB(Lisa_Values* pValues, bool m=false, Lisa_Graph* pgraph=0);
+  SingleMachineBB(Lisa_Values* pValues, bool m=false, Lisa_MatrixListGraph* pgraph=0);
   /// delete this object
   ~SingleMachineBB();
   /// compute the schedule

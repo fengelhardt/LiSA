@@ -7,7 +7,7 @@
 
 //**************************************************************************
 
-SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgraph){
+SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_MatrixListGraph* pgraph){
  
   n=pValues->get_n();
   mode=m;
@@ -28,7 +28,7 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgrap
 
 //**************************************************************************
 
-SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool m)
+SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_MatrixListGraph* pgraph, bool m)
 {
   n=pValues->get_n();
   mode=m;

@@ -9,11 +9,11 @@ using namespace std;
 
 //**************************************************************************
   
-Lisa_IrredNode::Lisa_IrredNode(Lisa_Graph* plangraph_in, 
-                               Lisa_Graph* compgraph_in, const int status_in){
+Lisa_IrredNode::Lisa_IrredNode(Lisa_MatrixListGraph* plangraph_in, 
+                               Lisa_MatrixListGraph* compgraph_in, const int status_in){
                                  
-  plangraph = new Lisa_Graph(*plangraph_in);
-  compgraph = new Lisa_Graph(*compgraph_in);
+  plangraph = new Lisa_MatrixListGraph(*plangraph_in);
+  compgraph = new Lisa_MatrixListGraph(*compgraph_in);
   status = status_in;
 }
 
@@ -56,8 +56,8 @@ Lisa_IrredResult::~Lisa_IrredResult(){
 
 //**************************************************************************
 
-void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,
-                              Lisa_Graph* compgraph_in){
+void Lisa_IrredResult::insert(Lisa_MatrixListGraph* plangraph_in,
+                              Lisa_MatrixListGraph* compgraph_in){
 
   static int lastsize = 0;	
   //static int countall=0;countall++;cout<<"inserted:"<<results->length()
@@ -71,8 +71,8 @@ void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,
     if (!results->empty()){
       results->reset();
       do{
-	if (Lisa_GraphAlgorithms::smaller(results->get()->compgraph,compgraph_in)) return;
-	if (Lisa_GraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_MatrixListGraphAlgorithms::smaller(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_MatrixListGraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
       }while(results->next());
     }
     
@@ -89,7 +89,7 @@ void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,
     if (!results->empty()){
       results->reset();
       do{
-	if (Lisa_GraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
+	if (Lisa_MatrixListGraphAlgorithms::equal(results->get()->compgraph,compgraph_in)) return;
       }while(results->next());
     }
     
@@ -117,7 +117,7 @@ void Lisa_IrredResult::compare_all(){
 	results->reset();
 	
 	do{
-	  if (Lisa_GraphAlgorithms::smaller(results->get()->compgraph,curr->compgraph)){
+	  if (Lisa_MatrixListGraphAlgorithms::smaller(results->get()->compgraph,curr->compgraph)){
 	    curr->status = Lisa_IrredNode::NOT_IRREDUCIBLE;
 	  }
 	}while(results->next());

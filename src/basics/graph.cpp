@@ -10,7 +10,7 @@ using namespace std;
 
 //**************************************************************************
 
-int Lisa_Graph::signum(const int start,const int end)const{
+int Lisa_MatrixListGraph::signum(const int start,const int end)const{
   if(start==end) return 0;
   
   if(((*matrix)[start][end].x>0)&&((*matrix)[start][end].y>0)){
@@ -22,7 +22,7 @@ int Lisa_Graph::signum(const int start,const int end)const{
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const int number_of_knots){
+Lisa_MatrixListGraph::Lisa_MatrixListGraph(const int number_of_knots){
   matrix=0;
   succ_pred_pointer=0;
   init(number_of_knots);
@@ -30,7 +30,7 @@ Lisa_Graph::Lisa_Graph(const int number_of_knots){
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const Lisa_Graph *const othergraph){
+Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_MatrixListGraph *const othergraph){
   matrix=0;
   succ_pred_pointer=0;
   init(othergraph->get_vertices());
@@ -45,7 +45,7 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph *const othergraph){
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph){
+Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_MatrixListGraph& othergraph){
   matrix=0;
   succ_pred_pointer=0;
   init(othergraph.get_vertices());
@@ -60,14 +60,14 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph){
 
 //**************************************************************************
 
-Lisa_Graph::~Lisa_Graph(){
+Lisa_MatrixListGraph::~Lisa_MatrixListGraph(){
   delete matrix;
   delete succ_pred_pointer;
 }
 
 //**************************************************************************
 
-const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
+const Lisa_MatrixListGraph& Lisa_MatrixListGraph::operator=(const Lisa_MatrixListGraph& other){
   
   if (n!=other.get_vertices()){
     G_ExceptionList.lthrow("wrong format argument to graph.operator=");
@@ -86,7 +86,7 @@ const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
 
 //**************************************************************************
 
-void Lisa_Graph::init(const int n_in) {
+void Lisa_MatrixListGraph::init(const int n_in) {
   n = n_in;
   end = n+1;
   
@@ -117,7 +117,7 @@ void Lisa_Graph::init(const int n_in) {
 
 //**************************************************************************
   
-void Lisa_Graph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
+void Lisa_MatrixListGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
   
   for(int i=1; i<=n; i++){
     for(int j=1; j<=n; j++){
@@ -135,7 +135,7 @@ void Lisa_Graph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
 
 //**************************************************************************
 
-void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
+void Lisa_MatrixListGraph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
   if((adj->get_n())==n){
     for(int i=0; i<n; i++){
       for(int j=0; j<n; j++){
@@ -155,11 +155,11 @@ void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
 
 //**************************************************************************
 
-void Lisa_Graph::insert_edge(const int start,const int end){
+void Lisa_MatrixListGraph::insert_edge(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::insert_arc().",
+                           " out of range in Lisa_MatrixListGraph::insert_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -213,11 +213,11 @@ void Lisa_Graph::insert_edge(const int start,const int end){
 
 //**************************************************************************
 
-void Lisa_Graph::insert_arc(const int start,const int end){
+void Lisa_MatrixListGraph::insert_arc(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::insert_arc().",
+                           " out of range in Lisa_MatrixListGraph::insert_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -266,11 +266,11 @@ void Lisa_Graph::insert_arc(const int start,const int end){
 }
 //**************************************************************************
 
-void Lisa_Graph::exclude_all(const int start,const int end){
+void Lisa_MatrixListGraph::exclude_all(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::exclude_all().",
+                           " out of range in Lisa_MatrixListGraph::exclude_all().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -292,11 +292,11 @@ void Lisa_Graph::exclude_all(const int start,const int end){
 
 //**************************************************************************
 
-void Lisa_Graph::exclude_edge(const int start,const int end){
+void Lisa_MatrixListGraph::exclude_edge(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::exclude_edge().",
+                           " out of range in Lisa_MatrixListGraph::exclude_edge().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -352,11 +352,11 @@ void Lisa_Graph::exclude_edge(const int start,const int end){
 
 //**************************************************************************
 
-void Lisa_Graph::exclude_arc(const int start,const int end){
+void Lisa_MatrixListGraph::exclude_arc(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::exclude_arc().",
+                           " out of range in Lisa_MatrixListGraph::exclude_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -415,11 +415,11 @@ void Lisa_Graph::exclude_arc(const int start,const int end){
 
 //**************************************************************************
 
-int Lisa_Graph::get_connection(const int start,const int end){
+int Lisa_MatrixListGraph::get_connection(const int start,const int end){
 #ifdef LISA_DEBUG
   if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
-                           " out of range in Lisa_Graph::get_connection().",
+                           " out of range in Lisa_MatrixListGraph::get_connection().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return NO;
   }
@@ -447,11 +447,11 @@ int Lisa_Graph::get_connection(const int start,const int end){
 
 //**************************************************************************
 
-void Lisa_Graph::init_succ_pointer(const int knot){
+void Lisa_MatrixListGraph::init_succ_pointer(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::init_succ_pointer().",
+                           " out of range in Lisa_MatrixListGraph::init_succ_pointer().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -462,11 +462,11 @@ void Lisa_Graph::init_succ_pointer(const int knot){
 
 //**************************************************************************
 
-void Lisa_Graph::init_pred_pointer(const int knot){
+void Lisa_MatrixListGraph::init_pred_pointer(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::init_pred_pointer().",
+                           " out of range in Lisa_MatrixListGraph::init_pred_pointer().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -477,11 +477,11 @@ void Lisa_Graph::init_pred_pointer(const int knot){
  
 //**************************************************************************
 
-int Lisa_Graph::get_next_successor(const int knot){
+int Lisa_MatrixListGraph::get_next_successor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::get_next_successor().",
+                           " out of range in Lisa_MatrixListGraph::get_next_successor().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return end;
   }
@@ -512,11 +512,11 @@ int Lisa_Graph::get_next_successor(const int knot){
 
 //**************************************************************************
 
-int Lisa_Graph::get_next_predeccessor(const int knot){
+int Lisa_MatrixListGraph::get_next_predeccessor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::get_next_predecessor().",
+                           " out of range in Lisa_MatrixListGraph::get_next_predecessor().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return end;
   }
@@ -547,11 +547,11 @@ int Lisa_Graph::get_next_predeccessor(const int knot){
 
 //**************************************************************************
 
-int Lisa_Graph::get_next_edge(const int knot){
+int Lisa_MatrixListGraph::get_next_edge(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::get_next_edge().",
+                           " out of range in Lisa_MatrixListGraph::get_next_edge().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return end;
   }
@@ -568,7 +568,7 @@ int Lisa_Graph::get_next_edge(const int knot){
 
 //**************************************************************************
 
-bool Lisa_Graph::no_edges(){
+bool Lisa_MatrixListGraph::no_edges(){
   
   for(int i=1; i<end; i++){
     if(((*matrix)[i][i].x)!=end){
@@ -581,11 +581,11 @@ bool Lisa_Graph::no_edges(){
 
 //**************************************************************************
 
-int Lisa_Graph::number_of_succ(const int knot){
+int Lisa_MatrixListGraph::number_of_succ(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::number_of_succ().",
+                           " out of range in Lisa_MatrixListGraph::number_of_succ().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return 0;
   }
@@ -600,11 +600,11 @@ int Lisa_Graph::number_of_succ(const int knot){
 
 //**************************************************************************
 
-int Lisa_Graph::number_of_pred(const int knot){
+int Lisa_MatrixListGraph::number_of_pred(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::number_of_pred().",
+                           " out of range in Lisa_MatrixListGraph::number_of_pred().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return 0;
   }
@@ -619,12 +619,12 @@ int Lisa_Graph::number_of_pred(const int knot){
 
 //**************************************************************************
 
-bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
+bool Lisa_MatrixListGraph::topsort(Lisa_Vector<int> *const knot_sequence){
   
   knot_sequence->fill(0);
   if(no_edges()){
     //graph copy
-    Lisa_Graph* top=new Lisa_Graph(this);
+    Lisa_MatrixListGraph* top=new Lisa_MatrixListGraph(this);
     //stores the number of successors of knot i in i-1
     Lisa_Vector<int>* succ=new Lisa_Vector<int>(n);
     Lisa_Vector<int>* pred=new Lisa_Vector<int>(n);
@@ -670,12 +670,12 @@ bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
 
 //**************************************************************************
 
-void Lisa_Graph::remove_all_con(const int knot){
+void Lisa_MatrixListGraph::remove_all_con(const int knot){
 
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>n ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::remove_all_con().",
+                           " out of range in Lisa_MatrixListGraph::remove_all_con().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
@@ -706,7 +706,7 @@ void Lisa_Graph::remove_all_con(const int knot){
 
 //**************************************************************************
 
-void Lisa_Graph::show(){
+void Lisa_MatrixListGraph::show(){
   
   for (int i=0; i<=n; i++){
     for (int j=0; j<=n; j++){
@@ -719,7 +719,7 @@ void Lisa_Graph::show(){
 
 //**************************************************************************
 
-bool Lisa_Graph::valid(){
+bool Lisa_MatrixListGraph::valid(){
   
   int el_of_list;
   int* knot_list = new int[n];
@@ -990,7 +990,7 @@ bool Lisa_Graph::valid(){
 
 //**************************************************************************
 
-void Lisa_Graph::write(ostream & strm)const{
+void Lisa_MatrixListGraph::write(ostream & strm)const{
   
   Lisa_Matrix<int>* out=new Lisa_Matrix<int>(n,n);
   get_adjacency_matrix(out);
@@ -1005,9 +1005,9 @@ void Lisa_Graph::write(ostream & strm)const{
 
 //**************************************************************************
 
-void Lisa_Graph::read(istream & strm){
+void Lisa_MatrixListGraph::read(istream & strm){
   if(strm==NULL){
-    G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
+    G_ExceptionList.lthrow("(in Lisa_MatrixListGraph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
@@ -1018,7 +1018,7 @@ void Lisa_Graph::read(istream & strm){
     S=""; 
     strm >>S;
     if (S==""){ 
-      G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
+      G_ExceptionList.lthrow("Unexpected End of File in Lisa_MatrixListGraph.read",Lisa_ExceptionList::END_OF_FILE);
       return;
     } 
     if (S=="<GRAPH>") break;
@@ -1032,7 +1032,7 @@ void Lisa_Graph::read(istream & strm){
     strm >>S;  
     if (S=="") 
     {
-      G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
+      G_ExceptionList.lthrow("Unexpected End of File in Lisa_MatrixListGraph.read",Lisa_ExceptionList::END_OF_FILE);
       return;
     }
     

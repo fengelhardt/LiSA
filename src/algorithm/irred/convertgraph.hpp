@@ -46,29 +46,29 @@ private:
   //@}
   
   /// the disjkt graph
-  Lisa_Graph* disjkt;
+  Lisa_MatrixListGraph* disjkt;
   
   //@{
   /// intern convertion method
   /** one for each different problemtype we can handle */
   void initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_CMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
+  void plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
 
   void initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
-  void plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); 
+  void plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
+  void plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph); 
 
   void initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_LMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
-  void plan2graph_O_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
+  void plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
+  void plan2graph_O_LMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
 
   void initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
-  void plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); 
+  void plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
+  void plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph); 
   //@}
   
   /// constructor
@@ -88,13 +88,13 @@ public:
   ~Lisa_ConvertGraph();
 
   /// returns a pointer to the disjunctive graph describing the Problem
-  Lisa_Graph*  get_disjkt();
+  Lisa_MatrixListGraph*  get_disjkt();
   
   /// converts a plan of the current problem to the according plangraph
-  void plan2graph(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
+  void plan2graph(Lisa_Matrix<int>* plan,Lisa_MatrixListGraph* plangraph);
   
   /// converts a plangraph back to the plan 
-  void graph2plan(Lisa_Graph* plangraph,Lisa_Matrix<int>* plan);
+  void graph2plan(Lisa_MatrixListGraph* plangraph,Lisa_Matrix<int>* plan);
   
   ///  Sends the object data to a stream.   
   /**  This data is usually only interesting for debugging.*/

@@ -15,7 +15,7 @@ enum{CRA=-1 /// backwards ARC ;)
     ,EDGE};
 
 /// LiSA's graph object 
-/** The Lisa_Graph Model stores three kind of connections: edges, arcs and 
+/** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
     backwards directed arcs. There are three double-linked lists for every 
     single vertice, to determine its arc-predecessors, arc-successors and 
     edge-neighbours. The matrix includes these structures. The process of 
@@ -31,7 +31,7 @@ enum{CRA=-1 /// backwards ARC ;)
     @author Christian Schulz
     @version 2.3final
 */  
-class Lisa_Graph  : public Lisa_FileEntry {
+class Lisa_MatrixListGraph  : public Lisa_FileEntry {
 private:
 
   ///number of vertices
@@ -72,22 +72,22 @@ public:
   
   /// constructor
   /** Create a graph object for a number of vertices. */
-  Lisa_Graph(const int number_of_vertices);
+  Lisa_MatrixListGraph(const int number_of_vertices);
 
   /// constructor
   /** Create a graph as the copy of another graph. */
-  Lisa_Graph(const Lisa_Graph *const othergraph);
+  Lisa_MatrixListGraph(const Lisa_MatrixListGraph *const othergraph);
   
   /// constructor
   /** Create a graph as the copy of another graph. */
-  Lisa_Graph(const Lisa_Graph & othergraph);
+  Lisa_MatrixListGraph(const Lisa_MatrixListGraph & othergraph);
 
   /// destructor
-  ~Lisa_Graph();
+  ~Lisa_MatrixListGraph();
 
   /// assign another graph
   /** Copy one graph object to the other */ 
-  const Lisa_Graph& operator=(const Lisa_Graph& other);
+  const Lisa_MatrixListGraph& operator=(const Lisa_MatrixListGraph& other);
 
   /// return the number of vertices
   inline int get_vertices()const{return n;};
