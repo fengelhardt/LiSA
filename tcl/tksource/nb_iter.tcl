@@ -1,4 +1,4 @@
-set ext_algo(NAME,neighbor) $Name(Neighborhood_Search)
+set ext_algo(NAME,nb_iter) $Name(Neighborhood_Search)
 set ext_algo(TYPE,neighbor) iterative
 
 proc vTclWindow.neighbor {base} {
