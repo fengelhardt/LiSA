@@ -1,5 +1,5 @@
 <GENERAL>
-Name= a solution with minimal rank
+Name= sample algorithm
 Type= constructive
 Call= sample
 Code= external
