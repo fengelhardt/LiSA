@@ -1,5 +1,5 @@
 <GENERAL>
-Name= O2-algorithmus
+Name= O2-Algorithmus
 Type= constructive
 Call= open2
 Code= external
