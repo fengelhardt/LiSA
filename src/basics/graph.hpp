@@ -2,12 +2,15 @@
 #ifndef _graph_h 
 #define _graph_h 
 
+//**************************************************************************
+
 #include <iostream>
 
 #include "../lisa/filentry.hpp"
 #include "matrix.hpp"
 #include "pair.hpp"
 
+//**************************************************************************
 
 /// a base class representing a graph
 /** Lisa_Graph is a class with mostly virtual methods, providing a unified
@@ -56,6 +59,9 @@
     
     The get_successors() etc. functions are also independed from the
     init_successor(), next_successor() functions.
+    
+    @author Marc Moerig
+    @version 2.3final
     
   */
 class Lisa_Graph : public Lisa_FileEntry{
@@ -182,7 +188,9 @@ public:
    
 };
 
-/// LiSA's graph object 
+//**************************************************************************
+
+/// graph object 
 /** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
     backwards directed arcs. There are three double-linked lists for every 
     single vertice, to determine its arc-predecessors, arc-successors and 
@@ -317,6 +325,101 @@ public:
 
 };
 
+//**************************************************************************
+/// graph object 
+/** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
+    backwards directed arcs. There are three double-linked lists for every 
+    single vertice, to determine its arc-predecessors, arc-successors and 
+    edge-neighbours. The matrix includes these structures. The process of 
+    adding or deleting a connection changes these lists, according to the 
+    choosen kind of connection.
+
+    @author Christian Schulz
+    @version 2.3final
+*/  
+class Lisa_MatrixGraph : public Lisa_Graph {
+private:
+
+  /// number of vertices
+  int size;
+
+  /// adjacency matrix
+  Lisa_Matrix<int>* matrix;
+  
+public:
+  
+  /// constructor
+  /** Create a graph object for a number of vertices. */
+  Lisa_MatrixGraph(const int number_of_vertices);
+
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixGraph(const Lisa_MatrixGraph *const othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixGraph(const Lisa_Graph *const othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixGraph(const Lisa_MatrixGraph & othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixGraph(const Lisa_Graph& othergraph);
+
+  /// destructor
+  ~Lisa_MatrixGraph();
+
+  inline int get_vertices()const{return size;}
+  
+  void init(const int number_of_vertex);
+
+  void clear();  
+  
+  void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const;
+
+  void set_adjacency_matrix(const Lisa_Matrix<int> *const adj);
+
+  void insert_edge(const int start,const int end);
+
+  void insert_arc(const int start,const int end);
+    
+  void remove_edge(const int start,const int end);
+
+  void remove_arc(const int start,const int end);
+  
+  void clear(const int vertex);
+  
+  int get_connection(const int start,const int end)const;
+
+  void init_successor(const int vertex);
+
+  int next_successor(const int vertex);
+  
+  void init_predecessor(const int vertex);
+  
+  int next_predecessor(const int vertex);
+  
+  void init_neighbour(const int vertex);
+  
+  int next_neighbour(const int vertex);
+  
+  int get_successors(const int vertex)const;
+
+  int get_predecessors(const int vertex)const;
+  
+  int get_neighbours(const int vertex)const;
+
+};
+
+//**************************************************************************
+
+/// some algorithms on graphs
+/**
+    @author Marc Moerig
+    @version 2.3final
+  */
 class Lisa_GraphAlg{
 public:
 
@@ -370,6 +473,8 @@ public:
   static bool equal(const Lisa_Graph *const first,const Lisa_Graph *const second);
   
 };
+
+//**************************************************************************
 
 #endif
 

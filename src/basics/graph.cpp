@@ -518,7 +518,6 @@ void Lisa_MatrixListGraph::remove_arc(const int start,const int end){
 //**************************************************************************
 
 void Lisa_MatrixListGraph::clear(const int knot){
-
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -1141,6 +1140,439 @@ bool Lisa_MatrixListGraph::valid(){
   
   delete[] knot_list;  
   return true;
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_MatrixGraph::Lisa_MatrixGraph(const int number_of_vertices){
+  matrix = 0;
+  init(number_of_vertices);
+}
+
+//**************************************************************************
+
+Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph *const othergraph){
+  matrix = 0;
+  init(othergraph->size);
+  set_adjacency_matrix(othergraph->matrix);
+}
+
+//**************************************************************************
+
+Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_Graph *const othergraph){
+  matrix = 0;
+  init(othergraph->get_vertices());
+  
+  Lisa_Matrix<int> out(size,size);
+  othergraph->get_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
+}
+
+//**************************************************************************
+
+Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_MatrixGraph & othergraph){
+  matrix = 0;
+  init(othergraph.size);
+  set_adjacency_matrix(othergraph.matrix);
+}
+
+//**************************************************************************
+
+Lisa_MatrixGraph::Lisa_MatrixGraph(const Lisa_Graph& othergraph){
+  matrix = 0;
+  init(othergraph.get_vertices());
+  
+  Lisa_Matrix<int> out(size,size);
+  othergraph.get_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
+}
+
+//**************************************************************************
+
+Lisa_MatrixGraph::~Lisa_MatrixGraph(){
+  if(matrix) delete matrix;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::init(const int number_of_vertex){
+  size = number_of_vertex;
+  
+  if(matrix) delete matrix;
+  matrix = new Lisa_Matrix<int>(size+1,size+1);
+  
+  clear();
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::clear(){
+  matrix->fill(0);
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj) const{
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_MatrixGraph::get_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  for(int i=1;i<=size;i++){
+    (*adj)[i][i] = 0;
+    for(int j=i+1;j<=size;j++){
+      (*adj)[i-1][j-1] = (*matrix)[i][j];
+      (*adj)[j-1][i-1] = (*matrix)[j][i];
+    }
+  }
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const adj){
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_MatrixGraph::set_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif  
+  
+  for(int i=1;i<=size;i++){
+    for(int j=i+1;j<=size;j++){
+      (*matrix)[i][j] = (*adj)[i-1][j-1];
+      (*matrix)[j][i] = (*adj)[j-1][i-1];
+    }
+  }
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::insert_edge(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixGraph::insert_edge().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*matrix)[start][end] = 1;
+  (*matrix)[end][start] = 1;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::insert_arc(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixGraph::insert_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*matrix)[start][end] = 1;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::remove_edge(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixGraph::remove_edge().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*matrix)[start][end] = 0;
+  (*matrix)[end][start] = 0;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::remove_arc(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixGraph::remove_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*matrix)[start][end] = 0;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::clear(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::clear().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  int i=1;
+  while(i<vertex){
+    (*matrix)[i][vertex] = 0;
+    (*matrix)[vertex][i] = 0;
+    i++;
+  }
+  i++;
+  while(i<=size){
+    (*matrix)[i][vertex] = 0;
+    (*matrix)[vertex][i] = 0;
+    i++;
+  }
+  
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::get_connection(const int start,const int end)const{
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_MatrixGraph::get_connection().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return NONE;
+  }
+#endif
+  
+  if(start==end) return NONE;
+  
+  if((*matrix)[start][end]){
+    if((*matrix)[end][start]) return EDGE;
+    return ARC;
+  }
+  
+  if((*matrix)[end][start]) return CRA;
+  
+  return NONE;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::init_successor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::init_successor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  (*matrix)[vertex][0] = 0;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::next_successor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::next_successor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return size+1;
+  }
+#endif
+  
+  int currpos = (*matrix)[vertex][0];
+  
+  do{
+    currpos++;
+    
+    if(currpos == vertex) currpos++;
+    
+    if(currpos == size+1){
+      (*matrix)[vertex][0] = 0;
+      return size+1;
+    }
+  
+  }while((*matrix)[vertex][currpos] == 0);
+    
+  (*matrix)[vertex][0] = currpos;
+
+  return currpos;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::init_predecessor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::init_predecessor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  (*matrix)[0][vertex] = 0;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::next_predecessor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::next_predecessor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return size+1;
+  }
+#endif
+
+  int currpos = (*matrix)[0][vertex];
+  
+  do{
+    currpos++;
+    
+    if(currpos == vertex) currpos++;
+    
+    if(currpos == size+1){
+      (*matrix)[0][vertex] = 0;
+      return size+1;
+    }
+  
+  }while((*matrix)[currpos][vertex] == 0);
+    
+  (*matrix)[0][vertex] = currpos;
+
+  return currpos;
+}
+
+//**************************************************************************
+
+void Lisa_MatrixGraph::init_neighbour(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::init_neighbour().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  (*matrix)[vertex][vertex] = 0; 
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::next_neighbour(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::next_neighbour().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return size+1;
+  }
+#endif
+
+  int currpos = (*matrix)[vertex][vertex];
+  
+  do{
+    currpos++;
+    
+    if(currpos == vertex) currpos++;
+    
+    if(currpos == size+1){
+      (*matrix)[vertex][vertex] = 0;
+      return size+1;
+    }
+  
+  }while((*matrix)[currpos][vertex] == 0 || (*matrix)[vertex][currpos] == 0);
+    
+  (*matrix)[vertex][vertex] = currpos;
+
+  return currpos;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::get_successors(const int vertex)const{
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::get_successors().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
+  int count = 0;
+  if((*matrix)[vertex][vertex]) count--;
+  
+  for(int i=1;i<=size;i++){
+    if((*matrix)[vertex][i]) count++;
+  }
+
+  return count;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::get_predecessors(const int vertex)const{
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::get_predecessors().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
+
+  int count = 0;
+  if((*matrix)[vertex][vertex]) count--;
+  
+  for(int i=1;i<=size;i++){
+    if((*matrix)[i][vertex]) count++;
+  }
+
+  return count;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixGraph::get_neighbours(const int vertex)const{
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_MatrixGraph::get_neighbours().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
+
+  int count = 0;
+  if((*matrix)[vertex][vertex]) count--;
+  
+  for(int i=1;i<=size;i++){
+    if((*matrix)[i][vertex] && (*matrix)[vertex][i]) count++;
+  }
+
+  return count;
 }
 
 //**************************************************************************
