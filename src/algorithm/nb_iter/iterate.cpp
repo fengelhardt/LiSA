@@ -7,7 +7,8 @@
 #include <time.h>
 #include <math.h>
 #include <signal.h>
-         
+
+#include <iostream>         
 #include <fstream>
 
 #include "../../main/global.hpp"

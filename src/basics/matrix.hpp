@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "../main/global.hpp"
+#include "../basics/list.hpp"
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
 

@@ -4,11 +4,17 @@
 
 #include <string>
 #include <fstream>
-
-#include "../basics/list.hpp"
+#include <list>
+#include <iterator>
 
 // extra error message for objects which cannot use Lisa_ExceptionList 
 extern std::string G_ExtraException;
+
+struct Lisa_ExceptionNode{
+  std::string message;
+  int code;  
+};
+
 
 /// class for storing error messages and error codes
 /** Due to compatibility problems LiSA does not use C++ exception handling 
@@ -25,19 +31,20 @@ private:
   bool output_to_cout;
  
   /// list with error messages
-  Lisa_List<std::string> Messages;
-  /// list with error codes
-  Lisa_List<int> Codes;
+  std::list<Lisa_ExceptionNode> Messages;
+
+  /// look for first occurance of exception with code
+  std::list<Lisa_ExceptionNode>::iterator search_first(const int code);
   
 public:
   /// error codes
   enum{ANY_ERROR=0,OUT_OF_RANGE,NO_MORE_MEMORY,END_OF_FILE,SYNTAX_ERROR,
-     UNDEFINED_OBJECT,TCLTK_ERROR,FILE_NOT_FOUND,INCONSISTENT_INPUT,WARNING};
+       UNDEFINED_OBJECT,TCLTK_ERROR,FILE_NOT_FOUND,INCONSISTENT_INPUT,WARNING};
 
   /// constructor 
   inline Lisa_ExceptionList(){ 
-      output_to_cerr=FALSE;
-      output_to_cout=FALSE; 
+      output_to_cerr=false;
+      output_to_cout=false; 
   }
   
   /// register error message:
@@ -47,22 +54,22 @@ public:
   void lfthrow(const std::string msg, const int code=ANY_ERROR);
   
   /// let all further messages be printed immediately to cerr
-  inline void set_output_to_cerr() { output_to_cerr=TRUE; }
+  inline void set_output_to_cerr() { output_to_cerr=true; }
   
   /// let all further messages be printed immediately to cout
-  inline void set_output_to_cout() { output_to_cout=TRUE; }
+  inline void set_output_to_cout() { output_to_cout=true; }
   
   /// return last error message, delete it from the list
   std::string lcatch();
   
   /// return last error message with given error code, delete it
-  std::string lcatch(int);
+  std::string lcatch(const int code);
   
   /// test whether error is registered
-  inline bool empty() { return (Codes.empty()&&(G_ExtraException=="")); }
+  inline bool empty() { return (Messages.empty()&&(G_ExtraException=="")); }
   
   /// test whether error with given code is in list
-  inline bool empty(int code) { return !(Codes.search_first(code)); }
+  inline bool empty(const int code) { return search_first(code) == Messages.end(); }
 };
 
 /// global instance of exception list:

@@ -3,6 +3,7 @@
  * @version 2.3final
  */
 
+#include <iostream>
 #include "except.hpp"
 
 using namespace std;
@@ -17,10 +18,14 @@ string G_ExtraException="";
 void Lisa_ExceptionList::lthrow(const string msg, const int code){
   
   string type_word="ERROR";
-  Messages.push(msg);
-  Codes.push(code);
-    
   if (code==WARNING) type_word="WARNING";
+  
+  Lisa_ExceptionNode en;
+  en.message = msg;
+  en.code = code;
+  
+  Messages.push_front(en);
+
   if (output_to_cerr) cerr << endl << type_word << ": " << msg << endl;
   if (output_to_cout) cout << endl << type_word << ": " << msg << endl;
 
@@ -35,10 +40,14 @@ void Lisa_ExceptionList::lthrow(const string msg, const int code){
 
 void Lisa_ExceptionList::lfthrow(const string msg, const int code){
   string type_word="ERROR";
-  Messages.append(msg);
-  Codes.append(code);
-  
   if (code==WARNING) type_word="WARNING";
+  
+  Lisa_ExceptionNode en;
+  en.message = msg;
+  en.code = code;
+  
+  Messages.push_back(en);
+  
   if (output_to_cerr) cerr << endl << type_word << ": " << msg << endl;
   if (output_to_cout) cout << endl << type_word << ": " << msg << endl;
 
@@ -51,6 +60,19 @@ void Lisa_ExceptionList::lfthrow(const string msg, const int code){
   
 //**************************************************************************
 
+std::list<Lisa_ExceptionNode>::iterator Lisa_ExceptionList::search_first(const int code){
+  std::list<Lisa_ExceptionNode>::iterator it = Messages.begin();
+  
+  while(it != Messages.end()){
+    if(it->code == code) return it;
+    it++;
+  }
+  
+  return Messages.end();
+}
+  
+//**************************************************************************
+
 string Lisa_ExceptionList::lcatch(){
     
   if(G_ExtraException!=""){
@@ -59,21 +81,24 @@ string Lisa_ExceptionList::lcatch(){
     return tempstring;
   }
   
-  if (Codes.empty()) return "No error messages in list.";
+  if (Messages.empty()) return "No error messages in list.";
     
-  Codes.pop();
-  return Messages.pop();
+  Lisa_ExceptionNode en = Messages.front();
+  Messages.pop_front();
+  return en.message;
 }
   
 //**************************************************************************
    
-string Lisa_ExceptionList::lcatch(int code){
-  if (!Codes.search_first(code)) return "No error of this kind in list.";
+string Lisa_ExceptionList::lcatch(const int code){
+  list<Lisa_ExceptionNode>::iterator it = search_first(code);
+  
+  if(it == Messages.end()) return "No error of this kind in list.";
      
-  Messages.locate(Codes.get_index());
-  Codes.exclude();
+  string retval = it->message;
+  Messages.erase(it);
      
-  return Messages.exclude();
+  return retval;
 }   
 
 //**************************************************************************
