@@ -18,16 +18,16 @@ dnl##
 dnl##--------------------------------------------------------------------
 
 AC_MSG_RESULT()
-AC_MSG_RESULT(""####  ****   @@@@@@@@@@@@ XXXXXXXXXXXX "")
-AC_MSG_RESULT(""####  ****   @@@@@@@@@@@@ XXXXXXXXXXXX "")
-AC_MSG_RESULT(""XXXX  ####   %%%%         @@@@    **** "")
-AC_MSG_RESULT(""XXXX  ####   %%%%         @@@@    **** "")
-AC_MSG_RESULT(""****  @@@@   ############ %%%%%%%%%%%% "")
-AC_MSG_RESULT(""****  @@@@   ############ %%%%%%%%%%%% "")
-AC_MSG_RESULT(""@@@@                 %%%% ****    #### "")
-AC_MSG_RESULT(""@@@@                 %%%% ****    #### "")
-AC_MSG_RESULT(""%%%%%%%%%%%% XXXXXXXXXXXX ####    @@@@ "")
-AC_MSG_RESULT(""%%%%%%%%%%%% XXXXXXXXXXXX ####    @@@@ "")
+AC_MSG_RESULT(1111  2222   333333333333 444444444444)
+AC_MSG_RESULT(1111  2222   333333333333 444444444444)
+AC_MSG_RESULT(4444  1111   5555         3333    2222)
+AC_MSG_RESULT(4444  1111   5555         3333    2222)
+AC_MSG_RESULT(2222  3333   111111111111 555555555555)
+AC_MSG_RESULT(2222  3333   111111111111 555555555555)
+AC_MSG_RESULT(3333                 5555 2222    1111)
+AC_MSG_RESULT(3333                 5555 2222    1111)
+AC_MSG_RESULT(555555555555 444444444444 1111    3333)
+AC_MSG_RESULT(555555555555 444444444444 1111    3333)
 AC_MSG_RESULT()
 
 dnl##--------------------------------------------------------------------
@@ -54,41 +54,6 @@ fi
 
 dnl##--------------------------------------------------------------------
 dnl##
-dnl## Macro definitions
-dnl##
-dnl##--------------------------------------------------------------------
-
-AC_DEFUN(AC_PROG_CXX_PREFER_GNU,
-[AC_BEFORE([$0], [AC_PROG_CXXCPP])dnl
-AC_CHECK_PROGS(CXX, $CCC g++ c++ gcc CC cxx cc++, gcc)
-
-AC_PROG_CXX_WORKS
-AC_PROG_CXX_GNU
-
-if test $ac_cv_prog_gxx = yes; then
-  GXX=yes
-dnl Check whether -g works, even if CXXFLAGS is set, in case the package
-dnl plays around with CXXFLAGS (such as to build both debugging and
-dnl normal versions of a library), tasteless as that idea is.
-  ac_test_CXXFLAGS="${CXXFLAGS+set}"
-  ac_save_CXXFLAGS="$CXXFLAGS"
-  CXXFLAGS=
-  AC_PROG_CXX_G
-  if test "$ac_test_CXXFLAGS" = set; then
-    CXXFLAGS="$ac_save_CXXFLAGS"
-  elif test $ac_cv_prog_cxx_g = yes; then
-    CXXFLAGS="-g -O2"
-  else
-    CXXFLAGS="-O2"
-  fi
-else
-  GXX=
-  test "${CXXFLAGS+set}" = set || CXXFLAGS="-g"
-fi
-])
-
-dnl##--------------------------------------------------------------------
-dnl##
 dnl## General variables
 dnl##
 dnl##--------------------------------------------------------------------
@@ -110,9 +75,7 @@ dnl##
 dnl## Checks for programs.
 dnl##
 
-AC_PROG_CC
-AC_PROG_CPP
-AC_PROG_CXX_PREFER_GNU
+AC_CHECK_PROGS(CXX, $CCC g++ c++ CC cxx cc++)
 
 dnl##
 dnl## Checks for libraries or library functions.
@@ -393,7 +356,6 @@ if test -z "$NO_TK"; then
     fi
 
     #------propagate the hostname on down--------------------------------
-#   ac_configure_args="$ac_configure_args --host=$ARCH"
     AC_CONFIG_SUBDIRS( rivet )
 else
     XINCLUDES=""
@@ -419,4 +381,4 @@ dnl## File output
 dnl##
 dnl##--------------------------------------------------------------------
 
-AC_OUTPUT(Make.Config src/main/lisa src/external/evaluate/evaluate)
+AC_OUTPUT(Make.Config src/main/lisa)
