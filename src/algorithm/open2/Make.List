@@ -12,7 +12,3 @@ CXXSOURCES=\
 	../../scheduling/mo_jo.cpp \
 	../../scheduling/schedule.cpp \
 
-DOCSOURCES=\
-     open2.hpp
-
-

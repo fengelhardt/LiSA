@@ -15,5 +15,3 @@ CXXSOURCES=\
 	../../scheduling/mo_jo.cpp \
 	../../scheduling/schedule.cpp
 
-DOCSOURCES=\
-     reducing_set.hpp

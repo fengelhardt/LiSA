@@ -118,14 +118,3 @@ depend:
 	| sed -e "s/_point_/./g" \
 	> Make.Depend
 
-# ------------------------------------------------------------------------------
-
-develdoc: develdocdir
-#	rm -f $(DOCPATH)/devel/$(PROGRAMNAME)/* $(DOCPATH)/devel/$(PROGRAMNAME)/.*html
-#	doc++ -B /dev/null -d $(DOCPATH)/devel/$(PROGRAMNAME) -f -m $(DOCSOURCES)
-
-# ------------------------------------------------------------------------------
-
-develdocdir:
-	@mkdir -p $(DOCPATH)/devel/$(PROGRAMNAME)
-

@@ -55,8 +55,3 @@ clean:
 depend:
 	@for MODULE in `find $(MODULEPATH) -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) depend; cd ..; done
 
-# ------------------------------------------------------------------------------
-
-develdoc: 	
-	@for MODULE in `find $(MODULEPATH) -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) develdoc; cd ..; done
-

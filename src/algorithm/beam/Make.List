@@ -15,6 +15,4 @@ CXXSOURCES=\
 	../../scheduling/os_sched.cpp \
 	../../scheduling/schedule.cpp \
 	../../scheduling/sp_sched.cpp \
-		
-DOCSOURCES=\
-     b_node.h
+

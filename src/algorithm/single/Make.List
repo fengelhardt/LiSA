@@ -17,5 +17,3 @@ CXXSOURCES=\
 	../../scheduling/sp_sched.cpp\
  	../../basics/order.cpp\
 
-DOCSOURCES=\
-     Single_Machine.hpp

@@ -36,14 +36,3 @@ CXXSOURCES=\
 	../scheduling/sp_sched.cpp \
 	../scheduling/xsched.cpp
 
-DOCSOURCES=\
-     doc_main.hpp
-
-
-
-
-
-
-
-
-

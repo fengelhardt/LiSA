@@ -11,6 +11,3 @@ CXXSOURCES=\
 	../../misc/lisa_str.cpp \
      ../../algorithm/nb_iter/tabu.cpp
 
-DOCSOURCES=\
-     fp_set.cpp
-

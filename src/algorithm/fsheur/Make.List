@@ -15,5 +15,3 @@ CXXSOURCES=\
 	../../scheduling/schedule.cpp \
 	../../scheduling/sp_sched.cpp
 
-DOCSOURCES=\
-     doc_bb.hpp

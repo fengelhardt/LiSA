@@ -178,8 +178,3 @@ version:
 	@mv $(SOURCEPATH)/general/version.hpp.temp $(SOURCEPATH)/general/version.hpp
 	@echo
 
-# ------------------------------------------------------------------------------
-
-develdoc: 	
-	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) develdoc; cd ../..; done
-

@@ -18,5 +18,3 @@ CXXSOURCES=\
 	../single/Single_Machine_BB.cpp\
  	../../basics/order.cpp\
 
-DOCSOURCES=\
-     Shifting_Bottleneck.hpp

@@ -17,5 +17,3 @@ CXXSOURCES=\
 	insert.cpp \
 	irregjs_main.cpp
 
-DOCSOURCES=
-
