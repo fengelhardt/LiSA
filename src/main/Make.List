@@ -7,12 +7,12 @@ CXXSOURCES=\
 	../basics/matrix.cpp \
 	../basics/order.cpp \
 	../basics/pair.cpp \
-    ../basics/graph.cpp \
-    ../basics/lmatrix.cpp \
+	../basics/graph.cpp \
+	../basics/lmatrix.cpp \
 	../classify/classify.cpp \
 	../classify/database.cpp \
 	../classify/redgraph.cpp \
-    ../classify/transform.cpp \
+	../classify/transform.cpp \
 	../communic/alg_call.cpp \
 	../communic/ptst_call.cpp \
 	../desktop/basicwin.cpp \
@@ -34,11 +34,11 @@ CXXSOURCES=\
 	../scheduling/pgraph.cpp \
 	../scheduling/schedule.cpp \
 	../scheduling/matching.cpp \
-	../scheduling/m1_sched.cpp \    
+	../scheduling/m1_sched.cpp \
 	../scheduling/sp_sched.cpp \
 	../scheduling/xsched.cpp \
 	../xml/LisaXmlFile.cpp \
 	../xml/lisa_xml.cpp \
 	../xml/Lisa_NativeDataHandler.cpp \
-	../xml/Lisa_IO_Factory.cpp    
+	../xml/Lisa_IO_Factory.cpp
 

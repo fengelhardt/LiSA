@@ -486,7 +486,7 @@ void LisaXmlFile::write(const Lisa_Schedule& S)
 			delete dh;
 }
 
-void LisaXmlFile::write(const ScheduleNode& S)
+void LisaXmlFile::write(const Lisa_ScheduleNode& S)
 {
 		if(S.actual_schedule)
 				write(*(S.actual_schedule));
@@ -833,7 +833,7 @@ bool LisaXmlFile::read(Lisa_Schedule& S)
 		return true;
 }
 
-bool LisaXmlFile::read(ScheduleNode& S)
+bool LisaXmlFile::read(Lisa_ScheduleNode& S)
 {	
 		if(!S.actual_schedule)
 				S.actual_schedule = new Lisa_Schedule();

@@ -17,7 +17,7 @@ template <class T> class Lisa_List;
 class Lisa_ProblemType;
 class Lisa_Values;
 class Lisa_Schedule;
-class ScheduleNode;
+class Lisa_ScheduleNode;
 class Lisa_ControlParameters;
 class Lisa_Preferences;
 class Lisa_Graph;
@@ -164,12 +164,12 @@ public:
 		/** Submit a list of schedules to the internal document tree
 						@param ScheduleList reference to a list of schedules
 		*/
-		LisaXmlFile& operator<<(const Lisa_List<ScheduleNode> & ScheduleList);
+		LisaXmlFile& operator<<(const Lisa_List<Lisa_ScheduleNode> & ScheduleList);
 
 		/** Retrieve all schedules from the internal document tree
 						@param ScheduleList reference to a list of schedules object
 		*/
-		LisaXmlFile& operator>>(Lisa_List<ScheduleNode>& ScheduleList);
+		LisaXmlFile& operator>>(Lisa_List<Lisa_ScheduleNode>& ScheduleList);
 		
 		/** Determine internal state.
 						This might change after any operation and should be checked frequently.
@@ -299,10 +299,10 @@ private:
 		bool read(Lisa_Schedule&);
 		
 		/// add entry to the internal document tree
-		void write(const ScheduleNode&);
+		void write(const Lisa_ScheduleNode&);
 
 		/// find and obtain data from the internal document tree
-		bool read(ScheduleNode&);
+		bool read(Lisa_ScheduleNode&);
 		
 		/// add entry to the internal document tree
 		void write(const Lisa_Preferences&);

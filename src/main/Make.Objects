@@ -7,9 +7,12 @@ OBJECTS=\
 	../../obj/matrix.o \
 	../../obj/order.o \
 	../../obj/pair.o \
+	../../obj/graph.o \
+	../../obj/lmatrix.o \
 	../../obj/classify.o \
 	../../obj/database.o \
 	../../obj/redgraph.o \
+	../../obj/transform.o \
 	../../obj/alg_call.o \
 	../../obj/ptst_call.o \
 	../../obj/basicwin.o \
@@ -30,5 +33,11 @@ OBJECTS=\
 	../../obj/os_sched.o \
 	../../obj/pgraph.o \
 	../../obj/schedule.o \
+	../../obj/matching.o \
+	../../obj/m1_sched.o \
 	../../obj/sp_sched.o \
-	../../obj/xsched.o
+	../../obj/xsched.o \
+	../../obj/LisaXmlFile.o \
+	../../obj/lisa_xml.o \
+	../../obj/Lisa_NativeDataHandler.o \
+	../../obj/Lisa_IO_Factory.o

@@ -27,7 +27,6 @@ using namespace std;
 #include "../scheduling/schedule.hpp"
 #include "../main/global.hpp"
 
-#include "lisa_xml.hpp"
 #include "Lisa_NativeDataHandler.hpp"
 
 //using namespace xmlpp;
@@ -619,7 +618,7 @@ LisaXmlFile& LisaXmlFile::operator>>(Lisa_Schedule& S)
 }
 
 
-LisaXmlFile& LisaXmlFile::operator<<(const Lisa_List<ScheduleNode> & SL)
+LisaXmlFile& LisaXmlFile::operator<<(const Lisa_List<Lisa_ScheduleNode> & SL)
 {
 		if(!valid) 
 				{
@@ -648,7 +647,7 @@ LisaXmlFile& LisaXmlFile::operator<<(const Lisa_List<ScheduleNode> & SL)
 		
 		//add all entries
 		//copy List to preserve state
-		Lisa_List<ScheduleNode> List(SL);
+		Lisa_List<Lisa_ScheduleNode> List(SL);
 		List.reset();
 		Hook = xmlDocGetRootElement(Doc);
 		do write(List.get());
@@ -657,7 +656,7 @@ LisaXmlFile& LisaXmlFile::operator<<(const Lisa_List<ScheduleNode> & SL)
 }
 
 
-LisaXmlFile& LisaXmlFile::operator>>(Lisa_List<ScheduleNode>& SL)
+LisaXmlFile& LisaXmlFile::operator>>(Lisa_List<Lisa_ScheduleNode>& SL)
 {
 		SL.clear();
 		SL.reset();
@@ -686,7 +685,7 @@ LisaXmlFile& LisaXmlFile::operator>>(Lisa_List<ScheduleNode>& SL)
 						if(xmlStrcmp(cur->name, (const xmlChar *) "schedule") == 0)
 								{
 										Hook = cur;
-										ScheduleNode Nd;
+										Lisa_ScheduleNode Nd;
 										valid = read(Nd);
 										if(!valid)
 												{

@@ -67,7 +67,7 @@ install:
 	chmod 755 $(TOPPROGRAMPATH)/$(INSTALLNAME)
 	mkdir -p $(DATAPATH)
 	cp $(SOURCEPATH)/main/default.xml $(DATAPATH)
-    cp $(SOURCEPATH)/xml/LiSA.dtd $(DATAPATH)
+	cp $(SOURCEPATH)/xml/LiSA.dtd $(DATAPATH)
 	mkdir -p $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify

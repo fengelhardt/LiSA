@@ -5,6 +5,8 @@
 
 #include <fstream>
 
+#include "../xml/LisaXmlFile.hpp"
+
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
@@ -65,8 +67,24 @@ int main(int argc, char *argv[]) {
   }
     
   //  G_ExceptionList.set_output_to_cerr();
-  Pref >> G_Preferences;
+
   Pref.close();
+  char *l_home = getenv("LISAHOME");
+  char wd_str[256];
+  getcwd(wd_str,256);
+  //use working directory if not defined
+  std::string home(wd_str);
+  if(l_home)
+    home = std::string(l_home);
+  LisaXmlFile::initialize(home);
+  LisaXmlFile* conf = new LisaXmlFile();
+  if(!conf->read(argv[1]) || !(*conf >> G_Preferences))
+  {
+    cerr << "Could not open config file: '" << argv[1] << "'. Exiting." << endl;
+    return -1;
+  }
+  
+  delete conf;
   
   G_Schedule= new Lisa_Schedule(1,1);
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
