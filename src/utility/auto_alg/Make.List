@@ -1,2 +1,6 @@
 CXXSOURCES=\
+  ../../lisa/ctrlpara.cpp \
+  ../../main/global.cpp \
+  ../../basics/list.cpp \
+  ../../misc/except.cpp \
 	auto_alg.cpp
