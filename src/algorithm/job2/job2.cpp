@@ -22,7 +22,7 @@ int n,m;
 int main(int argc, char *argv[]) 
 {
 
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
+    //  comment out following line to send error messages to console
     //  G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     out_schedule->make_LR();
     
 
-//J2-Algorithmus 
+//J2-algorithm ( johnson rule for job shop)
  
   n=my_werte->get_n(); 
   m=my_werte->get_m(); 
@@ -63,31 +63,31 @@ int main(int argc, char *argv[])
   int i=0; int j=0;
 	 
 
-
+//check validity of processing times matrix
 //Zulässigkeit der Bearbeitungszeitenmatrix 
  
 	for (i=0;i<n;i++) 
 		{if (P[i][0]==0)	 
 			{if (S[i][0]==true) 
-			{cout << "WARNING: SIJ bzgl PT unzulaessig!" << endl; 
-			 cout << "WARNING: Ergebnisse falsch!!!!!!!" << endl;
+			{cout << "WARNING: SIJ is inconsistent with PT !" << endl; 
+			 cout << "WARNING: results invalid!" << endl;
 			 break;} 
 			} 
 		if (P[i][1]==0) 
 			{if (S[i][1]==true) 
-			{cout << "WARNING: SIJ bzgl PT unzulaessig!" << endl;
-			 cout << "WARNING: Ergebnisse falsch!!!!!!!" << endl; 
+			{cout << "WARNING: SIJ is inconsistent with PT ! " << endl;
+			 cout << "WARNING: results invalid!" << endl; 
 			break;} }
 		} 
 
 	 for (i=0;i<n;i++)
 		{if (S[i][0]==false)
 			{if (S[i][1]==false) 
-				{cout << "WARNING: SIJ an beiden Maschinen Null bei Job " << i+1 << endl; 
+				{cout << "WARNING: SIJ is 0 for both machines at Job " << i+1 << endl; 
 				 break;}}} 
 
 
-  //Mengeneinteilungen 
+  //subdivision in sets
  
   for (i=0; i<n; i++) 
 	{ 
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 	} 
 
  
-  //Johnson Schritt 
+  //Johnson step
  
   Lisa_Matrix<double> P12(c,m), P21(d,m);
   Lisa_Matrix<int> PR12(c,m), PR21(d,m); 
@@ -118,9 +118,9 @@ int main(int argc, char *argv[])
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		 
-	//JOHNSONSCHE REGEL der F2-Algorithmus für 
-        //P12 mit n=c und P21 mit n=d 
-	//Ergebniss:	PR12(c,m) und PR21(d,m)  
+	//JOHNSON RULE : F2-algorithm for 
+        //P12 : n=c and P21 : n=d 
+	//result:	PR12(c,m) and PR21(d,m)  
 
 	int e=1;
 	int f=c;
@@ -134,17 +134,17 @@ int main(int argc, char *argv[])
 	           {if (P12[i][j]<P12[k][l]) {k=i; l=j;} 
 		    else  
 			{if (Max<P12[i][j])   {Max=P12[i][j]+1;} 
-			} //Minimum auf P12 bestimmt, abgespeichert bei k und l 
+			} //Minimum on P12 , stored at k and l; min=P12[k][l] 
 		    }
 		}
  
-  	if (l==0)					//In Listen einfügen 
+  	if (l==0)					//insert in lists 
  		{PR12[k][0]=e; PR12[k][1]=e+1; e++;} 
  
 	else	{PR12[k][1]=f+1; PR12[k][0]=f; f--;} 
 		         	
-	P12[k][0]=Max; P12[k][1]=Max;			//Streichen von Job k
- 	    						// PR12 bestimmt
+	P12[k][0]=Max; P12[k][1]=Max;			//remove job k
+ 	    						// PR12 ready
 
 	}
 
@@ -165,18 +165,18 @@ int main(int argc, char *argv[])
 		   } //Minimum auf P21 bestimmt, abgespeichert bei k und l 
 		} 
  
-  	if (l==0)					//In Listen einfügen 
+  	if (l==0)					//insert in lists
  		{PR21[k][1]=e; PR21[k][0]=e+1; e++;} 
  
 	else	{PR21[k][0]=f+1; PR21[k][1]=f; f--;} 
 		         	
-	P21[k][0]=Max; P21[k][1]=Max;			//Streichen von Job k
- 	}    						// PR21 bestimmt
+	P21[k][0]=Max; P21[k][1]=Max;			//remove job k
+ 	}    						// PR21 ready
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  // Sortierung der Ergebnisse für Maschine 0 
+  // sort results for maschine 0 
 
 	int cneu=c; 	for (i=0; i<c; i++) 
 		{x=I12[i]; J[x][0]=PR12[i][0];}				//PR12 
@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 	for (i=0; i<d; i++) 
 		{x=I21[i]; J[x][0]=PR21[i][0]+cneu-1;}			//PR21
 
-  //Sortierung der Ergebnisse für Maschine 1 
+  //sort results for maschine 1 
  
 	int dneu=d;
 	for (i=0; i<d; i++) 
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
 		
 
 	   
-  //Berechnung von LR aus M und J  
+  //calculate LR from M and J  
  
 	Lisa_Matrix<int> MJ(n,m);  
 	Lisa_Vector<int> z(n), s(m); 

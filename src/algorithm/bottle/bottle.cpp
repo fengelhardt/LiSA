@@ -121,8 +121,8 @@ int main(int argc, char *argv[])
    sh->run(out_schedule); 
    time(&end);
 
-   cout<<"Start "<<start<<" Ende "<<end<<endl;
-   cout<<"Lauzeit "<<end-start<<endl;
+   cout<<"start "<<start<<" end "<<end<<endl;
+   cout<<"runtime "<<end-start<<endl;
 
    out_schedule->make_LR();
   

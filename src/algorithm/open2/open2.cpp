@@ -20,8 +20,7 @@ int n,m;
 
 int main(int argc, char *argv[]) 
 {
-
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
+    // comment out following line to send error messages to console,
     //  G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
@@ -51,7 +50,7 @@ int main(int argc, char *argv[])
     // **************************************************************
     
    
-//O2-Algorithmus 
+//O2-algorithm 
  
 	n=my_werte->get_n(); 
 	m=my_werte->get_m(); 
@@ -66,21 +65,21 @@ int main(int argc, char *argv[])
  
 
 
-	//Zulässigkeit der Bearbeitungszeitenmatrix 
+	//validate processing times matrix
  
 	for (i=0;i<n;i++) 
 		{if (P[i][0]==0)	 
 			{if (S[i][0]==true) 
-			{cout << "WARNING: SIJ bzgl PT unzulaessig!" << endl; 
-			 cout << "WARNING: Ergebnisse sind falsch" << endl;
+			{cout << "WARNING: SIJ is inconsistent with PT !" << endl; 
+			 cout << "WARNING: results invalid" << endl;
    	 			break;}} 
  		if(P[i][1]==0) 
 			{if (S[i][1]==true) 
-			{cout << "WARNING: SIJ bzgl PT unzulaessig!" <<endl;
-			 cout << "WARNING: Ergebnisse sind falsch" <<endl;
+			{cout << "WARNING: SIJ is inconsistent with PT " <<endl;
+			 cout << "WARNING: results invalid" <<endl;
 			 break;}}  		} 
  
-	//Mengeneinteilungen 
+	//subdivision in sets
  
 	for (i=0; i<n; i++) 
 		{ 
@@ -94,23 +93,23 @@ int main(int argc, char *argv[])
 		} 
 	
 	
-  	//Maximumsuche 
+  	//search maximum 
  
 	int k=I1[0]; int l=I2[0]; int x=0; int y=0; int v=0;
 	for (i=0; i<a; i++) 
 		{x=I1[i]; 
 		if (P[x][0] > P[k][0])	{k=x;} 
-		}			// Maximum bzgl I1 auf M1 bei Job k   
+		}			// Maximum concerning I1 on M1 at job k   
 	for (j=0; j<b; j++) 
 		{ x=I2[j]; 
 		if (P[x][1] > P[l][1])	{l=x;} 
-		}			// Maximum bzgl I2 auf M2 bei Job l 
+		}			// Maximum concerning I2 on M2 at job l 
  
 	if (P[k][0]>=P[l][1])	{v=k;} 
 	else			{v=l;}	// Maximum bei Job v 
 
 	
-	//Neudeklaration der I-Listen 
+	// redeclare  I-lists 
  
 	int aneu=a; int bneu=b; 
 	for (i=0; i<a; i++) 
@@ -127,7 +126,7 @@ int main(int argc, char *argv[])
 		} 
 
 	
-	// Bestimmung vom lat. Rechteck PR 
+	// Computation of latin rectangle PR 
 	 
 	y=1; 	 
 	for (i=0; i<aneu; i++) 
@@ -144,16 +143,16 @@ int main(int argc, char *argv[])
 	int z=y; 
 	for (i=0; i<d; i++) 
 		{ 
-		x=I4[i]; PR[x][0]=y; PR[x][1]=0; y++;	//Rest von M1 
+		x=I4[i]; PR[x][0]=y; PR[x][1]=0; y++;	//remainder of M1 
 		} 
 	 
 	for (i=0; i<c; i++) 
 		{ 
-		x=I3[i]; PR[x][1]=z; PR[x][0]=0; z++;	//Rest von M2 
+		x=I3[i]; PR[x][1]=z; PR[x][0]=0; z++;	//remainder of M2 
 		}
 	
 	
- 	//LR-AUSGABE
+ 	//generate LR-output
 
 	 for (i=0; i<n; i++)  
 		{for (j=0; j<m; j++) 

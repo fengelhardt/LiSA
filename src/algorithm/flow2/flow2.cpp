@@ -21,7 +21,7 @@ int n,m;
 int main(int argc, char *argv[]) 
 {
 
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
+    // comment out following line to send error messages to console, 
     //  G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
     // **************************************************************
 
 
-//F2-Algorithmus 
+//F2 algorithm(johnson rule)
  
   n=my_werte->get_n(); 
   m=my_werte->get_m(); 
@@ -71,23 +71,24 @@ int main(int argc, char *argv[])
 	    else  
 		{if (M<P[i][j])	{M=P[i][j]+1;} 
 	   	} 
-	   }	  //Minimum auf P bestimmt, abgespeichert bei k und l 
+	   }	  //computed minimum of P, stored in  k, l 
+		  //where min is P[k][l] 
 	} 
  
-  if (l==0)					//In Listen einfügen 
+  if (l==0)					//insert in list 
  	{PR[k][0]=a; PR[k][1]=a+1; a++;} 
  
   else	{PR[k][1]=b+1; PR[k][0]=b; b--;} 
 		
          
-  P[k][0]=M; P[k][1]=M;				//Streichen von Job k
+  P[k][0]=M; P[k][1]=M;				//remove job k
   }    	
 
 
   for (i=0;i<n;i++)  
 	{for (int j=0; j<m; j++)  {(*out_schedule->LR)[i][j]=PR[i][j];}
 		}	 
-								//Ende von F2 
+								//end F2 
 
 
     // ***************************************************************

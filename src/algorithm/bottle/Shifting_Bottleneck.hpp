@@ -49,7 +49,7 @@ public:
   Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m=false);
   ~Shifting_Bottleneck();
   /** start the bottleneck heuristic and ...\\ 
-      stores the result in Lisa_Schedule* pSch */
+      store the result in Lisa_Schedule* pSch */
   void run(Lisa_Schedule* pSch);
 };
 #endif

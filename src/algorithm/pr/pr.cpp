@@ -26,12 +26,12 @@ int minV(Lisa_Vector<double> V);
 bool okM(Lisa_Matrix<double> M, int s);
 int minM1(Lisa_Matrix<double> M, int s, int z);
 
-int n,m;double T;    //globale Variablen
+int n,m;double T;    
 
 int main(int argc, char *argv[]) 
 {
 
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
+    // comment out following line to send error messages to console 
     //  G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 						     my_werte->get_m());
     out_schedule->make_LR();
 
- //Hier starten die ALgorithmen
+
     	
     	string Regel;
 	n=my_werte->get_n();
@@ -246,11 +246,6 @@ int main(int argc, char *argv[])
   		  for (int i=0;i<n;i++)
     		   (*out_schedule->LR)[i][w]=int(PR[i][w]);
 
-            //Ausgabe
-		
-//		for (int w=0;w<2;w++)
-//		  for (int i=0;i<n;i++)
-//		    cout << "WARNING: PR= " << PR[i][w] << endl;
 		
 		}
 

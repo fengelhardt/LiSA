@@ -55,7 +55,7 @@ class B_Node : public Lisa_OsSchedule {
 };
 
 
-/** represents a container with capacity k and special functionality regarding intsertion
+/** represents a container with capacity k and special functionality regarding insertion
     
     @author Jan Tusch & Andre Herms
     @see B_Node
@@ -70,7 +70,7 @@ public:
   ///position of the element with the maximum costValue overall elements
   int worst_in_list;
   int k;
-  ///constructs a KList with capicity k
+  ///constructs a KList with capacity k
   KList(int k);
   ~KList();
   ///add a B_Node to the list if either the list is not full or there is a B_Node with larger costs in the list

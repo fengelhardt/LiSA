@@ -92,7 +92,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	    first=0;
 	  }
       }
-    }; //for Berechnung von Cmax
+    }; //end of computing  Cmax
     
     first=1;
     

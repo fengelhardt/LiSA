@@ -109,26 +109,15 @@ int main(int argc, char *argv[])
 
    time(&start);
 
-   //Lisa_Graph* graph=0;
-
-   /*
-   graph=new Lisa_Graph(10);
-   //graph->insert_arc(2,1);
-   //graph->insert_arc(5,6);
-   //graph->insert_arc(5,2);
-   //graph->insert_arc(21,3);
-   //graph->insert_arc(40,21);
-   //graph->insert_arc(3,6);
-   */
-
+   
    cout<<"single"<<endl;
 
    SingleMachineBB* smBB=new SingleMachineBB (my_werte, mode);
    smBB->run(out_schedule);
 
    time(&end);
-   cout<<"Start "<<start<<" Ende "<<end<<endl;
-   cout<<"Lauzeit "<<end-start<<endl;
+   cout<<"start "<<start<<" end "<<end<<endl;
+   cout<<"runtime "<<end-start<<endl;
 
    //delete graph;
 
