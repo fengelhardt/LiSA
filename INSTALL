@@ -5,7 +5,7 @@ installation of the binary distribtution:
 
 - start setup.tcl in the LiSA toplevel dir
 
-- start LiSA with the "lisa" start script in LiSA/bin
+- start LiSA with the "lisa" start script in LiSA
 
 
 
@@ -24,4 +24,4 @@ installation of the source distribtution (UNIX like environments):
 
 - make
 
-- bin/lisa
+- ./lisa

@@ -74,8 +74,8 @@ help: logo
 	@echo "'make compile' ......... compiles all"
 	@echo "'make install' ......... installs all"
 	@echo "'make uninstall' ....... uninstalls all"
-	@echo "'make dist' ............ creates binary release"
-	@echo "'make undist' .......... uninstalls binary release"
+	@echo "'make dist-unix' ....... creates binary release"
+	@echo "'make undist-unix' ..... uninstalls binary release"
 	@echo "'make dist-cygwin' ..... creates windows standalone version on cygwin"
 	@echo "'make undist-cygwin' ... uninstalls windows standalone version"
 	@echo "'make distclean' ....... deletes the configuration and the compiled objects"
@@ -113,9 +113,10 @@ uninstall:
 
 # ------------------------------------------------------------------------------
 
-dist:
+dist-unix:
 	rm -fr $(DISTPATH)
 	mkdir -p $(DISTPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/INSTALL $(DISTPATH)/LiSA/INSTALL
 	cp $(TOPPROGRAMPATH)/README $(DISTPATH)/LiSA/README
 	cp $(TOPPROGRAMPATH)/LICENSE $(DISTPATH)/LiSA/LICENSE
 	cp $(TOPPROGRAMPATH)/setup $(DISTPATH)/LiSA/setup
@@ -130,7 +131,7 @@ dist:
 
 # ------------------------------------------------------------------------------
 
-undist:
+undist-unix:
 	rm -fr $(DISTPATH)
 
 # ------------------------------------------------------------------------------
@@ -138,6 +139,7 @@ undist:
 dist-cygwin:
 	rm -fr $(CYGWINPATH)
 	mkdir -p $(CYGWINPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/INSTALL $(CYGWINPATH)/LiSA/INSTALL.txt
 	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
 	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
 	cp $(TOPPROGRAMPATH)/setup.exe $(CYGWINPATH)/LiSA/setup.exe
