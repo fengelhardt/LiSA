@@ -20,23 +20,95 @@ using namespace std;
 
 //**************************************************************************
 
-int maxM(Lisa_Matrix<double> M, int s);
-int minM(Lisa_Matrix<double> M, int s);
-int maxV(Lisa_Vector<double> V);
-int minV(Lisa_Vector<double> V);
-bool okM(Lisa_Matrix<double> M, int s);
-int minM1(Lisa_Matrix<double> M, int s, int z);
+int n,m;double T;  
 
-int n,m;double T;    
+//**************************************************************************
+
+int maxM(Lisa_Matrix<double> M, int s){
+  int i=0,j=1;
+  while (j<n){
+    if(M[i][s]<M[j][s]){
+      i=j;
+      j++;
+    }else j++;
+  }
+  return i;
+}
+
+//**************************************************************************
+
+int minM(Lisa_Matrix<double> M, int s){
+  int i=0,j=1;
+  while (j<n){
+    if (M[i][s]>M[j][s]){
+      i=j;
+      j++;
+    }else j++;
+  }
+  return i;
+}
+
+//**************************************************************************
+
+int maxV(Lisa_Vector<double> V){
+  int i=0,j=1;
+  while (j<n){
+    if (V[i]<V[j]){
+      i=j;
+      j++;
+    }else j++;
+  }
+  return i;
+}
+
+//**************************************************************************
+
+int minV(Lisa_Vector<double> V){
+  int i=0,j=1;
+  while (j<n){
+    if (V[i]>V[j]){
+      i=j;
+      j++;
+    }else j++;
+  }
+  return i;
+}
+
+//**************************************************************************
+
+bool okM(Lisa_Matrix<double> M, int s){
+  double x=0;
+  bool ok;
+  for (int i=0;i<n;i++) x=x+M[i][s];
+  if (x>0) ok=true;
+  else ok=false;
+  return ok;
+}
+
+//**************************************************************************
+
+int minM1(Lisa_Matrix<double> M, int s,int z)
+{
+Lisa_Matrix<double> N(n,m);
+N=M;
+for (int i=0;i<n;i++)
+if (N[i][s]==z) N[i][s]=T;
+return minM(N,s);
+}  
 
 //**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
 
-    // comment out following line to send error messages to console 
-    //  G_ExceptionList.set_output_to_cout();   
+    // write errors do lisa can catch them up
+    G_ExceptionList.set_output_to_cout();   
 
+    if(argc != 3){
+     cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
+     exit(1);
+    }
+    
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
     Lisa_ControlParameters * sp = new Lisa_ControlParameters;
     Lisa_Values * my_werte=new Lisa_Values;
@@ -44,10 +116,20 @@ int main(int argc, char *argv[])
     cout << "PID= " << getpid() << endl;
 
     ifstream i_strm(argv[1]);
-    ofstream o_strm(argv[2]);
+    if (!i_strm){
+     cout << "ERROR: cannot open file '" << argv[1] << "' for reading." << endl;
+     exit(1);
+    }
+
     i_strm >> (*lpr);      // read problem description
     i_strm >> (*sp);       // read control parameters:
     i_strm >> (*my_werte); // read problem instance:
+    i_strm.close();
+    
+    if (!G_ExceptionList.empty()){
+     cout << "ERROR: cannot read problem data, aborting program." << endl;
+     exit(1);
+    }    
         
     // LiSA  schedule object for storing results
     Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),
@@ -60,12 +142,12 @@ int main(int argc, char *argv[])
 	n=my_werte->get_n();
 	m=my_werte->get_m();
 
-	if (lpr->get_property(M_ENV)==ONE)
-	  {if(lpr->get_property(OBJECTIVE)==LMAX)
-	    Regel="MS";
-	  if(lpr->output_beta()=="r_i") Regel="ERD";}
-	if (lpr->get_property(M_ENV)==O)
-	  if(m==2) Regel="LAPT";
+	if (lpr->get_property(M_ENV)==ONE){
+    if(lpr->get_property(OBJECTIVE)==LMAX) Regel="MS";
+	  if(lpr->output_beta()=="r_i") Regel="ERD";
+  }
+  
+  if(lpr->get_property(M_ENV)==O) if(m==2) Regel="LAPT";
 
 	if (Regel=="MS")
 		{ 
@@ -98,30 +180,33 @@ int main(int argc, char *argv[])
 		   R[k]=M;}
  		}
 	
-	if (Regel=="LAPT")
-		{
-		Lisa_Matrix<double> P(n,m),H(n,m),P2(n,m);
-		Lisa_Matrix<double> PR(n,m),PR2(n,m);   
-		P2=(*my_werte->PT); 
- 		int mc,k;
-		for (int d=0;d<m;d++)
-		  {d==0?mc=1:mc=0;
-		   P=P2;
-		   for (int p=1;p<n+1;p++)
-		     {k=maxM(P,d);
-		      for (int x=0;x<n;x++)
-		        {if (x!=k && int(P[x][d])==int(P[k][d]))
-		            {if (P[x][mc]>P[k][mc]) k=x;}
-		        }
-		      H[k][mc]=p;
-		      P[k][d]=0;
-		     }
-		  }
-		
+  if (Regel=="LAPT"){
+    Lisa_Matrix<double> P(n,m),H(n,m),P2(n,m);
+    Lisa_Matrix<double> PR(n,m),PR2(n,m);   
+    P2=(*my_werte->PT); 
+    int mc,k;
+    for (int d=0;d<m;d++){
+      
+      d==0 ? mc=1 : mc=0;
+      P=P2;
+      
+      for (int p=1;p<n+1;p++){
+        
+        k=maxM(P,d);
+        for (int x=0;x<n;x++){
+          if (x!=k && int(P[x][d])==int(P[k][d])){
+            if (P[x][mc]>P[k][mc]) k=x;
+          }
+        }
+        H[k][mc]=p;
+        P[k][d]=0;
+      }
+    }
+		/*
 		for (int j=0;j<m;j++)
 		  for (int i=0;i<n;i++)
  		    cout << "WARNING: H= " << H[i][j] << endl;
-
+    */
 		P=(*my_werte->PT);
 		PR.fill(0);PR2.fill(0);
 		T=n+m;
@@ -129,7 +214,8 @@ int main(int argc, char *argv[])
 		double ta=0,tb=0,h;
 		bool ma=false,mb=false,gleich=false;
 		
-		a=minM(H,0);b=minM(H,1);
+		a=minM(H,0);
+    b=minM(H,1);
 		
                 if (a==b)
 		  {if (P[a][0]>P[b][1])
@@ -256,71 +342,18 @@ int main(int argc, char *argv[])
 		}
 
     // write results to output file:
+        
+    ofstream o_strm(argv[2]);
+    if(!o_strm){
+     cout << "Could not open '"<<argv[2]<<"' for writing." << endl;
+     exit(1);
+    }    
     o_strm << *out_schedule;
+    o_strm.close();
+    
     delete out_schedule;
     delete my_werte;
     delete lpr;
-}
-
-//**************************************************************************
-
-int maxM(Lisa_Matrix<double> M, int s)
-{
-int i=0,j=1;
-while (j<n+1)
-  {if (M[i][s]<M[j][s]){i=j;j++;}else j++;}
-return i;
-}
-
-//**************************************************************************
-
-int minM(Lisa_Matrix<double> M, int s)
-{
-int i=0,j=1;
-while (j<n+1)
-  {if (M[i][s]>M[j][s]){i=j;j++;}else j++;}
-return i;
-}
-
-//**************************************************************************
-
-int maxV(Lisa_Vector<double> V)
-{
-int i=0,j=1;
-while (j<n+1)
-  {if (V[i]<V[j]){i=j;j++;}else j++;}
-return i;
-}
-
-//**************************************************************************
-
-int minV(Lisa_Vector<double> V)
-{
-int i=0,j=1;
-while (j<n+1)
-  {if (V[i]>V[j]){i=j;j++;}else j++;}
-return i;
-}
-
-//**************************************************************************
-
-bool okM(Lisa_Matrix<double> M, int s)
-{
-double x=0;bool ok;
-for (int i=0;i<n;i++) x=x+M[i][s];
-if (x>0) ok=true; else ok=false;
-return ok;
-}
-
-//**************************************************************************
-
-int minM1(Lisa_Matrix<double> M, int s,int z)
-{
-Lisa_Matrix<double> N(n,m);
-N=M;
-for (int i=0;i<n;i++)
-if (N[i][s]==z) N[i][s]=T;
-return minM(N,s);
 }
 
 //**************************************************************************
