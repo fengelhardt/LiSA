@@ -14,12 +14,12 @@ const int LENGHT_OF_INFO_VECTOR = 15;
 
 //@{
 /// flag, needs documentation 
-//const int LENGHT_OF_OBJECTIVE = 8;
-//const int NUMBER_INFO = 0;
+const int LENGHT_OF_OBJECTIVE = 8;
+const int NUMBER_INFO = 0;
 const int MAXRANK_INFO = 9;
 const int NO_OF_SOURCES = 10;
 const int NO_OF_SINKS = 11;
-//const int NO_OF_IKL =12; 
+const int NO_OF_IKL =12; 
 //@}
 
 /// schedule class for communication with algorithms
