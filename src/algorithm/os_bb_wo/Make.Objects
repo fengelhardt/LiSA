@@ -13,4 +13,19 @@ OBJECTS=\
 	../../../obj/wo_select.o \
 	../../../obj/wo_fix.o \
 	../../../obj/wo_low.o \
-	../../../obj/wo_sort.o
+	../../../obj/wo_sort.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/int2str.o \
+	../../../obj/mo_jo.o \
+	../../../obj/schedule.o \
+	../../../obj/graph.o \
+	../../../obj/LisaXmlFile.o \
+	../../../obj/lisa_xml.o \
+	../../../obj/Lisa_NativeDataHandler.o \
+	../../../obj/Lisa_IO_Factory.o
