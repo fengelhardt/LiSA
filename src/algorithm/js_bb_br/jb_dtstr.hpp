@@ -6,10 +6,13 @@
 
 #ifndef _DATASTRUCT_H
 #define _DATASTRUCT_H
-#define MaxNumOfOperations  310
-#define MaxNumOfMachines     17
-#define MaxNumOfJobs         32
-#define MaxOpProMachine      32
+
+
+#define MaxNumOfMachines     50
+#define MaxNumOfJobs         50
+#define MaxOpProMachine      MaxNumOfJobs
+#define MaxNumOfOperations   MaxNumOfJobs * MaxNumOfMachines
+
 #define true                  1
 #define false                 0
 #define NIL                   0

@@ -51,8 +51,7 @@ int main(int argc, char *argv[])
   // the follow code is addited by A.Winkler
 
   // print a message that the programm started:
-  cout << "This is the Branch & Bound Module for Job Shop by P.Brucker.\n";
-  cout << "Many thanks for the program code" << endl;
+  cout << "This is the Branch & Bound Module for Job Shop by P.Brucker." << endl;
   if (argc != 3) {
       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
       exit(7);
@@ -60,22 +59,21 @@ int main(int argc, char *argv[])
   
   cout << "PID= " << getpid() << endl;  
   
-  ifstream strm(argv[1]);      // the input file contains the problem, schedule 
-                               // and some parameters
-  ofstream fplan_o(argv[2]);   // this file returns the best computed schedule
-  ofstream js_in("js_in.dat"); // the Bruckers input file we have to write
-
+  ifstream strm(argv[1]);      // the input file contains the problem, schedule and some parameters
   if (!strm){
       G_ExceptionList.lthrow("ERROR: Could not open file for reading: "+string(argv[1]));
       exit(1);
   }
   
+  ofstream fplan_o(argv[2]);   // this file returns the best computed schedule
   if (!fplan_o){
       G_ExceptionList.lthrow("ERROR: Could not open file for writing: "+string(argv[2]));
       exit(1);
   }
+
   
-  if (!fplan_o){
+  ofstream js_in("js_in.dat"); // the Brucker input file we have to write
+  if (!js_in){
       G_ExceptionList.lthrow("ERROR: Could not open file for writing: js_in.dat");
       exit(1);
   }
@@ -122,6 +120,13 @@ int main(int argc, char *argv[])
   int i, j, k, counter, mo, maschine;
   const int m = problem_in->get_m();
   const int n = problem_in->get_n();
+  cout << m << " " << n ;
+  if(m > MaxNumOfMachines || n > MaxNumOfJobs ){
+      G_ExceptionList.lthrow("This Algorithm does not support Problems with more than "
+                             +ztos(MaxNumOfMachines)+" Machines or " +ztos(MaxNumOfJobs)+ " Jobs. Recompile it to change this.");
+      exit( 7 );
+  }
+  
   js_in << m << " ";
   js_in << n << " ";
   
@@ -267,7 +272,7 @@ int main(int argc, char *argv[])
   }
  
   // read machine order from algortihm output file !!!
-  // written in jb_heur.cpp
+  // this data is written in jb_heur.cpp
   ifstream JO_in("jo_out.dat");
   if (!JO_in){
       G_ExceptionList.lthrow("ERROR: Could not open file for reading: jo_out.dat");
@@ -329,7 +334,7 @@ int main(int argc, char *argv[])
   plan_in->make_LR();
   best_schedule->write_LR( plan_in->LR );
   fplan_o << (*plan_in);
-  cout << (*plan_in);
+  //cout << (*plan_in);
 
   fplan_o << "<TIME>\n";
   fplan_o << "TIME= " << time2 << "\n";
