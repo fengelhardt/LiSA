@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-VERSION=2.3pre1
+VERSION=2.3pre0
 
 # ------------------------------------------------------------------------------
 
@@ -120,12 +120,12 @@ dist:
 	cp $(TOPPROGRAMPATH)/LICENSE $(DISTPATH)/LiSA/LICENSE
 	cp $(TOPPROGRAMPATH)/setup.tcl $(DISTPATH)/LiSA/setup.tcl
 	cp -r $(BINPATH) $(DISTPATH)/LiSA/bin
-	rm -f $(CYGWINPATH)/LiSA/bin/lisa
-	cp -r $(DOCPATH) $(CYGWINPATH)/LiSA/doc
-	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)/LiSA
-	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)/LiSA
-	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)/LiSA
-	cd $(CYGWINPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
+	rm -f $(DISTPATH)/LiSA/bin/lisa
+	cp -r $(DOCPATH) $(DISTPATH)/LiSA/doc
+	cp -r $(TOPPROGRAMPATH)/data $(DISTPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/img $(DISTPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/tcl $(DISTPATH)/LiSA
+	cd $(DISTPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
 
 # ------------------------------------------------------------------------------
 
