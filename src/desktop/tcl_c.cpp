@@ -40,7 +40,8 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+//**************************************************************************
+
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
@@ -51,7 +52,7 @@ extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
 extern class Lisa_List<ScheduleNode> *G_ScheduleList;
 
-// *********************** functions *************************
+//**************************************************************************
 
 // write MO as Matrix in Lisa_MO
 int TC_adopt_MO(ClientData /* clientData*/,
@@ -75,6 +76,8 @@ int TC_adopt_MO(ClientData /* clientData*/,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 // write Lisa_MO in Matrix in G_TclVar
 int TC_make_MO_Matrix(ClientData /*clientData*/,
 		      Tcl_Interp * /* interp*/,
@@ -89,6 +92,8 @@ int TC_make_MO_Matrix(ClientData /*clientData*/,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 int TC_open(ClientData /* clientData*/,
 	    Tcl_Interp */* interp*/,
 	    int argc, const char *argv[])
@@ -102,6 +107,8 @@ int TC_open(ClientData /* clientData*/,
   if (read(ifile))   return  TCL_OK;
   return TCL_OK;
 }
+
+//**************************************************************************
 
 int TC_open_schedule(ClientData /* clientData*/ ,
 	    Tcl_Interp * /* interp*/ ,
@@ -163,6 +170,8 @@ int TC_open_schedule(ClientData /* clientData*/ ,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 int TC_save(ClientData /* clientData */,
 	    Tcl_Interp * /* interp */,
 	    int argc, const char *argv[])  
@@ -176,6 +185,8 @@ int TC_save(ClientData /* clientData */,
   if (save(sfile)) return  TCL_OK;
   return TCL_OK;
 }
+
+//**************************************************************************
 
 // generate randomly processing time matrix with parameters min,max,step,seed1,seed2
 int TC_genpt(ClientData /* clientData */,
@@ -220,6 +231,8 @@ int TC_genpt(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // generate randomly column with parameters min,max,step,seed1,name
 int TC_gen_column(ClientData /* clientData */,
 	     Tcl_Interp * /*interp*/,
@@ -260,6 +273,8 @@ int TC_gen_column(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // generate randomly a schedule
 int TC_gen_seq(ClientData /* clientData */,
 	      Tcl_Interp * /*interp*/,
@@ -276,6 +291,8 @@ int TC_gen_seq(ClientData /* clientData */,
   update_LR();
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // generate randomly operation set
 int TC_gen_sij(ClientData /* clientData */,
@@ -303,6 +320,8 @@ int TC_gen_sij(ClientData /* clientData */,
   show_output();
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // generate randomly machine order
 int TC_gen_mo(ClientData /* clientData */,
@@ -341,6 +360,8 @@ int TC_gen_mo(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // reverse a schedule
 int TC_rev_seq(ClientData /* clientData */,
 	      Tcl_Interp */*interp*/,
@@ -355,6 +376,8 @@ int TC_rev_seq(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // update a schedule
 int TC_update_seq(ClientData /* clientData */,
 	      Tcl_Interp * /*interp*/ ,
@@ -363,6 +386,8 @@ int TC_update_seq(ClientData /* clientData */,
   update_LR();
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 /// update  C-matrix
 int TC_update_cij(ClientData /* clientData */,
@@ -377,6 +402,7 @@ int TC_update_cij(ClientData /* clientData */,
  return TCL_OK;
 }
 
+//**************************************************************************
 
 // refresh the output
 int TC_draw_output(ClientData /* clientData */,
@@ -392,6 +418,8 @@ int TC_draw_output(ClientData /* clientData */,
   show_output();
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // Draw Value Window
 int TC_draw_dat(ClientData /* clientData */,
@@ -424,6 +452,7 @@ int TC_draw_dat(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
 
 /// Update an entry in the value Window
 int TC_draw_dat_entry(ClientData /* clientData */,
@@ -440,6 +469,8 @@ int TC_draw_dat_entry(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // Mark an entry in the Value Window
 int TC_mark_value_entry(ClientData /* clientData */,
 			Tcl_Interp *interp,
@@ -451,6 +482,8 @@ int TC_mark_value_entry(ClientData /* clientData */,
   myValues.mark(row,column);
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // Draw Schedule Window
 int TC_draw_schedule(ClientData /* clientData */,
@@ -471,6 +504,8 @@ int TC_draw_schedule(ClientData /* clientData */,
     mySchedule.draw(myMO,myLR,myJO,myCIJ,G_Values.SIJ);
     return TCL_OK; 
 }
+
+//**************************************************************************
 
 // Draw List of Schedules
 int TC_draw_schedule_list(ClientData /* clientData */,
@@ -553,6 +588,8 @@ int TC_draw_schedule_list(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // Update an entry in the schedule Window
 int TC_draw_schedule_entry(ClientData /* clientData */,
 		      Tcl_Interp *interp,
@@ -576,6 +613,8 @@ int TC_new_problem(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // If new Lisa_Values defined
 int TC_new_values(ClientData /* clientData */,
 		  Tcl_Interp * /*interp*/,
@@ -583,6 +622,8 @@ int TC_new_values(ClientData /* clientData */,
   new_values();
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // Mark an entry in the schedule window
 int TC_mark_schedule_entry(ClientData /* clientData */,
@@ -596,6 +637,7 @@ int TC_mark_schedule_entry(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
 
 int TC_exit(ClientData /* clientData */,
 		Tcl_Interp * /*interp*/,
@@ -604,6 +646,7 @@ int TC_exit(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
 
 /// Problem Classification
 int TC_classify(ClientData /* clientData */,
@@ -622,6 +665,8 @@ int TC_classify(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 int TC_references(ClientData /* clientData */,
 	    Tcl_Interp * interp ,
 		int /*argc*/, const char **/*argv[]*/) {
@@ -636,8 +681,7 @@ int TC_references(ClientData /* clientData */,
   return TCL_OK; 
 }
 
-
-
+//**************************************************************************
 
 /// If an error in the Tk- Application occour
 int TC_error(ClientData /* clientData */,
@@ -646,6 +690,8 @@ int TC_error(ClientData /* clientData */,
   G_ExceptionList.lthrow(argv[1],ANY_ERROR);
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 /// Delete all global objects
 int TC_new(ClientData /* clientData */,
@@ -661,6 +707,8 @@ int TC_new(ClientData /* clientData */,
    return TCL_OK; 
 }
 
+//**************************************************************************
+
 /// write G_Schedule.LR in G_TCLVar.LR
 int  TC_save_old_sequence(ClientData /* clientData */,
 	   Tcl_Interp * /*interp*/,
@@ -669,6 +717,8 @@ int  TC_save_old_sequence(ClientData /* clientData */,
   *(G_TclVar.LR)=*(G_Schedule->LR);
  return TCL_OK; 
 }
+
+//**************************************************************************
 
 /// move operation
 int TC_move_operation(ClientData /* clientData */,
@@ -761,8 +811,7 @@ return TCL_OK;
   return TCL_OK; 
 }
 
-
-
+//**************************************************************************
 
 /// Choose new Sequence
 int TC_choose_sequence(ClientData /* clientData */,
@@ -779,9 +828,9 @@ int TC_choose_sequence(ClientData /* clientData */,
     return TCL_OK; 
 }
 
+//**************************************************************************
 
 /// Sort list of sequences
-
 int TC_sort_sl(ClientData /* clientData */,
 	       Tcl_Interp * interp,
 	       int argc, const char *argv[]) {
@@ -808,6 +857,8 @@ int TC_sort_sl(ClientData /* clientData */,
   Tcl_Eval(interp, "TC_draw_schedule_list");
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 /// starts external algorithm
 int TC_startalg(ClientData /* clientData */,
@@ -862,9 +913,10 @@ int TC_startalg(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
 
 int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
-int /*argc*/, const char *argv[]){
+                         int /*argc*/, const char *argv[]){
   
   Lisa_ProblemType myProblemType;
   
@@ -880,9 +932,7 @@ int /*argc*/, const char *argv[]){
     G_ExceptionList.lthrow("cannot open file: "+filename+"\n",END_OF_FILE);
     return TCL_OK;
   }
-  
-
-  
+    
   string S;
   int number_of_solv_probl=0;
   
@@ -898,75 +948,76 @@ int /*argc*/, const char *argv[]){
     return TCL_OK;
   }
   
-
-    // parse files for problem entries
-    for (;;){
-      
-      S=""; 
-      fin >> S;
-      
-      if (S==""){ 
-        G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",END_OF_FILE);
-        return TCL_OK;
-      }else if(S=="<PROBLEMTYPE>"){
-        number_of_solv_probl++;
-      }else if(S==starttag){
-        number_of_solv_probl=0;
-      }else if(S==endtag){
-        break;
-      }
-    }
+  // parse files for problem entries
+  for (;;){
     
-    // none found
-    if (number_of_solv_probl==0){
+    S=""; 
+    fin >> S;
+    
+    if (S==""){ 
+      G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",END_OF_FILE);
       return TCL_OK;
-    }else{  
-      //no more test by reduction, alg problem type and current problem type 
-      //have to match exactly
+    }else if(S=="<PROBLEMTYPE>"){
+      number_of_solv_probl++;
+    }else if(S==starttag){
+      number_of_solv_probl=0;
+    }else if(S==endtag){
+      break;
+    }
+  }
+  
+  // none found
+  if (number_of_solv_probl==0){
+    return TCL_OK;
+  }else{  
+    //no more test by reduction, alg problem type and current problem type 
+    //have to match exactly
+  
+    //rewind file
+    fin.seekg(0);
+    for (;;){
+      S=""; 
+      fin >>S;
+      if (S==starttag) break;
+    }
     
-      //rewind file
-      fin.seekg(0);
-      for (;;){
-        S=""; 
-        fin >>S;
-        if (S==starttag) break;
+    // now read problemtupel
+    for (int j=0;j<number_of_solv_probl;j++) {
+     fin >> myProblemType;        
+      
+      // check if problemtypes match exactly
+      if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
+        sprintf(interp->result, "%d",1);
+        
+      // reduction when algo provides O, current problem is O2 and the like   
+      }else if(G_ProblemType.output_alpha().find(myProblemType.output_alpha()) != string::npos &&
+               G_ProblemType.output_beta()== myProblemType.output_beta() &&
+               G_ProblemType.output_gamma()== myProblemType.output_gamma()){
+         sprintf(interp->result, "%d",1);
+          
+      }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
+               G_ProblemType.output_gamma()==myProblemType.output_gamma()){
+               
+        // see if there are unit processing times to handle
+        if ((myProblemType.output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
+            (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")){
+          sprintf(interp->result, "%d",1);
+        }
+
+        // see if there are constant processing times to handle : p_ij=p
+        if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
+           (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  ){
+          sprintf(interp->result, "%d",1);
+        }              
       }
       
-      // now read problemtupel
-      for (int j=0;j<number_of_solv_probl;j++) {
-	      fin >> myProblemType;        
-        
-        // check if problemtypes match exactly
-        if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
-          sprintf(interp->result, "%d",1);
-          
-        // reduction when algo provides O, current problem is O2 and the like   
-        }else if(G_ProblemType.output_alpha().find(myProblemType.output_alpha()) != string::npos &&
-                 G_ProblemType.output_beta()== myProblemType.output_beta() &&
-                 G_ProblemType.output_gamma()== myProblemType.output_gamma()){
-           sprintf(interp->result, "%d",1);
-            
-        }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
-                 G_ProblemType.output_gamma()==myProblemType.output_gamma()){
-                 
-          // see if there are unit processing times to handle
-          if ((myProblemType.output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
-              (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")){
-            sprintf(interp->result, "%d",1);
-          }
-
-          // see if there are constant processing times to handle : p_ij=p
-          if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
-             (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  ){
-            sprintf(interp->result, "%d",1);
-          }              
-        }
-        
-      }      
-    }
+    }      
+  }
 
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 /// exclude sequences from list
 int TC_exclude(ClientData /* clientData */,
@@ -999,6 +1050,7 @@ int TC_exclude(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
 
 /// save Lisa_Preferences in default.lsa
 int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
@@ -1012,6 +1064,8 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
  return TCL_OK; 
 }
 
+//**************************************************************************
+
 ///  start Enumeration Algorithm
 // int TC_cenum(ClientData,	Tcl_Interp *, int , const char **) {
  
@@ -1019,6 +1073,7 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
 //  return TCL_OK; 
 // }
 
+//**************************************************************************
 
 ///send <ctrl-C> Signal to external Algorithm
 int TC_stop_extalg(ClientData,	Tcl_Interp *, int , const char **) {
@@ -1030,6 +1085,8 @@ execl(str.c_str(),str2.c_str());
 //  cenum(&G_Values);
   return TCL_OK; 
 }
+
+//**************************************************************************
 
 // a TCL wrapper for the UNIX kill command
 int TC_kill(ClientData /* clientData */,
@@ -1046,4 +1103,6 @@ int TC_kill(ClientData /* clientData */,
   kill(pid, signal);
   return TCL_OK;
 }
+
+//**************************************************************************
 
