@@ -105,7 +105,7 @@ class Lisa_ShpSchedule: public Lisa_GenericObject
        /// shift all operations to earliest possible times
        void    TailsFromHeads(void);
        /// own print function for debugging
-       void write(ostream& strm) const; 
+       void write(std::ostream& strm) const; 
        /// writes itself as LR in given Lisa_Matrix
        void    write_LR(Lisa_Matrix<int> *) const; 
        /// increase starting time of operation 
@@ -137,12 +137,4 @@ class Lisa_ShpSchedule: public Lisa_GenericObject
   //@Include: js_sched.hpp
 //@}
 #endif
-
-
-
-
-
-
-
-
 

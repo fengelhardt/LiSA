@@ -34,16 +34,14 @@ class fp_set
        void spread();
        void random(long *);
        void random2(long *);
-       void write(ostream& strm = cout) const;
+       void write(std::ostream& strm = std::cout) const;
   };    
 
-inline ostream& operator << (ostream& strm, const fp_set& l)
+inline std::ostream& operator << (std::ostream& strm, const fp_set& l)
    {
      l.write(strm);
      return strm;
    }
 
 #endif
-
-
 

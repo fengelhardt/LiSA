@@ -3,6 +3,8 @@
  */
 #include "b_node.hpp"
 
+using namespace std;
+
 B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)
 {
   

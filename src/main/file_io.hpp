@@ -20,28 +20,15 @@
 #ifndef _file_io_h 
 #define _file_io_h 
 
-
-//  ************** System Includes  ******************
 #include <string>
 
-using namespace std;
-
-
-//  **************** Functions  ******************
-
 /// read the Lisa Kernel Variables from file
-int read(string filename);
+int read(std::string filename);
 
 /// write Lisa Kernel Variables in file
-int save(string filename);
+int save(std::string filename);
 
 #endif
 
 //@}
-
-
-
-
-
-
 

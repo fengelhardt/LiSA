@@ -17,7 +17,7 @@
 
 #include "lvalues.hpp"
 
-// ########################### Class Lisa_Values ######################################
+using namespace std;
 
 Lisa_Values::Lisa_Values()
   {

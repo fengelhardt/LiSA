@@ -44,12 +44,12 @@ class shift_Neighborhood: public API_Neighborhood
 	    shift_Neighborhood(Lisa_1Schedule*,Lisa_1Problem*);
 	    /** propose a possible move,
 	        parameter is ENUM or RAND for enumerative or random
-	        generation of neighbor,\\
+	        generation of neighbor,
 		it propose an interchange of two not necessary adjacent jobs
-		on the machine,\\
+		on the machine,
 		it returns OK or !OK */
 	    int prepare_move( int );
-	    /// do the proposed move \\it returns OK or !OK
+	    /// do the proposed move it returns OK or !OK
 	    int do_move();
   };
 

@@ -24,6 +24,8 @@
 
 #include "gantt.hpp"
 
+using namespace std;
+
 const bool MACHINE=1;
 const bool JOB=0;
 const int BEGIN=0;

@@ -15,13 +15,15 @@
 
 #include "../basics/matrix.hpp"
 
-using namespace std;
+//**************************************************************************
 
 const int MO_SOURCE=-1;
 const int NO_SUCCESSOR=-1;
 
 class Lisa_MO;
 class Lisa_JO;
+
+//**************************************************************************
 
 /// basic class representing one order:
 class Lisa_OrderWithoutRepetition
@@ -51,6 +53,8 @@ class Lisa_OrderWithoutRepetition
         ~Lisa_OrderWithoutRepetition();
    }; 
 
+//**************************************************************************
+
 /// Classes Lisa_MO and Lisa_JO are not to be confused with each other!
 class Lisa_MO
    {
@@ -70,10 +74,12 @@ class Lisa_MO
         void write_rank(Lisa_Matrix<int>*) const;
         /// returns FALSE if given vector is not a permutation
         int read_rank(Lisa_Matrix<int>*);
-        void write (ostream& = cout) const;
-        void read (istream& = cin);
+        void write (std::ostream& = std::cout) const;
+        void read (std::istream& = std::cin);
         ~Lisa_MO();
    };
+
+//**************************************************************************
 
 class Lisa_JO
    {
@@ -93,13 +99,14 @@ class Lisa_JO
         void write_rank(Lisa_Matrix<int>*) const;
         /// returns FALSE if given vector is not a permutation
         int read_rank(Lisa_Matrix<int>*);
-        void write (ostream& = cout) const;
-        void read (istream& = cin);
+        void write (std::ostream& = std::cout) const;
+        void read (std::istream& = std::cin);
         ~Lisa_JO();
    };
 
-/// analogous classes with repetition allowed simply use lists:
+//**************************************************************************
 
+/// analogous classes with repetition allowed simply use lists:
 class Lisa_MoWithRepetition
    {
      private: 
@@ -116,9 +123,11 @@ class Lisa_MoWithRepetition
         ~Lisa_MoWithRepetition() { delete [] orders; }
      //   void write_rank(Lisa_MatrixOfLists<int> *);
      //        void read_rank(Lisa_MatrixOfLists<int> *);
-        void write (ostream& = cout) const;
-        void read (istream& = cin);
+        void write(std::ostream& = std::cout) const;
+        void read(std::istream& = std::cin);
    };    
+
+//**************************************************************************
 
 class Lisa_JoWithRepetition
    {
@@ -136,52 +145,39 @@ class Lisa_JoWithRepetition
         ~Lisa_JoWithRepetition(){ delete [] orders; }
      //  void write_rank(Lisa_MatrixOfLists<int> *);
      //   void read_rank(Lisa_MatrixOfLists<int> *);
-        void write (ostream& = cout) const;
-        void read (istream& = cin);
+        void write (std::ostream& = std::cout) const;
+        void read (std::istream& = std::cin);
    };   
 
-// Dont read further, its just the ordinar I/O-stuff
+//**************************************************************************
 
-inline ostream& operator << (ostream&strm, const Lisa_MO & v)
-   {
+inline std::ostream& operator << (std::ostream& strm, const Lisa_MO & v){
      v.write(strm);
      return strm;
-   }
+}
 
-inline istream& operator >> (istream&strm, Lisa_MO & v)
-   {
+//**************************************************************************
+
+inline std::istream& operator >> (std::istream& strm, Lisa_MO & v){
      v.read(strm);
      return strm;
-   }
+}
 
-inline ostream& operator << (ostream&strm, const Lisa_JO& l)
-   {
+//**************************************************************************
+
+inline std::ostream& operator << (std::ostream& strm, const Lisa_JO& l){
      l.write(strm);
      return strm;
-   }
+}
 
-inline istream& operator >> (istream&strm, Lisa_JO& l)
-   {
+//**************************************************************************
+
+inline std::istream& operator >> (std::istream& strm, Lisa_JO& l){
      l.read(strm);
      return strm;
-   }
+}
 
 #endif
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -17,8 +17,6 @@
 
 #include "../../basics/matrix.hpp"
 
-using namespace std;
-
 class fp_vector
   {
     private:
@@ -39,14 +37,14 @@ class fp_vector
        void set_element(int, int);
        int get_element(int pos) {return (*v)[pos];}
        int get_neighbour(int pos) {return (*neighbour)[pos];}
-       void write(ostream& strm = cout) const
+       void write(std::ostream& strm = std::cout) const
           {
 	    strm << *v;
           }
        ~fp_vector(){ delete v; delete neighbour;}
   };    
         
-inline ostream& operator << (ostream& strm, const fp_vector& l)
+inline std::ostream& operator << (std::ostream& strm, const fp_vector& l)
    {
      l.write(strm);
      return strm;
@@ -55,11 +53,4 @@ inline ostream& operator << (ostream& strm, const fp_vector& l)
 bool smalldistance(int, int);
 
 #endif
-
-
-
-
-
-
-
 

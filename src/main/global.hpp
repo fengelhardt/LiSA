@@ -15,37 +15,46 @@
 #define _global_h 
 
 
-// ************************* Definitions ***********************
-// debug parameter ... comment for the final version
+/// debug parameter ... comment for the final version
 #define LISA_DEBUG
 
-// maximal memory
+/// maximal memory
 #define MAX_MEMORY 10000
 
-// maximal length of string
+/// maximal length of string
 #define MAX_STRING 25
 
-// Default-Value for job and maschine number
+/// Default-Value for machine number
 const int DEFAULT_M=4;
+
+// default value for job number
 const int DEFAULT_N=6;
 
-// Logik:
+/// logic
 #define NOT_DEFINED -1 
+///logic
 #define TRUE 1
+///logic
 #define OK 1
+///logic
 #define FALSE 0
 
-// Typ of all processing times heads, tails, r_i, d_i ...
+/// type of all processing times heads, tails, r_i, d_i ...
 #define TIMETYP double
 
+/// alpha entries
 #define NUMBER_ALPHA 4
+/// beta entries
 #define NUMBER_BETA 13
+/// gamma entries
 #define NUMBER_GAMMA 1
+/// misc entries
 #define NUMBER_MISC  2
-// maximal number of tupel index
+
+/// maximal number of tupel index
 #define TUPEL_INDEX NUMBER_ALPHA+NUMBER_BETA+NUMBER_GAMMA+NUMBER_MISC
 
-// names of tupelentries
+/// names of tupelentries
 const int M_ENV=0;
 const int M_NUMBER=1;
 const int M_MPT=2;
@@ -67,38 +76,42 @@ const int OBJECTIVE=17;
 const int M_NO=18;
 const int N_NO=19;
 
-// Number of possible values
+/// number of possible values
 const int NUMBER[TUPEL_INDEX]={
-        25, // M_ENV
-	3,  // M_NUMBER
-        2,  // M_MPT
-	2,  // M_MPM
-	2,  // PMTN
-        7,  // PRECEDENCE
-        2,  // RI
-        2,  // DI
-        3,  // PIJ
-        3,  // BATCH
-        2,  // BOUNDED_BATCH
-        3,  // JOB_NR
-        2,  // NO_WAIT
-        2,  // SIZE
-        4,  // TIME_LAGS
-       11,  // TRANSPORTATION_DELAYS
-        4,  // SERVER_FLAGS
-       11,  // OBJECTIVE
-        1,  // M_NO
-        1   // NO_NO
-	};
+  25, // M_ENV
+  3,  // M_NUMBER
+  2,  // M_MPT
+  2,  // M_MPM
+  2,  // PMTN
+  7,  // PRECEDENCE
+  2,  // RI
+  2,  // DI
+  3,  // PIJ
+  3,  // BATCH
+  2,  // BOUNDED_BATCH
+  3,  // JOB_NR
+  2,  // NO_WAIT
+  2,  // SIZE
+  4,  // TIME_LAGS
+  11,  // TRANSPORTATION_DELAYS
+  4,  // SERVER_FLAGS
+  11,  // OBJECTIVE
+  1,  // M_NO
+  1   // NO_NO
+};
 
-// maximum Number in NUMBER[]
+/// maximum number in NUMBER[]
 #define MAX_NUMBER 25
 
-// for all:
+/// for all entries
 const int EMPTY=FALSE; 
+/// for all entries
 const int VALUE=1;
 
-// Alpha --------------------------------------------------------
+//**************************************************************************
+
+// alpha
+
 // Problem[M_ENV]:
 const int ONE=1;
 const int O=2;
@@ -131,8 +144,9 @@ const int M_ARB=EMPTY;
 const int M_VAL=VALUE;
 const int M_FIX=2;
 
+//**************************************************************************
 
-// Beta ----------------------------------------------------------
+// beta
 const int SET=TRUE;
 
 // Problem[PMTN]: only TRUE and FALSE
@@ -173,7 +187,7 @@ const int UNIT_TL=1;
 const int CONST_TL=2;
 const int GENERAL_TL=3;
 
-//Problem[TRANSPORTATION_DELAYS]:
+// Problem[TRANSPORTATION_DELAYS]:
 const int TIK_T=1;
 const int TIKL_T=2;
 const int TI_IN=3;
@@ -185,12 +199,14 @@ const int TKL=8;
 const int TIK=9;
 const int TIKL=10;
 
-//Problem[SERVER_FLAGS]
+// Problem[SERVER_FLAGS]
 const int SI=1;
 const int SI_1=2;
 const int SI_S=3;
 
-// Gamma ---------------------------------------------------------
+//**************************************************************************
+
+// Gamma
 // Problem[OBJECTIVE]
 const int CMAX=1;
 const int LMAX=2;
@@ -200,14 +216,16 @@ const int SUM_UI=5;
 const int SUM_WIUI=6;
 const int SUM_TI=7;
 const int SUM_WITI=8;
-const int IRREG1=9;     // sum w_i | C_i - d_i |
+
+/// sum w_i | C_i - d_i |
+const int IRREG1=9;
+
 /** sum w_i T_i + sum wi_early (d_i-C_i)^+ + w_late L_max +
     w_early max (d_i-C_i)^+ as used by Neumann/Schwindt */
 const int IRREG2=10;     
-const int test[5] = { 3, 4, 5, 6, 3 };
 
-// const char testtest[4][20]={ "bb", "cc", "dd", "ee"};
 
+/// correspondings strings
 const char name_of_tupelindex[TUPEL_INDEX][MAX_STRING] = {
 "M_ENV",
 "M_NUMBER",
@@ -231,9 +249,7 @@ const char name_of_tupelindex[TUPEL_INDEX][MAX_STRING] = {
 "N_NO"
 };
 
-// const char test2test[2][3][4] = {
-//  { "1","xx",  "yy"}, {"zz",  "aw","wf"} };
-
+/// yet more corresponding strings
 const char name_of_tupelentry[TUPEL_INDEX][MAX_NUMBER][MAX_STRING] = {
   // M_ENV:
 {  "", "ONE", "O", "F", "J", "X", "G", "P", "Q", "R", "MPT", "OMPT", "FMPT", "JMPT", "XMPT", "GMPT", "OMPM", "FMPM", "JMPM", "XMPM", "GMPM", "PMPM", "QMPM", "F_SR", "P_CS" } ,  
@@ -277,48 +293,34 @@ const char name_of_tupelentry[TUPEL_INDEX][MAX_NUMBER][MAX_STRING] = {
 {  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }
 };
 
-//latest possible time and other maximal values
+/// highest possible time
 const TIMETYP MAXTIME= (TIMETYP) 100000L;    
+/// highest possible objective
 const TIMETYP MAXOBJECTIVE= (TIMETYP) 10000000L;
+/// highest possible number
 const long MAXNUMBER= 1000000L; 
 
 /** Length of the progress indicator for external algorithms. The algorithm 
     should output a line starting with "OBJECTIVE=" exactly so many times in 
-    equal time intervals to fill one indicator window. **/
+    equal time intervals to fill one indicator window. */
 #define PROGRESS_INDICATOR_STEPS 400
 
-// ******************** class definitions ********************
 
-
-// *********************** functions *************************
-
-/**  random generator ( Taillard).
-  lisa_random (lb, ub, &seed) returns integer from ub to lb (gleichverteilt),
-  changed value of seed
+/** random generator (Taillard)
+  @param lb lower bound
+  @param ub upper bound
+  @param seed random seed
+  @return a random value between lb and ub, determined by seed 
   */
-int lisa_random( int lb, int ub, long *germe );
+int lisa_random( int lb, int ub, long *seed );
 
-/// Maximum of two values
+/// maximum of two values
 template<class T>
 inline T  MAX(T  a, T  b) { return a > b ? a : b; }
 
-/// Minimum of two values
+/// minimum of two values
 template<class T>
 inline T  MIN(T  a, T  b) { return a < b ? a : b; }
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

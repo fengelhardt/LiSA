@@ -130,11 +130,11 @@ Lisa_DataBase::bib_entry(char *bibstr, int i)
                     // is missing in the problem type.
 		}
 	      else
-		if (strcmp(annote,"*\\NP")==0)
+		if (strcmp(annote,"*NP")==0)
 		  E[i].tex_an[pn].np_flag=STR_NP_HARD;
 		else if (strcmp(annote,"P")==0)
 		  E[i].tex_an[pn].np_flag=POLYN;
-		else if (strcmp(annote,"\\NP")==0)
+		else if (strcmp(annote,"NP")==0)
 		  E[i].tex_an[pn].np_flag=NP_HARD;
 		else if (strcmp(annote,"P_{pseudo}")==0)
 		  E[i].tex_an[pn].np_flag=PS_POLYN;
@@ -364,7 +364,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	E[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIK_T);
       else if (strcmp(beta,"t_{ikl}=T")==0)
 	E[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIKL_T);
-      else if (strcmp(beta,"t_i\\in\\{T_1,T_2\\}")==0)
+      else if (strcmp(beta,"t_iin{T_1,T_2}")==0)
 	E[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TI_IN);
       else if (strcmp(beta,"t_{kl}=t_{lk}")==0)
 	E[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TKL_TLK);
@@ -393,21 +393,21 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 
 // gamma entry --------------------------------------------------
  
-  if (strcmp(gamma,"C_{\\max}")==0)
+  if (strcmp(gamma,"C_{max}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,CMAX);
-  else if (strcmp(gamma,"L_{\\max}")==0)
+  else if (strcmp(gamma,"L_{max}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,LMAX);
-  else if (strcmp(gamma,"\\sum{C_i}")==0)
+  else if (strcmp(gamma,"sum{C_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_CI);
-  else if (strcmp(gamma,"\\sum{w_iC_i}")==0)
+  else if (strcmp(gamma,"sum{w_iC_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WICI);
-  else if (strcmp(gamma,"\\sum{U_i}")==0)
+  else if (strcmp(gamma,"sum{U_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_UI);
-  else if (strcmp(gamma,"\\sum{w_iU_i}")==0)
+  else if (strcmp(gamma,"sum{w_iU_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WIUI);
-  else if (strcmp(gamma,"\\sum{T_i}")==0)
+  else if (strcmp(gamma,"sum{T_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_TI);
-  else if (strcmp(gamma,"\\sum{w_iT_i}")==0)
+  else if (strcmp(gamma,"sum{w_iT_i}")==0)
     E[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WITI);
   else
     error_output(dsatz,nr); 

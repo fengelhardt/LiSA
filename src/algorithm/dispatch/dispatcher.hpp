@@ -61,7 +61,7 @@ class Lisa_Dispatcher
       /// setting up problem and target schedule (needed to run the algorithm)
       bool SetProblem(Lisa_ProblemType*, Lisa_Values*, Lisa_Schedule*);
       /// chooses the priority rule (default SPT)
-      void SetRule(string r);
+      void SetRule(std::string r);
       /** At each time a machine or job becomes available, schedule the 
           operation with the highest priority among the available ones. The 
           resulting schedule will be active. **/ 
@@ -76,21 +76,4 @@ class Lisa_Dispatcher
 Lisa_JsSchedule * dispatch_active(Lisa_JsProblem * Pi, int rule);
       
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

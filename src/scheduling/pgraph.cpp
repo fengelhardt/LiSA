@@ -16,6 +16,8 @@
 #include "../lisa/lvalues.hpp"
 #include "pgraph.hpp"
 
+using namespace std;
+
 extern class Lisa_Values G_Values;
 
 // *********************** functions *************************

@@ -13,6 +13,8 @@
 
 #include "travel_graph.hpp"
 
+using namespace std;
+
 //******************************************************************************
 
 Travel_Graph::Travel_Graph(){

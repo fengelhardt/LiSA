@@ -14,7 +14,9 @@
 
 //**************************************************************************
 
-//tcl version hack
+/** Tcl version hack.
+    Determine whether we need to use char** oder const char** in our tcl2cpp
+    callback functions. */
 #if TCL_MAJOR_VERSION < 8
  #define TCL_HACK_CHAR char
 #endif
@@ -34,3 +36,4 @@
 //**************************************************************************
 
 #endif
+

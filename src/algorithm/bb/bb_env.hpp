@@ -17,8 +17,6 @@
 #include "../../basics/list.hpp"
 #include "../../basics/order.hpp"
 
-using namespace std;
-
 /// flag to store whether current abort signal (in unix SIGINT) was received
 extern bool abort_algorithm;
 
@@ -73,19 +71,4 @@ class Lisa_GenericBb
   };            
       
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

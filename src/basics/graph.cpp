@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "graph.hpp"
 
+using namespace std;
+
 //Spalte 0 :
 //x=Anfang der succ-Liste
 //y=Anfang ist Ende der succ-Liste 

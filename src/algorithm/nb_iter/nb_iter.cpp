@@ -17,6 +17,7 @@
 
 #include "nb_iter.hpp"
 
+using namespace std;
 
 /* at first three procedures for the iteration of 
      - one machine problems

@@ -1,31 +1,30 @@
 /*
- * ************** irrednode.cpp *******************************
  * @version 2.3pre3
- *
  * @author Marc Moerig
- *
- * 08.06.01
- * last changed 08.06.01
  */
 
 #include "irrednode.hpp"
 
-//**********************************************************************************************
+using namespace std;
+
+//**************************************************************************
   
-Lisa_IrredNode::Lisa_IrredNode(Lisa_Graph* plangraph_in, Lisa_Graph* compgraph_in, const int status_in){
+Lisa_IrredNode::Lisa_IrredNode(Lisa_Graph* plangraph_in, 
+                               Lisa_Graph* compgraph_in, const int status_in){
+                                 
   plangraph = new Lisa_Graph(*plangraph_in);
   compgraph = new Lisa_Graph(*compgraph_in);
   status = status_in;
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 Lisa_IrredNode::~Lisa_IrredNode(){
   if (plangraph) delete plangraph;
   if (compgraph) delete compgraph;
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 void Lisa_IrredNode::write(ostream& strm) const{
   strm << "<IrredNode>" << endl;
@@ -33,13 +32,14 @@ void Lisa_IrredNode::write(ostream& strm) const{
   strm << "</IrredNode>" << endl;
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
-Lisa_IrredResult::Lisa_IrredResult(const int ins_method_in):ins_method(ins_method_in){
+Lisa_IrredResult::Lisa_IrredResult(const int ins_method_in):
+                                                  ins_method(ins_method_in){
   results = new Lisa_List<Lisa_IrredNode*>();
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 Lisa_IrredResult::~Lisa_IrredResult(){
   if(!results->empty()){
@@ -54,12 +54,14 @@ Lisa_IrredResult::~Lisa_IrredResult(){
   delete results;
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
-void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,Lisa_Graph* compgraph_in){
+void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,
+                              Lisa_Graph* compgraph_in){
 
   static int lastsize = 0;	
-  //static int countall=0;countall++;cout<<"inserted:"<<results->length()<<"/"<<countall<<endl;
+  //static int countall=0;countall++;cout<<"inserted:"<<results->length()
+  //                                     <<"/"<<countall<<endl;
 
   if(ins_method==NO_FILTER){
     Lisa_IrredNode* nd = new Lisa_IrredNode(plangraph_in,compgraph_in,Lisa_IrredNode::UNKNOWN);
@@ -97,7 +99,7 @@ void Lisa_IrredResult::insert(Lisa_Graph* plangraph_in,Lisa_Graph* compgraph_in)
 
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 void Lisa_IrredResult::compare_all(){
   if(!results->empty()){
@@ -126,7 +128,7 @@ void Lisa_IrredResult::compare_all(){
   }
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 void Lisa_IrredResult::delete_reducible(){
   if(!results->empty()){
@@ -141,7 +143,7 @@ void Lisa_IrredResult::delete_reducible(){
   }
 }
 
-//**********************************************************************************************
+//**************************************************************************
 
 void Lisa_IrredResult::write(ostream& strm)const{
   strm << "<IrredResult>" << endl;
@@ -156,4 +158,5 @@ void Lisa_IrredResult::write(ostream& strm)const{
   strm << "</IrredResult>" << endl;
 }
 
-//**********************************************************************************************
+//**************************************************************************
+

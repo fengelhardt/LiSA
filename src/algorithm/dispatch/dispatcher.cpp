@@ -13,6 +13,8 @@
 
 #include "dispatcher.hpp"
 
+using namespace std;
+
 TIMETYP Lisa_Dispatcher::priority(int i, int j)
 {
   // sometimes we add one to make shure that priority>-MAXTIME holds

@@ -2,7 +2,7 @@
 /*                                                                           */
 /*                               main program                                */
 /*                                                                           */
-/*   @version 2.3pre3
+//   @version 2.3pre3
 /* ************************************************************************* */
 
 
@@ -38,4 +38,3 @@
 #include "jb_stack.hpp"
 #include "jb_table.hpp"
 
-using namespace std;

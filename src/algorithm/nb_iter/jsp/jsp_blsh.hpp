@@ -20,7 +20,7 @@
 /** Job-Shop critical-block-SHIFT Neighborhood.
     This is the problem dependent SHIFT neighborhood class for the 
     job shop problem, where we take a swap only for a critical block 
-    operation.\\
+    operation.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -43,13 +43,13 @@ class JSHOP_cr_bl_shift_Ngbh: public JSHOP_API_Ngbh
 		~JSHOP_cr_bl_shift_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;\\
+		    generation of neighbour;
 		    it propose an exchange of a block-end-operation on the
 		    Cmax-critical way (in a job-order of a machine) with an 
-		    other operation on the same machine;\\
+		    other operation on the same machine;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 

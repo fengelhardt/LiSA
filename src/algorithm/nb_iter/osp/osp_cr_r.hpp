@@ -20,9 +20,9 @@
 
 /** Open-Shop critical-API Neighborhood (with a fix order of the operations). 
     This is the problem dependent API neighborhood class for the 
-    open shop problem where we take a swap only for critical operations.\\
+    open shop problem where we take a swap only for critical operations.
     This class works like OSHOP_cr_API_Ngbh, but here we create a fixed
-    order of the critical operations.\\
+    order of the critical operations.
     It is inherited from the class Lisa_Neighborhood.
 
     @author Andreas Winkler
@@ -43,15 +43,15 @@ class OSHOP_cr_TST_Ngbh: public OSHOP_API_Ngbh
 		~OSHOP_cr_TST_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;\\
+		    generation of neighbor;
 		    it propose an interchange of two adjacent operations (in 
 		    the job-order or in the machine-order) on the Cmax-
 	 	    critical way, but the order of the critical operations is 
 		    fix, so that we take shure, that all possibilitys are 
-		    tested;\\
+		    tested;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 

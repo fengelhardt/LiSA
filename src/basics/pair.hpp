@@ -15,23 +15,27 @@
 #define _pair_h 
 
 #include "../lisa/lsaobjct.hpp"
-// ******************** class definitions ********************
 
-/// Ordered Pairs are often used as Basistyp
-
+/// Ordered Pairs are often used as basistype
 class Lisa_Pair : public Lisa_Object{ 
-public: int x,y;
-   /// output to stream (stream operator itself is already defined)
-   virtual void write(ostream & = cout) const;
+public: 
+  int x,y;
+  
+  /// output to stream (stream operator itself is already defined)
+  virtual void write(std::ostream & = std::cout) const;
+  
   /// input from stream (stream operator itself is already defined)
-   virtual void read(istream &   = cin);
+  virtual void read(std::istream &   = std::cin);
+  
+  /// compare for equality
   bool operator!=(const  Lisa_Pair&) const;
+  
   /// compare lexicographically
- bool operator<(const  Lisa_Pair&) const;
- bool operator>(const  Lisa_Pair&) const;
+  bool operator<(const  Lisa_Pair&) const;
+  
+  /// compare lexicographically  
+  bool operator>(const  Lisa_Pair&) const;
 };    
-
-
 
 #endif
 

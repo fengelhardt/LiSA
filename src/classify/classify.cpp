@@ -8,6 +8,8 @@
 #include "redgraph.hpp"
 #include "database.hpp"
 
+using namespace std;
+
 string 
 Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file) 
 {

@@ -14,6 +14,7 @@
 #define _bottleneck_h 
 
 #include <iostream>
+
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
 #include "../../misc/except.hpp"
@@ -23,7 +24,6 @@
 #include "../../scheduling/sp_sched.hpp"
 #include "../../basics/order.hpp"
 
-using namespace std;
 
 /** Shifting_Bottleneck object for Lisa, using the Shifting_Bottleneck 
     heuristic to solve scheduling problems 
@@ -50,13 +50,9 @@ public:
   */
   Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m=false);
   ~Shifting_Bottleneck();
-  /** start the bottleneck heuristic and ...\\ 
+  /** start the bottleneck heuristic and ... 
       store the result in Lisa_Schedule* pSch */
   void run(Lisa_Schedule* pSch);
 };
 #endif
-
-
-
-
 

@@ -33,7 +33,6 @@
 #include "../basics/list.hpp"
 #include "../lisa/filentry.hpp"
 
-using namespace std;
 
 const int LENGHT_OF_INFO_VECTOR = 15;
 const int LENGHT_OF_OBJECTIVE = 8;
@@ -44,7 +43,7 @@ const int NO_OF_SOURCES = 10;
 const int NO_OF_SINKS = 11;
 const int NO_OF_IKL =12;
 
-//########################## Class Lisa_Schedule #####################################
+
 
 /** Lisa_Schedule 
  */
@@ -93,21 +92,16 @@ public:
   int get_property(int property);
   /// inititialize Lisa_Schedule with new number of jobs and maschines 
   void init(int DEFAULT_M, int DEFAULT_N);
-  virtual void write (ostream& = cout) const;
-  virtual void read (istream& = cin);
+  virtual void write(std::ostream& = std::cout) const;
+  virtual void read(std::istream& = std::cin);
   /// destructor
   virtual ~Lisa_Schedule();
 };
-
-
-
-//########################## Class Schedule_Node #####################################
 
 /** Schedule_Node 
 Contain the schedule as latin rectangle as C-matrix and an
 additional vector for some additional informations
  */
-
 class ScheduleNode  : public Lisa_FileEntry
 {
 protected:
@@ -134,9 +128,9 @@ public:
   /// compare only schedule_info[sinfo_pointer]
    bool operator!=( const ScheduleNode & other) const;
    /// output to stream (stream operator itself is already defined)
-   virtual void write(ostream & = cout) const;
+   virtual void write(std::ostream & = std::cout) const;
   /// input from stream (stream operator itself is already defined)
-   virtual void read(istream &   = cin);
+   virtual void read(std::istream &  = std::cin);
    /// construct copy of (*this) and return pointer to this copy
   //ScheduleNode* copy();
    /// You have to implement a destructor if your node uses dynamic memory!
@@ -146,31 +140,4 @@ public:
 #endif
 
 //@}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

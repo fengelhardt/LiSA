@@ -10,7 +10,7 @@
  */
 
 /** @name Main Program for the Neighborhood Search 
-    #nb_iter.cpp# is the main program for the iterative neighborhood search.\\
+    #nb_iter.cpp# is the main program for the iterative neighborhood search.
     Actually are implemented Single-Machine-Schedules, Open-Shop-Schedules 
     and Job-Shop-Shedules with several Neighborhoods. */
 //@{
@@ -67,10 +67,8 @@
 
 #include "iterate.hpp"
 
-using namespace std;
-
-  const int MAXINT  = 214748000;
-  const int MAXLONG = 214748000;
+const int MAXINT  = 214748000;
+const int MAXLONG = 214748000;
 
 // definition of parameters for the file-controlling
 // following parameters are possible:
@@ -94,7 +92,7 @@ using namespace std;
 	 PROB_TYPE,
          ii, jj;
   long   STEPS;      // STEPS = long-Value
-  string NGBH_St,    //  M1_API, M1_SHIFT, OSP_API, OSP_SHIFT, OSP_3_API, 
+  std::string NGBH_St,    //  M1_API, M1_SHIFT, OSP_API, OSP_SHIFT, OSP_3_API, 
                      //  OSP_CR_API, OSP_BL_API, OSP_CR_SHIFT, OSP_BL_SHIFT, 
 		     //	 OSP_CR_TST, OSP_3_CR, JSP_API, JSP_SHIFT, JSP_3_API,
 		     //  JSP_CR_API, JSP_BL_API, JSP_CR_SHIFT, JSP_BL_SHIFT,
@@ -174,12 +172,4 @@ using namespace std;
   JSHOP_cr_bl_shift_Ngbh   *js_bl_shift;
   JSHOP_3_CR_Ngbh          *js_cr_3;
   Lisa_Iterator	           *it;
-
-
-
-
-
-
-
-
 

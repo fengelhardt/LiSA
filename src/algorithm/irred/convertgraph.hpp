@@ -1,14 +1,3 @@
-/*
- * ************** convertgraph.hpp *******************************
- *
- * this class will create the graph to a given plan and problem type and vice versa 
- *
- * @author Marc Moerig
- * @version 2.3pre3
- *
- * 15.07.01
- * last changed 15.07.01
- */
 
 #ifndef convertgraph_h
 #define convertgraph_h
@@ -29,24 +18,23 @@
 */
 
 //@{
-/** convert schedules to graphs ...\\
+/** convert schedules to graphs ...
+
+    The irreducibility test runs completly on graphs. Therefore 
+    we need to create the disjunctive graph for a given problem
+    and we need a tool to convert schedules to to graphs and vice versa.
 
     This object can create the disjunctive graph describing a problem.
     It also serves as tool to convert schedules for that problem into 
     graphs and vice versa.
 
-*/
+    @author Marc Moerig
+    @version 2.3pre3
+ */
 class Lisa_ConvertGraph : public Lisa_GenericObject{
 private:
   // possible problemtypes
-  const static int O_CMAX = 1;
-  const static int J_CMAX = 2;
-  const static int O_RI_CMAX = 3;
-  const static int J_RI_CMAX = 4;
-  const static int O_LMAX = 5;
-  const static int J_LMAX = 6;
-  const static int O_RI_LMAX = 7;
-  const static int J_RI_LMAX = 8;
+  enum {O_CMAX=1,J_CMAX,O_RI_CMAX,J_RI_CMAX,O_LMAX,J_LMAX,O_RI_LMAX,J_RI_LMAX};
 
   // which problemtype do we have ?
   const int curr_pt;
@@ -68,32 +56,33 @@ private:
   void initialize_O_CMAX(Lisa_Matrix<bool>* SIJ);
   void plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
 
-  void initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);  //!!!
+  void initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); // !!!
+  void plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
   void plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); 
 
-  void initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO); // !!!
+  void initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_LMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); //!!!
+  void plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
   void plan2graph_O_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
 
-  void initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO); // !!!
+  void initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ);
-  void plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); // !!!
+  void plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
   void plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); 
 
-  /// constructor
+  // constructor
   Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0);
 
 public:
 
-  /** create an object ...\\
-
-      This method try's to create an converting Object for the given Problemype. It returns 0 
-      if that is not possible cause either a MO is needed for the current problemtype
-      or the problemtype is not supported. Additionally an exception is thrown */
-  static Lisa_ConvertGraph* make_object(Lisa_ProblemType* pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0);
+  /// Create an object.
+  /** This method try's to create an converting Object for the given 
+      Problemype. It returns 0 if that is not possible cause either a MO is 
+      needed for the current problemtype or the problemtype is not supported. 
+      Additionally an exception is thrown */
+  static Lisa_ConvertGraph* make_object(Lisa_ProblemType* pt,
+                                        Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0);
   
   /// destructor
   ~Lisa_ConvertGraph();
@@ -107,9 +96,9 @@ public:
   /// converts a plangraph back to the plan 
   void graph2plan(Lisa_Graph* plangraph,Lisa_Matrix<int>* plan);
   
-  /**  sends the object data to a stream ...\\   
-       This data is usually only interesting for debugging.*/
-  void write(ostream& strm = cout) const;
+  ///  Sends the object data to a stream.   
+  /**  This data is usually only interesting for debugging.*/
+  void write(std::ostream& strm = std::cout) const;
 
 };
 

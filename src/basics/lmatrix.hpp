@@ -24,7 +24,7 @@ template<class T>
 class Lisa_nestedList:public Lisa_List<T>
 {
 public:
-  void write(ostream& strm) const
+  void write(std::ostream& strm) const
     {
       Lisa_Node<T> * temp;
       strm << " ( ";
@@ -133,8 +133,8 @@ public:
   bool operator<=(const Lisa_VectorOfLists<T>&) const;
   
   // input/output in lisa-format
-  void write(ostream& = cout) const;
-  void read(istream& = cin);
+  void write(std::ostream& = std::cout) const;
+  void read(std::istream& = std::cin);
   
   /// search index of maximal vector element
   int index_of_max() const;
@@ -153,14 +153,16 @@ public:
 //**************************************************************************
 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_VectorOfLists<T>& l)
+inline std::ostream& operator << (std::ostream& strm, const Lisa_VectorOfLists<T>& l)
 {
   l.write(strm);
   return strm;
 }
 
+//**************************************************************************
+
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_VectorOfLists<T>& l)
+inline std::istream& operator >> (std::istream& strm, Lisa_VectorOfLists<T>& l)
 {
   l.read(strm);
   return strm;
@@ -225,8 +227,8 @@ public:
   /// compare lexicographically
   //iroess  bool operator<=(const Lisa_MatrixOfLists<T>&) const;
   // input/output in LiSA-format:
-  void write(ostream& = cout) const;
-  void read(istream& = cin);  
+  void write(std::ostream& = std::cout) const;
+  void read(std::istream& = std::cin);  
   ~Lisa_MatrixOfLists();
   /// pointer to first row (for iterating the contents)
   Lisa_VectorOfLists<T> * first_row() const { return row; }
@@ -250,14 +252,16 @@ public:
 //**************************************************************************
 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_MatrixOfLists<T>& l)
+inline std::ostream& operator << (std::ostream& strm, const Lisa_MatrixOfLists<T>& l)
 {
   l.write(strm);
   return strm;
 }
 
+//**************************************************************************
+
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_MatrixOfLists<T>& l)
+inline std::istream& operator >> (std::istream& strm, Lisa_MatrixOfLists<T>& l)
 {
   l.read(strm);
   return strm;

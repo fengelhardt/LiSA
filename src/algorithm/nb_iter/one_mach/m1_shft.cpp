@@ -12,6 +12,7 @@
 // date: 13.04.98
 #include "m1_shft.hpp"
 
+using namespace std;
 
 shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
 	: API_Neighborhood( Plan, PPi )

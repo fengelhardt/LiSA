@@ -18,30 +18,21 @@
 #ifndef _int2str_h 
 #define _int2str_h 
 
-
-//  ************** System Includes  ******************
 #include <string>
-
-using namespace std;
-
-
-//  ************** Functions  ******************
 
 /// returns true if value integer
 bool inttst(const double value);
 
 /// returns string
-string ztos(const double value);
+std::string ztos(const double value);
 
 /// returns formated string
-string ztofs(const double value);
+std::string ztofs(const double value);
 
 /// returns numeric value
-int stoz(const string);
+int stoz(const std::string);
 
 #endif
 
 //@}
-
-
 

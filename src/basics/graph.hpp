@@ -19,8 +19,6 @@
 #include "matrix.hpp"
 #include "pair.hpp"
 
-using namespace std;
-
 #define NO 0
 #define ARC 1
 #define CRA -1
@@ -63,19 +61,19 @@ private:
 
 public:
   
-  /** constructor ...\\ Create a graph object for a numberof  vertices. */
+  /** constructor ... Create a graph object for a numberof  vertices. */
   Lisa_Graph(int number_of_knots);
 
-  /** constructor ...\\ Create a graph as the copy of another graph. */
+  /** constructor ... Create a graph as the copy of another graph. */
   Lisa_Graph(const Lisa_Graph& othergraph);
 
-  /** constructor ...\\ Create a graph as the copy of another graph. */
+  /** constructor ... Create a graph as the copy of another graph. */
   Lisa_Graph(const Lisa_Graph* othergraph);
 
   /// destructor
   ~Lisa_Graph();
 
-  /** assign another graph ...\\ Copy one graph object to the other */ 
+  /** assign another graph ... Copy one graph object to the other */ 
   const Lisa_Graph& operator=(const Lisa_Graph& other);
 
   ///return the number of vertices
@@ -96,26 +94,26 @@ public:
   ///initialize a graph with a given number of vertices
   void init(int number_of_knots);
 
-  /** insert an edge into the graph ...\\ Add edge from vertice start to vertice end. */
+  /** insert an edge into the graph ... Add edge from vertice start to vertice end. */
   bool insert_edge(int start, int end);
 
-  /** insert an arc into the graph ...\\ Add arc from vertice start to vertice  end. */
+  /** insert an arc into the graph ... Add arc from vertice start to vertice  end. */
   bool insert_arc(int start, int end);
 
-  /** remove an edge from the graph ...\\ 
+  /** remove an edge from the graph ... 
       Delete edge from vertice start to vertice end. */
   bool exclude_edge(int start, int end);
 
-  /** remove an arc from the graph ...\\
+  /** remove an arc from the graph ...
       Delete arc from vertice start to vertice end. */
   bool exclude_arc(int start, int end);
 
-  /** get the kind of connection between two vertices ...\\
-      possible return values are:\\
-      NO 0\\
-      ARC 1\\
-      CRA -1 which is an arc from end to start ;)\\
-      EDGE 2\\*/
+  /** get the kind of connection between two vertices ...
+      possible return values are:
+      NO 0
+      ARC 1
+      CRA -1 which is an arc from end to start ;)
+      EDGE 2*/
   int  get_connection(int start, int end);
 
   ///access to the first element of the successor list
@@ -130,19 +128,19 @@ public:
   ///access to the last element of the predecessor list
   int   get_last_predecessor(int knot);
 
-  /** get a successsor of a vertice ...\\
+  /** get a successsor of a vertice ...
       Returns the next successor of a vertice and moves the according list pointer
       to the next following successor. Returning n+1 stands for the end of this vertice's
       successor list and for a new initialization of its successor list pointer. */  
   int get_next_successor(int knot);
 
-  /** get a predecessor of a vertice ...\\
+  /** get a predecessor of a vertice ...
       Returns the next predeccessor of a vertice and moves the according vertice pointer
       to the next following predeccessor. Returning n+1 stands for the end of this vertice's
       predeccessor list and for a new initialization of its predeccessor list pointer. */  
   int get_next_predeccessor(int knot);
 
-  /** get vertices that form an edge together with the argument vertice ...\\
+  /** get vertices that form an edge together with the argument vertice ...
       returns only connected edges of a vertice, returning n+1 stands for the end of this
       vertice's edge list */
   int get_next_edge(int knot);
@@ -150,47 +148,45 @@ public:
   /// test if there are no edges in the graph
   bool no_edges();
 
-  /** returns the number of successors for a vertice ...\\
+  /** returns the number of successors for a vertice ...
       This is the sum of edges and arcs. */
   int number_of_succ(int knot);
 
-  /** returns the number of successors for a vertice ...\\
+  /** returns the number of successors for a vertice ...
       This is the sum of edges backwards arcs (CRA's). */
   int number_of_pred(int knot);
 
-  /** sort vertices topologically ...\\
+  /** sort vertices topologically ...
       The vertices will be put  in topoligical order in the 
       knot_sequence vector, i.e. vertice i in the original graph 
-      is assigned to the vertice indicated by knot_sequence(i).\\
-      returns true: all vertices are topsorted, graph contains no cycles\\
+      is assigned to the vertice indicated by knot_sequence(i).
+      returns true: all vertices are topsorted, graph contains no cycles
       returns false: otherwise */ 
   bool topsort(Lisa_Vector<int>* knot_sequence);
 
   /// delete all ARC's CRA's and edges connected with that vertice
   bool remove_all_con(int knot);
 
-  /** create the transitive hull ...\\
+  /** create the transitive hull ...
       Calculates the transitive hull for this graph and writes it into 
       the target graph. The target graph is assumed to have the same number of 
       vertices as this graph. It must not contain any edges or arcs. */
   bool transitive_hull(Lisa_Graph* target);
 
-  /** write this objects data structure to cout ... \\Mostly used for debugging. */
+  /** write this objects data structure to cout ... Mostly used for debugging. */
   void show();
 
-  /** check whether the objects data structures are consistent ...\\Mostly used for debugging. */
+  /** check whether the objects data structures are consistent ...Mostly used for debugging. */
   bool valid();
 
   /// write the object to a stream 
-  void write (ostream& = cout) const;
+  void write(std::ostream& = std::cout) const;
 
   /// read the object from a stream
-  void read (istream& = cin);
+  void read(std::istream& = std::cin);
 };
 
 //@}
 
 #endif
-
-
 

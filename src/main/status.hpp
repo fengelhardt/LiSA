@@ -13,11 +13,9 @@
 #ifndef _status_h 
 #define _status_h 
 
-//  ********************** defines ***********************
 const int MAX_CANV_WIDTH = 200000;
 const int  MAX_CANV_HEIGHT = 150000;
 
-//  **************  Class Definitions  ******************
 
 /** Contain informations of LiSA system values
   */
@@ -41,14 +39,4 @@ public:
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
 

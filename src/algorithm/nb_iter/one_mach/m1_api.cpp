@@ -13,6 +13,8 @@
 
 #include "m1_api.hpp"
 
+using namespace std;
+
 API_Neighborhood::API_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
   {
    num = 1;

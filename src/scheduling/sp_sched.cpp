@@ -14,7 +14,7 @@
 
 #include "sp_sched.hpp"
 
-//############# Lisa_ShpProblem #####################################
+using namespace std;
 
 Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
 {

@@ -14,6 +14,8 @@
 
 #include "bb_env.hpp"
 
+using namespace std;
+
 bool abort_algorithm;
 
 void set_abort(int i) 
@@ -51,21 +53,4 @@ void Lisa_GenericBb::run_stop()
  {
    signal(SIGINT, SIG_DFL);
  }  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

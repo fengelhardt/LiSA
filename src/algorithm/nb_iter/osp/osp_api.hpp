@@ -22,11 +22,11 @@
     adjacent operations on a machine or for a job). It is inherited 
     from the class Lisa_Neighborhood.
 
-    The numbers of the solutions are the follows:\\
-        ORIG_SOLUTION     = 0;\\
-	WORK_SOLUTION     = 1;\\
-	BEST_SOLUTION     = 2;\\	
-	BEST_NGH_SOLUTION = 3;\\ 
+    The numbers of the solutions are the follows:
+        ORIG_SOLUTION     = 0;
+	WORK_SOLUTION     = 1;
+	BEST_SOLUTION     = 2;	
+	BEST_NGH_SOLUTION = 3; 
 
     @author Andreas Winkler
     @version 2.3pre3
@@ -70,19 +70,19 @@ class OSHOP_API_Ngbh: public Lisa_Neighborhood
 		virtual int   put_work_to_best_ngh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor,\\
+		    generation of neighbor,
 		    it propose an interchange of two arbitrary adjacent 
 		    operations in the job-order of one machine or in the 
-		    machine-order of one job,\\
+		    machine-order of one job,
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move\\it returns OK or !OK
+		/// do the proposed moveit returns OK or !OK
 		int   do_move();
                 /// create a anti-neighbor
                 int   anti_neighbor();
 		/// initialize the tabulist with specified length
 		int   init_tabulist( unsigned int );
-		/// search in the tabulist\\it returns OK or !OK
+		/// search in the tabulistit returns OK or !OK
 		int   use_tabulist();
 		/// set a tabulist-entry
 		int   set_tabulist();

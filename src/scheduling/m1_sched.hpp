@@ -50,7 +50,7 @@ class Lisa_1Problem {
 
 
 
-/** schedule for single machine problem,\\
+/** schedule for single machine problem,
     attention: the numeration is here beginning by 0 */
 class Lisa_1Schedule
   {

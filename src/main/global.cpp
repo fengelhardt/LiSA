@@ -12,23 +12,16 @@
  */ 
 
 
-// ******************** Local Includes ********************
 #include "global.hpp"
 
 
-// *********************** functions *************************
 
-int lisa_random( int lb, int ub, long *germe )
-{
+int lisa_random( int lb, int ub, long *seed ){
   long m=2147483647L,
     a=     16807L,
     b=    127773L,
     c=      2836L;
-  if ((*germe=(a*(*germe % b)-(*germe/b)*c))<0) *germe+=m;
-  return ( lb+ (int) ((1.0+ub-lb)*( (double) *germe )/m ) );
+  if ((*seed=(a*(*seed % b)-(*seed/b)*c))<0) *seed+=m;
+  return ( lb+ (int) ((1.0+ub-lb)*( (double) *seed )/m ) );
 }
-
- 
-
-
 

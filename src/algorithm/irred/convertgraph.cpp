@@ -1,21 +1,17 @@
 /*
- * ************** convertgraph.cpp *******************************
- *
- * this class will create the graph to a given plan and problem type and vice versa 
- *
  * @author Marc Moerig
  * @version 2.3pre3
- *
- * 15.07.01
- * last changed 15.07.01
  */
 
 #include "convertgraph.hpp"
 
+using namespace std;
 
-//****************************************************************************************
+//**************************************************************************
 
-Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
+Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,
+                                                  Lisa_Matrix<bool>* SIJ,
+                                                  Lisa_MO* MO){
   // sort problemtype out 
   int new_pt;
   
@@ -67,13 +63,16 @@ Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matr
   return cgrp;
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO)
-  :curr_pt(new_pt),m(SIJ->get_m()),n(SIJ->get_n()){
+Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,
+                                     Lisa_Matrix<bool>* SIJ,
+                                     Lisa_MO* MO):curr_pt(new_pt),
+                                                  m(SIJ->get_m()),
+                                                  n(SIJ->get_n()){
+                                                    
   // build lookup tables, 
   // call initialize for the according problemtype
-  
   vert=0;
   // on lookup table
   lookup = new Lisa_Matrix<int>(n,m);
@@ -126,7 +125,7 @@ Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lis
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 Lisa_ConvertGraph::~Lisa_ConvertGraph(){
   delete lookup;
@@ -135,15 +134,17 @@ Lisa_ConvertGraph::~Lisa_ConvertGraph(){
   delete disjkt;
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 Lisa_Graph*  Lisa_ConvertGraph::get_disjkt(){
   return disjkt;
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
+                                   Lisa_Graph* plangraph){
+                                     
   Lisa_GraphAlgorithms::clear(plangraph);
 
   switch(curr_pt){
@@ -176,9 +177,11 @@ void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph)
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,Lisa_Matrix<int>* plan){
+void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,
+                                   Lisa_Matrix<int>* plan){
+                                     
   plan->fill(0);
   
   Lisa_Vector<int> sort(morevert);
@@ -210,7 +213,7 @@ void Lisa_ConvertGraph::graph2plan(Lisa_Graph* plangraph,Lisa_Matrix<int>* plan)
 
 }
  
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::write(ostream& strm) const{
   cout << "<ConvertGraph>"<< endl;
@@ -218,7 +221,7 @@ void Lisa_ConvertGraph::write(ostream& strm) const{
   cout << "</ConvertGraph>" << endl;
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   morevert = vert;
@@ -247,7 +250,7 @@ void Lisa_ConvertGraph::initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
 
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_O_CMAX(Lisa_Matrix<bool>* SIJ){
   morevert = vert;
@@ -271,9 +274,11 @@ void Lisa_ConvertGraph::initialize_O_CMAX(Lisa_Matrix<bool>* SIJ){
 
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_O_CMAX(Lisa_Matrix<int>* plan,
+                                          Lisa_Graph* plangraph){
+                                            
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -291,7 +296,7 @@ void Lisa_ConvertGraph::plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* pla
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   morevert = vert+n;
@@ -323,7 +328,7 @@ void Lisa_ConvertGraph::initialize_J_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
  }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
   morevert = vert+n+1;
@@ -350,9 +355,10 @@ void Lisa_ConvertGraph::initialize_O_LMAX(Lisa_Matrix<bool>* SIJ){
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,
+                                          Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -374,9 +380,10 @@ void Lisa_ConvertGraph::plan2graph_O_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* pla
  for (int i=vert+1;i<morevert;i++) plangraph->insert_arc(morevert,i);
     
 }
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_J_LMAX(Lisa_Matrix<int>* plan,
+                                          Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -397,9 +404,10 @@ void Lisa_ConvertGraph::plan2graph_J_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* pla
     
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
+void Lisa_ConvertGraph::initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,
+                                             Lisa_MO* MO){
   morevert = vert+n;
  
   // create disjkt
@@ -428,7 +436,7 @@ void Lisa_ConvertGraph::initialize_J_RI_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO)
  }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
  morevert = vert+n+1;
@@ -455,9 +463,10 @@ void Lisa_ConvertGraph::initialize_O_RI_CMAX(Lisa_Matrix<bool>* SIJ){
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -479,9 +488,10 @@ void Lisa_ConvertGraph::plan2graph_O_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* 
  for (int i=vert+1;i<morevert;i++) plangraph->insert_arc(i,morevert);
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -501,9 +511,10 @@ void Lisa_ConvertGraph::plan2graph_J_RI_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* 
  }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
+void Lisa_ConvertGraph::initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,
+                                             Lisa_MO* MO){
   morevert = vert+2*n;
  
   // create disjkt
@@ -536,7 +547,7 @@ void Lisa_ConvertGraph::initialize_J_RI_LMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO)
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
 void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
  morevert = vert+2*(n+1);
@@ -565,9 +576,10 @@ void Lisa_ConvertGraph::initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ){
   }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -594,9 +606,10 @@ void Lisa_ConvertGraph::plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* 
  }
 }
 
-//****************************************************************************************
+//**************************************************************************
 
-void Lisa_ConvertGraph::plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph){
+void Lisa_ConvertGraph::plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,
+                                             Lisa_Graph* plangraph){
   for (int v=1;v<=vert;v++){
     
     int iv = (*I_lookup)[v];
@@ -621,4 +634,5 @@ void Lisa_ConvertGraph::plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* 
  }
 }
 
-//****************************************************************************************
+//**************************************************************************
+

@@ -44,24 +44,24 @@ using namespace std;
     algorithm/neighbourhood parameters have to be set in the input file.
     An example for an input file is:
 
-    <CONTROLPARAMETERS>\\
-    string METHOD TA\\
-    string NGBH RPI\\
-    long STEPS 100000\\
-    long NUMB_STUCKS 1000000\\
-    double ABORT_BOUND 0\\
-    long PROB 40\\
-    long MAX_STUCK 3000\\
-    </CONTROLPARAMETERS>\\
+    <CONTROLPARAMETERS>
+    string METHOD TA
+    string NGBH RPI
+    long STEPS 100000
+    long NUMB_STUCKS 1000000
+    double ABORT_BOUND 0
+    long PROB 40
+    long MAX_STUCK 3000
+    </CONTROLPARAMETERS>
 
-    <TRAVELGRAPH>\\
-    vertices= 3\\
-    graph= {\\
-    { 0 65 21 }\\
-    { 0 0 40 }\\
-    { 0 0 0 }\\
-    }\\
-    </TRAVELGRAPH>\\
+    <TRAVELGRAPH>
+    vertices= 3
+    graph= {
+    { 0 65 21 }
+    { 0 0 40 }
+    { 0 0 0 }
+    }
+    </TRAVELGRAPH>
       
     The first part contains the algorithm and neighbourhood parameters, the second part is the actual 
     traveling salesman problem. For more examples of the problem input see the documentation for
@@ -69,42 +69,42 @@ using namespace std;
     
     Parameters that have to be set always:
     
-    string METHOD [II SA SA_anti TA TS] the algorithm you want to use\\
-    II: iterative improvement\\
-    SA: simulated annealing\\
-    SA_anti: simmulated annealing with anti neighbour\\
-    TA: threshold accepting\\
-    TS: tabu search\\
+    string METHOD [II SA SA_anti TA TS] the algorithm you want to use
+    II: iterative improvement
+    SA: simulated annealing
+    SA_anti: simmulated annealing with anti neighbour
+    TA: threshold accepting
+    TS: tabu search
     
-    string NGHB [RPI API]\\
-    RPI: random pair interchange\\
-    API: adjacent pair interchange\\
+    string NGHB [RPI API]
+    RPI: random pair interchange
+    API: adjacent pair interchange
     
-    long STEPS: the number of steps after which the algorithm should abort\\
+    long STEPS: the number of steps after which the algorithm should abort
     
-    long NUMB_STUCKS: the number of stucks after which the algorithm should abort\\
+    long NUMB_STUCKS: the number of stucks after which the algorithm should abort
 
-    double ABORT_BOUND: a lower bound for the objective, if reached the algorithm will abort\\
+    double ABORT_BOUND: a lower bound for the objective, if reached the algorithm will abort
     
-    Parameters that have to be set for II:\\
+    Parameters that have to be set for II:
     
-    string NGBH_TYPE [ENUM RAND]\\
-    RAND: random generation of neighbours\\
-    ENUM: enumerative generation of neighbours\\
+    string NGBH_TYPE [ENUM RAND]
+    RAND: random generation of neighbours
+    ENUM: enumerative generation of neighbours
 
-    Parameters that have to be set for SA, SA_anti and TA:\\
+    Parameters that have to be set for SA, SA_anti and TA:
     
-    long PROB: the start propability for accepting solutions with a worse objective\\
+    long PROB: the start propability for accepting solutions with a worse objective
     
-    long MAX_STUCK: the number of stucks after which the threshold/temperature will be raised\\
+    long MAX_STUCK: the number of stucks after which the threshold/temperature will be raised
     
-    Parameters that have to be set for TS:\\
+    Parameters that have to be set for TS:
     
-    string NGBH_TYPE [ENUM RAND]\\
+    string NGBH_TYPE [ENUM RAND]
     
-    long TABU_LENGTH: the length of the tabu list\\
+    long TABU_LENGTH: the length of the tabu list
 
-    long NUMB_NGB: the number of neighbours to generate with each step\\
+    long NUMB_NGB: the number of neighbours to generate with each step
     
     Further information about the modelling of the problem and the neighbourhoods can be
     found in the documentation for the classes Travel_Graph , Travel_RPI_Neighbourhood 

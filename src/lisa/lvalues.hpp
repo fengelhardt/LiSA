@@ -21,10 +21,9 @@
 */ 
 
 //@{
-
-
 #ifndef _lvalues_h 
 #define _lvalues_h 
+
 
 #include <iostream>
 
@@ -32,16 +31,10 @@
 #include "../scheduling/mo_jo.hpp"
 #include "filentry.hpp"
 
-using namespace std;
-
 const int LENGHT_OF_EXTRA_VECTOR = 5;
 
-//########################## Class Lisa_Values #####################################
-
 /// collection of all values which defines the instance of the problem
-
-class Lisa_Values  : public Lisa_FileEntry
-{ 
+class Lisa_Values  : public Lisa_FileEntry{ 
 private:
   int n,m;   // for Matrix-Handling 
 public:
@@ -104,40 +97,11 @@ public:
   ~Lisa_Values();
   /// new number of maschines or jobs
   void init(int n, int m);
-  void write(ostream& = cout) const;
-  void read(istream& = cin);
+  void write(std::ostream& = std::cout) const;
+  void read(std::istream& = std::cin);
 };
-
-
 
 #endif
 
 //@}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

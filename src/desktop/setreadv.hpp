@@ -7,8 +7,14 @@
  *
  * date:               28.9.1999
  *
- * version:            V 1.0
-*/ 
+ * @version 2.3pre3
+ */ 
+
+#ifndef _setreadv_h 
+#define _setreadv_h
+ 
+#include <tk.h>
+#include "tclhack.hpp"
 
 /** @name TCL/TK Commands
 
@@ -24,11 +30,6 @@
 */ 
 
 //@{ 
-#ifndef _setreadv_h 
-#define _setreadv_h
- 
-#include <tk.h>
-#include "tclhack.hpp"
 
 //**************************************************************************
 
@@ -88,9 +89,7 @@ int TC_setvar(ClientData clientData,
 
 //**************************************************************************
 
-#endif
-
 //@}
 
-
+#endif
 

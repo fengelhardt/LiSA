@@ -14,7 +14,7 @@
 
 #include "js_sched.hpp"
 
-//############# problem instance ######################################
+using namespace std;
 
 Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
    {

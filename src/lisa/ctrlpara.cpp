@@ -12,13 +12,9 @@
  * @version 2.3pre3
 */
 
-// ********************* Local Includes ********************
 #include "ctrlpara.hpp"
 
-// ********************* LiSA Includes  ********************
-
-
-// *********************** functions *************************
+using namespace std;
 
 void Lisa_ControlParameters::add_key(const string name, long int value) 
  {

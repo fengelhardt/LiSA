@@ -2,7 +2,7 @@
 /*                              Filename: Sort.h                             */
 /*                                                                           */
 /*  EXPORT: Procedure Sort: Sorting of an array into a non-decreasing order  */
-/*   @version 2.3pre3
+//   @version 2.3pre3
 /* ************************************************************************* */
 
 

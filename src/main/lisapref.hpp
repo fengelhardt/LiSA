@@ -31,9 +31,6 @@
 #include "../lisa/ctrlpara.hpp"
 #include "../basics/matrix.hpp"
 
-using namespace std;
-
-
 const int GANTT_JOB=0;
 const int GANTT_MACHINE=1;
 const int GANTT_NORMAL=0;
@@ -48,36 +45,35 @@ const int GANTT_YELLOW=4;
 //  ************** Class Definitions ******************
 
 /// Preference Class
-class Lisa_Preferences : public Lisa_FileEntry
-{
+class Lisa_Preferences : public Lisa_FileEntry{
 public:
   /// contains all settings in form of a Lisa_ControlParameters class
   Lisa_ControlParameters contents;
   /// the LISA_HOME path
-  string LISA_HOME;
+  std::string LISA_HOME;
   /// the home-path of the user
-  string CONFIG_HOME;
+  std::string CONFIG_HOME;
   /// orientation of the gantt chart
   bool gantt_orient;
-  /// if gantt_col_type==GANTT_NORMAL the gantt chart is drawn 
-  /// in 23 different colors
-  /// if gantt_col_type==GANTT_CP  the critical path in the 
-  /// gantt chart is red
-  /// if gantt_col_type==GANTT_COLOR 5 selected machines (or jobs)
-  /// are in the color which are defined in gannt_colors
+  /** if gantt_col_type==GANTT_NORMAL the gantt chart is drawn 
+      in 23 different colors
+      if gantt_col_type==GANTT_CP  the critical path in the 
+      gantt chart is red
+      if gantt_col_type==GANTT_COLOR 5 selected machines (or jobs)
+      are in the color which are defined in gannt_colors */
   int gantt_col_type;
   /// color definitions for 5 selected machines (or jobs)
   Lisa_Vector<int> *gantt_colors;
   /// same as in Lisa_ControlParameters
-  inline int get_int(string bezeichner) {return contents.get_int(bezeichner);}
+  inline int get_int(std::string bezeichner) {return contents.get_int(bezeichner);}
   /// same as in Lisa_ControlParameters
-  inline string get_string(string bezeichner) {return contents.get_string(bezeichner);}
+  inline std::string get_string(std::string bezeichner) {return contents.get_string(bezeichner);}
   /// same as in Lisa_ControlParameters
-  inline double get_double(string bezeichner) {return contents.get_double(bezeichner);}
+  inline double get_double(std::string bezeichner) {return contents.get_double(bezeichner);}
   /// same as in Lisa_ControlParameters
-  inline void write(ostream & strm= cout) const { strm << contents;}
+  inline void write(std::ostream& strm= std::cout) const { strm << contents;}
   /// same as in Lisa_ControlParameters
-  inline void read(istream & strm = cin) { strm >> contents;}
+  inline void read(std::istream& strm = std::cin) { strm >> contents;}
   /// to get the LISA_HOME name after starting tcl/tk
   void init(Tcl_Interp *interp);
   /// constructor
@@ -87,16 +83,4 @@ public:
 #endif
 
 //@}
-
-
-
-
-
-
-
-
-
-
-
-
 

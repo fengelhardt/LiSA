@@ -15,7 +15,9 @@
 
 #include "int2str.hpp"
 
-// *********************** functions *************************
+using namespace std;
+
+//**************************************************************************
 
 bool inttst(const double wert){
   const long n = (long) wert;
@@ -24,6 +26,8 @@ bool inttst(const double wert){
   if(diff<=0.001 && diff>=-0.001) return 1;
   else return 0;
 }
+
+//**************************************************************************
 
 string ztos(const double wert){
   char umwd[100];
@@ -34,6 +38,8 @@ string ztos(const double wert){
   return (string) umwd;
 }
 
+//**************************************************************************
+
 string ztofs(const double wert){
   char umwd[100];
   
@@ -42,6 +48,8 @@ string ztofs(const double wert){
   
   return (string) umwd;
 }
+
+//**************************************************************************
 
 int stoz(const string S){
     
@@ -58,10 +66,5 @@ int stoz(const string S){
   return wert;
 }
 
-
-
-
-
-
-
+//**************************************************************************
 

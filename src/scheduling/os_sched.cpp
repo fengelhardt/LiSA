@@ -14,11 +14,11 @@
 
 #include "os_sched.hpp"
 
+using namespace std;
+
 Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
   {
   }
-
-// ############ Lisa_OsSchedule #################################################
 
 // returns an empty feasible schedule to *Pin with MIJ=emptyset 
 Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)

@@ -13,8 +13,6 @@
   
   file: LiSA/src/desktop/basicwin.hpp
   
-  include: tk.h and string
-  
   @author Per Willenius
   @version 2.3pre3
 */ 
@@ -23,24 +21,13 @@
 
 #ifndef _basicwin_h 
 #define _basicwin_h
-  
-// ************************ defines **********************************
-const int ENTRYHEIGHT =25;
-const int ENTRYWIDTH =60;
 
-//  ********************** System Includes ***************************
 #include <string>
 #include <tk.h>
 
-using namespace std;
-
-// ************************ defines *********************************
 const int MAX_CANV_COLORS=23;
-
-//  ********************* Class Definitions **************************
-
-
-/* ***************************** Lisa_Canvas *************************** */
+const int ENTRYHEIGHT =25;
+const int ENTRYWIDTH =60;
 
 /** output in the main window.
   Lisa_Canvas manage the basic drawing operations like line, or circle.
@@ -66,7 +53,7 @@ public:
   /// Clear whole Canvas
   void clear();
   /// Delete all ements with tag or id
-  void clear(string tag);
+  void clear(std::string tag);
   /// Delete element on position xpos ypos
   void clear( double xpos, double ypos );
   /**@name line: */
@@ -74,7 +61,7 @@ public:
   /// Line
   void line(float x1,float y1,float x2,float y2,char * col);
   /// line with tag
-  void line(float x1,float y1,float x2,float y2,string tag, char * col);
+  void line(float x1,float y1,float x2,float y2,std::string tag, char * col);
   /// Line
   void line(float x1,float y1,float x2,float y2,int col);
   /// Linie with relativ koordinates (0-100)
@@ -121,13 +108,13 @@ public:
   /// char * text with relativ koordinates (0-100)
   void text_rel(float x,float y,char *text, int col);
   /// text called with string parameter
-  void text(float x,float y, string text, char * col);
+  void text(float x,float y, std::string text, char * col);
   /// text called with string parameter
-  void text(float x,float y, string text, int col);
+  void text(float x,float y, std::string text, int col);
   /// string text  with relativ koordinates (0-100)
-  void text_rel(float x,float y, string text, char * col);
+  void text_rel(float x,float y, std::string text, char * col);
   /// string text  with relativ koordinates (0-100)
-  void text_rel(float x,float y, string text, int col);
+  void text_rel(float x,float y, std::string text, int col);
   //@}
   /**@name other draw routines: */
   //@{
@@ -158,7 +145,7 @@ public:
 class textobj{
   /// connection to the Tcl-Interpreter
   Tcl_Interp *cv_interp;
-  string command;
+  std::string command;
   /// width and height of textwindow
   float width,height;
 public:
@@ -169,7 +156,7 @@ public:
   textobj(Tcl_Interp * tclinterp);
   /// write text in the window
   void text(const char * text);
-   void text(const string text);
+   void text(const std::string text);
   /// clear all
   void clear();
   ~textobj();
@@ -181,10 +168,10 @@ class Lisa_Label{
   Tcl_Interp *label_interp;
 public:
   /// Name of the label in Tcl/Tk
-  string label_name;
-  Lisa_Label(string name,Tcl_Interp * tclinterp);
+  std::string label_name;
+  Lisa_Label(std::string name,Tcl_Interp * tclinterp);
   /// print text on label position
-  void set_text(string text);
+  void set_text(std::string text);
   ~Lisa_Label();
 };
 
@@ -230,6 +217,4 @@ public:
 //@}
 
 #endif
-
-
 

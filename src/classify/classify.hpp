@@ -15,7 +15,6 @@
 #include "../lisa/ptype.hpp"
 #include "database.hpp"
 
-using namespace std;
 
 // flag: minmal NP-hard or maximal polynomial problem
 const int MINMAX=TRUE;
@@ -48,20 +47,19 @@ const int PATHMAX=500;
     @author Martin Harborth
     @version 2.3pre3
 */
-string Lisa_classify(Lisa_ProblemType* G_Problem,string home,string file);  
+std::string Lisa_classify(Lisa_ProblemType* G_Problem,
+                          std::string home,std::string file);  
 
 /// output of complete reference list concerning current problem
-string Lisa_full_ref(Lisa_ProblemType*,string,string);  
+std::string Lisa_full_ref(Lisa_ProblemType* G_Problem,
+                          std::string home,std::string file);  
 
 /// output of results
-string result_text(int,int);  
+std::string result_text(int,int);  
 
 /// output of short references
-string reference_output(int,int,Lisa_DataBase*);
+std::string reference_output(int,int,Lisa_DataBase*);
 
 #endif
 //@}
-
-
-
 

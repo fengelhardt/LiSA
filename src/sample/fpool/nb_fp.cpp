@@ -14,6 +14,8 @@
 
 #include "nb_fp.hpp"
 
+using namespace std;
+
 fp_nb::fp_nb(int ni, int sigmai)
  {
    n=ni; sigma=sigmai;

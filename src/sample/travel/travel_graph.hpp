@@ -22,8 +22,6 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/lsaobjct.hpp"
 
-using namespace std;
-
 /** @name Traveling Salesman Problem Object 
  
     This object serves mostly for writing and reading a problem.
@@ -35,10 +33,10 @@ using namespace std;
     i to city j and also for traveling from city j to i. The Problem is therefore
     symmetrically.
     
-    P = {{ 0 4 5 6 }\\
-         { 0 0 3 6 }\\
-         { 0 0 0 4 }\\
-         { 0 0 0 0 }}\\
+    P = {{ 0 4 5 6 }
+         { 0 0 3 6 }
+         { 0 0 0 4 }
+         { 0 0 0 0 }}
     
     describes a problem with 4 citys.
 
@@ -55,7 +53,7 @@ using namespace std;
 */
 //@{
 
-/** Traveling Salesman Problem Object ...\\
+/** Traveling Salesman Problem Object ...
  
     This object serves mostly for writing and reading a problem.
     It can also contain a solution and calculate the objective 
@@ -66,10 +64,10 @@ using namespace std;
     i to city j and also for traveling from city j to i. The Problem is therefore
     symmetrically.
     
-    P = {{ 0 4 5 6 }\\
-         { 0 0 3 6 }\\
-         { 0 0 0 4 }\\
-         { 0 0 0 0 }}\\
+    P = {{ 0 4 5 6 }
+         { 0 0 3 6 }
+         { 0 0 0 4 }
+         { 0 0 0 0 }}
     
     describes a problem with 4 citys.
 
@@ -112,23 +110,23 @@ private:
 
 public:
   
-  /** default constructur ...\\
+  /** default constructur ...
 
       Create a new and empty object.*/
   Travel_Graph();
   
-  /** constructor ...\\
+  /** constructor ...
 
       Create a new problem with a given size. 
       If rnd is set to TRUE random weights will be created.*/
   Travel_Graph(const int vertices_in,const bool rnd=1);
   
-  /** destructor ...\\
+  /** destructor ...
       
       Delete this object. */
   ~Travel_Graph();
 
-  /** calculate the objective for a given solution ...\\
+  /** calculate the objective for a given solution ...
       
       If an argument is given the objective will be calculated 
       for the argument solution vector, otherwise it will be 
@@ -136,7 +134,7 @@ public:
       no solution in the object 0 will be returned.*/
   int get_objective(Lisa_Vector<int>* solution_in=0) const;
   
-  /** get the number of vertices ...\\
+  /** get the number of vertices ...
       
       The number of vertices or citys in the problem will 
       be returned. */
@@ -145,7 +143,7 @@ public:
   /** change the solution in this object to the argument solution */
   void set_solution(Lisa_Vector<int>* solution_in);
   
-  /** write the solution from the object to the argument vector ...\\
+  /** write the solution from the object to the argument vector ...
       
       If there is no solution in the object the argument vector will
       be unchangend and FALSE will be returned. Otherwise the argument
@@ -153,23 +151,23 @@ public:
       returned. */
   bool get_solution(Lisa_Vector<int>* solution_out) const;
 
-  /** check whether the object contains a solution or not ...\\
+  /** check whether the object contains a solution or not ...
       
       Returns TRUE if this object contains a solution FALSE otherwise.*/
   bool inline has_solution()const{return solution ? 1 : 0;}
   
-  /** removes a solution from the object ...\\
+  /** removes a solution from the object ...
       
       If the object contains a solution it will be deleted.*/
   void inline del_solution(){if(solution){ delete solution; solution=0;}}
 
-  /** write the object to a stream ...\\
+  /** write the object to a stream ...
 
       This will write the number of vertices, the graph matrix 
       and if exits the solution vector plus the objective to a stream.*/
-  void write(ostream& strm = cout) const;
+  void write(std::ostream& strm = std::cout) const;
 
-  /** read new values from a stream ...\\ 
+  /** read new values from a stream ... 
       
       The input has to contain at least the number of vertices. If 
       that is nonzero it also has to contain the graph matrix. 
@@ -177,40 +175,40 @@ public:
 
       valid inputs are for example:
       
-      <TRAVELGRAPH>\\
-      vertices= 3\\
-      graph= {\\
-      { 0 65 21 }\\
-      { 0 0 40 }\\
-      { 0 0 0 }\\
-      }\\
-      solution= { 0 1 2 }\\
-      objective= 126\\
-      </TRAVELGRAPH>\\ 
+      <TRAVELGRAPH>
+      vertices= 3
+      graph= {
+      { 0 65 21 }
+      { 0 0 40 }
+      { 0 0 0 }
+      }
+      solution= { 0 1 2 }
+      objective= 126
+      </TRAVELGRAPH> 
       
-      <TRAVELGRAPH>\\
-      vertices= 3\\
-      graph= {\\
-      { 0 65 21 }\\
-      { 0 0 40 }\\
-      { 0 0 0 }\\
-      }\\
-      solution= { 0 1 2 }\\
-      </TRAVELGRAPH>\\
+      <TRAVELGRAPH>
+      vertices= 3
+      graph= {
+      { 0 65 21 }
+      { 0 0 40 }
+      { 0 0 0 }
+      }
+      solution= { 0 1 2 }
+      </TRAVELGRAPH>
       
-      <TRAVELGRAPH>\\
-      vertices= 3\\
-      graph= {\\
-      { 0 65 21 }\\
-      { 0 0 40 }\\
-      { 0 0 0 }\\
-      }\\
-      </TRAVELGRAPH>\\
+      <TRAVELGRAPH>
+      vertices= 3
+      graph= {
+      { 0 65 21 }
+      { 0 0 40 }
+      { 0 0 0 }
+      }
+      </TRAVELGRAPH>
       
-      <TRAVELGRAPH>\\
-      vertices= 0\\
-      </TRAVELGRAPH>\\ */
-  void read(istream& strm = cin);
+      <TRAVELGRAPH>
+      vertices= 0
+      </TRAVELGRAPH> */
+  void read(std::istream& strm = std::cin);
 
 };
 

@@ -12,8 +12,6 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
 
-using namespace std;
-
 enum CostFunc {
   CMax,
   CLast
@@ -33,7 +31,7 @@ extern TIMETYP objective;
 
 class B_Node : public Lisa_OsSchedule {
   
-  friend ostream & operator<<(ostream&, B_Node&); 
+ friend std::ostream& operator<<(std::ostream&, B_Node&); 
 
  protected:
   B_Node *parent;

@@ -27,8 +27,6 @@
 
 #include "sp_sched.hpp"
 
-using namespace std;
-
 /** Class for representing an instance of open shop to be used by Lisa_OsSchedule.
     Warning: jobs and machines are internally numbered 1,2, ... */
 class Lisa_OsProblem : public Lisa_ShpProblem
@@ -63,10 +61,4 @@ class Lisa_OsSchedule  : public Lisa_ShpSchedule
 #endif
 
 //@}
-
-
-
-
-
-
 

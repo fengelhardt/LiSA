@@ -22,10 +22,9 @@
 #include "win_obj.hpp"
 #include "c_tcl.hpp"
 
+using namespace std;
+
 #define MAXSTRING 1200
-
-// ************************* Functions ***********************
-
 
 TCValues::TCValues(Tcl_Interp *interp,string canv,string horizontal_canvas, 
 		   string vertical_canvas,string label_name) {

@@ -15,7 +15,7 @@
     Branch and bound algorithms for several problems are collected in the 
     external module bb. Because the differences in the algorithm for different
     problems are bigger than the similarities, each branch and bound algorithm 
-    is implemented separately (using LiSA schedule classes).\\
+    is implemented separately (using LiSA schedule classes).
  
     Up to now only a simple branch and bound for O|r_i|* is implemented,
     where * stands for one of the regular objective functions defined in 

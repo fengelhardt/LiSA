@@ -19,7 +19,7 @@
 
 /** Open-Shop critical-API Neighborhood.
     This is a problem dependent API neighborhood class for the 
-    open shop problem, where we take a swap only for a critical operation.\\
+    open shop problem, where we take a swap only for a critical operation.
     It is inherited from the class OSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -39,13 +39,13 @@ class OSHOP_cr_API_Ngbh: public OSHOP_API_Ngbh
 		~OSHOP_cr_API_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;\\
+		    generation of neighbour;
 		    it propose an interchange of two adjacent operations (in 
 		    the job-order or in the machine-order) on the Cmax-
-	 	    critical way;\\
+	 	    critical way;
  		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move\\ it returns OK or !OK
+		/// do the proposed move it returns OK or !OK
 		int   do_move();
      };
 

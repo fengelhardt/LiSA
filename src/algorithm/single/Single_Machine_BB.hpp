@@ -21,8 +21,6 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
 
-using namespace std;
-
 /** The SingleMachineBB object solves single-machine-problems by a
     branch and bound method. To determine which job should be the next, the 
     algorithm computes lower bounds in every step for each possible
@@ -85,29 +83,4 @@ public:
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -10,20 +10,7 @@
  *
  * version:            V 1.0
 */ 
-
-/** @name TCL/TK Commands
-
-    include tk.h
-
-    file: LiSA/src/desktop/ptst_call.hpp
-
-    contains functions, which was called by the TCL/TK interpreter
-
-    @author Andreas Winkler
-    @version 2.3pre3
-*/ 
-
-//@{ 
+  
 #ifndef _ptst_call_hpp 
 #define _ptst_call_hpp
 
@@ -45,7 +32,15 @@
 #include "../scheduling/schedule.hpp"
 #include "../desktop/tclhack.hpp"
 
-using namespace std;
+/** @name TCL/TK Commands
+
+    contains functions, which was called by the TCL/TK interpreter
+
+    @author Andreas Winkler
+    @version 2.3pre3
+*/ 
+
+//@{
 
 //**************************************************************************
 
@@ -57,23 +52,20 @@ int TC_startparam(ClientData /* clientData */,
 //**************************************************************************
 
 /// call external algorithm parameter test
-int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call,
-	       string output_file, string result_file,
-	       Lisa_Preferences & G_Preferences,
-	       Lisa_ProblemType & G_ProblemType,
-	       Lisa_ControlParameters & parameter,
-	       Lisa_Schedule & G_Schedule, Lisa_Values & G_Values);
+int start_paratest(Tcl_Interp *interp, 
+                   std::string name_of_algo,
+                   std::string algo_call,
+                   std::string output_file, 
+                   std::string result_file,
+                   Lisa_Preferences & G_Preferences,
+                   Lisa_ProblemType & G_ProblemType,
+                   Lisa_ControlParameters & parameter,
+                   Lisa_Schedule & G_Schedule, 
+                   Lisa_Values & G_Values);
 
 //**************************************************************************
 
 //@}
+
 #endif
-
-
-
-
-
-
-
-
 

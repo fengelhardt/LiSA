@@ -21,15 +21,16 @@
 #include "../main/global.hpp"
 #include "../lisa/lsaobjct.hpp"
 
-using namespace std;
+//**************************************************************************
 
-// just a little bit of hide and seek, written to annoy the developer
-void error(string);
+/// throw an error from list
+void error(std::string);
 
-// Do not use the following type explicitely!
+//**************************************************************************
+
+/// Do not use the following type explicitely!
 template<class T>
-class Lisa_Node
-{
+class Lisa_Node{
 public:
   Lisa_Node<T> *succ;
   Lisa_Node<T> *pred;
@@ -39,13 +40,15 @@ public:
   Lisa_Node()  { pred=NULL; succ=NULL;  }
 };
 
+//**************************************************************************
+
 /** Lisa_List<T> is a doubly connected lists with different methods of access.
     It uses internal pointers, the user has only to give and receive
     elements of the standard type. Lisa_List<T> can emulate vectors, 
-    stacks and queues. \\
+    stacks and queues. 
 
     Include file LiSA/src/basics/list.hpp, it will use iostream, strstream, 
-    and lisa_str.\\
+    and lisa_str.
 
     WARNING! Using Lisa_List<T> with a basic type T having big memory 
     requirements may lead to undesired copying procedures. In this case, let 
@@ -56,14 +59,15 @@ public:
     @see Lisa_GenericList
     @see Lisa_BasicList
 */ 
-
 template<class T>
-class Lisa_List: public Lisa_Object
-{
+class Lisa_List: public Lisa_Object{
+
 private:
   int where;
   bool where_ok;
 
+//**************************************************************************
+    
   void swap_nodes(Lisa_Node<T>* first,Lisa_Node<T>* second){
 
     if (first->succ==second){
@@ -104,87 +108,97 @@ private:
     
   }
 
-  void qsort(Lisa_Node<T>* l,Lisa_Node<T>* h){  
+//**************************************************************************
+
+void qsort(Lisa_Node<T>* l,Lisa_Node<T>* h){  
+  
+  if (l!=h){
+    Lisa_Node<T>* lo = l;
+    Lisa_Node<T>* hi = h;
     
-    if (l!=h){
-      Lisa_Node<T>* lo = l;
-      Lisa_Node<T>* hi = h;
+    const T pivot = lo->value;
+    
+    while (hi!=lo){	
       
-      const T pivot = lo->value;
+      while (hi!=lo && !(hi->value < pivot))
+        hi = hi->pred;
       
-      while (hi!=lo){	
-
-	while (hi!=lo && !(hi->value < pivot))
-	  hi = hi->pred;
-	
-	while (hi!=lo && lo->value <  pivot)
-	  lo = lo->succ;
-	
-	if(hi!=lo){
-	  swap_nodes(lo,hi);
-	  if (l==lo) l = hi; // yeah ... check this ;D
-	  if (h==hi) h = lo;
-	  Lisa_Node<T>* swap = hi;
-	  hi = lo;
-	  lo = swap; 
-	  hi = hi->pred;
-	  if (hi!=lo) lo = lo->succ;
-	}
+      while (hi!=lo && lo->value <  pivot)
+        lo = lo->succ;
+      
+      if(hi!=lo){
+        swap_nodes(lo,hi);
+        if (l==lo) l = hi; // yeah ... check this ;D
+        if (h==hi) h = lo;
+        Lisa_Node<T>* swap = hi;
+        hi = lo;
+        lo = swap; 
+        hi = hi->pred;
+        if (hi!=lo) lo = lo->succ;
       }
-      if (hi==h){
-	qsort(l,lo->pred);
-      }else if(lo==l){
-	qsort(hi->succ,h);
+    }
+    if (hi==h){
+      qsort(l,lo->pred);
+    }else if(lo==l){
+      qsort(hi->succ,h);
+    }else{
+      if(lo->value < pivot){
+        hi = hi->succ;
       }else{
-	if(lo->value < pivot){
-	  hi = hi->succ;
-	}else{
-	  lo = lo->pred;
-	}
-        if (l!=lo) qsort(l,lo);
-        if (hi!=h) qsort(hi,h);
+        lo = lo->pred;
       }
-    }   
-  }
+      if (l!=lo) qsort(l,lo);
+      if (hi!=h) qsort(hi,h);
+    }
+  }   
+}
 
-  //basic pointer handling:
-  void insert_node_after(Lisa_Node<T>* n, Lisa_Node<T>* p)
-    {
-      p->succ->pred=n;           
-      n->succ=p->succ;
-      p->succ=n;
-      n->pred=p; 
-      where_ok=FALSE;
-      size++; 
-    }
+//**************************************************************************
 
-  void exclude_node(Lisa_Node<T>* n)
-    {
-      if (n==first_last)
-	{
-	  return;
-	}
-      n->succ->pred=n->pred;
-      n->pred->succ=n->succ;
-      n->pred=n->succ=NULL;
-      size--;
-      where_ok=FALSE;
-    }
+//basic pointer handling:
+void insert_node_after(Lisa_Node<T>* n, Lisa_Node<T>* p){
+  p->succ->pred=n;           
+  n->succ=p->succ;
+  p->succ=n;
+  n->pred=p; 
+  where_ok=FALSE;
+  size++; 
+}
 
-  // basic insert method 
-  void create_node(const T & v, Lisa_Node<T> * pos)
-    {
-      Lisa_Node<T>* n=new Lisa_Node<T>(v);
-      insert_node_after(n, pos);
-    }
-  // basic exclude method 
-  T destroy_node(Lisa_Node<T> * pos)
-    {
-      T value=  pos->value;              
-      exclude_node(pos);
-      delete pos; 
-      return value;
-    }
+//**************************************************************************
+
+void exclude_node(Lisa_Node<T>* n){
+  
+  if (n==first_last) return;
+  
+  n->succ->pred=n->pred;
+  n->pred->succ=n->succ;
+  n->pred=n->succ=NULL;
+  size--;
+  where_ok=FALSE;
+}
+
+//**************************************************************************
+
+// basic insert method 
+void create_node(const T & v, Lisa_Node<T> * pos)
+{
+  Lisa_Node<T>* n=new Lisa_Node<T>(v);
+  insert_node_after(n, pos);
+}
+
+//**************************************************************************
+
+// basic exclude method 
+T destroy_node(Lisa_Node<T> * pos)
+{
+  T value=  pos->value;              
+  exclude_node(pos);
+  delete pos; 
+  return value;
+}
+
+//**************************************************************************
 
 protected:
   unsigned int size;
@@ -195,16 +209,17 @@ public:
   /** @name General Functions: */
   //@{
     
-  /** move the internal list pointer to the first node ...\\
+  /** move the internal list pointer to the first node ...
       returns FALSE if the list contains no elements, TRUE otherwise */
-  int reset()
-    {
+  int reset(){
       current_node=first_last->succ;
       where=0;
       return (where_ok=(current_node!=first_last));
     }
 
-  /** move the list pointer one node forward ...\\
+//**************************************************************************
+
+  /** move the list pointer one node forward ...
       returns TRUE if the current node is valid, 
       FALSE if the end of the list is reached */
   bool next()
@@ -214,7 +229,9 @@ public:
       return (where_ok=(current_node!=first_last));
     }
 
-  /** move the list pointer one node back ...\\
+//**************************************************************************
+
+  /** move the list pointer one node back ...
       returns TRUE if the current node is valid,
       FALSE if the beginning of the list is reached */
   bool previous()
@@ -224,7 +241,9 @@ public:
       return (where_ok=(current_node!=first_last));
     }
 
-  /** move the list pointer to i-th node ...\\
+//**************************************************************************
+
+  /** move the list pointer to i-th node ...
       this operation is slightly inefficient
       because it might take linear time to find an element */
   void locate(unsigned int const i)
@@ -245,7 +264,9 @@ public:
       while ( ((int)i) >where) next();
     }
 
-  /** get index of current pointer position ...\\
+//**************************************************************************
+
+  /** get index of current pointer position ...
       this will return the number of the current node if 
       it is valid */
   int get_index()
@@ -254,14 +275,20 @@ public:
       
       return where; 
     }
+
+//**************************************************************************
  
   /** returns the length of the list */
   int length() const  { return size; }
+
+//**************************************************************************
   
   /** returns TRUE if the list is empty FALSE otherwise */
   bool empty() const  { return (!size); }
 
-  /** constructor ...\\
+//**************************************************************************
+
+  /** constructor ...
       create an empty new list*/
   Lisa_List()
     {
@@ -271,15 +298,18 @@ public:
       first_last->succ=first_last->pred=first_last;
     }
 
+//**************************************************************************
+
   /** destructor */
   ~Lisa_List()
     {
       clear();
       delete first_last;
     } 
-  
 
-  /** assign another list ...\\
+//**************************************************************************
+  
+  /** assign another list ...
       this will take all elements from the other list 
       and copy them into this list */
   const Lisa_List<T>& operator=( Lisa_List<T> const & other) 
@@ -299,8 +329,12 @@ public:
       return *this;
     }
 
+//**************************************************************************
+
   // by iroess
   bool operator!=( Lisa_List<T> const & other)const { return !(*this == other); }
+
+//**************************************************************************
 
   bool operator==( Lisa_List<T> const & other)const {
       if (&other == this)
@@ -321,6 +355,8 @@ public:
       return true;
     }
 
+//**************************************************************************
+
   // by iroess
   bool operator>( Lisa_List<T> const & other) const{ 
       if (&other == this)
@@ -340,6 +376,7 @@ public:
       return FALSE;
   }
 
+//**************************************************************************
 
   // by iroess
   bool operator<( Lisa_List<T> const & other) const{ 
@@ -359,8 +396,10 @@ public:
 
       return FALSE;
   }
+
+//**************************************************************************
    
-  /** create a new list with another list ...\\
+  /** create a new list with another list ...
       a new list will be created and all elements from the other list
       will be copied into the new list */
   Lisa_List(const Lisa_List<T> & other)
@@ -372,7 +411,9 @@ public:
       (*this)=other; 
     }
 
-  /** delete all nodes...\\
+//**************************************************************************
+
+  /** delete all nodes...
       this makes the list completly empty */
   void clear()
     {
@@ -380,23 +421,31 @@ public:
 	destroy_node(first_last->succ);
     }       
   //@} 
+
+//**************************************************************************
   
   /** @name Serial Access (for moving the internal pointer see Lisa_BasicList):*/
   //@{
 
-  /** returns the value of the current node...\\
+  /** returns the value of the current node...
       results are undefined if the currend node is not valid */
   T & get() { return  current_node->value; }
 
-  /** append value to list...\\
+//**************************************************************************
+
+  /** append value to list...
       a new node will be created and inserted after the last node */
   void append(const T & value) { create_node(value, first_last->pred); }
+
+//**************************************************************************
   
-  /** insert value after current node...\\
+  /** insert value after current node...
       a new node will be created and inserted after the current node */
   void insert(const T & value) { create_node(value, current_node); }
 
-  /** delete current node and return its value...\\
+//**************************************************************************
+
+  /** delete current node and return its value...
       the internal pointer moves to the next node */
   T exclude()          
     { 
@@ -406,6 +455,7 @@ public:
     }
   //@}
 
+//**************************************************************************
 
   /** @name Stack and Queue: */
   //@{
@@ -413,18 +463,23 @@ public:
   /** put a new value into stack or queue, respectively */
   void push(const T & value) { create_node(value, first_last); }
 
+//**************************************************************************
+
   /** get value from stack */
   T pop()            { return destroy_node(first_last->succ); }
+
+//**************************************************************************
 
   /** take value from queue */
   T dequeue()        { return destroy_node(first_last->pred); }      
   //@}
 
+//**************************************************************************
 
   /** @name Direct Adressing: */     
   //@{      
 
-  /** returns the value of i-th element in the list...\\
+  /** returns the value of i-th element in the list...
       if that node exists this operation may require linear time */
   T & operator[](unsigned int i)
     {
@@ -432,21 +487,27 @@ public:
       return ((Lisa_Node<T>*) current_node)->value;
     } 
 
-  /** return the value of the first element...\\
+//**************************************************************************
+
+  /** return the value of the first element...
       if the list is not empty */
   T & first() 
     { return first_last->succ->value; }
 
-  /** return the value of the last element...\\
+//**************************************************************************
+
+  /** return the value of the last element...
       if the list is not empty */
   T & last() 
     { return first_last->pred->value; }
   //@}
+
+//**************************************************************************
   
   /** @name Searching and Sorting:*/
   //@{
 
-  /** locates and returns the minimum element of the list ...\\
+  /** locates and returns the minimum element of the list ...
       if that is not empty also puts the internal pointer to this node */       
   T min()
     {
@@ -463,8 +524,10 @@ public:
 	}
       return current_node->value;
     }
+
+//**************************************************************************
   
-  /** locates and returns the maximum element of the list ...\\
+  /** locates and returns the maximum element of the list ...
       if that is not empty also puts the internal pointer to this node */       
   T max()
     {
@@ -481,6 +544,8 @@ public:
 	}
       return current_node->value;
     } 
+
+//**************************************************************************
 
   // sum the values of all the entries...
   /*
@@ -501,7 +566,9 @@ public:
     } 
   */
 
-  /** moves the internal pointer to the first occurance of the value ...\\
+//**************************************************************************
+
+  /** moves the internal pointer to the first occurance of the value ...
       returns TRUE if that value is in the list FALSE otherwise */
   bool search_first(const T & Value)
     {
@@ -511,7 +578,9 @@ public:
       return search_next(Value);
     }
 
-  /** moves the internal pointer to next occurance of the value ...\\
+//**************************************************************************
+
+  /** moves the internal pointer to next occurance of the value ...
       starting from the current position 
       returns TRUE if that value is in the rest of the list FALSE otherwise */
   bool search_next(const T & Value)
@@ -522,7 +591,9 @@ public:
       return (current_node!=first_last);
     }
 
-  /** sort list by nondecraesing values ...\\
+//**************************************************************************
+
+  /** sort list by nondecraesing values ...
       this sort uses a quicksort algorithm */
   void sort()
     {
@@ -530,13 +601,14 @@ public:
     }
   //@}
 
+//**************************************************************************
 
  /** @name In- and Output:*/
  //@{
-  /** write the list values to a stream ...\\
+  /** write the list values to a stream ...
       if T is a pointer type it will write 
       the pointer, nut not the object to the stream */
-  void write(ostream& strm) const
+  void write(std::ostream& strm) const
     {
       Lisa_Node<T> * temp;
       strm << " ( ";
@@ -549,14 +621,16 @@ public:
       strm << ") "<<endl;
     }
 
+//**************************************************************************
+
   /** read the list values from a stream */
-  void read(istream& strm) 
+  void read(std::istream& strm) 
     {
       T value;
       char* S;      // benutze char*, da C-Library kein stream(string) kennt
       
       S = new char[80];      
-      istringstream *is;
+      std::istringstream *is;
       
       clear();
       strm >> S;
@@ -566,7 +640,7 @@ public:
       
       while(S[0]!=')' && S!="") 
 	{
-	  is = new istringstream(S);
+	  is = new std::istringstream(S);
 	  *is >> value;
 	  delete is;
 	  append(value);
@@ -579,19 +653,26 @@ public:
   //@}
 };
 
+//**************************************************************************
+
 // usual i/o - stuff:
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_List<T>& l)
+inline std::ostream& operator << (std::ostream& strm, const Lisa_List<T>& l)
 {
   l.write(strm);
   return strm;
 }
 
+//**************************************************************************
+
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_List<T>& l)
+inline std::istream& operator >> (std::istream&strm, Lisa_List<T>& l)
 {
   l.read(strm);
   return strm;
 }
 
+//**************************************************************************
+
 #endif
+

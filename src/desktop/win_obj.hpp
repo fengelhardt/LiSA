@@ -15,8 +15,6 @@
 
     file: LiSA/src/win_obj.hpp
 
-    include: tk.h and string
-
     @author Per Willenius
     @version 2.3pre3
 */ 
@@ -26,7 +24,7 @@
 #ifndef _win_obj_h 
 #define _win_obj_h
   
-// ************************ defines **********************************
+
 const float VERTICE_RADIUS =20;
 
 #define VW_MAINCANV ".datawin.fra22.fra32.cpd34.03"
@@ -50,7 +48,6 @@ const float VERTICE_RADIUS =20;
 #define MW_LABEL    ".lisa.fra38.lab39"
 
 
-//  ********************** System Includes ***************************
 #include <string>
 #include <tk.h>
 
@@ -60,19 +57,24 @@ const float VERTICE_RADIUS =20;
 #include "../scheduling/os_sched.hpp"
 #include "basicwin.hpp"
 
-using namespace std;
-
 /// graphical in-and output of Lisa_Schedule
 class TCSchedule: public TCTable {
 public:
+
   Lisa_Label *label;
+
   ///draw a table (to use with Lisa_Schedule)
   void draw(Lisa_MO *myMO,Lisa_Matrix<int> *myP,Lisa_JO *myJO,
-	    Lisa_Matrix<TIMETYP> *myCIJ,Lisa_Matrix<bool> *SIJ);
-  TCSchedule(Tcl_Interp *interp,string main,string horizontal_canvas, 
-	     string vertical_canvas,string label_name);
- /// draw value on row xpos and column ypos
-  void draw_entry(int xpos,int ypos,string value);
+	          Lisa_Matrix<TIMETYP> *myCIJ,Lisa_Matrix<bool> *SIJ);
+
+  /// constructor          
+  TCSchedule(Tcl_Interp *interp,std::string main,std::string horizontal_canvas, 
+	           std::string vertical_canvas,std::string label_name);
+
+  /// draw value on row xpos and column ypos
+  void draw_entry(int xpos,int ypos,std::string value);
+
+  /// destructor
   ~TCSchedule();
 };
 
@@ -80,10 +82,16 @@ public:
 class TCScheduleList: public TCTable {
 public:
   Lisa_Label *label;
+  
   ///draw a table (to use with Lisa_Schedule)
   void draw(Lisa_List<ScheduleNode> *);
-  TCScheduleList(Tcl_Interp *interp,string main,string horizontal_canvas, 
-	     string vertical_canvas,string label_name);
+  
+  /// constructor
+  TCScheduleList(Tcl_Interp *interp,std::string main,
+                 std::string horizontal_canvas, std::string vertical_canvas,
+                 std::string label_name);
+  
+  /// destructor
   ~TCScheduleList();
 };
 
@@ -92,55 +100,71 @@ public:
 class TCValues: public TCTable {
 public:
   Lisa_Label *label;
-  TCValues(Tcl_Interp *interp,string main,string horizontal_canvas, 
-	   string vertical_canvas,string label_name);
+  
+  /// constructor
+  TCValues(Tcl_Interp *interp,std::string main,std::string horizontal_canvas, 
+	         std::string vertical_canvas,std::string label_name);
+  
   /// draw a table (to use with Lisa_Values)
   void draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT, 
-	    Lisa_Matrix<bool> *mySIJ, Lisa_Vector<TIMETYP> *myRD, 
-	    Lisa_Vector<TIMETYP> *myDD,  Lisa_Vector<double> * myWI);
+	          Lisa_Matrix<bool> *mySIJ, Lisa_Vector<TIMETYP> *myRD, 
+            Lisa_Vector<TIMETYP> *myDD,  Lisa_Vector<double> * myWI);
+  
   /// draw value on row xpos and column ypos
-  void draw_entry(int xpos,int ypos,string value);
+  void draw_entry(int xpos,int ypos,std::string value);
+  
+  ///destructor
   ~TCValues();
 };
 
 /// graphical in-and output of th C-matrix in Lisa_Schedule
 class TCCMatrix: public TCTable {
-public: 
-  TCCMatrix(Tcl_Interp *interp,string main,string horizontal_canvas, 
-	    string vertical_canvas);
+public:
+
+  /// constructor
+  TCCMatrix(Tcl_Interp *interp,std::string main,std::string horizontal_canvas, 
+            std::string vertical_canvas);
+  
   /// draw the C-Matrix in the main window
-  void draw(Lisa_Matrix<TIMETYP> *myC, 
-	    Lisa_Matrix<bool> *myCP);
-~TCCMatrix();
+  void draw(Lisa_Matrix<TIMETYP> *myC, Lisa_Matrix<bool> *myCP);
+  
+  ///destructor
+  ~TCCMatrix();
 };
  
 /// graphical output of graphs
 class TCGraph:  public TCGraphic {
 public:
+
   float vertice_radius;
+  
+  /// constructor
   TCGraph();
+
+  /// destructor
   ~TCGraph();
 };
  
 /// graphical output of the sequence graph
 class TCSeqGraph: public TCGraph {
 public:
-  TCSeqGraph(Tcl_Interp *interp,string main,string horizontal_canvas,
-	     string vertical_canvas);
+  /// constructor
+  TCSeqGraph(Tcl_Interp *interp,std::string main,std::string horizontal_canvas,
+	           std::string vertical_canvas);
+  
   /// draw the sequence graph
-  void draw(Lisa_Matrix<bool> &CP,
-	    Lisa_SGraph &PG,
-	    Lisa_Matrix<bool> &SIJ); 
-  void draw(Lisa_Matrix<bool> &CP,
-	    Lisa_OsSchedule &myOsSchedule,
-	    Lisa_Matrix<bool> &SIJ);
-~TCSeqGraph();
+  void draw(Lisa_Matrix<bool> &CP, Lisa_SGraph &PG, Lisa_Matrix<bool> &SIJ);
+  
+  /// draw the sequence graph
+  void draw(Lisa_Matrix<bool> &CP, Lisa_OsSchedule &myOsSchedule,
+            Lisa_Matrix<bool> &SIJ);
+  
+  ///destructor
+  ~TCSeqGraph();
 };
 
 
 #endif
 
 //@}
-
-
 

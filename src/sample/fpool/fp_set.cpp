@@ -14,6 +14,8 @@
 
 #include "fp_set.hpp"
 
+using namespace std;
+
 fp_set::fp_set(int ni, int sigmai)
   {
     int i;

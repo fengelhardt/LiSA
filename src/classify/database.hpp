@@ -14,6 +14,8 @@
 
 #include "redgraph.hpp"
 
+//**************************************************************************
+
 /// maximal number of BiBTeX entries.
 const int MAX_REC=200;
 /// maximal number of characters per line.
@@ -38,11 +40,10 @@ const int OPEN=0;
 const int NO_AUTHOR=-1;
 const int NO_ANNOTE=-2;
 
-
+//**************************************************************************
 
 /// BiBTeX Annote entry: contains the problem and its complexity status
-class TexAnnote
-{
+class TexAnnote{
 private:
   
 public:
@@ -52,10 +53,10 @@ public:
   int  np_flag;
 };
 
+//**************************************************************************
 
 /// Class for records of BiBTeX entries.
-class Record
-{
+class Record{
  private:
   
  public:
@@ -73,6 +74,7 @@ class Record
   int        no_of_prbls;       
 };
 
+//**************************************************************************
  
 /** Database class: minimal np-hard and maximal polynomial problems.
     A database object parses the BiBTeX file {\tt classify.bib}
@@ -83,8 +85,7 @@ class Record
     @author Martin Harborth
     @version 2.3pre3
 */  
-class Lisa_DataBase
-{
+class Lisa_DataBase{
  private:
   /// extracting author, year, etc. from bibtex entry
   int    bib_entry(char*,int);    
@@ -95,7 +96,7 @@ class Lisa_DataBase
 
  public:
   /// initializing and reading database
-  Lisa_DataBase(string);  
+  Lisa_DataBase(std::string);  
   /// array of bibtex entries
   Record E[MAX_REC]; 
   /// total number of bibtex entries in database
@@ -104,9 +105,8 @@ class Lisa_DataBase
   int    output(void);
 };
 
+//**************************************************************************
+
 #endif
 //@}
-
-
-
 

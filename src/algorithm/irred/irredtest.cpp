@@ -1,16 +1,13 @@
 /*
- * ************** irredtest.cpp *******************************
  * @version 2.3pre3
- *
  * @author Marc Moerig
- *
- * 27.07.01
- * last changed 27.07.01
  */
 
 #include "irredtest.hpp"
 
-//*****************************************************************************
+using namespace std;
+
+//**************************************************************************
 
 Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
   vert = disjkt_in->get_knots();
@@ -20,21 +17,22 @@ Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
   result = 0;
 }
 
-//*****************************************************************************
+//**************************************************************************
 
 Lisa_IrreducibilityTest::~Lisa_IrreducibilityTest(){
   delete disjkt;
 }
 
-//*****************************************************************************
+//**************************************************************************
 
 void Lisa_IrreducibilityTest::set_output_to(Lisa_IrredResult* res){
   result = res;
 }
 
-//*****************************************************************************
+//**************************************************************************
 
-bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int param){
+bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,
+                                   const int param){
 
   int edges = 0;
   int a,b,c;
@@ -44,8 +42,9 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
     for (int j=i+1;j<=vert;j++)
       if(plan->get_connection(i,j)) edges++;
   
-  // lookup[i][j] contains the number of the arc from vertice i to vertice j
-  // start_v[a] and end_v[a] contain the the number of the start and end vertice from arc a 
+  //lookup[i][j] contains the number of the arc from vertice i to vertice j
+  //start_v[a] and end_v[a] contain the the number of the start and end vertice
+  //from arc a 
   Lisa_Vector<int> start_v(edges+1);
   Lisa_Vector<int> end_v(edges+1);
   Lisa_Matrix<int> lookup(vert+1,vert+1);
@@ -172,7 +171,7 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
     for (int i=0;;i++){
 
       if (all && param!=GENERATE_SIMILAR){
-	if (i==num-1) goto ready_to_go; // yeah .. we've made it through all combinations
+	if (i==num-1) goto ready_to_go; // yeah we've made it through all combinations
       }else{
 	if (i==num) goto ready_to_go;
       }
@@ -236,7 +235,7 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
   return irre;
 }
 
-//*****************************************************************************
+//**************************************************************************
 
 void Lisa_IrreducibilityTest::write(ostream& strm) const{
   strm << "<IrreducibilityTest>" << endl;
@@ -245,4 +244,5 @@ void Lisa_IrreducibilityTest::write(ostream& strm) const{
   strm << "</IrreducibilityTest>" << endl;
 }
 
-//*****************************************************************************
+//**************************************************************************
+

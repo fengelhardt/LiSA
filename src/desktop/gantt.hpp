@@ -26,14 +26,10 @@
 #ifndef _gantt_h 
 #define _gantt_h 
 
-
-// **************** Lisa Includes ********************
 #include "win_obj.hpp"
 
 /** @name Gantt Chart.
-*/
-
-
+  */
 struct data
 {
   int machine;
@@ -116,8 +112,8 @@ private:
 
 public:
 /// constructor
-      TCGantt(Tcl_Interp *interp,string canv,string horizontal_canvas, 
-	      string vertical_canvas);
+      TCGantt(Tcl_Interp *interp,std::string canv,std::string horizontal_canvas, 
+	      std::string vertical_canvas);
 
 /// draws a Gantt-Chart   
       void draw(Lisa_Matrix<bool> *CP, Lisa_Values *G_Values,
@@ -133,15 +129,11 @@ public:
       void mark(int machine, int job, Lisa_Values *G_Values, 
 		Lisa_Schedule *G_Schedule, bool orientation);
 
-// destructor
+/// destructor
       ~TCGantt();
 };
 
 //@}
 
 #endif
-
-
-
-
 

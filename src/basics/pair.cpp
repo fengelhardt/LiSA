@@ -1,7 +1,6 @@
 /*
- * ************** matrix.cpp *******************************
+ * ************** pair.cpp *******************************
  * 
- * vectors and matrices with dynamic size and fast access
  *
  * @author Thomas Tautenhahn
  * @version 2.3pre3
@@ -9,17 +8,23 @@
  * 21.10.99
 */
 
-
-
 #include "pair.hpp"
+
+using namespace std;
+
+//**************************************************************************
 
 void Lisa_Pair::read(istream & strm) {
   //strm >> *actual_schedule;
 }
 
+//**************************************************************************
+
 void Lisa_Pair::write(ostream & strm) const {
  
 }
+
+//**************************************************************************
 
 bool Lisa_Pair::operator!=(const Lisa_Pair & other) const
      { 
@@ -28,6 +33,8 @@ bool Lisa_Pair::operator!=(const Lisa_Pair & other) const
        else
          return false;
      }
+
+//**************************************************************************
 
 bool Lisa_Pair::operator<(const Lisa_Pair & other) const
      { 
@@ -40,6 +47,8 @@ bool Lisa_Pair::operator<(const Lisa_Pair & other) const
        return false;
      }
 
+//**************************************************************************
+
 bool Lisa_Pair::operator>(const Lisa_Pair & other) const
      { 
        if (x>other.x)
@@ -51,4 +60,5 @@ bool Lisa_Pair::operator>(const Lisa_Pair & other) const
        return false;
      }
 
+//**************************************************************************
 

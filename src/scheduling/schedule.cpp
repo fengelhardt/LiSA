@@ -16,7 +16,7 @@
 
 #include "schedule.hpp"
 
-//######################## ScheduleNode #####################################
+using namespace std;
 
 ScheduleNode::ScheduleNode() {
   actual_schedule=NULL;

@@ -1,13 +1,6 @@
 /*
- * ************** irred.cpp *******************************
  * @version 2.3pre3
- * 
- * test schedules for irreducibility
- *
  * @author Marc Moerig
- *
- * 21.02.01
- * last changes 27.03.01
  */
 
 #include <stdlib.h>
@@ -33,81 +26,79 @@ using namespace std;
 
 /** @name Irreducibility Test
    
-This algorithm checks if a given schedule for a problem is irreducible. A schedule S* reduces another schedule 
-S if its objective is better than that for S for any given set of processing types. S is therefore irreducible 
-if no such schedule S* exists.\\
+This algorithm checks if a given schedule for a problem is irreducible. A 
+schedule S* reduces another schedule S if its objective is better than that for 
+S for any given set of processing types. S is therefore irreducible if no such 
+schedule S* exists.
 
-It works for open, job and flow shop problems, in combination with 
-release dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and SumWiTi objectives.
+It works for open, job and flow shop problems, in combination with release 
+dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and SumWiTi 
+objectives.
 
-It may be called:\\
+It may be called:
 
-irred [input file] [output file]\\
+irred [input file] [output file]
 
 Controlparameters are:
 
-string TYPE [SIMILAR ALL_REDUCING ITERATIVE_REDUCING]\\
-string RETURN [ALL ONLY_IRREDUCIBLE]\\
-string RNDM [YES NO]\\
+string TYPE [SIMILAR ALL_REDUCING ITERATIVE_REDUCING]
+string RETURN [ALL ONLY_IRREDUCIBLE]
+string RNDM [YES NO]
 
-An example for a correct input file is:\\
+An example for a correct input file is:
 
-<PROBLEMTYPE>\\
-Lisa_ProblemType= { O / r_i / Cmax }\\
-</PROBLEMTYPE>\\
+<PROBLEMTYPE>
+Lisa_ProblemType= { O / r_i / Cmax }
+</PROBLEMTYPE>
 
 <CONTROLPARAMETERS>
-string TYPE ITERATIVE_REDUCING\\
-string RETURN ALL\\
-string RNDM YES\\
-</CONTROLPARAMETERS>\\
+string TYPE ITERATIVE_REDUCING
+string RETURN ALL
+string RNDM YES
+</CONTROLPARAMETERS>
  
-<VALUES>\\
-m= 2\\
-n= 3\\
-PT= {\\
- { 25 82 }\\
- { 88 59 }\\
- { 57 10 }\\
-}\\
- 
-SIJ= {\\
- { 1 1 }\\
- { 1 1 }\\
- { 1 1 }\\
-}\\
- 
-RD= { 48 5 9 }\\
- 
-</VALUES>\\
- 
-<SCHEDULE>\\
-m= 2\\
-n= 3\\
-semiactive= 1\\
-LR= {\\
- { 3 2 }\\
- { 2 1 }\\
- { 4 3 }\\
-}\\
- 
-CIJ= {\\
- { 177 146 }\\
- { 152 64 }\\
- { 234 156 }\\
+<VALUES>
+m= 2
+n= 3
+PT= {
+ { 25 82 }
+ { 88 59 }
+ { 57 10 }
 }
  
-</SCHEDULE>\\ 
+SIJ= {
+ { 1 1 }
+ { 1 1 }
+ { 1 1 }
+}
+ 
+RD= { 48 5 9 }
+ 
+</VALUES>
+ 
+<SCHEDULE>
+m= 2
+n= 3
+semiactive= 1
+LR= {
+ { 3 2 }
+ { 2 1 }
+ { 4 3 }
+}
+ 
+CIJ= {
+ { 177 146 }
+ { 152 64 }
+ { 234 156 }
+}
+ 
+</SCHEDULE> 
 
 */
 //@{
- //@Include: convertgraph.hpp
- //@Include: irredtest.hpp
- //@Include: irrednode.hpp
- //@Include: graphalgo.hpp
- //@Include: partition.hpp
 //@}
-//******************************************************************************
+
+//**************************************************************************
 
 int main(int argc, char *argv[])
 {
@@ -151,7 +142,7 @@ int main(int argc, char *argv[])
     }else{
       cout << "WARNING: TYPE value out of Range, using default." << endl;
     }
-  }else cout << "WARNING: Could not read TYPE parameter, using default." << endl;
+  }else cout <<"WARNING: Could not read TYPE parameter, using default."<< endl;
   
   bool return_all = 0;
   if (sp.defined("RETURN")==STRING){
@@ -161,17 +152,19 @@ int main(int argc, char *argv[])
     }else{
       cout << "WARNING: RETURN value out of Range, using default." << endl;
     }
-  }else cout << "WARNING: Could not read RETURN parameter, using default." << endl;
+  }else cout<<"WARNING: Could not read RETURN parameter, using default."<<endl;
   if (alg_param==Lisa_IrreducibilityTest::GENERATE_SIMILAR) return_all = 1;
 
   if (sp.defined("RNDM")==STRING){
     if (sp.get_string("RNDM") == "YES"){ 
-      if(alg_param==Lisa_IrreducibilityTest::JUST_TEST) alg_param = Lisa_IrreducibilityTest::JUST_TEST_RANDOM;
+      if(alg_param==Lisa_IrreducibilityTest::JUST_TEST){ 
+        alg_param = Lisa_IrreducibilityTest::JUST_TEST_RANDOM;
+      }
     }else if(sp.get_string("RNDM") == "NO"){
     }else{
       cout << "WARNING: RNDM value out of Range, using default." << endl;
     }
-  }else cout << "WARNING: Could not read RNDM parameter, using default." << endl;
+  }else cout << "WARNING: Could not read RNDM parameter, using default."<<endl;
  
   // read problem instance
   Lisa_Values my_werte;
@@ -182,7 +175,8 @@ int main(int argc, char *argv[])
   delete my_schedule.CIJ;
   my_schedule.CIJ = 0;
 
-  Lisa_ConvertGraph* convert = Lisa_ConvertGraph::make_object(&lpr,my_werte.SIJ,my_werte.MO);
+  Lisa_ConvertGraph* convert = 
+              Lisa_ConvertGraph::make_object(&lpr,my_werte.SIJ,my_werte.MO);
   
   if (!G_ExceptionList.empty()) exit(1);
  
@@ -251,7 +245,8 @@ int main(int argc, char *argv[])
 	o_strm << my_schedule;
       }
     }while(res->results->next());
-    //  cout << "WARNING: Plan is NOT irreducible ! " << count << " irreducible plan(s) found." <<endl;
+//  cout << "WARNING: Plan is NOT irreducible ! " << count 
+//       << " irreducible plan(s) found." <<endl;
   }
  
   delete convert;
@@ -259,13 +254,5 @@ int main(int argc, char *argv[])
   
 }
 
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

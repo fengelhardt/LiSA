@@ -20,8 +20,8 @@
 /** Job-Shop 3-time-API Neighborhood.
     This is a problem dependent API neighborhood class for the 
     job shop problem where we take a swap of adjacent operatins on 3 different
-    machines.\\
-    It works only with tabusearch method !\\
+    machines.
+    It works only with tabusearch method !
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -38,14 +38,14 @@ class JSHOP_3_API_Ngbh: public JSHOP_API_Ngbh
 		JSHOP_3_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
 		/** propose a possible move, 
 	            parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;\\
+		    generation of neighbor;
 		    it propose three interchanges of two adjacent operations 
-		    in the job-orders of three machines;\\
+		    in the job-orders of three machines;
 	 	    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
-		/// search in the tabulist \\ it returns OK or !OK
+		/// search in the tabulist  it returns OK or !OK
 		int   use_tabulist();
 		/// set a tabulist-entry
 		int   set_tabulist();

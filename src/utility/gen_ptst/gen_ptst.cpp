@@ -15,6 +15,8 @@
 #include <stdlib.h>
 #include "gen_ptst.hpp"
 
+using namespace std;
+
 /// test some parameters of an external algorithm
 int main(int argc, char *argv[])
  {

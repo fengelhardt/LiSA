@@ -22,7 +22,7 @@
     This is the problem dependent API neighborhood class for the 
     open shop problem, where we swap two adjacent operations on the
     critical way and additional we swap also the direct predecence 
-    and the direct sucsessive operations on the critical way.\\
+    and the direct sucsessive operations on the critical way.
     It is inherited from the class OSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -58,18 +58,18 @@ class OSHOP_3_CR_Ngbh: public OSHOP_API_Ngbh
 	        ~OSHOP_3_CR_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;\\
+		    generation of neighbor;
 		    it propose an interchange of two adjacent operations (in 
 		    the job-order or in the machine-order) on 
 		    the Cmax-critical way, and additional, if possible and 
 		    useful, an interchange of the successive operations and
  		    an interchange of the predecence operations on the 
-		    critical way;\\  
+		    critical way;  
                     it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\it returns OK or !OK
+		/// do the proposed move it returns OK or !OK
 		int   do_move();
-		/// search in the tabulist \\it returns OK or !OK
+		/// search in the tabulist it returns OK or !OK
 		int   use_tabulist();
 		/// set a tabulist-entry
 		int   set_tabulist();

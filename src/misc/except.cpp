@@ -11,6 +11,8 @@
 
 #include "except.hpp"
 
+using namespace std;
+
 Lisa_ExceptionList G_ExceptionList;
 string G_ExtraException="";
 

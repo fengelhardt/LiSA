@@ -14,8 +14,7 @@
 #include "../main/global.hpp"
 #include "m1_sched.hpp"
 
-
-//############ LiSA_1Problem #############################
+using namespace std;
 
 Lisa_1Problem::Lisa_1Problem( Lisa_Values * Pin )
   {

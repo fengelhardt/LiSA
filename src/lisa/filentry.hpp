@@ -11,17 +11,10 @@
  * date:             3.12.1998
 */
 
-
-
 #ifndef _filentry_h 
 #define _filentry_h 
 
-
-// ********************* Lisa Includes ********************
 #include "lsaobjct.hpp" 
-
-
-// ********************* Class Definitions *******************
 
 /** The Objects: Lisa_ControlParameters, Lisa_problemType, 
     Lisa_Values and Lisa_Schedule are children of Lisa_FileEntry
@@ -37,20 +30,9 @@
     All Lisa-Objects, which are used for file-communication 
     via files of type *.lsa are children of  Lisa_FileEntry.
     */   
-class Lisa_FileEntry : public Lisa_Object
-{
-public:
-  // Object is empty
+class Lisa_FileEntry : public Lisa_Object{
 
 };
 
 #endif
-
-
-
-
-
-
-
-
 

@@ -3,7 +3,7 @@
 /*                                                                           */
 /*    EXPORT: Procedure Initialize:                                          */
 /*                      Initialization of global variables                   */ 
-/*   @version 2.3pre3
+//   @version 2.3pre3
 /* ************************************************************************* */
 
 #include <stdio.h>

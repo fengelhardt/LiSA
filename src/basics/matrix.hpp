@@ -21,17 +21,15 @@
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
 
-using namespace std;
-
 /** @name Vectors and Matrices
     Classes Lisa_Vector<T> and Lisa_Matrix<T> provide easy to use 
     vectors and matrices with dynamic size and fast access to the elements.
-    Define LISA_DEBUG to get automatic array bounds check! \\
+    Define LISA_DEBUG to get automatic array bounds check! 
     
     Include file LiSA/src/basics/matrix.hpp, it uses iostream.
     Use only for basic types int, bool, long, float. Elements of vectors 
     must not allocate memory dynamically! For matrices of lists use 
-    lmatrix.h \\
+    lmatrix.h 
     
     Allways be carefull to use the right operator []! If X is of type 
     Lisa_Vector<int>*, then the first Element of X is (*X)[0] and not 
@@ -114,10 +112,10 @@ public:
   bool operator<=(const Lisa_Vector<T>&) const;
   
   /// input in lisa-format
-  void write(ostream& = cout) const;
+  void write(std::ostream& = std::cout) const;
   
   /// output in lisa format
-  void read(istream& = cin);
+  void read(std::istream& = std::cin);
   
   /// search index of maximal vector element
   unsigned int index_of_max() const;
@@ -132,7 +130,7 @@ public:
   inline T* get_last() const { return contents+m; }  
 };
 
-//******************************************************************************
+//**************************************************************************
 
 /** Basic matrix class in LiSA. A Lisa_Matrix is a vector of vectors. */
 template<class T>
@@ -197,10 +195,10 @@ public:
   bool operator<=(const Lisa_Matrix<T>&) const;
   
   /// output in LiSA format
-  void write(ostream& = cout) const;
+  void write(std::ostream& = std::cout) const;
   
   /// output in LiSA format
-  void read(istream& = cin);
+  void read(std::istream& = std::cin);
   
   /// pointer to first row (for iterating the contents)
   inline Lisa_Vector<T> * first_row() const { return row; }
@@ -209,35 +207,49 @@ public:
   inline Lisa_Vector<T> * end_row() const { return row+n; }
 };
 
-// stream operations for these classes:
+//**************************************************************************
 
+/// output stream operator for Lisa_Vector<T> 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_Vector<T>& v){
+inline std::ostream& operator << (std::ostream& strm, const Lisa_Vector<T>& v){
      v.write(strm);
      return strm;
 }
 
+//**************************************************************************
+
+/// input stream operator for Lisa_Vector<T> 
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_Vector<T>& v){
+inline std::istream& operator >> (std::istream& strm, Lisa_Vector<T>& v){
      v.read(strm);
      return strm;
 }
 
+//**************************************************************************
+
+/// output stream operator for Lisa_Matrix<T> 
 template<class T>
-inline ostream& operator << (ostream&strm, const Lisa_Matrix<T>& m){
+inline std::ostream& operator << (std::ostream& strm, const Lisa_Matrix<T>& m){
      m.write(strm);
      return strm;
 }
 
+//**************************************************************************
+
+/// input stream operator for Lisa_Matrix<T> 
 template<class T>
-inline istream& operator >> (istream&strm, Lisa_Matrix<T>& m){
+inline std::istream& operator >> (std::istream& strm, Lisa_Matrix<T>& m){
      m.read(strm);
      return strm;
 }
 
-inline istream& operator >> (istream&strm, void* ){
+//**************************************************************************
+
+inline std::istream& operator >> (std::istream& strm, void* ){
      return strm;
 }
+
+//**************************************************************************
 
 #endif
 

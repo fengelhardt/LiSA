@@ -9,11 +9,9 @@
  * @version 2.3pre3
 */
 
-// ************************ Local Includes ********************
 #include "lisapref.hpp"
 
-
-// *********************** functions *************************
+using namespace std;
 
 Lisa_Preferences::Lisa_Preferences() {
 }
@@ -26,9 +24,4 @@ void Lisa_Preferences::init(Tcl_Interp *interp) {
   gantt_colors = new Lisa_Vector<int>(5);
   gantt_colors->fill(0);
 }
-
-
-
-
-
 

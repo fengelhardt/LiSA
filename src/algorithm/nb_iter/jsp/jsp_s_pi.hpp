@@ -20,7 +20,7 @@
 /** Job-Shop semicritical-API Neighborhood.
     This is a problem dependent API neighborhood class for the 
     job shop problem, where we interchange two noncritical adjacent operations 
-    or we move a critical operation to the critical block end.\\
+    or we move a critical operation to the critical block end.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -38,10 +38,10 @@ class JSHOP_semi_API_Ngbh: public JSHOP_API_Ngbh
 		~JSHOP_semi_API_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;\\
+		    generation of neighbour;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 

@@ -21,7 +21,7 @@
     This is the problem dependent semicritical-TRANSPOSE neighborhood class 
     for the job shop problem (i.e. these neighborhood transpose a partial 
     sequence of operations on a machine but mostly such sequences with 
-    critical end operations).\\
+    critical end operations).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -49,16 +49,16 @@ class JSHOP_semi_trans_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_semi_trans_Ngbh(); 
 		/** propose a possible move,
 		    parameter is only RAND for random
-		    generation of neighbor;\\
+		    generation of neighbor;
 		    it propose a transpose of a partial sequence of operations
-		    in the job-order of one machine;\\
+		    in the job-order of one machine;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
                 /// init the tabu list with a specified length
                 int   init_tabulist( unsigned int ); 
-		/// search in the tabulist \\ it returns OK or !OK
+		/// search in the tabulist  it returns OK or !OK
                 int   use_tabulist();
 		/// set a tabulist-entry
                 int   set_tabulist();

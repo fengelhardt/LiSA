@@ -22,6 +22,8 @@
 #include "callback.hpp"
 #include "tclvar.hpp"
 
+using namespace std;
+
 // ********************** Global Variables ********************
 
 extern class Lisa_ProblemType G_ProblemType;

@@ -18,8 +18,7 @@
 
 #include "ptype.hpp"
 
-
-// *********************** functions *************************
+using namespace std;
 
 // small function to find certain string in stream:
 bool locate_string(istream& strm, string what)

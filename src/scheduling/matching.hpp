@@ -21,8 +21,6 @@
 #include "../basics/order.hpp"
 #include "../misc/except.hpp"
 
-using namespace std;
-
 /** @name Matchings
     The classes Lisa_BipartMatching, Lisa_WeightedMatching 
     and Lisa_BottleneckMatching provide the 
@@ -69,13 +67,13 @@ public:
   ~Lisa_BottleneckNode(){}
   
   /// write the object values to a stream 
-  void write (ostream& strm = cout) const{
+  void write(std::ostream& strm = std::cout) const{
     strm << "[ " << i << " " << j << " " << value << " ]";
   }
   
   /// read the object values from a stream
-  void read (istream& strm = cin){
-    string s = ""; strm >> s;
+  void read(std::istream& strm = std::cin){
+    std::string s = ""; strm >> s;
     if (s!="[") 
       G_ExceptionList.lthrow("[ expected in Lisa_Bottleneck.read(istream&)",SYNTAX_ERROR);
     strm >> i >> j >> value;
@@ -112,7 +110,7 @@ private:
   int* q_start_C;
   bool* i_start_C;
 
-  // queues used in calculate
+  // queues used in calculate()
   Lisa_Vector<int>* queue;
   Lisa_Vector<bool>* in_I;  
 
@@ -204,7 +202,7 @@ public:
       those values might be different from those returned as matching
       since this method was meant for debugging mostly
   */
-  void write(ostream & = cout) const;
+  void write(std::ostream & = std::cout) const;
 };
 
 /** Basic class and interface 
@@ -328,7 +326,7 @@ public:
       those values might be different from those returned as matching
       since this method was meant for debugging mostly
   */  
-  void write(ostream & = cout) const;
+  void write(std::ostream & = std::cout) const;
  
 }; 
 
@@ -368,7 +366,7 @@ public:
       those values might be different from those returned as matching
       since this method was meant for debugging mostly
   */
-  void write(ostream & = cout) const;
+  void write(std::ostream & = std::cout) const;
   
   void remove(const int i,const int j);
   
@@ -393,29 +391,4 @@ public:
 //@}
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

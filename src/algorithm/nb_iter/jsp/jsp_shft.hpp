@@ -20,7 +20,7 @@
 /** Job-Shop SHIFT Neighborhood.
     This is the problem dependent SHIFT neighborhood class for the 
     job shop problem (i.e. these neighborhood shifts an arbitrary operation 
-    on an other position on machine).\\
+    on an other position on machine).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -40,16 +40,16 @@ class JSHOP_shift_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_shift_Ngbh(); 
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;\\
+		    generation of neighbor;
 		    it propose a shift of an arbitrary operation on an other 
-		    position on machine;\\
+		    position on machine;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
 		/// initialize the tabulist with specified length
        int   init_tabulist( unsigned int ); 
-		/// search in the tabulist \\ it returns OK or !OK
+		/// search in the tabulist  it returns OK or !OK
        int   use_tabulist();
 		/// set a tabulist-entry
        int   set_tabulist();

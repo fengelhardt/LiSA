@@ -1,15 +1,14 @@
 /*
- * ************** lpartition.cpp *******************************
- *
  * @author Marc Moerig
  * @version 2.3pre3
- *
- * 25.02.01
- * last changed 26.02.01
  */
 
 #include "lpartition.hpp"
-  
+
+using namespace std;
+
+//**************************************************************************
+    
 Lisa_Partition::Lisa_Partition(const int in){
   part = new Lisa_Vector<int>(in);
   pstart = part->get_first();
@@ -21,14 +20,14 @@ Lisa_Partition::Lisa_Partition(const int in){
   }
 }
 
-//**************************************************************
+//**************************************************************************
   
 Lisa_Partition::~Lisa_Partition(){
   delete part;
 }
 
-//**************************************************************
-  
+//**************************************************************************
+   
 void Lisa_Partition::join(int a,int b){
   a = (*part)[a];
   b = (*part)[b];
@@ -46,8 +45,8 @@ void Lisa_Partition::join(int a,int b){
   }
 }
 
-//**************************************************************
-
+//**************************************************************************
+  
 void Lisa_Partition::get_partition(const int num,Lisa_Vector<int>* vec){
   int count = 1;
   int i = 0;
@@ -60,14 +59,14 @@ void Lisa_Partition::get_partition(const int num,Lisa_Vector<int>* vec){
   (*vec)[0] = count-1;
 }
 
-//**************************************************************
-
+//**************************************************************************
+  
 int Lisa_Partition::get_num_of_partitions(){
   return max+1;
 }
 
-//**************************************************************
-
+//**************************************************************************
+  
 int Lisa_Partition::get_partition_size(const int num){
   int count = 0;
   for (int* ppart=pstart;ppart!=pstop;ppart++)
@@ -75,10 +74,13 @@ int Lisa_Partition::get_partition_size(const int num){
   return count;
 }
 
-//**************************************************************
+//**************************************************************************
   
 void Lisa_Partition::write(ostream& strm) const{
   strm << "<PARTITION>" << endl;
   strm << *part;
   strm << "</PARTITION>" << endl;
 }
+
+//**************************************************************************
+

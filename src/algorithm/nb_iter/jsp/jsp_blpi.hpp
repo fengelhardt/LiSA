@@ -20,7 +20,7 @@
 /** Job-Shop critical-block-API Neighborhood.
     This is the problem dependent API neighborhood class for the 
     open shop problem, where we take a swap only for a critical block 
-    operation.\\
+    operation.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -41,13 +41,13 @@ class JSHOP_cr_bl_API_Ngbh: public JSHOP_API_Ngbh
 		~JSHOP_cr_bl_API_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;\\
+		    generation of neighbour;
 		    it propose an exchange of a block-end-operation on the
 		    Cmax-critical way with a block-internal-operation (in the 
-		    job-order of a machine);\\
+		    job-order of a machine);
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 

@@ -4,7 +4,7 @@
 /*    Export: Procedure Heuristic_Schedule:                                */
 /*                      Calculation of a heuristic solution for the        */
 /*                      search tree node SonNode.                          */
-/*   @version 2.3pre3
+//   @version 2.3pre3
 /* *********************************************************************** */
 
 #include <stdlib.h>

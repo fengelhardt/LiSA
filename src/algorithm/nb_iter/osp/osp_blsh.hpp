@@ -20,7 +20,7 @@
 /** Open-Shop critical_block-SHIFT Neighborhood.
     This is the problem dependent SHIFT neighborhood class for the 
     open shop problem, where we take a swap only for a critical block 
-    operation.\\
+    operation.
     It is inherited from the class OSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -42,13 +42,13 @@ class OSHOP_cr_bl_shift_Ngbh: public OSHOP_API_Ngbh
 		~OSHOP_cr_bl_shift_Ngbh();
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbour;\\
+		    generation of neighbour;
 		    it propose an exchange of a block-end-operation on the
 		    Cmax-critical way (in a job-order or a machine-order) 
-		    with an other operation on the same machine or job;\\ 
+		    with an other operation on the same machine or job; 
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 

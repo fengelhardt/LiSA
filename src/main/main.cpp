@@ -26,20 +26,35 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+///global data, our current problem type
 class Lisa_ProblemType G_ProblemType;
+
+///global data, our current values
 class Lisa_Values G_Values;
+
+///global data, our current schedule
 class Lisa_Schedule *G_Schedule;
+
+///global data, our schedule for drawing to the main window
 class Lisa_XSchedule * G_XSchedule;
+
+///global data, list of schedules if algorithm returns more than one solution
 class Lisa_List<ScheduleNode> *G_ScheduleList;
+
+///global data, preferences, read from default.lsa file
 class Lisa_Preferences G_Preferences;
+
+///global data, various stuff
 class Lisa_Status G_Status;
+
+///global data, tcl variables needed in c++ code
 class Lisa_TCLVar G_TclVar;
+
+/// pointer to the tcl interpreter running our main window
 Tcl_Interp *interp;  
 
 
-// *********************** functions *************************
-
+/// LiSA's main routine, the program starts here ;)
 int main(int argc, char *argv[]) {
   if(argc < 2){
       cerr << "Usage: " << argv[0] << " [config file] " << endl;
@@ -91,17 +106,4 @@ int main(int argc, char *argv[]) {
   delete G_ScheduleList;
   return(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -13,6 +13,8 @@
 
 #include "matching.hpp"
 
+using namespace std;
+
 Lisa_BipartMatching::Lisa_BipartMatching(const Lisa_Matrix<bool> *in){
 
  graph = new Lisa_Matrix<bool>(*in);

@@ -20,7 +20,7 @@
 /** Job-Shop SWAP Neighborhood.
     This is the problem dependent SWAP neighborhood class for the 
     job shop problem (i.e. these neighborhood swaps two arbitrary operations
-    on a machine).\\
+    on a machine).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -38,12 +38,12 @@ class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_swap_Ngbh(); 
 		/** propose a possible move,
 		    parameter is only RAND for random
-		    generation of a neighbor;\\
+		    generation of a neighbor;
 		    it propose an interchange of two arbitrary not necessary 
-   		    adjacent operations in the job-order of one machine;\\
+   		    adjacent operations in the job-order of one machine;
 		    it returns OK or !OK   */
 		int   prepare_move(int);
-		/// do the proposed move \\ it returns OK or !OK
+		/// do the proposed move  it returns OK or !OK
 		int   do_move();
      };
 
