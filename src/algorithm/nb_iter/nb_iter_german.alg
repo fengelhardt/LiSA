@@ -3,7 +3,7 @@ Name= Nachbarschaftssuche
 Type= iterative
 Call= nb_iter
 Code= external
-Help= external/nb_iter.html
+Help= algorithm/nb_iter.html
 </GENERAL>
 
 <EXACT>

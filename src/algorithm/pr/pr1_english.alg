@@ -3,7 +3,7 @@ Name= LAPT-Regel
 Type= constructive
 Call= pr
 Code= external
-Help= external/pr.html
+Help= algorithm/pr.html
 </GENERAL>
 
 <HEURISTIC>

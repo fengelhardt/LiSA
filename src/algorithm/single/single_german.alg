@@ -3,7 +3,7 @@ Name= SingleMachine
 Type= constructive
 Call= single
 Code= external
-Help= external/single.html
+Help= algorithm/single.html
 </GENERAL>
 
 <EXACT>

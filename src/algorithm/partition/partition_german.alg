@@ -3,7 +3,7 @@ Name= Partition Alg. (Research)
 Type= constructive
 Call= partition
 Code= external
-Help= external/partition.html
+Help= algorithm/partition.html
 </GENERAL>
 
 <EXACT>

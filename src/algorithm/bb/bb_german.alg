@@ -3,7 +3,7 @@ Name= Branch & Bound
 Type= constructive
 Call= bb
 Code= external
-Help= external/bb.html
+Help= algorithm/bb.html
 </GENERAL>
 
 <EXACT>

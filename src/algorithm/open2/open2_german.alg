@@ -3,7 +3,7 @@ Name= O2-Algorithmus
 Type= constructive
 Call= open2
 Code= external
-Help= external/open2.html
+Help= algorithm/open2.html
 </GENERAL>
 
 <EXACT>

@@ -3,7 +3,7 @@ Name= a solution with minimal rank
 Type= constructive
 Call= sample
 Code= external
-Help= external/sample.html
+Help= algorithm/sample.html
 </GENERAL>
 
 <EXACT>

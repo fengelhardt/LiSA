@@ -3,7 +3,7 @@ Name= Johnson Rule (Job Shop)
 Type= constructive
 Call= job2
 Code= external
-Help= external/job2.html
+Help= algorithm/job2.html
 </GENERAL>
 
 <EXACT>

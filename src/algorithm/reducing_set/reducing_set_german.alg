@@ -3,7 +3,7 @@ Name= Reduzierende Operationen-Menge
 Type= constructive
 Call= reducing_set
 Code= external
-Help= external/reducing_set_german.html
+Help= algorithm/reducing_set_german.html
 </GENERAL>
 
 <EXACT>

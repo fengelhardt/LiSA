@@ -370,7 +370,7 @@ if { $only_string=="no" } {
     button \$base.lastframe.02 \
 	-padx 11 -pady 4 -text \$Name(Cancel)  -command {destroy .$algo_name\_ptst}
     button \$base.lastframe.03 \
-	-padx 11 -pady 4 -text \$Name(Help)  -command { lisa_help external/gen_ptst.html }
+	-padx 11 -pady 4 -text \$Name(Help)  -command { lisa_help utility/gen_ptst.html }
     pack \$base.lastframe \
         -in .$algo_name\_ptst -anchor center -expand 1 -fill both -side top 
     pack \$base.lastframe.01 \

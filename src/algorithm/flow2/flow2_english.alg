@@ -3,7 +3,7 @@ Name= Johnson Rule
 Type= constructive
 Call= flow2
 Code= external
-Help= external/flow2.html
+Help= algorithm/flow2.html
 </GENERAL>
 
 <EXACT>
