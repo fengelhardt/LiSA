@@ -297,10 +297,10 @@ int Lisa_ProblemType::setalpha(string al)
   m_number=al.substr(letters_done, al.length() - letters_done);
   if(m_number=="") tupel[M_NUMBER]=M_ARB;
   else  
-    if (m_number=="m") tupel[M_NUMBER]=M_VAL;
+    if (m_number=="m") tupel[M_NUMBER]=M_FIX;
     else 
       {
-	tupel[M_NUMBER]=M_FIX;
+	tupel[M_NUMBER]=M_VAL;
 	sscanf((char*) m_number.c_str(),"%d",&m_no);
       }
   //  cout << "got M_ENV=" << name(M_ENV, tupel[M_ENV])
