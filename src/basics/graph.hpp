@@ -338,7 +338,7 @@ public:
       the position while (*vertex_sequence)[i] contains the vertex. */
   static bool topsort_inverse(const Lisa_Graph *const g,
                               Lisa_Vector<int> *const vertex_sequence);
-                      
+                   
   /// Replaces each ARC with an EDGE.
   static void build_semigraph(Lisa_Graph *const graph);
    
