@@ -867,17 +867,6 @@ int TC_startalg(ClientData /* clientData */,
     start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
 	       G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
 	       G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
-  } else  if (code=="internal") {
-    string str2 = "showdelaym \"$Name(Wait...)\" \" "+ name_of_algo + " $Name(started)\"";
-    Tcl_Eval(interp, (char*) str2.c_str());
-    Tcl_Eval(interp,"tkwait visibility .delaym");
-    Tcl_Eval(interp,"set idle_tst 1");
-    Tcl_Eval(interp,"after 20 {set idle_tst 0}");
-    Tcl_Eval(interp,"vwait idle_tst");
-    start_int_algo(name_of_algo,algo_call,
-		   G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
-    update_LR();
-    Tcl_Eval(interp,"destroy .delaym");
   } else {
     G_ExceptionList.lthrow( (string) "wrong code:" + code + "in description file external or internal expected (assume external)" ,SYNTAX_ERROR);
     start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",

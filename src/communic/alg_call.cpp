@@ -20,40 +20,6 @@
 #include "../misc/except.hpp"
 // ************************ Local Includes ********************
 #include "alg_call.hpp"
-#include "../algo/dispatch.hpp"
-
-int start_int_algo(string name_of_algo,string algo_call,
-		   Lisa_Preferences & G_Preferences,
-                   Lisa_ProblemType & G_ProblemType,
-		   Lisa_ControlParameters & parameter,
-		   Lisa_Schedule & G_Schedule, Lisa_Values & G_Values) {
-
-  if (algo_call=="dispatch") {
-    Lisa_Dispatcher * engine=new Lisa_Dispatcher();
-    engine->SetProblem(&G_ProblemType, &G_Values, &G_Schedule);
-    engine->SetRule(parameter.get_string("RULE"));
-    if (parameter.get_string("ACTIVE")=="TRUE")
-      engine->dispatch_active();
-    else 
-      engine->dispatch();
-    delete engine;
-  }
-  return OK;
-}
-
-
-void start_prior(Tcl_Interp *interp,Lisa_ProblemType & G_ProblemType,
-		 Lisa_Schedule & G_Schedule, Lisa_Values & G_Values,
-		 Lisa_Status & G_Status, string type) 
-{
-  Lisa_Dispatcher * engine=new Lisa_Dispatcher();
-  engine->SetProblem(&G_ProblemType, &G_Values, &G_Schedule);
-  engine->SetRule(type);
-  engine->dispatch_active();
-  delete engine;
-  //cout << G_Schedule;
-}
-
 
 int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, string output_file, string result_file,
 	     Lisa_Preferences & G_Preferences,
@@ -99,6 +65,5 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   Tcl_Eval(interp,"Window show .ext_alg_graph");
   return OK;
 }
-
 
 
