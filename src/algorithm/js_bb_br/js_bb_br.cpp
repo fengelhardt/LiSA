@@ -19,7 +19,6 @@
 #include "../../xml/LisaXmlFile.hpp"
 
 #include "../../basics/matrix.hpp"
-#include "../../scheduling/js_sched.hpp"
 #include "../../lisa/ptype.hpp"
 #include "../../scheduling/schedule.hpp"
 #include "../../lisa/lvalues.hpp"
@@ -168,8 +167,7 @@ int main(int argc, char *argv[])
 			}
 			
 			// the new Bruckers data file:
-			Lisa_JsSchedule *best_schedule;
-			int i, j, counter, mo, maschine;
+			int i, j, counter, mo;
 			const int m = Values.get_m();
 			const int n = Values.get_n();
  
@@ -213,17 +211,6 @@ int main(int argc, char *argv[])
       }
 			js_in.close();
 			
-			// the best schedule:
-			Lisa_JsProblem *js_Prob;
-			if ( !( js_Prob = new Lisa_JsProblem(&Values ) ) ){  
-					G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-					exit( 7 );
-			}
-			
-			if ( !( best_schedule = new Lisa_JsSchedule( js_Prob ) ) ){  
-					G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-					exit( 7 );
-			}
 			
 			// original program code by P.Brucker:
 			struct BranchList  *DeleteBranch;
@@ -234,11 +221,7 @@ int main(int argc, char *argv[])
 					return(1);
 			}
 			
-  // starting time:
-  // clock_t time1, time2;
-  time_t time1, time2;
-  double elapsed;
-  time1 = time(&time1);
+
   run_start();
   if ( Compute_Head_Tail() ) {
      printf("\n");
@@ -284,23 +267,8 @@ int main(int argc, char *argv[])
      }
   }
   run_stop();
-   
-  // end time:
-  time2 = time(&time2);
-  // run time:
-  //time2 = (time2 - time1)/CLK_TCK/10000;
-  //elapsed = ( double( time2 - time1 ) ) / CLOCKS_PER_SEC;
-  elapsed = difftime( time2, time1 );
-  cout << "TIME = " << elapsed << "\n";
 
-  printf("Upper Bound = %4d, SearchTreeNodes = %d\n",UpperBound,SearchTreeNodes);
-  
-  Lisa_Matrix<int> *LR;
-  if ( !( LR = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-				exit( 7 );
-  }
-  
+
   Lisa_Matrix<int> *JO;
   if( !( JO = new Lisa_Matrix<int>(n,m) ) ){  
 				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
@@ -312,15 +280,8 @@ int main(int argc, char *argv[])
 				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 				exit( 7 );
   }
-  
-  for (i=0; i<n; i++){
-				maschine = SOURCE;
-				for (j=1; j<=m; j++){
-						maschine = (*js_Prob->MOsucc)[i+1][maschine];
-						(*MO)[i][maschine-1] = j;
-				}
-  }
- 
+  Values.MO->write_rank(MO);
+
   // read machine order from algortihm output file !!!
   // this data is written in jb_heur.cpp
   ifstream JO_in("jo_out.dat");
@@ -331,47 +292,22 @@ int main(int argc, char *argv[])
   JO->read( JO_in );
   JO_in.close();
   
-  bool feasible = Lisa_Schedule::MO_JO_to_LR(LR,Values.SIJ,MO,JO);
-
-
-  //cout << "LR=" << *LR;
-  best_schedule->read_LR( LR );
-  //best_schedule->write( cout );
-  Lisa_Schedule * plan_in;
   
-  if ( !( plan_in = new Lisa_Schedule( n, m ) ) ){  
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
-  plan_in->make_LR();
-  best_schedule->write_LR( plan_in->LR );
+  Lisa_Schedule plan_in(n,m);
+  plan_in.make_LR();
+  bool feasible = plan_in.MO_JO_to_LR(plan_in.LR,Values.SIJ,MO,JO);
   
   type = LisaXmlFile::INSTANCE;
   if(feasible) type = LisaXmlFile::SOLUTION;
   
 	LisaXmlFile xmlOutput(type);
 	xmlOutput << Problem << Values << Parameter;
-  if(feasible) xmlOutput << *plan_in;
+  if(feasible) xmlOutput << plan_in;
 	xmlOutput.write(argv[2]);
-  
-		//time is not read - so don't write it
-		/*
-				fplan_o << "<TIME>\n";
-				fplan_o << "TIME= " << time2 << "\n";
-				fplan_o << "</TIME>\n";
-		*/
-		
 
-  //fplan_o << (*best_schedule);
-		
-		
-  delete LR;
   delete MO;
   delete JO;
-  delete best_schedule;
-		delete js_Prob;
-  
+
   delete[] m_nr;
   delete[] ptime;
 
