@@ -14,7 +14,8 @@ enum InsertionOrder{
   diagonal,
   queens,
   spt,
-  ect
+  ect,
+  att
 };
 
 

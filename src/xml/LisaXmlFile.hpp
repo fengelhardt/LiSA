@@ -23,12 +23,14 @@ struct xmlDoc;
 struct xmlNode;
 struct xmlNs;
 struct xmlDtd;
+struct xmlCharEncodingHandler;
 
 typedef xmlDoc*  xmlDocPtr ;
 typedef xmlNode* xmlNodePtr ;
 typedef xmlNs* xmlNsPtr ;
 typedef xmlDtd* xmlDtdPtr ;
-typedef  unsigned char xmlChar;
+typedef unsigned char xmlChar;
+typedef void* xmlCharEncodingHandlerPtr;
 
 #endif
 
@@ -288,6 +290,7 @@ class LisaXmlFile {
 		
   /// Encoding (using latin-1, i.e. western-europe character set)
   static const std::string ENCODING;
+  static xmlCharEncodingHandlerPtr encoder;
 		
   /// Path to locate the DTD
   static std::string DTD_PATH;

@@ -377,7 +377,7 @@ void Lisa_ShpSchedule::write_LR(Lisa_Matrix<int> * LR) const
    
    LR->fill(0);
    for (j=1; j<=P->m; j++) 
-      if ((*JOsucc)[SOURCE][j]) push_LR(LR, (*JOsucc)[SOURCE][j], j, 1);
+     if ((*JOsucc)[SOURCE][j]) push_LR(LR, (*JOsucc)[SOURCE][j], j, 1);
  }
 
 //**************************************************************************

@@ -7,6 +7,7 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
+#include "../../basics/pair.hpp"
 #include "beam_orders.hpp"
 
 class LisaXmlFile;
@@ -26,11 +27,17 @@ public:
     CLast
   }  CostFunc;
   
+  typedef enum {
+    machines,
+    jobs,
+    both
+  } AttatchmentRule;
 
   int problemtype;
   int beam_width;
   InsertionMethod insertionMethod;
   InsertionOrder iord;
+  AttatchmentRule attatch;
   CostFunc costFunc;
   int destObjective;
   
@@ -43,11 +50,23 @@ public:
 
   Lisa_OsProblem *problem;
   Lisa_Schedule * result;
+  TIMETYP value;
+  Lisa_Order *order;
   ~BeamSearch();
   TIMETYP guessObjective();
 
+  int step, n_ops;
+
 private:
   void clear();
+  typedef std::pair<int,int> Operation;
+  typedef std::pair<int,int> OpRankPos;
+  typedef std::pair<Operation, OpRankPos> OpInsertion;
+  typedef std::vector<OpInsertion> InsertionList;
+  bool getNextOp(class B_Node* parent, BeamSearch::Operation& next);
+  void getDescendentInsertions(class B_Node& parent, const Operation& op, InsertionList& ins);
+  void getDescendentAppendings(class B_Node& parent, const Operation& op, InsertionList& ins);
+  
 
 };
 

@@ -27,7 +27,7 @@ class B_Node : public Lisa_OsSchedule {
   friend ostream & operator<<(ostream&, B_Node&); 
 		
 protected:
-  B_Node *parent;
+  //B_Node *parent;
   TIMETYP cost;
   
   bool costValid;
@@ -36,10 +36,11 @@ protected:
 		
 public:
   ///construct a schedule from another
-  B_Node(B_Node *parent);
+  B_Node(B_Node& parent);
   ///construct a schedule that hands over the problem to its children
   B_Node(Lisa_OsProblem *);
   ///get costs of the (partial) schedule
+  virtual ~B_Node();
   virtual TIMETYP getCosts(int obj, BeamSearch::CostFunc cf);
   ///for comparision
   //operator TIMETYP (void){return getCosts();}
@@ -76,9 +77,9 @@ public:
   KList(int k, int obj, BeamSearch::CostFunc cf);
   ~KList();
   ///add a B_Node to the list if either the list is not full or there is a B_Node with larger costs in the list
-  void add(B_Node *);
+  void add(B_Node*&);
   ///add a B_Node to the list at position p, if there is no B_Node or a B_Node with larger costs at position p
-  void add(B_Node *, int p);
+  void add(B_Node*&, int p);
   ///returns true if the capacity is exhausted
   bool full() { return in_list >= k;} 
 };

@@ -1,26 +1,27 @@
 #include "b_node.hpp"
 
-B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)
+B_Node::B_Node(B_Node& p):Lisa_OsSchedule(p.problem)
 {
+  problem = p.problem;
   ComputeHeadsTails( true, true);
-		costValid = false;
-  *this = *p;
-  parent = p;
-  this->lastAddedRow = p->lastAddedRow;
-  this->lastAddedCol = p->lastAddedCol;
+  *this = p;
+  costValid = false;
+  //parent = p;
+  this->lastAddedRow = p.lastAddedRow;
+  this->lastAddedCol = p.lastAddedCol;
 }
    
 B_Node::B_Node(Lisa_OsProblem * p):Lisa_OsSchedule(p) {
   ComputeHeadsTails( true, true);
-		costValid = false;
-  parent = 0;
+  costValid = false;
+  //parent = 0;
   problem = p;
 }
 
 int B_Node::insert(int i, int j, int k, int l) {
   this->lastAddedRow = i;
   this->lastAddedCol = j;
-		costValid = false;
+  costValid = false;
   return Lisa_OsSchedule::insert(i,j,k,l);
 }
 
@@ -38,10 +39,17 @@ TIMETYP B_Node::getCosts(int destObjective,  BeamSearch::CostFunc costFunc){
   return cost;
 }
 
+B_Node::~B_Node(){
+
+}
+
 ostream & operator << ( ostream & os , B_Node & b){
-  Lisa_Matrix<int> *lr = new Lisa_Matrix<int>(b.problem->n,b.problem->m);
+  Lisa_Matrix<int> *lr = new Lisa_Matrix<int>(b.P->n,b.P->m);
   b.write_LR(lr);
-  return os << *lr << endl;
+  os << *lr << endl;
+  delete lr;
+  return os;
+
 } 
 
 
@@ -56,7 +64,7 @@ KList::KList(int k, int obj, BeamSearch::CostFunc cf) {
 }
 
 
-void KList::add(B_Node *n) 
+void KList::add(B_Node*& n) 
 {
   if(in_list < k)
     {
@@ -66,8 +74,9 @@ void KList::add(B_Node *n)
       in_list++;
       return;
     }
-  if(n->getCosts(destObjective, costFunc) >=list[worst_in_list]->getCosts(destObjective, costFunc)) {
+  if(n->getCosts(destObjective, costFunc) >= list[worst_in_list]->getCosts(destObjective, costFunc)) {
     delete n;
+    n = NULL;
     return;
   }
   delete list[worst_in_list];
@@ -77,15 +86,17 @@ void KList::add(B_Node *n)
       worst_in_list = i;
 }
 
-void KList::add(B_Node *n,  int pos) 
+void KList::add(B_Node*& n,  int pos) 
 {
   if (in_list > pos)
     {
       if (list[pos]->getCosts(destObjective, costFunc) > n->getCosts(destObjective, costFunc)) {
 	delete list[pos];
 	list[pos] = n;
-      } else {
+      } 
+      else {
 	delete n;
+	n = NULL;
       }
     } 
   else {
@@ -94,8 +105,10 @@ void KList::add(B_Node *n,  int pos)
   }
 }
 
+
+
 KList::~KList() {
   for (int i= 0; i < in_list; i++)
-				delete list[i];
+    delete list[i]; 
   delete[] list;
 }

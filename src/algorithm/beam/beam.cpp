@@ -11,15 +11,13 @@
 
 #include "../../xml/LisaXmlFile.hpp"
 
-
-
 #include "b_node.hpp"
 #include "beam_orders.hpp"
 
 using namespace std;
 
 
-B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
+//B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 
 
 int main(int argc, char *argv[]){
@@ -70,8 +68,29 @@ int main(int argc, char *argv[]){
   if(!search.init(xmlInput))
     exit(1);
   //set progress window height
-  cout << "OBJECTIVE= "<< search.guessObjective() << endl; 
-  if(!search.run())
+  cout << "OBJECTIVE= "<< search.guessObjective() << endl;
+  if(search.iord == att && search.attatch == BeamSearch::both){
+    //first run with machine order
+    search.attatch = BeamSearch::machines;
+    search.step = 0;
+    if(!search.run()) exit(1);
+    TIMETYP r1 = search.value;
+    Lisa_Schedule* res1 = new Lisa_Schedule(*search.result);
+    //second run with jobs
+    search.attatch = BeamSearch::jobs;
+    search.step = 0;
+    if(!search.run()) exit(1);
+    
+    //pick better solution
+    if(search.value > r1){
+      delete search.result;
+      search.result = res1;
+      search.value = r1;
+    }
+    else
+      delete res1;
+  }
+  else if(!search.run())
     exit(1);
   
   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);

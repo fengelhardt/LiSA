@@ -49,6 +49,7 @@ const std::string LisaXmlFile::NAMESPACE = "http://lisa.math.uni-magdeburg.de";
 const std::string LisaXmlFile::NAMESPACE_PREFIX = "LiSA";
 
 const std::string LisaXmlFile::ENCODING = "ISO-8859-1";
+xmlCharEncodingHandlerPtr LisaXmlFile::encoder = NULL;
 
 std::string LisaXmlFile::DTD_PATH = "";
 
@@ -66,29 +67,34 @@ std::string LisaXmlFile::dtd_file = "";
 void LisaXmlFile::initialize(std::string dtd_path){
 		DTD_PATH = "";
 		if(dtd_path.empty()){
-				//determine dtd_path from environment variable "LISA_DTD_PATH"
-				char* dtd_env = getenv("LISA_DTD_PATH");
-				DTD_PATH = (dtd_env) ? (dtd_env + PATH_SEP) : "";
+		  //determine dtd_path from environment variable "LISA_DTD_PATH"
+		  char* dtd_env = getenv("LISA_DTD_PATH");
+		  DTD_PATH = (dtd_env) ? (dtd_env + PATH_SEP) : "";
 		}
 		else
-				DTD_PATH = dtd_path + PATH_SEP;
+		  DTD_PATH = dtd_path + PATH_SEP;
 		//test for dtd file path
-				
+		
 		string file = 	DTD_PATH + DTD_SYSTEM_PHRASE;
 		if(DtdPtr)
 				xmlFreeDtd(DtdPtr);
 		DtdPtr = xmlParseDTD( (const xmlChar*) DTD_EXTERN_PHRASE.c_str(),
 																								(const xmlChar*) file.c_str());
 		if(DtdPtr == NULL)
-				{
-						dtd_file = DTD_SYSTEM_PHRASE;
-						if(validate)
-								cerr << "WARNING : No Dtd for validation."<< endl;
-				}
+		  {
+		    dtd_file = DTD_SYSTEM_PHRASE;
+		    if(validate)
+		      cerr << "WARNING : No Dtd for validation."<< endl;
+		  }
 		else
-				dtd_file = file;
+		  dtd_file = file;
 		if(initialized)
-				return;
+		  return;
+
+		encoder = xmlFindCharEncodingHandler(ENCODING.c_str());
+		if(!encoder){
+		  cerr << "ERROR : Encoding \"" << ENCODING << "\" not supprted!" << endl;
+		}
 		DOC_TYPE_NAMES[PREFERENCES] = "controls";
 		DOC_TYPE_NAMES[PROBLEM]     = "problem";
 		DOC_TYPE_NAMES[INSTANCE]    = "instance";

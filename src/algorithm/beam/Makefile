@@ -28,7 +28,7 @@ ALGEXT = xml
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(INCL)
-CXXFLAGS=$(CXXINCL) -Wall 
+CXXFLAGS=$(CXXINCL) -Wall
 LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)
@@ -68,9 +68,11 @@ install:
 	mkdir -p $(ALGPATH)/language/english
 	cp $(PROGRAMNAME)_english1.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)1.$(ALGEXT)
 	cp $(PROGRAMNAME)_english2.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)2.$(ALGEXT)
+	cp $(PROGRAMNAME)_english3.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)3.$(ALGEXT)
 	mkdir -p $(ALGPATH)/language/german
 	cp $(PROGRAMNAME)_german1.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)1.$(ALGEXT)
 	cp $(PROGRAMNAME)_german2.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)2.$(ALGEXT)
+	cp $(PROGRAMNAME)_german3.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)3.$(ALGEXT)
 	mkdir -p $(DOCPATH)/lisa/english/algorithm
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
 	mkdir -p $(DOCPATH)/lisa/german/algorithm
