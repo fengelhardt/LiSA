@@ -1,9 +1,9 @@
 /*
  * ************** partition.cpp *******************************
  * 
- * Sample how to implement an algorithm for LiSA
+ * partition algorithm for LiSA
  *
- * Owner: LiSA
+ * Owner: unknown
  *
  * 30.04.2001
 */
@@ -20,9 +20,8 @@
 
 int main(int argc, char *argv[]) 
 {
-
-    // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
-  //G_ExceptionList.set_output_to_cout();   
+    // comment out following line to send error messages to console
+    //G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
     Lisa_ControlParameters * sp = new Lisa_ControlParameters;
@@ -120,21 +119,21 @@ int main(int argc, char *argv[])
 	(*my_werte->PT)[i][0]=0;
       }
 
-    // So koennen Parameter im LiSA Hauptfenster ausgegeben werden:
-    // cout << "WARNING: Der Problemtype lautet:" << lpr->output_problem()<< endl;
-    cout << "WARNING: Um sich die Loesung anzusehen bitte ~/.lisa/proc/algo_out.lsa oeffnen!" << endl;
-    //cout << "WARNING: Summe= " << sum_p <<endl;
+    // that way parameters are displayed in LiSA main window/console:
+    // cout << "WARNING: the problemtype is:" << lpr->output_problem()<< endl;
+    cout << "WARNING: view solution in ~/.lisa/proc/algo_out.lsa !" << endl;
+    //cout << "WARNING: sum= " << sum_p <<endl;
     //cout << "WARNING: S/2=" << sum_half << endl;
     //cout << "WARNING: N=" << max_n << endl;
     //cout << "WARNING: partition1=" << part1 << endl;
     //cout << "WARNING: partition2=" << sum_p-part1 << endl;
-    //cout << "Tabelle: " << *table;
+    //cout << "Table: " << *table;
     //cout << "Partition: " << *partition;
     //cout << "PT: " << *my_werte->PT;
     //cout << "SIJ: " << *my_werte->SIJ;
     //cout << "schedule: " << *out_schedule;
     //cout << "valid: " << out_schedule->valid_LR(my_werte->SIJ) << endl;
-    //cout << "WARNING: Es sind " << sp->get_int("NB_STEPS") << " Schritte zu tun " << endl;
+    //cout << "WARNING: There are  " << sp->get_int("NB_STEPS") << " steps to do " << endl;
     //cout << "WARNING: Iss" << sp->get_string("NAME")<< endl;
 
 
