@@ -73,11 +73,20 @@ public:
 
 //**************************************************************************
 
+/// adjacency list node
+/**
+  @author Per Willenius
+  @version 2.3pre3
+  */
 class AD_List_Node{
 public:
+  /// pointer to previous node
   AD_List_Node * pred;
+  /// pointer to next node
   AD_List_Node * next;
+  /// vertice number
   int adj_vertice;
+  /// constructor
   AD_List_Node();
 };
 
@@ -110,7 +119,6 @@ public:
   int *succ;  // Enthaelt Index des naechsten
   int ef; // Zeigt auf den ersten freien
 
-  V_List();
   V_List(int groesse);
   void insert(int ki, int rank);
   ~V_List();
