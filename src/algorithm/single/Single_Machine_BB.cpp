@@ -118,7 +118,7 @@ bool SingleMachineBB::branching(int k)
 	  // connected job
 	  for(int h=0; h<n; h++){
 	    if(h!=i){
-	      if(ARC==(priority->get_connection(i+1,h+1))){
+	      if(Lisa_Graph::ARC==(priority->get_connection(i+1,h+1))){
 		(*Sources)[h]=(*Sources)[h]-1;
 	      }
 	    }
@@ -157,7 +157,7 @@ bool SingleMachineBB::branching(int k)
 	    // update predecessors
 	    for(int h=0; h<n; h++){
 	      if(h!=i){
-		if(ARC==(priority->get_connection(i+1,h+1))){
+		if(Lisa_Graph::ARC==(priority->get_connection(i+1,h+1))){
 		  (*Sources)[h]=(*Sources)[h]-1;
 		}
 	      }
@@ -274,7 +274,7 @@ double SingleMachineBB::lb(int k)
 	if(priority!=0){
 	  for(int j=0; j<n; j++){
 	    if(j!=job){
-	      if(ARC==(priority->get_connection(job+1,j+1))){
+	      if(Lisa_Graph::ARC==(priority->get_connection(job+1,j+1))){
 		(*Sources)[j]=(*Sources)[j]--;
 	      }
 	    }

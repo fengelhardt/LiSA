@@ -435,14 +435,14 @@ int Lisa_MatrixListGraph::get_connection(const int start,const int end){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
                            " out of range in Lisa_MatrixListGraph::get_connection().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
-    return NO;
+    return NONE;
   }
 #endif
 
-  if(start==end) return NO;
+  if(start==end) return NONE;
   
   if((((*matrix)[start][end]).x==0)&&(((*matrix)[start][end]).y==0)){
-    return NO;
+    return NONE;
   }else{
 
     if(signum(start, end)==-1){

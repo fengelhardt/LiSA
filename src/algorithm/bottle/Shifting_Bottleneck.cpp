@@ -166,7 +166,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 	  k1=(((*jobNumbers)[c1]-1)*(JsPro->m))+j;
 	  for(int c2=0; c2<count; c2++){
 	    k2=(((*jobNumbers)[c2]-1)*(JsPro->m))+j;
-	    if(ARC==(t->get_connection(k1,k2))){
+	    if(Lisa_Graph::ARC==(t->get_connection(k1,k2))){
 	      pg->insert_arc(c1+1,c2+1);
 	    }
 	  }

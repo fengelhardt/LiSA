@@ -29,8 +29,8 @@ public:
     for (int i=1;i<=vert;i++){
       for (int j=i+1;j<=vert;j++){
         c = graph->get_connection(i,j);
-        if(c!=NO&&c!=EDGE){ 
-          if (c==ARC) graph->insert_arc(j,i);
+        if(c!=Lisa_Graph::NONE&&c!=Lisa_Graph::EDGE){ 
+          if (c==Lisa_Graph::ARC) graph->insert_arc(j,i);
           else graph->insert_arc(i,j);
         }
       }
@@ -113,7 +113,7 @@ public:
         fc = first->get_connection(i,j);
         sc = second->get_connection(i,j);
         if(fc!=sc){
-          if (fc == EDGE) return 0;
+          if (fc == Lisa_Graph::EDGE) return 0;
           else missing = 1;
         }
       }

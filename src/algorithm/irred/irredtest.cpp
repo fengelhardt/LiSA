@@ -53,11 +53,11 @@ const int param){
   for (int i=1;i<=vert;i++){
     for (int j=i+1;j<=vert;j++){
       b = plan->get_connection(i,j);
-      if(b==ARC){  // there should be only ARC and CRA
+      if(b==Lisa_Graph::ARC){  // there should be only ARC and CRA
         lookup[i][j] = a;
         start_v[a]=i;
         end_v[a++]=j;
-      }else if(b==CRA){ 
+      }else if(b==Lisa_Graph::CRA){ 
         lookup[j][i] = a;
         start_v[a]=j;
         end_v[a++]=i;
@@ -78,7 +78,7 @@ const int param){
     plan->init_succ_pointer(a);
     c = plan->get_next_successor(a);
     while(c!=vert+1){
-      if (comp->get_connection(c,b)==NO){
+      if (comp->get_connection(c,b)==Lisa_Graph::NONE){
         party.join(i,lookup[a][c]);
       }
       c = plan->get_next_successor(a);
@@ -87,7 +87,7 @@ const int param){
     plan->init_pred_pointer(b);
     c = plan->get_next_predeccessor(b);
     while(c!=vert+1){
-      if (comp->get_connection(c,a)==NO){
+      if (comp->get_connection(c,a)==Lisa_Graph::NONE){
         party.join(i,lookup[c][b]);
       }
       c = plan->get_next_predeccessor(b);
@@ -118,7 +118,7 @@ const int param){
     currpos = curr[0];
     turnable = 1;
     for (int j=1;j<=currpos;j++){
-      if (disjkt->get_connection(start_v[curr[j]],end_v[curr[j]])!=EDGE){
+      if (disjkt->get_connection(start_v[curr[j]],end_v[curr[j]])!=Lisa_Graph::EDGE){
         turnable = 0;
         all = 0;
         break;

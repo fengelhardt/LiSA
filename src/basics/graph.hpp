@@ -8,12 +8,18 @@
 #include "matrix.hpp"
 #include "pair.hpp"
 
-
-/// flags indicating various possible connections between a pair of vertice
-enum{CRA=-1 /// backwards ARC ;)
-    ,NO
-    ,ARC
-    ,EDGE};
+class Lisa_Graph : public Lisa_FileEntry{
+protected:
+  /// number of vertices
+  int size;
+public:
+  /// flags indicating various possible connections between a pair of vertice
+  enum{CRA=-1 /// backwards ARC ;)
+       ,NONE
+       ,ARC
+       ,EDGE};
+    
+};
 
 /// LiSA's graph object 
 /** The Lisa_MatrixListGraph Model stores three kind of connections: edges, arcs and 
@@ -27,12 +33,12 @@ enum{CRA=-1 /// backwards ARC ;)
     - ARC + EDGE =EDGE
     - EDGE - ARC = (backwards) ARC
 
-   (number of vertices + 1) determines the end of a list
+    size+1 determines the end of a list
     
     @author Christian Schulz
     @version 2.3final
 */  
-class Lisa_MatrixListGraph  : public Lisa_FileEntry {
+class Lisa_MatrixListGraph  : public Lisa_Graph {
 private:
 
   ///number of vertices
