@@ -94,7 +94,7 @@ int main(int argc, char *argv[]){
    
    ifstream i_strm(argv[1]);
    if (!i_strm){
-     cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+     cout << "ERROR: cannot open file '" << argv[1] << "' for reading." << endl;
      exit(1);
    }
    
