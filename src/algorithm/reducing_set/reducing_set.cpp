@@ -55,7 +55,7 @@ Lisa_nestedList<TIMETYP> * allDeltas;
 
 // first thing ever to do: calculating the sums for each col and row
 void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
-{
+{  
   // initializing the arrays with 0
   (*rowsums).fill(0);
   (*colsums).fill(0);
@@ -76,7 +76,6 @@ void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
       }
     }
   }
-
   return;
 }
 
@@ -86,23 +85,21 @@ void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
 TIMETYP get_delta(Lisa_Matrix<TIMETYP> & P,
 		  const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J)
 {
-  TIMETYP delta=LB;
+  TIMETYP delta=LB;  
   for(int i=0;i<m;i++) {
-    if (matching_J[i]>=0 && matching_J[i]<m && P[matching_J[i]][i]>0) {
+    if (matching_J[i]>=0 && matching_J[i]<n && P[matching_J[i]][i]>0) {
       // && ((*colsums)[i]==LB || (*rowsums)[matching_J[i]]==LB)) {
       if (delta>P[matching_J[i]][i]) delta=P[matching_J[i]][i]; }
     else {
       if (delta>LB-(*colsums)[i]) delta=LB-(*colsums)[i]; }
   }
-  
   for(int j=0;j<n;j++) {
-    if (matching_I[j]>=0 && matching_I[j]<n && P[j][matching_I[j]]>0) {
+    if (matching_I[j]>=0 && matching_I[j]<m && P[j][matching_I[j]]>0) {
       // && ((*rowsums)[j]==LB || (*colsums)[matching_I[j]]==LB )) {
       if (delta>P[j][matching_I[j]]) delta=P[j][matching_I[j]]; }
     else {
       if (delta>LB-(*rowsums)[j]) delta=LB-(*rowsums)[j]; }
   }
-
   return delta;
 }
 
@@ -115,7 +112,7 @@ void update(Lisa_Matrix<TIMETYP> & P,
 	    TIMETYP delta) 
 {
   LB-=delta;
-  if (n<=m) {
+  if (n>=m) {
     for(int j=0;j<n;j++)
       if ((matching_I[j]>=0) && (matching_I[j]<m) && (P[j][matching_I[j]]>0)) {
 	P[j][matching_I[j]]-=delta;
@@ -130,17 +127,22 @@ void update(Lisa_Matrix<TIMETYP> & P,
     for(int i=0;i<m;i++)
       if (matching_J[i]>=0 && matching_J[i]<n &&  P[matching_J[i]][i]>0) {
 	P[matching_J[i]][i]-=delta; 
-	if (P[matching_J[i]][i]<=0) MatchingMatrix[matching_J[i]][i]=0;
+	if (P[matching_J[i]][i]<=0) {
+          MatchingMatrix[matching_J[i]][i]=0;
+     }
 	(*colsums)[i]-=delta;
 	(*rowsums)[matching_J[i]]-=delta;
 	(*result_pmtnLR)[matching_J[i]][i].append(level);
 	(*result_pmtnP)[matching_J[i]][i].append(delta);
       }
   }
-
-  for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
-  for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
-
+  
+  for(int j=0;j<n;j++)  {
+       (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
+  }
+  for(int i=0;i<m;i++) {
+       (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
+  }
 }
 
 
@@ -153,7 +155,7 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
   Lisa_nestedList<pair> * MatchingEdges=new Lisa_nestedList<pair>();
   int edgecount=0;
   LB-=delta;
-  if (n<=m) {
+  if (n>=m) {
     for(int j=0;j<n;j++)
       if ((matching_I[j]>=0) && (matching_I[j]<m) && (P[j][matching_I[j]]>0)) {
 	edgecount++;
@@ -227,14 +229,14 @@ int main(int argc, char *argv[])
     // read problem instance:
     i_strm >> (*my_werte);
     
-    m=my_werte->get_m();
     n=my_werte->get_n();
+    m=my_werte->get_m();
     P_input=my_werte->PT;
     nondelay=lpr->get_property(NO_WAIT);
 
     MatchingMatrix=new Lisa_Matrix<bool>(m+n,m+n);
-    result_pmtnP  = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_m(),my_werte->get_n());
-    result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_m(),my_werte->get_n());
+    result_pmtnP  = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
+    result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
 
     if (nondelay) {
       allMatchings=new Lisa_nestedList<pair>();
@@ -252,7 +254,7 @@ int main(int argc, char *argv[])
     }
     for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
     for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
-    
+
 
     /*********************************************************
      **  ok - here the algorithm itself starts...           **
@@ -263,13 +265,12 @@ int main(int argc, char *argv[])
       
       // calculating a set of independend operations...
       Lisa_BipartMatching * myMatching = new Lisa_BipartMatching(MatchingMatrix);
-    
+      
       // ..., determining the maximum delta for that...
       delta=get_delta(*P_input,
 		      *myMatching->get_matching_I(),
 		      *myMatching->get_matching_J());
 
-      
       // ..., and updating everything!
       if (!nondelay) update(*P_input,
 			    *myMatching->get_matching_I(),
@@ -357,5 +358,4 @@ int main(int argc, char *argv[])
     delete rowsums;
     delete colsums;
 
-    cout<<"done..."<<endl;
 }
