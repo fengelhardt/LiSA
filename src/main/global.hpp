@@ -18,7 +18,7 @@ const int DEFAULT_M=4;
 const int DEFAULT_N=6;
 
 /// logic
-#define NOT_DEFINED -1 
+//#define NOT_DEFINED -1 
 ///logic
 #define TRUE 1
 ///logic

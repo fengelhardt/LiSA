@@ -81,8 +81,8 @@ int Lisa_XSchedule::PG_to_LR(Lisa_Matrix<bool> *SIJ){
       w1=PG->hpred(v); // horizontal predecessor
       w2=PG->vpred(v); // vertical predecessor
       a=b=0;
-      if(w1!=NOT_DEFINED) a= (*P->LR)[PG->row(w1)][PG->column(w1)];
-      if(w2!=NOT_DEFINED) b= (*P->LR)[PG->row(w2)][PG->column(w2)];
+      if(w1 != -1) a= (*P->LR)[PG->row(w1)][PG->column(w1)];
+      if(w2 != -1) b= (*P->LR)[PG->row(w2)][PG->column(w2)];
       (*P->LR)[vi][vj]=MAX(a,b)+1;
     }
   }
