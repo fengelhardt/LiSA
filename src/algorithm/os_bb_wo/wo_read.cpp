@@ -45,7 +45,7 @@ Lisa_ControlParameters Parameter;
 Lisa_Values Values;
 
 //machine and job order
-Lisa_Matrix<int> *MJ;
+Lisa_Matrix<int> *MO,*JO;
 
 //find machine and job for an operation
 std::vector<std::pair<int,int> > lookup;
@@ -164,22 +164,24 @@ void Read_Data(char *FileName){
   }
   
   NumOfOperations = sum;
-  MJ = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines);
+  MO = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines);
+  JO = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines); 
 }
 
 void Set_Solution(List** machines, List** jobs){
-  MJ->fill(0);
+  MO->fill(0);
+  JO->fill(0);
   
   List* help;
   int pos;
   
-  // create sum of job and machine order
+  // create job and machine order
   for(int i=1;i<=NumOfJobs;i++){
     help = jobs[i];
     pos = 0;
     while(help != NIL){
       pos++;
-      (*MJ)[i-1][lookup[help->number-1].second] = pos;
+      (*JO)[i-1][lookup[help->number-1].second] = pos;
       help = help->next;
     }
   }
@@ -189,7 +191,7 @@ void Set_Solution(List** machines, List** jobs){
     pos = 0;
     while(help != NIL){
       pos++;
-      (*MJ)[lookup[help->number-1].first][i-1] += pos;
+      (*MO)[lookup[help->number-1].first][i-1] = pos;
       help = help->next;
     }
   }
@@ -197,58 +199,12 @@ void Set_Solution(List** machines, List** jobs){
 }
 
 void Write_Solution(char * FileName){
-  std::vector<int> z(NumOfJobs);
-  std::vector<int> s(NumOfMachines);
-  
-  for(int i=0;i<NumOfJobs;i++) z[i] = 0;
-  for(int j=0;j<NumOfMachines;j++) s[j] = 0;
-  
-  Lisa_Matrix<bool> SIJ(*Values.SIJ);
-  
-  
+
   Lisa_Schedule Schedule(NumOfJobs,NumOfMachines);
   Schedule.make_LR();
-  Schedule.LR->fill(0);
-
-  int k=1;
-  bool found;
-  do{
-        
-    found = false;
-    for(int i=0;i<NumOfJobs;i++){
-      for(int j=0;j<NumOfMachines;j++){
-        if(SIJ[i][j] && (*MJ)[i][j]==2){
-          (*Schedule.LR)[i][j] = k;
-          z[i] = s[j] = 1;
-          SIJ[i][j] = false;
-          found = true;
-        }
-      }
-    }
-    if(!found){
-      G_ExceptionList.lthrow("Job order and machine order infeasible!");
-      exit(1);
-    }
-    
-    k++;
-    
-    found = false;
-    for(int i=0;i<NumOfJobs;i++){
-      for(int j=0;j<NumOfMachines;j++){
-        if(SIJ[i][j]){
-          (*MJ)[i][j] = (*MJ)[i][j] - z[i] - s[j];
-          found = true;
-        }
-      }
-    }
-    
-    for(int i=0;i<NumOfJobs;i++) z[i] = 0;
-    for(int j=0;j<NumOfMachines;j++) s[j] = 0;
-      
-
-  }while(found);
-
-  delete MJ;
+  bool feasible  = Schedule.MO_JO_to_LR(Schedule.LR,Values.SIJ,MO,JO);
+  
+  delete MO,JO;
     
   std::ofstream o_strm(FileName);
   if (!o_strm){
@@ -258,8 +214,11 @@ void Write_Solution(char * FileName){
   }
   o_strm.close();
   
-  LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-  xmlOutput << Problem << Values << Parameter << Schedule;
+  LisaXmlFile::DOC_TYPE type = LisaXmlFile::INSTANCE;
+  if(feasible) type = LisaXmlFile::SOLUTION;
+  LisaXmlFile xmlOutput(type);
+  xmlOutput << Problem << Values << Parameter;
+  if(feasible) xmlOutput << Schedule;
   xmlOutput.write(FileName);
 }
 
