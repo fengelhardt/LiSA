@@ -16,9 +16,8 @@
 
 Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO){
   // sort problemtype out 
-
   int new_pt;
-
+  
   int env = pt->get_property(M_ENV);
   int ri = pt->get_property(RI);
   int obj = pt->get_property(OBJECTIVE);
@@ -32,7 +31,7 @@ Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,Lisa_Matr
   else if (env == J || env==F) env=1;
   else env = 2;
 
-  // argl ... das sind bestimmt nicht alle Fälle
+  // argl ... are these all cases i can't handle ?
   if (pt->get_property(PMTN) || pt->get_property(PRECEDENCE)!=EMPTY || 
       pt->get_property(BATCH) || pt->get_property(NO_WAIT) || env==2 ||
       obj==2){ 
@@ -123,10 +122,7 @@ Lisa_ConvertGraph::Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lis
   case J_RI_LMAX:
     initialize_J_RI_LMAX(SIJ,MO);
     break;
-  default:
-    break;
   }
-
 }
 
 //****************************************************************************************
