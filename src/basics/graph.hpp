@@ -74,9 +74,6 @@ public:
   ///initialize the pointer for the successors list of a given vertex
   virtual void init_successor(const int vertex)=0;
 
-  /// initialize the pointer for the predecessor list of a given vertex
-  virtual void init_predecessor(const int vertex)=0;
-
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 
       pointer to the next following successor. Returning n+1 stands for the end 
@@ -84,19 +81,25 @@ public:
       successor list pointer. */  
   virtual int next_successor(const int vertex)=0;
 
+  /// initialize the pointer for the predecessor list of a given vertex
+  virtual void init_predecessor(const int vertex)=0;
+  
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
       vertex pointer to the next following predeccessor. Returning n+1 stands
       for the end of this vertex's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
   virtual int next_predecessor(const int vertex)=0;
-
+  
+  /// initialize the pointer for the predecessor list of a given vertex
+  virtual void init_neighbour(const int vertex)=0;
+  
   /// get vertices that form an edge together with the argument vertex 
   /** returns only connected edges of a vertex, returning n+1 stands for the 
       end of this vertex's edge list ... it works on the successor list, so
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
-  virtual int next_edge(const int vertex)=0;
+  virtual int next_neighbour(const int vertex)=0;
   
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   virtual void clear(const int vertex)=0;
@@ -160,10 +163,13 @@ private:
     */
   Lisa_Matrix<Lisa_Pair> *matrix;
   
-  /// pointer to a Vector
-  /** that storages the current position within the successor and predeccessor 
+  /// vector with list pointer
+  /** that stores the current position within the successor and predeccessor 
       list of every vertex */
   Lisa_Vector<Lisa_Pair> *succ_pred_pointer;
+  /// vector with list pointer
+  /** that stores the current position within the edge list of every vertex */
+  Lisa_Vector<int> *edge_pointer;
   
   ///determine the signum of a connection
   int signum(const int start,const int end) const;
@@ -239,17 +245,14 @@ public:
 
   /// get the kind of connection between two vertices 
   /** possible return values are:
-      - NO 0
-      - ARC 1
-      - CRA -1 which is an arc from end to start ;)
-      - EDGE 2 */
+      - NONE
+      - ARC
+      - CRA which is an arc from end to start ;)
+      - EDGE */
   int get_connection(const int start,const int end)const;
 
   ///initialize the pointer for the successors list of a given vertex
   void init_successor(const int vertex);
-
-  /// initialize the pointer for the predecessor list of a given vertex
-  void init_predecessor(const int vertex);
 
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 
@@ -257,20 +260,26 @@ public:
       of this vertice's successor list and for a new initialization of its 
       successor list pointer. */  
   int next_successor(const int vertex);
-
+  
+  /// initialize the pointer for the predecessor list of a given vertex
+  void init_predecessor(const int vertex);
+  
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
       vertex pointer to the next following predeccessor. Returning n+1 stands
       for the end of this vertex's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
   int next_predecessor(const int vertex);
-
+  
+  /// initialize the pointer for the predecessor list of a given vertex
+  void init_neighbour(const int vertex);
+  
   /// get vertices that form an edge together with the argument vertex 
   /** returns only connected edges of a vertex, returning n+1 stands for the 
       end of this vertex's edge list ... it works on the successor list, so
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
-  int next_edge(const int vertex);
+  int next_neighbour(const int vertex);
 
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   void clear(const int vertex);
