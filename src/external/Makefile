@@ -20,28 +20,28 @@ general: all
 # ------------------------------------------------------------------------------
 
 all:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) all; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) all; cd ..; done
 
 # ------------------------------------------------------------------------------
 
 compile:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) compile; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) compile; cd ..; done
 
 # ------------------------------------------------------------------------------
 
 install:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) install; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) install; cd ..; done
 
 # ------------------------------------------------------------------------------
 
 uninstall:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) uninstall; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) uninstall; cd ..; done
 	rm -fr $(DOCPATH)/lisa/*/external
 
 # ------------------------------------------------------------------------------
 
 distclean:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) distclean; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) distclean; cd ..; done
 
 # ------------------------------------------------------------------------------
 
@@ -51,10 +51,10 @@ clean:
 # ------------------------------------------------------------------------------
 
 depend:
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) depend; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) depend; cd ..; done
 
 # ------------------------------------------------------------------------------
 
 develdoc: 	
-	for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) develdoc; cd ..; done
+	@for MODULE in `find $(SOURCEPATH)/external -type d -mindepth 1 -maxdepth 1 | egrep -v "$(SKIP_MODULES_REGEX)"`; do cd $${MODULE}; $(MAKE) develdoc; cd ..; done
 
