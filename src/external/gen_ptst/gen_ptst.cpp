@@ -1,5 +1,5 @@
 /*
- * ******************* ngbhptst.cpp ******************************
+ * ******************* gen_ptst.cpp ******************************
  * 
  * description:        general parametertest program
  *

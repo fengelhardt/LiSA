@@ -159,7 +159,7 @@ proc vTclWindow.$algo_name \{base\} \{
     label \$base.f$name_of_parameter.01 \
         -anchor w -borderwidth 1 \
         -text $description_of_parameter \
-        -width 30
+        -width 40
     "
 	    if { $default_value!="(" } {
 		if { $name_of_parameter=="UPPER_BOUND" } {

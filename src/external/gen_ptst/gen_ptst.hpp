@@ -1,5 +1,5 @@
 /*
- * ******************** paratest.hpp ******************************
+ * ******************** gen_ptst.hpp ******************************
  * 
  * description:      convention for the neighborhood parameter test
  * 
