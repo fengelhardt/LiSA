@@ -62,6 +62,7 @@ int main(int argc, char *argv[]){
     exit(1);
   }
   
+  cout << "This is the LiSA beam search module." << endl;
   cout << "PID= " << getpid() << endl;
   
   ifstream i_strm(argv[1]);
