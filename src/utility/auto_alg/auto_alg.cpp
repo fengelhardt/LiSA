@@ -24,7 +24,7 @@
 
 int m=10,n=10;
 long timeseed,machseed;
-int lowerrange=1,upperrange=100;
+int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
 
@@ -72,20 +72,20 @@ void parseParameters(Lisa_ControlParameters &cp){
                            " using default '"+ztos(n)+"'.",WARNING);
   }
 
-  if(cp.defined("LOWERRANGE")==Lisa_ControlParameters::LONG){
-    lowerrange = cp.get_long("LOWERRANGE");
+  if(cp.defined("MINPT")==Lisa_ControlParameters::LONG){
+    minpt = cp.get_long("MINPT");
   }else{
-    cp.add_key("LOWERRANGE",(long)lowerrange);
-    G_ExceptionList.lthrow((std::string)"No LOWERRANGE parameter defined,"+
-                           " using default '"+ztos(lowerrange)+"'.",WARNING);
+    cp.add_key("MINPT",(long)minpt);
+    G_ExceptionList.lthrow((std::string)"No MINPT parameter defined,"+
+                           " using default '"+ztos(minpt)+"'.",WARNING);
   }  
   
-  if(cp.defined("UPPERRANGE")==Lisa_ControlParameters::LONG){
-    upperrange = cp.get_long("UPPERRANGE");
+  if(cp.defined("MAXPT")==Lisa_ControlParameters::LONG){
+    maxpt = cp.get_long("MAXPT");
   }else{
-    cp.add_key("UPPERRANGE",(long)upperrange);
-    G_ExceptionList.lthrow((std::string)"No UPPERRANGE parameter defined,"+
-                           " using default '"+ztos(upperrange)+"'.",WARNING);
+    cp.add_key("MAXPT",(long)maxpt);
+    G_ExceptionList.lthrow((std::string)"No MAXPT parameter defined,"+
+                           " using default '"+ztos(maxpt)+"'.",WARNING);
   }
 
   if(cp.defined("NUMBERPROBLEMS")==Lisa_ControlParameters::LONG){
@@ -157,7 +157,7 @@ void checkAlgo(Lisa_ControlParameters &cp){
 
 //**************************************************************************
 
-// generate values with respect to seed,m,n,lowerrange,upperrange and the 
+// generate values with respect to seed,m,n,minpt,maxpt and the 
 // problemtype .. only problemtypes that can be handled here should be accepted 
 // by checkProblemType()
 void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
@@ -167,15 +167,15 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
   val.SIJ->fill(1);
   
   // taken from tcl_c.cpp, TC_genpt()
-  if(lowerrange==upperrange){
-    val.PT->fill(lowerrange);
+  if(minpt==maxpt){
+    val.PT->fill(minpt);
   }else{
     
     Lisa_Vector<int> zeg(m), mg(m);
     for(int j=0; j<n; j++) {
       
       for(int i=0; i<m; i++) {
-        zeg[i] = lisa_random((long)lowerrange,(long)upperrange, &timeseed);
+        zeg[i] = lisa_random((long)minpt,(long)maxpt, &timeseed);
         mg[i]=i;
       }
       
