@@ -7,9 +7,9 @@
 #ifndef _DATA_H
 #define _DATA_H
 
-#define MaxNumOfOperations  410
 #define MaxNumOfMachines     30
 #define MaxNumOfJobs         30
+#define MaxNumOfOperations   MaxNumOfMachines*MaxNumOfJobs
 #define MaxOpProM_And_J      30
 #define NIL                   0
 #define MaxInt            32000
