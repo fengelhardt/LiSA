@@ -76,10 +76,6 @@ public:
 
   /// constructor
   /** Create a graph as the copy of another graph. */
-  Lisa_Graph(const Lisa_Graph& othergraph);
-
-  /// constructor
-  /** Create a graph as the copy of another graph. */
   Lisa_Graph(const Lisa_Graph *const othergraph);
 
   /// destructor

@@ -30,21 +30,6 @@ Lisa_Graph::Lisa_Graph(const int number_of_knots){
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph){
-  matrix=0;
-  succ_pred_pointer=0;
-  init(othergraph.get_vertices());
-  
-  for(int i=0; i<n+1; i++){
-    for(int j=0; j<n+1; j++){
-      (*matrix)[i][j].x=(*(othergraph.matrix))[i][j].x;
-      (*matrix)[i][j].y=(*(othergraph.matrix))[i][j].y;
-    }
-  }
-}
-
-//**************************************************************************
-
 Lisa_Graph::Lisa_Graph(const Lisa_Graph *const othergraph){
   matrix=0;
   succ_pred_pointer=0;
