@@ -1,0 +1,69 @@
+/*
+ * ************** bb_env.C *******************************
+ * 
+ * basic class for branch and bound implementations
+ *
+ * Owner: Thomas Tautenhahn
+ *
+ * 19.9.1998
+*/
+
+#include"bb_env.hpp"
+// replace the following line for a Windoofs version:
+#include<signal.h>
+
+bool abort_algorithm;
+
+void set_abort(int i) 
+    {  
+      abort_algorithm=TRUE;
+      cout << "\nSignal " << i << " received, writing results." << endl;
+    } 
+      
+Lisa_GenericBb::Lisa_GenericBb() 
+    {
+      output_bound=MAXNUMBER;
+      steps=steps_ok=0;
+      given_upper_bound= (TIMETYP) MAXOBJECTIVE;
+      given_lower_bound= (TIMETYP) -MAXOBJECTIVE;
+      ins_order_type=RANDOM_ORDER;
+    }
+
+void Lisa_GenericBb::count_steps()
+ {
+   steps++;
+   if ((steps % 10000) == 1000)
+      cout << "objective= " << upper_bound << endl;
+ }    
+
+// WARNING! The following two functions have to be replaced for Windoofs!
+
+void Lisa_GenericBb::run_start()
+ {
+   signal(SIGINT, &set_abort);
+   upper_bound=given_upper_bound;
+   steps=steps_ok=0;
+ }
+
+void Lisa_GenericBb::run_stop()
+ {
+   signal(SIGINT, SIG_DFL);
+ }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

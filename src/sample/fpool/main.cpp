@@ -2,7 +2,7 @@
 #include "fp_set.hpp"
 #include "fp_vector.hpp"
 #include "nb_fp.hpp"
-#include "../../external/neighbor/iterate.hpp"
+#include "../../algorithm/nb_iter/iterate.hpp"
 #include "../../basics/except.hpp"
 #include "../../lisa_dt/ctrlpara.hpp"
 

@@ -95,25 +95,33 @@ help: logo
 
 all: logo
 	cd $(SOURCEPATH)/main; $(MAKE) all
-	cd $(SOURCEPATH)/external; $(MAKE) all
+	cd $(SOURCEPATH)/algorithm; $(MAKE) all
+	cd $(SOURCEPATH)/utility; $(MAKE) all
+	cd $(SOURCEPATH)/sample; $(MAKE) all
 
 # ------------------------------------------------------------------------------
 
 compile: logo
 	cd $(SOURCEPATH)/main; $(MAKE) compile
-	cd $(SOURCEPATH)/external; $(MAKE) compile
+	cd $(SOURCEPATH)/algorithm; $(MAKE) compile
+	cd $(SOURCEPATH)/utility; $(MAKE) compile
+	cd $(SOURCEPATH)/sample; $(MAKE) compile
 
 # ------------------------------------------------------------------------------
 
 install: logo
 	cd $(SOURCEPATH)/main; $(MAKE) install
-	cd $(SOURCEPATH)/external; $(MAKE) install
+	cd $(SOURCEPATH)/algorithm; $(MAKE) install
+	cd $(SOURCEPATH)/utility; $(MAKE) install
+	cd $(SOURCEPATH)/sample; $(MAKE) install
 
 # ------------------------------------------------------------------------------
 
 uninstall:
 	cd $(SOURCEPATH)/main; $(MAKE) uninstall
-	cd $(SOURCEPATH)/external; $(MAKE) uninstall
+	cd $(SOURCEPATH)/algorithm; $(MAKE) uninstall
+	cd $(SOURCEPATH)/utility; $(MAKE) uninstall
+	cd $(SOURCEPATH)/sample; $(MAKE) uninstall
 	rm -fr $(BINPATH)
 	rm -fr $(ALGPATH)
 
@@ -156,7 +164,9 @@ distclean: uncygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	cd $(SOURCEPATH)/main; $(MAKE) distclean
-	cd $(SOURCEPATH)/external; $(MAKE) distclean
+	cd $(SOURCEPATH)/algorithm; $(MAKE) distclean
+	cd $(SOURCEPATH)/utility; $(MAKE) distclean
+	cd $(SOURCEPATH)/sample; $(MAKE) distclean
 	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------
@@ -168,7 +178,9 @@ clean:
 
 depend:
 	cd $(SOURCEPATH)/main; $(MAKE) depend
-	cd $(SOURCEPATH)/external; $(MAKE) depend
+	cd $(SOURCEPATH)/algorithm; $(MAKE) depend
+	cd $(SOURCEPATH)/utility; $(MAKE) depend
+	cd $(SOURCEPATH)/sample; $(MAKE) depend
 
 # ------------------------------------------------------------------------------
 
@@ -196,4 +208,7 @@ version:
 
 develdoc: 	
 	cd $(SOURCEPATH)/main; $(MAKE) develdoc
-	cd $(SOURCEPATH)/external; $(MAKE) develdoc
+	cd $(SOURCEPATH)/algorithm; $(MAKE) develdoc
+	cd $(SOURCEPATH)/utility; $(MAKE) develdoc
+	cd $(SOURCEPATH)/sample; $(MAKE) develdoc
+

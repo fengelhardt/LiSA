@@ -1,0 +1,83 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.74 [de] (X11; U; Linux 2.2.16 i686) [Netscape]">
+   <title>Hilfe zu Irreduzibilit&auml;tstest</title>
+</head>
+<body bgcolor="#E3E3E3" background="lisa.gif">
+
+<h2>Irreduzibilit&auml;tstest</h2>
+    Dieser Algorithmus &uuml;berpr&uuml;ft einen vorgegebenen Plan auf Irreduzibilit&auml;t. Ein Plan S* reduziert 
+    einen anderen Plan S wenn er für jede Wahl von Bearbeitungszeiten einen besseren Zielfunktionswert liefert als 
+    S. S ist also irreduzibel wenn kein solcher Plan existiert.<br><br>Der Test funktioniert für Open, Job und Flow
+    Shop Probleme, in Kombination mit Freigabezeiten und für die Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi
+    und SumWiTi Zielfunktionen.
+<h2>So wird der Test gestartet:</h2>
+Stellen sie sicher, das der <a href="problem.html">Problemtyp</a> und alle <a href="values.html">Problemparameter</a>
+definiert sind und bereits ein Plan existiert. W&auml;hlen sie <i>Heuristische Verfahren|Irreduzibilit&auml;tstest</i>
+aus dem Menu <i>Algorithmen</i> , editieren sie die Optionen und dr&uuml;cken sie <i>OK</i>.
+<h2>Optionen:</h2>
+
+<dl>
+<dt>Erzeuge Pl&auml;ne:</dt>
+
+<dl>
+<dt>SIMILAR</dt>
+
+<dd>Wenn diese Option gew&auml;hlt wurde wird der Algorithmus NICHT auf Irreduzibilit&auml;t pr&uuml;fen.
+    Stattdessen werden alle Pl&auml;ne erzeugt und zur&uuml;ckgegeben, die f&uuml;r jede Wahl von Bearbeitungszeiten 
+    genau den selben Zielfunktionswert liefern wie der urspr&uuml;ngliche Plan.</dd>
+
+<dt>ALL_REDUCING</dt>
+
+<dd>Alle Pl&auml;ne die den Eingebeplan reduzieren werden erzeugt. Wenn kein solcher Plan existiert wird der 
+    Eingabeplan zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur die irreduziblen
+    Pl&auml;ne zurückgegeben werden. Die Option Pl&auml;ne in zuf&auml;lliger Reihenfolge  zu erzeugen hat auf
+    diesen Algorithmus keinen Einfluss.</dd>
+
+<dt>ITERATIVE_REDUCING</dt>
+
+<dd>Sobald ein Plan gefunden wurde, der den urspr&uuml;nglichen Plan reduziert wird der Algorithmus unterbrochen 
+    und mit dem neuen Plan neu gestartet. Dies wird fortgef&uuml;hrt bis ein irreduzibler Plan gefunden wurde. 
+    Pl&auml;ne k&ouml;nnen in zuf&auml;lliger Reihenfolge erzeugt werden, so das bei wiederholten Aufrufen des 
+    Algorithmus unterschiedliche Resultate erzielt werden können. Sollte der urspr&uuml;ngliche Plan irreduzibel 
+    sein, so wird er zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur der letzte
+    (irreduzible) Plan zur&uuml;ckgegeben werden.</dd>
+
+</dl>
+
+<dt>Gib folgende Pl&auml;ne zur&uuml;ck:</dt>
+
+<dl>
+<dt>ALL</dt>
+
+<dd>Alle erzeugten Pl&auml;ne werden zur&uuml;ckgegeben. Bitte beachten sie das dies im Zusammenhang mit der 
+    ALL_REDUCING Option sehr viele sein k&ouml;nnen.</dd>
+
+<dt>ONLY_IRREDUCIBLE</dt>
+
+<dd>Nur die irreduziblen Pl&auml;ne werden zur&uuml;ckgegeben.</dd>
+
+</dl>
+
+<dt>Erzeuge Pl&auml;ne in zuf&auml;lliger Reihenfolge:</dt>
+
+<dl>
+<dt>YES</dt>
+
+<dd>Pl&auml;ne werden vom Algorithmus in zuf&auml;lliger Reihenfolge erzeugt. Dies ist nur interessant
+    im Zusammenhang mit der ITERATIVE_REDUCING Option, um bei verschiedenen Aufrufen des Algorithmus 
+    verschiedene Resultate zu erhalten.</dd>
+
+<dt>NO</dt>
+
+<dd>Pl&auml;ne werden vom Algorithmus in der effizientesten Reihenfolge erzeugt.</dd>
+
+</dl>
+</dl>
+
+<hr><a href="main.htm">Inhaltsverzeichnis
+<hr></a>23.10.01
+</body>
+</html>

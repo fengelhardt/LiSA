@@ -1,0 +1,81 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.74 [de] (X11; U; Linux 2.2.16 i686) [Netscape]">
+   <title>Help on Irreducibilitytest</title>
+</head>
+<body bgcolor="#E3E3E3" background="lisa.gif">
+
+<h2>Irreducibilitytest</h2>
+     This algorithm checks if a given schedule for a problem is irreducible. A schedule S* reduces another schedule 
+     S if its objective is better than that for S for any given set of processing types. S is therefore irreducible 
+     if no such schedule S* exists.<br><br>It works for open, job and flow shop problems, in combination with 
+     release dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and SumWiTi objectives.
+          
+<h2>What you have to do:</h2>
+Make sure that both a <a href="problem.html">problem type</a> and all <a href="values.html">parameters</a> are
+defined and that a valid plan exists. Choose <i>Heuristic Algortihms|Irreducibilitytest</i> from the
+menu <i>Algorithms</i> and after editing the options press <i>OK</i>.
+
+<h2>Options:</h2>
+<dl>
+<dt>Generate plans:</dt>
+
+<dl>
+<dt>SIMILAR</dt>
+
+<dd>If this is selected the algorithm will NOT check for irreducibility. Instead it will generate and 
+    return all schedules that have the same objective as the input schedule for any given set of 
+    processing times. In that case the other options do not apply.</dd>
+
+<dt>ALL_REDUCING</dt>
+
+<dd>The algorithm will generate all schedules that reduce the input schedule. If no such schedule exists it will 
+    return the input schedule together with a warning that it's irreducible. Otherwise all genereated schedules 
+    or only those irreducible may be returned. The random option does not apply here.</dd>
+
+<dt>ITERATIVE_REDUCING</dt>
+
+<dd>As soon as a schedule is found that reduces the input schedule the algorithm will be interrupted and restarted 
+    with the new schedule. This will be repeated until an irreducible schedule is found. Schedules can be generated
+    in random order so that you will get different results at successive calls with the same input schedule. If the 
+    input schedule is irreducible it will be returned together with a warning. Otherwise all generated plans or
+    only the last (irreducible) one may be returned.</dd>
+
+</dl>
+
+<dt>Return following plans:</dt>
+
+<dl>
+<dt>ALL</dt>
+
+<dd>All generated schedules will be returned. Be aware that with the ALL_REDUCING option set this might be 
+    alot of schedules.</dd>
+
+<dt>ONLY_IRREDUCIBLE</dt>
+
+<dd>Only the irreducible plans will be returned.</dd>
+
+</dl>
+
+<dt>Generate plans in random order:</dt>
+
+<dl>
+<dt>YES</dt>
+
+<dd>The algorithm will randomize the order in which schedules are generated. This is only interesting in
+    combination with ITERATIVE_REDUCING set to gather different results at successive call with the 
+    same input schedule.</dd>
+
+<dt>NO</dt>
+
+<dd>Schedules will be generated in the must efficient order.</dd>
+
+</dl>
+</dl>
+
+<hr><a href="main.htm">Table of Contents&nbsp;
+<hr></a>23.10.01
+</body>
+</html>

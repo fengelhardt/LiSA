@@ -91,12 +91,12 @@
 
   /** @name External Modules */
   //@{
-    //@Include: ../external/nb_iter/doc_nghb.hpp
-    //@Include: ../external/irred/irred.cpp
-    //@Include: ../external/match/match.cpp
-    //@Include: ../external/bb/bb_main.hpp
-    //@Include: ../external/bottle/bottle.cpp
-    //@Include: ../external/single/single.cpp
+    //@Include: ../algorithm/nb_iter/doc_nghb.hpp
+    //@Include: ../algorithm/irred/irred.cpp
+    //@Include: ../algorithm/match/match.cpp
+    //@Include: ../algorithm/bb/bb_main.hpp
+    //@Include: ../algorithm/bottle/bottle.cpp
+    //@Include: ../algorithm/single/single.cpp
   //@}
 
   // and so on

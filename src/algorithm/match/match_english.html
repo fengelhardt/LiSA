@@ -1,0 +1,94 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.74 [de] (X11; U; Linux 2.2.16 i686) [Netscape]">
+   <title>Help on Matching Heuristics</title>
+</head>
+<body bgcolor="#E3E3E3" background="lisa.gif">
+
+<h2>
+Matching Heuristics</h2>
+These are heuristics which create a schedule for open shop problems. They
+try to order the operations that way that operations with similar processingtimes
+run parallel. The progress bar will show you the current total completion
+time after each insertion.
+<h2>
+What you have to do:</h2>
+Make sure that both a <a href="problem.html">problem type </a>and all <a href="values.html">parameters
+</a>are
+defined. Choose <i>Heuristic Algortihms|Matching Heuristics</i> from the
+menu <i>Algorithms</i> and after editing the options press <i>OK</i>.
+<h2>
+Options:</h2>
+
+<dl>
+<dt>
+Kind of Algorithm:</dt>
+
+<dl>
+<dt>
+BOTTLENECK</dt>
+
+<dd>
+This algorithm sorts the weightings and then searches binary for the smallest
+weighting p so that&nbsp; M = {p(i,j) | p(i,j) >= p} contains a perfect
+matching. The according operations are inserted into the schedule and the
+weightings are deleted. This process will be iterated until all operations
+have been inserted into the schedule.</dd>
+
+<dt>
+WEIGHTED</dt>
+
+<dd>
+A maximum weighted matching is calculated. The according operation are
+inserted into the schedule and the weightings are deleted (eg. set to the
+lowest possible value). This will be repeated until all operations have
+been inserted into the schedule.</dd>
+
+<dd>
+</dd>
+</dl>
+
+<dt>
+Kind of matching:</dt>
+
+<dd>
+&nbsp;This option allows you to choose which kind of weightings will be
+used for the matching algorithms.</dd>
+
+<dl>
+<dt>
+MIN</dt>
+
+<dd>
+All processingtimes will be subtracted from the longest possible processingtime,
+the result will be used as weighting. That means the algorithm trys to
+minimize the average processingtime for the inserted operations.</dd>
+
+<dt>
+MAX</dt>
+
+<dd>
+The processingtime for each operation will be used as weighting. That means
+the algorithm trys to maximize the average processingtime for the inserted
+operations.</dd>
+
+<dt>
+HEADS</dt>
+
+<dd>
+The first set of operations to insert will be calculated as if the MIN
+parameter has been set. After inserting a set of operations the heads for
+all remaining operations will be calculated and added to the processingtime
+for that operation. The result will be substracted from the longest possible
+processingtime and be used as weighting. That means the algorithm trys
+to insert a set of operations that way, that the current total completion
+time will get minimized.</dd>
+</dl>
+</dl>
+
+<hr><a href="main.htm">Table of Contents&nbsp;
+<hr></a>29.10.00
+</body>
+</html>

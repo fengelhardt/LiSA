@@ -1,0 +1,18 @@
+CXXSOURCES=\
+	sample.cpp \
+	../../basics/global.cpp \
+	../../basics/except.cpp \
+	../../basics/matrix.cpp \
+	../../basics/pair.cpp \
+	../../basics/list.cpp \
+	../../lisa_dt/ctrlpara.cpp\
+	../../basics/lisa_str.cpp \
+	../../lisa_dt/ptype.cpp \
+	../../lisa_dt/mo.cpp \
+	../../lisa_dt/lvalues.cpp \
+	../../lisa_dt/schedule.cpp \
+
+DOCSOURCES=\
+     sample.hpp
+
+

@@ -8,8 +8,8 @@ CXXSOURCES=\
 	../../basics/lisa_str.cpp \
 	../../basics/tlist.cpp \
 	../../basics/blist.cpp \
-	../../external/neighbor/iterate.cpp \
-        ../../external/neighbor/tabu.cpp \
+	../../algorithm/nb_iter/iterate.cpp \
+        ../../algorithm/nb_iter/tabu.cpp \
 	../../basics/matrix.cpp \
 	../../lisa_dt/ctrlpara.cpp \
 

@@ -1,0 +1,50 @@
+CXXSOURCES=\
+	nb_iter.cpp \
+	iterate.cpp \
+	tabu.cpp \
+	jsp/jsp_api.cpp \
+	jsp/jsp_swap.cpp \
+	jsp/jsp_shft.cpp \
+	jsp/jsp_trns.cpp \
+	jsp/jsp_crtr.cpp \
+	jsp/jsp_crtm.cpp \
+	jsp/jsp_s_tr.cpp \
+	jsp/jsp_3api.cpp \
+	jsp/jsp_crpi.cpp \
+	jsp/jsp_s_pi.cpp \
+	jsp/jsp_blpi.cpp \
+	jsp/jsp_crsh.cpp \
+	jsp/jsp_crsm.cpp \
+	jsp/jsp_blsh.cpp \
+	jsp/jsp_3_cr.cpp \
+	one_mach/m1_api.cpp \
+	one_mach/m1_shft.cpp \
+	osp/osp_3api.cpp \
+	osp/osp_3_cr.cpp \
+	osp/osp_api.cpp \
+	osp/osp_cr_r.cpp \
+	osp/osp_crpi.cpp \
+	osp/osp_blpi.cpp \
+	osp/osp_blsh.cpp \
+	osp/osp_crsh.cpp \
+	osp/osp_shft.cpp \
+	../../basics/global.cpp \
+	../../basics/list.cpp \
+	../../basics/matrix.cpp \
+	../../basics/pair.cpp \
+	../../basics/order.cpp \
+	../../basics/except.cpp \
+	../../basics/lisa_str.cpp \
+	../../lisa_dt/ctrlpara.cpp \
+	../../lisa_dt/mo.cpp \
+	../../lisa_dt/ptype.cpp \
+	../../lisa_dt/schedule.cpp \
+	../../lisa_dt/lvalues.cpp \
+	../../lisa_dt/schedule/js_sched.cpp \
+	../../lisa_dt/schedule/m1_sched.cpp \
+	../../lisa_dt/schedule/os_sched.cpp \
+	../../lisa_dt/schedule/sp_sched.cpp
+
+DOCSOURCES=\
+     doc_nghb.hpp
+

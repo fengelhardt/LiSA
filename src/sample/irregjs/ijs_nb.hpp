@@ -17,10 +17,10 @@
 #ifndef _ijs_nb_h
 #define _ijs_nb_h
 
-#include "../../external/neighbor/neighbor.hpp"
-#include "../../external/neighbor/jsp/jsp_api.hpp"
+#include "../../algorithm/nb_iter/neighbor.hpp"
+#include "../../algorithm/nb_iter/jsp/jsp_api.hpp"
 #include "../../lisa_dt/schedule/js_sched.hpp"
-#include "../../external/neighbor/tabu.hpp"
+#include "../../algorithm/nb_iter/tabu.hpp"
 
 
 class Lisa_IjsApi: public JSHOP_API_Ngbh

@@ -1,0 +1,122 @@
+<HTML>
+<HEAD> <TITLE> Hilfe zur Nachbarschaftssuche </TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+
+<H2>Nachbarschaftssuche</H2>
+
+Nachbarschaftssuchverfahren sind iterative Metaheuristiken. Verwenden
+Sie solche Verfahren, falls exakte Algorithmen nicht anwendbar sind. 
+Bei geeigneten Einstellungen k&ouml;nnen in mittlerer Laufzeit sehr
+gute L&ouml;sungen berechnet werden. 
+
+<H2> Grundlegendes Vorgehen:</H2>
+
+Stellen Sie sicher, da&szlig;  ein 
+<A HREF="problem.htm"> Problemtyp </A> und  alle 
+<A HREF="values.htm"> Problemparameter </A> 
+definiert sind und bereits ein Plan existiert (den Sie mit einem
+anderen Algorithmus berechnen k&ouml;nnen).
+W&auml;hlen Sie den Men&uuml;punkt <I>Algorithmen | 
+Nachbarschaftssuche</I>. 
+Nach Editieren der angezeigten Einstellungen dr&uuml;cken Sie den
+Start-Button.
+
+<H2>Einstellungen </H2> 
+
+<DL>
+<DT><a name="ngbh"><B>Nachbarschaft:</B></a><DD>
+  Definieren Sie, wie eine Plan aus einem anderen erzeugt wird:
+  <DL>
+  <DT><B>API:</B><DD> 
+    Zwei direkt benachbarte Operationen werden vertauscht.
+  <DT><B>Shift:</B><DD> 
+    Eine Operation wird im Plan verschoben.
+  <DT><B>Critical-API:</B><DD> 
+    Eine Cmax-kritische Operation wird mit einer direkt benachbarten 
+    Operation vertauscht.
+  <DT><B>Critical-Multi-API:</B><DD> 
+    Eine Cmax-kritische Operation wird mit einer direkt benachbarten 
+    Operation vertauscht. Zus&auml;tzlich werden jeweils noch Vorg&auml;nger 
+    und Nachfolger mit anderen Operationen getauscht (3_CR).
+  <DT><B>Critical-Block-API:</B><DD> 
+    Eine Cmax-kritische Block-End-Operation wird mit einer direkt 
+    benachbarten Operation vertauscht (BL_API).
+  <DT><B>Critical-Shift:</B><DD> 
+    Eine Cmax-kritische Opreation wird im Schedule verschoben (CR_SHIFT).
+  <DT><B>Critical-Block-Shift:</B><DD> 
+    Eine Cmax-kritische Block-End-Operation wird im Schedule verschoben 
+    (BL_SHIFT).
+  </DL>
+<DT><a name="method"><B>Suchverfahren:</B></a><DD> 
+  Zur Auswahl stehen plain Iterative Improvement (&Uuml;bergang zu einer
+  Nachbarl&ouml;sung erfolg nur, wenn diese besser ist), sowie zur
+  &Uuml;berwindung lokaler Optima die Erweiterungen Simulated Annealing 
+  (Akzeptierung einer schlechteren L&ouml;sung wird mit einer
+  gewissen, kleiner werdenden Wahrscheinlichkeit), Threshold Accepting
+  (Akzeptierung kleiner Verschlechterungen) und Tabusuche (nach
+  Abtesten der Nachbarschaft stets Akzeptieren des besten gefundenen
+  Nachbarn, bereits besuchte L&ouml;sungen werden ausgeschlossen).
+<DT><B>Erzeuge Nachbarn:</B><DD> 
+  In gro$szlig$en Nachbarschaften kann es sinnvoll sein, anstatt alle
+  Nachbarn zu enumerieren, eine gewisse Anzahl von  zuf&auml;lligen 
+  Nachbarn zu betrachten (RANDOM, die enumerative Methode ist nicht f&uuml;r 
+  jede Nachbarschaft implementiert).
+<DT><B>Erzeugte L&ouml;sungen:</B><DD> 
+  Anzahl der L&ouml;sungen, die betrachtet werden. Danach bricht der
+  Algorithmus ab. 
+<DT><B>Anfangsparameter:</B><DD> 
+  F&uuml;r Simulated Annealing die Wahrscheinlichkeit in Prozent, eine
+  um 1 Prozent schlechtere L&ouml;sung im ersten Schritt zu
+  akzeptieren. F&uuml;r Threshold Accepting die maximal zul&auml;ssige 
+  Verschlechterung im ersten Schritt in Promille. <BR>
+  F&uuml;r die anderen Verfahren wird diese Einstellung ignoriert.
+<DT><B>Erh&ouml;hung nach:</B><DD> 
+  Um bei zu gering gewordener Temperatur/Threshold ein Stehenbleiben
+  des Algorithmus in einem lokalen Optimum zu verhindern, wird nach
+  sovielen Schritten Stillstand der jeweilige Parameter wieder soweit
+  erh&ouml;ht wie vor dem Stillstand. 
+  <BR>
+  Dieser Wert sollte nicht zu gering sein.
+<DT><B>Tabulistenl&auml;nge:</B><DD> 
+  Die Anzahl der L&ouml;sungen, die gleichzeitig tabu sein
+  k&ouml;nnen.
+<DT><B>Anzahl Nachbarn:</B><DD> 
+  Nach sovieln erzeugten Nachbarn wird die Nachbarschaft der aktuellen
+  L&ouml;sung als ersch&ouml;pft angesehen. Diese Wert ist notwendig,
+  falls die Nachbarn nicht enumeriert sondern zuf&auml;llig erzeugt
+  werden. Er sollte in angemessenem Verh&auml;ltnis zur
+  Gr&ouml;&szlig; der Nachbarschaft stehen.
+<DT><B>Stillstand seit:</B><DD> 
+  Die Suche wird abgebrochen, falls soviele Schritte keine neue
+  L&ouml;sung mehr akzeptiert wurde.
+<DT><B>ZF h&ouml;chstens:</B><DD> 
+  Die Nachbarschaftssuche wird abgebrochen, wenn der angegebene 
+  Zielfunktionswert erreicht oder unterschritten wurde.
+</DL>
+
+<H2>Wenn Sie zu schlechte Ergebnisse erhalten:</H2>
+<UL> 
+<LI> Sie k&ouml;nnen die Suche jederzeit abbrechen und erhalten den
+besten bisher gefundenen Plan.
+<LI> Benutzen Sie eine dem Problemtyp angemessene Nachbarschaft.
+<LI> Variieren Sie Suchmethode und Parameter. Eine Grundregel kann
+hier nicht gegeben werden, da die besten Einstellungen von der Art der
+jeweiligen Probleme abh&auml;ngig sind. 
+<LI> Lassen Sie numerische Parameter <A HREF="gen_ptst.htm">
+automatisch </A> anpassen.
+</UL>
+<HR>
+<A HREF="main.htm"> Inhaltsverzeichnis </A>
+<HR>
+10.02.2000 TAU
+</BODY>
+</HTML>
+
+
+
+
+
+
+
+

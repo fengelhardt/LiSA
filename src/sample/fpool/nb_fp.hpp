@@ -15,9 +15,9 @@
 #ifndef _nb_fp_h
 #define _nb_fp_h
 
-#include "../../external/neighbor/neighbor.hpp"
+#include "../../algorithm/nb_iter/neighbor.hpp"
 #include "fp_set.hpp"
-#include "../../external/neighbor/tabu.hpp"
+#include "../../algorithm/nb_iter/tabu.hpp"
 
 class fp_nb: public Lisa_Neighborhood
  {
