@@ -335,9 +335,6 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
  */
 class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
   private:
-    /// shift from pos1 to pos2  
-    int   pos1, pos2;
-    
     /// private data needs documentation
 		Lisa_Vector<int> *JOrd, *MOrd, *JOpos, *MOpos;
 	public:	
@@ -346,6 +343,34 @@ class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
 		OSHOP_shift_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
     /// destructor
 		~OSHOP_shift_Ngbh();
+
+		int   prepare_move(int);
+		int   do_move();
+};
+
+//**************************************************************************
+
+/// open shop PI neighbourhood
+/** This is the problem dependent PI neighbourhood class for the open shop
+    problem, it swaps two arbitrary operations on one machine or one job.
+    
+    The operations to swap are determined randomly, enumeration is not
+    supported.
+    
+    It is inherited from the class OSHOP_API_Ngbh.
+
+    @author Marc Moerig
+    @version 2.3final
+    @see Lisa_Neighbourhood
+    @see OSHOP_API_Ngbh
+ */
+class OSHOP_PI_Ngbh: public OSHOP_API_Ngbh{
+	public:	
+		/// construct OSHOP_PI_Ngbh 
+    /** with a start schedule and specified problem datas   */
+		OSHOP_PI_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
+    /// destructor
+		~OSHOP_PI_Ngbh();
 
 		int   prepare_move(int);
 		int   do_move();

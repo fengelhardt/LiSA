@@ -113,6 +113,7 @@ const int MAXLONG = 214748000;
   API_Neighbourhood        *m1_api;
   shift_Neighbourhood      *m1_shift;
   PI_Neighbourhood         *m1_pi;
+  OSHOP_PI_Ngbh            *os_pi;
   OSHOP_API_Ngbh           *os_api;
   OSHOP_shift_Ngbh         *os_shift;
   OSHOP_3_API_Ngbh         *os_api_3;
@@ -385,34 +386,31 @@ int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 	  delete LROrder;
 
 	  // End of the schedule-construction
-	  switch ( NGBH )
-	    {
+	  switch ( NGBH ){
+      case PI:
+        if(!(ngbh = os_pi = new OSHOP_PI_Ngbh( os_Plan, os_Prob ))){  
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
+	      break;
 	    case API:   
-	      if(!(ngbh = os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob )))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      if(!(ngbh = os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob ))){  
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
 	      break;
-	    case SHIFT: 
-	      if(!(ngbh = os_shift = new OSHOP_shift_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+      case SHIFT: 
+	      if(!(ngbh = os_shift = new OSHOP_shift_Ngbh(os_Plan,os_Prob))){  
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
 	      break;
-	    case _3_API: /// broken -marc-
-	   /*   if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob)))
-	      	{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-	        } */ 
-	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		} 
-	      break;
+   /* case _3_API: /// broken ... doku says it only works with tabu search ... marc
+	      if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob))){  
+		      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+		      exit( 7 );
+	      }
+	      break; */
 	    case _3_CR:
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
@@ -492,7 +490,11 @@ int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 	  
 	  switch ( NGBH )
 	    {
-	    case API:   
+	    case PI:
+        os_pi->return_schedule( os_Plan );
+        delete os_pi;
+        break;
+      case API:   
 	      os_api->return_schedule( os_Plan );
 	      delete os_api;
 	      break;
