@@ -13,6 +13,7 @@
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
+#include<unistd.h>
 #include<fstream.h>
 #include"../../misc/except.hpp"
 
@@ -20,6 +21,8 @@ int n,m;
 
 int main(int argc, char *argv[]) 
 {
+
+    cout << "PID= " << getpid() << endl; 
 
     // comment out following line to send error messages to console, 
     //  G_ExceptionList.set_output_to_cout();   

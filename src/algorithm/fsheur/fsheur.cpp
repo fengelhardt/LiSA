@@ -15,6 +15,7 @@
 #include"../../scheduling/js_sched.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
+#include<unistd.h>
 #include<fstream.h>
 #include"../../misc/except.hpp"
 #include "../../basics/order.hpp"
@@ -29,6 +30,9 @@ int objective_function;
 
 int main(int argc, char *argv[]) 
 {
+
+  cout << "PID= " << getpid() << endl; 
+
   G_ExceptionList.set_output_to_cout();   
   // open files and assure existence:
   if (argc != 3) 

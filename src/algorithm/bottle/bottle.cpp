@@ -14,6 +14,7 @@
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
+#include<unistd.h>
 #include<fstream.h>
 #include"../../misc/except.hpp"
 #include"../../basics/graph.hpp"
@@ -37,6 +38,7 @@
 
 int main(int argc, char *argv[]) 
  {
+   cout << "PID= " << getpid() << endl; 
    G_ExceptionList.set_output_to_cout();   
    // open files and assure existence:
    if (argc != 3) 

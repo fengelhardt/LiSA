@@ -11,6 +11,7 @@
 
 #include<stdlib.h>
 #include<iostream.h>
+#include<unistd.h>
 #include<fstream.h>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
@@ -102,7 +103,10 @@ An example for a correct input file is:\\
 //@}
 //******************************************************************************
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
+
+  cout << "PID= " << getpid() << endl; 
 
   G_ExceptionList.set_output_to_cout();   
   // open files and assure existence:

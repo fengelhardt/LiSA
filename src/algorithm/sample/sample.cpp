@@ -19,17 +19,22 @@
 // The object Lisa_Schedule (header: schedule.hpp) 
 // is necessary for writing the result into the output file.
 // The file except.hpp is used for the exception handling.  
-#include<iostream.h>
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include<fstream.h>
-#include"../../misc/except.hpp"
+
+#include <unistd.h>
+#include <iostream.h>
+#include <fstream.h>
+
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
 
 int main(int argc, char *argv[]) 
 {
+
+    cout << "PID= " << getpid() << endl;
 
     // print a message that the program has started:
     cout << "This is the LiSA Sample Module" << endl;

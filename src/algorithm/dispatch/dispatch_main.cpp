@@ -14,6 +14,7 @@
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
+#include<unistd.h>
 #include<fstream.h>
 #include"../../misc/except.hpp"
 
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
 
     // print a message that the program has started:
     cout << "This is the LiSA Dispatcher Module" << endl;
+    cout << "PID= " << getpid() << endl; 
 
     // The Lisa_Exceptionlist is forced for writing
     // error messages to cout. Then LiSA is able

@@ -11,6 +11,7 @@
 
 #include<stdlib.h>
 #include<iostream.h>
+#include<unistd.h>
 #include<fstream.h>
 #include"../../scheduling/matching.hpp"
 #include"../../main/global.hpp"
@@ -120,7 +121,10 @@ public:
 
 //******************************************************************************
 
-int main(int argc, char *argv[]){ 
+int main(int argc, char *argv[])
+{ 
+
+   cout << "PID= " << getpid() << endl; 
 
    G_ExceptionList.set_output_to_cout();   
    // open files and assure existence:

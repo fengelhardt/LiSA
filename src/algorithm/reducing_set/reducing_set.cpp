@@ -12,6 +12,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<iostream.h>
+#include<unistd.h>
 #include<fstream.h>
 #include"../../scheduling/matching.hpp"
 #include"../../main/global.hpp"
@@ -212,7 +213,9 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 
 int main(int argc, char *argv[]) 
 {
-  
+
+    cout << "PID= " << getpid() << endl; 
+
     // Auskommentieren, falls die Fehlermeldungen weitergesendet werden sollen
     G_ExceptionList.set_output_to_cout();   
 
