@@ -79,9 +79,9 @@ private:
   int n,m;
 public: 
   /// get size
-  int get_n() const {return n;}
+  int inline get_n() const {return n;}
   /// get size
-  int get_m() const {return m;}
+  int inline get_m() const {return m;}
   
   /// construct only with given size
   Lisa_MO(const int n, const int m);
@@ -121,9 +121,9 @@ private:
   int n,m;
 public:
   /// get size
-  int get_n() const {return n;}
+  int inline get_n() const {return n;}
   /// get size
-  int get_m() const {return m;}
+  int inline get_m() const {return m;}
   /// construct only with given size:
   Lisa_JO(const int n, const int m);
   /// what job is the succ of (i,j) in JO of machine k?

@@ -32,9 +32,9 @@ public:
   //@{
   ///member function, needs documentation
   FP_Vector * replace_vector(int , FP_Vector *);
-  int get_slack() { return slack; }
-  int get_cover( int i) { return (*covered)[i]; }
-  FP_Vector& get_vector(int i) { return (*vectors[i]); }
+  inline int get_slack() { return slack; }
+  inline int get_cover( int i) { return (*covered)[i]; }
+  inline FP_Vector& get_vector(int i) { return (*vectors[i]); }
   void spread();
   void random(long *);
   void random2(long *);

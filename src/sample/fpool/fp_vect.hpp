@@ -30,12 +30,12 @@ public:
   /// modify vector:
   void set_element(int, int);
   /// member function, needs documentation
-  int get_element(int pos) {return (*v)[pos];}
+  inline int get_element(int pos) {return (*v)[pos];}
   ///member function, needs documentation
-  int get_neighbour(int pos) {return (*neighbour)[pos];}
+  inline int get_neighbour(int pos) {return (*neighbour)[pos];}
    
   /// write object values to a stream
-  void write(std::ostream& strm = std::cout) const{strm << *v;}
+  inline void write(std::ostream& strm = std::cout) const{strm << *v;}
   /// destructor
   ~FP_Vector(){ delete v; delete neighbour;}
 };    

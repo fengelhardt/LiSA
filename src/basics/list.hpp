@@ -33,9 +33,9 @@ public:
   
   /// constructor
   /** create node with an initial value */
-  Lisa_Node(const T &v) { value=v; pred=NULL; succ=NULL;  }
+  inline Lisa_Node(const T &v) { value=v; pred=NULL; succ=NULL;  }
   /// default constructor
-  Lisa_Node()  { pred=NULL; succ=NULL;  }
+  inline Lisa_Node()  { pred=NULL; succ=NULL;  }
 };
 
 //**************************************************************************
@@ -282,12 +282,12 @@ public:
 //**************************************************************************
  
   /// returns the length of the list
-  int length() const  { return size; }
+  int inline length() const  { return size; }
 
 //**************************************************************************
   
   /// returns TRUE if the list is empty FALSE otherwise
-  bool empty() const  { return (!size); }
+  bool inline empty() const  { return (!size); }
 
 //**************************************************************************
 
@@ -433,7 +433,7 @@ public:
 
   /// returns the value of the current node
   /** results are undefined if the currend node is not valid */
-  T & get() { return  current_node->value; }
+  inline T & get() { return  current_node->value; }
 
 //**************************************************************************
 
@@ -653,7 +653,7 @@ void read(std::istream& strm){
 };
 
 //**************************************************************************
-
+/*
 /// stream operator for writing a Lisa_List
 template<class T>
 inline std::ostream& operator << (std::ostream& strm, const Lisa_List<T>& l)
@@ -661,9 +661,9 @@ inline std::ostream& operator << (std::ostream& strm, const Lisa_List<T>& l)
   l.write(strm);
   return strm;
 }
-
+*/
 //**************************************************************************
-
+/*
 /// stream operator for reading a Lisa_List
 template<class T>
 inline std::istream& operator >> (std::istream&strm, Lisa_List<T>& l)
@@ -671,7 +671,7 @@ inline std::istream& operator >> (std::istream&strm, Lisa_List<T>& l)
   l.read(strm);
   return strm;
 }
-
+*/
 //**************************************************************************
 
 #endif

@@ -31,23 +31,22 @@ public:
   
   /// construct a new Node
   /** Lisa_List can only store types with a default constructor */
-  Lisa_BottleneckNode(){
-    i = -1;
-    j = -1;
+  inline Lisa_BottleneckNode(){
+    i = j = -1;
   }
 
   /// construct a new Node 
-  Lisa_BottleneckNode(int i_in, int j_in, TIMETYP value_in){
+  inline Lisa_BottleneckNode(int i_in, int j_in, TIMETYP value_in){
     i = i_in;
     j = j_in;
     value = value_in;
   }
   
   /// destruct this Node
-  ~Lisa_BottleneckNode(){}
+  inline ~Lisa_BottleneckNode(){}
   
   /// write the object values to a stream 
-  void write(std::ostream& strm = std::cout) const{
+  void inline write(std::ostream& strm = std::cout) const{
     strm << "[ " << i << " " << j << " " << value << " ]";
   }
   
@@ -63,7 +62,7 @@ public:
   }
   
   /// compare operator for sorting in Lisa_List
-  bool operator< (const Lisa_BottleneckNode& other) const{
+  bool inline operator< (const Lisa_BottleneckNode& other) const{
     return value < other.value;
   } 
   

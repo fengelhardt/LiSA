@@ -37,10 +37,10 @@ public:
   void lfthrow(const std::string msg, const int code=ANY_ERROR);
   
   /// let all further messages be printed immediately to cerr
-  void set_output_to_cerr() { output_to_cerr=TRUE; }
+  inline void set_output_to_cerr() { output_to_cerr=TRUE; }
   
   /// let all further messages be printed immediately to cout
-  void set_output_to_cout() { output_to_cout=TRUE; }
+  inline void set_output_to_cout() { output_to_cout=TRUE; }
   
   /// return last error message, delete it from the list
   std::string lcatch();
@@ -49,10 +49,10 @@ public:
   std::string lcatch(int);
   
   /// test whether error is registered
-  bool empty() { return (Codes.empty()&&(G_ExtraException=="")); }
+  inline bool empty() { return (Codes.empty()&&(G_ExtraException=="")); }
   
   /// test whether error with given code is in list
-  bool empty(int code) { return !(Codes.search_first(code)); }
+  inline bool empty(int code) { return !(Codes.search_first(code)); }
 
 private:
 

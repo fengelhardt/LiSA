@@ -21,9 +21,9 @@ public:
   /// Lisa_Values is valid if valid==TRUE;
   int valid;
   /// number of columns in the matrices (number of machines)
-  int get_m(void){return m;}
+  inline int get_m(void)const{return m;}
   /// number of rows in the matrices (number of jobs)
-  int get_n(void){return n;}
+  inline int get_n(void)const{return n;}
   /// processing time matrix
   Lisa_Matrix<TIMETYP> *PT; 
   

@@ -97,14 +97,14 @@ public:
   ~Lisa_1Schedule();
   
   /// get successor of specified operation
-  int GetJOsucc(int i) { return (*JOsucc)[i]; }
+  int inline GetJOsucc(int i) { return (*JOsucc)[i]; }
   /// get predecessor of specified operation 	
-  int GetJOpred(int i) { return (*JOpred)[i]; }
+  int inline GetJOpred(int i) { return (*JOpred)[i]; }
   
   /// returns head for a given oeration
-  TIMETYP GetHead(int i) { return (*head)[i]; }
+  TIMETYP inline GetHead(int i) { return (*head)[i]; }
   /// returns tail for a given operation
-  TIMETYP GetTail(int i) { return (*tail)[i]; }
+  TIMETYP inline GetTail(int i) { return (*tail)[i]; }
 
   /// switch computation of heads/tails on or off 
   /** for all following insert and exclude operations. ONE OF THE PARAMETERS 

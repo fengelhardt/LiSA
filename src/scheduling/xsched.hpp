@@ -44,7 +44,7 @@ public:
   /// if machine or job number changed
   void init();
   /// refresh the internal structure
-  void updateLR(Lisa_Matrix<bool> *SIJ) {P_to_PG();PG_to_LR(SIJ); P->valid=TRUE;} 
+  void inline updateLR(Lisa_Matrix<bool> *SIJ) {P_to_PG();PG_to_LR(SIJ); P->valid=TRUE;} 
   
   /// makes the critical path
   void make_CP();

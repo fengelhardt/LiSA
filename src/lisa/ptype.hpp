@@ -49,7 +49,7 @@ public:
   int set_property(const int prop, const int value);
 
   /// get tuple entry back
-  int get_property(const int prop) const {return tupel[prop];}
+  inline int get_property(const int prop) const {return tupel[prop];}
 
   /// program parts which are not up to date need obsolet definitions:
   int get_property_old(const int prop) const;

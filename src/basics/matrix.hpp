@@ -82,7 +82,7 @@ public:
   }
   
   /// length of vector
-  int get_m()const{ return m; }
+  inline int get_m()const{ return m; }
   
   /// assign a vector to another  
   const Lisa_Vector<T>& operator=(const Lisa_Vector<T>& );
@@ -174,10 +174,10 @@ public:
   }  
   
   /// number of columns
-  int get_m()const{ return m; }
+  inline int get_m()const{ return m; }
   
   /// number of rows           
-  int get_n() const { return n; } 
+  inline int get_n() const { return n; } 
   
   /// assign another matrix 
   const Lisa_Matrix<T>& operator=(const Lisa_Matrix<T>& other);

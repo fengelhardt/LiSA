@@ -29,13 +29,13 @@ public:
   FP_Neighbourhood( int , int);
 
   /// compute objective function of type param1 to solution param2
-  void    set_objective( int, int ){}
+  inline void  set_objective( int, int ){}
 
   /// returns objective value of solution nr.
   TIMETYP get_objective_value( int );
   
   /// call constructor for solution nr. 
-  int     get_solution( int ){ return 0;}
+  inline int get_solution( int ){ return 0;}
   
   /// set the objective type
   void  set_objective_type( int );

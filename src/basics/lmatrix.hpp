@@ -74,7 +74,7 @@ public:
   }
     
   /// get length of vector
-  int get_m() const { return m; }
+  int inline get_m() const { return m; }
   
   /// assign a vector to another  
   const Lisa_VectorOfLists<T>& operator=(const Lisa_VectorOfLists<T>& );
@@ -82,7 +82,7 @@ public:
   //@{
   /// compare vectors
   bool operator==(const Lisa_VectorOfLists<T>&) const;
-  bool operator!=(const Lisa_VectorOfLists<T>& other) const { return !(&other == this); }
+  bool inline operator!=(const Lisa_VectorOfLists<T>& other) const { return !(&other == this); }
   //@}
   
   /// compare lexicographically
@@ -108,9 +108,9 @@ public:
   //@}
   
   /// get pointer to first element in vector
-  Lisa_List<T>* get_first() const { return contents; }
+  inline Lisa_List<T>* get_first() const { return contents; }
   /// get pointer to last element in vector
-  Lisa_List<T>* get_last() const { return contents+m; }
+  inline Lisa_List<T>* get_last() const { return contents+m; }
 };
 
 //**************************************************************************
@@ -158,7 +158,7 @@ public:
   /// assign value to all matrix elements
   void fill(const T value);
   /// access to i-th row vector
-  Lisa_VectorOfLists<T>& operator[] (const unsigned i){ 
+  inline Lisa_VectorOfLists<T>& operator[] (const unsigned i){ 
     #ifdef LISA_DEBUG
     if (i>=n){
       G_ExceptionList.lthrow("row "+ztos(i)+" of a "+ztos(n)+
@@ -170,7 +170,7 @@ public:
   }
   
   /// access to i-th row vector    
-  const Lisa_VectorOfLists<T>& operator[] (const unsigned i) const{ 
+  inline const Lisa_VectorOfLists<T>& operator[] (const unsigned i) const{ 
     #ifdef LISA_DEBUG
     if (i>=n){
       G_ExceptionList.lthrow("row "+ztos(i)+" of a "+ztos(n)+
@@ -182,9 +182,9 @@ public:
   }
     
   /// number of columns
-  int get_m() const { return m; }
+  inline int get_m() const { return m; }
   /// number of rows           
-  int get_n() const { return n; } 
+  inline int get_n() const { return n; } 
   /// assign another matrix 
   const Lisa_MatrixOfLists<T>& operator=(const Lisa_MatrixOfLists<T>& other);
   /// compare matrices element by element
@@ -203,10 +203,10 @@ public:
   ~Lisa_MatrixOfLists();
   
   /// pointer to first row (for iterating the contents)
-  Lisa_VectorOfLists<T> * first_row() const { return row; }
+  inline Lisa_VectorOfLists<T> * first_row() const { return row; }
 
   /// Pointer after last row (for iterating the contents)
-  Lisa_VectorOfLists<T> * end_row() const { return row+n; }
+  inline Lisa_VectorOfLists<T> * end_row() const { return row+n; }
 
   /// get A matrix
   Lisa_Matrix<int> * get_MatrixA() const;

@@ -54,7 +54,7 @@ public:
   ///get costs of the (partial) schedule
   TIMETYP getCosts();
   ///for comparision
-  operator TIMETYP (void){return getCosts();}
+  inline operator TIMETYP (void){return getCosts();}
   ///insert an operation in the partial schedule
   /** and remember this operation until insert is invoked again
       @see Lisa_OsSchedule */

@@ -22,7 +22,7 @@ public:
   void read(std::istream& = std::cin);
 
   /// destructor  
-  ~NM_JsProblem(){}
+  inline ~NM_JsProblem(){}
 };
 
 //**************************************************************************
@@ -40,7 +40,7 @@ public:
   void read(std::istream& = std::cin);
 
   /// destructor  
-  ~NM_JsSchedule(){}
+  inline ~NM_JsSchedule(){}
 };
 
 //**************************************************************************
