@@ -1,0 +1,2 @@
+OBJECTS=\
+	../../obj/setup.o

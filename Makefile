@@ -18,7 +18,7 @@ CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 NONGUI_MODULES=algorithm utility sample
-GUI_MODULES=main
+GUI_MODULES=main setup
 MODULES=$(GUI_MODULES) $(NONGUI_MODULES)
 
 # ------------------------------------------------------------------------------
@@ -118,6 +118,7 @@ dist:
 	mkdir -p $(DISTPATH)/LiSA
 	cp $(TOPPROGRAMPATH)/README $(DISTPATH)/LiSA/README
 	cp $(TOPPROGRAMPATH)/LICENSE $(DISTPATH)/LiSA/LICENSE
+	cp $(TOPPROGRAMPATH)/setup $(DISTPATH)/LiSA/setup
 	cp $(TOPPROGRAMPATH)/setup.tcl $(DISTPATH)/LiSA/setup.tcl
 	cp -r $(BINPATH) $(DISTPATH)/LiSA/bin
 	rm -f $(DISTPATH)/LiSA/bin/lisa
@@ -139,6 +140,7 @@ dist-cygwin:
 	mkdir -p $(CYGWINPATH)/LiSA
 	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
 	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
+	cp $(TOPPROGRAMPATH)/setup.exe $(CYGWINPATH)/LiSA/setup.exe
 	cp $(TOPPROGRAMPATH)/setup.tcl $(CYGWINPATH)/LiSA/setup.tcl
 	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
 	rm -f $(CYGWINPATH)/LiSA/bin/lisa

@@ -1,11 +1,10 @@
-#!/bin/sh
-# the next line restarts using wish\
-exec wish "$0" "$@" 
-
 # LiSA setup program
 # Copyright Lars Dornheim 2002
 # E-Mail: eldeh@web.de
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
+set argc 0
+set argv {}
 
 if {![info exists vTcl(sourcing)]} {
     switch $tcl_platform(platform) {
@@ -229,12 +228,12 @@ proc {doInstall} {} {
      switch $tcl_platform(platform) {
           unix {
                doUNIXInstall
-               showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa\" in LiSA/bin ."
+               showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa\"."
                exit
           }
           windows {
                doWinInstall
-               showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa.bat\" in LiSA\\bin ."
+               showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa.bat\"."
                exit
           }
           default {
@@ -248,14 +247,14 @@ proc {doInstall} {} {
 
 proc {doUNIXInstall} {} {
      global installDir
-     set startScriptName $installDir/bin/lisa
+     set startScriptName $installDir/lisa
      set startScript [open $startScriptName w]
      puts $startScript "#!/bin/sh
 
 
 # LiSA start shell script
-# Copyright Lars Dornheim 1998, 1999
-# E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+# Copyright Lars Dornheim 1998, 1999, 2002
+# E-Mail: eldeh@web.de
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 
@@ -303,14 +302,14 @@ exec \"\${LISAHOME}/bin/main\" \"\${LISACONFIG}/default.lsa\""
 proc {doWinInstall} {} {
      global installDir
      regsub -all / $installDir \\ installDirDOSStyle
-     set startScriptName $installDir/bin/lisa.bat
+     set startScriptName $installDir/lisa.bat
      set startScript [open $startScriptName w]
      puts $startScript "@echo off
 
 
 rem LiSA start shell script
-rem Copyright Lars Dornheim 1998, 1999
-rem E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
+rem Copyright Lars Dornheim 1998, 1999, 2002
+rem E-Mail: eldeh@web.de
 rem WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 
@@ -344,14 +343,13 @@ proc {showModalMessage} {text} {
 
 proc {main} {argc argv} {
 wm protocol .top64 WM_DELETE_WINDOW {exit}
+tkwait window .top64
 }
 
 proc init {argc argv} {
      set version "2.3pre1"
      global lisaVersionText
      set lisaVersionText "LiSA $version"
-     global argv0
-     cd [file dirname $argv0]
      global installDir
      set installDir [pwd]
      global installText
@@ -374,7 +372,6 @@ proc vTclWindow. {base {container 0}} {
     if {!$container} {
     wm focusmodel $base passive
     wm geometry $base 1x1+0+0; update
-    wm maxsize $base 1009 738
     wm minsize $base 1 1
     wm overrideredirect $base 0
     wm resizable $base 1 1
@@ -456,8 +453,8 @@ proc vTclWindow.top64 {base {container 0}} {
     if {!$container} {
     vTcl:toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 300x175; update
-    wm minsize $base 300 175
+    wm geometry $base 300x150; update
+    wm minsize $base 300 150
     wm overrideredirect $base 0
     wm resizable $base 1 1
     wm deiconify $base

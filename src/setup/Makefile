@@ -1,24 +1,19 @@
-# LiSA Main Module Makefile
+# LiSA Setup Program Makefile
 # Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 # ------------------------------------------------------------------------------
 
-# LiSA part: main
+# LiSA part: setup
 
-PROGRAMNAME=main
-INSTALLNAME=lisa
+PROGRAMNAME=setup
 
 # ------------------------------------------------------------------------------
 
 TOPPROGRAMPATH=../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-DATAPATH=$(TOPPROGRAMPATH)/data
-ALGPATH=$(DATAPATH)/alg_desc
-DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
-SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
 
@@ -62,43 +57,18 @@ objdir:
 # ------------------------------------------------------------------------------
 
 install:
-	mkdir -p $(BINPATH)
-	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp $(INSTALLNAME) $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	chmod 755 $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	mkdir -p $(DATAPATH)
-	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
-	mkdir -p $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)/classify
-	cp -r $(SOURCEPATH)/sample/problem $(DATAPATH)/sample
-	mkdir -p $(ALGPATH)/language/english
-	cp $(SOURCEPATH)/algo/disp1_english.alg $(ALGPATH)/language/english/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_english.alg $(ALGPATH)/language/english/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_english.alg $(ALGPATH)/language/english/disp3.alg
-	mkdir -p $(ALGPATH)/language/german
-	cp $(SOURCEPATH)/algo/disp1_german.alg $(ALGPATH)/language/german/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_german.alg $(ALGPATH)/language/german/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_german.alg $(ALGPATH)/language/german/disp3.alg
-	mkdir -p $(DOCPATH)/lisa
-	cp -r $(SOURCEPATH)/doc/* $(DOCPATH)/lisa
+	cp $(OBJPATH)/$(PROGRAMNAME) $(TOPPROGRAMPATH)/$(PROGRAMNAME)
+	cp setup.tcl $(TOPPROGRAMPATH)/setup.tcl
 
 # ------------------------------------------------------------------------------
 
 uninstall:
-	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	rm -f $(DATAPATH)/default.lsa
-	rm -fr $(DATAPATH)/classify
-	rm -fr $(DATAPATH)/sample
-	rm -f $(ALGPATH)/language/*/disp*.alg
-	rm -f $(DOCPATH)/lisa/*.html
+	rm -f $(TOPPROGRAMPATH)/$(PROGRAMNAME)
+	rm -f $(TOPPROGRAMPATH)/setup.tcl
 
 # ------------------------------------------------------------------------------
 
 distclean: clean
-	rm -f $(INSTALLNAME)
 
 # ------------------------------------------------------------------------------
 
