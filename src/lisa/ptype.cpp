@@ -220,12 +220,13 @@ string Lisa_ProblemType::output_problem() const {
 
 //**************************************************************************
 
-int Lisa_ProblemType::setalpha(string al) 
-{
+int Lisa_ProblemType::setalpha(string al){
+  
   string str,m_number;
   int i, letters_done;
   // cout << "analyzing " << al << endl;
   // erase old entries
+  
   tupel[M_ENV]=EMPTY;
   tupel[M_NUMBER]=M_ARB;
   tupel[M_MPT]=FALSE;
@@ -236,41 +237,49 @@ int Lisa_ProblemType::setalpha(string al)
   for(i=ONE; i<=R; i++) 
     if (al.substr(0,1)==name(M_ENV,i))
       tupel[M_ENV]=i;
+  
   // could be normal
   letters_done=1;
+  
   // or non-conform problem type
-  if (al.substr(0,5)==name(M_ENV,F_SR)) 
-    {
-      tupel[M_ENV]=F_SR; letters_done=5; 
-    }
-  if (al.substr(0,5)==name(M_ENV,P_CS)) 
-    {
-      tupel[M_ENV]=P_CS; letters_done=5;
-    } 
+  if (al.substr(0,5)==name(M_ENV,F_SR)){
+      tupel[M_ENV]=F_SR;
+      letters_done=5; 
+  }
+  
+  if (al.substr(0,5)==name(M_ENV,P_CS)){
+      tupel[M_ENV]=P_CS;
+      letters_done=5;
+  } 
   
   // now look for MPT and MPM
-  if (al.substr(letters_done,3)=="MPT")
-    {
-      tupel[M_MPT]=TRUE; letters_done+=3;
-    }
-  if (al.substr(letters_done,3)=="MPM")
-    {
-      tupel[M_MPM]=TRUE; letters_done+=3;
-    }
+  if (al.substr(letters_done,3)=="MPT"){
+      tupel[M_MPT]=TRUE;
+      letters_done+=3;
+  }
+  
+  if (al.substr(letters_done,3)=="MPM"){
+      tupel[M_MPM]=TRUE;
+      letters_done+=3;
+  }
 
   // finally, there could be a machine number left
   m_number=al.substr(letters_done, al.length() - letters_done);
-  if(m_number=="") tupel[M_NUMBER]=M_ARB;
-  else  
-    if (m_number=="m") tupel[M_NUMBER]=M_FIX;
-    else 
-      {
-	tupel[M_NUMBER]=M_VAL;
-	sscanf((char*) m_number.c_str(),"%u",&m_no);
-      }
+  if(m_number==""){
+    tupel[M_NUMBER]=M_ARB;
+  }else{  
+    if (m_number=="m"){
+      tupel[M_NUMBER]=M_FIX;
+    }else{
+      tupel[M_NUMBER]=M_VAL;
+      sscanf((char*) m_number.c_str(),"%u",&m_no);
+    }
+  }
+  
   //  cout << "got M_ENV=" << name(M_ENV, tupel[M_ENV])
   //     << " MPT=" << tupel[M_MPT] << " MPM=" << tupel[M_MPM] 
   //     << " m_type=" << tupel[M_NUMBER] << " m=" << m_no << endl;
+  
   return (tupel[M_ENV]==EMPTY);
 }
 
@@ -281,49 +290,38 @@ int Lisa_ProblemType::setbeta(string be)
   int tuplepos, meaning=0, i,j;
   
   // if there is a , or ; on the end of the string, then remove it
-  if (be[be.length()-1]==',') 
-    { 
+  if (be[be.length()-1]==','){ 
       be.erase(be.length()-1,1);
-    }
-  else if (be[be.length()-1]==';') 
-    { 
+  }else if (be[be.length()-1]==';'){ 
       be.erase(be.length()-1,1);
-    }
+  }
   
   // find out where the string fits 
   tuplepos=0;
-  for (i=NUMBER_ALPHA; i<NUMBER_ALPHA+NUMBER_BETA; i++)
-    for (j=1; j<=NUMBER[i]; j++)
-      if (be==name(i,j))
-	{
+  for (i=NUMBER_ALPHA; i<NUMBER_ALPHA+NUMBER_BETA; i++){
+    for (j=1; j<=NUMBER[i]; j++){
+      if (be==name(i,j)){
           tuplepos=i; 
           meaning=j;
         }
+    }
+  }
+        
   // special procedure for n=[number]:
-  if( (!tuplepos) && (be.substr(0,2)=="n="))       
-    if (sscanf((char*) (be.substr(2,be.length()-2)).c_str(),"%u",&n_no))
-      {
-	tuplepos=JOB_NR; meaning=VALUE;
-      } 
-
-  if (!tuplepos) return TRUE;   //Why???
+  if( (!tuplepos) && (be.substr(0,2)=="n=")){       
+    if (sscanf((char*) (be.substr(2,be.length()-2)).c_str(),"%u",&n_no)){
+      tuplepos=JOB_NR; meaning=VALUE;
+    } 
+  }
+  
+  // if no tuplepos was found this means the given beta parameter is unknown
+  if (!tuplepos) return TRUE;
   
   // replace tuple entry:
   tupel[tuplepos]=meaning;
 
   return FALSE;
 
-  /* Sorry, I do not understand this code:  
-  if(be.length()==3&& be!="n=k") {
-   //  cout << "be.substr(0,2)=" << be.substr(0,2) << "be.substr(2,be.length())=";
-//     cout << be.substr(2,be.length()) << "\n";
-    if( "n="==be.substr(0,2)) {
-      tupel[JOB_NR]=VALUE;
-      n_number=be.substr(2,be.length());
-      sscanf((char*) n_number.c_str(),"%d",&n_no);
-    } 
-    if(be==str) {tupel[JOB_NR]=i; return 0;} 
-  } */
 }
 
 //**************************************************************************
@@ -358,197 +356,195 @@ int Lisa_ProblemType::setgamma(string ga) {
 
 //**************************************************************************
 
-string Lisa_ProblemType::name(int tupelEntry, int identifier) const 
-{
+string Lisa_ProblemType::name(int tupelEntry, int identifier)const{
   char s[50];
-  switch(tupelEntry) 
-    {
+  
+  switch(tupelEntry){
+    
     case M_ENV:
-      switch(identifier) 
-	{
-	case EMPTY:return("");
-	case ONE:  return("1");
-	case O:    return("O");
-	case F:    return("F");
-	case J:    return("J");
-	case X:    return("X");
-	case G:    return("G");
-	case P:    return("P");
-	case Q:    return("Q");
-	case R:    return("R");
-	case MPT:  return("MPT");
-	case OMPT: return("OMPT");
-	case FMPT: return("FMPT");
-	case JMPT: return("JMPT");
-	case XMPT: return("XMPT");
-	case GMPT: return("GMPT");
-	case OMPM: return("OMPM");
-	case FMPM: return("FMPM");
-	case JMPM: return("JMPM");
-	case XMPM: return("XMPM");
-	case GMPM: return("GMPM");
-	case PMPM: return("PMPM");
-	case QMPM: return("QMPM");
-	case F_SR: return("F;R1:");
-	case P_CS: return("P;S1:");
-	}    
-      return("error in M_ENV");
+    switch(identifier){
+      case EMPTY:return("");
+      case ONE:  return("1");
+      case O:    return("O");
+      case F:    return("F");
+      case J:    return("J");
+      case X:    return("X");
+      case G:    return("G");
+      case P:    return("P");
+      case Q:    return("Q");
+      case R:    return("R");
+      case MPT:  return("MPT");
+      case OMPT: return("OMPT");
+      case FMPT: return("FMPT");
+      case JMPT: return("JMPT");
+      case XMPT: return("XMPT");
+      case GMPT: return("GMPT");
+      case OMPM: return("OMPM");
+      case FMPM: return("FMPM");
+      case JMPM: return("JMPM");
+      case XMPM: return("XMPM");
+      case GMPM: return("GMPM");
+      case PMPM: return("PMPM");
+      case QMPM: return("QMPM");
+      case F_SR: return("F;R1:");
+      case P_CS: return("P;S1:");
+    }    
+    return("error in M_ENV");
+    
     case M_NUMBER:
-      switch(identifier) 
-	{
-	case M_ARB: return("");
-	case M_VAL: {
-	  sprintf(s,"%d",m_no);
-	  return( (string) s);
-	}
-	case M_FIX: return("m");
-	}
-      cerr << "Identifier:" << identifier << "not found\n";
-      return("error in M_NUMBER");
+    switch(identifier){
+      case M_ARB: return("");
+      case M_VAL: {
+        sprintf(s,"%d",m_no);
+        return( (string) s);
+      }
+      case M_FIX: return("m");
+    }
+    cerr << "Identifier:" << identifier << "not found\n";
+    return("error in M_NUMBER");
+    
     case PMTN:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SET: return "pmtn";
-	}
-      return("error in PMTN");
+    switch(identifier){
+      case EMPTY: return "";
+      case SET: return "pmtn";
+    }
+    return("error in PMTN");
+    
     case PRECEDENCE:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case INTREE: return "intree";
-	case OUTTREE: return "outtree";
-	case TREE: return "tree";
-	case SP_GRAPH: return "sp_graph";
-	case CHAINS: return "chains";
-	case PREC: return "prec";
-	}
-      return("error in PRECEDENCE");
+    switch(identifier){
+      case EMPTY: return "";
+      case INTREE: return "intree";
+      case OUTTREE: return "outtree";
+      case TREE: return "tree";
+      case SP_GRAPH: return "sp_graph";
+      case CHAINS: return "chains";
+      case PREC: return "prec";
+    }
+    return("error in PRECEDENCE");
+    
     case RI:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SET: return "r_i";
-	}
-      return("error in RI");
+    switch(identifier){
+      case EMPTY: return "";
+      case SET: return "r_i";
+    }
+    return("error in RI");
+    
     case DI:
-      switch(identifier) {
+    switch(identifier) {
       case EMPTY: return "";
       case SET: return "d_i";
-      }
-      return("error in DI");
-    case PIJ:
-       switch(identifier)
-	{
-	case EMPTY: return "";
-	case PIJ_1: return "p_ij=1";
-	case PIJ_P: return "p_ij=p";
-	}
-      return("error");
-    case BATCH:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case S_BATCH: return "s-batch";
-	case P_BATCH: return "p-batch";
-	}
-      return("error in BATCH");
-    case BOUNDED_BATCH:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SET: return "b<n";
-	}
-      return("error in BOUNDED_BATCH");
-    case JOB_NR:
-      switch(identifier)
-	{
-	case J_ARB: return "";
-	case J_VAL: {
-	  sprintf(s,"n=%d",n_no);
-	  return( (string) s);
-	}
-	case J_FIX: return "n=k";
-	}
-      return("error in JOB_NR");
-    case NO_WAIT:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SET:  return "no-wait";
-	}
-      return("FEHLER in NO_WAIT");
-    case SIZE:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SET:  return "size_i";
-	}
-      return("FEHLER in SIZE");
-    case TIME_LAGS:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case UNIT_TL:  return "prec(1)";
-	case CONST_TL:  return "prec(l)";
-	case GENERAL_TL:  return "prec(l_ij)";
-	}
-      return("FEHLER in TIME_LAGS");
-    case TRANSPORTATION_DELAYS:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case TIK_T:  return "t_ik=T";
-	case TIKL_T:  return "t_ikl=T";
-	case TI_IN:  return "t_i in {T_1,T_2}";
-	case TKL_TLK:  return "t_kl=t_lk";
-	case TIKL_TILK:  return "t_ikl=t_ilk";
-	case TI:  return "t_i";
-	case TK:  return "t_k";
-	case TKL:  return "t_kl";
-	case TIK:  return "t_ik";
-	case TIKL:  return "t_ikl";
-	}
-      return("FEHLER in TRANSPORTATION_DELAYS");
-    case SERVER_FLAGS:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case SI:  return "s_i";
-	case SI_1:  return "s_i=1";
-	case SI_S:  return "s_i=s";
-	}
-      return("FEHLER in SERVER_FLAGS");
-    case OBJECTIVE:
-      switch(identifier)
-	{
-	case EMPTY: return "";
-	case CMAX: return "Cmax";
-	case LMAX: return "Lmax";
-	case SUM_CI: return "SumCi";
-	case SUM_WICI: return "SumWiCi";
-	case SUM_UI: return "SumUi";
-	case SUM_WIUI: return "SumWiUi";
-	case SUM_TI: return "SumTi";
-	case SUM_WITI: return "SumWiTi";
-	case IRREG1: return "Irreg1";
-	case IRREG2: return "Irreg2";
-	}
-      return("error in OBJECTIVE");
     }
+    return("error in DI");
+    
+    case PIJ:
+    switch(identifier){
+      case EMPTY: return "";
+      case PIJ_1: return "p_ij=1";
+      case PIJ_P: return "p_ij=p";
+    }
+    return("error");
+    
+    case BATCH:
+    switch(identifier){
+      case EMPTY: return "";
+      case S_BATCH: return "s-batch";
+      case P_BATCH: return "p-batch";
+    }
+    return("error in BATCH");
+    
+    case BOUNDED_BATCH:
+    switch(identifier){
+      case EMPTY: return "";
+      case SET: return "b<n";
+    }
+    return("error in BOUNDED_BATCH");
+    
+    case JOB_NR:
+    switch(identifier){
+      case J_ARB: return "";
+      case J_VAL: {
+        sprintf(s,"n=%d",n_no);
+        return( (string) s);
+      }
+      case J_FIX: return "n=k";
+    }
+    return("error in JOB_NR");
+    
+    case NO_WAIT:
+    switch(identifier){
+      case EMPTY: return "";
+      case SET:  return "no-wait";
+    }
+    return("FEHLER in NO_WAIT");
+    
+    case SIZE:
+    switch(identifier){
+      case EMPTY: return "";
+      case SET:  return "size_i";
+    }
+    return("FEHLER in SIZE");
+    
+    case TIME_LAGS:
+    switch(identifier){
+      case EMPTY: return "";
+      case UNIT_TL:  return "prec(1)";
+      case CONST_TL:  return "prec(l)";
+      case GENERAL_TL:  return "prec(l_ij)";
+    }
+    return("FEHLER in TIME_LAGS");
+    
+    case TRANSPORTATION_DELAYS:
+    switch(identifier){
+      case EMPTY: return "";
+      case TIK_T:  return "t_ik=T";
+      case TIKL_T:  return "t_ikl=T";
+      case TI_IN:  return "t_i in {T_1,T_2}";
+      case TKL_TLK:  return "t_kl=t_lk";
+      case TIKL_TILK:  return "t_ikl=t_ilk";
+      case TI:  return "t_i";
+      case TK:  return "t_k";
+      case TKL:  return "t_kl";
+      case TIK:  return "t_ik";
+      case TIKL:  return "t_ikl";
+    }
+    return("FEHLER in TRANSPORTATION_DELAYS");
+    
+    case SERVER_FLAGS:
+    switch(identifier){
+      case EMPTY: return "";
+      case SI:  return "s_i";
+      case SI_1:  return "s_i=1";
+      case SI_S:  return "s_i=s";
+    }
+    return("FEHLER in SERVER_FLAGS");
+    
+    case OBJECTIVE:
+    switch(identifier){
+      case EMPTY: return "";
+      case CMAX: return "Cmax";
+      case LMAX: return "Lmax";
+      case SUM_CI: return "SumCi";
+      case SUM_WICI: return "SumWiCi";
+      case SUM_UI: return "SumUi";
+      case SUM_WIUI: return "SumWiUi";
+      case SUM_TI: return "SumTi";
+      case SUM_WITI: return "SumWiTi";
+      case IRREG1: return "Irreg1";
+      case IRREG2: return "Irreg2";
+    }
+    return("error in OBJECTIVE");
+  }
   return "TupelEntry unknown";
 }
 
 //**************************************************************************
 
-int Lisa_ProblemType::name(int tupelEntry, string identifier) const {
-  int i;
+int Lisa_ProblemType::name(int tupelEntry, string identifier)const{
   
-  for(i=0;i<NUMBER[tupelEntry];i++)
-    {
-      if(identifier==name(tupelEntry,i)) return i;
-    }
-  cerr << identifier << " not found \n";
+  for(int i=0;i<NUMBER[tupelEntry];i++)
+    if(identifier==name(tupelEntry,i)) return i;
+    
+  cerr << "'" << identifier << "' not found." << endl;
   return -1;
 }
 
@@ -564,7 +560,6 @@ void Lisa_ProblemType::write(ostream& strm) const{
 
 //**************************************************************************
 
-// following function rewritten (TAU 15.3.99)
 void Lisa_ProblemType::read(istream& strm){
   
   // assure existence of input stream:
