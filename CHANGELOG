@@ -16,7 +16,10 @@ invalid schedules, but no error checking occurs
 --------------------------------------------------------------------------------
 upcoming version
 --------------------------------------------------------------------------------
-Smith Rule is exact for sumWiCi, not sumWiTi.
+
+rewrote and streamlined error handling class
+
+Smith Rule is exact for sumWiCi, not sumWiTi. <- fixed
 
 Enabled further neighbourhoods for the neighbourhood search algorithms.
 
