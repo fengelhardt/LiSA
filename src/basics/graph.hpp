@@ -93,21 +93,15 @@ public:
   /// return the number of vertices
   inline int get_vertices()const{return n;};
 
-  ///initialize the pointer for the successors list of a given vertice
-  bool init_succ_pointer(int vertex);
-
-  /// initialize the pointer for the predecessor list of a given vertice
-  bool init_pred_pointer(int vertex);
-
-  /// generate an adjazent matrix according to the predecessor and successor lists
-  Lisa_Matrix<int>* get_ADJ_Matrix(Lisa_Matrix<int>* adj) const;
-
-  /// create predecessor and successor lists with the help of an adjazent matrix
-  void read_ADJ(Lisa_Matrix<int>* adj);
-
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
-  void init(int number_of_vertex);
+  void init(const int number_of_vertex);  
+  
+  /// generate an adjazent matrix according to the predecessor and successor lists
+  void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const;
+
+  /// create predecessor and successor lists with the help of an adjazent matrix
+  void read_adjacency_matrix(const Lisa_Matrix<int> *const adj);
 
   /// insert an edge into the graph
   /** Add edge from vertice start to vertice end. */
@@ -144,6 +138,12 @@ public:
 
   ///access to the last element of the predecessor list
   int get_last_predecessor(int vertex);
+  
+  ///initialize the pointer for the successors list of a given vertice
+  bool init_succ_pointer(const int vertex);
+
+  /// initialize the pointer for the predecessor list of a given vertice
+  bool init_pred_pointer(const int vertex);
 
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 

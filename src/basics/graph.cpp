@@ -86,6 +86,76 @@ const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
 
 //**************************************************************************
 
+void Lisa_Graph::init(const int n_in) {
+  n=n_in;
+  end=n+1;
+  
+  if(matrix){delete matrix;}
+  matrix= new Lisa_Matrix<Lisa_Pair>(n+1,n+1);
+  
+  if(succ_pred_pointer){delete succ_pred_pointer;}
+  succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(n);
+  
+  for (int i=0; i<=n; i++){
+    for (int j=0; j<=n; j++){
+      if((i==0||j==0)||(i==j)){
+        (*matrix)[i][j].x=n+1;
+        (*matrix)[i][j].y=n+1;
+      }
+      else{
+        (*matrix)[i][j].x=0;
+        (*matrix)[i][j].y=0;
+      }
+    }
+  }
+  
+  for (int i=0; i<n; i++){
+    (*succ_pred_pointer)[i].x=i+1;
+    (*succ_pred_pointer)[i].y=i+1;
+  }
+  
+}
+
+//**************************************************************************
+  
+void Lisa_Graph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
+  
+  for(int i=1; i<=n; i++){
+    for(int j=1; j<=n; j++){
+      
+      if(signum(i,j)==1) {
+        (*adj)[i-1][j-1]=1;
+      }else{
+        (*adj)[i-1][j-1]=0;
+      }
+      
+    }
+  }
+  
+}
+
+//**************************************************************************
+
+void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
+  if((adj->get_n())==n){
+    for(int i=0; i<n; i++){
+      for(int j=0; j<n; j++){
+        //Test ob Verbindung existiert
+        if((i!=j)&&((*adj)[i][j]==1)) {
+          //Test ob Kante oder Bogen
+          if((*adj)[j][i]==1){
+            insert_edge(i+1,j+1);
+          }else{
+            insert_arc(i+1,j+1);
+          }
+        }
+      }
+    }
+  }
+}
+
+//**************************************************************************
+
 int Lisa_Graph::get_first_successor(int knot)
 {
   return ((*matrix)[knot][0].x);
@@ -676,55 +746,6 @@ bool Lisa_Graph::valid()
 }
 
 //**************************************************************************
-  
-Lisa_Matrix<int>* Lisa_Graph::get_ADJ_Matrix( Lisa_Matrix<int> *adj) const
-{
-
-  for(int i=1; i<=n; i++)
-    {
-      for(int j=1; j<=n; j++)
-	{
-	  if(signum(i,j)==1) {(*adj)[i-1][j-1]=1;}
-	  else{(*adj)[i-1][j-1]=0;}
-	}
-    }
-  return adj;
-}
-
-//**************************************************************************
-
-void Lisa_Graph::init(int n_in) 
-{
-  n=n_in;
-  end=n+1;
-
-  if(matrix){delete matrix;}
-  matrix= new Lisa_Matrix<Lisa_Pair>(n+1,n+1);
-
-  if(succ_pred_pointer){delete succ_pred_pointer;}
-  succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(n);
-
-  for (int i=0; i<=n; i++){
-    for (int j=0; j<=n; j++){
-      if((i==0||j==0)||(i==j)){
-	(*matrix)[i][j].x=n+1;
-	(*matrix)[i][j].y=n+1;
-      }
-      else{
-	(*matrix)[i][j].x=0;
-	(*matrix)[i][j].y=0;
-      }
-    }
-  }
-  
-  for (int i=0; i<n; i++){
-    (*succ_pred_pointer)[i].x=i+1;
-    (*succ_pred_pointer)[i].y=i+1;
-  }
-  
-}
-
-//**************************************************************************
 
 bool Lisa_Graph::init_succ_pointer(int knot)
 {
@@ -944,38 +965,10 @@ bool Lisa_Graph::topsort(Lisa_Vector<int>* knot_sequence)
 
 //**************************************************************************
 
-void Lisa_Graph::read_ADJ(Lisa_Matrix<int>* adj)
-{
-  if((adj->get_n())==n)
-    {
-      for(int i=0; i<n; i++)
-	{
-	  for(int j=0; j<n; j++)
-	    {
-	      //Test ob Verbindung existiert
-	      if((i!=j)&&((*adj)[i][j]==1)) 
-		{
-		  //Test ob Kante oder Bogen
-		  if((*adj)[j][i]==1)
-		    {
-		      insert_edge(i+1,j+1);
-		    }
-		  else
-		    {
-		      insert_arc(i+1,j+1);
-		    }
-		}
-	    }
-	}
-    }
-}
-
-//**************************************************************************
-
 void Lisa_Graph::write(ostream & strm) const 
 {
   Lisa_Matrix<int>* out=new Lisa_Matrix<int> (n,n);
-  out=get_ADJ_Matrix(out);
+  get_adjacency_matrix(out);
 
   strm << endl << "<GRAPH>" << endl;
   strm << "n= "<< n << endl;
@@ -1034,7 +1027,7 @@ void Lisa_Graph::read(istream & strm)
       if (S=="ADJ=")
 	{  
 	  strm >> *adj_Matrix;
-	  read_ADJ(adj_Matrix);
+	  read_adjacency_matrix(adj_Matrix);
 	  delete adj_Matrix;
 	}
     }
