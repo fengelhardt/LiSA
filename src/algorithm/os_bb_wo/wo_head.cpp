@@ -16,10 +16,7 @@
 
 
 
-static void Compute_Head(actual_op)	
-int actual_op;
-
-{
+static void Compute_Head(int actual_op){
   register struct List  *help;
   int op_array[MaxOpProM_And_J+1];
   register int i, 
@@ -71,10 +68,7 @@ int actual_op;
 
 
 
-static void Compute_Tail(actual_op)
-int actual_op;
-
-{
+static void Compute_Tail(int actual_op){
   register struct List  *help;
   int op_array[MaxOpProM_And_J+1];
   register int i, 

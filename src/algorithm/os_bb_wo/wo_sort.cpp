@@ -21,12 +21,7 @@
 /*	      ordnet, usw.						     */
 /* ************************************************************************* */
 
-void Sort(key_array, sort_array, last)	
-     
-     int key_array[];  
-     int sort_array[];  
-     int last;
-{
+void Sort(int key_array[],int sort_array[],int last){
 
   register int i, 
 	       j, 

@@ -23,7 +23,7 @@
 /*	      ordnet, usw.						     */
 /* ************************************************************************* */
 
-void Sort ();
+void Sort (int key_array[],int sort_array[],int last);
 
 
 #endif

@@ -20,10 +20,7 @@
 /*            Initialisierung der Datei "output.dat"                        */
 /* ************************************************************************ */
 
-void Initialize (output_file)
-
-char output_file[];
-{
+void Initialize (char output_file[]){
 
   int i;
   FILE *fp;

@@ -8,6 +8,8 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
@@ -39,12 +41,8 @@
 /*		       krtitischer Pfad der Selektion			     */
 /* ************************************************************************* */
 
-int main(argc, argv)
-
-int argc;
-char *argv[];
-
-{
+int main(int argc,char *argv[]){
+  
   struct BranchList  *DeleteBranch;
   char output_file[30];
   char *index;

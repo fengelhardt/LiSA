@@ -23,8 +23,7 @@
 /*             den Wert TRUE zurueck.                                       */
 /* ************************************************************************ */
 
-boolean Read_Data(FileName)	char *FileName;
-{
+boolean Read_Data(char *FileName){
 
  int      i, 
 	  j, 

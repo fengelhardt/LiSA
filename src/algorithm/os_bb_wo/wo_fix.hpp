@@ -23,6 +23,6 @@
 /*            gespeichert.                                                   */
 /* ************************************************************************* */
 
-void Fix_Arcs ();
+void Fix_Arcs(int moveop,char direc,char block_kind);
 
 #endif

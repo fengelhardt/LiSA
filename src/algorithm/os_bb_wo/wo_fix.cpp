@@ -25,13 +25,7 @@
 /*            gespeichert.						    */
 /* ************************************************************************ */
 
-void Fix_Arcs(moveop,direc,block_kind)	
-
- int moveop;  
- char direc,
-      block_kind;
-
-{
+void Fix_Arcs(int moveop,char direc,char block_kind){
 
   boolean           found,
 		    just_found,

@@ -4,7 +4,7 @@
 ../../../obj/wo_stack.o: wo_stack.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_stack.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_stack.o wo_stack.cpp
 ../../../obj/wo_branch.o: wo_branch.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_branch.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_branch.o wo_branch.cpp
 ../../../obj/wo_heur1.o: wo_heur1.cpp wo_data.hpp wo_calc.hpp wo_table.hpp wo_list.hpp   wo_heur.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_heur1.o wo_heur1.cpp
-../../../obj/wo_int.o: wo_int.cpp wo_data.hpp wo_table.hpp wo_init.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_int.o wo_int.cpp
+../../../obj/wo_init.o: wo_init.cpp wo_data.hpp wo_table.hpp wo_init.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_init.o wo_init.cpp
 ../../../obj/wo_read.o: wo_read.cpp wo_data.hpp wo_table.hpp wo_read.hpp wo_list.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_read.o wo_read.cpp
 ../../../obj/wo_table.o: wo_table.cpp wo_data.hpp wo_table.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_table.o wo_table.cpp
 ../../../obj/wo_calc.o: wo_calc.cpp wo_table.hpp wo_data.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_calc.o wo_calc.cpp

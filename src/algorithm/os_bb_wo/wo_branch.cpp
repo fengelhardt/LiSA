@@ -8,21 +8,18 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 #include "wo_branch.hpp"
 
 
-
-static boolean CheckBefore(op, block)	
-int op;  
-struct List *block;
-
 /* Uberpruefen, ob eine op vor einen Block bewegt werden kann, oder nicht:
    Wird eine der Op'en des Blockes bereits vor op bearbeitet, so darf 
    op nicht vor den Block bewegt werden, da sonst Zyklen entstehen
 */
+static boolean CheckBefore(int op, struct List *block)
 {
    struct List *help;
 
@@ -38,13 +35,9 @@ struct List *block;
 }
 
 
-
-static boolean CheckAfter(op, block)
-int op;
-struct List *block;
-
 /* Ueberpruefen, ob eine op hinter den Block bewegt werden kann, oder nicht
-*/               
+*/ 
+static boolean CheckAfter(int op,struct List *block)              
 {
    struct List *help;
 
@@ -60,17 +53,11 @@ struct List *block;
 }
 
 
-
-static boolean SimpleLowerBound(op, block, head, tail)	
-struct List * block;  
-int head[],
-    tail[],
-    op;
-
 /* Berechnung einer einfachen unteren Schranke, wenn die Operation vor
    oder hinter den Block bewegt werden soll;
    ist der berechnete Wert >= UB, so ist die op kein Bewegungskandidat
 */
+static boolean SimpleLowerBound(int op,struct List *block,int head[],int tail[])	
 {
    struct List  *help;
    int          maxvalue, 
@@ -116,15 +103,10 @@ int head[],
    block_kind enthaelt die Info's aus 'kind' von struct BlockList, diese
    werden in 'kind_of_block' v. struct BranchList fuer jede Op geschrieben.
 */
-static void InsertInOrder(op, direction, block_kind)
-int  op;  
-char direction,
-     block_kind;
-
-
 /* Einfuegen der Operationen in der Reihenfolge nicht-fallender
    Heads oder Tails 
 */
+static void InsertInOrder(int op,char direction,char block_kind)
 {
    struct BranchList  *temp, 
 		      *help;

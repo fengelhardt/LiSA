@@ -24,7 +24,7 @@
 /*  FUNCTION: Op wird ans Ende von l gestellt, wenn Member(l,Op) == false    */
 /* ************************************************************************* */
 
-struct List *Insert ();
+struct List *Insert (struct List* l, int op);
 
 
 /* ************************************************************************* */
@@ -36,7 +36,7 @@ struct List *Insert ();
 /*  FUNCTION: Op wird an den Anfang von l gestellt                           */
 /* ************************************************************************* */
 
-struct List *InsertBefore ();
+struct List *InsertBefore (struct List *l,  int op);
 
 
 /* ************************************************************************* */
@@ -48,7 +48,7 @@ struct List *InsertBefore ();
 /*  FUNCTION: Op wird aus l geloescht                                        */
 /* ************************************************************************* */
 
-struct List *Delete ();
+struct List *Delete (struct List *l, int op);
 
 
 /* ************************************************************************* */
@@ -59,7 +59,7 @@ struct List *Delete ();
 /*  FUNCTION: l wird geloescht                                               */
 /* ************************************************************************* */
 
-struct List *Makeempty ();
+struct List *Makeempty (struct List *l);
 
 
 /* ************************************************************************* */
@@ -71,7 +71,7 @@ struct List *Makeempty ();
 /*  FUNCTION: Uberprueft, ob Op in l ist oder nicht                          */
 /* ************************************************************************* */
 
-boolean Member ();
+boolean Member (struct List *l,  int op);
 
 
 /* ************************************************************************* */
