@@ -7,55 +7,6 @@
 #include "list.hpp"
 
 //**************************************************************************
-
-/// a derivate of Lisa_List to be used inside Vectors and Matrices
-/**
- * @see Lisa_VectorOfLists
- * @see Lisa_MatrixOfLists
- * @author Ivo Roessling
- * @version 2.3pre3
- */
-template<class T>
-class Lisa_nestedList:public Lisa_List<T>{
-public:
-  /// write list values to a stream
-  /** what actually is the difference from Lisa_List<T>::write() here ? */ 
-  void write(std::ostream& strm) const{
-    
-    Lisa_Node<T> * temp;
-    strm << " ( ";
-    temp=first_last->succ;
-    
-    while (temp!=first_last){ 
-      strm << ((Lisa_Node<T>*)temp)->value << " "; 
-      temp=temp->succ;
-    } while (temp!=first_last);
-    
-    strm << ") ";
-  }
-
-  /// fills all nodes in the list with wert   
-  void fill(T wert) {
-    for (Lisa_Node<T> * temp=first_last->succ;
-	 temp!=first_last;
-	 temp=temp->succ) {
-      temp->value=wert;
-    }
-  }
-
-  /*
-    bool split_up(int x) {
-    if (length()<=0) return false;
-    if ((first_last->pred)->value < x) return false;
-    (first_last->pred)->value-=x;
-    append(x);
-    return true;
-  }
-  */
-
-};
-
-//**************************************************************************
  
 template<class T> class Lisa_MatrixOfLists;
 
@@ -74,7 +25,7 @@ protected:
   unsigned int m;
   
   /// array modelling vector
-  Lisa_nestedList<T>* contents;
+  Lisa_List<T>* contents;
   
   ///default constructor
   Lisa_VectorOfLists(){contents=0; m=0;}
@@ -99,7 +50,7 @@ public:
   void fill(const T value);             
   
   /// access to j-th element of vector 
-  inline Lisa_nestedList<T>& operator[] (const unsigned int j){ 
+  inline Lisa_List<T>& operator[] (const unsigned int j){ 
     #ifdef LISA_DEBUG
     if (j>=m){
       G_ExceptionList.lthrow("element "+ztos(j)+" of a "+ztos(m)+
@@ -111,7 +62,7 @@ public:
   }
     
   /// access to j-th element of vector   
-  inline Lisa_nestedList<T> operator[] (const unsigned int j)const{ 
+  inline Lisa_List<T> operator[] (const unsigned int j)const{ 
     #ifdef LISA_DEBUG
     if (j>=m){
       G_ExceptionList.lthrow("element "+ztos(j)+" of a "+ztos(m)+
@@ -157,9 +108,9 @@ public:
   //@}
   
   /// get pointer to first element in vector
-  Lisa_nestedList<T>* get_first() const { return contents; }
+  Lisa_List<T>* get_first() const { return contents; }
   /// get pointer to last element in vector
-  Lisa_nestedList<T>* get_last() const { return contents+m; }
+  Lisa_List<T>* get_last() const { return contents+m; }
 };
 
 //**************************************************************************

@@ -17,14 +17,14 @@ extern string G_ExtraException;
 
 //**************************************************************************
 
-// creating a VectorOfLists with size m  (--> combination of m Lisa_nestedLists)
+// creating a VectorOfLists with size m  (--> combination of m Lisa_Lists)
 template<class T>
 Lisa_VectorOfLists<T>::Lisa_VectorOfLists(int m_in){
     //setting the internal size variable  
     m=m_in;  
        
-    //the contents: an array of Lisa_nestedList (=nestedList)
-    contents= new Lisa_nestedList<T>[m];   
+    //the contents: an array of Lisa_List (=nestedList)
+    contents= new Lisa_List<T>[m];   
 }  
 
 //**************************************************************************
@@ -36,7 +36,7 @@ Lisa_VectorOfLists<T>::Lisa_VectorOfLists(const Lisa_VectorOfLists<T>& other){
        G_ExceptionList.lthrow("(Warning) listvector given by value");
 #endif
        m=other.m; 
-       contents= new Lisa_nestedList<T>[m];
+       contents= new Lisa_List<T>[m];
        
        for (unsigned int i=0;i<m;i++) contents[i] = other.contents[i];
 }
@@ -50,7 +50,7 @@ Lisa_VectorOfLists<T>::Lisa_VectorOfLists(const Lisa_Vector<T>& nonpreemtive) {
 #endif
        m=nonpreemtive.get_m(); 
        
-       contents= new Lisa_nestedList<T>[m];
+       contents= new Lisa_List<T>[m];
        
        for (unsigned int i=0;i<m;i++) contents[i].append(nonpreemtive[i]);
 }
@@ -71,7 +71,7 @@ template<class T>
 int Lisa_VectorOfLists<T>::index_of_max()const{
   unsigned int i,j;
   T value=contents[0].max();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->max()>value) { value=go->max(); i=j; }
@@ -86,7 +86,7 @@ int Lisa_VectorOfLists<T>::index_of_maxsum() const
 {
   unsigned int i,j;
   T value=contents[0].sum();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->sum()>value) { value=go->sum(); i=j; }
@@ -100,7 +100,7 @@ template<class T>
 int Lisa_VectorOfLists<T>::index_of_maxlast()const{
   unsigned int i,j;
   T value=contents[0].last();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->last()>value) { value=go->last(); i=j; }
@@ -114,7 +114,7 @@ template<class T>
 int Lisa_VectorOfLists<T>::index_of_min() const {
   unsigned int i,j;
   T value=contents[0].min();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->min()<value) { value=go->min(); i=j; }
@@ -129,7 +129,7 @@ int Lisa_VectorOfLists<T>::index_of_minsum() const
 {
   unsigned int i,j;
   T value=contents[0].sum();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->sum()<value) { value=go->sum(); i=j; }
@@ -143,7 +143,7 @@ template<class T>
 int Lisa_VectorOfLists<T>::index_of_minlast() const {
   unsigned int i,j;
   T value=contents[0].last();
-  Lisa_nestedList<T> * go;
+  Lisa_List<T> * go;
   i=0;
   for(j=1,go=contents+1 ; j<m ; go++,j++) 
     if (go->last()<value) { value=go->last(); i=j; }
@@ -157,7 +157,7 @@ template<class T>
 const Lisa_VectorOfLists<T>& Lisa_VectorOfLists<T>::operator=(const Lisa_VectorOfLists<T>& other) {
   if (&other != this) {
 	 m=other.m; 
-	 contents= new Lisa_nestedList<T>[m];
+	 contents= new Lisa_List<T>[m];
 	 for (unsigned int i=0;i<m;i++) {
 	   contents[i] = other.contents[i];
 	 }
@@ -258,7 +258,7 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(const Lisa_MatrixOfLists<T>& other){
        
        for (int i=n ; i-- ; ){ 
             row[i].m=m;  
-            row[i].contents= new Lisa_nestedList<T>[m];
+            row[i].contents= new Lisa_List<T>[m];
             row[i]=other.row[i];
        }
 }
@@ -273,7 +273,7 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(int n_in, int m_in){
        
        for (int i=n ; i-- ; ){ 
             row[i].m=m;  
-            row[i].contents= new Lisa_nestedList<T>[m];
+            row[i].contents= new Lisa_List<T>[m];
        }
 }
 
@@ -292,7 +292,7 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(const Lisa_Matrix<T>& nonpreemptive) {
        
         for (int i=n ; i-- ; ){ 
             row[i].m=m;  
-            row[i].contents= new Lisa_nestedList<T>[m];
+            row[i].contents= new Lisa_List<T>[m];
        }
        
        for (unsigned int j=0; j<n;j++)
@@ -452,7 +452,7 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(Lisa_Matrix<int> *other_A) {
 //**************************************************************************
 
 // define classes for following types T:
-template class Lisa_nestedList<Lisa_Pair>;
+template class Lisa_List<Lisa_Pair>;
 
 template class Lisa_MatrixOfLists<bool>;
 template class Lisa_MatrixOfLists<int>;

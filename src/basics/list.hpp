@@ -585,12 +585,21 @@ public:
 
 //**************************************************************************
 
-  /// sort list by nondecraesing values
-  /** this sort uses a quicksort algorithm */
-  void sort()
-    {
-       if (size>1) qsort(first_last->succ,first_last->pred);
-    }
+/// sort list by nondecraesing values
+/** this sort uses a quicksort algorithm */
+void sort(){
+  if (size>1) qsort(first_last->succ,first_last->pred);
+}
+
+//**************************************************************************
+    
+/// fills all nodes in the list with wert   
+void fill(T wert) {
+  for (Lisa_Node<T> * temp=first_last->succ;temp!=first_last;temp=temp->succ){
+        temp->value=wert;
+  }
+}
+
 
 //**************************************************************************
 
@@ -608,7 +617,7 @@ public:
      temp=temp->succ;
    }while (temp!=first_last);
    
-   strm << ") "<< std::endl;
+   strm << ") ";
  }
 
 //**************************************************************************

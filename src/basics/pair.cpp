@@ -28,6 +28,16 @@ bool Lisa_Pair::operator!=(const Lisa_Pair & other) const
        else
          return false;
      }
+     
+//**************************************************************************
+
+bool Lisa_Pair::operator==(const Lisa_Pair & other) const
+     { 
+       if (x==other.x && y == other.y)
+         return true;
+       else
+         return false;
+     }
 
 //**************************************************************************
 

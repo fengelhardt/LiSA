@@ -25,6 +25,9 @@ public:
   /// compare for equality
   bool operator!=(const Lisa_Pair& other) const;
   
+  /// compare for equality
+  bool operator==(const Lisa_Pair& other) const;
+  
   /// compare lexicographically
   bool operator<(const Lisa_Pair& other) const;
   

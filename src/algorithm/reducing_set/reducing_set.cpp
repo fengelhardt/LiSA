@@ -38,8 +38,8 @@ Lisa_Matrix<TIMETYP> * P_input;
 Lisa_Matrix<bool> * MatchingMatrix;
 int level;
 int m,n;		  
-Lisa_nestedList<Lisa_Pair> * allMatchings;
-Lisa_nestedList<TIMETYP> * allDeltas;
+Lisa_List<Lisa_Pair> * allMatchings;
+Lisa_List<TIMETYP> * allDeltas;
 
 //**************************************************************************
 
@@ -141,7 +141,7 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 	    const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J,
 	    TIMETYP delta) 
 {
-  Lisa_nestedList<Lisa_Pair> * MatchingEdges=new Lisa_nestedList<Lisa_Pair>();
+  Lisa_List<Lisa_Pair> * MatchingEdges=new Lisa_List<Lisa_Pair>();
   int edgecount=0;
   LB-=delta;
   if (n>=m) {
@@ -230,8 +230,8 @@ int main(int argc, char *argv[])
     result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
 
     if (nondelay) {
-      allMatchings=new Lisa_nestedList<Lisa_Pair>();
-      allDeltas=new Lisa_nestedList<TIMETYP>();
+      allMatchings=new Lisa_List<Lisa_Pair>();
+      allDeltas=new Lisa_List<TIMETYP>();
     }
 
     rowsums=new Lisa_Vector<TIMETYP>(my_werte->get_n());
@@ -306,7 +306,7 @@ int main(int argc, char *argv[])
 	  // out of the queue
 	  (*currMatchingInfo)=allMatchings->dequeue();
 	  Lisa_Pair * EdgesAndDelta=(Lisa_Pair*)currMatchingInfo->y;
-	  Lisa_nestedList<Lisa_Pair> * currMatching=(Lisa_nestedList<Lisa_Pair>*)EdgesAndDelta->y;
+	  Lisa_List<Lisa_Pair> * currMatching=(Lisa_List<Lisa_Pair>*)EdgesAndDelta->y;
 
  	  // going through all edges of the current matching and 
 	  // and updating the preemtive P and LR
