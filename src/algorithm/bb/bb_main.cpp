@@ -77,8 +77,6 @@ int main(int argc, char *argv[])
 	break;
       case F:
       case ONE:
-        G_ExceptionList.lthrow("no algorithm implemented, using job shop",
-			       WARNING);
       case J: my_bb=my_js_bb=new JS_BB;
 	break;
       default: G_ExceptionList.lthrow("unknown problem type, aborting");
