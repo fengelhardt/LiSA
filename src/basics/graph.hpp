@@ -36,7 +36,7 @@ class Lisa_Graph  : public Lisa_FileEntry {
 private:
 
   ///number of vertices
-  int   n;
+  int n;
   
   /// end (number of vertices + 1) 
   int end;
@@ -67,16 +67,13 @@ private:
   Lisa_Vector<Lisa_Pair> *succ_pred_pointer;
   
   ///determine the signum of a connection
-  int signum(int start, int end) const;
-  
-  /// needs documentation
-  int ix,iy;
+  int signum(const int start,const int end) const;
 
 public:
   
   /// constructor
   /** Create a graph object for a number of vertices. */
-  Lisa_Graph(int number_of_vertices);
+  Lisa_Graph(const int number_of_vertices);
 
   /// constructor
   /** Create a graph as the copy of another graph. */
@@ -84,7 +81,7 @@ public:
 
   /// constructor
   /** Create a graph as the copy of another graph. */
-  Lisa_Graph(const Lisa_Graph* othergraph);
+  Lisa_Graph(const Lisa_Graph *const othergraph);
 
   /// destructor
   ~Lisa_Graph();

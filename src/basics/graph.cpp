@@ -10,16 +10,19 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_Graph::~Lisa_Graph()
-{
-  delete matrix;
-  delete succ_pred_pointer;
+int Lisa_Graph::signum(const int start,const int end)const{
+  if(start==end) {return 0;}
+  
+  if(((*matrix)[start][end].x>0)&&((*matrix)[start][end].y>0)){
+    return 1;
+  }else{
+    return -1;
+  }
 }
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(int number_of_knots)
-{
+Lisa_Graph::Lisa_Graph(const int number_of_knots){
   matrix=0;
   succ_pred_pointer=0;
   init(number_of_knots);
@@ -27,8 +30,7 @@ Lisa_Graph::Lisa_Graph(int number_of_knots)
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
-{
+Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph){
   matrix=0;
   succ_pred_pointer=0;
   init(othergraph.get_vertices());
@@ -43,8 +45,7 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
 
 //**************************************************************************
 
-Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
-{
+Lisa_Graph::Lisa_Graph(const Lisa_Graph *const othergraph){
   matrix=0;
   succ_pred_pointer=0;
   init(othergraph->get_vertices());
@@ -56,6 +57,32 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
     }
   }
 }
+
+//**************************************************************************
+
+Lisa_Graph::~Lisa_Graph(){
+  delete matrix;
+  delete succ_pred_pointer;
+}
+
+//**************************************************************************
+
+const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
+  
+  if (n!=other.get_vertices()){
+    G_ExceptionList.lthrow("wrong format argument to graph.operator=");
+    return *this;
+  } 
+  
+  
+  for (int i=0; i <end; i++){
+    (*succ_pred_pointer)[i]=(*(other.succ_pred_pointer))[i];
+    for (int j=0; j <end; j++){
+      (*matrix)[i][j]=(*(other.matrix))[i][j];
+    }
+  }
+  return *this;
+}      
 
 //**************************************************************************
 
@@ -83,22 +110,6 @@ int Lisa_Graph::get_first_predecessor(int knot)
 int Lisa_Graph::get_last_predecessor(int knot)
 {
   return ((*matrix)[0][knot].y);
-}
-
-//**************************************************************************
-
-int Lisa_Graph::signum(int start, int end) const
-{
-  if(start==end) {return 0;}
- 
-  if(((*matrix)[start][end].x>0)&&((*matrix)[start][end].y>0))
-    {
-      return 1;
-    }
-  else
-    {
-      return -1;
-    }
 }
 
 //**************************************************************************
@@ -723,26 +734,6 @@ bool Lisa_Graph::init_succ_pointer(int knot)
   (*succ_pred_pointer)[knot-1].x=knot;
   return true;
 }
-
-//**************************************************************************
-
-const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other) 
-{
-
-  if (n!=other.get_vertices()){
-    G_ExceptionList.lthrow("wrong format argument to graph.operator=");
-    return *this;
-  } 
-
-  
-  for (int i=0; i <end; i++){
-    (*succ_pred_pointer)[i]=(*(other.succ_pred_pointer))[i];
-    for (int j=0; j <end; j++){
-      (*matrix)[i][j]=(*(other.matrix))[i][j];
-    }
-  }
-  return *this;
-}      
 
 //**************************************************************************
 
