@@ -10,13 +10,13 @@ using namespace std;
 //**************************************************************************
 
 void Lisa_Pair::read(istream & strm) {
-  //strm >> *actual_schedule;
+  
 }
 
 //**************************************************************************
 
-void Lisa_Pair::write(ostream & strm) const {
- 
+void Lisa_Pair::write(ostream& strm) const {
+  strm<<"["<<x<<","<<y<<"]";
 }
 
 //**************************************************************************

@@ -25,14 +25,6 @@ using namespace std;
 
 //**************************************************************************
 
-inline ostream& operator << (ostream&strm, const Lisa_Pair& p)
-{
-  strm<<"["<<p.x<<","<<p.y<<"]";
-  return strm;
-}
-
-//**************************************************************************
-
 bool nondelay=false;
 
 TIMETYP LB, LV;

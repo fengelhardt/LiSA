@@ -35,7 +35,7 @@ public:
   
   /// compare lexicographically  
   bool operator>(const  Lisa_Pair&) const;
-};    
+};
 
 #endif
 
