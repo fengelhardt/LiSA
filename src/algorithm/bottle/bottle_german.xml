@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="ShiftingBottleneck" type="constructive" call="bottle" code="external" help_file="algorithm/bottle.html">
+  <heuristic>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="J"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <choice name="SPEED" caption="Speed">
+      <item name="SLOW"/>
+      <item name="FAST"/>
+    </choice>
+  </alg_controls>
+</algorithm>

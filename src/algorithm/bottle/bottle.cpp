@@ -11,6 +11,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "../../xml/LisaXmlFile.hpp"
+
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"
 #include "../../scheduling/schedule.hpp"
@@ -38,95 +40,112 @@ int main(int argc, char *argv[])
        exit(1);
      }
    cout << "PID= " << getpid() << endl; 
+   
    ifstream i_strm(argv[1]);
    ofstream o_strm(argv[2]);
-   if (!i_strm)
-     {
-       cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
-       exit(1);
-     }
+   if (!i_strm){
+     cout << "ERROR: cannot open file " << argv[1] << " for reading." << endl;
+     exit(1);
+   }
+   if(!o_strm){
+     cout << "ERROR: cannot open file " << argv[2] << " for writing." << endl;
+     exit(1);  
+   }
+   i_strm.close();
+   o_strm.close();
    
    // read problem description and decide whether program is applicable:
-   Lisa_ProblemType * lpr = new Lisa_ProblemType;
-   i_strm >> (*lpr);
-
-   //cout<<*lpr<<endl;
+   Lisa_ProblemType lpr;
+   Lisa_ControlParameters sp;
+   Lisa_Values my_werte;
    
-   if (!G_ExceptionList.empty())
-     {
-       cout << "ERROR: cannot read problem type, aborting program." << endl;
-       exit(1);
-     }  
-   
-   if ((lpr->get_property(M_ENV)!= J)&&(lpr->get_property(M_ENV)!= F))
-     
-     {
-       cout << "ERROR: wrong problem type, aborting program." << endl;
-       exit(1);
-     }
-
-   string cannot_handle="";
-   if (lpr->get_property(PMTN)) cannot_handle="preemption";
-   if (lpr->get_property(PRECEDENCE)!=EMPTY) 
-        cannot_handle="precedence constraints"; 
-   if (lpr->get_property(BATCH))  cannot_handle="batching"; 
-   if (lpr->get_property(NO_WAIT))  cannot_handle="no-wait constraints";
-   if (cannot_handle!="")  
-        {
-        cout << "ERROR: bb cannot handle " << cannot_handle << 
-             ". Aborting program."<< endl;
-        exit(1);
-        }  
-   delete lpr;   
-
-
-   bool mode=true;
-   // read control parameters: 
-   Lisa_ControlParameters * sp = new Lisa_ControlParameters;
-   i_strm >> (*sp);
-   if(sp->get_string("SPEED")=="FAST") mode=false;
-   delete sp;
-
    // read problem instance:
-   Lisa_Values * my_werte=new Lisa_Values;
-   i_strm >> (*my_werte);
+   //initialize class
+   LisaXmlFile::initialize();
+   //create Input handler
+   LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
    
+   //parse xml file
+    xmlInput.read(argv[1]);
+    //determine document type
+    LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+    
+    //check for successful parsing and valid document type
+    if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    //get Problem
+    if( !(xmlInput >> lpr))
+    {
+      cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+      exit(1);
+    }
+    //get ControlParameters
+    if( !(xmlInput >> sp))
+    {
+      cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+      exit(1);
+    }
+    //get Values
+    if( !(xmlInput >> my_werte))
+    {
+      cout << "ERROR: cannot read Values , aborting program." << endl;
+      exit(1);
+    }
+    // if something else went wrong
+    if (!G_ExceptionList.empty())
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    
+    
+   // check problem type
+   if ((lpr.get_property(M_ENV)!= J)&&(lpr.get_property(M_ENV)!= F)){
+     cout << "ERROR: wrong problem type, aborting program." << endl;
+     exit(1);
+   }
+   string cannot_handle="";
+   if(lpr.get_property(PMTN)) cannot_handle="preemption";
+   if(lpr.get_property(PRECEDENCE)!=EMPTY) cannot_handle="precedence constraints"; 
+   if(lpr.get_property(BATCH))  cannot_handle="batching"; 
+   if(lpr.get_property(NO_WAIT))  cannot_handle="no-wait constraints";
+   if(cannot_handle!=""){
+     cout << "ERROR: bb cannot handle " << cannot_handle
+          << ". Aborting program."<< endl;
+     exit(1);
+   }  
+
+   // check controlparameters
+   bool mode=true; 
+   if(sp.get_string("SPEED")=="FAST") mode=false;
+
+
    // solve the problem and store results in a schedule object
-   // Insert your solution algorithm here:
+        
+   Lisa_Schedule out_schedule(my_werte.get_n(),my_werte.get_m());
+   out_schedule.make_LR();
+  
+   Lisa_JsProblem jsPro(&my_werte);
+   Lisa_JsSchedule jsSch(&jsPro);
+
+   Shifting_Bottleneck sh(&jsSch, mode);
+
+   sh.run(&out_schedule); 
+
    
-   /*
-   Lisa_JsProblem* jsPro=new Lisa_JsProblem(my_werte);
-   Lisa_JsSchedule* jsSch=new  Lisa_JsSchedule(jsPro);
-   */
-     
-   Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),
-                                                    my_werte->get_m());
-  
-   Lisa_JsProblem* jsPro=new Lisa_JsProblem(my_werte);
-   Lisa_JsSchedule* jsSch=new  Lisa_JsSchedule(jsPro);
-
-   Shifting_Bottleneck* sh=new  Shifting_Bottleneck(jsSch, mode);
-   //Shifting_Bottleneck* sh=new  Shifting_Bottleneck(my-werte);
-
-   time_t start;
-   time_t end;
-
-   time(&start);
-   sh->run(out_schedule); 
-   time(&end);
-
-   cout<<"start "<<start<<" end "<<end<<endl;
-   cout<<"runtime "<<end-start<<endl;
-
-   out_schedule->make_LR();
-  
    // write results to output file:
+   //create xml output handler
+   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+   //pipe objects to this
+   xmlOutput << lpr << my_werte << sp << out_schedule;
+   //write content to a file
+   xmlOutput.write(argv[2]);
 
-   o_strm << *out_schedule;
-   delete out_schedule;
-   //delete jsSch;
-   delete my_werte;
- }
+
+}
 
 //**************************************************************************
 

@@ -16,4 +16,7 @@ CXXSOURCES=\
 	../../scheduling/sp_sched.cpp\
 	../single/Single_Machine_BB.cpp\
  	../../basics/order.cpp\
-
+    ../../xml/LisaXmlFile.cpp \
+	../../xml/lisa_xml.cpp \
+	../../xml/Lisa_NativeDataHandler.cpp \
+	../../xml/Lisa_IO_Factory.cpp
