@@ -421,7 +421,7 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
 		  Lisa_OsSchedule &myOsSchedule,
 		  Lisa_Matrix<bool> &SIJ) {
   char color[20];
-  int i,j,hi,hj,dist,width=0,height=0;
+  int i,j,dist,width=0,height=0;
   int maxm,maxn;
   float d;
   int border=60; // size of the border
@@ -450,6 +450,20 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
 		       (string) "J "+ ztos(j+1) ,"Black");
  }
  
+ // (bugfix by iroess)
+ // An Lisa_OsSchedule object doesn't provide the information about it's LR
+ // directly(!) - so we have to pass a container matrix to get it back filled
+ // with the LR-values...
+ // tbi: LR member object within class Lisa_ShpSchedule...
+ Lisa_Matrix<int> *LR = new Lisa_Matrix<int>(maxn,maxm);
+ myOsSchedule.write_LR(LR);
+ 
+ // (iroess)
+ // go through the operations & do the following:
+ // - get the horizontal & vertical predecessor - NOT the successor!!!
+ // - do both operations lie on a critical path ?! 
+ // - both LR-values have to be compared: curr_val==pred_val+1 ?	       
+	
  for(i=0;i<maxm;i++) { 
    for(j=0;j<maxn;j++) { 
      if ( (SIJ)[j][i]) {
@@ -459,41 +473,44 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
        else
 	 main_canvas->fil_circle((width-2*border)/maxm*i+border,
 				 (height-2*border)/maxn*j+border,2,"Black");
-       // get the horizontal successor
-       hj=j;
-       hi=myOsSchedule.GetMOsucc(j+1,i+1)-1;
+       // get the horizontal predecessor       
+       int hj=j;
+       int hi=myOsSchedule.GetMOpred(j+1,i+1)-1;
        if (hi>=0) {
-	 if ( (CP)[j][i] && ( (CP)[hj][hi]))
+	 // --> critical-path-check...
+	 if ( (CP)[j][i] && ((CP)[hj][hi]) && ((*LR)[j][i]==(*LR)[hj][hi]+1))    
 	   sprintf(color,"Red");
 	 else sprintf(color,"Black");
 	 dist=i-hi; if(dist<0) dist=-dist;
 	 if(dist==1) d=0; // straight line
 	 else d=500/maxn*dist/maxm;   
-	 main_canvas->arc_arrow((width-2*border)/maxm*i+border,
-				(height-2*border)/maxn*j+border,
-				(width-2*border)/maxm*hi+border,
+	 main_canvas->arc_arrow((width-2*border)/maxm*hi+border,
 				(height-2*border)/maxn*hj+border,
+				(width-2*border)/maxm*i+border,
+				(height-2*border)/maxn*j+border,
 				d,color);
        }
-       // and now the vertical successor
-       hi=i;
-       hj=myOsSchedule.GetJOsucc(j+1,i+1)-1;
-       if (hj>=0) {
-	 if ( (CP)[j][i] && ( (CP)[hj][hi]))
+       // and now the vertical predecessor
+       int vi=i;
+       int vj=myOsSchedule.GetJOpred(j+1,i+1)-1;
+       if (vj>=0) {
+	 // --> critical-path-check...	       
+	 if ( (CP)[j][i] && ((CP)[vj][vi]) && ((*LR)[j][i]==(*LR)[vj][vi]+1))
 	   sprintf(color,"Red");
 	 else sprintf(color,"Black");
-	 dist=j-hj; if(dist<0) dist=-dist;
+	 dist=j-vj; if(dist<0) dist=-dist;
 	 if(dist==1) d=0; // straight line
 	 else d=500/maxm*dist/maxn;
-	 main_canvas->arc_arrow((width-2*border)/maxm*i+border,
+	 main_canvas->arc_arrow((width-2*border)/maxm*vi+border,
+				(height-2*border)/maxn*vj+border,
+				(width-2*border)/maxm*i+border,
 				(height-2*border)/maxn*j+border,
-				(width-2*border)/maxm*hi+border,
-				(height-2*border)/maxn*hj+border,
 				d,color);
        } 
      }
    }
  }
+ delete LR;
 }
 
 
