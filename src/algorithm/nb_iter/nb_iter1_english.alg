@@ -158,7 +158,7 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 
 <PARAMETERS>
 string NGBH ( API SHIFT CR_API BL_API CR_SHIFT BL_SHIFT 3_CR ) "Neighborhood"
-string METHOD ( TS TA II SA ) "Search Method"
+string METHOD ( TabuSearch ThresholdAccepting IterativeImprovement SimulatedAnnealing ) "Search Method"
 string TYPE ( ENUM RAND ) "Create Neighbor"
 long STEPS 5000 "Created Solutions"
 long NUMB_STUCKS 10000 "Stuck Since (Abort Criterion)";

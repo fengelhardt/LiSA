@@ -159,7 +159,7 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 
 <PARAMETERS>
 string NGBH ( API SHIFT CR_API BL_API CR_SHIFT BL_SHIFT 3_CR ) "Nachbarschaft"
-string METHOD ( TS TA II SA ) "Suchmethode"
+string METHOD ( TabuSearch ThresholdAccepting IterativeImprovement SimulatedAnnealing ) "Suchmethode"
 string TYPE ( ENUM RAND ) "Erzeugemodus"
 long STEPS 5000 "Anzahl der Lösungen"
 long NUMB_STUCKS 10000 "Abbruch nach Stillständen (Abbruchkriterium)";
