@@ -6,6 +6,7 @@
 /* ************************************************************************* */
 
 #include <unistd.h>
+#include <signal.h>
 
 #include <cstdio>
 #include <cstring>
@@ -28,6 +29,24 @@
 #include "wo_low.hpp"
 
 #include "../../misc/except.hpp"
+
+//**************************************************************************
+
+bool abort_algorithm=false;
+
+void set_abort(int i){  
+   abort_algorithm=true;
+   std::cout << std::endl << "Signal " << i << " received, aborting."
+             << std::endl;
+}
+
+void run_start(){
+   signal(SIGINT, &set_abort);
+}
+
+void run_stop(){
+   signal(SIGINT, SIG_DFL);
+}
 
 /* ************************************************************************* */
 /*                                                                           */
@@ -64,6 +83,7 @@ int main(int argc,char *argv[]){
     
   Read_Data(argv[1]);
   
+  run_start();
   if ( Compute_Head_Tail() ){
     Heuristic_Schedule();
     if ((SonNode->lower_bound = Additional_Arcs()) < UpperBound){
@@ -81,7 +101,7 @@ int main(int argc,char *argv[]){
     }
   }
   
-  while (FirstOfStack != NIL){
+  while (FirstOfStack != NIL && !abort_algorithm){
     
     Pop();
     Update_Arcs();
@@ -120,6 +140,7 @@ int main(int argc,char *argv[]){
         }
     }
   }
+  run_stop();
   
   Write_Solution(argv[2]);
     
