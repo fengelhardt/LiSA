@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
   int i, j, k, counter, mo, maschine;
   const int m = problem_in->get_m();
   const int n = problem_in->get_n();
-  cout << m << " " << n ;
+ 
   if(m > MaxNumOfMachines || n > MaxNumOfJobs ){
       G_ExceptionList.lthrow("This Algorithm does not support Problems with more than "
                              +ztos(MaxNumOfMachines)+" Machines or " +ztos(MaxNumOfJobs)+ " Jobs. Recompile it to change this.");
