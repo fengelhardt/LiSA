@@ -33,23 +33,25 @@ protected:
 public:
   /// Lisa_Schedule is valid if valid==TRUE
   int valid;
+  
   /// get number of maschines
   int inline get_m() const {return m;}
+  
   /// get number of jobs
   int inline get_n() const {return n;}
+  
   /// semiactive==TRUE if Lisa_Schedule is defined as a semiactive Schedule
   bool semiactive;
+  
   /// constructor
   /** create a schedule for a given size */
-  Lisa_Schedule(int n_ein=0,int m_ein=0); 
+  Lisa_Schedule(int n_ein=0,int m_ein=0);
+  
   /// constructor
   /** create a schedule as copy of other schedule */
   Lisa_Schedule(Lisa_Schedule &other); 
   /// the latin rectangle
   Lisa_Matrix<int> *LR;
-  
-  // the latin rectangle (for preemtion)
-  //Lisa_MatrixOfLists<int> *LRpmt;
   
   ///  MO, JO  as matrices (direct successor)
   Lisa_Matrix<int> *NMO,*NJO;
@@ -149,9 +151,6 @@ public:
    void write(std::ostream & = std::cout) const;
    /// input from stream
    void read(std::istream &  = std::cin);
-
-   // construct copy of (*this) and return pointer to this copy
-   //Lisa_ScheduleNode* copy();
 
    /// destructor
    ~Lisa_ScheduleNode();

@@ -230,7 +230,11 @@ void Lisa_Values::read(istream& strm) {
     }
   }
   
-  valid=TRUE;
+  if(mfound || nfound){
+    G_ExceptionList.lthrow("Problem size not given in Lisa_Values::read().",SYNTAX_ERROR);
+  }else{
+    valid=TRUE;
+  }
 }
 
 //**************************************************************************

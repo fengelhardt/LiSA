@@ -115,23 +115,7 @@ void Lisa_ScheduleNode::read(istream & strm) {
 
 //**************************************************************************
 
-//Lisa_ScheduleNode * Lisa_ScheduleNode::copy() {
-//   Lisa_ScheduleNode * myLisa_ScheduleNode;
-//   myLisa_ScheduleNode = new Lisa_ScheduleNode;
-//   (*myLisa_ScheduleNode)= *this;
-//   return myLisa_ScheduleNode;
-// return NULL;
-//}
-
-//**************************************************************************
-
 Lisa_ScheduleNode::~Lisa_ScheduleNode(){
- //  cout << "delete" << endl;
-//   cout << *actual_schedule;
-//   if (actual_schedule==NULL) 
-//     cout << "actual_schedule==NULL" << endl;
-//   else
-//     delete actual_schedule;
   delete schedule_info;
 }
 
@@ -200,31 +184,48 @@ void Lisa_Schedule::make_CIJ() {
 //**************************************************************************
 
 void Lisa_Schedule::init(int n_in, int m_in) {
-  if (n!=n_in||m!=m_in)
-    {
-      n=n=n_in; 
-      m=m=m_in;
-      if(LR)  {delete LR; LR= new Lisa_Matrix<int>(n,m);LR->fill(0);}
-      if(NMO) {delete NMO; NMO=new Lisa_Matrix<int>(n,m);}
-      if(NJO) {delete NJO; NJO=new Lisa_Matrix<int>(n,m);}
-      if(CIJ) {delete CIJ;CIJ=new Lisa_Matrix<TIMETYP>(n,m);} 
+  if (n!=n_in||m!=m_in){
+    n=n_in; 
+    m=m_in;
+    
+    if(LR){
+      delete LR;
+      LR= new Lisa_Matrix<int>(n,m);
+      LR->fill(0);
     }
+    
+    if(NMO){
+      delete NMO;
+      NMO=new Lisa_Matrix<int>(n,m);
+    }
+    
+    if(NJO){
+      delete NJO;
+      NJO=new Lisa_Matrix<int>(n,m);
+    }
+    
+    if(CIJ){
+      delete CIJ;
+      CIJ=new Lisa_Matrix<TIMETYP>(n,m);
+    } 
+  }
   valid=FALSE;
 }
 
 //**************************************************************************
 
 void Lisa_Schedule::write(ostream& strm) const {
-  strm << "\n<SCHEDULE>\n";
-  strm << "m= " << m << "\n";
-  strm << "n= " << n << "\n";
-  strm << "semiactive= " << semiactive << "\n";
-  if (LR)  strm << "LR= " << *LR << "\n"; // the  Latin Rectangle
-  //if (LRpmt)  strm << "LRpmt= " << *LRpmt << "\n"; // the pmt Latin Rectangle
-  if (NMO)  strm << "NMO= " << *NMO << "\n"; // maschine order
-  if (NJO)  strm << "NJO= " << *NJO << "\n"; // job order
-  if (CIJ) strm << "CIJ= " << *CIJ << "\n"; // Matrix with the end time for each operation
-  strm << "</SCHEDULE>\n ";
+  strm << endl << "<SCHEDULE>" << endl;
+  
+          strm << "m= "          << m          << endl;
+          strm << "n= "          << n          << endl;
+          strm << "semiactive= " << semiactive << endl;
+  if(LR)  strm << "LR= "         << *LR        << endl; //latin rectangle
+  if(NMO) strm << "NMO= "        << *NMO       << endl; //maschine order
+  if(NJO) strm << "NJO= "        << *NJO       << endl; //job order
+  if(CIJ) strm << "CIJ= "        << *CIJ        << endl; //end time for each operation
+  
+  strm << "</SCHEDULE>" << endl;
 }
 
 //**************************************************************************
@@ -289,72 +290,87 @@ int Lisa_Schedule::get_property(int property) {
 //**************************************************************************
 
 void Lisa_Schedule::read(istream& strm) {
+  
+  // check input stream
   if (strm==NULL) {
-    G_ExceptionList.lthrow("(in Lisa_Schedule::read) no valid stream",ANY_ERROR);
+    G_ExceptionList.lthrow("No valid stream in Lisa_Schedule::read().",ANY_ERROR);
     return;
   }
+  
+  // search for entry
   string S;
   int dim;
-  bool semiflag=FALSE;
-  for (;;)
-    {
-      S=""; 
-      strm >>S;
-      if (S=="") 
-	{ 
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Schedule.read",END_OF_FILE);
-	  return;
-	} 
-      if (S=="<SCHEDULE>") break;
-       }
-      // d.h. ich soll weiterlesen:  
-   for (;;)
-    {
-      S=""; 
-      strm >>S;  
-      if (S=="") 
-	{
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Schedule.read",END_OF_FILE);
-	  return;
-	} 
-      if (S=="</SCHEDULE>") break; 
-      // d.h. ich soll weiterlesen:  
-       if (S=="m=") 
-         {  
-           strm >> dim; init(n,dim);  //break;
-         } 
-       if (S=="n=")
-	 {
-           strm >> dim; init(dim,m);  //break; 
-	 }
-       if (S=="LR=")
-         { 
-           if (!LR) make_LR();  
-	   strm >> *LR;
-//break;  
-	 }
-       if (S=="NMO=")
-         { 
-           if (!NMO) make_NMO();   strm >> *NMO;   //break;  
-	 }
-       if (S=="NJO=")
-         { 
-           if (!NJO) make_NJO();   strm >> *NJO;   //break;  
-	 }
-       if (S=="CIJ=")
-	 {
-	   if (!semiflag) semiactive=FALSE; 
-	   if (!CIJ) make_CIJ();
-	   strm >> *CIJ; 
-	   //break;  
-	 }
-       if (S=="semiactive=")
-	 { 
-	   semiflag=TRUE;
-           strm >> semiactive;   //break;  
-	 }
+  for (;;){
+    S=""; 
+    strm >>S;
+    if (S==""){ 
+      G_ExceptionList.lthrow("No '<SCHEDULE>' entry found.",END_OF_FILE);
+      return;
+    } 
+    if (S=="<SCHEDULE>") break;
+  }
+  
+  bool semif=1,mf=1,nf=1;
+  
+  // start found ... read on
+  for (;;){
+    
+    S=""; 
+    strm >>S;  
+    
+    if (S==""){
+      G_ExceptionList.lthrow("Closing tag '</SCHEDULE>' not found.",END_OF_FILE);
+      return;
+    }else if (S=="</SCHEDULE>"){
+      break; 
+    }else if (S=="m="){  
+      mf=0;
+      strm >> dim;
+      init(n,dim);
+    }else if (S=="n="){
+      nf=0;
+      strm >> dim;
+      init(dim,m);
+    }else if (S=="semiactive="){ 
+      semif=0;
+      strm >> semiactive;
+    }else if (S=="LR="){ 
+      if(mf || nf || semif){
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'LR='. Skipping.",SYNTAX_ERROR);
+      }else{
+        if (!LR) make_LR();  
+        strm >> *LR;
+      }
+    }else if (S=="NMO="){ 
+      if(mf || nf || semif){
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NMO='. Skipping.",SYNTAX_ERROR);
+      }else{
+        if (!NMO) make_NMO();
+        strm >> *NMO;
+      }
+    }else if (S=="NJO="){ 
+      if(mf || nf || semif){
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NJO='. Skipping.",SYNTAX_ERROR);
+      }else{
+        if (!NJO) make_NJO();
+        strm >> *NJO;
+      }
+    }else if (S=="CIJ="){
+      if(mf || nf || semif){
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'CIJ='. Skipping.",SYNTAX_ERROR);
+      }else{      
+        if (!CIJ) make_CIJ();
+        strm >> *CIJ;
+      }
     }
-   valid=TRUE;
+
+  }
+  
+  if(mf || nf || semif){
+    G_ExceptionList.lthrow("Problem size/semiactive not given in Lisa_Schedule::read().",SYNTAX_ERROR);
+  }else{
+    valid=TRUE;
+  }
 }
 
 //**************************************************************************
