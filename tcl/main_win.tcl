@@ -677,7 +677,7 @@ proc  schedule_exist { } {
     if { [TC_getvar no_solutions]>1 } {
 	.lisa.mmenf.men27.m entryconfigure $Name(List_of_Sequences) -state active
     }
- #    .lisa.mmenf.men30.m entryconfigure $Name(Neighborhood_Search) -state active
+ #    .lisa.mmenf.men30.m entryconfigure $Name(Neighbourhood_Search) -state active
  #    .lisa.mmenf.menex.m entryconfigure $Name(Ngbh-Test)  -state active
     .lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
 	-state active
