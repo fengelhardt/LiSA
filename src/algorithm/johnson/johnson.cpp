@@ -8,6 +8,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "../../xml/LisaXmlFile.hpp"
+
 #include "../../basics/matrix.hpp"
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"
