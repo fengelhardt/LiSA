@@ -39,47 +39,53 @@ InsertionMethod insertionMethod = insert1;
 
 //**************************************************************************
 
-int main(int argc, char *argv[]) 
-{
+int main(int argc, char *argv[]){
+  
   G_ExceptionList.set_output_to_cout();   
   
-  // open files and assure existence:
-  if (argc != 3) 
-    {
-      //  cout7 << "\nUsage: " << argv[0] << " [input file] [output file]\n";
-      exit(1);
-    }
+  //check parameters
+  if (argc != 3){
+    cout << endl << "Usage: " << argv[0] << " [input file] [output file]" << endl;
+    exit(1);
+  }
+  
+  // write pid so lisa main can kill us
   cout << "PID= " << getpid() << endl;
+  
+  // open input file
   ifstream i_strm(argv[1]);
-  ofstream o_strm(argv[2]);
-  if (!i_strm)
-    {
-      cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
-      exit(1);
-    }
+  if (!i_strm){
+    cout << "ERROR: Could not open file '" << argv[1] << "' for reading." << endl;
+    exit(1);
+  }
   
   // read problem description and decide whether program is applicable:
   Lisa_ProblemType * lpr = new Lisa_ProblemType;
   i_strm >> (*lpr);
-  if (!G_ExceptionList.empty())
-    {
-      cout << "ERROR: cannot read problem type, aborting program." << endl;
-      exit(1);
-    }  
+  
+  // we can handle open, flow and job shop 
   myproblemtype = lpr->get_property(M_ENV);
-
+  if(! (myproblemtype == O || myproblemtype == F)){
+    cout << "ERROR: Problemtype must be O or F. Aborting." << endl;
+    exit(1);
+  }
+  
+  // ... with no additional parameters
   string cannot_handle="";
   if (lpr->get_property(PMTN)) cannot_handle="preemption";
-  if (lpr->get_property(PRECEDENCE)!=EMPTY) 
-    cannot_handle="precedence constraints"; 
+  if (lpr->get_property(PRECEDENCE)!=EMPTY) cannot_handle="precedence constraints"; 
   if (lpr->get_property(BATCH))  cannot_handle="batching"; 
   if (lpr->get_property(NO_WAIT))  cannot_handle="no-wait constraints";
-  if (cannot_handle!="")  
-    {
-      cout << "ERROR: beam cannot handle " << cannot_handle << 
-	". Aborting program."<< endl;
+  if (cannot_handle!=""){
+      cout << "ERROR: beam cannot handle " << cannot_handle << ". Aborting program."<< endl;
       exit(1);
-    }  
+  }
+  
+  // and cmax objectives
+  if(lpr->get_property(OBJECTIVE) != CMAX){
+    cout << "ERROR: Objective function mus be Cmax. Aborting." << endl;
+    exit(1);
+  }
   delete lpr;   
   
   // read control parameters: 
@@ -89,14 +95,20 @@ int main(int argc, char *argv[])
   // read problem instance:
   Lisa_Values * my_werte = new Lisa_Values;
   i_strm >> (*my_werte);
+  
+  i_strm.close();
+
+  // error occured while reading
+  if (!G_ExceptionList.empty()){
+    cout << "ERROR: cannot read input file, aborting program." << endl;
+    exit(1);
+  }  
+
     
   // solve the problem and store results in a schedule object
-  // Insert your solution algorithm here:
-  
   Lisa_OsProblem *os_problem = new Lisa_OsProblem(my_werte);
   
-  Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),
-						   my_werte->get_m());
+  Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),my_werte->get_m());
   out_schedule->make_LR();
    
   int l = my_werte->get_n() * my_werte->get_m();
@@ -111,6 +123,7 @@ int main(int argc, char *argv[])
     if (sp->get_string("INS_ORDER")=="LINE_BY_LINE") iord = line_by_line;
     if (sp->get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
   }
+  
   //which choice method was selected
   if (sp->defined("INS_METHOD") && (sp->get_string("INS_METHOD")=="INSERT2") )
     insertionMethod = insert2;
@@ -123,6 +136,7 @@ int main(int argc, char *argv[])
   if (sp->defined("K_BRANCHES")) {
     beam_width = sp->get_int("K_BRANCHES");
   }
+  
   //use system time for independent random numbers
   //this is not reversable
   long seed = (long)time(NULL);
@@ -132,8 +146,7 @@ int main(int argc, char *argv[])
   TIMETYP r = 0;
   for (int i = 0; i< os_problem->n;i++){
     for (int j = 0; j < os_problem->m;j++){
-      r += (*(os_problem->time))[i+1][j+1];
-      
+      r += (*(os_problem->time))[i+1][j+1]; 
     }
     x_bound = MAX(r,x_bound);
     r=0;
@@ -153,28 +166,35 @@ int main(int argc, char *argv[])
 
   //create the insertion order
   for (int i=0; i < os_problem->n; i++)
-    for (int j=0; j < os_problem->m; j++) {
-      //do nothing for non-existing operations
-      if (! (*os_problem->sij)[i+1][j+1]) continue;
-      if (iord == lpt) 
-	order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
-      else if (iord == diagonal)
-	order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
-      else if (iord == line_by_line)
-	order->read_one_key( i, j, j * os_problem->n + i);
-      else 
-	order->read_one_key( i, j, lisa_random(1, 24213, &seed));
-    }
+  for (int j=0; j < os_problem->m; j++) {
+    //do nothing for non-existing operations
+    if (! (*os_problem->sij)[i+1][j+1]) continue;
+    if (iord == lpt) 
+      order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
+    else if (iord == diagonal)
+      order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
+    else if (iord == line_by_line)
+      order->read_one_key( i, j, j * os_problem->n + i);
+    else 
+      order->read_one_key( i, j, lisa_random(1, 24213, &seed));
+  }
   order->sort();
 
   B_Node * res = beam_search(order, l, os_problem);
 
   res->write_LR(out_schedule->LR);
+  
   // write results to output file:
+  ofstream o_strm(argv[2]);
+  if(!o_strm){
+    cout << "ERROR: Could not open file '" << argv[2] << "' for writing." << endl;
+    exit(1);
+  }
   o_strm << *out_schedule;
+  o_strm.close();
+  
   delete out_schedule;
   delete my_werte;
- 
 }
 
 //**************************************************************************

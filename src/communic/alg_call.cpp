@@ -20,15 +20,22 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
 	     Lisa_Schedule & G_Schedule, Lisa_Values & G_Values) {
 
   string str="",str2="";
+  
+  // write algorithm input
   ofstream fout(output_file.c_str());
-
+  if(!fout) G_ExceptionList.lthrow("Could not open '"+(string) output_file.c_str()+"' for writing",FILE_NOT_FOUND);
   fout << G_ProblemType;
   fout << parameter;
   fout << G_Values;
   fout << G_Schedule;
   fout.close();
   
-    // call the external program
+  //clean algorithm output file
+  ofstream fin(result_file.c_str());
+  if(!fin) G_ExceptionList.lthrow("Could not open '"+(string) result_file.c_str()+"' for writing",FILE_NOT_FOUND);
+  fin.close();
+  
+  // call the external program
   // TCL/TK does this for us
   
   str="set lsa_status(fid) [open \"| "+G_Preferences.LISA_HOME+"/bin/" + 
