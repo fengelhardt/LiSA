@@ -361,11 +361,10 @@ int TC_getvar(ClientData /* clientData */,
        G_ExceptionList.lcatch(INCONSISTENT_INPUT);
        str=ztos(update_objective(myOsSchedule));
      } else str= "schedule_not_valid";
-  }
- else if (name=="lower_bound") {
+ }else if (name=="lower_bound"){
     str=" ";
-  }
- else if (name=="job_from_gantt") {
+ }else if (name=="job_from_gantt"){
+   
    sscanf(argv[2],"%f",&xpos);
    sscanf(argv[3],"%f",&ypos);
    show_output();
@@ -387,8 +386,7 @@ int TC_getvar(ClientData /* clientData */,
    
    str=ztos(mydata->job);
    myTCGantt.mark(mydata->machine,mydata->job,&G_Values,G_Schedule,G_Preferences.gantt_orient);
- }
-  else if (name=="machine_from_gantt") {
+ }else if (name=="machine_from_gantt") {
     sscanf(argv[2],"%f",&xpos);
     sscanf(argv[3],"%f",&ypos);
     TCGantt myTCGantt(interp,MW_MAINCANV, MW_HORICANV,MW_VERTCANV);
@@ -488,6 +486,8 @@ int TC_getvar(ClientData /* clientData */,
   }
   else if (name=="VALID_SCHEDULE") {
     str=ztos(G_Schedule->valid);
+  }else if(name=="VALID_PROBLEMTYPE"){
+    str=ztos(G_ProblemType.valid());
   }
 
   else cerr << "in TC_getvar: Variable " <<name <<"unknown\n";

@@ -308,7 +308,7 @@ proc vTclWindow.lisa {base} {
     # manipulate position of an operation in job- or machine order
     # the operation is selected by double click in gantt-chart
     bind $base.frame_for_all_canvas.fra32.cpd34.03 <Double-Button-1> { 
-	if {[TC_getvar VALID_SCHEDULE]==1} {
+	if {[TC_getvar VALID_SCHEDULE]==1 && [TC_getvar VALID_PROBLEMTYPE]==1} {
 	    if {$mw(mwout)=={Gantt Diagram} } {
 		set oldrow 1
 		set oldcolumn 1
