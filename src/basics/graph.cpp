@@ -1681,7 +1681,7 @@ void Lisa_GraphAlg::build_compgraph(Lisa_Graph *const source,Lisa_Graph *const t
   int succ;
   
   for (int i=1;i<=vert;i++){
-    queue.fill(0);  
+    //queue.fill(0);  
     done.fill(0);
     qs = qe = 0;
     
@@ -1728,7 +1728,7 @@ void Lisa_GraphAlg::transitive_hull(Lisa_Graph *const source,Lisa_Graph *const t
   int succ;
   
   for (int i=1; i<end; i++){
-    queue.fill(0);  
+    //queue.fill(0);  
     done.fill(0);
     qs = qe = 0;
     
