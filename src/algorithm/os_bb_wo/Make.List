@@ -4,7 +4,7 @@ CXXSOURCES=\
   wo_main.cpp \
   wo_stack.cpp \
   wo_branch.cpp \
-  wo_heur1.cpp \
+  wo_heur.cpp \
   wo_init.cpp \
   wo_read.cpp \
   wo_table.cpp \

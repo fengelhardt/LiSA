@@ -4,7 +4,7 @@ OBJECTS=\
 	../../../obj/wo_main.o \
 	../../../obj/wo_stack.o \
 	../../../obj/wo_branch.o \
-	../../../obj/wo_heur1.o \
+	../../../obj/wo_heur.o \
 	../../../obj/wo_init.o \
 	../../../obj/wo_read.o \
 	../../../obj/wo_table.o \
