@@ -1,0 +1,16 @@
+#! /usr/bin/perl
+
+print "\nruntime for all algorithms\n";
+
+
+while ($l = <>) {
+  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*time ([\d\.]+)/) {
+    if($2 == 1){
+      print "\n";
+    }
+    print "$3\t"; 
+  }
+}
+
+print "\n";
+
