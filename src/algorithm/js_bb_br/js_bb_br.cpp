@@ -79,7 +79,7 @@ void run_stop()
 
 int main(int argc, char *argv[])
 {
-  //G_ExceptionList.set_output_to_cout();
+  G_ExceptionList.set_output_to_cout();
   abort_algorithm = false;
   // the follow code is addited by A.Winkler
 
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 			
 			// the new Bruckers data file:
 			Lisa_JsSchedule *best_schedule;
-			int i, j, k, counter, mo, maschine;
+			int i, j, counter, mo, maschine;
 			const int m = Values.get_m();
 			const int n = Values.get_n();
  
@@ -307,12 +307,6 @@ int main(int argc, char *argv[])
 				exit( 7 );
   }
   
-  Lisa_Matrix<int> *MJ;
-  if ( !( MJ = new Lisa_Matrix<int>(n,m) ) ){  
-				G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-  }
-  
   for (i=0; i<n; i++){
 				maschine = SOURCE;
 				for (j=1; j<=m; j++){
@@ -331,44 +325,7 @@ int main(int argc, char *argv[])
   JO->read( JO_in );
   JO_in.close();
   
-  // make LR from MO and JO:
-  for (i=0; i<n; i++)
-    for (j=0; j<m; j++)
-      (*MJ)[i][j] = (*MO)[i][j] + (*JO)[i][j];
-      
-  int* row = new int[n];
-  int* col = new int[m];
-  
-  int count;
-  count = 0; // counts the entrys
-  int count_2 ;
-  k = 1;
-  do
-    {
-      count_2 = 0;
-      for (i=0; i<n; i++) 
-	row[i] = 0;
-      for (i=0; i<m; i++) 
-	col[i] = 0;
-      for (i=0; i<n; i++)
-	for (j=0; j<m; j++)
-	  if ( (*MJ)[i][j] == 2 )
-	    {
-	      count_2++; count++;
-	      (*LR)[i][j] = k;
-	      row[i] = 1; col[j] = 1;
-	    }
-      if ( count_2 == 0 )
-	{  
-	  G_ExceptionList.lthrow("ERROR: Cycle in LR !");
-	  exit( 7 );
-	}
-      for (i=0; i<n; i++)
-	for (j=0; j<m; j++)
-	  (*MJ)[i][j] = (*MJ)[i][j] - row[i] - col[j];
-      k++;
-    }
-  while( count < n*m );
+  bool feasible = Lisa_Schedule::MO_JO_to_LR(LR,Values.SIJ,MO,JO);
 
 
   //cout << "LR=" << *LR;
@@ -384,9 +341,13 @@ int main(int argc, char *argv[])
   plan_in->make_LR();
   best_schedule->write_LR( plan_in->LR );
   
-		LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-		xmlOutput << Problem << Values << Parameter << *plan_in;
-		xmlOutput.write(argv[2]);
+  type = LisaXmlFile::INSTANCE;
+  if(feasible) type = LisaXmlFile::SOLUTION;
+  
+	LisaXmlFile xmlOutput(type);
+	xmlOutput << Problem << Values << Parameter;
+  if(feasible) xmlOutput << *plan_in;
+	xmlOutput.write(argv[2]);
   
 		//time is not read - so don't write it
 		/*
@@ -402,16 +363,12 @@ int main(int argc, char *argv[])
   delete LR;
   delete MO;
   delete JO;
-  delete MJ;
   delete best_schedule;
 		delete js_Prob;
   
   delete[] m_nr;
   delete[] ptime;
-  
-  delete[] row;
-  delete[] col;
-  
+
   return 0;
 }
 
