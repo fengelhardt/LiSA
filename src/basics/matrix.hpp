@@ -16,17 +16,15 @@
 
 using namespace std;
 
+#include "../main/global.hpp"
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
-
-// remove the following line in the final program:
-#define DEBUG
 
 
 /** @name Vectors and Matrices
     Classes #Lisa_Vector<T># and #Lisa_Matrix<T># provide easy to use 
     vectors and matrices with dynamic size and fast access to the elements.
-    Define #DEBUG# to get automatic array bounds check! \\
+    Define #LISA_DEBUG# to get automatic array bounds check! \\
     
     Include file LiSA/src/basics/matrix.hpp, it uses iostream.
     Use only for basic types int, bool, long, float. Elements of vectors 
@@ -59,7 +57,7 @@ public:
   /// access to j-th element of vector
   T& operator[] (const unsigned int j)   
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (j>=m) 
 	{
 	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
@@ -72,7 +70,7 @@ public:
     }; 
   T operator[] (const unsigned int j) const   
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (j>=m) 
 	{
 	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
@@ -103,7 +101,7 @@ public:
   T* get_last() const { return contents+m; }
 private:
   // size:
-  unsigned int m;
+  const unsigned int m;
   T* contents;   
 };
 
@@ -121,7 +119,7 @@ public:
   /// access to i-th row vector
   Lisa_Vector<T>& operator[] (const unsigned i)  
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (i>=n)
 	{
 	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
@@ -134,7 +132,7 @@ public:
     }; 
   const Lisa_Vector<T>& operator[] (const unsigned i) const  
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (i>=n)
 	{
 	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
@@ -164,7 +162,8 @@ public:
   /// Pointer after last row (for iterating the contents)
   Lisa_Vector<T> * end_row() const { return row+n; }
 private: 
-  unsigned int n, m;
+  const unsigned int m;
+  const unsigned int n;
   Lisa_Vector<T>* row;
 };
 

@@ -8,9 +8,10 @@
  * 11.12.1998
 */
 
+#include "../main/global.hpp"
 #include"os_sched.hpp"
 #include"../basics/order.hpp"
-#define debug
+
 
 
 Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
@@ -94,7 +95,7 @@ int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
       if (!ScheduleOK) { cerr << "\nSchedule not feasible --> nothig done \n";
 		     return(ERROR);
 		   }
-#ifdef debug
+#ifdef LISA_DEBUG
       if (exists(i,j))
 	{ 
           cerr <<"\nError: operation ("<<i<<","<<j<<") is already inserted!";
@@ -146,7 +147,7 @@ void Lisa_OsSchedule::exclude(int i, int j)
 	  cerr << "\nSchedule not feasible -> nothing done!";
 	  return;
 	}
-#ifdef debug
+#ifdef LISA_DEBUG
       if (!exists(i,j))
 	{ 
           cerr<<"\nError: operation ("<<i<<","<<j<<") is not inserted!";

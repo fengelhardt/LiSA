@@ -9,6 +9,7 @@
  *
  */
 
+#include "../main/global.hpp"
 #include "m1_sched.hpp"
 
 
@@ -249,7 +250,7 @@ int Lisa_1Schedule::insert( int i, int woi )
     int h, xyz;  
     TIMETYP oldjosucc;
     
-#ifdef debug
+#ifdef LISA_DEBUG
     if (exists(i))
       { 
 	G_ExceptionList.lthrow("job "+ztos(i)+" is already inserted!");
@@ -290,7 +291,7 @@ void Lisa_1Schedule::exclude( int i )
   { 
     int pi, si;
     
-#ifdef debug
+#ifdef LISA_DEBUG
     if (!exists(i))
       { 
 	G_ExceptionList.lthrow("job "+ztos(i)+" is not inserted!");

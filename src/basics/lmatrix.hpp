@@ -11,6 +11,7 @@
 
 #ifndef _lmatrix_h
 #define _lmatrix_h
+
 #include "../main/global.hpp"
 #include "matrix.hpp"
 #include "list.hpp"
@@ -96,7 +97,7 @@ public:
   /// access to j-th element of vector 
   Lisa_nestedList<T>& operator[] (const unsigned int j)   
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (j>=m) 
 	{
 	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
@@ -109,7 +110,7 @@ public:
     }; 
   Lisa_nestedList<T> operator[] (const unsigned int j) const   
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (j>=m) 
 	{
 	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
@@ -197,7 +198,7 @@ public:
   /// access to i-th row vector
   Lisa_VectorOfLists<T>& operator[] (const unsigned i)  
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (i>=n)
 	{
 	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
@@ -210,7 +211,7 @@ public:
     }; 
   const Lisa_VectorOfLists<T>& operator[] (const unsigned i) const  
     { 
-      #ifdef DEBUG
+      #ifdef LISA_DEBUG
       if (i>=n)
 	{
 	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+

@@ -16,6 +16,9 @@
 
 
 // ************************* Definitions ***********************
+// debug parameter ... comment for the final version
+#define LISA_DEBUG
+
 // maximal memory
 #define MAX_MEMORY 10000
 

@@ -35,7 +35,7 @@ Lisa_VectorOfLists<T>::Lisa_VectorOfLists(int m_in)
 // copy-constructor
 template<class T>
 Lisa_VectorOfLists<T>::Lisa_VectorOfLists(const Lisa_VectorOfLists<T>& other){
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) listvector given by value");
 #endif
        m=other.m; 
@@ -48,7 +48,7 @@ Lisa_VectorOfLists<T>::Lisa_VectorOfLists(const Lisa_VectorOfLists<T>& other){
 
 template<class T>
 Lisa_VectorOfLists<T>::Lisa_VectorOfLists(const Lisa_Vector<T>& nonpreemtive) {
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) listvector given by value");
 #endif
        m=nonpreemtive.get_m(); 
@@ -205,7 +205,7 @@ void Lisa_VectorOfLists<T>::read(istream& strm)
 template<class T>
 Lisa_VectorOfLists<T>::~Lisa_VectorOfLists()
      {
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        if (!contents) G_ExceptionList.lthrow("listvector without contents");
 #endif       
        delete[] contents;  // iroess: muss ich hier vorher explizit die einzelnen eintraege killen?!?
@@ -263,7 +263,7 @@ template<class T>
 Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(const Lisa_MatrixOfLists<T>& other)
      {
        int i;
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) matrix given by value");
 #endif
        n=other.n;
@@ -284,7 +284,7 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(int n_in, int m_in)
 // copy-constructor
 template<class T>
 Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(const Lisa_Matrix<T>& nonpreemptive) {
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) listmatrix given by value");
 #endif
        m=nonpreemptive.get_m(); 

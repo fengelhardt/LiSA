@@ -8,10 +8,9 @@
  * 11.12.1998
 */
 
-
-#include"sp_sched.hpp"
-#include"../misc/except.hpp"
-#define debug
+#include "../main/global.hpp"
+#include "sp_sched.hpp"
+#include "../misc/except.hpp"
 
 //############# Lisa_ShpProblem #####################################
 

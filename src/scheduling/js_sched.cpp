@@ -8,9 +8,9 @@
  * 19.9.1998
 */
 
-#include"js_sched.hpp"
-#include"../basics/order.hpp"
-#define debug
+#include "../main/global.hpp"
+#include "js_sched.hpp"
+#include "../basics/order.hpp"
 
 //############# problem instance ######################################
 
@@ -191,7 +191,7 @@ int Lisa_JsSchedule::insert( int i, int j, int woi )
       G_ExceptionList.lthrow("schedule not feasible --> insert not done");
       return(ERROR);
     }
-#ifdef debug
+#ifdef LISA_DEBUG
   if ( exists(i,j) )
     { 
       cerr<<"\nError: operation ("<<i<<","<<j<<") is already inserted!";
@@ -238,7 +238,7 @@ void Lisa_JsSchedule::exclude(int i, int j)
     if (!ScheduleOK) { cerr << "\nSchedule not feasible -> nothing done!";
 		     return;
 		   }
-#ifdef debug
+#ifdef LISA_DEBUG
       if (!exists(i,j))
 	{ 
           cerr<<"\nError: operation ("<<i<<","<<j<<") is not inserted!";

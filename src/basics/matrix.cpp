@@ -19,19 +19,17 @@ using namespace std;
 #include "pair.hpp"
 
 template<class T>
-Lisa_Vector<T>::Lisa_Vector(int m_in)
+Lisa_Vector<T>::Lisa_Vector(int m_in):m(m_in)
      {
-       m=m_in;
        contents= new T[m];
      }  
 
 template<class T>
-Lisa_Vector<T>::Lisa_Vector(const Lisa_Vector<T>& other)
+Lisa_Vector<T>::Lisa_Vector(const Lisa_Vector<T>& other):m(other.m)
      {
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) vector given by value");
 #endif
-       m=other.m; 
        contents= new T[m];
        memcpy (contents, other.contents, m*sizeof(T));
      }
@@ -70,10 +68,19 @@ int Lisa_Vector<T>::index_of_min() const
 template<class T>
 const Lisa_Vector<T>& Lisa_Vector<T>::operator=(const Lisa_Vector<T>& other) 
      {
-       if (&other != this)
-         memcpy (contents, other.contents, m*sizeof(T)); 
+         
+       if (&other == this) return *this;
+  
+       if ( m!=other.m)
+        {
+          G_ExceptionList.lthrow("wrong format argument to vector.operator=");
+          return *this;
+        } 
+    
+      
+        memcpy (contents, other.contents, m*sizeof(T)); 
          // T MUST BE A TYPE WITHOUT DYNAMIC MEMORY!
-       return *this;
+        return *this;
      }  
     
 template<class T>
@@ -108,7 +115,7 @@ void Lisa_Vector<T>::read(istream& strm)
 template<class T>
 Lisa_Vector<T>::~Lisa_Vector()
      {
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        if (!contents) G_ExceptionList.lthrow("vector without contents");
 #endif       
        delete[] contents;
@@ -136,23 +143,20 @@ bool Lisa_Vector<T>::operator<=(const Lisa_Vector<T>& other) const
      }
 
 template<class T>
-Lisa_Matrix<T>::Lisa_Matrix(const Lisa_Matrix<T>& other)
+Lisa_Matrix<T>::Lisa_Matrix(const Lisa_Matrix<T>& other):m(other.m),n(other.n)
      {
        int i;
-#ifdef DEBUG
+#ifdef LISA_DEBUG
        G_ExceptionList.lthrow("(Warning) matrix given by value");
 #endif
-       n=other.n;
-       m=other.m;
        row=new Lisa_Vector<T>[n](m);
        for ( i=n ; i-- ; )
           row[i]=other.row[i];
      }
 
 template<class T>
-Lisa_Matrix<T>::Lisa_Matrix(int n_in, int m_in)
+Lisa_Matrix<T>::Lisa_Matrix(int n_in, int m_in):m(m_in),n(n_in)
      {
-       n=n_in; m=m_in;
        row=new Lisa_Vector<T>[n](m);
      }
 
@@ -172,8 +176,8 @@ const Lisa_Matrix<T>& Lisa_Matrix<T>::operator=(const Lisa_Matrix<T>& other)
   Lisa_Vector<T> * otherptr;
   Lisa_Vector<T> * endptr;
 
-  if (&other == this)
-    return *this;
+  if (&other == this) return *this;
+  
   if ((n!=other.n) || (m!=other.m))
     {
       G_ExceptionList.lthrow("wrong format argument to matrix.operator=");
