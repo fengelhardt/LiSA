@@ -22,6 +22,6 @@
 /*            datiert. Die Loesung wird in der Datei output.dat gespeichert. */
 /* ************************************************************************* */
 
-void Heuristic_Schedule ();
+void Heuristic_Schedule();
 
 #endif

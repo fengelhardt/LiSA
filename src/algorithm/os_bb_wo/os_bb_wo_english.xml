@@ -8,5 +8,16 @@
       <gamma objective="Cmax"/>
     </problem>
   </exact>
-  <alg_controls/>
+  <alg_controls>
+    <choice name="HEURISTIC" caption="Heuristic">
+      <item name="MIN_MATCHING"/>
+      <item name="MAX_MATCHING"/>
+      <item name="MIN_BOTTLE_MATCHING"/>
+      <item name="MAX_BOTTLE_MATCHING"/>      
+      <item name="MIN_BOTTLE_MATCHING_VAR"/>
+      <item name="MAX_BOTTLE_MATCHING_VAR"/>
+      <item name="LB_PREC_RULE"/>
+      <item name="LB_PREC_RULE_VAR"/>
+    </choice>
+  </alg_controls>  
 </algorithm>
