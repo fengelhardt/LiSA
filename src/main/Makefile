@@ -97,9 +97,7 @@ docdir:
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
-	rm -f $(ALGPATH)/language/english/disp*.alg
-	rm -f $(ALGPATH)/language/german/disp*.alg
-	rm -f $(ALGPATH)/language/german_u/disp*.alg
+	rm -f $(ALGPATH)/language/*/disp*.alg
 	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------

@@ -61,13 +61,13 @@ objdir:
 install: bindir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(PROGRAMNAME)1_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)1.alg
-	cp $(PROGRAMNAME)1_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)1.alg
-	cp $(PROGRAMNAME)1_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)1.alg
 	cp $(PROGRAMNAME)2_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)2.alg
-	cp $(PROGRAMNAME)2_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)2.alg
-	cp $(PROGRAMNAME)2_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)3.alg
+	cp $(PROGRAMNAME)1_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)1.alg
+	cp $(PROGRAMNAME)2_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)3.alg
+	cp $(PROGRAMNAME)1_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)1.alg
+	cp $(PROGRAMNAME)2_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)2.alg
 	cp $(PROGRAMNAME)3_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME)3.alg
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/language/english/$(PROGRAMNAME).html
 	cp $(PROGRAMNAME)_german.html $(DOCPATH)/language/german/$(PROGRAMNAME).html
@@ -95,11 +95,8 @@ docdir:
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/english/$(PROGRAMNAME).alg
-	rm -f $(ALGPATH)/language/german/$(PROGRAMNAME).alg
-	rm -f $(ALGPATH)/language/german_u/$(PROGRAMNAME).alg
-	rm -f $(DOCPATH)/language/english/$(PROGRAMNAME).html
-	rm -f $(DOCPATH)/language/german/$(PROGRAMNAME).html
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.alg
+	rm -f $(DOCPATH)/language/*/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
