@@ -15,9 +15,9 @@ using namespace std;
 //**************************************************************************
 
 // flag: minmal NP-hard or maximal polynomial problem
-const int MINMAX=TRUE;
+const int MINMAX=true;
 // flag: opposite of MINMAX
-const int NORMAL=FALSE;
+const int NORMAL=false;
 // maximal number of characters of data base path name
 const int PATHMAX=500;
 
@@ -26,7 +26,7 @@ const int PATHMAX=500;
 string 
 Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file) 
 {
-  int           i, j, comp, cplx, open=TRUE;
+  int           i, j, comp, cplx, open=true;
   string        db_path, output="";
   Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
@@ -57,13 +57,13 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
    	  {
 	  case IDENT: 
 	    output+=result_text(cplx,MINMAX)+reference_output(i,j,mybase); 
-	    open=FALSE; 
+	    open=false; 
 	    break;
 	  case FIRST_TO_SECOND: 
 	    if ((cplx==POLYN) || (cplx==PS_POLYN))
 	      {
 		output+=result_text(cplx,NORMAL)+reference_output(i,j,mybase);
-		open=FALSE;
+		open=false;
 	      } 
 	    break;
 	  case NOT_CMP: 
@@ -72,7 +72,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
 	    if ((cplx==STR_NP_HARD) || (cplx==NP_HARD))
 	      {
 		output+=result_text(cplx,NORMAL)+reference_output(i,j,mybase);
-		open=FALSE;
+		open=false;
 	      } 
 	    break;
 	  default: G_ExceptionList.lthrow("Error in reduction return value",
@@ -92,7 +92,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
 string
 Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file) 
 {
-  int           i, j, comp, cplx, open=TRUE, notice=-1;
+  int           i, j, comp, cplx, open=true, notice=-1;
   string        db_path, full_ref="";
   Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
@@ -118,20 +118,20 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
 	  case IDENT:
 	    if (i!=notice)
 	      full_ref+=(string) mybase->E[i].bibentry;
-	    open=FALSE; notice=i; 
+	    open=false; notice=i; 
 	    break;
 	  case FIRST_TO_SECOND:
 	    if ((i!=notice) && ((cplx==POLYN) || (cplx==PS_POLYN)))
 	      {
 		full_ref+=(string) mybase->E[i].bibentry;
-		open=FALSE; notice=i; 
+		open=false; notice=i; 
 	      } 
 	    break;
 	  case SECOND_TO_FIRST:
 	    if ((i!=notice) && ((cplx==STR_NP_HARD) || (cplx==NP_HARD)))
 	      {
 		full_ref+=(string) mybase->E[i].bibentry;
-		open=FALSE; notice=i; 
+		open=false; notice=i; 
 	      } 
 	    break;
 	  case NOT_CMP: 

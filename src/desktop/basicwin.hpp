@@ -229,7 +229,7 @@ class TCGraphic{
   TCGraphic();
   
   /// zoomed ?
-  /** if the zoom flag is TRUE each output function cannot set the canvas 
+  /** if the zoom flag is true each output function cannot set the canvas 
       geometry */
   bool zoom;
   

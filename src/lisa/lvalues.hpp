@@ -18,7 +18,7 @@ private:
   /// size of matrices
   int n,m; 
 public:
-  /// Lisa_Values is valid if valid==TRUE;
+  /// Lisa_Values is valid if valid==true;
   int valid;
   /// number of columns in the matrices (number of machines)
   inline int get_m(void)const{return m;}

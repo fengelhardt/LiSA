@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
      {
    Lisa_JsSchedule *myjsschedule;
    myjsschedule= new Lisa_JsSchedule(myjsproblem);
-   myjsschedule->ComputeHeadsTails(TRUE,TRUE);
+   myjsschedule->ComputeHeadsTails(true,true);
    if (type_of_lower_bound==EXTENDED)
      myjsschedule->InitHeadsTails();
    

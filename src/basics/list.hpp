@@ -155,7 +155,7 @@ void insert_node_after(Lisa_Node<T>* n, Lisa_Node<T>* p){
   n->succ=p->succ;
   p->succ=n;
   n->pred=p; 
-  where_ok=FALSE;
+  where_ok=false;
   size++; 
 }
 
@@ -170,7 +170,7 @@ void exclude_node(Lisa_Node<T>* n){
   n->pred->succ=n->succ;
   n->pred=n->succ=NULL;
   size--;
-  where_ok=FALSE;
+  where_ok=false;
 }
 
 //**************************************************************************
@@ -209,7 +209,7 @@ protected:
 public:
 
   /// move the internal list pointer to the first node
-  /** returns FALSE if the list contains no elements, TRUE otherwise */
+  /** returns false if the list contains no elements, true otherwise */
   int reset(){
       current_node=first_last->succ;
       where=0;
@@ -219,8 +219,8 @@ public:
 //**************************************************************************
 
   /// move the list pointer one node forward
-  /** returns TRUE if the current node is valid, 
-      FALSE if the end of the list is reached */
+  /** returns true if the current node is valid, 
+      false if the end of the list is reached */
   bool next()
     {
       current_node=current_node->succ;
@@ -231,8 +231,8 @@ public:
 //**************************************************************************
 
   /// move the list pointer one node back
-  /** returns TRUE if the current node is valid,
-      FALSE if the beginning of the list is reached */
+  /** returns true if the current node is valid,
+      false if the beginning of the list is reached */
   bool previous()
     {
       current_node=current_node->pred;
@@ -282,7 +282,7 @@ public:
 
 //**************************************************************************
   
-  /// returns TRUE if the list is empty FALSE otherwise
+  /// returns true if the list is empty false otherwise
   bool inline empty() const  { return (!size); }
 
 //**************************************************************************
@@ -291,7 +291,7 @@ public:
   /**  create an empty new list*/
   Lisa_List()
     {
-      where_ok=FALSE; 
+      where_ok=false; 
       size=0;      
       first_last=new Lisa_Node<T>;
       first_last->succ=first_last->pred=first_last;
@@ -306,7 +306,7 @@ public:
     { 
       first_last = new Lisa_Node<T>;
       first_last->succ = first_last->pred = first_last;
-      where_ok=FALSE; 
+      where_ok=false; 
       size=0;
       (*this)=other; 
     }
@@ -365,7 +365,7 @@ public:
 	   (temp!=first_last && temp_other!=other.first_last); 
 	   i++,temp=temp->succ,temp_other=temp_other->succ) 
       { 
-	if (temp->value!=temp_other->value ) return FALSE;
+	if (temp->value!=temp_other->value ) return false;
       }
       
       return true;
@@ -386,11 +386,11 @@ public:
 	   (temp!=first_last && temp_other!=other.first_last); 
 	   i++,temp=temp->succ,temp_other=temp_other->succ) 
       { 
-	if (temp->value>temp_other->value ) return TRUE;
+	if (temp->value>temp_other->value ) return true;
       }
-      if (length()>other.length()) return TRUE;
+      if (length()>other.length()) return true;
 
-      return FALSE;
+      return false;
   }
 
 //**************************************************************************
@@ -408,11 +408,11 @@ public:
 	   (temp!=first_last && temp_other!=other.first_last); 
 	   i++,temp=temp->succ,temp_other=temp_other->succ) 
       { 
-	if (temp->value<temp_other->value ) return TRUE;
+	if (temp->value<temp_other->value ) return true;
       }
-      if (length()<other.length()) return TRUE;
+      if (length()<other.length()) return true;
 
-      return FALSE;
+      return false;
   }
 
 //**************************************************************************
@@ -502,7 +502,7 @@ public:
       if (!size) 
 	    G_ExceptionList.lthrow( "minimium over an empty list undefined");
       Lisa_Node<T> *test;
-      where_ok=FALSE;
+      where_ok=false;
       current_node=test=first_last->succ;
       while (test->succ!=first_last)
 	{
@@ -522,7 +522,7 @@ public:
       if (!size) 
 	    G_ExceptionList.lthrow( "maximum over an empty list undefined");
       Lisa_Node<T> *test;
-      where_ok=FALSE;
+      where_ok=false;
       current_node=test=first_last->succ;
       while (test->succ!=first_last)
 	{
@@ -543,7 +543,7 @@ public:
       if (!size)
 	    G_ExceptionList.lthrow( "sum over an empty list undefined");
       Lisa_Node<T> *test;
-      where_ok=FALSE;
+      where_ok=false;
       test=first_last->succ;
       while (test->succ!=first_last)
 	{
@@ -557,7 +557,7 @@ public:
 //**************************************************************************
 
   /// moves the internal pointer to the first occurance of the value
-  /** returns TRUE if that value is in the list FALSE otherwise */
+  /** returns true if that value is in the list false otherwise */
   bool search_first(const T & Value)
     {
       current_node=first_last;
@@ -570,7 +570,7 @@ public:
 
   /// moves the internal pointer to next occurance of the value
   /** starting from the current position 
-      returns TRUE if that value is in the rest of the list FALSE otherwise */
+      returns true if that value is in the rest of the list false otherwise */
   bool search_next(const T & Value)
     {
       first_last->value=Value;

@@ -57,7 +57,7 @@ public:
   /// write the order as rank vector
   void write_rank(Lisa_Vector<int>* rank) const;
   /// read order from a rank vector
-  /** returns FALSE if given vector is not a permutation */
+  /** returns false if given vector is not a permutation */
   int read_rank(Lisa_Vector<int>* rank);
   
   /// destructor
@@ -96,7 +96,7 @@ public:
   void write_rank(Lisa_Matrix<int>* rank) const;
   
   /// read machine order from rank matrix
-  /** returns FALSE if given vectors in matrix are not permutations */
+  /** returns false if given vectors in matrix are not permutations */
   int read_rank(Lisa_Matrix<int>* rank);
   
   void write (std::ostream& = std::cout) const;
@@ -133,7 +133,7 @@ public:
   /// write job order to rank matrix
   void write_rank(Lisa_Matrix<int>* rank)const;
   /// read job order from rank matrix 
-  /** returns FALSE if given vectors in matrix are not all permutations */
+  /** returns false if given vectors in matrix are not all permutations */
   int read_rank(Lisa_Matrix<int>*);
   void write (std::ostream& = std::cout) const;
   void read (std::istream& = std::cin);

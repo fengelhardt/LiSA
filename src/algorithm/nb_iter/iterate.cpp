@@ -26,7 +26,7 @@ bool abort_algorithm;
 
 void set_abort(int i) 
  {  
-   abort_algorithm=TRUE;
+   abort_algorithm=true;
    cout << "\nSignal " << i << " received, writing results \n";
  }
 
@@ -55,11 +55,11 @@ Lisa_Iterator::Lisa_Iterator()
     seed = long( zeit );
     cout<<"\nseed = "<<zeit<<"\n";
     method = NOMETHOD;
-    abort_algorithm = FALSE;
+    abort_algorithm = false;
     abort_at_bound = -MAXNUMBER;
     abort_stuck = MAXNUMBER;
     max_stuck=MAXNUMBER;
-    anti_neighbour = FALSE;
+    anti_neighbour = false;
   }
 
 //**************************************************************************
@@ -103,7 +103,7 @@ void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 
 		  break;
         case  SA_anti: 
 	          method = SA;
-		  anti_neighbour = TRUE;
+		  anti_neighbour = true;
 	          factor0 = -0.01 / log( double( param1 ) / 100.0 );
 		  max_stuck = param2;
 		  search_type = RAND;
@@ -259,7 +259,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
                               {
                                 G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
                                                        Lisa_ExceptionList::WARNING);
-                                abort_algorithm = TRUE;
+                                abort_algorithm = true;
                               }
   			  break;
 		 case SA: accept = ( NB->get_objective_value(WORK_SOLUTION)
@@ -274,11 +274,11 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 			    {
 			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
                                    Lisa_ExceptionList::WARNING);
-			      abort_algorithm = TRUE;
+			      abort_algorithm = true;
 			    }
 			  if (++stuck_since>=max_stuck)  
 			    {
-			      if ( anti_neighbour == TRUE )
+			      if ( anti_neighbour == true )
 				{
 				  NB->anti_neighbour();
 				  NB->set_objective( objective_type, 
@@ -298,7 +298,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 			  if (++total_stuck>=abort_stuck)
 			    {
 			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
-			      abort_algorithm = TRUE;
+			      abort_algorithm = true;
 			    }
 			  if (++stuck_since>=max_stuck)  
 			    {
@@ -321,7 +321,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 		     if ( best_value <= abort_at_bound )
 		       {
 			 G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
-			 abort_algorithm = TRUE;
+			 abort_algorithm = true;
 		       }
 		   }
 		 if (( NB->get_objective_value(WORK_SOLUTION) 
@@ -409,7 +409,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 		 {
 		   G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",
                               Lisa_ExceptionList::WARNING);
-		   abort_algorithm = TRUE;
+		   abort_algorithm = true;
 		 }
 	     }
 	   NB->set_tabulist();

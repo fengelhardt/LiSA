@@ -109,7 +109,7 @@ int TC_set_pt(ClientData /* clientData */,
   sscanf(argv[2],"%d",&m);
   sscanf(argv[3],"%f",&value);
   (*G_Values.PT)[n][m]=value;
-  if ((*G_Values.SIJ)[n][m]==FALSE) {
+  if ((*G_Values.SIJ)[n][m]==false) {
     if (value>0) {
       (*G_Values.SIJ)[n][m]=1;
       Tcl_Eval(interp,"TC_draw_dat");
@@ -477,7 +477,7 @@ int TC_setvar(ClientData /* clientData */,
   if (name=="CANVGEO") { 
     sscanf(Tcl_GetVar2(interp,"cw","width",0),"%d",&width);
     sscanf(Tcl_GetVar2(interp,"cw","height",0),"%d",&height);
-    G_Status.zoom=TRUE;
+    G_Status.zoom=true;
     G_Status.width=MIN(MAX_CANV_WIDTH,width);
     G_Status.height=MIN(MAX_CANV_HEIGHT,height);
     show_output();
@@ -568,7 +568,7 @@ else if (name=="SIJ") {
     show_output();
   }
   //else if (name=="Lisa_Problem.valid") {
-   //   G_ProblemType.valid=TRUE;
+   //   G_ProblemType.valid=true;
   // }
   else if (name=="man_oper") {
     int row=0,column=0;
@@ -599,13 +599,13 @@ else if (name=="SIJ") {
    int zoom;
    sscanf(argv[2],"%d",&zoom);
    if (zoom==1) { 
-     G_Status.zoom=TRUE;
+     G_Status.zoom=true;
      // 
    G_Status.width=mw_width();
    G_Status.height=mw_height();
    }
    else {
-     G_Status.zoom=FALSE;
+     G_Status.zoom=false;
      //show_output();
    }
  }

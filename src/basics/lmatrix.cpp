@@ -222,7 +222,7 @@ bool Lisa_VectorOfLists<T>::operator==(const Lisa_VectorOfLists<T>& other) const
        if (!(get_m()==other.get_m())) return false;
        unsigned int i;
        for (i=0; i<m; i++) 
-          if (!(contents[i]== other.contents[i])) return FALSE;
+          if (!(contents[i]== other.contents[i])) return false;
        return true;
 }
 
@@ -236,8 +236,8 @@ bool Lisa_VectorOfLists<T>::operator<=(const Lisa_VectorOfLists<T>& other) const
        unsigned int i;
        for (i=0; i<m; i++) 
           {
-            if (contents[i]> other.contents[i]) return FALSE;
-            if (contents[i]< other.contents[i]) return TRUE;
+            if (contents[i]> other.contents[i]) return false;
+            if (contents[i]< other.contents[i]) return true;
           }
        return true;
      }
@@ -388,7 +388,7 @@ bool Lisa_MatrixOfLists<T>::operator==(const Lisa_MatrixOfLists<T>& other) const
        if (!(get_m()==other.get_m() && get_n()==other.get_n())) return false;
        unsigned int i;
        for (i=0; i<n; i++) 
-          if (!(row[i]== other.row[i])) return FALSE;
+          if (!(row[i]== other.row[i])) return false;
        return true;
      }
      
@@ -426,8 +426,8 @@ bool Lisa_MatrixOfLists<T>::operator<=(const Lisa_MatrixOfLists<T>& other) const
        for (i=0; i<n; i++)
           for (j=0; j<m; j++) 
             {
-              if (row[i][j]> other.row[i][j]) return FALSE;
-            if (row[i][j]< other.row[i][j]) return TRUE;
+              if (row[i][j]> other.row[i][j]) return false;
+            if (row[i][j]< other.row[i][j]) return true;
           }
        return true;
      }

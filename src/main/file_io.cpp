@@ -41,7 +41,7 @@ int read(string dname){
   
   /// check what is in inputfile
   string S;
-  bool fvalues=FALSE,fproblemtype=FALSE;
+  bool fvalues=false,fproblemtype=false;
   int no_schedules=0;
   for (;;){
     S=""; 
@@ -49,8 +49,8 @@ int read(string dname){
     if (S=="") break;
     
     if (S=="<SCHEDULE>") no_schedules++;
-    if (S=="<PROBLEMTYPE>") fproblemtype=TRUE;
-    if (S=="<VALUES>") fvalues=TRUE ;
+    if (S=="<PROBLEMTYPE>") fproblemtype=true;
+    if (S=="<VALUES>") fvalues=true ;
   }
 
   

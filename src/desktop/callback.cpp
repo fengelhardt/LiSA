@@ -87,7 +87,7 @@ void no_schedule() {
   Lisa_ScheduleNode *myLisa_ScheduleNode;
   myLisa_ScheduleNode= new Lisa_ScheduleNode(G_Schedule);
   G_ScheduleList->append(*myLisa_ScheduleNode);
-  G_Schedule->valid=FALSE;
+  G_Schedule->valid=false;
   delete G_XSchedule;
   G_XSchedule = new Lisa_XSchedule(G_Schedule);
   if (interp!=NULL) {
@@ -99,7 +99,7 @@ void no_schedule() {
 //**************************************************************************
 
 void no_values() {
-  G_Values.valid=FALSE;
+  G_Values.valid=false;
   if (interp!=NULL) {
     Tcl_Eval(interp,"mw_no_values");
   }
@@ -134,7 +134,7 @@ void new_values() {
   if (interp!=NULL) {
     Tcl_Eval(interp,"values_exist");
   }
-  G_Values.valid=TRUE;
+  G_Values.valid=true;
  //  G_ScheduleList->clear();
 //   G_Schedule = new Lisa_Schedule(G_Values.get_n(),G_Values.get_m());
 //   Lisa_ScheduleNode *myLisa_ScheduleNode;
@@ -188,7 +188,7 @@ void show_output() {
   mw_set_label ("");
   TCCMatrix myCMatrix(interp,MW_MAINCANV, MW_HORICANV,MW_VERTCANV);
   myCMatrix.clear();
-  if (G_Values.valid==FALSE || G_ProblemType.valid()==FALSE )
+  if (G_Values.valid==false || G_ProblemType.valid()==false )
     Tcl_Eval(interp,"mw_add_logo");
   else {
     mw_output= Tcl_GetVar2(interp,"mw","mwout",TCL_GLOBAL_ONLY);
@@ -284,7 +284,7 @@ TIMETYP update_objective(Lisa_OsSchedule &myOsSchedule ) {
   
   if (G_Schedule->valid) {
     int i,j;
-    myOsSchedule.ComputeHeadsTails(TRUE,TRUE);
+    myOsSchedule.ComputeHeadsTails(true,true);
     if(G_Schedule->semiactive) {
       myOsSchedule.read_LR(G_Schedule->LR);
     }
@@ -311,10 +311,10 @@ TIMETYP update_objective(Lisa_OsSchedule &myOsSchedule ) {
 	for (j=0;j<G_Values.get_m();j++) {
 	  if (myOsSchedule.GetHead(i+1,j+1)+(*G_Values.PT)[i][j]+
 	      myOsSchedule.GetTail(i+1,j+1)>=objective) { 
-	    (*G_XSchedule->CP)[i][j]=TRUE; 
+	    (*G_XSchedule->CP)[i][j]=true; 
 	  }
 	  else 
-	    (*G_XSchedule->CP)[i][j]=FALSE;
+	    (*G_XSchedule->CP)[i][j]=false;
 	}
     }
     mw_set_objective 

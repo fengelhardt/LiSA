@@ -25,7 +25,7 @@ void Lisa_ProblemType::reset()
 {
   int i;
   for(i=0; i<TUPEL_INDEX; i++) tupel[i]=EMPTY;
-  vld=FALSE;
+  vld=false;
   m_no = 0;
   n_no = 0;
 }
@@ -53,8 +53,8 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
 	case ONE:
 	  if (tupel[M_NUMBER]!=M_VAL) rv++;
 	  tupel[M_NUMBER]=M_VAL; m_no=1;
-	  if (tupel[M_MPM]) { tupel[M_MPM]=FALSE; rv++; }
-	  if (tupel[M_MPT]) { tupel[M_MPT]=FALSE; rv++; }
+	  if (tupel[M_MPM]) { tupel[M_MPM]=false; rv++; }
+	  if (tupel[M_MPT]) { tupel[M_MPT]=false; rv++; }
 	case P:
 	case Q:
 	case R:
@@ -75,8 +75,8 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
 	case ONE:
 	  if (tupel[M_NUMBER]!=M_VAL) rv++;
 	  tupel[M_NUMBER]=M_VAL; m_no=1;
-	  if (tupel[M_MPM]) { tupel[M_MPM]=FALSE; rv++; }
-	  if (tupel[M_MPT]) { tupel[M_MPT]=FALSE; rv++; }
+	  if (tupel[M_MPM]) { tupel[M_MPM]=false; rv++; }
+	  if (tupel[M_MPT]) { tupel[M_MPT]=false; rv++; }
 	case P:
 	case Q:
 	case R:
@@ -98,10 +98,10 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
       break;
     case BATCH:
       if ((value==EMPTY)&& tupel[BOUNDED_BATCH])
-	{ tupel[BOUNDED_BATCH]=FALSE; rv++; }
+	{ tupel[BOUNDED_BATCH]=false; rv++; }
       break;
     case BOUNDED_BATCH:
-      if ((value==TRUE) && (tupel[BATCH]==EMPTY))
+      if ((value==true) && (tupel[BATCH]==EMPTY))
 	{ tupel[BATCH]=S_BATCH; rv++; }
       break;
     }
@@ -110,19 +110,19 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
   if (prop==M_ENV)
     switch (value)
       {
-      case MPT: tupel[M_ENV]=P; tupel[M_MPT]=TRUE; break;
-      case OMPT: tupel[M_ENV]=O; tupel[M_MPT]=TRUE; break;
-      case FMPT: tupel[M_ENV]=F; tupel[M_MPT]=TRUE; break;
-      case JMPT: tupel[M_ENV]=J; tupel[M_MPT]=TRUE; break;
-      case XMPT: tupel[M_ENV]=X; tupel[M_MPT]=TRUE; break;
-      case GMPT: tupel[M_ENV]=G; tupel[M_MPT]=TRUE; break;
-      case OMPM: tupel[M_ENV]=O; tupel[M_MPM]=TRUE; break;
-      case FMPM: tupel[M_ENV]=F; tupel[M_MPM]=TRUE; break;
-      case JMPM: tupel[M_ENV]=J; tupel[M_MPM]=TRUE; break;
-      case XMPM: tupel[M_ENV]=X; tupel[M_MPM]=TRUE; break;
-      case GMPM: tupel[M_ENV]=G; tupel[M_MPM]=TRUE; break;
-      case PMPM: tupel[M_ENV]=P; tupel[M_MPM]=TRUE; break;
-      case QMPM: tupel[M_ENV]=Q; tupel[M_MPM]=TRUE; break;
+      case MPT: tupel[M_ENV]=P; tupel[M_MPT]=true; break;
+      case OMPT: tupel[M_ENV]=O; tupel[M_MPT]=true; break;
+      case FMPT: tupel[M_ENV]=F; tupel[M_MPT]=true; break;
+      case JMPT: tupel[M_ENV]=J; tupel[M_MPT]=true; break;
+      case XMPT: tupel[M_ENV]=X; tupel[M_MPT]=true; break;
+      case GMPT: tupel[M_ENV]=G; tupel[M_MPT]=true; break;
+      case OMPM: tupel[M_ENV]=O; tupel[M_MPM]=true; break;
+      case FMPM: tupel[M_ENV]=F; tupel[M_MPM]=true; break;
+      case JMPM: tupel[M_ENV]=J; tupel[M_MPM]=true; break;
+      case XMPM: tupel[M_ENV]=X; tupel[M_MPM]=true; break;
+      case GMPM: tupel[M_ENV]=G; tupel[M_MPM]=true; break;
+      case PMPM: tupel[M_ENV]=P; tupel[M_MPM]=true; break;
+      case QMPM: tupel[M_ENV]=Q; tupel[M_MPM]=true; break;
       }
   
   // set the valid flag:
@@ -162,7 +162,7 @@ int Lisa_ProblemType::get_property_old(const int prop) const
       default: G_ExceptionList.lthrow("no old expression for this problem");
     }
   G_ExceptionList.lthrow("problem too complex for Brucker's classification");
-  return FALSE;
+  return false;
 }
 
 //**************************************************************************
@@ -229,8 +229,8 @@ int Lisa_ProblemType::setalpha(string al){
   
   tupel[M_ENV]=EMPTY;
   tupel[M_NUMBER]=M_ARB;
-  tupel[M_MPT]=FALSE;
-  tupel[M_MPM]=FALSE;
+  tupel[M_MPT]=false;
+  tupel[M_MPM]=false;
 
   // find the machine environment
   letters_done=0;
@@ -254,12 +254,12 @@ int Lisa_ProblemType::setalpha(string al){
   
   // now look for MPT and MPM
   if (al.substr(letters_done,3)=="MPT"){
-      tupel[M_MPT]=TRUE;
+      tupel[M_MPT]=true;
       letters_done+=3;
   }
   
   if (al.substr(letters_done,3)=="MPM"){
-      tupel[M_MPM]=TRUE;
+      tupel[M_MPM]=true;
       letters_done+=3;
   }
 
@@ -315,12 +315,12 @@ int Lisa_ProblemType::setbeta(string be)
   }
   
   // if no tuplepos was found this means the given beta parameter is unknown
-  if (!tuplepos) return TRUE;
+  if (!tuplepos) return true;
   
   // replace tuple entry:
   tupel[tuplepos]=meaning;
 
-  return FALSE;
+  return false;
 
 }
 
@@ -658,7 +658,7 @@ void Lisa_ProblemType::read(istream& strm){
                            Lisa_ExceptionList::END_OF_FILE);
   }
   
-  vld=TRUE;
+  vld=true;
 }
 
 //**************************************************************************

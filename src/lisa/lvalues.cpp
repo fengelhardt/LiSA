@@ -20,7 +20,7 @@ const int LENGHT_OF_EXTRA_VECTOR = 5;
 
 Lisa_Values::Lisa_Values()
   {
-    valid=TRUE;
+    valid=true;
     n=m=0;                       // startvalue 
     PT=NULL;
     MO=NULL;
@@ -101,13 +101,13 @@ void Lisa_Values::init(int nin, int min){
     delete V2;
   } 
 
-  valid=TRUE;
+  valid=true;
 }
 
 //**************************************************************************
 
 void Lisa_Values::write(ostream& strm) const {
-  if (valid==FALSE) {
+  if (valid==false) {
     G_ExceptionList.lthrow("Lisa_Values not valid. Nothing written.",
                            Lisa_ExceptionList::ANY_ERROR);
     return;
@@ -249,7 +249,7 @@ void Lisa_Values::read(istream& strm) {
     G_ExceptionList.lthrow("Problem size not given in Lisa_Values::read().",
                            Lisa_ExceptionList::SYNTAX_ERROR);
   }else{
-    valid=TRUE;
+    valid=true;
   }
 }
 

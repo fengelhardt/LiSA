@@ -21,7 +21,7 @@ void ECT_reverse(Lisa_JsSchedule * sched)
      (*next_op)[i]=sched->GetMOpred(i,SINK);
   m_free->fill(MAXTIME);
 
-  sched->ComputeHeadsTails(FALSE,TRUE);
+  sched->ComputeHeadsTails(false,true);
  
   do
     { 

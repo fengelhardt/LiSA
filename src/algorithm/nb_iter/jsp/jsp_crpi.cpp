@@ -47,7 +47,7 @@ int JSHOP_cr_API_Ngbh::prepare_move( int typ )
     if ( typ == RAND )
       {
 	// determs the critical operations
-	if ( new_solution == TRUE )
+	if ( new_solution == true )
 	  {
 	    P[0]->SetValue(CMAX);
 	    Cmax = P[0]->GetValue();
@@ -72,7 +72,7 @@ int JSHOP_cr_API_Ngbh::prepare_move( int typ )
 		      }
 		  }
 	    count--;
-	    new_solution = FALSE;
+	    new_solution = false;
 	  }
 	// determs randomly an element
 	numb = lisa_random( 0, count, &seed );

@@ -55,7 +55,7 @@ bool abort_algorithm;
 
 void set_abort(int i) 
  {  
-   abort_algorithm=TRUE;
+   abort_algorithm=true;
    cout << "\nSignal " << i << " received, writing results \n";
  }
 
@@ -78,7 +78,7 @@ void run_stop()
 int main(int argc, char *argv[])
 {
   G_ExceptionList.set_output_to_cout();
-  abort_algorithm = FALSE;
+  abort_algorithm = false;
   // the follow code is addited by A.Winkler
 
   // print a message that the programm started:

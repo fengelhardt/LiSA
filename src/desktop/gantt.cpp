@@ -347,12 +347,12 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
   int i1, i2, color; char *text_color;
 
  
-  if(zoom != TRUE)
+  if(zoom != true)
     main_canvas->set_wh(mw_width(),mw_height()); 
   canv_vertikal->set_wh(40,main_canvas->get_height());
   canv_horizontal->set_wh(main_canvas->get_width(),40);
   main_canvas->clear();canv_horizontal->clear();canv_vertikal->clear();
-  if(G_Schedule->valid != TRUE)
+  if(G_Schedule->valid != true)
     {
       G_ExceptionList.lthrow("Schedule is not valid",
                              Lisa_ExceptionList::ANY_ERROR);
@@ -428,7 +428,7 @@ operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
   my_data.job=-1;
   my_data.machine=-1;
   my_data.time=-1;
-  if(G_Schedule->valid != TRUE)
+  if(G_Schedule->valid != true)
     {
       G_ExceptionList.lthrow("Schedule is not valid",
                              Lisa_ExceptionList::ANY_ERROR);
@@ -506,11 +506,11 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
   double x1,x2,x3,x4;
   double y1,y2,y3,y4;
 
-  if(zoom != TRUE)
+  if(zoom != true)
     main_canvas->set_wh(mw_width(),mw_height()); 
   canv_vertikal->set_wh(40,main_canvas->get_height());
   canv_horizontal->set_wh(main_canvas->get_width(),40);
-  if(G_Schedule->valid != TRUE)
+  if(G_Schedule->valid != true)
     {
       G_ExceptionList.lthrow("Schedule is not valid",
                              Lisa_ExceptionList::ANY_ERROR);

@@ -22,8 +22,8 @@ Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin )
 Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)
      { int  i,j;
        
-       ComputeTails=FALSE;
-       ComputeHeads=TRUE;
+       ComputeTails=false;
+       ComputeHeads=true;
        P = OSP = Pin;
        if ( !(MOsucc=new Lisa_Matrix<int>(P->n+1,P->m+1)) )
 	 cerr << "\nError: no more memory";
@@ -44,7 +44,7 @@ Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)
                (*head)[i][j]=(*P->ri)[i];
 	     }
        value=(TIMETYP) 0;
-       ScheduleOK=TRUE;
+       ScheduleOK=true;
      }
 
 //**************************************************************************
@@ -123,7 +123,7 @@ int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
       xyz=OK;
       if (ComputeHeads)
 	 { 
-           started=FALSE;
+           started=false;
 	   if ((h=(*JOsucc)[i][j])) oldjosucc=(*head)[h][j];
            if ((h=(*MOsucc)[i][j])) oldmosucc=(*head)[i][h];  
 	   (*head)[i][j]=-MAXTIME;
@@ -134,7 +134,7 @@ int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
 	 }
       if (ComputeTails)
 	 { 
-           started=FALSE;
+           started=false;
            (*tail)[i][j]=-MAXTIME;
   	   if (pulltail(i,j)==CYCLE) return CYCLE;
   	 }
@@ -177,12 +177,12 @@ void Lisa_OsSchedule::exclude(int i, int j)
       // recompute heads and tails
       if (ComputeHeads)
         {
-          if (si) { started=FALSE;
+          if (si) { started=false;
                     sti=si; stj=j;
                     pullhead(si,j);
                   }  
           else (*head)[SINK][j]=(*head)[pi][j]+(*P->time)[pi][j]; 
-          if (sj) { started=FALSE;
+          if (sj) { started=false;
                     sti=i; stj=sj;
                     pullhead(i,sj);
                   }  
@@ -190,11 +190,11 @@ void Lisa_OsSchedule::exclude(int i, int j)
         }  
       if (ComputeTails)
         {
-          if (pi) { started=FALSE;
+          if (pi) { started=false;
                     sti=pi; stj=j;
                     pulltail(pi,j);
                   }           
-          if (pj) { started=FALSE;
+          if (pj) { started=false;
                     sti=i; stj=pj;
                     pulltail(i,pj);
                   }  
@@ -214,7 +214,7 @@ int Lisa_OsSchedule::read_LR(Lisa_Matrix<int> * lr)
          for (j=1; j<=P->m; j++)
             if ((*lr)[i-1][j-1]==r)
               insert(i,j,SOURCE,SOURCE);
-   ScheduleOK=TRUE;
+   ScheduleOK=true;
    return OK;
  }
 
@@ -249,13 +249,13 @@ int Lisa_OsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
         if ((*cij)[i-1][j-1])  
           pushhead(i,j, (*cij)[i-1][j-1]- (*(P->time))[i][j]);
       }    
-   ComputeHeadsTails(TRUE,TRUE);
+   ComputeHeadsTails(true,true);
    TailsFromHeads();
    delete order;
 
    
    // now test wether input was correct:
-   ScheduleOK=TRUE;
+   ScheduleOK=true;
    for (i=P->n; i;  i--)
        for (j=P->m; j; j--)
            if (MAXTIME-(*tail)[i][j] != (*cij)[i-1][j-1] ) return ERROR;

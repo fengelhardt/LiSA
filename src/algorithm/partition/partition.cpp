@@ -75,20 +75,20 @@ int main(int argc, char *argv[])
     Lisa_Matrix<bool> * table= new Lisa_Matrix<bool>(max_n,sum_half+1);
 
     //fill table with false
-    table->fill(FALSE);
+    table->fill(false);
     //initiate with 0 and p1 true
-    (*table)[0][0] = TRUE;
-    (*table)[0][ (int) ((*my_werte->PT)[0][0])] = TRUE;
+    (*table)[0][0] = true;
+    (*table)[0][ (int) ((*my_werte->PT)[0][0])] = true;
 
     //fill iterating
     for(int i=1;i<max_n;i++)
       for(int j=0;j<=sum_half;j++){
 	//a partition of this size was already possible
 	if((*table)[i-1][j])
-	  (*table)[i][j] = TRUE;
+	  (*table)[i][j] = true;
 	//a partition of size-pj was already possible
 	else if(((*my_werte->PT)[i][0]<=j) && ((*table)[i-1][ (int) (j-(*my_werte->PT)[i][0]) ]))
-	  (*table)[i][j] = TRUE;
+	  (*table)[i][j] = true;
       }
 
     //find last T in Table

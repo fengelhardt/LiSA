@@ -31,27 +31,27 @@ Lisa_RedGraph::Lisa_RedGraph(void)
 
   Graph[M_NUMBER][M_VAL][0]=M_FIX; Graph[M_NUMBER][M_FIX][0]=M_ARB;
   
-  Graph[PRECEDENCE][FALSE][0]=CHAINS;
+  Graph[PRECEDENCE][false][0]=CHAINS;
   Graph[PRECEDENCE][CHAINS][0]=OUTTREE; Graph[PRECEDENCE][CHAINS][1]=INTREE;
   Graph[PRECEDENCE][OUTTREE][0]=TREE; Graph[PRECEDENCE][INTREE][0]=TREE;
   Graph[PRECEDENCE][TREE][0]=SP_GRAPH; Graph[PRECEDENCE][SP_GRAPH][0]=PREC; 
   
-  Graph[RI][FALSE][0]=TRUE;
+  Graph[RI][false][0]=true;
   
-  Graph[DI][FALSE][0]=TRUE;
+  Graph[DI][false][0]=true;
   
   Graph[PIJ][PIJ_1][0]=PIJ_P;
-  Graph[PIJ][PIJ_P][0]=FALSE;
+  Graph[PIJ][PIJ_P][0]=false;
   
-  Graph[BOUNDED_BATCH][FALSE][0]=TRUE;
+  Graph[BOUNDED_BATCH][false][0]=true;
   
   Graph[JOB_NR][J_VAL][0]=J_FIX; Graph[JOB_NR][J_FIX][0]=J_ARB;
 
-  Graph[TIME_LAGS][FALSE][0]=UNIT_TL; Graph[TIME_LAGS][UNIT_TL][0]=CONST_TL;
+  Graph[TIME_LAGS][false][0]=UNIT_TL; Graph[TIME_LAGS][UNIT_TL][0]=CONST_TL;
   Graph[TIME_LAGS][CONST_TL][0]=GENERAL_TL;
 
-  Graph[TRANSPORTATION_DELAYS][FALSE][0]=TIK_T; 
-  Graph[TRANSPORTATION_DELAYS][FALSE][1]=TIKL_T;
+  Graph[TRANSPORTATION_DELAYS][false][0]=TIK_T; 
+  Graph[TRANSPORTATION_DELAYS][false][1]=TIKL_T;
   Graph[TRANSPORTATION_DELAYS][TIK_T][0]=TI_IN; 
   Graph[TRANSPORTATION_DELAYS][TIK_T][1]=TK; 
   Graph[TRANSPORTATION_DELAYS][TIKL_T][0]=TI_IN; 
@@ -100,15 +100,15 @@ Lisa_RedGraph::visit(int GrNo, int first, int second)
   int k=0, node;
 
   if (first==second)
-    return(TRUE);
+    return(true);
   //  printf("Graphen Nummer:%3d, Knoten Nummer:%3d\n",GrNo,first); 
   while((k<SUCC_MAX) && ((node=Graph[GrNo][first][k])!=MY_NULL))
     {
       if (visit(GrNo,node,second))
-	return(TRUE);
+	return(true);
       k++;
     }
-  return(FALSE);
+  return(false);
 }
 
 //**************************************************************************
@@ -121,19 +121,19 @@ Lisa_RedGraph::reducible(Lisa_ProblemType* first, Lisa_ProblemType* second)
   if ((first->get_property_old(M_NUMBER)==M_VAL) && 
       (second->get_property_old(M_NUMBER)==M_VAL))
     if (first->m_no > second->m_no)
-      return(FALSE);
+      return(false);
   
   if ((first->get_property_old(JOB_NR)==J_VAL) && 
       (second->get_property_old(JOB_NR)==J_VAL))
     if (first->n_no > second->n_no)
-      return(FALSE);
+      return(false);
   
   while (i<TUPEL_INDEX && 
 	 visit(i,first->get_property_old(i),second->get_property_old(i)))
     i++;
   if (i==TUPEL_INDEX)
-    return(TRUE);
-  return(FALSE);
+    return(true);
+  return(false);
 }
 
 //**************************************************************************

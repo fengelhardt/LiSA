@@ -59,8 +59,8 @@ Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
 	(*time)[i+1][0] = 0;
       }
   // copy or set operation set (by default no operations of time 0):
-  sij->fill(TRUE);
-  (*sij)[0][0]=FALSE;
+  sij->fill(true);
+  (*sij)[0][0]=false;
   if (Pin->SIJ)
     for (i=1; i<=n; i++)
       for (j=1; j<=m; j++)
@@ -126,7 +126,7 @@ int Lisa_ShpSchedule::pushhead(int i, int j, TIMETYP newhead)
 
        if ( started && (i==sti) && (j==stj) )     // is this a cycle?
          { 
-           ScheduleOK=FALSE;
+           ScheduleOK=false;
 	   return CYCLE;
          }  
        
@@ -136,7 +136,7 @@ int Lisa_ShpSchedule::pushhead(int i, int j, TIMETYP newhead)
 	   else newhead=(*head)[i][j];
 	 }
   
-       started=TRUE;                              // recursion
+       started=true;                              // recursion
        (*head)[i][j]=newhead;
        newhead+=(*P->time)[i][j];
        if ((h=(*MOsucc)[i][j]))
@@ -161,7 +161,7 @@ int Lisa_ShpSchedule::pushtail(int i, int j, TIMETYP newtail)
        // cout << "pushing tail (" << i << ","<<j<<")->"<<newtail<<endl;
        if ( started && (i==sti) && (j==stj) )     // is this a cycle?
          { 
-           ScheduleOK=FALSE;
+           ScheduleOK=false;
 	   return CYCLE;
          }  
        
@@ -171,7 +171,7 @@ int Lisa_ShpSchedule::pushtail(int i, int j, TIMETYP newtail)
 	   else newtail=(*tail)[i][j];
 	 }
 
-       started=TRUE;                              // recursion
+       started=true;                              // recursion
        (*tail)[i][j]=newtail;
        newtail+=(*P->time)[i][j];
        if ((h=(*MOpred)[i][j]))
@@ -218,7 +218,7 @@ int Lisa_ShpSchedule::pullhead(int i, int j)
       // otherwhise accept value and tell successors 
         
       (*head)[i][j]=newhead;
-      started=TRUE;
+      started=true;
       if ((h=(*JOsucc)[i][j]))
 	 pullhead(h, j);
       else 
@@ -257,7 +257,7 @@ int Lisa_ShpSchedule::pulltail(int i, int j)
       // otherwhise accept value and tell predecessors
         
       (*tail)[i][j]=newtail;
-      started=TRUE;
+      started=true;
       if ((h=(*JOpred)[i][j]))
 	 pulltail(h, j);
       else 
@@ -428,7 +428,7 @@ void Lisa_ShpSchedule::pushstart(int i, int j, TIMETYP v)
        G_ExceptionList.lthrow("cannot push infeasible schedule");
        return;
      }
-   sti=i; stj=j; started=FALSE;
+   sti=i; stj=j; started=false;
    pushhead(i,j,v);
  }
 
@@ -446,7 +446,7 @@ void Lisa_ShpSchedule::pushstop(int i, int j, TIMETYP v)
        tail  =new Lisa_Matrix<TIMETYP>(P->n+1,P->m+1);
        tail->fill( 0 );
      }
-   sti=i; stj=j; started=FALSE;
+   sti=i; stj=j; started=false;
    pushtail(i,j,v);
  }
 

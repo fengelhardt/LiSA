@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     Lisa_Dispatcher * engine=new Lisa_Dispatcher();
     engine->SetProblem(lpr, my_values, out_schedule);
     engine->SetRule((*sp).get_string("RULE"));
-    if ((*sp).get_string("ACTIVE")=="TRUE")
+    if ((*sp).get_string("ACTIVE")=="true")
       engine->dispatch_active();
     else 
       engine->dispatch();

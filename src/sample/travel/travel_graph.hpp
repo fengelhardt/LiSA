@@ -166,7 +166,7 @@ public:
   
   /// constructor
   /** Create a new problem with a given size. 
-      If rnd is set to TRUE random weights will be created.*/
+      If rnd is set to true random weights will be created.*/
   Travel_Graph(const int vertices_in,const bool rnd=1);
   
   /// destructor
@@ -190,13 +190,13 @@ public:
   
   /// write the solution from the object to the argument vector 
   /**  If there is no solution in the object the argument vector will
-      be unchangend and FALSE will be returned. Otherwise the argument
-      vector will contain the solution from the object and TRUE will be 
+      be unchangend and false will be returned. Otherwise the argument
+      vector will contain the solution from the object and true will be 
       returned. */
   bool get_solution(Lisa_Vector<int>* solution_out) const;
 
   /// check whether the object contains a solution or not 
-  /** Returns TRUE if this object contains a solution FALSE otherwise.*/
+  /** Returns true if this object contains a solution false otherwise.*/
   bool inline has_solution()const{return solution ? 1 : 0;}
   
   /// removes a solution from the object

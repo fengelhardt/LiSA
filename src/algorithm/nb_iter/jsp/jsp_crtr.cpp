@@ -86,7 +86,7 @@ int JSHOP_cr_trans_Ngbh::prepare_move( int typ )
 	// make a CR-TRANS neighbour swap
 
 	// determs the number of cr. ways over each operation
-	if ( new_solution == TRUE )
+	if ( new_solution == true )
 	  {
 	    P[0]->SetValue(CMAX);
 	    Cmax = P[0]->GetValue();
@@ -154,7 +154,7 @@ int JSHOP_cr_trans_Ngbh::prepare_move( int typ )
 	      for (j=0; j<PP->m; j++)
 		(*kr)[i][j] = (*krv)[i][j] * (*krr)[i][j];
 	    
-	    new_solution = FALSE;
+	    new_solution = false;
 	  }
 		 
 	// determs the number of cr. operations on each machine

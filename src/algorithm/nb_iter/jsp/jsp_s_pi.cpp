@@ -38,7 +38,7 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
     int k, succ, pred, pos=0, direction;
     int count, count_l, count_r, l_end, r_end;
 
-    critical = FALSE;
+    critical = false;
     
     if ( typ == RAND )
       {
@@ -60,7 +60,7 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
 	    if ( P[0]->GetHead(job1,machine1) + (*PP->time)[job1][machine1] 
 		 + P[0]->GetTail(job1,machine1) == Cmax )
 	      {
-		critical = TRUE;
+		critical = true;
 		job2 = job1;
 	      }
 	    else
@@ -69,7 +69,7 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
 	while (( job2 == 0 ) || ( (*PP->sij)[job2][machine1]==0 ));
 	//cout<<"op.("<<job1<<","<<machine1<<";"<<job2<<")\n";
 
-	if ( critical == TRUE )
+	if ( critical == true )
 	  {
 	    // determs the critical block containing job1
 	    // first, the operations leftside from job1
@@ -233,7 +233,7 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
 		    //cout<<job2<<"\n";
 		  }
 	      }
-	  } // if ( critical == TRUE )
+	  } // if ( critical == true )
 	//cout<<"<next>";
 	//cin>>succ;
     

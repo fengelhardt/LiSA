@@ -88,7 +88,7 @@ int Lisa_OrderWithoutRepetition::read_rank(Lisa_Vector<int>* rank)
      }
    while(pos<n);
 
-   return TRUE;
+   return true;
  }
 
 //**************************************************************************
@@ -144,7 +144,7 @@ int Lisa_MO::read_rank(Lisa_Matrix<int>* lr)
     int i;
     for (i=0; i<n; i++)
        orders[i].read_rank(&((*lr)[i]));
-    return TRUE;
+    return true;
   }
 
 //**************************************************************************
@@ -244,7 +244,7 @@ int Lisa_JO::read_rank(Lisa_Matrix<int>* lr)
             (*column)[i]=(*lr)[i][j];
          orders[j].read_rank(column);
        }
-    return TRUE; 
+    return true; 
   }
 
 //**************************************************************************

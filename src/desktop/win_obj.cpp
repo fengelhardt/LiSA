@@ -87,7 +87,7 @@ void TCValues::draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT,
 	else if (mySIJ!=NULL) str=ztos( (*mySIJ)[j][i]);
 	main_canvas->text(entrywidth*(i+1)-entryheight,entryheight*(j+0.5),str,"Black");
  	if ((mySIJ!=NULL) &&( (myPT!=NULL)||(myMO!=NULL) ) ) {
- 	  if ((*mySIJ)[j][i]==FALSE) 
+ 	  if ((*mySIJ)[j][i]==false) 
  	    main_canvas->rect(entrywidth*(i),entryheight*(j),entrywidth*(i+1),entryheight*(j+1),"Grey");
  	} 
 	position= entrywidth*m;
@@ -326,7 +326,7 @@ void TCSchedule::draw( Lisa_MO *myMO,
 	  if ((*myCIJ)[j][i]==0) str="";
 	  else str=ztos( (*myCIJ)[j][i]);
 	}
-	if ((*SIJ)[j][i]==FALSE) 
+	if ((*SIJ)[j][i]==false) 
 	  main_canvas->rect(entrywidth*(i),entryheight*(j),entrywidth*(i+1),entryheight*(j+1),"Grey");
 	main_canvas->text(entrywidth*(i+1)-entryheight,entryheight*(j+0.5),str,"Black");
       }
@@ -446,7 +446,7 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
   maxm=SIJ.get_m();
   maxn=SIJ.get_n();
 
-  if(zoom == FALSE) {
+  if(zoom == false) {
     main_canvas->set_wh(mw_width(),mw_height()); 
   } 
  main_canvas->clear();

@@ -18,7 +18,7 @@ bool abort_algorithm;
 
 void set_abort(int i) 
     {  
-      abort_algorithm=TRUE;
+      abort_algorithm=true;
       cout << "\nSignal " << i << " received, writing results." << endl;
     } 
 

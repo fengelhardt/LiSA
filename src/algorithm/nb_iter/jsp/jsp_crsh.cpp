@@ -54,7 +54,7 @@ int JSHOP_cr_shift_Ngbh::prepare_move( int typ )
     if ( typ == RAND )
       {
 	// make critical shift
-	if ( new_solution == TRUE )
+	if ( new_solution == true )
 	  {
 	    P[0]->SetValue(CMAX);
 	    Cmax = P[0]->GetValue();
@@ -73,7 +73,7 @@ int JSHOP_cr_shift_Ngbh::prepare_move( int typ )
 			cr_count++;
 		      }
 		  }
-	    new_solution = FALSE;
+	    new_solution = false;
 	  }
 
 	// determs a critical operation

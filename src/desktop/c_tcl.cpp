@@ -218,7 +218,7 @@ void open_main_window() {
 
 // open dialog to problem input
 void open_problem_window() {
-  //  G_ProblemType.valid=TRUE;
+  //  G_ProblemType.valid=true;
   Tcl_Eval(interp,"Window show .dprob");
 }
 

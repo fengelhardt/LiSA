@@ -16,7 +16,7 @@ Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
   single_machine_mode=m;
   JsPro=pJsSch->JSP;
   JsSch=pJsSch;
-  JsSch->ComputeHeadsTails(TRUE,TRUE);
+  JsSch->ComputeHeadsTails(true,true);
   JsSch->InitHeadsTails();
   Done_Machines=new Lisa_Vector<int> (JsPro->m);
   Done_Machines->fill(0);

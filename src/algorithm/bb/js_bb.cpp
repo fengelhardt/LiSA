@@ -101,7 +101,7 @@ void JS_BB::_run(int op_nr)
                    my_list->append(erg); 
                    if ((Schedule->GetValue()<=given_lower_bound) &&
                        (my_list->length()>=output_bound))
-		     abort_algorithm=TRUE;
+		     abort_algorithm=true;
                  }     // if schedule complete
 	     }        // if value <= upper_bound       
          }             // if insertion ok

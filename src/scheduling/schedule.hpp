@@ -31,7 +31,7 @@ protected:
   /// size of matrices
   int m, n;
 public:
-  /// Lisa_Schedule is valid if valid==TRUE
+  /// Lisa_Schedule is valid if valid==true
   int valid;
   
   /// get number of maschines
@@ -40,7 +40,7 @@ public:
   /// get number of jobs
   int inline get_n() const {return n;}
   
-  /// semiactive==TRUE if Lisa_Schedule is defined as a semiactive Schedule
+  /// semiactive==true if Lisa_Schedule is defined as a semiactive Schedule
   bool semiactive;
   
   /// constructor

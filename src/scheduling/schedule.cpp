@@ -122,8 +122,8 @@ Lisa_ScheduleNode::~Lisa_ScheduleNode(){
 //**************************************************************************
 
 Lisa_Schedule::Lisa_Schedule(int n_in,int m_in) {
-  semiactive=TRUE;
-  valid=FALSE;
+  semiactive=true;
+  valid=false;
   n=n_in; 
   m=m_in;
   LR=NULL;
@@ -209,7 +209,7 @@ void Lisa_Schedule::init(int n_in, int m_in) {
       CIJ=new Lisa_Matrix<TIMETYP>(n,m);
     } 
   }
-  valid=FALSE;
+  valid=false;
 }
 
 //**************************************************************************
@@ -234,23 +234,23 @@ int Lisa_Schedule::valid_LR(Lisa_Matrix<bool> *SIJ) {
   int i=0,j=0;
   
   if (LR==NULL){
-    valid=FALSE;
+    valid=false;
     return !OK;
   } 
   if (SIJ==NULL){
     G_ExceptionList.lthrow("No valid SIJ",Lisa_ExceptionList::UNDEFINED_OBJECT);
-    valid=FALSE;
+    valid=false;
     return !OK; 
   }
   for (i=0; i<n; i++) {
     for (j=0;j<m; j++) {
       if ( (*SIJ)[i][j]==1 && (*LR)[i][j]<1 ){
-        valid=FALSE;
+        valid=false;
         return !OK;
       } 
     }
   }
-  valid=TRUE;
+  valid=true;
   return OK;
 }
 
@@ -260,7 +260,7 @@ int Lisa_Schedule::get_property(int property) {
   int value=0;
   int i=0,j=0,i1=0,j1=0,test=0;
   if (LR==NULL) return 0; 
-  if ( semiactive!=TRUE) return 0;
+  if ( semiactive!=true) return 0;
   switch (property)
     {
     case MAXRANK_INFO:
@@ -388,7 +388,7 @@ void Lisa_Schedule::read(istream& strm) {
     G_ExceptionList.lthrow("Problem size/semiactive not given in Lisa_Schedule::read().",
                            Lisa_ExceptionList::SYNTAX_ERROR);
   }else{
-    valid=TRUE;
+    valid=true;
   }
 }
 

@@ -89,8 +89,8 @@ Lisa_JsProblem::~Lisa_JsProblem()
 Lisa_JsSchedule::Lisa_JsSchedule(Lisa_JsProblem* Pin)
      { 
        int  i,j;
-       ComputeTails = FALSE;
-       ComputeHeads = TRUE;
+       ComputeTails = false;
+       ComputeHeads = true;
        P = JSP = Pin;
        MOsucc = JSP->MOsucc;
        MOpred = JSP->MOpred;
@@ -109,7 +109,7 @@ Lisa_JsSchedule::Lisa_JsSchedule(Lisa_JsProblem* Pin)
 	       (*head)[i][j]=(*P->ri)[i];
 	     }
        value=(TIMETYP) 0;
-       ScheduleOK=TRUE;
+       ScheduleOK=true;
  
      }
 
@@ -130,7 +130,7 @@ void Lisa_JsSchedule::InitHeadsTails()
 {
   int i, M;
   TIMETYP hh,tt;
-  ComputeHeadsTails(TRUE, TRUE );
+  ComputeHeadsTails(true, true );
   
   // init heads
   for ( i=1; i<=P->n; i++ )
@@ -221,7 +221,7 @@ int Lisa_JsSchedule::insert( int i, int j, int woi )
   xyz=OK;
   if (ComputeHeads)
     { 
-      started=FALSE;
+      started=false;
       if ((h=(*JOsucc)[i][j])) oldjosucc=(*head)[h][j];
       if ((h=(*MOsucc)[i][j])) oldmosucc=(*head)[i][h];
       (*head)[i][j]=-MAXTIME;          // to make shure that push is called 
@@ -232,7 +232,7 @@ int Lisa_JsSchedule::insert( int i, int j, int woi )
     }
   if (ComputeTails)
     { 
-      started=FALSE;
+      started=false;
       (*tail)[i][j]=-MAXTIME;       
       if (pulltail(i,j)==CYCLE) return CYCLE;
     }
@@ -270,12 +270,12 @@ void Lisa_JsSchedule::exclude(int i, int j)
       // recompute heads and tails
       if (ComputeHeads)
         {
-          if (si) { started=FALSE;
+          if (si) { started=false;
                     sti=si; stj=j;
                     pullhead(si,j);
                   }  
           else (*head)[SINK][j]=(*head)[pi][j]+(*P->time)[pi][j]; 
-          if (sj) { started=FALSE;
+          if (sj) { started=false;
                     sti=i; stj=sj;
                     pullhead(i,sj);
                   }  
@@ -283,11 +283,11 @@ void Lisa_JsSchedule::exclude(int i, int j)
         }  
       if (ComputeTails)
         {
-          if (pi) { started=FALSE;
+          if (pi) { started=false;
                     sti=pi; stj=j;
                     pulltail(pi,j);
                   }           
-          if (pj) { started=FALSE;
+          if (pj) { started=false;
                     sti=i; stj=pj;
                     pulltail(i,pj);
                   }  
@@ -308,7 +308,7 @@ int Lisa_JsSchedule::read_LR(Lisa_Matrix<int> * lr)
             if ((*lr)[i-1][j-1]==r)
               if (insert(i,j,SOURCE)==CYCLE)
                 return ERROR;
-   ScheduleOK=TRUE;
+   ScheduleOK=true;
    return OK;
  }
 
@@ -326,7 +326,7 @@ int Lisa_JsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
    order->read(cij);
    order->sort();
      
-   ComputeHeadsTails(TRUE,FALSE);
+   ComputeHeadsTails(true,false);
    // construct sequence:
    for (k=0; k<(P->n * P->m); k++)
       {
@@ -345,7 +345,7 @@ int Lisa_JsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
         if ((*cij)[i-1][j-1])  
           pushhead(i,j, (*cij)[i-1][j-1]- (*(P->time))[i][j]);
       } 
-   ComputeHeadsTails(TRUE,TRUE);
+   ComputeHeadsTails(true,true);
    TailsFromHeads();
    delete order;
 
@@ -353,7 +353,7 @@ int Lisa_JsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
    for (i=P->n; i;  i--)
        for (j=P->m; j; j--)
            if (MAXTIME-(*tail)[i][j] != (*cij)[i-1][j-1] ) return ERROR;
-   ScheduleOK=TRUE;
+   ScheduleOK=true;
    return OK;
   }
 

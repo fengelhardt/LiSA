@@ -108,7 +108,7 @@ public:
 
   /// switch computation of heads/tails on or off 
   /** for all following insert and exclude operations. ONE OF THE PARAMETERS 
-      HAS TO BE TRUE! */ 
+      HAS TO BE true! */ 
   void ComputeHeadsTails(bool heads, bool tails);
   
   /// test whether operation belongs to schedule

@@ -86,12 +86,12 @@ bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT,
 	G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);      
       break;
     default: G_ExceptionList.lthrow("wrong problemtype for Lisa_Dispatcher");
-      return FALSE;
+      return false;
     }
   delete mstart; delete jstart;
   jstart = new Lisa_Vector<TIMETYP>(problem->n+1);
   mstart = new Lisa_Vector<TIMETYP>(problem->m+1);
-  return TRUE;
+  return true;
 }
 
 //**************************************************************************
@@ -126,7 +126,7 @@ void Lisa_Dispatcher::js_dispatch_active()
   // initialize schedule:
   delete schedule;
   schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
-  if (rule==LQUE) schedule->ComputeHeadsTails(TRUE,TRUE);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
   
   // append operations to the schedule:
   TIMETYP time;
@@ -190,7 +190,7 @@ void Lisa_Dispatcher::js_dispatch()
   // initialize schedule:
   delete schedule;
   schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
-  if (rule==LQUE) schedule->ComputeHeadsTails(TRUE,TRUE);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
  
   // append operations to the schedule:
   do 
@@ -238,7 +238,7 @@ void Lisa_Dispatcher::os_dispatch_active()
   // initialize schedule:
   delete schedule;
   schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
-  if (rule==LQUE) schedule->ComputeHeadsTails(TRUE,TRUE);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
   
   // append operations to the schedule:
   TIMETYP time;
@@ -287,7 +287,7 @@ void Lisa_Dispatcher::os_dispatch()
   // initialize schedule:
   delete schedule;
   schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
-  if (rule==LQUE) schedule->ComputeHeadsTails(TRUE,TRUE);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
 
   if (rule==ECT)
     {

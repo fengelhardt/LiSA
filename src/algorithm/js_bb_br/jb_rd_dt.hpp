@@ -17,10 +17,10 @@
 /*   INPUT:  FileName:    file which contains the data of the problem        */
 /*                                                                           */
 /*   FUNCTION: Reads data from file and stores it in global variables.       */
-/*             If the file-read is correct Read_Data returns TRUE.           */
+/*             If the file-read is correct Read_Data returns true.           */
 /* ************************************************************************* */
 /// Reads data from file and stores it in global variables.
-/** If the file-read is correct Read_Data returns TRUE. */
+/** If the file-read is correct Read_Data returns true. */
 boolean Read_Data(char *);
 
 

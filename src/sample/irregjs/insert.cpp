@@ -42,8 +42,8 @@ void JS_Inserter::rattle( int job )
 
   if (delay > 0) 
     { 
-      sched2->ComputeHeadsTails(FALSE,TRUE);
-      while (TRUE)
+      sched2->ComputeHeadsTails(false,true);
+      while (true)
 	{
 	  //  cout << "trying to make "<< job<<","<<last_machine<<" earlier by " 
 	  //	       << delay << endl;;
@@ -64,8 +64,8 @@ void JS_Inserter::rattle( int job )
     }
   if (delay<0)
     { 
-      sched2->ComputeHeadsTails(TRUE,FALSE);
-      while (TRUE)
+      sched2->ComputeHeadsTails(true,false);
+      while (true)
 	{
 	  sched2->pushstart(job,last_machine,
 			    sched->GetHead(job,last_machine)+1);
@@ -98,7 +98,7 @@ void JS_Inserter::insert()
 	{ 
 	  (*sched2)=(*sched);
 
-	  sched2->ComputeHeadsTails(FALSE,TRUE);
+	  sched2->ComputeHeadsTails(false,true);
 	  if (sched2->insert(i,j,inspos)>=OK)
 	    {
               // adjust timeslot for last operations:
@@ -107,7 +107,7 @@ void JS_Inserter::insert()
               sched2->HeadsFromTails();
            
               // repair collisions with time 0:
-	      sched2->ComputeHeadsTails(TRUE,FALSE);
+	      sched2->ComputeHeadsTails(true,false);
 	      for (shiftjob=1; shiftjob<=P->n; shiftjob++)
 		{
 		  firstop=sched2->GetMOsucc(shiftjob,SOURCE);
@@ -190,8 +190,8 @@ void rattle_js( Lisa_JsSchedule * sched)
       
       if (delay > 0) 
 	{ 
-	  sched2->ComputeHeadsTails(FALSE,TRUE);
-	  while (TRUE)
+	  sched2->ComputeHeadsTails(false,true);
+	  while (true)
 	    {
               sched2->pushstop(job,last_machine,
 			       1+sched->GetTail(job,last_machine));
@@ -208,8 +208,8 @@ void rattle_js( Lisa_JsSchedule * sched)
 	}
       if (delay<0)
 	{ 
-	  sched2->ComputeHeadsTails(TRUE,FALSE);
-	  while (TRUE)
+	  sched2->ComputeHeadsTails(true,false);
+	  while (true)
 	    {
 	      sched2->pushstart(job,last_machine,
 				sched->GetHead(job,last_machine)+1);

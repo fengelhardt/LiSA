@@ -283,7 +283,7 @@ int Lisa_1Schedule::insert( int i, int woi )
     xyz=OK;
     if (ComputeHeads)
       { 
-	started=FALSE;
+	started=false;
 	if ((h=(*JOsucc)[i])) oldjosucc=(*head)[h];
 	if (pullhead(i)==CYCLE) return CYCLE;
 	if ((h=(*JOsucc)[i]) && (oldjosucc==(*head)[h]))
@@ -291,7 +291,7 @@ int Lisa_1Schedule::insert( int i, int woi )
       }
     if (ComputeTails)
       { 
-	started=FALSE;
+	started=false;
 	if (pulltail(i)==CYCLE) return CYCLE;
       }
     return(xyz); 
@@ -327,7 +327,7 @@ void Lisa_1Schedule::exclude( int i )
       {
 	if (si) 
 	  { 
-	    started=FALSE;
+	    started=false;
 	    sti=si;
 	    pullhead(si);
 	  }  
@@ -337,7 +337,7 @@ void Lisa_1Schedule::exclude( int i )
       {
 	if (pi) 
 	  {
-	    started=FALSE;
+	    started=false;
 	    sti=pi;
 	    pulltail(pi);
 	  }           
@@ -356,7 +356,7 @@ int Lisa_1Schedule::pushhead(int i, TIMETYP newhead)
 	else newhead=(*head)[i];
       }
   
-    started=TRUE;                              // recursion
+    started=true;                              // recursion
     (*head)[i]=newhead;
     newhead+=(*PP->time)[i];
     if ((h=(*JOsucc)[i]))
@@ -380,7 +380,7 @@ int Lisa_1Schedule::pushtail(int i, TIMETYP newtail)
 	else newtail=(*tail)[i];
       }
   
-    started=TRUE;                              // recursion
+    started=true;                              // recursion
     (*tail)[i]=newtail;
     newtail+=(*PP->time)[i];
     if ((h=(*JOpred)[i]))
@@ -415,7 +415,7 @@ int Lisa_1Schedule::pullhead( int i )
     // otherwhise accept value and tell successors 
         
     (*head)[i] = newhead;
-    started = TRUE;
+    started = true;
     if ((h=(*JOsucc)[i]))
       pullhead(h);
     else 
@@ -448,7 +448,7 @@ int Lisa_1Schedule::pulltail( int i )
     // otherwhise accept value and tell predecessors
         
     (*tail)[i]=newtail;
-    started=TRUE;
+    started=true;
     if ((h=(*JOpred)[i]))
       pulltail(h);
     else 

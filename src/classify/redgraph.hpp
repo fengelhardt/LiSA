@@ -33,7 +33,7 @@ private:
   int Graph[TUPEL_INDEX][V_MAX+1][SUCC_MAX]; 
   /// for recursive visits of nodes
   int visit(int,int,int);    
-  /// returns TRUE if first tupel is polynomial reducible to second tupel
+  /// returns true if first tupel is polynomial reducible to second tupel
   int reducible(Lisa_ProblemType*,Lisa_ProblemType*);
 
 public: 

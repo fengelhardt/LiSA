@@ -15,7 +15,7 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     job1 = 0;
     seed = 247639875L;
     PP = PPi;
-    new_solution = TRUE;
+    new_solution = true;
     
     if ( !( P[0] = new Lisa_JsSchedule( PP ) ) )
       {
@@ -76,7 +76,7 @@ int JSHOP_API_Ngbh::copy_schedule( int a , int b )
 
 int JSHOP_API_Ngbh::accept_solution()
 {
-  new_solution = TRUE;
+  new_solution = true;
   return copy_schedule( WORK_SOLUTION, ORIG_SOLUTION );
 }
 
@@ -84,7 +84,7 @@ int JSHOP_API_Ngbh::accept_solution()
   
 int JSHOP_API_Ngbh::accept_best_ngh()
 {
-  new_solution = TRUE;
+  new_solution = true;
   return copy_schedule( BEST_NGH_SOLUTION, ORIG_SOLUTION );
 }
 
@@ -296,7 +296,7 @@ int JSHOP_API_Ngbh::anti_neighbour()
      }
    
    // attantion! we have a new solution
-   new_solution = TRUE; 
+   new_solution = true; 
 
    delete cr_job;
    delete cr_mach;

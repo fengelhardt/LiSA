@@ -90,7 +90,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	    // make an API neighbour swap
 	    
 	    // determs randomly a machine
-	    api = TRUE;
+	    api = true;
 	    machine1 = lisa_random( 1, PP->m, &seed );
 	    // determs randomly a job and look if it have a predecessor
 	    do
@@ -112,9 +112,9 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	  {
 	    // make a CR-TRANS neighbour swap
 
-	    api = FALSE;
+	    api = false;
 	    // determs the number of cr. ways over each operation
-	    if ( new_solution == TRUE )
+	    if ( new_solution == true )
 	      {
 		P[0]->SetValue(CMAX);
 		Cmax = P[0]->GetValue();
@@ -182,7 +182,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 		  for (j=0; j<PP->m; j++)
 		    (*kr)[i][j] = (*krv)[i][j] * (*krr)[i][j];
 
-		new_solution = FALSE;
+		new_solution = false;
 	      }
 		 
 	    // determs the number of cr. operations on each machine
@@ -297,7 +297,7 @@ int JSHOP_cr_trans_mix_Ngbh::do_move()
    int i, help;
    *P[1]=*P[0];
    
-   if ( api == TRUE )
+   if ( api == true )
      {
        P[1]->exclude( job1, machine1 );
        if ( P[1]->insert( job1, machine1, job2 ) == CYCLE )

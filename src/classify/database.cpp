@@ -298,7 +298,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       else 
 	strcpy(substr,strchr(beta,'\0'));
       if (strcmp(beta,"pmtn")==0)
-	E[dsatz].problem[nr].set_property(PMTN,TRUE);
+	E[dsatz].problem[nr].set_property(PMTN,true);
       else if (strcmp(beta,"intree")==0)
 	E[dsatz].problem[nr].set_property(PRECEDENCE,INTREE);
       else if (strcmp(beta,"outtree")==0)
@@ -339,9 +339,9 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	    error_output(dsatz,nr);      
 	}
       else if (strcmp(beta,"r_i")==0)
-	E[dsatz].problem[nr].set_property(RI,TRUE);
+	E[dsatz].problem[nr].set_property(RI,true);
       else if (strcmp(beta,"d_i")==0)
-	E[dsatz].problem[nr].set_property(DI,TRUE);	  
+	E[dsatz].problem[nr].set_property(DI,true);	  
       else if (strcmp(beta,"p_{ij}=1")==0)
 	E[dsatz].problem[nr].set_property(PIJ,PIJ_1);  
       else if (strcmp(beta,"p_{ij}=p")==0)
@@ -351,7 +351,7 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       else if (strcmp(beta,"p-batch")==0)
 	E[dsatz].problem[nr].set_property(BATCH,P_BATCH);
       else if (strcmp(beta,"b<n")==0)
-	E[dsatz].problem[nr].set_property(BOUNDED_BATCH,TRUE);
+	E[dsatz].problem[nr].set_property(BOUNDED_BATCH,true);
       else if (strncmp(beta,"n=",2)==0)
 	{
 	  if (*(beta+2)=='k')
@@ -363,9 +363,9 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 	    }
 	}
       else if (strcmp(beta,"no-wait")==0)
-	E[dsatz].problem[nr].set_property(NO_WAIT,TRUE);
+	E[dsatz].problem[nr].set_property(NO_WAIT,true);
       else if (strcmp(beta,"size_i")==0)
-	E[dsatz].problem[nr].set_property(SIZE,TRUE);
+	E[dsatz].problem[nr].set_property(SIZE,true);
       else if (strcmp(beta,"t_{ik}=T")==0)
 	E[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIK_T);
       else if (strcmp(beta,"t_{ikl}=T")==0)

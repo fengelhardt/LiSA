@@ -57,12 +57,12 @@ int TC_adopt_MO(ClientData /* clientData*/,
     if (G_Values.MO==NULL) {G_Values.make_MO();}
     for(i=0;i<G_Values.get_m();i++)
       for (j=0;j<G_Values.get_n();j++)
-	if ( (*G_Values.SIJ)[j][i]==FALSE) 
+	if ( (*G_Values.SIJ)[j][i]==false) 
 	  (*G_TclVar.MO_as_Matrix)[j][i]=0;
         G_Values.MO->read_rank(G_TclVar.MO_as_Matrix);
     G_TclVar.MO_as_Matrix->fill(0);
     G_Values.MO->write_rank(G_TclVar.MO_as_Matrix);
-        if (G_Values.valid_MO()==FALSE) 
+        if (G_Values.valid_MO()==false) 
       G_ExceptionList.lthrow("Machine Order not valid");
     new_values();
   }
@@ -388,7 +388,7 @@ int TC_update_cij(ClientData /* clientData */,
 		  int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   Lisa_OsProblem myOsProblem(&G_Values);
   Lisa_OsSchedule myOsSchedule(&myOsProblem);
-  myOsSchedule.ComputeHeadsTails(TRUE,TRUE);
+  myOsSchedule.ComputeHeadsTails(true,true);
   if (myOsSchedule.read_Cij(G_Schedule->CIJ)!=OK) {
     G_ExceptionList.lthrow("Cij-Matrix not valid",Lisa_ExceptionList::ANY_ERROR);
   }
@@ -694,7 +694,7 @@ int TC_new(ClientData /* clientData */,
 	   int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   int i;
   for(i=0;i<TUPEL_INDEX;i++) G_ProblemType.set_property(i,EMPTY);
-  //  G_ProblemType.valid=FALSE;
+  //  G_ProblemType.valid=false;
    G_Values.init(0,0);
  //   G_Schedule->init(0,0);
    // no_schedule();

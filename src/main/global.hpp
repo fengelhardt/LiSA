@@ -17,14 +17,8 @@ const int DEFAULT_M=4;
 /// default value for job number
 const int DEFAULT_N=6;
 
-/// logic
-//#define NOT_DEFINED -1 
-///logic
-#define TRUE 1
 ///logic
 #define OK 1
-///logic
-#define FALSE 0
 
 /// type of all processing times heads, tails, r_i, d_i ...
 #define TIMETYP double
@@ -94,7 +88,7 @@ const int NUMBER[TUPEL_INDEX]={
 #define MAX_NUMBER 25
 
 /// for all entries
-const int EMPTY=FALSE; 
+const int EMPTY=false; 
 /// for all entries
 const int VALUE=1;
 
@@ -142,9 +136,9 @@ const int M_FIX=2;
 // beta
 
 /// is set ?
-const int SET=TRUE;
+const int SET=1;
 
-// Problem[PMTN]: only TRUE and FALSE
+// Problem[PMTN]: only true and false
 
 //@{
 /// Problem[PRECEDENCE]
@@ -156,9 +150,9 @@ const int CHAINS=5;
 const int PREC=6;  
 //@}
 
-// Problem[RI]: only TRUE and FALSE
+// Problem[RI]: only true and false
 
-// Problem[DI]: only TRUE and FALSE
+// Problem[DI]: only true and false
 
 //@{
 /// Problem[PIJ]
@@ -172,7 +166,7 @@ const int S_BATCH=1;
 const int P_BATCH=2;
 //@}
 
-// Problem[BOUNDED_BATCH]: only TRUE and FLASE
+// Problem[BOUNDED_BATCH]: only true and FLASE
 
 //@{
 /// Problem[JOB_NR]
@@ -181,9 +175,9 @@ const int J_VAL=VALUE;
 const int J_FIX=2;
 //@}
 
-// Problem[NO_WAIT]:  only TRUE and FALSE
+// Problem[NO_WAIT]:  only true and false
 
-// Problem[SIZE]: only TRUE and FALSE
+// Problem[SIZE]: only true and false
 
 //@{
 /// Problem[TIME_LAGS]
