@@ -414,7 +414,8 @@ proc vTclWindow.top33 {base {container 0}} {
         -justify center -padx 5 -pady 2 -relief groove \
         -textvariable dialogText -width 300 
     button $base.but36 \
-        -command {destroy .top33} -pady 1m -text OK 
+        -command {destroy .top33} -pady 1m -text OK
+    bind $base.but36 <Return> {destroy .top33}
     ###################
     # SETTING GEOMETRY
     ###################
@@ -465,8 +466,10 @@ proc vTclWindow.top64 {base {container 0}} {
         -borderwidth 2 -height 75 -width 176 
     button $base.fra67.but68 \
         -command doInstall -text OK 
+    bind $base.fra67.but68 <Return> doInstall
     button $base.fra67.but70 \
         -command exit -text Cancel 
+    bind $base.fra67.but70 <Return> exit
     ###################
     # SETTING GEOMETRY
     ###################
