@@ -415,6 +415,16 @@ public:
 
 //**************************************************************************
 
+/// a class for storing weighted digraphs
+/** This Object is was made as similar to Lisa_Graph as possible. Unlike
+    Lisa_Graph though it only knows ARC's (and of course weights on them). 
+    Again vertices are numbered 1...get_vertices().
+    
+    This is a simple Graph so you can only have one ARC from a vertex A to B at
+    a time.
+    
+    A weight for an arc can be anything TIMETYP, including 0. 
+ */
 class Lisa_WeightedGraph : public Lisa_FileEntry{
 private:
   /// number of vertices in our graph
@@ -449,47 +459,90 @@ public:
 
   /// destructor
   ~Lisa_WeightedGraph();
-
+  
+  /// return the number of vertices in this graph
   inline int get_vertices()const{return size;}
   
+  /// (re)initialize a graph with a given number of vertices
+  /** this will also clear the graph */
   void init(const int number_of_vertex);
 
+  /// removes all ARCS from the graph and sets all weights to 0
   void clear();  
   
+  /// generate an adjacency matrix representing the graph
+  /** The argument matrix adj has to be of size get_vertices() x get_vertices().
+      After this operation it will contain a 1 at position A-1,B-1 if there is
+      an ARC from A to B. The output matrix is in a format compatible to 
+      Lisa_Graph. */
   void get_adjacency_matrix(Lisa_Matrix<int> *const adj)const;
 
+  /// completely overwrite graph with values from an adjacency matrix
+  /** This function expects a matrix of size get_vertices() x get_vertices()
+      the same format as delivered by get_adjacency_matrix(). All non zero
+      entrys will be interpreted as 1 though, so that it is possible to feed
+      weighted adjacency matrices to this function. The weights of the graph
+      will be set to 0. */  
   void set_adjacency_matrix(const Lisa_Matrix<int> *const adj);
   
+  /// generate a weight matrix representing the graph
+  /** The argument matrix weights has to be of size get_vertices() x
+      get_vertices(). After this operation it will contain at position A-1,B-1
+      the weight for an ARC from A to B if this ARC exists, 0 otherwise. Please
+      note though that you can have 0 weights for ARC's so this matrix does not
+      neccesarily represent the graph in complete. */  
   void get_weight_matrix(Lisa_Matrix<TIMETYP> *const weights)const;
 
-  void set_weight_matrix(const Lisa_Matrix<TIMETYP> *const adj); 
+  /// set weights accordung to given weights matrix
+  /** The matrix is expected to be in the same format as delivered by 
+      get_weight_matrix(). ARC weights are updates for existing ARC's */
+  void set_weight_matrix(const Lisa_Matrix<TIMETYP> *const weights); 
 
+  /// insert an ARC with a given weight between start and end vertex
   void insert_arc(const int start,const int end,const TIMETYP weight=0);
 
+  /// remove an ARC between start and end vertex,delete weight
   void remove_arc(const int start,const int end);
   
+  /// delete all ARC's and CRA's connected with that vertice,delete weights
   void clear(const int vertex);
   
-  int get_connection(const int start,const int end)const;
-
-  void set_weight(const int start,const int end,const TIMETYP weight=0);
+  /// get the weight and kind of connection between two vertices
+  /** Possible return values are NONE,ARC,CRA. If the return value is ARC or
+      CRA the weight variable will contain the weight for this connection, 
+      otherwise it's value is undefined. */
+  int get_connection(const int start,const int end, TIMETYP *const weight)const;
   
-  TIMETYP get_weight(const int start,const int end)const;
-  
+  /// list style access to all successors of a vertex
+  /** This reinitializes the access for the given vertex */
   void init_successor(const int vertex);
-
-  int next_successor(const int vertex);
   
+  /// list style access to all successors of a vertex
+  /** Returns the next successor of a vertex or get_vertices()+1. The latter 
+      indicates that all successors have been returned in previous operations
+      and that the access is also reinitialized. The weight variable will
+      contain the weight for the current ARC after the call. Its value is 
+      undefined if get_vertices()+1 is returned. */  
+  int next_successor(const int vertex,TIMETYP *const weight);
+  
+  /// list style access to all predecessors of a vertex
+  /** This reinitializes the access for the given vertex */  
   void init_predecessor(const int vertex);
   
-  int next_predecessor(const int vertex);
+  /// list style access to all predecessors of a vertex
+  /** Returns the next predecessor of a vertex or get_vertices()+1. The latter 
+      indicates that all predecessors have been returned in previous operations
+      and that the access is also reinitialized. The weight variable will
+      contain the weight for the current CRA after the call. Its value is 
+      undefined if get_vertices()+1 is returned. */   
+  int next_predecessor(const int vertex,TIMETYP *const weight);
   
   /// write a Lisa_WeightedGraph to a stream
   /** The data is written as an adjacency matrix and weight matrix, as returned
       by get_adjacency_matrix() and get_weight_matrix(). */
   void write(std::ostream& = std::cout) const;
 
-  /// read a Lisa_Graph from a stream
+  /// read a Lisa_WeightGraph from a stream
   void read(std::istream& = std::cin);
 
 };
