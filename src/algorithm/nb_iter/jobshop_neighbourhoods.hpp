@@ -520,7 +520,7 @@ public:
     @version 2.3final
     @see Lisa_Neighbourhood
 */
-class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh{
+class JSHOP_PI_Ngbh: public JSHOP_API_Ngbh{
 private:
   /// positions
   int   pos1, pos2;
@@ -529,9 +529,9 @@ private:
 public:	
   /// construct JSHOP_swap_Ngbh
   /** with a start schedule and specified problem data */
-  JSHOP_swap_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
+  JSHOP_PI_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
   /// destructor
-  ~JSHOP_swap_Ngbh(); 
+  ~JSHOP_PI_Ngbh(); 
 
   int   prepare_move(int);
   int   do_move();

@@ -78,7 +78,7 @@ const int MAXLONG = 214748000;
   const int BL_SHIFT     = 17;
   const int CR_TST       = 18;
   const int _3_CR        = 19;
-  const int SWAP         = 20;
+  //const int SWAP         = 20;
   const int TRANS        = 21;
   const int CR_TRANS     = 22;
   const int SC_TRANS     = 23;
@@ -124,7 +124,7 @@ const int MAXLONG = 214748000;
   OSHOP_cr_bl_shift_Ngbh   *os_bl_shift;
   OSHOP_cr_TST_Ngbh        *os_cr_tst;
   JSHOP_API_Ngbh           *js_api;
-  JSHOP_swap_Ngbh          *js_swap;
+  JSHOP_PI_Ngbh            *js_pi;
   JSHOP_shift_Ngbh         *js_shift;
   JSHOP_trans_Ngbh         *js_trans;
   JSHOP_cr_trans_Ngbh      *js_cr_trans;
@@ -644,8 +644,8 @@ int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 		  exit( 7 );
 		}
 	      break;
-	    case SWAP:   
-	      if(!(ngbh = js_swap = new JSHOP_swap_Ngbh( js_Plan, js_Prob )))
+	    case PI:   
+	      if(!(ngbh = js_pi = new JSHOP_PI_Ngbh( js_Plan, js_Prob )))
 		{  
 		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
@@ -785,9 +785,9 @@ int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 	      js_api->return_schedule( js_Plan );
 	      delete js_api;
 	      break;
-	    case SWAP:
-	      js_swap->return_schedule( js_Plan );
-	      delete js_swap;
+	    case PI:
+	      js_pi->return_schedule( js_Plan );
+	      delete js_pi;
 	      break;
 	    case SHIFT:
 	      js_shift->return_schedule( js_Plan );
@@ -1051,7 +1051,7 @@ int main(int argc, char *argv[])
   cout << "Neighborhood : \"" << NGBH_St << "\"" << endl;
     
        if ( NGBH_St     == "API"              ) NGBH = API;
-  else if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
+  //else if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
   else if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
   else if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
   else if ( NGBH_St     == "CR_TRANS_MIX"     ) NGBH = CR_TRANS_MIX;
