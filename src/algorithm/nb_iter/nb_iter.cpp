@@ -992,11 +992,11 @@ int main(int argc, char *argv[])
   if ( NGBH_St     == "CR_SHIFT_MIX"     ) NGBH = CR_SHIFT_MIX;
   if ( NGBH_St     == "BL_SHIFT"         ) NGBH = BL_SHIFT;
   if ( NGBH_St     == "CR_TST"           ) NGBH = CR_TST;
-  if ( METHOD_St   == "II"       ) METHOD   = II;
-  if ( METHOD_St   == "SA"       ) METHOD   = SA;
+  if ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
+  if ( METHOD_St   == "SimulatedAnnealing"       ) METHOD   = SA;
   if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
-  if ( METHOD_St   == "TA"       ) METHOD   = TA;
-  if ( METHOD_St   == "TS"       ) METHOD   = TS;
+  if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
+  if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
   if ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
   if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
 
