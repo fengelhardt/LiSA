@@ -14,7 +14,7 @@ int Lisa_Graph::number_of_succ(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_MatrixListGraph::number_of_succ().",
+                           " out of range in Lisa_Graph::number_of_succ().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return 0;
   }
@@ -33,7 +33,7 @@ int Lisa_Graph::number_of_pred(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_MatrixListGraph::number_of_pred().",
+                           " out of range in Lisa_Graph::number_of_pred().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return 0;
   }
@@ -49,30 +49,35 @@ int Lisa_Graph::number_of_pred(const int knot){
 //**************************************************************************
 
 bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
+#ifdef LISA_DEBUG
+  if(knot_sequence->get_m() != size){
+    G_ExceptionList.lthrow("Argument vector size incorrect in Lisa_Graph::topsort().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return false;
+  }
+#endif
   
   knot_sequence->fill(0);
   
   //graph copy
-  Lisa_MatrixListGraph* top=new Lisa_MatrixListGraph(this);
+  Lisa_MatrixListGraph top(this);
   //stores the number of successors of knot i in i-1
-  Lisa_Vector<int>* succ=new Lisa_Vector<int>(size);
-  Lisa_Vector<int>* pred=new Lisa_Vector<int>(size);
-  int source=0;
-  int v=0;
-  int next=1;
+  Lisa_Vector<int> pred(size);
+  
+  int source=0,v=0,next=1;
   
   while(v<=size){
     //new predeccessors
     for(v=1; v<=size; v++){
       if((*knot_sequence)[v-1]==0){
-        (*pred)[v-1]=top->number_of_pred(v);
+        pred[v-1]=top.number_of_pred(v);
       }
     }
     v=1;
     source=0;
     //find first source
     while((v<=size)&&(source==0)){
-      if(((*knot_sequence)[v-1]==0)&&((*pred)[v-1]==0)){
+      if(((*knot_sequence)[v-1]==0)&&(pred[v-1]==0)){
         source=1;
       }
       else{
@@ -82,21 +87,24 @@ bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
     
     //remove all connections of the first source found
     if(v<=size){
-      top->clear(v);
+      top.clear(v);
       (*knot_sequence)[v-1]=next;
       next++;
     }
   }
   
-  delete succ;
-  delete pred;
-  delete top;
   return (next==size+1);
 }
 
 //**************************************************************************
 
 void Lisa_Graph::write(ostream & strm)const{
+  
+  if(strm==NULL){
+    G_ExceptionList.lthrow("No valid stream in Lisa_MatrixListGraph::write().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
   
   Lisa_Matrix<int> out(size,size);
   get_adjacency_matrix(&out);
@@ -271,7 +279,7 @@ const Lisa_MatrixListGraph& Lisa_MatrixListGraph::operator=(const Lisa_MatrixLis
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::init(const int n_in) {
+void Lisa_MatrixListGraph::init(const int n_in){  
   size = n_in;
   
   if(matrix) delete matrix;
@@ -281,7 +289,6 @@ void Lisa_MatrixListGraph::init(const int n_in) {
   succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(size);
   
   clear();
-  
 }
 
 //**************************************************************************
