@@ -1,5 +1,5 @@
 <GENERAL>
-Name= Johnsonsche Regel
+Name= Johnsonsche Regel (Job Shop)
 Type= constructive
 Call= job2
 Code= external
