@@ -10,7 +10,7 @@ CXXSOURCES=\
 	../basics/lisa_str.cpp \
 	../basics/pair.cpp \
 	../communic/alg_call.cpp \
-	../communic/ngbhptst.cpp \
+	../communic/ptst_call.cpp \
 	../desktop/c_tcl.cpp \
 	../desktop/setreadv.cpp \
 	../desktop/callback.cpp \

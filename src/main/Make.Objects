@@ -10,7 +10,7 @@ OBJECTS=\
 	../../obj/lisa_str.o \
 	../../obj/pair.o \
 	../../obj/alg_call.o \
-	../../obj/ngbhptst.o \
+	../../obj/ptst_call.o \
 	../../obj/c_tcl.o \
 	../../obj/setreadv.o \
 	../../obj/callback.o \

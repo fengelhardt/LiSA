@@ -20,7 +20,7 @@
 // Tcl/Tk wants to know, where this C++ funktions are
 #include "tcl_c.hpp"
 #include "setreadv.hpp"
-#include "../communic/ngbhptst.hpp"
+#include "../communic/ptst_call.hpp"
 
 // G_Preferences
 #include "../lisa_dt/lisapref.hpp"

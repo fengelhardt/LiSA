@@ -1,5 +1,5 @@
 /*
- * ******************* ngbhptst.cpp ******************************
+ * ******************* ptst_call.cpp ******************************
  * 
  * description:        functions which was called as tcl/tk command
  *                     parametertest of the neighborhood iteration
@@ -17,7 +17,7 @@
 #include <fstream.h>
 
 // ************************ Local Includes ********************
-#include "ngbhptst.hpp"
+#include "ptst_call.hpp"
 
 // ********************** Global Variables ********************
 extern class Lisa_ProblemType G_ProblemType;

@@ -74,7 +74,7 @@
   /** @name Communication with external algorithms */
   //@{
    //@Include: ../communic/alg_call.hpp
-   //@Include: ../communic/ngbhptst.hpp
+   //@Include: ../communic/ptst_call.hpp
   //@}
   /** @name internal algorithms */
   //@{

@@ -1,5 +1,5 @@
 /*
- * ***************** ngbhtst.hpp ******************************
+ * ***************** ptst_call.hpp ******************************
  * 
  * description:        functions which was called as tcl/tk command
  *                     parametertest of the neighborhood iteration
@@ -15,7 +15,7 @@
 
     include tk.h
 
-    file: LiSA/src/desktop/ngbhtst.hpp
+    file: LiSA/src/desktop/ptst_call.hpp
 
     contains functions, which was called by the TCL/TK interpreter
 
@@ -24,8 +24,8 @@
 */ 
 
 //@{ 
-#ifndef _ngbhtst_hpp 
-#define _ngbhtst_hpp
+#ifndef _ptst_call_hpp 
+#define _ptst_call_hpp
  
 #include "../basics/matrix.hpp"
 #include "../basics/except.hpp"
