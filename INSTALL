@@ -1,11 +1,14 @@
 installation of the binary distribtution:
 -----------------------------------------
 
-- extract lisa-XXX-bin.tar.bz2 respective lisa-XXX-bin.zip to its final place
+- extract lisa-XXX-win-bin.zip to its final place
 
-- start setup respective setup.bat on Windows in the LiSA toplevel dir
+- start setup.bat on Windows in the LiSA toplevel dir
 
-- start LiSA with the "lisa" start script in LiSA
+- start LiSA with the lisa.bat start script in LiSA's home directory
+
+- if that does not work please edit lisa.bat and change the path names to 
+  the old dos style (we are working on this)
 
 
 
