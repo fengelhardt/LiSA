@@ -16,7 +16,7 @@
 #define _fp_set_h
 
 #include "../../basics/matrix.hpp"
-#include "fp_vector.hpp"
+#include "fp_vect.hpp"
 
 class fp_set
   {

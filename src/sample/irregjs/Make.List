@@ -10,16 +10,12 @@ CXXSOURCES=\
 	../../lisa_dt/lvalues.cpp \
 	../../lisa_dt/mo.cpp \
 	../../lisa_dt/ptype.cpp \
+	../../lisa_dt/schedule/sp_sched.cpp \
+	../../lisa_dt/schedule/js_sched.cpp \
 	append.cpp \
 	irregjs.cpp \
 	insert.cpp \
-	i_main.cpp \
-	../../lisa_dt/schedule/sp_sched.cpp \
-	../../lisa_dt/schedule/js_sched.cpp \ 
+	main.cpp
 
-DOCSOURCES=\
-     fp_set.cpp
-
-
-
+DOCSOURCES=
 
