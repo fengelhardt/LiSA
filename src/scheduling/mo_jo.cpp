@@ -12,19 +12,32 @@
 
 using namespace std;
 
-Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(const int n_in)
-  {
+//**************************************************************************
+
+Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(){
+  n = 0;
+  succv = 0;
+  start = 0;
+}
+
+//**************************************************************************
+
+Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(const int n_in){
     n=n_in;
     succv=new Lisa_Vector<int>(n);
     start=NO_SUCCESSOR;
     succv->fill(NO_SUCCESSOR);
-  }
+}
+
+//**************************************************************************
 
 int Lisa_OrderWithoutRepetition::succ(int i) const
   {
     if (i==MO_SOURCE) return start;
     return (*succv)[i];
   }
+
+//**************************************************************************
         
 void Lisa_OrderWithoutRepetition::insert(const int i, const int j)
   {
@@ -39,6 +52,8 @@ void Lisa_OrderWithoutRepetition::insert(const int i, const int j)
         (*succv)[j]=i;
       }
   }
+
+//**************************************************************************
        
 void Lisa_OrderWithoutRepetition::write_rank(Lisa_Vector<int>* r) const
  {
@@ -52,6 +67,8 @@ void Lisa_OrderWithoutRepetition::write_rank(Lisa_Vector<int>* r) const
         i=(*succv)[i]; rank++;
       }
  } 
+
+//**************************************************************************
  
 int Lisa_OrderWithoutRepetition::read_rank(Lisa_Vector<int>* rank)
  {
@@ -77,29 +94,47 @@ int Lisa_OrderWithoutRepetition::read_rank(Lisa_Vector<int>* rank)
    return TRUE;
  }
 
-Lisa_OrderWithoutRepetition::~Lisa_OrderWithoutRepetition()
-  {
-    delete succv;
-  }
+//**************************************************************************
+
+Lisa_OrderWithoutRepetition::~Lisa_OrderWithoutRepetition(){
+    if(succv) delete succv;
+}
  
 
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
 /// Classes Lisa_MO and Lisa_JO are not to be confused with each other!
 
 Lisa_MO::Lisa_MO(const int n_in, const int m_in)
   {
     n=n_in; m=m_in;
-    orders=new Lisa_OrderWithoutRepetition[n](m);
+    orders=new Lisa_OrderWithoutRepetition[n];
+    
+    for(int i=0;i<n;i++){
+        orders[i].n=m;
+        orders[i].succv=new Lisa_Vector<int>(m);
+        orders[i].start=NO_SUCCESSOR;
+        orders[i].succv->fill(NO_SUCCESSOR);
+    }
+    
   } 
+
+//**************************************************************************
 
 int Lisa_MO::succ(int i, int j) const
   { 
     return orders[i].succ(j);
   }
 
+//**************************************************************************
+
 void Lisa_MO::insert(const int i, const int j, const int k)
   {
     orders[i].insert(j,k);
   }
+
+//**************************************************************************
 
 void Lisa_MO::write_rank(Lisa_Matrix<int>* lr) const
   {
@@ -108,6 +143,8 @@ void Lisa_MO::write_rank(Lisa_Matrix<int>* lr) const
        orders[i].write_rank(&((*lr)[i]));
   }
 
+//**************************************************************************
+
 int Lisa_MO::read_rank(Lisa_Matrix<int>* lr)
   {
     int i;
@@ -115,6 +152,8 @@ int Lisa_MO::read_rank(Lisa_Matrix<int>* lr)
        orders[i].read_rank(&((*lr)[i]));
     return TRUE;
   }
+
+//**************************************************************************
 
 void Lisa_MO::write (ostream& strm) const
   {
@@ -129,6 +168,8 @@ void Lisa_MO::write (ostream& strm) const
     strm << "}\n";
     delete rank;
   }
+
+//**************************************************************************
 
 void Lisa_MO::read (istream& strm)
   {
@@ -148,28 +189,45 @@ void Lisa_MO::read (istream& strm)
     delete rank;
   } 
 
+//**************************************************************************
+
 Lisa_MO::~Lisa_MO()
   { 
     delete[] orders;
   }
 
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
 // #################### class Lisa_JO #########################
 
-Lisa_JO::Lisa_JO(const int n_in, const int m_in)
-  {
+Lisa_JO::Lisa_JO(const int n_in, const int m_in){
     n=n_in; m=m_in;
-    orders=new Lisa_OrderWithoutRepetition[m](n);
-  } 
+    orders=new Lisa_OrderWithoutRepetition[m];
+
+     for(int i=0;i<m;i++){
+        orders[i].n=n;
+        orders[i].succv=new Lisa_Vector<int>(n);
+        orders[i].start=NO_SUCCESSOR;
+        orders[i].succv->fill(NO_SUCCESSOR);
+    }
+} 
+
+//**************************************************************************
 
 int Lisa_JO::succ(int i, int j) const
   { 
     return orders[j].succ(i);
   }
 
+//**************************************************************************
+
 void Lisa_JO::insert(const int i, const int j, const int k)
   {
     orders[j].insert(i,k);
   }
+
+//**************************************************************************
 
 void Lisa_JO::write_rank(Lisa_Matrix<int>* lr) const
   {
@@ -182,6 +240,8 @@ void Lisa_JO::write_rank(Lisa_Matrix<int>* lr) const
             (*lr)[i][j]=(*column)[i];
        } 
   }
+
+//**************************************************************************
 
 int Lisa_JO::read_rank(Lisa_Matrix<int>* lr)
   {
@@ -196,6 +256,8 @@ int Lisa_JO::read_rank(Lisa_Matrix<int>* lr)
     return TRUE; 
   }
 
+//**************************************************************************
+
 void Lisa_JO::write (ostream& strm) const
   {
     Lisa_Matrix<int> * LR=new Lisa_Matrix<int>(n,m);
@@ -203,6 +265,8 @@ void Lisa_JO::write (ostream& strm) const
     strm << *LR;
     delete LR;
   }
+
+//**************************************************************************
 
 void Lisa_JO::read (istream& strm)
   {
@@ -212,13 +276,12 @@ void Lisa_JO::read (istream& strm)
     delete LR;
   }
 
+//**************************************************************************
+
 Lisa_JO::~Lisa_JO()
   { 
     delete[] orders;
   }
 
-
-
-
-
+//**************************************************************************
 

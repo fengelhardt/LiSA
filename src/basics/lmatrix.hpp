@@ -16,13 +16,7 @@
 #include "matrix.hpp"
 #include "list.hpp"
 
-
-
-/* *******************************************************
- * 
- * begin of classdef for pmtnoperation (nestedList)
- *
- */
+//**************************************************************************
 
 // Do not use the following type explicitely!
 template<class T>
@@ -62,40 +56,41 @@ public:
 
 };
 
-/* 
- * 
- * end of classdef for pmtnoperation
- *
- * *******************************************************/
-
-/* *******************************************************
- * 
- * begin of classdef for listvector
- *
- */
+//**************************************************************************
+ 
+template<class T> class Lisa_MatrixOfLists;
 
 // Do not use the following type explicitely!
 template<class T>
-class Lisa_VectorOfLists 
-{ 
+class Lisa_VectorOfLists{ 
 protected:
   // size:
   unsigned int m;
-  Lisa_nestedList<T>* contents;   
-public:
+  Lisa_nestedList<T>* contents;
+  
+  // default constructor
+  Lisa_VectorOfLists(){contents=0; m=0;}
 
-  Lisa_VectorOfLists() {contents=NULL; cout<<"content set to null"<<endl;}
+  friend class Lisa_MatrixOfLists<T>;  
+public:
+ 
   /// construct listvector with m elements of type T
   Lisa_VectorOfLists(const int m);
+  
   /// construct listvector as a copy of other
   Lisa_VectorOfLists(const Lisa_VectorOfLists<T>& other);
+  
   /// construct listvector out of a nonpremptive one
   Lisa_VectorOfLists(const Lisa_Vector<T>& nonpreemtive);
-
+  
+  /// destructor 
+  ~Lisa_VectorOfLists();
+  
   /// assign value to all elements 
   void fill(const T value);             
+  
   /// access to j-th element of vector 
-  Lisa_nestedList<T>& operator[] (const unsigned int j)   
+  inline Lisa_nestedList<T>& operator[] (const unsigned int j)   
     { 
       #ifdef LISA_DEBUG
       if (j>=m) 
@@ -108,7 +103,8 @@ public:
       #endif
       return contents[j];
     }
-  Lisa_nestedList<T> operator[] (const unsigned int j) const   
+  
+  inline Lisa_nestedList<T> operator[] (const unsigned int j) const   
     { 
       #ifdef LISA_DEBUG
       if (j>=m) 
@@ -121,30 +117,39 @@ public:
       #endif
       return contents[j];
     }
+    
   /// length of vector
   int get_m() const { return m; }
+  
   /// assign a vector to another  
   const Lisa_VectorOfLists<T>& operator=(const Lisa_VectorOfLists<T>& );
+  
   /// compare vectors
   bool operator==(const Lisa_VectorOfLists<T>&) const;
   bool operator!=(const Lisa_VectorOfLists<T>& other) const { return !(&other == this); }
+  
   /// compare lexicographically
   bool operator<=(const Lisa_VectorOfLists<T>&) const;
+  
   // input/output in lisa-format
   void write(ostream& = cout) const;
   void read(istream& = cin);
+  
   /// search index of maximal vector element
   int index_of_max() const;
   int index_of_maxsum() const;
   int index_of_maxlast() const;
+  
   /// search index of minimal vector element
   int index_of_min() const;
   int index_of_minsum() const;
   int index_of_minlast() const;
-  ~Lisa_VectorOfLists();
+  
   Lisa_nestedList<T>* get_first() const { return contents; }
   Lisa_nestedList<T>* get_last() const { return contents+m; }
 };
+
+//**************************************************************************
 
 template<class T>
 inline ostream& operator << (ostream&strm, const Lisa_VectorOfLists<T>& l)
@@ -160,24 +165,9 @@ inline istream& operator >> (istream&strm, Lisa_VectorOfLists<T>& l)
   return strm;
 }
 
-
-
-/* 
- * 
- * end of classdef for listvector
- *
- * *******************************************************/
-
-
-/* *******************************************************
- * 
- * begin of classdef for listmatrix
- *
- */
-
+//**************************************************************************
 
 // Do not use the following type explicitely!
-
 template<class T>
 class Lisa_MatrixOfLists: public Lisa_Object 
 {
@@ -256,6 +246,7 @@ public:
   */
 };
 
+//**************************************************************************
 
 template<class T>
 inline ostream& operator << (ostream&strm, const Lisa_MatrixOfLists<T>& l)
@@ -271,6 +262,7 @@ inline istream& operator >> (istream&strm, Lisa_MatrixOfLists<T>& l)
   return strm;
 }
 
-
 #endif             
+
+//**************************************************************************
 

@@ -19,6 +19,9 @@ using namespace std;
 const int MO_SOURCE=-1;
 const int NO_SUCCESSOR=-1;
 
+class Lisa_MO;
+class Lisa_JO;
+
 /// basic class representing one order:
 class Lisa_OrderWithoutRepetition
    {
@@ -26,6 +29,13 @@ class Lisa_OrderWithoutRepetition
         Lisa_Vector<int> * succv;
         int start;
         int n;
+        
+        /// default constructor
+        Lisa_OrderWithoutRepetition();
+        
+        /// friends
+        friend class Lisa_MO;
+        friend class Lisa_JO;
      public: 
         /// construct only with given size:
         Lisa_OrderWithoutRepetition(const int n);
