@@ -1591,37 +1591,53 @@ int Lisa_MatrixGraph::get_neighbours(const int vertex)const{
 //**************************************************************************
 
 Lisa_WeightedGraph::Lisa_WeightedGraph(const int number_of_vertices){
-
+  adj = 0;
+  weights = 0;
+  init(number_of_vertices);
 }
 
 //**************************************************************************
 
 Lisa_WeightedGraph::Lisa_WeightedGraph(const Lisa_WeightedGraph *const othergraph){
-
+  size = othergraph->size;
+  adj = new Lisa_Matrix<int>(*othergraph->adj);
+  weights = new Lisa_Matrix<TIMETYP>(*othergraph->weights);
 }
 
 //**************************************************************************
 
 Lisa_WeightedGraph::Lisa_WeightedGraph(const Lisa_WeightedGraph& othergraph){
-
+  size = othergraph.size;
+  adj = new Lisa_Matrix<int>(*othergraph.adj);
+  weights = new Lisa_Matrix<TIMETYP>(*othergraph.weights);  
 }
 
 //**************************************************************************
 
 Lisa_WeightedGraph::~Lisa_WeightedGraph(){
-
+  if(adj) delete adj;
+  if(weights) delete weights;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::init(const int number_of_vertex){
-
+  size = number_of_vertex;
+  
+  if(adj) delete adj;
+  if(weights) delete weights;
+  
+  adj = new Lisa_Matrix<int>(size+1,size+1);
+  weights = new Lisa_Matrix<TIMETYP>(size+1,size+1);
+  
+  clear();
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::clear(){
-
+  adj->fill(0);
+  weights->fill(0);
 }
 
 //**************************************************************************
