@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Flow Shop Heuristic" type="constructive" call="fsheur" code="external" help_file="algorithm/fsheur.html">
+  <heuristic>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </heuristic>
+  <alg_controls/>
+</algorithm>
