@@ -132,9 +132,9 @@ const int MAXLONG = 214748000;
   Lisa_OsSchedule          *os_Plan;
   Lisa_JsProblem           *js_Prob;
   Lisa_JsSchedule          *js_Plan;
-  Lisa_Neighborhood        *ngbh;
-  API_Neighborhood         *m1_api;
-  shift_Neighborhood       *m1_shift;
+  Lisa_Neighbourhood        *ngbh;
+  API_Neighbourhood         *m1_api;
+  shift_Neighbourhood       *m1_shift;
   OSHOP_API_Ngbh           *os_api;
   OSHOP_shift_Ngbh         *os_shift;
   OSHOP_3_API_Ngbh         *os_api_3;
@@ -260,21 +260,21 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  switch ( NGBH )
 	    {
 	    case API:
-	      if (!(ngbh = m1_api = new API_Neighborhood(m1_Plan,m1_Prob)))
+	      if (!(ngbh = m1_api = new API_Neighbourhood(m1_Plan,m1_Prob)))
 		{
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
 		}
 	      break;
 	    case SHIFT:
-	      if(!(ngbh=m1_shift=new shift_Neighborhood(m1_Plan,m1_Prob)))
+	      if(!(ngbh=m1_shift=new shift_Neighbourhood(m1_Plan,m1_Prob)))
 		{
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
 		}
 	      break;
 	    default: 
-	      G_ExceptionList.lthrow("The specified Neighborhood does not exist");
+	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
 	    }
 	  
@@ -502,8 +502,8 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 		}
 	      break;
 	    default: 
-	      //G_ExceptionList.lthrow("wrong Neighborhood specified in ITERATE");
-	      G_ExceptionList.lthrow("The specified Neighborhood does not exist");
+	      //G_ExceptionList.lthrow("wrong Neighbourhood specified in ITERATE");
+	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 
 	      exit(7);
 	    }
@@ -818,7 +818,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 		}
 	      break;
 	    default: 
-	      G_ExceptionList.lthrow("The specified Neighborhood does not exist");
+	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
 	    }
 	  
@@ -959,7 +959,7 @@ int main(int argc, char *argv[])
    // now we read the file:
 
    // print a message that the programm started:
-   cout << "This is the LiSA-Neighborhood-Search Module Version 05.01.1999" << endl;
+   cout << "This is the LiSA-Neighbourhood-Search Module Version 05.01.1999" << endl;
   if (argc != 3) 
     {
       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";

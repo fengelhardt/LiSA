@@ -2,7 +2,7 @@
  * ***************** ptst_call.hpp ******************************
  * 
  * description:        functions which was called as tcl/tk command
- *                     parametertest of the neighborhood iteration
+ *                     parametertest of the neighbourhood iteration
  *
  * @author              Andreas Winkler
  *

@@ -8,8 +8,8 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/// Job-Shop 3-time-critical-API Neighborhood.
-/** This is a problem dependent API neighborhood class for the 
+/// Job-Shop 3-time-critical-API Neighbourhood.
+/** This is a problem dependent API neighbourhood class for the 
     open shop problem, where we swap two adjacent operations on the critical 
     way and additional we swap also the direct predecence and the direct 
     sucsessive operations on the critical way.
@@ -17,7 +17,7 @@
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
 class JSHOP_3_CR_Ngbh: public JSHOP_API_Ngbh{       

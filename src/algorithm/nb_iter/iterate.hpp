@@ -17,7 +17,7 @@ enum{NOMETHOD /** none  */ =0
 
 /// Problem independent neighbourhood iteration class.
 /** This class provides several neighbourhood search algorithms. 
-    They can be used with any class inherited from Lisa_Neighborhood.
+    They can be used with any class inherited from Lisa_Neighbourhood.
 
     The names for the search methods are the follows:
     - II : iterative improvement
@@ -26,11 +26,11 @@ enum{NOMETHOD /** none  */ =0
     - TS : tabu search
     - SA_anti : simulated annealing with antineighbor
     
-    A start solution is given within the neighborhood.
+    A start solution is given within the neighbourhood.
 
     How to use Lisa_Iterator:
     
-    - create a class inherited from Lisa_Neighborhood describing your 
+    - create a class inherited from Lisa_Neighbourhood describing your 
       problem and of course the neighbourhood you want to use
       - My_Neighbourhood nbh(my_problem,my_start_solution);
 
@@ -52,7 +52,7 @@ enum{NOMETHOD /** none  */ =0
     An example showing how to implement your own Neighbourhood and how to use 
     Lisa_Iterator can be found in LiSA/src/utility/travel/
 
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see Lisa_Tabu
 
     @author Andreas Winkler
@@ -152,11 +152,11 @@ public:
   void set_abort_at_bound(TIMETYP bound);
 
   /// start the algorithm
-  /** Run the initialized metaheuristic with given neighborhood and 
+  /** Run the initialized metaheuristic with given neighbourhood and 
       objective function. The third parameter is the maximal number of 
       solutions to be generated. A start solution is given within the
-      neighborhood. */
-  void  iterate( Lisa_Neighborhood*, int objective_type, long steps);
+      neighbourhood. */
+  void  iterate( Lisa_Neighbourhood*, int objective_type, long steps);
 };
 
 #endif

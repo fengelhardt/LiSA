@@ -21,10 +21,10 @@ const int MO = 2;
 //@}
 
 
-/// General Problem Independent Neighborhood Class.
+/// General Problem Independent Neighbourhood Class.
 
-/** This is the problem independent neighborhood class. Observe, that every 
-    problem dependent neighborhood must be inherited from this class. All 
+/** This is the problem independent neighbourhood class. Observe, that every 
+    problem dependent neighbourhood must be inherited from this class. All 
     functions here are dummys.
     
     The communication between prepare_move(), do_move(), use_tabulist(), 
@@ -62,9 +62,9 @@ const int MO = 2;
     @author Thomas Tautenhahn, Andreas Winkler
     @version 2.3pre3
 */
-class Lisa_Neighborhood{ 
+class Lisa_Neighbourhood{ 
 protected:
-  /** the objective type */
+  /// the objective type
   int objective_type;
 
 public: 
@@ -169,7 +169,7 @@ public:
 
   /// destructor
   /** Just a virtual destructor*/
-  virtual ~Lisa_Neighborhood(){}
+  virtual ~Lisa_Neighbourhood(){}
 };
 
 #endif

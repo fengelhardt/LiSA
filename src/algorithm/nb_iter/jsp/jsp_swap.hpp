@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_swap.hpp ******************************
  * 
- * description:      job shop SWAP neighborhood
+ * description:      job shop SWAP neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,15 +17,15 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop SWAP Neighborhood.
-    This is the problem dependent SWAP neighborhood class for the 
-    job shop problem (i.e. these neighborhood swaps two arbitrary operations
+/** Job-Shop SWAP Neighbourhood.
+    This is the problem dependent SWAP neighbourhood class for the 
+    job shop problem (i.e. these neighbourhood swaps two arbitrary operations
     on a machine).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
 */
 class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh
      {

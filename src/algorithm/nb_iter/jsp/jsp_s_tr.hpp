@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_s_tr.hpp ******************************
  * 
- * description:      job shop semicritical-TRANSPOSE neighborhood
+ * description:      job shop semicritical-TRANSPOSE neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,16 +17,16 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop semi-TRANSPOSE Neighborhood.
-    This is the problem dependent semicritical-TRANSPOSE neighborhood class 
-    for the job shop problem (i.e. these neighborhood transpose a partial 
+/** Job-Shop semi-TRANSPOSE Neighbourhood.
+    This is the problem dependent semicritical-TRANSPOSE neighbourhood class 
+    for the job shop problem (i.e. these neighbourhood transpose a partial 
     sequence of operations on a machine but mostly such sequences with 
     critical end operations).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
 */
 class JSHOP_semi_trans_Ngbh: public JSHOP_API_Ngbh
      {

@@ -7,15 +7,15 @@
 #include "../tabu.hpp"
 
 /// open shop API neighbourhood.
-/** This is the problem dependent API neighborhood class for the open shop 
-    problem (i.e. these neighborhood swaps two arbitrary adjacent operations on
+/** This is the problem dependent API neighbourhood class for the open shop 
+    problem (i.e. these neighbourhood swaps two arbitrary adjacent operations on
     a machine or for a job). It is inherited from the class Lisa_Neighbourhood.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
 */
-class OSHOP_API_Ngbh: public Lisa_Neighborhood{
+class OSHOP_API_Ngbh: public Lisa_Neighbourhood{
 protected:
   /// tabu list
   Lisa_Tabu *tabulist;

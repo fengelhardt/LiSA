@@ -160,7 +160,7 @@ void Lisa_Iterator::set_abort_at_bound( TIMETYP abort )
 
 //**************************************************************************
 
-void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type, 
+void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type, 
 			     long steps )
   {
   

@@ -100,7 +100,7 @@
     Travel_Graph , Travel_RPI_Neighbourhood and Travel_API_Neighbourhood.
     
     The documentation for LiSA's neighbourhood algorithms can be found in the 
-    classes Lisa_Neighborhood , Lisa_Iterator and Lisa_Tabu.
+    classes Lisa_Neighbourhood , Lisa_Iterator and Lisa_Tabu.
   
     This object serves mostly for writing and reading a problem.
     It can also contain a solution and calculate the objective 

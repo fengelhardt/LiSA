@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_crpi.hpp ******************************
  * 
- * description:      job shop critical API neighborhood
+ * description:      job shop critical API neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,14 +17,14 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop critical-API Neighborhood.
-    This is a problem dependent API neighborhood class for the 
+/** Job-Shop critical-API Neighbourhood.
+    This is a problem dependent API neighbourhood class for the 
     job shop problem where we take a swap only for critical operations.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */  
 class JSHOP_cr_API_Ngbh: public JSHOP_API_Ngbh

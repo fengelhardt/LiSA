@@ -10,7 +10,7 @@
 /** @author  Thomas Tautenhahn
     @version 2.3pre3
  */
-class FP_Neighbourhood: public Lisa_Neighborhood{
+class FP_Neighbourhood: public Lisa_Neighbourhood{
 public:
 //@{ 
   /// needs documentation

@@ -22,7 +22,7 @@ const int POSS_SOLUTION = 4;
     @author Marc Moerig
     @see Travel_Graph
 */
-class Travel_RPI_Neighbourhood : public Lisa_Neighborhood{
+class Travel_RPI_Neighbourhood : public Lisa_Neighbourhood{
 private:
 
   /// our problem

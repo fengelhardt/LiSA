@@ -11,7 +11,7 @@ using namespace std;
 
 //**************************************************************************
 
-API_Neighborhood::API_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
+API_Neighbourhood::API_Neighbourhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
   {
    num = 1;
    // seed = 12345672L;
@@ -48,7 +48,7 @@ API_Neighborhood::API_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
 
 //**************************************************************************
 
-API_Neighborhood::~API_Neighborhood()
+API_Neighbourhood::~API_Neighbourhood()
   {
     delete P[0];
     delete P[1];
@@ -62,7 +62,7 @@ API_Neighborhood::~API_Neighborhood()
 
 //**************************************************************************
 
-int API_Neighborhood::copy_schedule( int a , int b )
+int API_Neighbourhood::copy_schedule( int a , int b )
   {
    *P[b]=*P[a];
    return OK;
@@ -70,35 +70,35 @@ int API_Neighborhood::copy_schedule( int a , int b )
 
 //**************************************************************************
 
-int API_Neighborhood::accept_solution()
+int API_Neighbourhood::accept_solution()
 {
   return copy_schedule( WORK_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
   
-int API_Neighborhood::accept_best_ngh()
+int API_Neighbourhood::accept_best_ngh()
 {
   return copy_schedule( BEST_NGH_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
 
-int API_Neighborhood::put_orig_to_best()
+int API_Neighbourhood::put_orig_to_best()
 {
   return copy_schedule( ORIG_SOLUTION, BEST_SOLUTION );
 }
 
 //**************************************************************************
 
-int API_Neighborhood::put_work_to_best_ngh()
+int API_Neighbourhood::put_work_to_best_ngh()
 {
   return copy_schedule( WORK_SOLUTION, BEST_NGH_SOLUTION );
 }
 
 //**************************************************************************
 
-int API_Neighborhood::prepare_move( int typ )
+int API_Neighbourhood::prepare_move( int typ )
   {
    // determ sa possible move
    // typ=ENUM : enumerativ
@@ -164,7 +164,7 @@ int API_Neighborhood::prepare_move( int typ )
    return !OK;
  }
 
-int API_Neighborhood::do_move()
+int API_Neighbourhood::do_move()
  {
    int help;
    *P[1]=*P[0];
@@ -178,21 +178,21 @@ int API_Neighborhood::do_move()
 
 //**************************************************************************
 
-int API_Neighborhood::anti_neighbor()
+int API_Neighbourhood::anti_neighbor()
  {
    return OK;
  }
 
 //**************************************************************************
 
-void API_Neighborhood::set_objective_type( int o )
+void API_Neighbourhood::set_objective_type( int o )
  {
    objective_type = o;
  }
 
 //**************************************************************************
 
-void API_Neighborhood::set_objective( int z, int a)
+void API_Neighbourhood::set_objective( int z, int a)
  {
    if ((a<0) || (a>=4))
      {
@@ -204,7 +204,7 @@ void API_Neighborhood::set_objective( int z, int a)
 
 //**************************************************************************
 
-TIMETYP API_Neighborhood::get_objective_value( int a)
+TIMETYP API_Neighbourhood::get_objective_value( int a)
  {
   if ((a<0) || (a>=4))
     {
@@ -216,7 +216,7 @@ TIMETYP API_Neighborhood::get_objective_value( int a)
 
 //**************************************************************************
 
-int API_Neighborhood::init_tabulist( unsigned int length )
+int API_Neighbourhood::init_tabulist( unsigned int length )
   {
    if ( !(tabulist = new Lisa_Tabu( length )) )
      {
@@ -228,7 +228,7 @@ int API_Neighborhood::init_tabulist( unsigned int length )
 
 //**************************************************************************
 
-int API_Neighborhood::use_tabulist()
+int API_Neighbourhood::use_tabulist()
   {
    return tabulist->use(tabu_param[0][0],tabu_param[0][1],
 			tabu_param[0][2],tabu_param[0][3]);
@@ -236,7 +236,7 @@ int API_Neighborhood::use_tabulist()
 
 //**************************************************************************
 
-int API_Neighborhood::set_tabulist()
+int API_Neighbourhood::set_tabulist()
   {
     tabulist->set(tabu_param[1][0],tabu_param[1][1],
 		  tabu_param[1][2],tabu_param[1][3]);
@@ -245,7 +245,7 @@ int API_Neighborhood::set_tabulist()
 
 //**************************************************************************
 
-void API_Neighborhood::store_tabu_param()
+void API_Neighbourhood::store_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
@@ -254,7 +254,7 @@ void API_Neighborhood::store_tabu_param()
 
 //**************************************************************************
 
-void API_Neighborhood::clean_tabu_param()
+void API_Neighbourhood::clean_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
@@ -263,7 +263,7 @@ void API_Neighborhood::clean_tabu_param()
 
 //**************************************************************************
 
-void API_Neighborhood::return_schedule( Lisa_1Schedule *Plan )
+void API_Neighbourhood::return_schedule( Lisa_1Schedule *Plan )
   {
     *Plan = *(P[BEST_SOLUTION]);
   }

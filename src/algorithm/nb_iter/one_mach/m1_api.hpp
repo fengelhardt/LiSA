@@ -6,15 +6,15 @@
 #include "../neighbor.hpp"
 #include "../tabu.hpp"
 
-/// single machine API neighborhood
-/** This is the problem dependent API neighborhood class for the single machine
-    problem (i.e. this neighborhood swaps two arbitrary adjacent jobs).
+/// single machine API neighbourhood
+/** This is the problem dependent API neighbourhood class for the single machine
+    problem (i.e. this neighbourhood swaps two arbitrary adjacent jobs).
    
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood  
+    @see Lisa_Neighbourhood  
  */
-class API_Neighborhood: public Lisa_Neighborhood{
+class API_Neighbourhood: public Lisa_Neighbourhood{
 protected: 
   /// a tabu list
   Lisa_Tabu *tabulist;
@@ -31,10 +31,10 @@ public:
 	int tabu_param[2][4];
 	/// the class contains 4 schedules
 	Lisa_1Schedule *P [4];
-	/// construct API_Neighborhood with a start schedule and specified problem data
-	API_Neighborhood(Lisa_1Schedule*,Lisa_1Problem*);
+	/// construct API_Neighbourhood with a start schedule and specified problem data
+	API_Neighbourhood(Lisa_1Schedule*,Lisa_1Problem*);
 	/// destructor
-  ~API_Neighborhood();
+  ~API_Neighbourhood();
 
 
   void  set_objective_type(int objective);

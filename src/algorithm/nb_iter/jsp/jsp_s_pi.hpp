@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_s_pi.hpp ******************************
  * 
- * description:      job shop semicritical-API neighborhood
+ * description:      job shop semicritical-API neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,15 +17,15 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop semicritical-API Neighborhood.
-    This is a problem dependent API neighborhood class for the 
+/** Job-Shop semicritical-API Neighbourhood.
+    This is a problem dependent API neighbourhood class for the 
     job shop problem, where we interchange two noncritical adjacent operations 
     or we move a critical operation to the critical block end.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
 class JSHOP_semi_API_Ngbh: public JSHOP_API_Ngbh

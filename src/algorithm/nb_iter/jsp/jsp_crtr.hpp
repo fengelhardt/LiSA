@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_crtr.hpp ******************************
  * 
- * description:      job shop critical-TRANSPOSE neighborhood
+ * description:      job shop critical-TRANSPOSE neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,15 +17,15 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop critical-TRANSPOSE Neighborhood.
-    This is the problem dependent critical-TRANSPOSE neighborhood class for 
-    the job shop problem (i.e. these neighborhood transpose a partial sequence 
+/** Job-Shop critical-TRANSPOSE Neighbourhood.
+    This is the problem dependent critical-TRANSPOSE neighbourhood class for 
+    the job shop problem (i.e. these neighbourhood transpose a partial sequence 
     of operations with critical end operations on a machine).
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
 */
 class JSHOP_cr_trans_Ngbh: public JSHOP_API_Ngbh
      {

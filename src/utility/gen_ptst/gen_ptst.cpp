@@ -555,7 +555,7 @@ int main(int argc, char *argv[])
 	       
 		   nb_in.close();
 
-		   // now call the neighborhood main program
+		   // now call the neighbourhood main program
 	       
 		   S=LISA_HOME_St+"/bin/"+CALL+" ";
 		   S=S+CONFIG_HOME_St+"/proc/in~temp.lsa ";
@@ -738,7 +738,7 @@ int main(int argc, char *argv[])
 	       
 	   nb_in.close();
 
-	   // now call the neighborhood main program
+	   // now call the neighbourhood main program
 	   
 	   S=LISA_HOME_St+"/bin/"+CALL+" ";
 	   S=S+CONFIG_HOME_St+"/proc/in~temp.lsa ";
@@ -836,7 +836,7 @@ int main(int argc, char *argv[])
        
        nb_in.close();
 
-       // now call the neighborhood main program
+       // now call the neighbourhood main program
        
        S=LISA_HOME_St+"/bin/"+CALL+" ";
        S=S+CONFIG_HOME_St+"/proc/in~temp.lsa ";

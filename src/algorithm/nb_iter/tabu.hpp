@@ -20,7 +20,7 @@
     
     This is also an example of how to implement your own tabu list.
 
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see Lisa_Iterator
     @author Andreas Winkler
     @version 2.3pre3

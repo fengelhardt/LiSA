@@ -1,7 +1,7 @@
 /*
  * ******************** jsp_blsh.hpp ******************************
  * 
- * description:      job shop critical-block-SHIFT neighborhood
+ * description:      job shop critical-block-SHIFT neighbourhood
  * 
  * @author            Andreas Winkler
  *
@@ -17,15 +17,15 @@
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
-/** Job-Shop critical-block-SHIFT Neighborhood.
-    This is the problem dependent SHIFT neighborhood class for the 
+/** Job-Shop critical-block-SHIFT Neighbourhood.
+    This is the problem dependent SHIFT neighbourhood class for the 
     job shop problem, where we take a swap only for a critical block 
     operation.
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
+    @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
 class JSHOP_cr_bl_shift_Ngbh: public JSHOP_API_Ngbh

@@ -13,18 +13,18 @@
 
     @author Andreas Winkler
     @version 2.3pre3
-    @see Lisa_Neighborhood
-    @see API_Neighborhood
+    @see Lisa_Neighbourhood
+    @see API_Neighbourhood
 */
-class shift_Neighborhood: public API_Neighborhood{
+class shift_Neighbourhood: public API_Neighbourhood{
 private: 
   /// private data needs documentation
   int pos1, pos2, inc_dec;
 
 public:  
-  /// construct shift_Neighborhood
+  /// construct shift_Neighbourhood
   /** with a start schedule and specified problem data  */
-  shift_Neighborhood(Lisa_1Schedule*,Lisa_1Problem*);
+  shift_Neighbourhood(Lisa_1Schedule*,Lisa_1Problem*);
 
   int prepare_move(int );
 

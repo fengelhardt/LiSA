@@ -9,8 +9,8 @@ using namespace std;
 
 //**************************************************************************
 
-shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
-	: API_Neighborhood( Plan, PPi )
+shift_Neighbourhood::shift_Neighbourhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
+	: API_Neighbourhood( Plan, PPi )
   {
    pos1 = 1;
    pos2 = 1;
@@ -19,7 +19,7 @@ shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi
 
 //**************************************************************************
 
-int shift_Neighborhood::prepare_move( int typ )
+int shift_Neighbourhood::prepare_move( int typ )
   {
    int i;
    // determs a possible move
@@ -146,7 +146,7 @@ int shift_Neighborhood::prepare_move( int typ )
 
 //**************************************************************************
 
-int shift_Neighborhood::do_move()
+int shift_Neighbourhood::do_move()
   {
     *P[1]=*P[0];
     // the following means, that in next time the re-move is set 
