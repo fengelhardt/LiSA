@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Johnsonsche Regel" type="constructive" call="johnson" code="external" help_file="algorithm/johnson.html">
+  <exact>
+    <problem>
+      <alpha env="O" m="2"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="J" m="2"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F" m="2"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls/>
+</algorithm>
