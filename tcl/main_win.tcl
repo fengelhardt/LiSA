@@ -853,9 +853,9 @@ proc vTclWindow.write_text {base} {
     wm focusmodel $base passive
 
     if {$system(screen)=="big"} {
-	wm geometry $base 530x400+0+0
+	wm geometry $base 640x480
     } else {
-	wm geometry $base 300x250
+	wm geometry $base 320x200
     }
     wm minsize $base 1 1
     wm overrideredirect $base 0
