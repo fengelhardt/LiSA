@@ -365,6 +365,11 @@ class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
     @see OSHOP_API_Ngbh
  */
 class OSHOP_PI_Ngbh: public OSHOP_API_Ngbh{
+  private:
+    // positions in job or machine order to swap
+    int pos1,pos2;
+    // job or machine order
+    Lisa_Vector<int> order;
 	public:	
 		/// construct OSHOP_PI_Ngbh 
     /** with a start schedule and specified problem datas   */

@@ -2037,9 +2037,11 @@ int OSHOP_shift_Ngbh::do_move(){
 //**************************************************************************
 
 OSHOP_PI_Ngbh::OSHOP_PI_Ngbh(Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi):
-                            OSHOP_API_Ngbh( Plan, PPi ){
+                            OSHOP_API_Ngbh( Plan, PPi ),
+                            order(std::max(PP->n,PP->m)+1){
   witch_swap = JO;
   job1 = job2 = 1;
+  pos1=pos2=0;
   machine1 = 1;
   machine2 = 0;
 }
@@ -2062,49 +2064,105 @@ int OSHOP_PI_Ngbh::prepare_move( int typ ){
 
   // we only support random neighbours, enum parameter gets ignored
   witch_swap = lisa_random(0,1,&seed) ? MO : JO;
-  if(witch_swap == JO){
-  
-    /* find a machine and two different jobs on it ... this will result in an
-       infinite loop if on each machine there is only one job, so we only try
-       count_stop times. */
-    int count = 0;
-    const int count_stop = 10 * PP->m;
-    machine2 = 0;
-    do{ 
-      machine1 = lisa_random(1,PP->m,&seed);
-      job1 = lisa_random(1,PP->n,&seed);
-      job2 = lisa_random(1,PP->n,&seed);
-
-      if(++count > count_stop) return NO_NGHBOURS;
+  if(witch_swap == JO){ // swap two operations in job order on fixed machine1
     
-    }while( job1 == job2 || (*PP->sij)[job1][machine1]==0 ||
-                            (*PP->sij)[job2][machine1]==0 );
-    //wlog job1 < job2
-    //if(job1 > job2) std::swap(job1,job2);
-  }else{
-    
-    /* same here, just symmetric */
-    int count = 0;
-    const int count_stop = 10 * PP->n;
-    job2 = 0;
-    do{ 
-      job1 = lisa_random(1,PP->n,&seed);
+    //find random machine
+    int i,succ;
+    int count=0;
+    const int stopcount = 10*PP->m;
+    do{
       machine1 = lisa_random(1,PP->m,&seed);
-      machine2 = lisa_random(1,PP->m,&seed);
+      machine2 = 0;
+    
+      //get order on this machine
+      i=succ=0;
+      do{
+        succ = P[0]->GetJOsucc( succ, machine1 );
+        order[i++] = succ;
+      }while(succ);
+   
+      if(count++ > stopcount) return NO_NGHBOURS;
+    }while(i<3);
+    
+    //find two distinct random positions in job order
+    pos1 = lisa_random(1,i-1,&seed);
+    do{
+      pos2 = lisa_random(1,i-1,&seed);
+    }while(pos1==pos2);
+    
+    //wlog pos1 < pos2
+    if(pos1 > pos2) std::swap(pos1,pos2);
+    
+    job1 = order[pos1-1];    
+    job2 = order[pos2-1];
 
-      if(++count > count_stop) return NO_NGHBOURS;
+#ifdef LISA_DEBUG
+    // can this happen ? -marc-
+    if( (*PP->sij)[job1][machine1]==0){
+      G_ExceptionList.lthrow("Found nonexisting operation ("+ztos(job1)+","
+                             +ztos(machine1)+") in prepare_move().");
+      return !OK;
+    }
+    if( (*PP->sij)[job2][machine1]==0 ){
+      G_ExceptionList.lthrow("Found nonexisting operation ("+ztos(job2)+","
+                             +ztos(machine1)+") in prepare_move().");
+      return !OK;     
+    }
+#endif
+
+  }else{ //swap two operations in machine order of fixed job1
+    
+    //find random job
+    int i,succ;
+    int count=0;
+    const int stopcount = 10*PP->n;
+    do{
+    
+      job1 = lisa_random(1,PP->n,&seed);
+      job2 = 0;
+    
+      //get order of this job
+      i=succ=0;
+      do{
+        succ = P[0]->GetMOsucc(job1,succ);
+        order[i++] = succ;
+      }while(succ);
       
-    }while( machine1 == machine2 || (*PP->sij)[job1][machine1]==0 ||
-                                    (*PP->sij)[job1][machine2]==0 );
-    //wlog machine1 < machine2
-    //if(machine1 > machine2) std::swap(machine1,machine2);
+      if(count++ > stopcount) return NO_NGHBOURS;
+    }while(i<3);
+    
+    //find two distinct random positions in machine order
+    pos1 = lisa_random(1,i-1,&seed);
+    do{
+      pos2 = lisa_random(1,i-1,&seed);
+    }while(pos1==pos2);
+    
+    //wlog pos1 < pos2
+    if(pos1 > pos2) std::swap(pos1,pos2);
+    
+    machine1 = order[pos1-1];    
+    machine2 = order[pos2-1];
+
+#ifdef LISA_DEBUG
+    // can this happen ? -marc-
+    if( (*PP->sij)[job1][machine1]==0){
+      G_ExceptionList.lthrow("Found nonexisting operation ("+ztos(job1)+","
+                             +ztos(machine1)+") in prepare_move().");
+      return !OK;
+    }
+    if( (*PP->sij)[job1][machine2]==0 ){
+      G_ExceptionList.lthrow("Found nonexisting operation ("+ztos(job1)+","
+                             +ztos(machine2)+") in prepare_move().");
+      return !OK;     
+    }
+#endif
   }
   
-  //is this move possibly tabu ?
-  tabu_param[0][0] = machine1;
-  tabu_param[0][1] = machine2;
-  tabu_param[0][2] = job1;
-  tabu_param[0][3] = job2;
+  //save move parameters for tabu check 
+  tabu_param[0][0] = job1;
+  tabu_param[0][1] = job2;
+  tabu_param[0][2] = machine1;
+  tabu_param[0][3] = machine2;
   
   return OK;
 }
@@ -2114,66 +2172,36 @@ int OSHOP_PI_Ngbh::prepare_move( int typ ){
 int OSHOP_PI_Ngbh::do_move(){
   *P[1] = *P[0];
   
-  if(witch_swap == JO){
-    
-    const int mpred1 = P[1]->GetMOpred(job1,machine1);
-    const int jpred1 = P[1]->GetJOpred(job1,machine1);
-    const int mpred2 = P[1]->GetMOpred(job2,machine1);
-    const int jpred2 = P[1]->GetJOpred(job2,machine1);
-    
+  if(witch_swap == JO){// swap two operations in job order of fixed machine1
+    const int predJ1 = P[1]->GetJOpred(job1,machine1);
+    const int predM1 = P[1]->GetMOpred(job1,machine1);
+          int predJ2 = P[1]->GetJOpred(job2,machine1);
+    const int predM2 = P[1]->GetMOpred(job2,machine1);
+  
+    if ( pos2 == pos1+1 ) predJ2 = job2;
+  
+    P[1]->exclude(job1,machine1);
+    P[1]->exclude(job2,machine1);
+  
+    if ( P[1]->insert(job2,machine1,predJ1,predM2) == CYCLE ) return !OK;
+    if ( P[1]->insert(job1,machine1,predJ2,predM1) == CYCLE ) return !OK;
+  }else{ // swap two operations in machine order of fixed job1
+    const int predJ1 = P[1]->GetJOpred(job1,machine1);
+    const int predM1 = P[1]->GetMOpred(job1,machine1);
+    const int predJ2 = P[1]->GetJOpred(job1,machine2);
+          int predM2 = P[1]->GetMOpred(job1,machine2);
+  
+    if ( pos2 == pos1+1 ) predM2 = machine2;
+  
+    P[1]->exclude(job1,machine1);
+    P[1]->exclude(job1,machine2);
+  
+    if ( P[1]->insert(job1,machine2,predJ2,predM1) == CYCLE ) return !OK;
+    if ( P[1]->insert(job1,machine1,predJ1,predM2) == CYCLE ) return !OK;
 
-    //std::cout << "position " << job1 << "," << machine1 << " after " << jpred1 << "," << machine1 << " and " << job1 << "," << mpred1 << std::endl;
-    //std::cout << "position " << job2 << "," << machine1 << " after " << jpred2 << "," << machine1 << " and " << job2 << "," << mpred2 << std::endl;
-    
-    
-    if(jpred1 == job2){
-      P[1]->exclude(job2,machine1);
-      if(P[1]->insert(job2,machine1,job1,mpred2) == CYCLE) return !OK;
-    }else if(jpred2 == job1){
-      P[1]->exclude(job1,machine1);
-      if(P[1]->insert(job1,machine1,job2,mpred1) == CYCLE) return !OK;
-    }else{
-      P[1]->exclude(job1,machine1);
-      P[1]->exclude(job2,machine1);
-      //std::cout << "insert   " << job1 << "," << machine1 << " after " << jpred2 << "," << machine1 << " and " << job1 << "," << mpred1 << std::endl;
-      if(P[1]->insert(job1,machine1,jpred2,mpred1) == CYCLE) return !OK;
-      //std::cout << "insert   " << job2 << "," << machine1 << " after " << jpred1 << "," << machine1 << " and " << job2 << "," << mpred2 << std::endl;
-      if(P[1]->insert(job2,machine1,jpred1,mpred2) == CYCLE) return !OK;
-      
-      //if(!G_ExceptionList.empty()) exit(1); 
-    }
-  }else{
-    
-    const int mpred1 = P[1]->GetMOpred(job1,machine1);
-    const int jpred1 = P[1]->GetJOpred(job1,machine1);
-    const int mpred2 = P[1]->GetMOpred(job1,machine2);
-    const int jpred2 = P[1]->GetJOpred(job1,machine2);
-
-    //std::cout << job1 << "," << machine1 << " after " << jpred1 << "," << machine1 << " and " << job1 << "," << mpred1 << std::endl;
-    //std::cout << job1 << "," << machine2 << " after " << jpred2 << "," << machine2 << " and " << job1 << "," << mpred2 << std::endl;
-    
-    if(mpred1 == machine2){
-      P[1]->exclude(job1,machine2);
-      if(P[1]->insert(job1,machine2,jpred1,machine1) == CYCLE) return !OK;
-    }else if(mpred2 == machine1){
-      P[1]->exclude(job1,machine1);
-      if(P[1]->insert(job1,machine1,jpred2,machine2) == CYCLE) return !OK;
-    }else{
-      P[1]->exclude(job1,machine1);
-      P[1]->exclude(job1,machine2);
-
-      //std::cout << "insert (" << job1 << "," << machine1 << ") after (" << jpred2 << "," << machine1 << ")  and (" << job1 << "," << mpred1 << ")" << std::endl;
-      if(P[1]->insert(job1,machine1,jpred2,mpred1)==CYCLE) return !OK;
-    
-      //std::cout << "insert (" << job1 << "," << machine2 << ") after (" << jpred1 << "," << machine2 << ")  and (" << job1 << "," << mpred2 << ")" << std::endl;
-      if(P[1]->insert(job1,machine2,jpred1,mpred2)==CYCLE) return !OK;
-    
-    }
+    return !OK;
   }
 
-  //std::cout << "OK" << std::endl;
-  //std::cout << *P[1] << std::endl;
-  //exit(1);
   return OK;
 }
 

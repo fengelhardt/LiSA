@@ -100,6 +100,7 @@
       <item name="CR_SHIFT"/>
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
+      <item name="PI"/>
     </choice>
     <choice name="METHOD" caption="Search Method">
       <item name="TabuSearch"/>
