@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
 
    // now my try:
    Sched=new NM_JsSchedule(Prob);
-   js_inserter* engine=new js_inserter;
+   JS_Inserter* engine=new JS_Inserter;
    engine->init(Sched, IRREG2);
    engine->insert();
    Sched->SetValue(IRREG2);

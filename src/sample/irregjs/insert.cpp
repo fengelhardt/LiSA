@@ -14,7 +14,7 @@ const int SHIFT_STEPS=10;
 
 //**************************************************************************
 
-void js_inserter::init(Lisa_JsSchedule * in_sched, int in_zfn)
+void JS_Inserter::init(Lisa_JsSchedule * in_sched, int in_zfn)
   {
     sched = in_sched;
     P=sched->JSP;
@@ -25,7 +25,7 @@ void js_inserter::init(Lisa_JsSchedule * in_sched, int in_zfn)
 
 //**************************************************************************
     
-void js_inserter::rattle( int job )
+void JS_Inserter::rattle( int job )
 {
   TIMETYP delay;
   int last_machine, i;
@@ -80,7 +80,7 @@ void js_inserter::rattle( int job )
 
 //**************************************************************************
      
-void js_inserter::insert()
+void JS_Inserter::insert()
 {
   int i, j, inspos, anzop, shiftjob, firstop, k;
   TIMETYP bestvalue;
@@ -137,7 +137,7 @@ void js_inserter::insert()
 
 //**************************************************************************
 
-void js_inserter::simple_order()
+void JS_Inserter::simple_order()
   {
     int i, j, k;
     
@@ -163,7 +163,7 @@ void js_inserter::simple_order()
 
 //**************************************************************************
 
-js_inserter::~js_inserter()
+JS_Inserter::~JS_Inserter()
   { 
     delete order;
     delete sched2;

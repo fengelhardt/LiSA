@@ -1,19 +1,6 @@
-/*
- * ******************** global.h ******************************
- * 
- * description:      convention for consistent usage with values
- *                   often used functions
- * 
- * @author            Per Willenius
- *
- * date:             17.9.1998
- *
- * @version 2.3pre3
- */ 
 
 #ifndef _global_h 
 #define _global_h 
-
 
 /// debug parameter ... comment for the final version
 #define LISA_DEBUG
@@ -24,10 +11,10 @@
 /// maximal length of string
 #define MAX_STRING 25
 
-/// Default-Value for machine number
+/// default value for machine number
 const int DEFAULT_M=4;
 
-// default value for job number
+/// default value for job number
 const int DEFAULT_N=6;
 
 /// logic
@@ -54,7 +41,8 @@ const int DEFAULT_N=6;
 /// maximal number of tupel index
 #define TUPEL_INDEX NUMBER_ALPHA+NUMBER_BETA+NUMBER_GAMMA+NUMBER_MISC
 
-/// names of tupelentries
+//@{
+/// name of tupelentries
 const int M_ENV=0;
 const int M_NUMBER=1;
 const int M_MPT=2;
@@ -75,6 +63,8 @@ const int SERVER_FLAGS=16;
 const int OBJECTIVE=17;
 const int M_NO=18;
 const int N_NO=19;
+//@}
+
 
 /// number of possible values
 const int NUMBER[TUPEL_INDEX]={
@@ -112,7 +102,8 @@ const int VALUE=1;
 
 // alpha
 
-// Problem[M_ENV]:
+//@{
+/// Problem[M_ENV]
 const int ONE=1;
 const int O=2;
 const int F=3;
@@ -137,57 +128,72 @@ const int PMPM=21;
 const int QMPM=22;
 const int F_SR=23;
 const int P_CS=24;
+//@}
 
-
-// Problem[M_NUMBER]:
+//@{
+/// Problem[M_NUMBER]
 const int M_ARB=EMPTY;
 const int M_VAL=VALUE;
 const int M_FIX=2;
+//@}
 
 //**************************************************************************
 
 // beta
+
+/// is set ?
 const int SET=TRUE;
 
 // Problem[PMTN]: only TRUE and FALSE
 
-// Problem[PRECEDENCE]: 
+//@{
+/// Problem[PRECEDENCE]
 const int INTREE=1;     // intree 
 const int OUTTREE=2;    // outtree
 const int TREE=3;     //  tree
 const int SP_GRAPH=4;
 const int CHAINS=5;
 const int PREC=6;  
+//@}
 
 // Problem[RI]: only TRUE and FALSE
 
 // Problem[DI]: only TRUE and FALSE
 
-// Problem[PIJ]:
+//@{
+/// Problem[PIJ]
 const int PIJ_1=1;
 const int PIJ_P=2;
+//@}
 
-// Problem[BATCH]:
+//@{
+/// Problem[BATCH]
 const int S_BATCH=1;
 const int P_BATCH=2;
+//@}
 
 // Problem[BOUNDED_BATCH]: only TRUE and FLASE
 
-// Problem[JOB_NR]
+//@{
+/// Problem[JOB_NR]
 const int J_ARB=EMPTY;
 const int J_VAL=VALUE;
 const int J_FIX=2;
+//@}
 
 // Problem[NO_WAIT]:  only TRUE and FALSE
 
 // Problem[SIZE]: only TRUE and FALSE
 
-// Problem[TIME_LAGS]:
+//@{
+/// Problem[TIME_LAGS]
 const int UNIT_TL=1;
 const int CONST_TL=2;
 const int GENERAL_TL=3;
+//@}
 
-// Problem[TRANSPORTATION_DELAYS]:
+//@{
+/// Problem[TRANSPORTATION_DELAYS]
 const int TIK_T=1;
 const int TIKL_T=2;
 const int TI_IN=3;
@@ -198,16 +204,21 @@ const int TK=7;
 const int TKL=8;
 const int TIK=9;
 const int TIKL=10;
+//@}
 
-// Problem[SERVER_FLAGS]
+//@{
+/// Problem[SERVER_FLAGS]
 const int SI=1;
 const int SI_1=2;
 const int SI_S=3;
+//@}
 
 //**************************************************************************
 
 // Gamma
-// Problem[OBJECTIVE]
+
+//@{
+/// Problem[OBJECTIVE]
 const int CMAX=1;
 const int LMAX=2;
 const int SUM_CI=3;
@@ -216,12 +227,13 @@ const int SUM_UI=5;
 const int SUM_WIUI=6;
 const int SUM_TI=7;
 const int SUM_WITI=8;
+//@}
 
 /// sum w_i | C_i - d_i |
 const int IRREG1=9;
 
-/** sum w_i T_i + sum wi_early (d_i-C_i)^+ + w_late L_max +
-    w_early max (d_i-C_i)^+ as used by Neumann/Schwindt */
+/// sum w_i T_i + sum wi_early (d_i-C_i)^+ + w_late L_max + w_early max (d_i-C_i)^+ 
+/** as used by Neumann/Schwindt */
 const int IRREG2=10;     
 
 
@@ -300,18 +312,19 @@ const TIMETYP MAXOBJECTIVE= (TIMETYP) 10000000L;
 /// highest possible number
 const long MAXNUMBER= 1000000L; 
 
-/** Length of the progress indicator for external algorithms. The algorithm 
-    should output a line starting with "OBJECTIVE=" exactly so many times in 
-    equal time intervals to fill one indicator window. */
+/// Length of the progress indicator for external algorithms. 
+/** The algorithm should output a line starting with "OBJECTIVE=" exactly so
+    many times in equal time intervals to fill one indicator window. */
 #define PROGRESS_INDICATOR_STEPS 400
 
 
-/** random generator (Taillard)
-  @param lb lower bound
-  @param ub upper bound
-  @param seed random seed
-  @return a random value between lb and ub, determined by seed 
-  */
+/// random generator (Taillard)
+/** @param lb lower bound
+    @param ub upper bound
+    @param seed random seed
+    @return a random value between lb and ub, determined by seed 
+    @author Per Willenius
+    @version 2.3pre3 */
 int lisa_random( int lb, int ub, long *seed );
 
 /// maximum of two values
