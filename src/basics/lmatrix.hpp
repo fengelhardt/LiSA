@@ -95,8 +95,8 @@ public:
       #ifdef LISA_DEBUG
       if (j>=m) 
 	{
-	  G_ExceptionList.lthrow("element "+ztos(j)+" of a "+
-				 ztos(m)+"-element vector requested",
+	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+				 ztos((int)m)+"-element vector requested",
 				 OUT_OF_RANGE);
 	  return contents[0];
 	}
@@ -109,8 +109,8 @@ public:
       #ifdef LISA_DEBUG
       if (j>=m) 
 	{
-	  G_ExceptionList.lthrow("element "+ztos(j)+" of a "+
-				 ztos(m)+"-element vector requested",
+	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+				 ztos((int)m)+"-element vector requested",
 				 OUT_OF_RANGE);
 	  return contents[0];
 	}
@@ -191,8 +191,8 @@ public:
       #ifdef LISA_DEBUG
       if (i>=n)
 	{
-	  G_ExceptionList.lthrow("row "+ztos(i)+" of a "+
-				 ztos(n)+"-row listmatrix requested",
+	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
+				 ztos((int)n)+"-row listmatrix requested",
 				 OUT_OF_RANGE);
 	  return row[0];
 	}
@@ -204,8 +204,8 @@ public:
       #ifdef LISA_DEBUG
       if (i>=n)
 	{
-	  G_ExceptionList.lthrow("row "+ztos(i)+" of a "+
-				 ztos(n)+"-row listmatrix requested",
+	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
+				 ztos((int)n)+"-row listmatrix requested",
 				 OUT_OF_RANGE);
 	  return row[0];
 	}

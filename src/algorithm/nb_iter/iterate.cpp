@@ -68,7 +68,7 @@ void Lisa_Iterator::init( int methodi, unsigned int param1 )
       {
         case  II: if ( !((int(param1)==ENUM) || (int(param1)==RAND)) )
 		    {
-		      G_ExceptionList.lthrow("wrong parameter in init( II, "+ztos(param1)); 
+		      G_ExceptionList.lthrow("wrong parameter in init( II, "+ztos(int(param1))); 
 		      exit( 7 );
 		    }
 	          search_type = param1;
@@ -155,7 +155,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
   
     if ( steps < 0 )
       {
-	G_ExceptionList.lthrow("wrong parameter in iterate( "+ztos(steps)+" )");
+	G_ExceptionList.lthrow("wrong parameter in iterate( "+ztos(int(steps))+" )");
 	exit( 7 );
       }
     if ( method == NOMETHOD )
