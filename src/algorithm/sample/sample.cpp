@@ -31,11 +31,20 @@
 int main(int argc, char *argv[]) 
 {
 
+    // print a message that the program has started:
+    cout << "This is the LiSA Sample Module" << endl;
+
     // The Lisa_Exceptionlist is forced for writing
     // error messages to cout. Then LiSA is able
     // to show the error messages of an external module.
     G_ExceptionList.set_output_to_cout();   
 
+    // open files and assure existence:
+    if (argc != 3) 
+      {
+        cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
+        exit(1);
+      }
 
     // Define the objects for the file communication 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
