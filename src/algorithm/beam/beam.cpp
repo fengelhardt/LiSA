@@ -129,7 +129,7 @@ int main(int argc, char *argv[]){
   //which beamwidth was entered
   beam_width = 5;
   if (sp->defined("K_BRANCHES")) {
-    beam_width = sp->get_int("K_BRANCHES");
+    beam_width = sp->get_long("K_BRANCHES");
   }
   
   //use system time for independent random numbers ... this is not reversable

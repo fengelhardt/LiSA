@@ -256,7 +256,7 @@ int main(int argc, char *argv[])
 
    if ( numb_fix_l > 0 )
      for ( i=0; i<numb_fix_l; i++ )
-       (*FP_long)[i] = ptest_special->get_int( (*Fix_Param_long)[i].c_str() );
+       (*FP_long)[i] = ptest_special->get_long( (*Fix_Param_long)[i].c_str() );
    if ( numb_fix_d > 0 )
      for ( i=0; i<numb_fix_d; i++ )
        (*FP_double)[i] 
@@ -271,9 +271,9 @@ int main(int argc, char *argv[])
 	 if ( (*Var_Param_type)[i] == "long" )
 	   {
 	     (*VP_init)[i] 
-	       = ptest_special->get_int( ((*Var_Param)[i]+"_INIT").c_str() );
+	       = ptest_special->get_long( ((*Var_Param)[i]+"_INIT").c_str() );
 	     (*VP_max)[i] 
-	       = ptest_special->get_int( ((*Var_Param)[i]+"_MAX").c_str() );
+	       = ptest_special->get_long( ((*Var_Param)[i]+"_MAX").c_str() );
 	   }
 	 else
 	   {

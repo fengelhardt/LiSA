@@ -1033,28 +1033,28 @@ int main(int argc, char *argv[])
     }
   METHOD_St = my_special->get_string( "METHOD" );
   if ( my_special->defined("PROB") )
-    PROB = my_special->get_int( "PROB" );
+    PROB = my_special->get_long( "PROB" );
   if ( PROB < 0 )
     {
       G_ExceptionList.lthrow("PROB must be nonnegative");
       exit(7);
     }
   if ( my_special->defined("MAX_STUCK") )
-    MAX_STUCK = my_special->get_int( "MAX_STUCK" );
+    MAX_STUCK = my_special->get_long( "MAX_STUCK" );
   if ( MAX_STUCK < 1 )
     {
       G_ExceptionList.lthrow("MAX_STUCK must be positive");
       exit(7);
     } 
   if ( my_special->defined("TABULENGTH") )
-    TABULENGTH = my_special->get_int( "TABULENGTH" );
+    TABULENGTH = my_special->get_long( "TABULENGTH" );
   if ( TABULENGTH < 1 )
     {
       G_ExceptionList.lthrow("TABULENGTH must be positive");
       exit(7);
     }
   if ( my_special->defined("NUMB_NGHB") )
-    NUMB_NGHB = my_special->get_int( "NUMB_NGHB" );
+    NUMB_NGHB = my_special->get_long( "NUMB_NGHB" );
   if ( NUMB_NGHB < 1 )
     {
       G_ExceptionList.lthrow("NUMB_NGHB must be positive");
@@ -1065,7 +1065,7 @@ int main(int argc, char *argv[])
   //  if ( my_special->defined("OBJ_TYPE") )
   //  OBJ_TYPE_St = my_special->get_string( "OBJ_TYPE" );
   if ( my_special->defined("STEPS") )
-    STEPS = my_special->get_int( "STEPS" );
+    STEPS = my_special->get_long( "STEPS" );
   if ( STEPS < 1 )
     {
       G_ExceptionList.lthrow("STEPS must be positive");
@@ -1073,11 +1073,11 @@ int main(int argc, char *argv[])
     }
   if ( my_special->defined("NUMB_PROBLEMS") )
     { 
-      NUMB_PROBLEMS = my_special->get_int( "NUMB_PROBLEMS" );
+      NUMB_PROBLEMS = my_special->get_long( "NUMB_PROBLEMS" );
     }
   if ( my_special->defined("NUMB_PLANS") )
     { 
-      NUMB_PLANS = my_special->get_int( "NUMB_PLANS" );
+      NUMB_PLANS = my_special->get_long( "NUMB_PLANS" );
     }
   if ( NUMB_PROBLEMS < 1 )
     {
@@ -1090,7 +1090,7 @@ int main(int argc, char *argv[])
       exit(7);
     }
   if ( my_special->defined("NUMB_STUCKS") )
-    NUMB_STUCKS = my_special->get_int( "NUMB_STUCKS" );
+    NUMB_STUCKS = my_special->get_long( "NUMB_STUCKS" );
   if ( NUMB_STUCKS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_STUCKS must be positive");

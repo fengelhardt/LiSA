@@ -32,7 +32,7 @@ private:
   /// separate list to avoid type checking (searching is faster this way) 
   Lisa_List<std::string> StringKeyList, IntKeyList, DoubleKeyList;
   Lisa_List<std::string> StringList;
-  Lisa_List<long int> IntList;
+  Lisa_List<long> IntList;
   Lisa_List<double> DoubleList;
   //@}
   
@@ -40,13 +40,13 @@ public:
 
 /// flags for type of value
 enum{UNDEFINED /** unknown type */ =0
-    ,INT /// integer type
+    ,LONG /// integer type
     ,DOUBLE /// floating point type
     ,STRING /// string type
     };
     
     /// add a new int-entry with name and value
-    void add_key(const std::string name, long int value=0);
+    void add_key(const std::string name, long value=0);
     
     /// add a new double-entry with name and value
     void add_key(const std::string name, double value=0.0);
@@ -58,7 +58,7 @@ enum{UNDEFINED /** unknown type */ =0
     int defined(const std::string name);
     
     /// returns int-value which suits to the key
-    long int get_int(const std::string name);
+    long int get_long(const std::string name);
     
     /// returns double-value which suits to the key
     double get_double(const std::string name);

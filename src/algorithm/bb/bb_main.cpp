@@ -99,8 +99,8 @@ int main(int argc, char *argv[])
        if (sp->get_string("INS_ORDER")=="LPT") 
 	 my_bb->set_ins_order(LPT_ORDER);
      }
-   if (sp->defined("NB_SOLUTIONS")==Lisa_ControlParameters::INT)
-      my_bb->set_output_bound(sp->get_int("NB_SOLUTIONS"));
+   if (sp->defined("NB_SOLUTIONS")==Lisa_ControlParameters::LONG)
+      my_bb->set_output_bound(sp->get_long("NB_SOLUTIONS"));
    if (sp->defined("UPPER_BOUND")==Lisa_ControlParameters::DOUBLE)
       my_bb->set_upper_bound((TIMETYP) sp->get_double("UPPER_BOUND"));
    if (sp->defined("LOWER_BOUND")==Lisa_ControlParameters::DOUBLE)

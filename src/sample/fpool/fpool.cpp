@@ -45,12 +45,12 @@ int main(int argc, char *argv[])
    int prob0;
    Lisa_ControlParameters * sp = new Lisa_ControlParameters;
    i_strm >> (*sp);
-   n=sp->get_int("DIMENSION");
-   sigma=sp->get_int("NUMBER_VECTORS");
-   steps=sp->get_int("STEPS");
-   raisestuck=sp->get_int("STUCK");
-   runs=sp->get_int("NUMBER_RUNS");
-   prob0=sp->get_int("PROBAL");
+   n=sp->get_long("DIMENSION");
+   sigma=sp->get_long("NUMBER_VECTORS");
+   steps=sp->get_long("STEPS");
+   raisestuck=sp->get_long("STUCK");
+   runs=sp->get_long("NUMBER_RUNS");
+   prob0=sp->get_long("PROBAL");
    delete sp;   
   
   

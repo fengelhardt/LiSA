@@ -60,7 +60,7 @@ public:
   /// access internal Lisa_ControlParameters
   /** these are just wrappers for the methods with the same name
       in Lisa_ControlParameters */
-  inline int get_int(std::string bezeichner) {return contents.get_int(bezeichner);}
+  inline long get_int(std::string bezeichner) {return contents.get_long(bezeichner);}
   inline std::string get_string(std::string bezeichner) {return contents.get_string(bezeichner);}
   inline double get_double(std::string bezeichner) {return contents.get_double(bezeichner);}
   

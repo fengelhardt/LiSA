@@ -9,7 +9,7 @@ using namespace std;
 
 //**************************************************************************
 
-void Lisa_ControlParameters::add_key(const string name, long int value) 
+void Lisa_ControlParameters::add_key(const string name, long value) 
  {
    if (IntKeyList.search_first(name)) 
      {
@@ -51,7 +51,7 @@ void Lisa_ControlParameters::add_key(const string name, string value)
 
 //**************************************************************************
 
-long int  Lisa_ControlParameters::get_int(const string name)
+long Lisa_ControlParameters::get_long(const string name)
  {
   if (!IntKeyList.search_first(name)) 
     {
@@ -89,7 +89,7 @@ string Lisa_ControlParameters::get_string(const string name)
 
 int Lisa_ControlParameters::defined(const string name)
  {
-   if (IntKeyList.search_first(name)) return INT;
+   if (IntKeyList.search_first(name)) return LONG;
    if (DoubleKeyList.search_first(name)) return DOUBLE;
    if (StringKeyList.search_first(name)) return STRING;
    return UNDEFINED;

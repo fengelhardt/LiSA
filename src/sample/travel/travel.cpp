@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
     G_ExceptionList.lthrow("You must define a number of steps (STEPS) in the input file.");
     exit(7);
   }else{
-    STEPS = param.get_int("STEPS");
+    STEPS = param.get_long("STEPS");
   }
   
   // stucks after which to abort algorithm
@@ -100,7 +100,7 @@ int main(int argc, char *argv[]){
     G_ExceptionList.lthrow("You must define a maximum number of stucks (NUMB_STUCKS) in the input file.");
     exit(7);
   }else{
-    NUMB_STUCKS = param.get_int("NUMB_STUCKS");
+    NUMB_STUCKS = param.get_long("NUMB_STUCKS");
   }
   
   // lower bound
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]){
       G_ExceptionList.lthrow("You must define a start probability (PROB) for SA, SA_anti and TA in the input file.");
       exit(7);
     }else{
-      PROB = param.get_int("PROB");
+      PROB = param.get_long("PROB");
     }
 
     if(!param.defined("MAX_STUCK")){
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]){
 	("You must define a number of stucks (MAX_STUCK) for SA, SA_anti and TA in the input file.");
       exit(7);
     }else{
-      MAX_STUCK = param.get_int("MAX_STUCK");
+      MAX_STUCK = param.get_long("MAX_STUCK");
     }
       
   }
@@ -156,7 +156,7 @@ int main(int argc, char *argv[]){
       G_ExceptionList.lthrow("You must define the length of the tabu list (TABU_LENGTH) for TS in the input file.");
       exit(7);
     }else{
-      TABU_LENGTH = param.get_int("TABU_LENGTH");
+      TABU_LENGTH = param.get_long("TABU_LENGTH");
     }
      
      if(!param.defined("NUMB_NGB")){
@@ -164,7 +164,7 @@ int main(int argc, char *argv[]){
 	("You must define the number of neighbours to generate in each step (NUMB_NGB) for TS in the input file.");
       exit(7);
     }else{
-      NUMB_NGB = param.get_int("NUMB_NGB");
+      NUMB_NGB = param.get_long("NUMB_NGB");
     }
   }
 
