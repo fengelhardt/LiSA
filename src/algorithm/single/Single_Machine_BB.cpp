@@ -7,19 +7,21 @@
 
 //**************************************************************************
 
-SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgraph)
-{
+SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgraph){
  
   n=pValues->get_n();
   mode=m;
   FirstSchedule=true;
   priority=pgraph;
   pLV=pValues;
-  Done=new Lisa_Vector<bool> (n);
+  Done=new Lisa_Vector<bool>(n);
   Done->fill(false);
-  Sources=new Lisa_Vector<int> (n);
-  Schedule=new Lisa_Vector<int> (n);
-  bestSchedule=new Lisa_Vector<int> (n);
+  Sources=new Lisa_Vector<int>(n);
+  Schedule=new Lisa_Vector<int>(n);
+  bestSchedule=new Lisa_Vector<int>(n);
+  
+  bestLmax = MAXTIME;
+  
   maxDD=(*pLV->DD)[(pLV->DD->index_of_max())];
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
 }
@@ -38,6 +40,9 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool 
   Sources=new Lisa_Vector<int> (n);
   Schedule=new Lisa_Vector<int> (n);
   bestSchedule=new Lisa_Vector<int> (n);
+  
+  bestLmax = MAXTIME;
+  
   maxDD=(*pLV->DD)[(pLV->DD->index_of_max())];
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
 }

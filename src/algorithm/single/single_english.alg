@@ -8,14 +8,11 @@ Help= algorithm/single.html
 
 <EXACT>
 <PROBLEMTYPE> 
-Lisa_ProblemType= { 1 / / Lmax }
+Lisa_ProblemType= { 1 / r_i / Lmax }
 </PROBLEMTYPE>
 </EXACT>
 
 <HEURISTIC>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { 1 / / Cmax }
-</PROBLEMTYPE>
 </HEURISTIC>
 
 <PARAMETERS>
