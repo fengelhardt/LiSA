@@ -13,7 +13,7 @@
 #include"../single/Single_Machine_BB.hpp"
 #include<fstream.h>
 
-Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m=false)
+Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
 { 
   single_machine_mode=m;
   JsPro=pJsSch->JSP;

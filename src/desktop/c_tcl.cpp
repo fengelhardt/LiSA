@@ -72,8 +72,7 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
     exit(1);
   }
    
-  // all C++ functions, which can be called from Tcl/Tk: 
-  
+  // all C++ functions, which can be called from Tcl/Tk:  
   Tcl_CreateCommand(interp, "TC_adopt_MO", TC_adopt_MO, (ClientData) 
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
   Tcl_CreateCommand(interp, "TC_make_MO_Matrix",TC_make_MO_Matrix,(ClientData) 

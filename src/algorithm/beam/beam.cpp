@@ -16,7 +16,7 @@
 
 enum InsertionOrder{
   lpt,
-  random,
+  rndm,
   line_by_line,
   diagonal,
 };
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
   InsertionOrder iord = lpt;
   if (sp->defined("INS_ORDER")) {
     if (sp->get_string("INS_ORDER")=="LPT") iord = lpt;
-    if (sp->get_string("INS_ORDER")=="RANDOM") iord = random;
+    if (sp->get_string("INS_ORDER")=="RANDOM") iord = rndm;
     if (sp->get_string("INS_ORDER")=="LINE_BY_LINE") iord = line_by_line;
     if (sp->get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
   }

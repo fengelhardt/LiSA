@@ -69,7 +69,7 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
   return true;
 }
 
-bool SingleMachineBB::branching(int k=0)
+bool SingleMachineBB::branching(int k)
 { 
   if(k<n){  
     int counter=0;

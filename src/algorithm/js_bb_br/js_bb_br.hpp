@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <iostream.h>
-#include <fstream>
+#include <fstream.h>
 #include <time.h>
 #include <signal.h>
 #include "jb_block.hpp"
