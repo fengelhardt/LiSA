@@ -1,20 +1,4 @@
- /*
- * ****************** alg_call.hpp ******************************
- * 
- * description:      manage the calling of internal and external Algorithms
- *
- * @author            Per Willenius
- *
- * date:             8.10.1999
- *
- *
-*/ 
 
-/**@name Calling internal and external algorithms 
-   @version 2.3pre3
-  */
-  
-//@{
 #ifndef _alg_call_h 
 #define _alg_call_h
 
@@ -30,6 +14,10 @@
 #include "../main/status.hpp"
 
 /// call external algorithm
+/** manage the calling of external algorithms
+    @author Per Willenius
+    @version 2.3pre3
+  */
 int start_ext_algo(Tcl_Interp *interp, 
                    std::string name_of_algo, 
                    std::string algo_call,
@@ -42,5 +30,4 @@ int start_ext_algo(Tcl_Interp *interp,
                    Lisa_Values & G_Values);
 
 #endif
-//@}
 

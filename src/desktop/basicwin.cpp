@@ -344,7 +344,7 @@ Lisa_Canvas::~Lisa_Canvas(){
 
 //**************************************************************************
 
-textobj::textobj(){
+Lisa_TextObject::Lisa_TextObject(){
   cv_interp=NULL;
   cv_name = new char[200];
   command = "";
@@ -354,7 +354,7 @@ textobj::textobj(){
 
 //**************************************************************************
 
-textobj::textobj(Tcl_Interp * tclinterp){
+Lisa_TextObject::Lisa_TextObject(Tcl_Interp * tclinterp){
   cv_name = new char[200];
   command = "";
   sprintf(cv_name,"%s",".textaus.fra22.tex23");
@@ -365,7 +365,7 @@ textobj::textobj(Tcl_Interp * tclinterp){
 
 //**************************************************************************
 
-textobj::textobj(char * name,Tcl_Interp * tclinterp){
+Lisa_TextObject::Lisa_TextObject(char * name,Tcl_Interp * tclinterp){
   cv_name = new char[200];
   command = "";
   sprintf(cv_name,"%s",name);
@@ -376,28 +376,28 @@ textobj::textobj(char * name,Tcl_Interp * tclinterp){
 
 //**************************************************************************
 
-void textobj::clear(){
+void Lisa_TextObject::clear(){
   command= (string) cv_name+ " " + " delete 1.0 end";
   Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
 //**************************************************************************
 
-void textobj::text(const char *text) {
+void Lisa_TextObject::text(const char *text) {
  command= (string) cv_name+ " insert end { " + (string) text + " }"; 
    Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
 //**************************************************************************
 
-void textobj::text(const string text){
+void Lisa_TextObject::text(const string text){
   command= (string) cv_name+ " insert end { " + text + " }"; 
   Tcl_Eval(cv_interp,(char*) command.c_str());
 }
 
 //**************************************************************************
 
-textobj::~textobj() {
+Lisa_TextObject::~Lisa_TextObject() {
   // nothing to do
 }
 

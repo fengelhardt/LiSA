@@ -647,7 +647,7 @@ int TC_classify(ClientData /* clientData */,
 		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   Tcl_Eval(interp, "Window show .textaus");
   mw_set_label ("$Name(Classification");
-  textobj mytext(interp);
+  Lisa_TextObject mytext(interp);
   mytext.clear();
   string str;
   str=Lisa_classify(&G_ProblemType,G_Preferences.LISA_HOME,
