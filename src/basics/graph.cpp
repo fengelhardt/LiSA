@@ -69,7 +69,7 @@ void Lisa_Graph::read(istream & strm){
   if (S=="adjacency_matrix="){  
     strm >> *adj_Matrix;
     set_adjacency_matrix(adj_Matrix);
-    delete adj_Matrix;
+    if(adj_Matrix) delete adj_Matrix;
   }else{
     G_ExceptionList.lthrow("'adjacency_matrix=' expected in <GRAPH>, found '"+S+"'.",
                            Lisa_ExceptionList::INCONSISTENT_INPUT);
@@ -1643,85 +1643,348 @@ void Lisa_WeightedGraph::clear(){
 //**************************************************************************
 
 void Lisa_WeightedGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_WeightedGraph::get_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
+  for(int i=1;i<=size;i++){
+    (*adj)[i-1][i-1] = 0;
+    for(int j=i+1;j<=size;j++){
+      (*adj)[i-1][j-1] = (*this->adj)[i][j];
+      (*adj)[j-1][i-1] = (*this->adj)[j][i];
+    }
+  }
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const adj){
-
+#ifdef LISA_DEBUG
+  if(adj->get_n() != size || adj->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_WeightedGraph::set_adjacency_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif  
+  
+  for(int i=1;i<=size;i++){
+    for(int j=i+1;j<=size;j++){
+      (*this->adj)[i][j] = (*adj)[i-1][j-1] ? 1 : 0;
+      (*this->adj)[j][i] = (*adj)[j-1][i-1] ? 1 : 0;
+    }
+  }
+  
+  weights->fill(0);
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::get_weight_matrix(Lisa_Matrix<TIMETYP> *const weights)const{
+#ifdef LISA_DEBUG
+  if(weights->get_n() != size || weights->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_WeightedGraph::get_weight_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
+  for(int i=1;i<=size;i++){
+    (*weights)[i-1][i-1] = 0;
+    for(int j=i+1;j<=size;j++){
+      (*weights)[i-1][j-1] = (*this->weights)[i][j];
+      (*weights)[j-1][i-1] = (*this->weights)[j][i];
+    }
+  }
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::set_weight_matrix(const Lisa_Matrix<TIMETYP> *const weights){
-
+#ifdef LISA_DEBUG
+  if(weights->get_n() != size || weights->get_m() != size){
+    G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_WeightedGraph::set_weight_matrix().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif  
+  
+  for(int i=1;i<=size;i++){
+    for(int j=i+1;j<=size;j++){
+      (*this->weights)[i][j] = (*adj)[i][j] ? (*weights)[i-1][j-1] : 0;
+      (*this->weights)[j][i] = (*adj)[j][i] ? (*weights)[j-1][i-1] : 0;
+    }
+  }
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::insert_arc(const int start,const int end,const TIMETYP weight){
-
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_WeightedGraph::insert_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*adj)[start][end] = 1;
+  (*weights)[start][end] = weight;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::remove_arc(const int start,const int end){
-
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_WeightedGraph::remove_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+  
+  if(start==end) return;
+  
+  (*adj)[start][end] = 0;
+  (*weights)[start][end] = 0;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::clear(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_WeightedGraph::clear().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
+  for(int i=1;i<=size;i++){
+    (*adj)[i][vertex] = 0;
+    (*adj)[vertex][i] = 0; 
+    (*weights)[i][vertex] = 0;
+    (*weights)[vertex][i] = 0; 
+  }
 }
 
 //**************************************************************************
 
 int Lisa_WeightedGraph::get_connection(const int start,const int end, TIMETYP *const weight)const{
-  return size+1;
+#ifdef LISA_DEBUG
+  if( start<=0 || start>size || end<=0 || end>size ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_WeightedGraph::get_connection().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return NONE;
+  }
+#endif
+
+  if(start==end) return NONE;
+  
+  if((*adj)[start][end]){
+    *weight = (*weights)[start][end];
+    return ARC;
+  }
+  
+  if((*adj)[end][start]){
+    *weight = (*weights)[end][start];
+    return CRA;
+  }
+  
+  return NONE;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::init_successor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_WeightedGraph::init_successor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
+  (*adj)[vertex][0] = 0;
 }
 
 //**************************************************************************
 
 int Lisa_WeightedGraph::next_successor(const int vertex,TIMETYP *const weight){
-  return size+1;
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_WeightedGraph::next_successor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return size+1;
+  }
+#endif
+  
+  int currpos = (*adj)[vertex][0];
+  
+  do{
+    currpos++;
+    
+    if(currpos == size+1){
+      (*adj)[vertex][0] = 0;
+      return size+1;
+    }
+  
+  }while((*adj)[vertex][currpos] == 0);
+    
+  (*adj)[vertex][0] = currpos;
+
+  *weight = (*weights)[vertex][currpos];
+  return currpos;  
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::init_predecessor(const int vertex){
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_WeightedGraph::init_predecessor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
+  (*adj)[0][vertex] = 0;
 }
 
 //**************************************************************************
 
 int Lisa_WeightedGraph::next_predecessor(const int vertex,TIMETYP *const weight){
-  return 0;
+#ifdef LISA_DEBUG
+  if( vertex<=0 || vertex>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(vertex)+
+                           " out of range in Lisa_WeightedGraph::next_predecessor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return size+1;
+  }
+#endif
+
+  int currpos = (*adj)[0][vertex];
+  
+  do{
+    currpos++;
+    
+    if(currpos == size+1){
+      (*adj)[0][vertex] = 0;
+      return size+1;
+    }
+  
+  }while((*adj)[currpos][vertex] == 0);
+    
+  (*adj)[0][vertex] = currpos;
+
+  *weight = (*weights)[currpos][vertex];
+  return currpos;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::write(std::ostream& strm)const{
+  
+  if(strm==NULL){
+    G_ExceptionList.lthrow("No valid stream in Lisa_WeightedGraph::write().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
+  
+  Lisa_Matrix<int> out(size,size);
+  get_adjacency_matrix(&out);
+  
+  Lisa_Matrix<TIMETYP> wout(size,size);
+  get_weight_matrix(&wout);
 
+  strm << endl << "<WEIGHTEDGRAPH>" << endl;
+  strm << "vertices= "<< get_vertices() << endl;
+  strm << "adjacency_matrix= " << out << endl;
+  strm << "weight_matrix= " << wout << endl;
+  strm << "</WEIGHTEDGRAPH>" <<endl;
 }
 
 //**************************************************************************
 
 void Lisa_WeightedGraph::read(std::istream& strm){
-
+  
+  if(strm==NULL){
+    G_ExceptionList.lthrow("No valid stream in Lisa_WeightedGraph::read().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
+  
+  string S;
+  int new_size;
+  Lisa_Matrix<int>* adj_matrix=0;
+  Lisa_Matrix<TIMETYP>* w_matrix=0;
+  for (;;){
+    S=""; 
+    strm >> S;
+    if (S==""){ 
+      G_ExceptionList.lthrow((string) "Unexpected end of file while looking for starttag <WEIGHTEDGRAPH>.",
+                             Lisa_ExceptionList::END_OF_FILE);
+      return;
+    } 
+    if (S=="<WEIGHTEDGRAPH>") break;
+  }
+  
+  S=""; 
+  strm >> S; 
+  if (S=="vertices=") {  
+    strm >> new_size; 
+    init(new_size);
+    adj_matrix=new Lisa_Matrix<int>(new_size,new_size);
+    w_matrix = new Lisa_Matrix<TIMETYP>(new_size,new_size);
+  }else{
+    G_ExceptionList.lthrow("'vertices=' expected in <WEIGHTEDGRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;
+  }
+  
+  S=""; 
+  strm >> S; 
+  if (S=="adjacency_matrix="){  
+    strm >> *adj_matrix;
+    set_adjacency_matrix(adj_matrix);
+    if(adj_matrix) delete adj_matrix;
+  }else{
+    G_ExceptionList.lthrow("'adjacency_matrix=' expected in <WEIGHTEDGRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;
+  }
+  
+  S=""; 
+  strm >> S; 
+  if (S=="weight_matrix="){  
+    strm >> *w_matrix;
+    set_weight_matrix(w_matrix);
+    if(w_matrix) delete w_matrix;
+  }else{
+    G_ExceptionList.lthrow("'weight_matrix=' expected in <WEIGHTEDGRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;
+  }
+  
+  S=""; 
+  strm >> S; 
+  if (S!="</WEIGHTEDGRAPH>"){
+    G_ExceptionList.lthrow("'</WEIGHTEDGRAPH>' expected in <WEIGHTEDGRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;  
+  } 
 }
 
 //**************************************************************************
