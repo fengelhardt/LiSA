@@ -121,17 +121,21 @@ int Lisa_DataBase::bib_entry(const char *const bibstr, int i){
     *(strstr(annote,".}"))='\0';  
   while (strchr(annote,'$'))
   {
+
     strncpy(helpstr,strchr(annote,'$')+1,ANNOTE);
     j++;
     if (j%2==0)
     {
       k++;
-      *(strchr(annote,'$'))='\0'; pn=(k-1)/2;
+      *(strchr(annote,'$'))='\0';
+      pn=(k-1)/2;
+      records[i].texannotes.push_back(Lisa_TexAnnote());
+      records[i].problems.push_back(Lisa_ProblemType());
       if (k%2!=0)
       {
         if ((strchr(annote,'|'))!=(strrchr(annote,'|')))       
         {
-          strcpy(records[i].tex_an[pn].prbl,annote);
+          strcpy(records[i].texannotes[pn].prbl,annote);
           prbl_into_tupel(annote,i,pn);	      
         }   
         else                 
@@ -141,13 +145,13 @@ int Lisa_DataBase::bib_entry(const char *const bibstr, int i){
       }
       else
         if (strcmp(annote,"*\\NP")==0)
-          records[i].tex_an[pn].np_flag=STR_NP_HARD;
+          records[i].texannotes[pn].np_flag=STR_NP_HARD;
       else if (strcmp(annote,"P")==0)
-        records[i].tex_an[pn].np_flag=POLYN;
+        records[i].texannotes[pn].np_flag=POLYN;
       else if (strcmp(annote,"\\NP")==0)
-        records[i].tex_an[pn].np_flag=NP_HARD;
+        records[i].texannotes[pn].np_flag=NP_HARD;
       else if (strcmp(annote,"P_{pseudo}")==0)
-      records[i].tex_an[pn].np_flag=PS_POLYN;
+      records[i].texannotes[pn].np_flag=PS_POLYN;
       else
         error_output(i,pn,string(annote));
     }
@@ -188,17 +192,17 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
   if (strstr(alpha,"MPT"))
      {
        if (*alpha=='M')
-	 records[dsatz].problem[nr].set_property(M_ENV,MPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,MPT);
        else if (*alpha=='O')
-	 records[dsatz].problem[nr].set_property(M_ENV,OMPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,OMPT);
        else if (*alpha=='F')
-	 records[dsatz].problem[nr].set_property(M_ENV,FMPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,FMPT);
        else if (*alpha=='J')
-	 records[dsatz].problem[nr].set_property(M_ENV,JMPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,JMPT);
        else if (*alpha=='X')
-	 records[dsatz].problem[nr].set_property(M_ENV,XMPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,XMPT);
        else if (*alpha=='G')
-	 records[dsatz].problem[nr].set_property(M_ENV,GMPT);
+	 records[dsatz].problems[nr].set_property(M_ENV,GMPT);
        if (*alpha=='M')
 	 strcpy(alpha,alpha+3);
        else
@@ -207,59 +211,59 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
    else if (strstr(alpha,"MPM"))
      {
        if (*alpha=='O')
-	 records[dsatz].problem[nr].set_property(M_ENV,OMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,OMPM);
        else if (*alpha=='F')
-	 records[dsatz].problem[nr].set_property(M_ENV,FMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,FMPM);
        else if (*alpha=='J')
-	 records[dsatz].problem[nr].set_property(M_ENV,JMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,JMPM);
        else if (*alpha=='X')
-	 records[dsatz].problem[nr].set_property(M_ENV,XMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,XMPM);
        else if (*alpha=='G')
-	 records[dsatz].problem[nr].set_property(M_ENV,GMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,GMPM);
        else if (*alpha=='Q')
-	 records[dsatz].problem[nr].set_property(M_ENV,QMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,QMPM);
        else if (*alpha=='P')
-	 records[dsatz].problem[nr].set_property(M_ENV,PMPM);
+	 records[dsatz].problems[nr].set_property(M_ENV,PMPM);
        strcpy(alpha,alpha+4);
      }
   else 
     {
       if (*alpha=='1') 
-	records[dsatz].problem[nr].set_property(M_ENV,ONE);
+	records[dsatz].problems[nr].set_property(M_ENV,ONE);
       else if (*alpha=='O')
-	records[dsatz].problem[nr].set_property(M_ENV,O);
+	records[dsatz].problems[nr].set_property(M_ENV,O);
       else if (*alpha=='F')
-	records[dsatz].problem[nr].set_property(M_ENV,F);
+	records[dsatz].problems[nr].set_property(M_ENV,F);
       else if (*alpha=='J')
-	records[dsatz].problem[nr].set_property(M_ENV,J);
+	records[dsatz].problems[nr].set_property(M_ENV,J);
       else if (*alpha=='X')
-	records[dsatz].problem[nr].set_property(M_ENV,X);
+	records[dsatz].problems[nr].set_property(M_ENV,X);
       else if (*alpha=='G')
-	records[dsatz].problem[nr].set_property(M_ENV,G);
+	records[dsatz].problems[nr].set_property(M_ENV,G);
       else if (*alpha=='P')
-	records[dsatz].problem[nr].set_property(M_ENV,P);
+	records[dsatz].problems[nr].set_property(M_ENV,P);
       else if (*alpha=='Q')
-	records[dsatz].problem[nr].set_property(M_ENV,Q);
+	records[dsatz].problems[nr].set_property(M_ENV,Q);
       else if (*alpha=='R')
-	records[dsatz].problem[nr].set_property(M_ENV,R);
+	records[dsatz].problems[nr].set_property(M_ENV,R);
       else
 	error_output(dsatz,nr,string(alpha));
       strcpy(alpha,alpha+1);
     }
   if ((*alpha=='\0') || (*alpha==';'))
     {
-      records[dsatz].problem[nr].set_property(M_NUMBER,M_ARB);
+      records[dsatz].problems[nr].set_property(M_NUMBER,M_ARB);
       if (*alpha==';')
 	{      
 	  strcpy(alpha,alpha+1);
 	  if (strcmp(alpha,"R1")==0)
 	    {
-	      records[dsatz].problem[nr].set_property(M_ENV,F_SR);
+	      records[dsatz].problems[nr].set_property(M_ENV,F_SR);
 	      strcpy(alpha,alpha+2);
 	    }
 	  else if (strcmp(alpha,"S1")==0)
 	    {
-	      records[dsatz].problem[nr].set_property(M_ENV,P_CS);
+	      records[dsatz].problems[nr].set_property(M_ENV,P_CS);
 	      strcpy(alpha,alpha+2);
 	    }
 	  else 
@@ -268,13 +272,13 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
     }   
   else if (*alpha=='m')
     {
-      records[dsatz].problem[nr].set_property(M_NUMBER,M_FIX);
+      records[dsatz].problems[nr].set_property(M_NUMBER,M_FIX);
       strcpy(alpha,alpha+1);
     }
   else if ((*alpha >= '2') && (*alpha <= '9'))
     {
-      sscanf(alpha,"%1u",&records[dsatz].problem[nr].m_no);
-      records[dsatz].problem[nr].set_property(M_NUMBER,M_VAL);
+      sscanf(alpha,"%1u",&records[dsatz].problems[nr].m_no);
+      records[dsatz].problems[nr].set_property(M_NUMBER,M_VAL);
       strcpy(alpha,alpha+1);
     }
   else 
@@ -283,9 +287,9 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
     {
       strcpy(alpha,alpha+1);
       if (strcmp(alpha,"R1")==0)
-	records[dsatz].problem[nr].set_property(M_ENV,F_SR);
+	records[dsatz].problems[nr].set_property(M_ENV,F_SR);
       else if (strcmp(alpha,"S1")==0)
-	records[dsatz].problem[nr].set_property(M_ENV,P_CS);
+	records[dsatz].problems[nr].set_property(M_ENV,P_CS);
       else 
 	error_output(dsatz,nr,string(alpha));
     } 
@@ -304,100 +308,100 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
       else 
 	strcpy(substr,strchr(beta,'\0'));
       if (strcmp(beta,"pmtn")==0)
-	records[dsatz].problem[nr].set_property(PMTN,true);
+	records[dsatz].problems[nr].set_property(PMTN,true);
       else if (strcmp(beta,"intree")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,INTREE);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,INTREE);
       else if (strcmp(beta,"outtree")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,OUTTREE);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,OUTTREE);
       else if (strcmp(beta,"tree")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,TREE);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,TREE);
       else if (strcmp(beta,"sp-graph")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,SP_GRAPH);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,SP_GRAPH);
       else if (strcmp(beta,"chains")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,CHAINS);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,CHAINS);
       else if (strcmp(beta,"prec")==0)
-	records[dsatz].problem[nr].set_property(PRECEDENCE,PREC);
+	records[dsatz].problems[nr].set_property(PRECEDENCE,PREC);
       else if (strchr(beta,'('))
 	{
 	  strncpy(hlpstr,strchr(beta,'('),LINE);
 	  *(strchr(beta,'('))='\0';
 	  if (strcmp(beta,"intree")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,INTREE);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,INTREE);
 	  else if (strcmp(beta,"outtree")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,OUTTREE);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,OUTTREE);
 	  else if (strcmp(beta,"tree")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,TREE);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,TREE);
 	  else if (strcmp(beta,"sp-graph")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,SP_GRAPH);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,SP_GRAPH);
 	  else if (strcmp(beta,"chains")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,CHAINS);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,CHAINS);
 	  else if (strcmp(beta,"prec")==0)
-	    records[dsatz].problem[nr].set_property(PRECEDENCE,PREC);
+	    records[dsatz].problems[nr].set_property(PRECEDENCE,PREC);
 	  else
 	    error_output(dsatz,nr,string(beta));
 	  if (strcmp(hlpstr,"(1)")==0)
-	    records[dsatz].problem[nr].set_property(TIME_LAGS,UNIT_TL);
+	    records[dsatz].problems[nr].set_property(TIME_LAGS,UNIT_TL);
 	  else if (strcmp(hlpstr,"(l)")==0)
-	    records[dsatz].problem[nr].set_property(TIME_LAGS,CONST_TL);
+	    records[dsatz].problems[nr].set_property(TIME_LAGS,CONST_TL);
 	  else if (strcmp(hlpstr,"(l_{ij})")==0)
-	    records[dsatz].problem[nr].set_property(TIME_LAGS,GENERAL_TL);
+	    records[dsatz].problems[nr].set_property(TIME_LAGS,GENERAL_TL);
 	  else
 	    error_output(dsatz,nr,string(hlpstr));      
 	}
       else if (strcmp(beta,"r_i")==0)
-	records[dsatz].problem[nr].set_property(RI,true);
+	records[dsatz].problems[nr].set_property(RI,true);
       else if (strcmp(beta,"d_i")==0)
-	records[dsatz].problem[nr].set_property(DI,true);	  
+	records[dsatz].problems[nr].set_property(DI,true);	  
       else if (strcmp(beta,"p_{ij}=1")==0 || strcmp(beta,"p_i=1")==0) // handle pij = pi as the same
-	records[dsatz].problem[nr].set_property(PIJ,PIJ_1);  
+	records[dsatz].problems[nr].set_property(PIJ,PIJ_1);  
       else if (strcmp(beta,"p_{ij}=p")==0 || strcmp(beta,"p_i=p")==0) // handle pij=pi as the same
-	records[dsatz].problem[nr].set_property(PIJ,PIJ_P);  
+	records[dsatz].problems[nr].set_property(PIJ,PIJ_P);  
       else if (strcmp(beta,"s-batch")==0)
-	records[dsatz].problem[nr].set_property(BATCH,S_BATCH);
+	records[dsatz].problems[nr].set_property(BATCH,S_BATCH);
       else if (strcmp(beta,"p-batch")==0)
-	records[dsatz].problem[nr].set_property(BATCH,P_BATCH);
+	records[dsatz].problems[nr].set_property(BATCH,P_BATCH);
       else if (strcmp(beta,"b<n")==0)
-	records[dsatz].problem[nr].set_property(BOUNDED_BATCH,true);
+	records[dsatz].problems[nr].set_property(BOUNDED_BATCH,true);
       else if (strncmp(beta,"n=",2)==0)
 	{
 	  if (*(beta+2)=='k')
-	    records[dsatz].problem[nr].set_property(JOB_NR,J_FIX);
+	    records[dsatz].problems[nr].set_property(JOB_NR,J_FIX);
 	  else if ((*(beta+2) >= '2') && (*(beta+2) <= '9'))
 	    {
-	      sscanf(beta+2,"%1u",&records[dsatz].problem[nr].n_no);
-	      records[dsatz].problem[nr].set_property(JOB_NR,J_VAL);
+	      sscanf(beta+2,"%1u",&records[dsatz].problems[nr].n_no);
+	      records[dsatz].problems[nr].set_property(JOB_NR,J_VAL);
 	    }
 	}
       else if (strcmp(beta,"no-wait")==0)
-	records[dsatz].problem[nr].set_property(NO_WAIT,true);
+	records[dsatz].problems[nr].set_property(NO_WAIT,true);
       else if (strcmp(beta,"size_i")==0)
-	records[dsatz].problem[nr].set_property(SIZE,true);
+	records[dsatz].problems[nr].set_property(SIZE,true);
       else if (strcmp(beta,"t_{ik}=T")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIK_T);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TIK_T);
       else if (strcmp(beta,"t_{ikl}=T")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIKL_T);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TIKL_T);
       else if (strcmp(beta,"t_i\\in\\{T_1,T_2\\}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TI_IN);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TI_IN);
       else if (strcmp(beta,"t_{kl}=t_{lk}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TKL_TLK);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TKL_TLK);
       else if (strcmp(beta,"t_i")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TI);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TI);
       else if (strcmp(beta,"t_k")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TK);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TK);
       else if (strcmp(beta,"t_{kl}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TKL);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TKL);
       else if (strcmp(beta,"t_{ikl}=t_{ilk}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIKL_TILK);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TIKL_TILK);
       else if (strcmp(beta,"t_{ik}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIK);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TIK);
       else if (strcmp(beta,"t_{ikl}")==0)
-	records[dsatz].problem[nr].set_property(TRANSPORTATION_DELAYS,TIKL);
+	records[dsatz].problems[nr].set_property(TRANSPORTATION_DELAYS,TIKL);
       else if (strcmp(beta,"s_i")==0)
-	records[dsatz].problem[nr].set_property(SERVER_FLAGS,SI);        
+	records[dsatz].problems[nr].set_property(SERVER_FLAGS,SI);        
       else if (strcmp(beta,"s_i=1")==0)
-	records[dsatz].problem[nr].set_property(SERVER_FLAGS,SI_1);      
+	records[dsatz].problems[nr].set_property(SERVER_FLAGS,SI_1);      
   else if (strcmp(beta,"s_i=s")==0)
-	records[dsatz].problem[nr].set_property(SERVER_FLAGS,SI_S);    
+	records[dsatz].problems[nr].set_property(SERVER_FLAGS,SI_S);    
       else
 	error_output(dsatz,nr,string(beta));
       strcpy(beta,substr);
@@ -406,21 +410,21 @@ Lisa_DataBase::prbl_into_tupel(char *prbl, int dsatz, int nr)
 // gamma entry --------------------------------------------------
  
   if (strcmp(gamma,"C_{\\max}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,CMAX);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,CMAX);
   else if (strcmp(gamma,"L_{\\max}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,LMAX);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,LMAX);
   else if (strcmp(gamma,"\\sum{C_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_CI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_CI);
   else if (strcmp(gamma,"\\sum{w_iC_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WICI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_WICI);
   else if (strcmp(gamma,"\\sum{U_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_UI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_UI);
   else if (strcmp(gamma,"\\sum{w_iU_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WIUI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_WIUI);
   else if (strcmp(gamma,"\\sum{T_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_TI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_TI);
   else if (strcmp(gamma,"\\sum{w_iT_i}")==0)
-    records[dsatz].problem[nr].set_property(OBJECTIVE,SUM_WITI);
+    records[dsatz].problems[nr].set_property(OBJECTIVE,SUM_WITI);
   else
     error_output(dsatz,nr,string(gamma)); 
   delete [] substr;
@@ -439,51 +443,51 @@ Lisa_DataBase::output(void)
       cout << "\n\n" << records[j].author << "\n" << records[j].year << ", j=" << j;
       for (k=0; k<records[j].no_of_prbls; k++)
 	{
-	  cout << "\n\n" << records[j].tex_an[k].prbl << " is ";
-	  if (records[j].tex_an[k].np_flag==NP_HARD)
+	  cout << "\n\n" << records[j].texannotes[k].prbl << " is ";
+	  if (records[j].texannotes[k].np_flag==NP_HARD)
 	    cout << "(ordinary) NP-hard"; 
-	  else if (records[j].tex_an[k].np_flag==STR_NP_HARD)
+	  else if (records[j].texannotes[k].np_flag==STR_NP_HARD)
 	    cout << "strongly NP-hard";
-	  else if (records[j].tex_an[k].np_flag==POLYN)
+	  else if (records[j].texannotes[k].np_flag==POLYN)
 	    cout << "polynomially solvable";
-	  else if (records[j].tex_an[k].np_flag==PS_POLYN)
+	  else if (records[j].texannotes[k].np_flag==PS_POLYN)
 	    cout << "pseudo-polynomially solvable";
 	  else 
 	    error_output(j,k,string("hardness unknown"));
 	  cout << "\nM_ENV:           " 
-	       << records[j].problem[k].get_property_old(M_ENV);
+	       << records[j].problems[k].get_property_old(M_ENV);
 	  cout << "\nM_NUMBER:        " 
-	       << records[j].problem[k].get_property_old(M_NUMBER);
+	       << records[j].problems[k].get_property_old(M_NUMBER);
 	  cout << "\nPMTN:            " 
-	       << records[j].problem[k].get_property_old(PMTN);
+	       << records[j].problems[k].get_property_old(PMTN);
 	  cout << "\nPRECEDENCE:      " 
-	       << records[j].problem[k].get_property_old(PRECEDENCE);
+	       << records[j].problems[k].get_property_old(PRECEDENCE);
 	  cout << "\nRI               " 
-	       << records[j].problem[k].get_property_old(RI);
+	       << records[j].problems[k].get_property_old(RI);
 	  cout << "\nDI:              " 
-	       << records[j].problem[k].get_property_old(DI);
+	       << records[j].problems[k].get_property_old(DI);
 	  cout << "\nPIJ:             " 
-	       << records[j].problem[k].get_property_old(PIJ);
+	       << records[j].problems[k].get_property_old(PIJ);
 	  cout << "\nBATCH:           " 
-	       << records[j].problem[k].get_property_old(BATCH);
+	       << records[j].problems[k].get_property_old(BATCH);
 	  cout << "\nBOUNDED_BATCH:   " 
-	       << records[j].problem[k].get_property_old(BOUNDED_BATCH);
+	       << records[j].problems[k].get_property_old(BOUNDED_BATCH);
           cout << "\nJOB_NR:          " 
-	       << records[j].problem[k].get_property_old(JOB_NR);
+	       << records[j].problems[k].get_property_old(JOB_NR);
           cout << "\nNO_WAIT:         " 
-	       << records[j].problem[k].get_property_old(NO_WAIT);
+	       << records[j].problems[k].get_property_old(NO_WAIT);
           cout << "\nSIZE:         " 
-	       << records[j].problem[k].get_property_old(SIZE);
+	       << records[j].problems[k].get_property_old(SIZE);
           cout << "\nTIME_LAGS:    " 
-	       << records[j].problem[k].get_property_old(TIME_LAGS);
+	       << records[j].problems[k].get_property_old(TIME_LAGS);
           cout << "\nTRANSPORTATION_DELAYS:" 
-	       << records[j].problem[k].get_property_old(TRANSPORTATION_DELAYS);
+	       << records[j].problems[k].get_property_old(TRANSPORTATION_DELAYS);
 	  cout << "\nOBJECTIVE:    " 
-	       << records[j].problem[k].get_property_old(OBJECTIVE);
+	       << records[j].problems[k].get_property_old(OBJECTIVE);
 	  cout << "\nm_no:         " 
-	       << records[j].problem[k].m_no;
+	       << records[j].problems[k].m_no;
 	  cout << "\nn_no:         " 
-	       << records[j].problem[k].n_no;
+	       << records[j].problems[k].n_no;
 	}
       cout << "\n" << records[j].bibentry;
     }

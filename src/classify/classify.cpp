@@ -51,8 +51,8 @@ Lisa_classify(const Lisa_ProblemType& G_Problem,string home,string file)
   for (int i=0; i<mybase->get_entries(); i++)
     for (j=0; j<mybase->records[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,mybase->records[i].problem[j]);
-	cplx = mybase->records[i].tex_an[j].np_flag;
+   	comp = mygraph->compare(G_Problem,mybase->records[i].problems[j]);
+	cplx = mybase->records[i].texannotes[j].np_flag;
    	switch (comp)
    	  {
 	  case IDENT: 
@@ -111,8 +111,8 @@ Lisa_full_ref(const Lisa_ProblemType& G_Problem,string home,string file)
   for (int i=0; i<mybase->get_entries(); i++)
     for (j=0; j<mybase->records[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,mybase->records[i].problem[j]);
-	cplx = mybase->records[i].tex_an[j].np_flag;
+   	comp = mygraph->compare(G_Problem,mybase->records[i].problems[j]);
+	cplx = mybase->records[i].texannotes[j].np_flag;
    	switch (comp)
    	  {
 	  case IDENT:
@@ -202,7 +202,7 @@ reference_output(int i,int j,Lisa_DataBase* mybase)
 {
   string s;
 
-  s=(string) mybase->records[i].tex_an[j].prbl+"\n"+translate("SEE")+" "+
+  s=(string) mybase->records[i].texannotes[j].prbl+"\n"+translate("SEE")+" "+
     (string) mybase->records[i].author+", "+(string) mybase->records[i].year+
     "\n\n\n\n";
   return(s);

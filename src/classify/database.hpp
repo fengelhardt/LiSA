@@ -51,9 +51,9 @@ struct Lisa_DBRecord{
   ///  year item
   char       year[YEAR];         
   ///  array of annote items
-  Lisa_TexAnnote  tex_an[MAX_PRBLMS];  
+  std::vector<Lisa_TexAnnote>  texannotes;  
   ///  array of tupel items
-  Lisa_ProblemType  problem[MAX_PRBLMS];
+  std::vector<Lisa_ProblemType>  problems;
   /// number of annote and tupel items per bibtex entry
   int        no_of_prbls;       
 };
