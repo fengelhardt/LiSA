@@ -95,12 +95,12 @@
       <item name="CR_TST"/>
       <item name="API"/>
       <item name="SHIFT"/>
+      <item name="PI"/>
       <item name="CR_API"/>
       <item name="BL_API"/>
       <item name="CR_SHIFT"/>
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
-      <item name="PI"/>
     </choice>
     <choice name="METHOD" caption="Suchmethode">
       <item name="TabuSearch"/>
