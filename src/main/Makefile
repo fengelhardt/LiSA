@@ -66,7 +66,8 @@ install:
 	cp $(INSTALLNAME) $(TOPPROGRAMPATH)/$(INSTALLNAME)
 	chmod 755 $(TOPPROGRAMPATH)/$(INSTALLNAME)
 	mkdir -p $(DATAPATH)
-	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
+	cp $(SOURCEPATH)/main/default.xml $(DATAPATH)
+    cp $(SOURCEPATH)/xml/LiSA.dtd $(DATAPATH)
 	mkdir -p $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
@@ -80,7 +81,7 @@ install:
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	rm -f $(DATAPATH)/default.lsa
+	rm -f $(DATAPATH)/default.xml
 	rm -fr $(DATAPATH)/classify
 	rm -fr $(DATAPATH)/sample
 	rm -f $(DOCPATH)/lisa/*.html
