@@ -12,6 +12,12 @@
   */
 class Lisa_Pair : public Lisa_Object{ 
 public:
+  
+  /// constructor
+  Lisa_Pair();
+  
+  ///constructor
+  Lisa_Pair(const int x_in,const int y_in);
 
   /// pair values 
   int x,y;
