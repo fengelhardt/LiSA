@@ -16,9 +16,9 @@ FP_Set::FP_Set(int ni, int sigmai)
     int i;
     n=ni;
     sigma=sigmai;
-    vectors=new fp_vector*[sigma];
+    vectors=new FP_Vector*[sigma];
     for (i=0; i<sigma; i++)
-       vectors[i]=new fp_vector(n);
+       vectors[i]=new FP_Vector(n);
     slack=1;
     for (i=0; i<n; i++) slack*=3;
     covered = new Lisa_Vector<int>(slack);
@@ -44,10 +44,10 @@ const FP_Set& FP_Set::operator=(FP_Set& other)
 
 //**************************************************************************
 
-fp_vector* FP_Set::replace_vector(int pos , fp_vector * nv)
+FP_Vector* FP_Set::replace_vector(int pos , FP_Vector * nv)
   {
     int i;
-    fp_vector * ov;
+    FP_Vector * ov;
     ov=vectors[pos];      
     for (i=0; i<2*n+1; i++)
        if (!(--((*covered)[ov->get_neighbour(i)]))) slack++;    
@@ -63,7 +63,7 @@ void FP_Set::spread()
   {
     int i,j,k, elem;
     long seed=12345671l;
-    fp_vector * other=new fp_vector(n);
+    FP_Vector * other=new FP_Vector(n);
     Lisa_Matrix<int> needed(n,3);
     for (i=1; i<sigma; i++)
        {  
@@ -104,7 +104,7 @@ void FP_Set::spread()
 void FP_Set::random(long * seed)
   {
     int i,j;
-    fp_vector * other=new fp_vector(n);
+    FP_Vector * other=new FP_Vector(n);
     for (i=1; i<sigma; i++)
        {  
          for (j=0; j<n; j++)
@@ -121,7 +121,7 @@ void FP_Set::random2(long * seed)
     int i,j,k,l;
     k=1;
     for (l=0; l< n/2; l++) k*=3;
-    fp_vector * other=new fp_vector(n);
+    FP_Vector * other=new FP_Vector(n);
     for (i=1; i<sigma; i++)
        {  
          for (j=0,l=1; j<n; j++,l*=3)

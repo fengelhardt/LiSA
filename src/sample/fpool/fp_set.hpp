@@ -15,7 +15,7 @@ private:
   /// private variable,needs documentation
   int slack, sigma,n;
   Lisa_Vector<int> * covered;
-  fp_vector ** vectors;
+  FP_Vector ** vectors;
   //@}
   
 public:
@@ -31,10 +31,10 @@ public:
   
   //@{
   ///member function, needs documentation
-  fp_vector * replace_vector(int , fp_vector *);
+  FP_Vector * replace_vector(int , FP_Vector *);
   int get_slack() { return slack; }
   int get_cover( int i) { return (*covered)[i]; }
-  fp_vector& get_vector(int i) { return (*vectors[i]); }
+  FP_Vector& get_vector(int i) { return (*vectors[i]); }
   void spread();
   void random(long *);
   void random2(long *);

@@ -8,7 +8,7 @@
 //**************************************************************************
 
 // no return type specified:
-fp_vector::fp_vector(int x)
+FP_Vector::FP_Vector(int x)
  { 
    int i, j, rv;
    n=x;
@@ -24,7 +24,7 @@ fp_vector::fp_vector(int x)
 
 //**************************************************************************
 
-const fp_vector& fp_vector::operator=(fp_vector& other)
+const FP_Vector& FP_Vector::operator=(FP_Vector& other)
  { 
    n=other.n;
    (*v)=(*(other.v));
@@ -35,7 +35,7 @@ const fp_vector& fp_vector::operator=(fp_vector& other)
 
 //**************************************************************************
 
-void fp_vector::set_element(int pos, int el)
+void FP_Vector::set_element(int pos, int el)
  {
    int i, rv;
    rv=1; i=0;

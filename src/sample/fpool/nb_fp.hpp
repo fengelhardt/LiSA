@@ -25,8 +25,8 @@ class fp_nb: public Lisa_Neighborhood
            Lisa_Tabu * tabu;
            FP_Set * solution;
            FP_Set * best_solution;
-           fp_vector * modification;
-           fp_vector * best_modification;
+           FP_Vector * modification;
+           FP_Vector * best_modification;
            int  work_value, best_step_value; 
            int repl_i, best_repl_i, chpos, best_chpos, elem, old_elem;
         /// construct only with given number and lenght of vectors:

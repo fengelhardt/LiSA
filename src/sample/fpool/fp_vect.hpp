@@ -1,55 +1,56 @@
-/*
- * ******************** fp_vector.hpp ******************************
- * 
- * description:  vector for football pool problem
- * 
- * @author        Thomas Tautenhahn
- * @version 2.3pre3
- *
- * date:         17. 11. 1998
- *
- */
 
-#ifndef _fp_vector_h
-#define _fp_vector_h
+#ifndef _FP_Vector_h
+#define _FP_Vector_h
 
 #include <fstream>
 
 #include "../../basics/matrix.hpp"
 
-class fp_vector
-  {
-    private:
-       /// size:
-       int n;
-       /// the vector itself
-       Lisa_Vector<int> * v;      
-       /// all vectors are lexicographically numbered
-       int number;
-       /// numbers of covered vectors
-       Lisa_Vector<int> * neighbour;
-    public:  
-       /// construct only with given size
-       fp_vector(int);
-       /// copy:
-       const fp_vector& operator=(fp_vector&);
-       /// modify vector:
-       void set_element(int, int);
-       int get_element(int pos) {return (*v)[pos];}
-       int get_neighbour(int pos) {return (*neighbour)[pos];}
-       void write(std::ostream& strm = std::cout) const
-          {
-	    strm << *v;
-          }
-       ~fp_vector(){ delete v; delete neighbour;}
-  };    
-        
-inline std::ostream& operator << (std::ostream& strm, const fp_vector& l)
-   {
-     l.write(strm);
-     return strm;
-   }
+/// vector for football pool problem
+/**
+ * @author        Thomas Tautenhahn
+ * @version 2.3pre3
+ */
+class FP_Vector{
+private:
+  /// size:
+  int n;
+  /// the vector itself
+  Lisa_Vector<int> * v;      
+  /// all vectors are lexicographically numbered
+  int number;
+  /// numbers of covered vectors
+  Lisa_Vector<int> * neighbour;
+public:  
+  /// construct only with given size
+  FP_Vector(int);
+  /// assignment operator
+  const FP_Vector& operator=(FP_Vector&);
+  
+  /// modify vector:
+  void set_element(int, int);
+  /// member function, needs documentation
+  int get_element(int pos) {return (*v)[pos];}
+  ///member function, needs documentation
+  int get_neighbour(int pos) {return (*neighbour)[pos];}
+   
+  /// write object values to a stream
+  void write(std::ostream& strm = std::cout) const{strm << *v;}
+  /// destructor
+  ~FP_Vector(){ delete v; delete neighbour;}
+};    
 
+//**************************************************************************
+
+/// stream operator for writing FP_Vector object      
+inline std::ostream& operator << (std::ostream& strm, const FP_Vector& l){
+  l.write(strm);
+  return strm;
+}
+
+//**************************************************************************
+
+/// function, needs documentation
 bool smalldistance(int, int);
 
 #endif

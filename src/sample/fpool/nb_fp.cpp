@@ -19,8 +19,8 @@ fp_nb::fp_nb(int ni, int sigmai)
    seed=1234567;
    solution= new FP_Set(n, sigma);
    best_solution= new FP_Set(n, sigma);
-   modification= new fp_vector(n);
-   best_modification= new fp_vector(n);
+   modification= new FP_Vector(n);
+   best_modification= new FP_Vector(n);
  }  
 
 //**************************************************************************
