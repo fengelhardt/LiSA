@@ -9,8 +9,7 @@
 #include "pair.hpp"
 
 /// flags indicating various possible connections between knots
-enum{NOT_POSSIBLE=-2
-    ,CRA /// backwards ARC ;)
+enum{CRA=-1 /// backwards ARC ;)
     ,NO
     ,ARC
     ,EDGE};
@@ -105,19 +104,19 @@ public:
 
   /// insert an edge into the graph
   /** Add edge from vertice start to vertice end. */
-  bool insert_edge(const int start,const int end);
+  void insert_edge(const int start,const int end);
 
   /// insert an arc into the graph
   /** Add arc from vertice start to vertice  end. */
-  bool insert_arc(const int start,const int end);
+  void insert_arc(const int start,const int end);
 
   /// remove an edge from the graph 
   /** Delete edge from vertice start to vertice end. */
-  bool exclude_edge(const int start,const int end);
+  void exclude_edge(const int start,const int end);
 
   /// remove an arc from the graph
   /** Delete arc from vertice start to vertice end. */
-  bool exclude_arc(const int start,const int end);
+  void exclude_arc(const int start,const int end);
 
   /// get the kind of connection between two vertices 
   /** possible return values are:
@@ -128,10 +127,10 @@ public:
   int get_connection(const int start,const int end);
 
   ///initialize the pointer for the successors list of a given vertice
-  bool init_succ_pointer(const int vertex);
+  void init_succ_pointer(const int vertex);
 
   /// initialize the pointer for the predecessor list of a given vertice
-  bool init_pred_pointer(const int vertex);
+  void init_pred_pointer(const int vertex);
 
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 
@@ -177,7 +176,7 @@ public:
   bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
   /// delete all ARC's CRA's and edges connected with that vertice
-  bool remove_all_con(const int vertex);
+  void remove_all_con(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */

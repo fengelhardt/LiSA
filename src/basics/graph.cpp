@@ -156,10 +156,16 @@ void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
 
 //**************************************************************************
 
-bool Lisa_Graph::insert_edge(const int start,const int end){
-  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
-  
+void Lisa_Graph::insert_edge(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::insert_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
   int con=get_connection(start, end);
   
   if(con!=EDGE){
@@ -200,24 +206,29 @@ bool Lisa_Graph::insert_edge(const int start,const int end){
     (*matrix)[end][start].x=n+1;
     (*matrix)[end][start].y=end_of_NB_List;
     
-    return true;
   }
-  return false;
+
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::insert_arc(const int start,const int end){
-  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
-  
+void Lisa_Graph::insert_arc(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::insert_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
   int con=get_connection(start, end);
   
   //Test ob arc schon vorhanden
-  if((con!=ARC)&(con!=EDGE)){
+  if((con!=ARC)&&(con!=EDGE)){
     if(con==CRA){
       exclude_arc(end,start);
-      return (insert_edge(start,end));
+      insert_edge(start,end);
     }else{
       //Einfuegen des Bogens
       //Aendern der Succ-Liste von start
@@ -246,18 +257,23 @@ bool Lisa_Graph::insert_arc(const int start,const int end){
       (*matrix)[end][start].x=-(n+1);
       (*matrix)[end][start].y=-end_of_Pred_List;
       
-      return true;
     }
   }
-  return false;
+
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::exclude_edge(const int start,const int end){
-  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
-  
+void Lisa_Graph::exclude_edge(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::exclude_edge().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif  
+
   //Test ob Kante vorhanden
   int con=get_connection(start,end);
   
@@ -299,18 +315,23 @@ bool Lisa_Graph::exclude_edge(const int start,const int end){
     
     (*matrix)[end][start].x=0;
     (*matrix)[end][start].y=0;
-    
-    return true;
+
   }
-  return false;
+
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::exclude_arc(const int start,const int end){
-  
-  if((start>n)||(end>n)||(start==end)||(start==0)||(end==0)){return false;}
-  
+void Lisa_Graph::exclude_arc(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::exclude_arc().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
   //Test ob Bogen vorhanden
   
   int con=get_connection(start,end);
@@ -354,32 +375,38 @@ bool Lisa_Graph::exclude_arc(const int start,const int end){
     (*matrix)[end][start].x=0;
     (*matrix)[end][start].y=0;
     
-    return true;
+    //return true;
   }
   
   if(con==EDGE){
     exclude_edge(start, end);
     insert_arc(end, start);
-    return true;
   }
   
-  return false;
 }
 
 //**************************************************************************
 
-int  Lisa_Graph::get_connection(const int start,const int end){
+int Lisa_Graph::get_connection(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::get_connection().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return NO;
+  }
+#endif
+
+  if(start==end) return NO;
   
-  if((start>n)||(end>n)||(start==end)){return NOT_POSSIBLE;}
-  
-  if(((*matrix)[start][end].x==0)&((*matrix)[start][end].y==0)){
+  if(((*matrix)[start][end].x==0)&&((*matrix)[start][end].y==0)){
     return NO;
   }else{
-    //if(((*matrix)[start][end].x<0)||((*matrix)[start][end].y<0))
+
     if(signum(start, end)==-1){
       return CRA;
     }else{
-      //if((matrix[end][start]->x<0)||(matrix[end][start]->y<0))
+
       if(signum(end, start)==-1){
         return ARC;
       }else{
@@ -392,25 +419,45 @@ int  Lisa_Graph::get_connection(const int start,const int end){
 
 //**************************************************************************
 
-bool Lisa_Graph::init_succ_pointer(const int knot){
-  if((knot<=0)||(knot>n)){return false;}
+void Lisa_Graph::init_succ_pointer(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::init_succ_pointer().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
 
   (*succ_pred_pointer)[knot-1].x=knot;
-  return true;
 }
 
 //**************************************************************************
 
-bool Lisa_Graph::init_pred_pointer(const int knot){
-  if((knot<=0)||(knot>n)){return false;}
+void Lisa_Graph::init_pred_pointer(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::init_pred_pointer().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
   
   (*succ_pred_pointer)[knot-1].y=knot;
-  return true;
 }
  
 //**************************************************************************
 
 int Lisa_Graph::get_next_successor(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::get_next_successor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return end;
+  }
+#endif
 
   int old_knot=(*succ_pred_pointer)[knot-1].x;
   int next_knot=(*matrix)[knot][old_knot].x;
@@ -438,7 +485,15 @@ int Lisa_Graph::get_next_successor(const int knot){
 //**************************************************************************
 
 int Lisa_Graph::get_next_predeccessor(const int knot){
-  
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::get_next_predecessor().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return end;
+  }
+#endif 
+ 
   int old_knot=(*succ_pred_pointer)[knot-1].y;
   int next_knot=abs((*matrix)[knot][old_knot].x);
   
@@ -465,6 +520,15 @@ int Lisa_Graph::get_next_predeccessor(const int knot){
 //**************************************************************************
 
 int Lisa_Graph::get_next_edge(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::get_next_edge().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return end;
+  }
+#endif 
+
   int next_knot=get_next_successor(knot);
   
   if((next_knot!=end)&&(get_connection(knot,next_knot)!=EDGE)){  
@@ -490,13 +554,18 @@ bool Lisa_Graph::no_edges(){
 //**************************************************************************
 
 int Lisa_Graph::number_of_succ(const int knot){
-  
-  int succ_count=0;
-
-  init_succ_pointer(knot);
-  while(get_next_successor(knot)<end){
-    succ_count++;
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::number_of_succ().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
   }
+#endif 
+
+  int succ_count=0;
+  init_succ_pointer(knot);
+  while(get_next_successor(knot)<end) succ_count++;
   
   return succ_count;
 }
@@ -504,13 +573,18 @@ int Lisa_Graph::number_of_succ(const int knot){
 //**************************************************************************
 
 int Lisa_Graph::number_of_pred(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::number_of_pred().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
   
   int pred_count=0;
-
   init_pred_pointer(knot);
-  while(get_next_predeccessor(knot)<end){
-    pred_count++;
-  }
+  while(get_next_predeccessor(knot)<end) pred_count++;
   
   return pred_count;
 }
@@ -568,8 +642,17 @@ bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
 
 //**************************************************************************
 
-bool Lisa_Graph::remove_all_con(const int knot){
-  
+void Lisa_Graph::remove_all_con(const int knot){
+
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>n ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::remove_all_con().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
   //EDGES
   int next=(*matrix)[knot][knot].x;
   while(next<end){
@@ -591,7 +674,6 @@ bool Lisa_Graph::remove_all_con(const int knot){
     next=(*matrix)[0][knot].x;
   } 
   
-  return true;
 }
 
 //**************************************************************************
