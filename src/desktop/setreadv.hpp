@@ -41,6 +41,9 @@ int TC_set_prob(ClientData clientData, Tcl_Interp *interp,
 //**************************************************************************
 
 /// set an entry in G_ProblemType
+/** takes two parameters:
+    1. number of tupel-entry
+    2. the corresponding entry */
 int TC_set_Tupel(ClientData clientData, Tcl_Interp *interp,
 		             int argc, TCL_HACK_CHAR *argv[]); 
 

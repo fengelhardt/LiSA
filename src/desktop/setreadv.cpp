@@ -139,25 +139,26 @@ int TC_get_pt(ClientData /* clientData */,
 //**************************************************************************
 
 // set an entry in Lisa_Problen.tupel
+// 1.parameter  number of tupel-entry
+// 2.parameter  the corresponding entry
 int TC_set_Tupel(ClientData /* clientData */,
-	 Tcl_Interp * /*interp*/,
-	 int /*argc*/, TCL_HACK_CHAR *argv[])  
-{
-  // two parameters:
-  // 1.parameter  number of tupel-entry
-  // 2.parameter  the corresponding entry
-  string ms,ns,ws;
-  int index;
-  int entry;
+                 Tcl_Interp * /*interp*/,
+                 int /*argc*/, TCL_HACK_CHAR *argv[]){
+  
+  int index,entry;
   sscanf(argv[1],"%d",&index);
   sscanf(argv[2],"%d",&entry);
-  if (index<M_NO)
+  
+  if (index<M_NO){
     G_ProblemType.set_property(index,entry);
-  else if (index==M_NO)
+  }else if (index==M_NO){
     G_ProblemType.m_no=entry;
-  else if (index==N_NO)
+  }else if (index==N_NO){
     G_ProblemType.n_no=entry;
-  else cerr << "error in TC_set_Tupel: entry " << index << "to big\n";
+  }else{ 
+    cerr << "Error in TC_set_Tupel(), entry " << index << "to high." << endl;
+  }
+  
   return TCL_OK;
 }
 
