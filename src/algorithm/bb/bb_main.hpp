@@ -8,8 +8,8 @@
  * 19.9.1998
 */
 
-#ifndef _bb_main_h 
-#define _bb_main_h 
+#ifndef _lisa_bb_main_h_ 
+#define _lisa_bb_main_h_ 
 
 /** @name Branch and Bound 
     Branch and bound algorithms for several problems are collected in the 

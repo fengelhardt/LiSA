@@ -19,21 +19,17 @@
 
 //@{
 
-#ifndef __cplusplus
-
-#error Must use C++ for these types.
-
-#endif
 #ifndef _m1_sched_h
 #define _m1_sched_h
 
-#include"../main/global.hpp"
-#include"../basics/matrix.hpp"
-#include"../lisa/ptype.hpp"
-#include"schedule.hpp"
-#include"../lisa/lvalues.hpp"
-#include"sp_sched.hpp"
 #include <stdlib.h>
+
+#include "../main/global.hpp"
+#include "../basics/matrix.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "schedule.hpp"
+#include "sp_sched.hpp"
 
 
 /// problem data class for single machine problems

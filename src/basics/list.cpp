@@ -10,9 +10,10 @@
 #include <ostream>
 #include <string>
 
+#include "list.hpp"
+
 using namespace std;
 
-#include"list.hpp"
 extern string G_ExtraException;
 
 void error(string message )

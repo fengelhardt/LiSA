@@ -8,14 +8,11 @@
  * 19.9.1998
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _os_bb_h
 #define _os_bb_h
 
-#include"bb_env.hpp"
-#include"../../scheduling/os_sched.hpp"
+#include "../../scheduling/os_sched.hpp"
+#include "bb_env.hpp"
 
 class OS_BB: public Lisa_GenericBb
   {

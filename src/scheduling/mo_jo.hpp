@@ -12,9 +12,9 @@
 
 #include <iostream>
 
-using namespace std;
+#include "../basics/matrix.hpp"
 
-#include"../basics/matrix.hpp"
+using namespace std;
 
 const int MO_SOURCE=-1;
 const int NO_SUCCESSOR=-1;

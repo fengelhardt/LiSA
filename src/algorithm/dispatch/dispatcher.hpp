@@ -8,17 +8,14 @@
  * 10.9.1999
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _dispatch_h
 #define _dispatch_h
 
-#include"../../scheduling/js_sched.hpp"
-#include"../../scheduling/os_sched.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../scheduling/os_sched.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
 
 const int NUMBER_RULES=9;
 const int RAND=0;

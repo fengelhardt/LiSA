@@ -12,9 +12,6 @@
 /** @version
  */ 
 
-// **************** Project Includes ********************
-
-// **************** Lisa Includes ********************
 #include "../scheduling/xsched.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
@@ -25,13 +22,7 @@
 #include "../desktop/basicwin.hpp"
 #include "../misc/except.hpp"
 
-
-//******************** Local Includes ********************
-
 #include "gantt.hpp"
-
-
-//********************* Local Constants *******************
 
 const bool MACHINE=1;
 const bool JOB=0;
@@ -39,8 +30,6 @@ const int BEGIN=0;
 const int MIDDLE=1;
 const int END=2;
 const int LINE=3;
-
-
 
 void TCGantt::init(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule, 
 		   bool orientation)

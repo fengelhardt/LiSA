@@ -11,30 +11,18 @@
  *
 */ 
 
-
-// ********************* System Includes ********************
-//  sqr(...) in: Lisa_Canvas::arc_arrow(...)
 #include <math.h>
 
-
-// ********************* Lisa Includes ********************
-// ztos(...) in  TCTable::draw_table(...) 
 #include "../misc/int2str.hpp"
-// mw_width() 
-#include "c_tcl.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
 
 #include "callback.hpp"
-// ************************ Local Includes ********************
 #include "win_obj.hpp"
+#include "c_tcl.hpp"
 
-
-// ************************ Definitions ***********************
 #define MAXSTRING 1200
-
-// ********************** Global Variables ******************
 
 // ************************* Functions ***********************
 

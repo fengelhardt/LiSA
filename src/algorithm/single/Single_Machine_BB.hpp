@@ -12,12 +12,13 @@
 #ifndef _single_machine_h 
 #define _single_machine_h 
 
+#include <iostream>
+
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
 #include "../../misc/except.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
-#include <iostream>
 
 using namespace std;
 

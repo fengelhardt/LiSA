@@ -9,22 +9,11 @@
  *
  */
 
-/*  class API_Neighbourhood
-    This is the problem dependent API neighbourhood class for the 
-    single machine problem.
-
-    Andreas Winkler
-*/  
-
-
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _m1_nb_h
 #define _m1_nb_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/m1_sched.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 
 /** API-Neighborhood.

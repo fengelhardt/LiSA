@@ -54,20 +54,13 @@ const float VERTICE_RADIUS =20;
 #include <string>
 #include <tk.h>
 
-using namespace std;
-
-// ********************** Lisa Includes **************************
-// Lisa_Canvas definition:
-#include "basicwin.hpp"
-// Lisa_Matrix parameter in draw_table(...)
 #include "../basics/matrix.hpp"
-// Lisa_MO in parameter in draw_table(...)
 #include "../scheduling/mo_jo.hpp"
-// Lisa_SGraph in void TCGraphic::draw_SG(...)
 #include "../scheduling/pgraph.hpp"
-// Schedule-object
 #include "../scheduling/os_sched.hpp"
+#include "basicwin.hpp"
 
+using namespace std;
 
 /// graphical in-and output of Lisa_Schedule
 class TCSchedule: public TCTable {

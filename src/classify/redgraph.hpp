@@ -5,10 +5,6 @@
 */
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _redgraph_h
 #define _redgraph_h
 

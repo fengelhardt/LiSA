@@ -4,22 +4,18 @@
 */
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _classify_h 
 #define _classify_h 
 
 #include <string>
 #include <tk.h>
 
-using namespace std;
-
 #include "../misc/except.hpp"
 #include "../desktop/c_tcl.hpp"
 #include "../lisa/ptype.hpp"
 #include "database.hpp"
+
+using namespace std;
 
 // flag: minmal NP-hard or maximal polynomial problem
 const int MINMAX=TRUE;

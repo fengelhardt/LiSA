@@ -9,8 +9,9 @@
 */
 
 #include "../main/global.hpp"
-#include "sp_sched.hpp"
 #include "../misc/except.hpp"
+
+#include "sp_sched.hpp"
 
 //############# Lisa_ShpProblem #####################################
 

@@ -8,9 +8,8 @@
  * date:             5.01.1999
  *
  */
-
-#include "jsp_blpi.hpp"
 #include <stdlib.h>
+#include "jsp_blpi.hpp"
 
 JSHOP_cr_bl_API_Ngbh::JSHOP_cr_bl_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

@@ -9,8 +9,9 @@
  *
  */
 
-#include "nb_fp.hpp"
 #include "../../main/global.hpp"
+
+#include "nb_fp.hpp"
 
 fp_nb::fp_nb(int ni, int sigmai)
  {

@@ -10,10 +10,11 @@
 #include <ostream>
 #include <string>
 
+#include "pair.hpp"
+#include "lmatrix.hpp"
+
 using namespace std;
 
-#include "pair.hpp"
-#include"lmatrix.hpp"
 extern string G_ExtraException;
 
 /* *******************************************************

@@ -9,14 +9,11 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _oshp_bl_api_h
 #define _oshp_bl_api_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/os_sched.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 #include "osp_api.hpp"
 

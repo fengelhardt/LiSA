@@ -8,12 +8,19 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <iostream>
-#include <fstream>
 #include <time.h>
 #include <signal.h>
 
-using namespace std;
+#include <iostream>
+#include <fstream>
+
+#include "../../basics/matrix.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../misc/except.hpp"
 
 #include "jb_block.hpp"
 #include "jb_brnch.hpp"
@@ -30,12 +37,4 @@ using namespace std;
 #include "jb_stack.hpp"
 #include "jb_table.hpp"
 
-#include "../../basics/matrix.hpp"
-#include "../../scheduling/js_sched.hpp"
-#include "../../lisa/ptype.hpp"
-#include "../../scheduling/schedule.hpp"
-#include "../../lisa/lvalues.hpp"
-#include "../../lisa/ctrlpara.hpp"
-#include "../../misc/except.hpp"
-
-
+using namespace std;

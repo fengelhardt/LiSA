@@ -9,8 +9,9 @@
  *
  */
 
-#include "fp_set.hpp"
 #include "../../main/global.hpp"
+
+#include "fp_set.hpp"
 
 fp_set::fp_set(int ni, int sigmai)
   {

@@ -1,7 +1,7 @@
 /*
  *************** travel.cpp **************
  *
- * Marc Mörig
+ * Owner: Marc Mörig
  *
  * heuristic for the travelling salesman problem
  * showing how to use LiSA's neighbourhood algorithms 
@@ -12,12 +12,13 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
+#include "../../algorithm/nb_iter/iterate.hpp"
+#include "../../lisa/ctrlpara.hpp"
 
 #include "travel_graph.hpp"
 #include "travel_neighbourhood.hpp"
-#include "../../algorithm/nb_iter/iterate.hpp"
-#include "../../lisa/ctrlpara.hpp"
+
+using namespace std;
 
 /** @name An example for using LiSA's neighbourhood algorithms
     
@@ -132,16 +133,16 @@ int main(int argc, char *argv[]){
   
   // arguments ?
   if(argc != 3){
-    cout << "Usage: " << argv[0] << " [input file] [output file]" <<  endl;
+    std::cout << "Usage: " << argv[0] << " [input file] [output file]" <<  std::endl;
     exit(1);
   }
   
   // open input file
-  ifstream i_strm(argv[1]);
+  std::ifstream i_strm(argv[1]);
   
   // file exits ?
   if(!i_strm){
-    cout << "File '"<< argv[1] <<"' not found. Exiting."<< endl;
+    std::cout << "File '"<< argv[1] <<"' not found. Exiting."<< std::endl;
     exit(1);
   }
   
@@ -176,8 +177,8 @@ int main(int argc, char *argv[]){
     else if(method_in=="TS") METHOD = TS ;
     else if(method_in=="TA") METHOD = TA;
     else {
-      cout << method_in << " is not a valid algorithm." << endl;
-      cout << "Must be II,SA,SA_anti,TS or TA." << endl;
+      std::cout << method_in << " is not a valid algorithm." << std::endl;
+      std::cout << "Must be II,SA,SA_anti,TS or TA." << std::endl;
       exit(7);
     }
   }
@@ -189,8 +190,8 @@ int main(int argc, char *argv[]){
   }else{
     NGBH = param.get_string("NGBH");
     if(NGBH!="API"&&NGBH!="RPI"){
-      cout << NGBH << " is not a valid Neighbourhood." << endl;
-      cout << "Must be API or RPI." << endl;
+      std::cout << NGBH << " is not a valid Neighbourhood." << std::endl;
+      std::cout << "Must be API or RPI." << std::endl;
       exit(7);
     }
   }
@@ -230,8 +231,8 @@ int main(int argc, char *argv[]){
       if(ngbh_type_in == "ENUM") NGBH_TYPE = ENUM;
       else if(ngbh_type_in == "RAND") NGBH_TYPE = RAND;
       else{
-	cout << ngbh_type_in << " is no valid neighbourhood type." << endl;
-	cout << "Must be ENUM or RAND." << endl;
+	std::cout << ngbh_type_in << " is no valid neighbourhood type." << std::endl;
+	std::cout << "Must be ENUM or RAND." << std::endl;
 	exit(7);
       }
     }
@@ -307,11 +308,11 @@ int main(int argc, char *argv[]){
   nbh->write_best();
   
   // open file for output
-  ofstream o_strm(argv[2]);
+  std::ofstream o_strm(argv[2]);
   
   // done ?
   if(!o_strm){
-    cout << "Could not open file '" << argv[2] << "'. Exiting." << endl;
+    std::cout << "Could not open file '" << argv[2] << "'. Exiting." << std::endl;
     exit(1);
   }
   

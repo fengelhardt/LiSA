@@ -9,14 +9,11 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _jsp_swap_h
 #define _jsp_swap_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/js_sched.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 

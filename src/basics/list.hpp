@@ -18,11 +18,10 @@
 #include <sstream>
 #include <string>
 
-using namespace std;
-
 #include "../main/global.hpp"
 #include "../lisa/lsaobjct.hpp"
 
+using namespace std;
 
 // just a little bit of hide and seek, written to annoy the developer
 void error(string);

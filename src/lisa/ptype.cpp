@@ -11,17 +11,11 @@
  * version:        V 1.0  
 */
 
-
-// **************************** System Includes ****************************
 #include <stdio.h>
 
-
-// **************************** Project Includes ****************************
 #include "../main/global.hpp"
-// error handling:
 #include "../misc/except.hpp"
 
-// **************************** Local Includes ****************************
 #include "ptype.hpp"
 
 

@@ -27,20 +27,13 @@
 #ifndef _ptype_h 
 #define _ptype_h 
 
-
-//  ************** System Includes  ******************
 #include <string>
 #include <iostream>
 
-using namespace std;
-
-
-//  ************** Lisa Includes  ******************
 #include "../main/global.hpp"
 #include "filentry.hpp"
 
-
-//  ************** Class Definitions ******************
+using namespace std;
 
 //######################### Class Lisa_ProblemType ##########################
 /** Problem Description

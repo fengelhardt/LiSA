@@ -8,19 +8,15 @@
  * 19.9.1998
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-#ifndef _bb_env_h
-#define _bb_env_h
+#ifndef _lisa_bb_env_h_
+#define _lisa_bb_env_h_
 
 #include <iostream>
-
-using namespace std;
 
 #include "../../basics/list.hpp"
 #include "../../basics/order.hpp"
 
+using namespace std;
 
 /// flag to store whether current abort signal (in unix SIGINT) was received
 extern bool abort_algorithm;

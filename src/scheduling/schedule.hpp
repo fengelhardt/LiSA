@@ -26,7 +26,15 @@
 #ifndef _schedule_h 
 #define _schedule_h 
 
-// **************** defines ********************
+#include <string>
+#include <iostream>
+
+#include "../basics/matrix.hpp"
+#include "../basics/list.hpp"
+#include "../lisa/filentry.hpp"
+
+using namespace std;
+
 const int LENGHT_OF_INFO_VECTOR = 15;
 const int LENGHT_OF_OBJECTIVE = 8;
 // only regular objective
@@ -35,21 +43,6 @@ const int MAXRANK_INFO = 9;
 const int NO_OF_SOURCES = 10;
 const int NO_OF_SINKS = 11;
 const int NO_OF_IKL =12;
-
-//  ************** System Includes  ******************
-#include <string>
-#include <iostream>
-
-using namespace std;
-
-//  ************** Lisa Includes  ******************
-#include "../basics/matrix.hpp"
-#include "../basics/list.hpp"
-#include "../lisa/filentry.hpp"
-
-
-//  ************** Class Definitions ******************
-
 
 //########################## Class Lisa_Schedule #####################################
 

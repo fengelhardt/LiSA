@@ -15,12 +15,12 @@
 
 #include <iostream>
 
-using namespace std;
-
 #include "../basics/matrix.hpp"
 #include "../main/global.hpp"
 #include "../basics/order.hpp"
 #include "../misc/except.hpp"
+
+using namespace std;
 
 /** @name Matchings
     The classes Lisa_BipartMatching, Lisa_WeightedMatching 

@@ -8,9 +8,8 @@
  * date:             17.10.2000
  *
  */
-
-#include "jsp_s_pi.hpp"
 #include <stdlib.h>
+#include "jsp_s_pi.hpp"
 
 JSHOP_semi_API_Ngbh::JSHOP_semi_API_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

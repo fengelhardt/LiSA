@@ -9,15 +9,12 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _nb_fp_h
 #define _nb_fp_h
 
 #include "../../algorithm/nb_iter/neighbor.hpp"
-#include "fp_set.hpp"
 #include "../../algorithm/nb_iter/tabu.hpp"
+#include "fp_set.hpp"
 
 class fp_nb: public Lisa_Neighborhood
  {

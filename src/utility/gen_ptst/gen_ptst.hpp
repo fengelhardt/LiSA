@@ -8,7 +8,15 @@
  * date:             14.04.1999
  *
  */
+ 
+#ifndef _lisa_gen_ptst_h_
+#define _lisa_gen_ptst_h_ 
+ 
+#include <stdlib.h>
 
+#include <fstream>
+#include <iomanip> 
+ 
 #include "../../basics/matrix.hpp"
 #include "../../misc/except.hpp"
 #include "../../lisa/ptype.hpp"
@@ -17,12 +25,9 @@
 #include "../../lisa/ctrlpara.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
 
-#include <fstream>
-#include <iomanip>
-
 using namespace std;
 
-#include <stdlib.h>
+
   const int MAXINT  = 214748000;
   const int MAXLONG = 214748000;
 
@@ -39,7 +44,7 @@ using namespace std;
   string CONFIG_HOME_St, LISA_HOME_St, FILE_St;
   string DESCRIPTION, CALL;
 
-
+#endif
 
 
 

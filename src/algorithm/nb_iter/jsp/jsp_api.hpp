@@ -9,15 +9,12 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _jsp_api_h
 #define _jsp_api_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/js_sched.hpp"
 #include "../../../basics/order.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 
 /** Job-Shop API Neighborhood.

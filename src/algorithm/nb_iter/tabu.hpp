@@ -10,18 +10,15 @@
  */
 
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _tabu_h
 #define _tabu_h
 
 #include <ostream>
 
-using namespace std;
-
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
+
+using namespace std;
 
 /** @name Tabu List    
 */

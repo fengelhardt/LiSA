@@ -10,42 +10,27 @@
  * version:            V 1.0
 */ 
 
-
-// ********************* System Includes ********************
 #include <string>
 
-using namespace std;
-
-
-// ******************** Project Includes ********************
-
-// error handling:
+#include "../misc/int2str.hpp"
 #include "../misc/except.hpp"
-// some definitions in: ProblemTupel
+#include "../main/status.hpp"
 #include "../main/global.hpp"
-// to respond, if anything has changed
-#include "callback.hpp"
-// for the global variables
-#include "../scheduling/xsched.hpp"
 #include "../main/lisapref.hpp"
-#include "tclvar.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
+#include "../scheduling/xsched.hpp"
 #include "../scheduling/schedule.hpp"
-#include "../main/status.hpp"
-// stoz(string) returns string as number 
-#include "../misc/int2str.hpp"
-// translate() function
-#include "c_tcl.hpp"
-// To generate the C-Matrix and the objective function
 #include "../scheduling/os_sched.hpp"
-// for calculations in gantt-chart (in show_output())
-#include "gantt.hpp"
-// output of the bibtex references (in TC_getvar(REFERENCES))
 #include "../classify/classify.hpp"
-// ************************ Local Includes ********************
-#include "tcl_c.hpp"
 
+#include "tcl_c.hpp"
+#include "gantt.hpp"
+#include "c_tcl.hpp"
+#include "tclvar.hpp"
+#include "callback.hpp"
+
+using namespace std;
 
 // ********************** Global Variables ********************
 extern class Lisa_ProblemType G_ProblemType;

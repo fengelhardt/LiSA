@@ -9,21 +9,24 @@
  * last changes 27.03.01
  */
 
-#include<stdlib.h>
-#include<iostream>
-#include<unistd.h>
-#include<fstream>
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../scheduling/mo_jo.hpp"
-#include"../../lisa/lvalues.hpp"
-#include"../../misc/except.hpp"
-#include"graphalgo.hpp"
-#include"convertgraph.hpp"
-#include"irrednode.hpp"
-#include"irredtest.hpp"
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <iostream>
+#include <fstream>
+
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../scheduling/mo_jo.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
+
+#include "graphalgo.hpp"
+#include "convertgraph.hpp"
+#include "irrednode.hpp"
+#include "irredtest.hpp"
 
 using namespace std;
 

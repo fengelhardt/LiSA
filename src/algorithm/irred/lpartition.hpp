@@ -10,15 +10,16 @@
 #ifndef lpartition_h
 #define lpartition_h
 
-#include<stdlib.h>
-#include<iostream>
-#include<fstream>
+#include <stdlib.h>
+#include <iostream>
+#include <fstream>
+
+#include "../../main/global.hpp"
+#include "../../misc/except.hpp"
+#include "../../basics/matrix.hpp"
 
 using namespace std;
 
-#include"../../main/global.hpp"
-#include"../../misc/except.hpp"
-#include"../../basics/matrix.hpp"
 /** @name Partitionize Sets
 
     The arcs of a plangraph have to be partitionized into disjunktive

@@ -9,38 +9,22 @@
  * date:        16.9.1998
 */
 
-
-//  ********************** System Includes ***************************
-
-// input of the preference file
 #include <fstream>
 
-using namespace std;
-
-
-// ********************** Project Includes **************************
-
-// definition of the global variables
-#include "../scheduling/xsched.hpp"
-#include "lisapref.hpp"
-#include "../desktop/tclvar.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
+#include "../scheduling/xsched.hpp"
+#include "../desktop/tclvar.hpp"
+#include "../desktop/c_tcl.hpp"
+#include "../desktop/callback.hpp"
+#include "../misc/except.hpp"
 
 #include "status.hpp"
-
-// Tk_myMain()
-#include "../desktop/c_tcl.hpp"
-
-// read(G_Preferences.get_string("STARTFILE"),D_ALLES); 
 #include "file_io.hpp"
+#include "lisapref.hpp"
 
-// new_mn()
-#include "../desktop/callback.hpp"
-
-// error handling
-#include "../misc/except.hpp"
+using namespace std;
 
 // ********************** Global Variables ********************
 class Lisa_ProblemType G_ProblemType;

@@ -10,6 +10,7 @@
  */
  
 #include <stdlib.h>
+
 #include "tabu.hpp"
 
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength )

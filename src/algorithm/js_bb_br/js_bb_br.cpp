@@ -6,6 +6,7 @@
 
 
 #include <stdlib.h>
+
 #include "js_bb_br.hpp"
 
 
@@ -28,7 +29,7 @@ void set_abort(int i)
  }
 
 // ##############################################################
-// WARNING! The following two functions have to be replaced for Windoofs!
+// WARNING! The following two functions have to be replaced for Windows!
 
 void run_start()
  {

@@ -10,7 +10,6 @@
  */
 
 #include "jsp_crtr.hpp"
-//#include <math.h>
 
 JSHOP_cr_trans_Ngbh::JSHOP_cr_trans_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

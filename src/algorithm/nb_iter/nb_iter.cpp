@@ -12,9 +12,11 @@
     @author Andreas Winkler
     @version 2.3pre2
 */
-#include "nb_iter.hpp"
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+#include "nb_iter.hpp"
+
 
 /* at first three procedures for the iteration of 
      - one machine problems

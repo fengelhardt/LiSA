@@ -8,9 +8,10 @@
  * 19.9.1998
 */
 
-#include"os_bb.hpp"
-#include"../../main/global.hpp"
-#include"../../basics/order.hpp"
+#include "../../main/global.hpp"
+#include "../../basics/order.hpp"
+
+#include "os_bb.hpp"
 
 OS_BB::OS_BB()
     {

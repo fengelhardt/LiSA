@@ -8,9 +8,9 @@
  * date:             11.01.1999
  *
  */
+#include <stdlib.h>
 
 #include "osp_blsh.hpp"
-#include <stdlib.h>
 
 OSHOP_cr_bl_shift_Ngbh::OSHOP_cr_bl_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )

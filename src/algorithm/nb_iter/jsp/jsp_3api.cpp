@@ -8,9 +8,9 @@
  * date:             21.10.1998
  *
  */
-
-#include "jsp_3api.hpp"
 #include <stdlib.h>
+ 
+#include "jsp_3api.hpp"
 
 JSHOP_3_API_Ngbh::JSHOP_3_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

@@ -9,16 +9,13 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _jshp_3_cr_h
 #define _jshp_3_cr_h
 
-#include "../neighbor.hpp"
-#include "../../../scheduling/js_sched.hpp"
-#include "../tabu.hpp"
 #include "../../../basics/order.hpp"
+#include "../../../scheduling/js_sched.hpp"
+#include "../neighbor.hpp"
+#include "../tabu.hpp"
 #include "jsp_api.hpp"
 
 /** Job-Shop 3-time-critical-API Neighborhood.

@@ -11,15 +11,12 @@
  * version:            V 1.0
 */ 
 
-
-// ********************* System Includes ********************
 #include <string>
 #include <fstream>
 
-using namespace std;
-
-// ************************ Local Includes ********************
 #include "ptst_call.hpp"
+
+using namespace std;
 
 // ********************** Global Variables ********************
 extern class Lisa_ProblemType G_ProblemType;

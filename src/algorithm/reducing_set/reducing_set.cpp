@@ -1,5 +1,4 @@
 /*
- * ******* Aufgabe23.cpp ****************
  * 
  * Owner: iroess
  *
@@ -9,27 +8,25 @@
 
 
 
-#include<stdlib.h>
-#include<stdio.h>
-#include<iostream>
-#include<unistd.h>
-#include<fstream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+#include <unistd.h>
+#include <fstream>
+
+#include "../../scheduling/matching.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../main/global.hpp"
+#include "../../basics/list.hpp"
+#include "../../basics/pair.hpp"
+#include "../../basics/matrix.hpp"
+#include "../../basics/lmatrix.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
 
 using namespace std;
-
-#include"../../scheduling/matching.hpp"
-#include"../../main/global.hpp"
-#include"../../basics/list.hpp"
-#include "../../basics/pair.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include"../../misc/except.hpp"
-
-#include"../../basics/matrix.hpp"
-#include"../../basics/lmatrix.hpp"
-
 
 inline ostream& operator << (ostream&strm, const Lisa_Pair& p)
 {

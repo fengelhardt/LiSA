@@ -10,37 +10,23 @@
  * version:     V 1.0
 */ 
 
-// ********************* System Includes ********************
-// string used in string file
 #include <stdlib.h>
 #include <string>
 
-using namespace std;
-
-
-// ******************** Project Includes ********************
-
-// Tcl/Tk wants to know, where this C++ funktions are
-#include "tcl_c.hpp"
-#include "setreadv.hpp"
 #include "../communic/ptst_call.hpp"
-
-// G_Preferences
 #include "../main/lisapref.hpp"
-
-// G_TclVar.alive
 #include "../desktop/tclvar.hpp"
-
-// G_ProblemType
 #include "../lisa/ptype.hpp"
-
-// Exception handling
 #include "../misc/except.hpp"
 
-// ************************ Local Includes ********************
 #include "c_tcl.hpp"
+#include "tcl_c.hpp"
+#include "setreadv.hpp"
+
+using namespace std;
 
 // ********************** Global Variables ********************
+
 extern class Lisa_Preferences G_Preferences;
 extern Tcl_Interp *interp;
 extern class Lisa_TCLVar G_TclVar;

@@ -10,53 +10,35 @@
  * version:            V 1.0
 */ 
 
-
-// ********************* System Includes ********************
 #include <stdlib.h>
-#include <string>
-// used in TC_open_schedule():
-#include <fstream>
 #include <unistd.h>
 #include <signal.h>
 
-using namespace std;
+#include <string>
+#include <fstream>
 
-// ******************** Project Includes ********************
-
-// error handling:
 #include "../misc/except.hpp"
-// some definitions in: ProblemTupel
-#include "../main/global.hpp"
-// to respond, if anything has changed
-#include "callback.hpp"
-// to start the external Branch and Bound Algorithm
-#include "../communic/alg_call.hpp"
-// for the global variables
-//#include "../scheduling/xschedule.hpp"
-// order used in TC_update_seq()
-#include "../basics/order.hpp"
+#include "../misc/int2str.hpp"
 #include "../main/lisapref.hpp"
-#include "../desktop/tclvar.hpp"
+#include "../main/global.hpp"
+#include "../main/status.hpp"
+#include "../main/file_io.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
 #include "../scheduling/xsched.hpp"
-#include "../main/status.hpp"
-// in TC_save
-#include "../main/file_io.hpp"
-#include "../misc/int2str.hpp"
-// translate() function
-#include "c_tcl.hpp"
-// To generate the C-Matrix and the objective function
 #include "../scheduling/os_sched.hpp"
-// output of the classification scheme (in TC_classify())
 #include "../classify/classify.hpp"
-// for calculations in gantt-chart (in show_output())
+#include "../communic/alg_call.hpp"
+#include "../basics/order.hpp"
+#include "../desktop/tclvar.hpp"
+
+#include "callback.hpp"
 #include "gantt.hpp"
-
-// ************************ Local Includes ********************
 #include "tcl_c.hpp"
+#include "c_tcl.hpp"
 
+using namespace std;
 
 // ********************** Global Variables ********************
 extern class Lisa_ProblemType G_ProblemType;

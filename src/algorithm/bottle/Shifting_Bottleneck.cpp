@@ -9,9 +9,9 @@
  *
 */
 
-#include"Shifting_Bottleneck.hpp"
-#include"../single/Single_Machine_BB.hpp"
-#include<fstream>
+#include <fstream>
+#include "../single/Single_Machine_BB.hpp"
+#include "Shifting_Bottleneck.hpp"
 
 using namespace std;
 

@@ -22,12 +22,10 @@
 #include <string>
 #include <iostream>
 
-using namespace std;
-
-// ********************* LiSA Includes **********************
 #include "../basics/list.hpp"
 #include "lsaobjct.hpp"
 
+using namespace std;
 
 const int UNDEFINED=0;
 const int INT=1;

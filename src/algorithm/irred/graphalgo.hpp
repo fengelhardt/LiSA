@@ -10,7 +10,7 @@
 #ifndef graphalgo_h
 #define graphalgo_h
 
-#include"../../basics/graph.hpp"
+#include "../../basics/graph.hpp"
 /** @name Some helpful operations on Graphs
 
   Just some helpfull operations on graphs that are needed for the irreducibility test. 

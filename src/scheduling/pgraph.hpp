@@ -10,10 +10,6 @@
  * version: V 1.0
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _pgraph_h
 #define _pgraph_h
 

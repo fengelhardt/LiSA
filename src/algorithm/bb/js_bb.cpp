@@ -8,9 +8,10 @@
  * 19.9.1998
 */
 
-#include"js_bb.hpp"
-#include"../../main/global.hpp"
-#include"../../basics/order.hpp"
+#include "../../main/global.hpp"
+#include "../../basics/order.hpp"
+
+#include "js_bb.hpp"
 
 // start the algorithm
 void JS_BB::run(Lisa_JsProblem * Pi, int zfn, 

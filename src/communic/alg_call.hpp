@@ -22,22 +22,15 @@
 #include <string>
 #include <tcl.h>
 
-using namespace std;
-
-//  ********************** LiSA Includes ***************************
-// Lisa_ProblemType, Lisa_Values, Lisa_Schedule, Lisa_ControlParameters
-// and Lisa_Preferences as parameters
 #include "../lisa/ctrlpara.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
 #include "../scheduling/schedule.hpp"
 #include "../main/lisapref.hpp"
-
-// sorting used for priority rules
 #include "../basics/order.hpp"
-
-// Lisa_Status used as parameter for priority rules
 #include "../main/status.hpp"
+
+using namespace std;
 
 /// call external algorithm
 int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call,

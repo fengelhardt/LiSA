@@ -3,23 +3,25 @@
  * 
  * vectors and matrices with dynamic size and fast access
  *
- * Owner: Thomas Tautenhahn
+ * Owner: Thomas Tautenhahn 
+ *        21.10.99
  *
- * 21.10.99
+ * Patch: Marc Moerig 
+ *        03.01.2003
+ *
  *
 */
 
-#ifndef _matrix_h 
-#define _matrix_h 
+#ifndef _lisa_matrix_h_ 
+#define _lisa_matrix_h_ 
 
 #include <iostream>
-
-using namespace std;
 
 #include "../main/global.hpp"
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
 
+using namespace std;
 
 /** @name Vectors and Matrices
     Classes #Lisa_Vector<T># and #Lisa_Matrix<T># provide easy to use 
@@ -45,65 +47,88 @@ using namespace std;
 /** Basic vector class in LiSA. */
 
 template<class T>
-class Lisa_Vector 
-{ 
+class Lisa_Vector{
+private:
+  // size
+  unsigned int m;
+  // array to hold elements
+  T* contents;
+  
+  /** default constructor to create an empty vector */
+  Lisa_Vector();
+  /** re-init vector */
+  void re_init(const unsigned int m);
+   
 public:
   /// construct vector with m elements of type T
-  Lisa_Vector(const int m);
+  Lisa_Vector(const unsigned int m);
+  
   /// construct vector as a copy of other
   Lisa_Vector(const Lisa_Vector<T>& other);
+  
+  /// destructor 
+  ~Lisa_Vector();
+  
   /// assign value to all elements 
   void fill(const T value);             
+  
   /// access to j-th element of vector
-  T& operator[] (const unsigned int j)   
-    { 
-      #ifdef LISA_DEBUG
-      if (j>=m) 
-	{
-	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
-				 ztos((int)m)+"-element vector requested",
-				 OUT_OF_RANGE);
+  inline T& operator[] (const unsigned int j){ 
+#ifdef LISA_DEBUG
+    if (j>=m){
+        G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+                                ztos((int)m)+"-element vector requested",
+                                OUT_OF_RANGE);
 	  return contents[0];
 	}
-      #endif
-      return contents[j];
-    } 
-  T operator[] (const unsigned int j) const   
-    { 
-      #ifdef LISA_DEBUG
-      if (j>=m) 
-	{
-	  G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
-				 ztos((int)m)+"-element vector requested",
-				 OUT_OF_RANGE);
+#endif
+    return contents[j];
+  }
+  
+  inline T operator[](const unsigned int j)const{ 
+#ifdef LISA_DEBUG
+    if (j>=m){
+      G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
+				             ztos((int)m)+"-element vector requested",
+                             OUT_OF_RANGE);
 	  return contents[0];
 	}
-      #endif
-      return contents[j];
-    }
+#endif
+    return contents[j];
+  }
+  
   /// length of vector
-  int get_m() const { return m; }
+  int get_m()const{ return m; }
+  
   /// assign a vector to another  
   const Lisa_Vector<T>& operator=(const Lisa_Vector<T>& );
+  
   /// compare vectors
   bool operator==(const Lisa_Vector<T>&) const;
+  
   /// compare lexicographically
   bool operator<=(const Lisa_Vector<T>&) const;
-  // input/output in lisa-format
+  
+  /// input in lisa-format
   void write(ostream& = cout) const;
+  
+  /// output in lisa format
   void read(istream& = cin);
+  
   /// search index of maximal vector element
-  int index_of_max() const;
+  unsigned int index_of_max() const;
+  
   /// search index of minimal vector element
-  int index_of_min() const;
-  ~Lisa_Vector();
-  T* get_first() const { return contents; }
-  T* get_last() const { return contents+m; }
-private:
-  // size:
-  const unsigned int m;
-  T* contents;   
+  unsigned int index_of_min() const;
+  
+  /// return pointer to first element of the vector
+  inline T* get_first() const { return contents; }
+  
+  /// return pointer to the last element of the vector
+  inline T* get_last() const { return contents+m; }  
 };
+
+//******************************************************************************
 
 /** Basic matrix class in LiSA. A Lisa_Matrix is a vector of vectors. */
 template<class T>

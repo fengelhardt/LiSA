@@ -8,43 +8,19 @@
  *
  * date: 28.9.1999
  * version: V 1.0
-*/ 
+*/
 
-
-// ********************** Project Includes **************************
-
-
-// for output of the gantt-chart (in show_output())
+#include "../desktop/c_tcl.hpp" 
 #include "../desktop/gantt.hpp"
-
-// G_XSchedule.CP
 #include "../scheduling/xsched.hpp"
-
-// use of G_TclVar.Graphic_io in show_output()
-#include "tclvar.hpp"
-
-// G_Preferences used in calling of Lisa_classify
 #include "../main/lisapref.hpp"
-
-// print_error used in update_objective()
-#include "../desktop/c_tcl.hpp"
-
-// the output of the different models depende on the zoom-Flag which is 
-// defined in Lisa_Status
 #include "../main/status.hpp"
-
-// output of the objective value as string
 #include "../misc/int2str.hpp"
-
-// order used in update_LR()
 #include "../basics/order.hpp"
-
-// for use of Lisa_ProblemType:
 #include "../lisa/ptype.hpp"
 
-// ************************ Local Includes ********************
 #include "callback.hpp"
-
+#include "tclvar.hpp"
 
 // ********************** Global Variables ********************
 

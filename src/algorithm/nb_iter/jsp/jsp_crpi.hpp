@@ -9,14 +9,11 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _shp_cr_api_h
 #define _shp_cr_api_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/js_sched.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 

@@ -24,29 +24,16 @@
 #ifndef _lisapref_h 
 #define _lisapref_h 
 
-
-//  ************** System Includes  ******************
-
-/* for: string LISA_HOME */
 #include <string>
-/* for definition of Tcl_Interp */
 #include <tk.h>
+
+#include "../lisa/filentry.hpp"
+#include "../lisa/ctrlpara.hpp"
+#include "../basics/matrix.hpp"
 
 using namespace std;
 
-//  ************** Lisa Includes **********************
-/*   public Lisa_FileEntry   */
-#include "../lisa/filentry.hpp"
 
-/* for Lisa_ControlParameters */
-#include "../lisa/ctrlpara.hpp"
-
-/* for  Lisa_Vector<int> *colors*/
-#include "../basics/matrix.hpp"
-
-
-
-// ****************** defines ************************
 const int GANTT_JOB=0;
 const int GANTT_MACHINE=1;
 const int GANTT_NORMAL=0;

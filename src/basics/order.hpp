@@ -8,13 +8,10 @@
  * 19.9.1998
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _order_h
 #define _order_h
 
-#include"matrix.hpp"
+#include "matrix.hpp"
 
 /** @name Orders and Sorting
     The following methods of sorting are implemented in LiSA:\\

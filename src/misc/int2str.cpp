@@ -11,16 +11,11 @@
  *
 */ 
 
-//  ********************** System Includes ***************************
 #include <stdio.h>
 
-
-// ************************ Local Includes ********************
 #include "int2str.hpp"
 
-
 // *********************** functions *************************
-
 
 bool inttst(double wert){
   double diff;

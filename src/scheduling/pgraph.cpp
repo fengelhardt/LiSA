@@ -11,23 +11,12 @@
  * version:       V 1.0
  *
 */
-
-
-// ********************** System Includes ********************
 #include <stdio.h>
 
-// ********************** Project Includes *******************
-//#include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
-
-
-// ************************ Local Includes ********************
 #include "pgraph.hpp"
 
-
-// ********************** Global Variables ********************
 extern class Lisa_Values G_Values;
-
 
 // *********************** functions *************************
 

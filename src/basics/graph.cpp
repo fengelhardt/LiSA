@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include"graph.hpp"
+#include "graph.hpp"
 
 //Spalte 0 :
 //x=Anfang der succ-Liste

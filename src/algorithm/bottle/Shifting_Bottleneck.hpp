@@ -13,20 +13,16 @@
 #define _bottleneck_h 
 
 #include <iostream>
-
-using namespace std;
-
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
 #include "../../misc/except.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
-#include"../../scheduling/js_sched.hpp"
-#include"../../scheduling/sp_sched.hpp"
-#include"../../basics/order.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../scheduling/sp_sched.hpp"
+#include "../../basics/order.hpp"
 
-
-
+using namespace std;
 
 /** Shifting_Bottleneck object for Lisa, using the Shifting_Bottleneck 
     heuristic to solve scheduling problems 

@@ -9,17 +9,16 @@
  *
 */
 
-#include <iostream>
-
-using namespace std;
-
-#include "matrix.hpp"
-#include "pair.hpp"
-#include "../lisa/filentry.hpp"
-
-
 #ifndef _graph_h 
 #define _graph_h 
+
+#include <iostream>
+
+#include "../lisa/filentry.hpp"
+#include "matrix.hpp"
+#include "pair.hpp"
+
+using namespace std;
 
 #define NO 0
 #define ARC 1

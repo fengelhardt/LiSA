@@ -9,10 +9,9 @@
 */
 
 #include "../main/global.hpp"
-#include"os_sched.hpp"
-#include"../basics/order.hpp"
+#include "../basics/order.hpp"
 
-
+#include "os_sched.hpp"
 
 Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
   {

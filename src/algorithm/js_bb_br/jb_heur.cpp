@@ -10,13 +10,15 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+
+#include "../../basics/matrix.hpp"
+#include "../../basics/order.hpp"
+
 #include "jb_dtstr.hpp"
 #include "jb_table.hpp"
 #include "jb_list.hpp"
 #include "jb_low.hpp"
 #include "jb_heur.hpp"
-#include "../../basics/matrix.hpp"
-#include "../../basics/order.hpp"
 
 using namespace std;
 

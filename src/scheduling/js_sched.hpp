@@ -19,15 +19,11 @@
 
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _js_plan_h
 #define _js_plan_h
 
-#include<stdio.h>
-#include"sp_sched.hpp"
+#include <stdio.h>
+#include "sp_sched.hpp"
 
 /// special problem class for job shop problems, it numerated from 1
 class Lisa_JsProblem : public Lisa_ShpProblem

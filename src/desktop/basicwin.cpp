@@ -11,20 +11,15 @@
  *
 */ 
 
-//  ********************** System Includes ***************************
-#include <iostream>
 #include <math.h>
 #include <string.h>
 
-using namespace std;
+#include <iostream>
 
-// ************************ Local Includes ********************
+#include "../misc/int2str.hpp"
 #include "basicwin.hpp"
 
-
-// ************************ LiSA Includes ********************
-// ztos(...) in  TCTable::draw_table(...) 
-#include "../misc/int2str.hpp"
+using namespace std;
 
 // ************************ Definitions ***********************
 #define MAXSTRING 1200

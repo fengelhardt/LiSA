@@ -9,9 +9,6 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _fp_set_h
 #define _fp_set_h
 

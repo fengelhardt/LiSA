@@ -6,6 +6,7 @@
 /* ************************************************************************* */
 
 #include <malloc.h>
+
 #include "jb_dtstr.hpp"
 #include "jb_table.hpp"
 #include "jb_list.hpp"

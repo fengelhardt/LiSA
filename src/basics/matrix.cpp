@@ -13,14 +13,14 @@
 #include <string.h>
 #include <string>
 
-using namespace std;
-
-#include "matrix.hpp"
 #include "../main/global.hpp"
+#include "matrix.hpp"
 #include "pair.hpp"
 
+using namespace std;
+
 template<class T>
-Lisa_Vector<T>::Lisa_Vector(int m_in):m(m_in)
+Lisa_Vector<T>::Lisa_Vector(const unsigned int m_in):m(m_in)
      {
        contents= new T[m];
      }  
@@ -43,7 +43,7 @@ void Lisa_Vector<T>::fill(T wert)
      }
 
 template<class T>
-int Lisa_Vector<T>::index_of_max() const
+unsigned int Lisa_Vector<T>::index_of_max() const
 {
   unsigned int i,j;
   T value=contents[0];
@@ -55,7 +55,7 @@ int Lisa_Vector<T>::index_of_max() const
 }
 
 template<class T>
-int Lisa_Vector<T>::index_of_min() const 
+unsigned int Lisa_Vector<T>::index_of_min() const 
 {
   unsigned int i,j;
   T value=contents[0];
@@ -119,7 +119,7 @@ Lisa_Vector<T>::~Lisa_Vector()
 #ifdef LISA_DEBUG
        if (!contents) G_ExceptionList.lthrow("vector without contents");
 #endif       
-       delete[] contents;
+       if(contents) delete[] contents;
      }
 
 template<class T>

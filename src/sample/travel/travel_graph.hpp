@@ -9,19 +9,19 @@
  * 
  * it may or may not contain/read/write a solution
  */
+ 
+#ifndef _travel_graph_h
+#define _travel_graph_h
 
 #include <time.h>
 #include <iostream>
-
-using namespace std;
 
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 #include "../../misc/except.hpp"
 #include "../../lisa/lsaobjct.hpp"
 
-#ifndef _travel_graph_h
-#define _travel_graph_h
+using namespace std;
 
 /** @name Traveling Salesman Problem Object 
  

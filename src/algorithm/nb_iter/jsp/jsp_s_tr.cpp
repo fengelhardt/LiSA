@@ -8,9 +8,8 @@
  * date:             02.10.2000
  *
  */
-
-#include "jsp_s_tr.hpp"
 #include <math.h>
+#include "jsp_s_tr.hpp"
 
 JSHOP_semi_trans_Ngbh::JSHOP_semi_trans_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

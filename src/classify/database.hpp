@@ -5,17 +5,14 @@
 */
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _database_h
 #define _database_h
 
-#include "redgraph.hpp"
 #include "../misc/except.hpp"
 #include "../main/global.hpp"
 #include "../lisa/ptype.hpp"
+
+#include "redgraph.hpp"
 
 /// maximal number of BiBTeX entries.
 const int MAX_REC=200;

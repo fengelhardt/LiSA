@@ -24,14 +24,14 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"
-#include "../../scheduling/schedule.hpp"
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
+#include "../../scheduling/schedule.hpp"
+
+using namespace std;
 
 int main(int argc, char *argv[]) 
 {

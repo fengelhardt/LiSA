@@ -9,28 +9,19 @@
  * version: V 1.0
 */ 
 
-
-//  ********************** System Includes ***************************
 #include <fstream>
 #include <stdio.h>
 
-using namespace std;
-
-// ********************** LiSA Includes **************************
-// global variables
 #include "../lisa/ptype.hpp"
 #include "../lisa/lvalues.hpp"
-#include "../scheduling/schedule.hpp"
-// error handling
 #include "../misc/except.hpp"
-// refreshing of the Lisa Main Window
 #include "../desktop/callback.hpp"
-// G_XSchedule
 #include "../scheduling/xsched.hpp"
+#include "../scheduling/schedule.hpp"
 
-// ********************** Local Includes **********************
 #include "file_io.hpp"
 
+using namespace std;
 
 // ********************** external variables ********************
 

@@ -8,9 +8,10 @@
  * 19.9.1998
 */
 
-#include"bb_env.hpp"
-// replace the following line for a Windoofs version:
-#include<signal.h>
+// replace the following line for a Windows version:
+#include <signal.h>
+
+#include "bb_env.hpp"
 
 bool abort_algorithm;
 
@@ -36,7 +37,7 @@ void Lisa_GenericBb::count_steps()
       cout << "OBJECTIVE= " << upper_bound << endl;
  }    
 
-// WARNING! The following two functions have to be replaced for Windoofs!
+// WARNING! The following two functions have to be replaced for Windows!
 
 void Lisa_GenericBb::run_start()
  {

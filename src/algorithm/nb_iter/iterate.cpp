@@ -10,14 +10,19 @@
  *
  */
 
-#include "iterate.hpp"
-#include <signal.h>
-#include <math.h>         
-#include <ostream>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
+#include <signal.h>
+         
+#include <ostream>
+
 #include "../../main/global.hpp"
 #include "../../misc/int2str.hpp"
+
+#include "iterate.hpp"
+
+using namespace std;
 
 bool abort_algorithm;
 
@@ -28,7 +33,7 @@ void set_abort(int i)
  }
 
 // ##############################################################
-// WARNING! The following two functions have to be replaced for Windoofs!
+// WARNING! The following two functions have to be replaced for Windows!
 
 void Lisa_Iterator::run_start()
  {

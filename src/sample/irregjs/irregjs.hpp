@@ -13,10 +13,10 @@
 
 #include <iostream>
 
-using namespace std;
-
 #include "../../misc/except.hpp"
 #include "../../scheduling/js_sched.hpp"
+
+using namespace std;
 
 class NM_JsProblem: public Lisa_JsProblem
    {

@@ -9,8 +9,9 @@
 */
 
 #include "../main/global.hpp"
-#include "js_sched.hpp"
 #include "../basics/order.hpp"
+
+#include "js_sched.hpp"
 
 //############# problem instance ######################################
 

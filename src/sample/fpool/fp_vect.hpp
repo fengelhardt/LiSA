@@ -9,14 +9,12 @@
  *
  */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _fp_vector_h
 #define _fp_vector_h
 
-#include "../../basics/matrix.hpp"
 #include <ostream>
+
+#include "../../basics/matrix.hpp"
 
 using namespace std;
 

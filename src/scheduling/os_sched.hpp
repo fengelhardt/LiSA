@@ -19,20 +19,15 @@
 
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _osplan_h
 #define _osplan_h
 
 #include <stdio.h>
 #include <iostream>
 
-using namespace std;
-
 #include "sp_sched.hpp"
 
+using namespace std;
 
 /** Class for representing an instance of open shop to be used by Lisa_OsSchedule.
     Warning: jobs and machines are internally numbered 1,2, ... */

@@ -14,17 +14,13 @@
  *               11. 12. 98 plan replaced by schedule, own functionality
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
-
 #ifndef _sp_sched_h
 #define _sp_sched_h
 
-#include"../main/global.hpp"
-#include"../basics/matrix.hpp"
-#include"../lisa/lvalues.hpp"
-#include"../lisa/lsaobjct.hpp"
+#include "../main/global.hpp"
+#include "../basics/matrix.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../lisa/lsaobjct.hpp"
 
 const int SOURCE=0;
 const int SINK=0;

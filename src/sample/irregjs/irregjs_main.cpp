@@ -9,15 +9,16 @@
 */
 
 #include <stdlib.h>
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
+
+#include "../../lisa/ptype.hpp"
+
+#include "irregjs.hpp"
+#include "insert.hpp"
+#include "append.hpp"
 
 using namespace std;
-
-#include"irregjs.hpp"
-#include"insert.hpp"
-#include"append.hpp"
-#include"../../lisa/ptype.hpp"
 
 int main(int argc, char *argv[]) 
  {

@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #include "redgraph.hpp"
 
 Lisa_RedGraph::Lisa_RedGraph(void)

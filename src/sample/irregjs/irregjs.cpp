@@ -10,10 +10,9 @@
 #include <stdlib.h>
 #include <string>
 
-using namespace std;
-
 #include "irregjs.hpp"
 
+using namespace std;
 
 NM_JsProblem::NM_JsProblem(Lisa_Values * Pin) : Lisa_JsProblem( Pin ) 
   {

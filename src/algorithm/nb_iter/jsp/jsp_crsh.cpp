@@ -8,9 +8,9 @@
  * date:             18.10.2000
  *
  */
+#include <stdlib.h>
 
 #include "jsp_crsh.hpp"
-#include <stdlib.h>
 
 JSHOP_cr_shift_Ngbh::JSHOP_cr_shift_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

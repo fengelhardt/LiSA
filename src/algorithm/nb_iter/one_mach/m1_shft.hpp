@@ -17,14 +17,11 @@
     version 1.0a1
 */  
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _m1_nb_sh_h
 #define _m1_nb_sh_h
 
-#include "../neighbor.hpp"
 #include "../../../scheduling/m1_sched.hpp"
+#include "../neighbor.hpp"
 #include "../tabu.hpp"
 #include "m1_api.hpp"
 

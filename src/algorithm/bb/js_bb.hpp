@@ -8,14 +8,11 @@
  * 19.9.1998
 */
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _js_bb_h
 #define _js_bb_h
 
-#include"bb_env.hpp"
-#include"../../scheduling/js_sched.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "bb_env.hpp"
 
 class JS_BB: public Lisa_GenericBb
   {

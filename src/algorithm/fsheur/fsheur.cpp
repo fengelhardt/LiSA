@@ -1,23 +1,25 @@
 /*
  * ************** fsheur.cpp *******************************
  * 
- * Sample how to implement an algorithm for LiSA
+ * A flow shop heuristic.
  *
  * Owner: Manuela Vogel
  *
  * 11.09.2000
 */
+
 #include <stdlib.h>
-#include<iostream>
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../scheduling/js_sched.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include<unistd.h>
-#include<fstream>
-#include"../../misc/except.hpp"
+#include <unistd.h>
+#include <fstream>
+#include <iostream>
+
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
 #include "../../basics/order.hpp"
 
 using namespace std;

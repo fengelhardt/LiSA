@@ -26,9 +26,6 @@
 */  
 //@{
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _iterate_h
 #define _iterate_h
 

@@ -3,17 +3,16 @@
 
 #include <fstream>
 
+#include "../../main/global.hpp"
+#include "../../scheduling/os_sched.hpp"
+#include "../../basics/order.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
+
 using namespace std;
-
-#include"../../main/global.hpp"
-#include"../../scheduling/os_sched.hpp"
-#include"../../basics/order.hpp"
-
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include"../../misc/except.hpp"
 
 enum CostFunc {
   CMax,

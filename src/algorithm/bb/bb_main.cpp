@@ -9,17 +9,20 @@
 */
 
 #include <stdlib.h>
-#include<iostream>
-#include"os_bb.hpp"
-#include"js_bb.hpp"
-#include"../../basics/list.hpp"
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include<unistd.h>
-#include<fstream>
+#include <unistd.h>
+
+#include <fstream>
+#include <iostream>
+
+#include "../../basics/list.hpp"
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+
+#include "os_bb.hpp"
+#include "js_bb.hpp"
 
 using namespace std;
 

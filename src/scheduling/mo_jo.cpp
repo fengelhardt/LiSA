@@ -8,10 +8,9 @@
 */
 #include <string>
 
+#include "mo_jo.hpp"
+
 using namespace std;
-
-#include"mo_jo.hpp"
-
 
 Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(const int n_in)
   {

@@ -1,15 +1,16 @@
+#include <stdlib.h>
+
 #include <fstream>
 
-using namespace std;
-
-#include <stdlib.h>
-#include "fp_set.hpp"
-#include "fp_vect.hpp"
-#include "nb_fp.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
 #include "../../misc/except.hpp"
 #include "../../lisa/ctrlpara.hpp"
 
+#include "fp_set.hpp"
+#include "fp_vect.hpp"
+#include "nb_fp.hpp"
+
+using namespace std;
 
 int main(int argc, char *argv[])
  { 

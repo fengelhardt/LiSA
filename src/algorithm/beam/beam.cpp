@@ -1,19 +1,21 @@
 /**
  * @author : jan tusch, andre herms
  */ 
-
-#include<iostream>
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include<fstream>
-#include"../../misc/except.hpp" 
-#include "b_node.hpp"
+#include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#include <stdlib.h>
+
+#include <iostream>
+#include <fstream>
+
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp" 
+
+#include "b_node.hpp"
 
 using namespace std;
 
@@ -33,15 +35,6 @@ CostFunc costFunc = CLast;
 int myproblemtype = O;
 //Lisa_MO *myMO;
 TIMETYP objective;
-
-
-#define MAXIMUM(x,y) (((x)<(y))?(y):(x))
-#define MINIMUM(x,y) (((x)<(y))?(x):(y))
-
-
-
-
-
 
 B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 
@@ -144,7 +137,7 @@ int main(int argc, char *argv[])
       r += (*(os_problem->time))[i+1][j+1];
       
     }
-    x_bound = MAXIMUM(r,x_bound);
+    x_bound = MAX(r,x_bound);
     r=0;
   }
 
@@ -152,7 +145,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < os_problem->n;i++){
       r += (*(os_problem->time))[i+1][j+1];
     }
-    y_bound = MAXIMUM(r,y_bound);
+    y_bound = MAX(r,y_bound);
     r=0;
   }
   
@@ -168,7 +161,7 @@ int main(int argc, char *argv[])
       if (iord == lpt) 
 	order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
       else if (iord == diagonal)
-	order->read_one_key( i, j, (i - j + MAXIMUM(os_problem->n,os_problem->m)) % MINIMUM(os_problem->n,os_problem->m));
+	order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
       else if (iord == line_by_line)
 	order->read_one_key( i, j, j * os_problem->n + i);
       else 

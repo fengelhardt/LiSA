@@ -23,18 +23,21 @@
     @version 2.3pre2
 */  
 
+#include <fstream>
+#include <time.h>
+
 #include "../../basics/matrix.hpp"
-#include "iterate.hpp"
 #include "../../scheduling/m1_sched.hpp"
 #include "../../scheduling/os_sched.hpp"
 #include "../../scheduling/js_sched.hpp"
-#include "one_mach/m1_api.hpp"
-#include "one_mach/m1_shft.hpp"
-#include "../../lisa/ptype.hpp"
 #include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../lisa/ctrlpara.hpp"
 #include "../../misc/except.hpp"
+
+#include "one_mach/m1_api.hpp"
+#include "one_mach/m1_shft.hpp"
 
 #include "osp/osp_api.hpp"
 #include "osp/osp_3api.hpp"
@@ -45,6 +48,7 @@
 #include "osp/osp_shft.hpp"
 #include "osp/osp_crsh.hpp"
 #include "osp/osp_cr_r.hpp"
+
 #include "jsp/jsp_api.hpp"
 #include "jsp/jsp_swap.hpp"
 #include "jsp/jsp_3api.hpp"
@@ -61,8 +65,7 @@
 #include "jsp/jsp_blsh.hpp"
 #include "jsp/jsp_3_cr.hpp"
 
-#include <fstream>
-#include <time.h>
+#include "iterate.hpp"
 
 using namespace std;
 

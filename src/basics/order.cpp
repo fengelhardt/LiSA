@@ -9,9 +9,9 @@
 */
 #include <iostream>
 
-using namespace std;
-
 #include "order.hpp"
+
+using namespace std;
 
 /* up to now key is copied, perhaps better write an access function for 
    matrix or vector */

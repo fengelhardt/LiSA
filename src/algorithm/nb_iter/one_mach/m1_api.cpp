@@ -8,9 +8,9 @@
  * date:             20.10.1998
  *
  */
+#include <stdlib.h>
 
 #include "m1_api.hpp"
-#include <stdlib.h>
 
 API_Neighborhood::API_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
   {

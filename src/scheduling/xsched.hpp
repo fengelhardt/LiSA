@@ -25,16 +25,11 @@
 #ifndef _xsched_h 
 #define _xsched_h 
 
-
-// **************** Project Includes ********************
-// Lisa_Schedule *P
-#include "schedule.hpp"
-// Lisa_Matrix *CP
-#include "../basics/matrix.hpp"
-// Lisa_SGraph
-#include "pgraph.hpp"
-// Exception handling
 #include "../misc/except.hpp"
+#include "../basics/matrix.hpp"
+
+#include "schedule.hpp"
+#include "pgraph.hpp"
 
 /** Lisa_XSchedule is an extension of Lisa_Schedule.
     To guarantee the communication with Lisa_Schedule

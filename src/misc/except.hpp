@@ -14,9 +14,9 @@
 #include <string>
 #include <ostream>
 
-using namespace std;
-
 #include "../basics/list.hpp"
+
+using namespace std;
 
 /** @name Exception handling.
      Due to compatibility problems LiSA does not use C++ exception handling 

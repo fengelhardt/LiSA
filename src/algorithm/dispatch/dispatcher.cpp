@@ -10,7 +10,7 @@
 
 #include <time.h>
 
-#include"dispatcher.hpp"
+#include "dispatcher.hpp"
 
 TIMETYP Lisa_Dispatcher::priority(int i, int j)
 {

@@ -12,15 +12,13 @@
 
 
 
-#ifndef __cplusplus
-#error Must use C++ for these types.
-#endif
 #ifndef _nghbour_h
 #define _nghbour_h
 
-#include "../../main/global.hpp"
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "../../main/global.hpp"
 
 const int ORIG_SOLUTION     = 0;
 const int WORK_SOLUTION     = 1;

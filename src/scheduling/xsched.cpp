@@ -10,16 +10,7 @@
  * version:            V 1.0
 */
 
-
-
-// ******************** Local Includes ********************
 #include "xsched.hpp"
-
-
-// ****************** Global Variables ********************
-//extern class Lisa_Problem G_Problem;
-//extern class Lisa_Values G_Values;
-
 
 // *********************** functions *************************
 

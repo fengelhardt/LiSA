@@ -9,8 +9,9 @@
  *
  */
 
-#include "jsp_3_cr.hpp"
 #include <stdlib.h>
+
+#include "jsp_3_cr.hpp"
 
 JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )

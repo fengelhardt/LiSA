@@ -6,23 +6,25 @@
  * 23.02.2000
 */
 #include <stdlib.h>
-#include<iostream>
-#include<string.h>
-#include<time.h>
-#include"../../main/global.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include<unistd.h>
-#include<fstream>
-#include"../../misc/except.hpp"
-#include"../../basics/graph.hpp"
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
 
-#include"../../scheduling/js_sched.hpp"
-#include"../../scheduling/sp_sched.hpp"
-#include"../../basics/order.hpp"
-#include"Single_Machine_BB.hpp"
+#include <fstream>
+#include <iostream>
+
+#include "../../main/global.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
+#include "../../basics/order.hpp"
+#include "../../basics/graph.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../scheduling/sp_sched.hpp"
+
+#include "Single_Machine_BB.hpp"
 
 using namespace std;
 

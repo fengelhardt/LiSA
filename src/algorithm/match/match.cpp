@@ -9,18 +9,20 @@
  * last changes 12.09.00
  */
 
-#include<stdlib.h>
-#include<iostream>
-#include<unistd.h>
-#include<fstream>
-#include"../../scheduling/matching.hpp"
-#include"../../main/global.hpp"
-#include"../../basics/list.hpp"
-#include"../../lisa/ctrlpara.hpp"
-#include"../../scheduling/schedule.hpp"
-#include"../../lisa/ptype.hpp"
-#include"../../lisa/lvalues.hpp"
-#include"../../misc/except.hpp"
+#include <stdlib.h>
+#include <unistd.h>
+
+#include <iostream>
+#include <fstream>
+
+#include "../../scheduling/matching.hpp"
+#include "../../main/global.hpp"
+#include "../../basics/list.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../misc/except.hpp"
 
 using namespace std;
 

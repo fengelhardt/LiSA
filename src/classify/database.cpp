@@ -1,13 +1,13 @@
 #include <stdio.h>
+#include <string.h>
+
 #include <string>
 #include <fstream>
 
-using namespace std;
-
 #include "../misc/int2str.hpp"
-#include <string.h>
 #include "database.hpp"
 
+using namespace std;
 
 Lisa_DataBase::Lisa_DataBase(string name)
 {
