@@ -1586,6 +1586,127 @@ int Lisa_MatrixGraph::get_neighbours(const int vertex)const{
 
   return count;
 }
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_WeightedGraph::Lisa_WeightedGraph(const int number_of_vertices){
+
+}
+
+//**************************************************************************
+
+Lisa_WeightedGraph::Lisa_WeightedGraph(const Lisa_WeightedGraph *const othergraph){
+
+}
+
+//**************************************************************************
+
+Lisa_WeightedGraph::Lisa_WeightedGraph(const Lisa_WeightedGraph& othergraph){
+
+}
+
+//**************************************************************************
+
+Lisa_WeightedGraph::~Lisa_WeightedGraph(){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::init(const int number_of_vertex){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::clear(){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)const{
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const adj){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::get_weight_matrix(Lisa_Matrix<TIMETYP> *const weights)const{
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::set_weight_matrix(const Lisa_Matrix<TIMETYP> *const weights){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::insert_arc(const int start,const int end,const TIMETYP weight){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::remove_arc(const int start,const int end){
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::clear(const int vertex){
+
+}
+
+//**************************************************************************
+
+int Lisa_WeightedGraph::get_connection(const int start,const int end, TIMETYP *const weight)const{
+  return size+1;
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::init_successor(const int vertex){
+
+}
+
+//**************************************************************************
+
+int Lisa_WeightedGraph::next_successor(const int vertex,TIMETYP *const weight){
+  return size+1;
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::init_predecessor(const int vertex){
+
+}
+
+//**************************************************************************
+
+int Lisa_WeightedGraph::next_predecessor(const int vertex,TIMETYP *const weight){
+  return 0;
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::write(std::ostream& strm)const{
+
+}
+
+//**************************************************************************
+
+void Lisa_WeightedGraph::read(std::istream& strm){
+
+}
 
 //**************************************************************************
 //**************************************************************************

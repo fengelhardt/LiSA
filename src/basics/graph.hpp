@@ -434,7 +434,7 @@ private:
   Lisa_Matrix<int>* adj;
   
   /// weight matrix
-  Lisa_Matrix<TIMETYP> weights;
+  Lisa_Matrix<TIMETYP>* weights;
  
 public:
   
