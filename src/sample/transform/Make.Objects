@@ -1,0 +1,23 @@
+OBJECTS=\
+	../../../obj/transform_test.o \
+	../../../obj/lmatrix.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/graph.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/int2str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/sp_sched.o \
+	../../../obj/schedule.o \
+	../../../obj/redgraph.o \
+	../../../obj/transform.o \
+	../../../obj/LisaXmlFile.o \
+	../../../obj/lisa_xml.o \
+	../../../obj/Lisa_NativeDataHandler.o \
+	../../../obj/Lisa_IO_Factory.o
