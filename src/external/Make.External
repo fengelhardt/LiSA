@@ -112,8 +112,8 @@ depend:
 # ------------------------------------------------------------------------------
 
 develdoc: develdocdir
-#	rm -f $(DOCPATH)/develop/$(PROGRAMNAME)/* $(DOCPATH)/develop/$(PROGRAMNAME)/.*html
-#	doc++ -B /dev/null -d $(DOCPATH)/develop/$(PROGRAMNAME) -f -m $(DOCSOURCES)
+#	rm -f $(DOCPATH)/devel/$(PROGRAMNAME)/* $(DOCPATH)/devel/$(PROGRAMNAME)/.*html
+#	doc++ -B /dev/null -d $(DOCPATH)/devel/$(PROGRAMNAME) -f -m $(DOCSOURCES)
 
 # ------------------------------------------------------------------------------
 

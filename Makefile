@@ -120,7 +120,7 @@ uninstall:
 # ------------------------------------------------------------------------------
 
 cygwin: cygwindir
-	rm -fr $(CYGWINPATH)/*
+	rm -fr $(CYGWINPATH)/LiSA/*
 	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
 	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
 	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
