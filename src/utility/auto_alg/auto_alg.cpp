@@ -376,7 +376,7 @@ int main(int argc, char *argv[]){
     
     writeAlgInput(pt,cps[j],val,sched);
     time_t start = time(0);
-    system((cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
+    system(("./"+cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
     time_t end = time(0);
     readAlgOutput(sched);
     SchedList.append(Lisa_ScheduleNode(&sched));
