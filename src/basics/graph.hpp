@@ -8,6 +8,8 @@
 #include "matrix.hpp"
 #include "pair.hpp"
 
+
+/// a base class for several graph objects
 class Lisa_Graph : public Lisa_FileEntry{
 protected:
   /// number of vertices
@@ -18,7 +20,99 @@ public:
        ,NONE
        ,ARC
        ,EDGE};
-    
+  
+  Lisa_Graph(){};
+  ~Lisa_Graph(){};
+  
+  /// return the number of vertices
+  inline int get_vertices()const{return size;};
+
+  /// (re)initialize a graph with a given number of vertices
+  /** this will clear the graph */
+  virtual void init(const int number_of_vertex)=0;  
+  
+  /// removes all EDGES and ARCS from the graph
+  virtual void clear()=0;
+  
+  /// generate an adjacency matrix representing the graph
+  virtual void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const=0;
+
+  /// create predecessor and successor lists with the help of an adjacency matrix
+  virtual void read_adjacency_matrix(const Lisa_Matrix<int> *const adj)=0;
+
+  /// insert an edge into the graph
+  /** Add edge from vertex start to vertex end. 
+      Regardless of what the connection between start and end was, after this
+      operation it will be an edge.*/
+  virtual void insert_edge(const int start,const int end)=0;
+
+  /// insert an arc into the graph
+  /** Add arc from vertex start to vertex end. If there is a CRA between 
+      start and end it will be an EDGE afterwards, if there ist no connection,
+      an ARC will be created. All other connections will remain unchanged.*/
+  virtual void insert_arc(const int start,const int end)=0;
+  
+  /// remove any connection between to vertices
+  /** Delete any connection between vertex start and vertex end. */
+  virtual void exclude_all(const int start,const int end)=0;
+  
+  /// remove an edge from the graph 
+  /** Delete edge from vertex start to vertex end. This only works 
+      if there is an EDGE between start and end, an ARC or CRA will not
+      be removed. */
+  virtual void exclude_edge(const int start,const int end)=0;
+
+  /// remove an arc from the graph
+  /** Delete arc from vertice start to vertice end. If there is an
+      ARC from start to end it will be deleted, if there is an EDGE it
+      will be converted into a CRA. In any other case the connection will 
+      remain unchanged. */
+  virtual void exclude_arc(const int start,const int end)=0;
+
+  /// get the kind of connection between two vertices 
+  /** possible return values are:
+      - NO 0
+      - ARC 1
+      - CRA -1 which is an arc from end to start ;)
+      - EDGE 2 */
+  virtual int get_connection(const int start,const int end)=0;
+
+  ///initialize the pointer for the successors list of a given vertex
+  virtual void init_succ_pointer(const int vertex)=0;
+
+  /// initialize the pointer for the predecessor list of a given vertex
+  virtual void init_pred_pointer(const int vertex)=0;
+
+  /// get a successsor of a vertex
+  /** Returns the next successor of a vertex and moves the according list 
+      pointer to the next following successor. Returning n+1 stands for the end 
+      of this vertice's successor list and for a new initialization of its 
+      successor list pointer. */  
+  virtual int get_next_successor(const int vertex)=0;
+
+  /// get a predecessor of a vertex
+  /** Returns the next predeccessor of a vertex and moves the according 
+      vertex pointer to the next following predeccessor. Returning n+1 stands
+      for the end of this vertex's predeccessor list and for a new 
+      initialization of its predeccessor list pointer. */  
+  virtual int get_next_predeccessor(const int vertex)=0;
+
+  /// get vertices that form an edge together with the argument vertex 
+  /** returns only connected edges of a vertex, returning n+1 stands for the 
+      end of this vertex's edge list ... it works on the successor list, so
+      you have to call init_succ_pointer() to (re)initialize and can not use
+      both at the same time */
+  virtual int get_next_edge(const int vertex)=0;
+
+  /// test if there are no edges in the graph
+  virtual bool no_edges()=0;
+
+  /// write the object to a stream 
+  void write(std::ostream& = std::cout) const;
+
+  /// read the object from a stream
+  void read(std::istream& = std::cin);
+   
 };
 
 /// LiSA's graph object 
@@ -40,9 +134,6 @@ public:
 */  
 class Lisa_MatrixListGraph  : public Lisa_Graph {
 private:
-
-  ///number of vertices
-  int size;
   
   ///storage for the predecessor and successor lists of every vertex
   /** this is an adjacency matrix, however entries in the matrix are not only
@@ -93,12 +184,12 @@ public:
   /** Copy one graph object to the other */ 
   const Lisa_MatrixListGraph& operator=(const Lisa_MatrixListGraph& other);
 
-  /// return the number of vertices
-  inline int get_vertices()const{return size;};
-
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
-  void init(const int number_of_vertex);  
+  void init(const int number_of_vertex);
+
+  /// removes all EDGES and ARCS from the graph
+  void clear();  
   
   /// generate an adjazent matrix according to the predecessor and successor lists
   void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const;
@@ -203,11 +294,6 @@ public:
   /** Mostly used for debugging. */
   bool valid();
 
-  /// write the object to a stream 
-  void write(std::ostream& = std::cout) const;
-
-  /// read the object from a stream
-  void read(std::istream& = std::cin);
 };
 
 #endif
