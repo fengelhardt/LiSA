@@ -61,7 +61,7 @@ extern class Lisa_List<ScheduleNode> *G_ScheduleList;
 
 int TC_set_p(ClientData /* clientData */,
 	 Tcl_Interp * /* interp*/,
-	 int /* argc*/, char *argv[])  
+	 int /* argc*/, const char *argv[])  
 {
   string ms,ns,ws;
   int m,n,value;
@@ -76,7 +76,7 @@ int TC_set_p(ClientData /* clientData */,
 
 int TC_get_p(ClientData /* clientData */,
 	 Tcl_Interp *interp,
-	 int /*argc*/, char *argv[])  
+	 int /*argc*/, const char *argv[])  
 {
 int n,m;
 
@@ -88,9 +88,9 @@ int n,m;
 
 int TC_set_prob(ClientData /* clientData */,
 	       Tcl_Interp *interp,
-	       int /*argc*/, char ** /*argv[]*/)  
+	       int /*argc*/, const char ** /*argv[]*/)  
 {
-  char *ms,*ns;
+  const char *ms,*ns;
   int m,n,mold,nold;
   
   ms = Tcl_GetVar2(interp,"glob","machines",TCL_GLOBAL_ONLY);
@@ -108,7 +108,7 @@ int TC_set_prob(ClientData /* clientData */,
 // set processing times
 int TC_set_pt(ClientData /* clientData */,
 	     Tcl_Interp *interp,
-	     int /*argc*/, char *argv[])  
+	     int /*argc*/, const char *argv[])  
 {
   string ms,ns,ws;
   int m,n;
@@ -131,7 +131,7 @@ int TC_set_pt(ClientData /* clientData */,
 // read processing time
 int TC_get_pt(ClientData /* clientData */,
 	     Tcl_Interp *interp,
-	     int /*argc*/, char *argv[])  
+	     int /*argc*/, const char *argv[])  
 {
   int n,m;
   sscanf(argv[1],"%d",&n);
@@ -146,7 +146,7 @@ int TC_get_pt(ClientData /* clientData */,
 // set an entry in Lisa_Problen.tupel
 int TC_set_Tupel(ClientData /* clientData */,
 	 Tcl_Interp * /*interp*/,
-	 int /*argc*/, char *argv[])  
+	 int /*argc*/, const char *argv[])  
 {
   // two parameters:
   // 1.parameter  number of tupel-entry
@@ -169,7 +169,7 @@ int TC_set_Tupel(ClientData /* clientData */,
 // returns the values of C++ variables
 int TC_getvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int argc, char *argv[])  {
+	      int argc, const char *argv[])  {
   int temp=0,row=0,column=0,n=0,m=0,i=0;
   float xpos=0,ypos=0;
   string name="",str="NOT_DEFINED",str2="",str3="",str4="";
@@ -500,7 +500,7 @@ int TC_getvar(ClientData /* clientData */,
 // Set C++ variables 
 int TC_setvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int /*argc*/, char *argv[])  {
+	      int /*argc*/, const char *argv[])  {
   int int_value=1;
   int width=0,height=0;
   int row=0, column=0;

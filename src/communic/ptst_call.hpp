@@ -50,7 +50,7 @@
 /// starts external algorithm parameter test
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
-		int /*argc*/, char *argv[]);
+		int /*argc*/, const char *argv[]);
 
 /// call external algorithm parameter test
 int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call,

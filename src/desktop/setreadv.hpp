@@ -36,42 +36,42 @@
 /// set entry in G_Schedule->LR
 int TC_set_p(ClientData clientData,
 	    Tcl_Interp *interp,
-	    int argc, char *argv[]); 
+	    int argc, const char *argv[]); 
 
 /// get entry in G_Schedule->LR
 int TC_get_p(ClientData clientData,
 	    Tcl_Interp *interp,
-	    int argc, char *argv[]); 
+	    int argc, const char *argv[]); 
 
 /// set entry in G_Values.PT
 int TC_set_pt(ClientData clientData,
 	     Tcl_Interp *interp,
-	     int argc, char *argv[]); 
+	     int argc, const char *argv[]); 
 
 /// get entry in G_Values.PT
 int TC_get_pt(ClientData clientData,
 	     Tcl_Interp *interp,
-	     int argc, char *argv[]); 
+	     int argc, const char *argv[]); 
 
 /// set in Lisa_Values the new maschine or job number
 int TC_set_prob(ClientData clientData,
 	       Tcl_Interp *interp,
-	       int argc, char *argv[]); 
+	       int argc, const char *argv[]); 
 
 /// set an entry in Lisa_Problen.tupel
 int TC_set_Tupel(ClientData clientData,
 		 Tcl_Interp *interp,
-		 int argc, char *argv[]); 
+		 int argc, const char *argv[]); 
 
 /// returns the values of C++ variables
 int TC_getvar(ClientData clientData,
 	     Tcl_Interp *interp,
-	     int argc, char *argv[]);
+	     int argc, const char *argv[]);
 
 /// Set C++ variables 
 int TC_setvar(ClientData clientData,
 	     Tcl_Interp *interp,
-	     int argc, char *argv[]);
+	     int argc, const char *argv[]);
 
 #endif
 
