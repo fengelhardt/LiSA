@@ -11,9 +11,6 @@
 
 /// a base class for several graph objects
 class Lisa_Graph : public Lisa_FileEntry{
-protected:
-  /// number of vertices
-  int size;
 public:
   /// flags indicating various possible connections between a pair of vertice
   enum{CRA=-1 /// backwards ARC ;)
@@ -22,17 +19,17 @@ public:
        ,EDGE};
 
   /// return the number of vertices
-  inline int get_vertices()const{return size;};
+  virtual int get_vertices()const=0;
 
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
-  virtual void init(const int number_of_vertex)=0;  
+  virtual void init(const int number_of_vertices)=0;  
   
   /// removes all EDGES and ARCS from the graph
   virtual void clear()=0;
   
   /// generate an adjacency matrix representing the graph
-  virtual void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const=0;
+  virtual void get_adjacency_matrix(Lisa_Matrix<int> *const adj)const=0;
 
   /// create predecessor and successor lists with the help of an adjacency matrix
   virtual void read_adjacency_matrix(const Lisa_Matrix<int> *const adj)=0;
@@ -103,11 +100,7 @@ public:
   
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   virtual void clear(const int vertex)=0;
-  
-  /// assign another graph
-  /** Copy one graph object to the other */ 
-  Lisa_Graph& operator=(const Lisa_Graph& other);
-  
+    
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
   virtual int number_of_succ(const int vertex)=0;
@@ -115,15 +108,6 @@ public:
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
   virtual int number_of_pred(const int vertex)=0;
-
-  /// sort vertices topologically
-  /** The vertices will be put in topoligical order into the 
-      vertex_sequence vector, i.e. vertex i in the original graph 
-      is assigned to the vertex indicated by knot_sequence(i).
-      returns true: all vertices are topsorted, graph contains no cycles
-      returns false: graph contains cycle, elements of vertex_sequence are 
-      undefined */ 
-  bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
   /// write the object to a stream 
   void write(std::ostream& = std::cout) const;
@@ -152,6 +136,9 @@ public:
 */  
 class Lisa_MatrixListGraph  : public Lisa_Graph {
 private:
+
+  /// number of vertices
+  int size;
   
   ///storage for the predecessor and successor lists of every vertex
   /** this is an adjacency matrix, however entries in the matrix are not only
@@ -206,6 +193,8 @@ public:
   /// destructor
   ~Lisa_MatrixListGraph();
 
+  inline int get_vertices()const{return size;}
+  
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
   void init(const int number_of_vertex);
@@ -302,6 +291,21 @@ public:
   /** Mostly used for debugging. */
   bool valid();
 
+};
+
+class Lisa_GraphAlg{
+public:
+
+  /// sort vertices topologically
+  /** The vertices will be put in topoligical order into the 
+      vertex_sequence vector, i.e. vertex i in the original graph 
+      is assigned to the vertex indicated by knot_sequence(i).
+      returns true: all vertices are topsorted, graph contains no cycles
+      returns false: graph contains cycle, elements of vertex_sequence are 
+      undefined */ 
+  static bool topsort(const Lisa_Graph *const g,
+                      Lisa_Vector<int> *const vertex_sequence);
+  
 };
 
 #endif

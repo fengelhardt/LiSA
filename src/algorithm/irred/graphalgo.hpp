@@ -81,7 +81,7 @@ public:
     const int vert = graph->get_vertices();
     
     Lisa_Vector<int> sort(vert);
-    const bool done = graph->topsort(&sort);
+    const bool done = Lisa_GraphAlg::topsort(graph,&sort);
     
     for (int i=0;i<vert;i++)  (*knot_sequence)[sort[i]-1]=i+1;
     

@@ -10,72 +10,6 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
-#ifdef LISA_DEBUG 
-  if (size!=other.size){
-    G_ExceptionList.lthrow("Wrong size in argument to Lisa_Graph::operator= .");
-  }
-#endif
-  
-  Lisa_Matrix<int> out(size,size);
-  other.get_adjacency_matrix(&out);
-  read_adjacency_matrix(&out);
-  
-  return *this;
-}      
-
-//**************************************************************************
-
-bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
-#ifdef LISA_DEBUG
-  if(knot_sequence->get_m() != size){
-    G_ExceptionList.lthrow("Argument vector size incorrect in Lisa_Graph::topsort().",
-                           Lisa_ExceptionList::ANY_ERROR);
-    return false;
-  }
-#endif
-  
-  knot_sequence->fill(0);
-  
-  //graph copy
-  Lisa_MatrixListGraph top(this);
-  //stores the number of successors of knot i in i-1
-  Lisa_Vector<int> pred(size);
-  
-  int source=0,v=0,next=1;
-  
-  while(v<=size){
-    //new predeccessors
-    for(v=1; v<=size; v++){
-      if((*knot_sequence)[v-1]==0){
-        pred[v-1]=top.number_of_pred(v);
-      }
-    }
-    v=1;
-    source=0;
-    //find first source
-    while((v<=size)&&(source==0)){
-      if(((*knot_sequence)[v-1]==0)&&(pred[v-1]==0)){
-        source=1;
-      }
-      else{
-        v++;
-      }
-    }
-    
-    //remove all connections of the first source found
-    if(v<=size){
-      top.clear(v);
-      (*knot_sequence)[v-1]=next;
-      next++;
-    }
-  }
-  
-  return (next==size+1);
-}
-
-//**************************************************************************
-
 void Lisa_Graph::write(ostream & strm)const{
   
   if(strm==NULL){
@@ -84,11 +18,11 @@ void Lisa_Graph::write(ostream & strm)const{
     return;
   }
   
-  Lisa_Matrix<int> out(size,size);
+  Lisa_Matrix<int> out(get_vertices(),get_vertices());
   get_adjacency_matrix(&out);
 
   strm << endl << "<GRAPH>" << endl;
-  strm << "vertices= "<< size << endl;
+  strm << "vertices= "<< get_vertices() << endl;
   strm << "adjacency_matrix= " << out << endl; 
   strm << "</GRAPH>" <<endl;
 
@@ -1140,6 +1074,57 @@ bool Lisa_MatrixListGraph::valid(){
   
   delete[] knot_list;  
   return true;
+}
+
+//**************************************************************************
+
+bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
+                             Lisa_Vector<int> *const knot_sequence){
+#ifdef LISA_DEBUG
+  if(knot_sequence->get_m() != g->get_vertices()){
+    G_ExceptionList.lthrow("Argument vector size incorrect in Lisa_GraphAlgo::topsort().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return false;
+  }
+#endif
+  
+  knot_sequence->fill(0);
+  
+  //graph copy
+  Lisa_MatrixListGraph top(g);
+  //stores the number of successors of knot i in i-1
+  Lisa_Vector<int> pred(top.get_vertices());
+  
+  int source=0,v=0,next=1;
+  
+  while(v<=top.get_vertices()){
+    //new predeccessors
+    for(v=1; v<=top.get_vertices(); v++){
+      if((*knot_sequence)[v-1]==0){
+        pred[v-1]=top.number_of_pred(v);
+      }
+    }
+    v=1;
+    source=0;
+    //find first source
+    while((v<=top.get_vertices())&&(source==0)){
+      if(((*knot_sequence)[v-1]==0)&&(pred[v-1]==0)){
+        source=1;
+      }
+      else{
+        v++;
+      }
+    }
+    
+    //remove all connections of the first source found
+    if(v<=top.get_vertices()){
+      top.clear(v);
+      (*knot_sequence)[v-1]=next;
+      next++;
+    }
+  }
+  
+  return (next==top.get_vertices()+1);
 }
 
 //**************************************************************************

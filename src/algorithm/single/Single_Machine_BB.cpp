@@ -64,7 +64,7 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
   if(priority!=0){
     Lisa_Vector<int>* order=new Lisa_Vector<int> (n);
     order->fill(0);
-    if(priority->topsort(order)){
+    if(Lisa_GraphAlg::topsort(priority,order)){
       delete order;
     }
     else{

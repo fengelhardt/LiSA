@@ -197,7 +197,7 @@ const int param){
       implic->next();
     }
     
-    if (newplan.topsort(&topsortvec)){  // check whether the newplan graph contains a cycle
+    if (Lisa_GraphAlg::topsort(&newplan,&topsortvec)){  // check whether the newplan graph contains a cycle
       
       Lisa_MatrixListGraph newcomp(vert);
       Lisa_MatrixListGraphAlgorithms::build_compgraph(&newplan,&newcomp);
