@@ -17,6 +17,10 @@ invalid schedules, but no error checking occurs
 upcoming version
 --------------------------------------------------------------------------------
 
+enabled new oben shop algorithm by P. Brucker
+
+changed files and algorithm IO to xml
+
 rewrote and streamlined error handling class
 
 Smith Rule is exact for sumWiCi, not sumWiTi. <- fixed
