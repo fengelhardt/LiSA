@@ -1,16 +1,4 @@
-/*
- ************* travel_graph.hpp *********
- *
- * @author Marc Mörig
- * @version 2.3pre3
- *
- * an object describing our traveling salesman problem
- * just for input/output from/to files and to calculate us the objective
- * for a given solution
- * 
- * it may or may not contain/read/write a solution
- */
- 
+
 #ifndef _travel_graph_h
 #define _travel_graph_h
 
@@ -22,47 +10,15 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/lsaobjct.hpp"
 
-/** @name Traveling Salesman Problem Object 
- 
-    This object serves mostly for writing and reading a problem.
+/// Traveling Salesman Problem Object
+/** This object serves mostly for writing and reading a problem.
     It can also contain a solution and calculate the objective 
     for any given solution to that problem.
     
     A Problem with n citys is represented as a matrix of size n,n.
-    The matrix contains at position P(i,j) i<j the costs for traveling from city
-    i to city j and also for traveling from city j to i. The Problem is therefore
-    symmetrically.
-    
-    P = {{ 0 4 5 6 }
-         { 0 0 3 6 }
-         { 0 0 0 4 }
-         { 0 0 0 0 }}
-    
-    describes a problem with 4 citys.
-
-    A solution for a Problem with n citys is given as a vector
-    of length n. That vector has to contain all numbers between (and including)
-    0 and n-1. 
-    
-    For example A = { 0 1 2 3 } is a valid solution for P. Each number 
-    in that vector represents a city, therefore in A city 0 is visited first, then city 1 and so
-    on until city 3 is visited. Then our salesman has to return to city 0 of course.
-    
-    So the objective for solution A is P(0,1) + P(1,2) + P(2,3) + P(0,3) = 4 + 3 + 4 + 6 = 17
-
-*/
-//@{
-
-/** Traveling Salesman Problem Object ...
- 
-    This object serves mostly for writing and reading a problem.
-    It can also contain a solution and calculate the objective 
-    for any given solution to that problem.
-    
-    A Problem with n citys is represented as a matrix of size n,n.
-    The matrix contains at position P(i,j) i<j the costs for traveling from city
-    i to city j and also for traveling from city j to i. The Problem is therefore
-    symmetrically.
+    The matrix contains at position P(i,j) i<j the costs for traveling from 
+    city i to city j and also for traveling from city j to i. The Problem is 
+    therefore symmetrically.
     
     P = {{ 0 4 5 6 }
          { 0 0 3 6 }
@@ -81,6 +37,8 @@
     
     So the objective for solution A is P(0,1) + P(1,2) + P(2,3) + P(0,3) = 4 + 3 + 4 + 6 = 17
     
+    @version 2.3pre3
+    @author Marc Moerig   
 */
 class Travel_Graph : public Lisa_Object{
 private:
@@ -110,66 +68,56 @@ private:
 
 public:
   
-  /** default constructur ...
-
-      Create a new and empty object.*/
+  /// default constructur
+  /** Create a new and empty object.*/
   Travel_Graph();
   
-  /** constructor ...
-
-      Create a new problem with a given size. 
+  /// constructor
+  /** Create a new problem with a given size. 
       If rnd is set to TRUE random weights will be created.*/
   Travel_Graph(const int vertices_in,const bool rnd=1);
   
-  /** destructor ...
-      
-      Delete this object. */
+  /// destructor
+  /** Delete this object. */
   ~Travel_Graph();
 
-  /** calculate the objective for a given solution ...
-      
-      If an argument is given the objective will be calculated 
+  /// calculate the objective for a given solution 
+  /** If an argument is given the objective will be calculated 
       for the argument solution vector, otherwise it will be 
       calculated for the solution in this object. If there is also
       no solution in the object 0 will be returned.*/
   int get_objective(Lisa_Vector<int>* solution_in=0) const;
   
-  /** get the number of vertices ...
-      
-      The number of vertices or citys in the problem will 
+  /// get the number of vertices
+  /** The number of vertices or citys in the problem will 
       be returned. */
   int inline get_vertices()const{return vertices;}
 
-  /** change the solution in this object to the argument solution */
+  /// change the solution in this object to the argument solution
   void set_solution(Lisa_Vector<int>* solution_in);
   
-  /** write the solution from the object to the argument vector ...
-      
-      If there is no solution in the object the argument vector will
+  /// write the solution from the object to the argument vector 
+  /**  If there is no solution in the object the argument vector will
       be unchangend and FALSE will be returned. Otherwise the argument
       vector will contain the solution from the object and TRUE will be 
       returned. */
   bool get_solution(Lisa_Vector<int>* solution_out) const;
 
-  /** check whether the object contains a solution or not ...
-      
-      Returns TRUE if this object contains a solution FALSE otherwise.*/
+  /// check whether the object contains a solution or not 
+  /** Returns TRUE if this object contains a solution FALSE otherwise.*/
   bool inline has_solution()const{return solution ? 1 : 0;}
   
-  /** removes a solution from the object ...
-      
-      If the object contains a solution it will be deleted.*/
+  /// removes a solution from the object
+  /** If the object contains a solution it will be deleted.*/
   void inline del_solution(){if(solution){ delete solution; solution=0;}}
 
-  /** write the object to a stream ...
-
-      This will write the number of vertices, the graph matrix 
+  /// write the object to a stream
+  /** This will write the number of vertices, the graph matrix 
       and if exits the solution vector plus the objective to a stream.*/
   void write(std::ostream& strm = std::cout) const;
 
-  /** read new values from a stream ... 
-      
-      The input has to contain at least the number of vertices. If 
+  /// read new values from a stream 
+  /** The input has to contain at least the number of vertices. If 
       that is nonzero it also has to contain the graph matrix. 
       The solution is always optional.
 
@@ -211,8 +159,6 @@ public:
   void read(std::istream& strm = std::cin);
 
 };
-
-//@}
 
 #endif
 

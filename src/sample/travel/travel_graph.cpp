@@ -1,14 +1,6 @@
 /*
- ************* travel_graph.cpp *********
- *
  * @author Marc Mörig
  * @version 2.3pre3
- *
- * an object describing our traveling salesman problem
- * just for input/output from/to files and to calculate us the objective
- * for a given solution
- * 
- * it may or may not contain/read/write a solution
  */
 
 #include "travel_graph.hpp"
@@ -201,3 +193,4 @@ void Travel_Graph::read(istream& strm){
 }
 
 //******************************************************************************
+

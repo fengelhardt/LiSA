@@ -1,13 +1,7 @@
 /*
- * ************** match.cpp *******************************
- * 
- * Heuristic for OS problems based on Bipartite Matchings
- *
- * @author Marc Moerig
- * @version 2.3pre3
- *
- * 03.07.00
- * last changes 12.09.00
+ @file
+ @author Marc Moerig
+ @version 2.3pre3
  */
 
 #include <stdlib.h>
@@ -27,10 +21,68 @@
 
 using namespace std;
 
-/** @name Matching Heuristics
+/// a simple class for calculation heads
+/**
+  this class is used to calculate heads for the matching algorithm
+*/
+class My_Heads {
+private:
+  int m,n;
+  Lisa_Vector<TIMETYP>* jobs;
+  Lisa_Vector<TIMETYP>* mach;
+public:
+  
+  /// create object with given size
+  My_Heads(const int n_in,const int m_in){
+    m = m_in;
+    n = n_in;
+    jobs = new Lisa_Vector<TIMETYP>(n);
+    mach = new Lisa_Vector<TIMETYP>(m);
+    jobs->fill(0);
+    mach->fill(0);
+  }
+  
+  /// delete object
+  ~My_Heads(){
+    delete jobs;
+    delete mach;
+  }
 
- This algorithm is a simple heuristic for the O| |Cmax Problem. It also demonstrates how to use 
- LiSA's matching objects.
+  /// get maximum time from all heads
+  TIMETYP get_max() const {
+    TIMETYP max; 
+    if (n<m){  
+      max = (*jobs)[0];
+      for (int i=1;i<n;i++)
+        if (max<(*jobs)[i]) 
+          max = (*jobs)[i];
+    }else{
+      max = (*mach)[0];
+      for (int j=1;j<m;j++)
+        if (max<(*mach)[j])
+          max = (*mach)[j];
+    }
+    return max;
+  }
+  
+  /// add an operation at i,j
+  void add_operation(const int i,const int j,const TIMETYP value){
+    (*mach)[j] = (*jobs)[i] = get_release(i,j)+value;;
+  }
+  
+  /// get release time for operation i,j
+  TIMETYP get_release(const int i,const int j) const {
+    return (*jobs)[i] < (*mach)[j] ? (*mach)[j] : (*jobs)[i];
+  }
+  
+};
+
+//**************************************************************************
+
+/// Matching Heuristics
+/**
+ This algorithm is a simple heuristic for the O| |Cmax Problem. It also 
+ demonstrates how to use LiSA's matching objects.
 
  The algorithm may be called:
 
@@ -76,56 +128,6 @@ semiactive= 1
 </SCHEDULE>                
 
 */
-//@{
-class My_Heads {
-private:
-  int m,n;
-  Lisa_Vector<TIMETYP>* jobs;
-  Lisa_Vector<TIMETYP>* mach;
-public:
-  
-  My_Heads(const int n_in,const int m_in){
-    m = m_in;
-    n = n_in;
-    jobs = new Lisa_Vector<TIMETYP>(n);
-    mach = new Lisa_Vector<TIMETYP>(m);
-    jobs->fill(0);
-    mach->fill(0);
-  }
-  
-  ~My_Heads(){
-    delete jobs;
-    delete mach;
-  }
-
-  TIMETYP get_max() const {
-    TIMETYP max; 
-    if (n<m){  
-      max = (*jobs)[0];
-      for (int i=1;i<n;i++)
-	if (max<(*jobs)[i]) 
-	  max = (*jobs)[i];
-    }else{
-      max = (*mach)[0];
-      for (int j=1;j<m;j++)
-	if (max<(*mach)[j])
-	  max = (*mach)[j];
-    }
-    return max;
-  }
-  
-  void add_operation(const int i,const int j,const TIMETYP value){
-    (*mach)[j] = (*jobs)[i] = get_release(i,j)+value;;
-  }
-  
-  TIMETYP get_release(const int i,const int j) const {
-    return (*jobs)[i] < (*mach)[j] ? (*mach)[j] : (*jobs)[i];
-  }
-  
-};
-
-//******************************************************************************
-
 int main(int argc, char *argv[])
 { 
 
@@ -262,5 +264,5 @@ int main(int argc, char *argv[])
    delete my_heads;
  }
 
-//@}
+//**************************************************************************
 

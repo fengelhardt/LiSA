@@ -28,14 +28,10 @@ class Lisa_IrredNode : public Lisa_GenericObject{
 public:
 
   /// status flag
-  /** @param UNKNOWN Indicates that the status of the graph represented by this 
-             node is unknown.
-      @param IRREDUCIBLE Indicates that the graph represented by this node is
-             irreducible.
-      @param NOT_IRREDUCIBLE Indicates that the graph represented by this node
-             is not irreducible.
-   */
-  enum{UNKNOWN=1,IRREDUCIBLE,NOT_IRREDUCIBLE};
+  enum{UNKNOWN /** Indicates that the graph of this node is unknown.*/ =1
+      ,IRREDUCIBLE /// Indicates that the graph of this node is irreducible.
+      ,NOT_IRREDUCIBLE /// Indicates that the graph of this node is not irreducible. 
+      };
   
   /// the status
   int status;
@@ -69,18 +65,18 @@ public:
     @author Marc Moerig
 */
 class Lisa_IrredResult : public Lisa_GenericObject{
-private: 
+private:
+  /// filter flag 
   const int ins_method;
 public:
 
   /// filter flag
-  /** @param ALL Keep one plan for each similarity class.
-      @param POTENTIALLY_IRREDUCIBLE Keep only plans which have not been 
-             detected to be reducible. This increases computation speed alot 
-             and more important saves tones of ram.
-      @param NO_FILTER  Do not filter at all.
-   */   
-  enum{ALL=0,POTENTIALLY_IRREDUCIBLE,NO_FILTER};
+  enum{ALL/** Keep one plan for each similarity class. */=0
+      ,POTENTIALLY_IRREDUCIBLE /** Keep only plans which have not been detected 
+             to be reducible. This increases computation speed alot 
+             and more important saves tones of ram.*/
+      ,NO_FILTER /** Do not filter at all. */
+      };
   
   /// list that stores the created plans
   Lisa_List<Lisa_IrredNode*>* results;

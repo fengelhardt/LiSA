@@ -1,12 +1,7 @@
-/*
- *************** travel.cpp **************
- *
- * @author Marc Mörig
+/**
+ * @file
+ * @author Marc Moerig
  * @version 2.3pre3
- *
- * heuristic for the travelling salesman problem
- * showing how to use LiSA's neighbourhood algorithms 
- *
  */
 
 
@@ -21,9 +16,8 @@
 
 using namespace std;
 
-/** @name An example for using LiSA's neighbourhood algorithms
-    
-    This is an example for using LiSA's neighbourhood algorithms to solve
+/// An example for using LiSA's neighbourhood algorithms  
+/** This is an example for using LiSA's neighbourhood algorithms to solve
     other (non scheduling) optimization problems. It can create solutions 
     for the symmetrical traveling salesman problem. The source code files 
     are located in the directory LiSA/src/utility/travel/ .
@@ -38,7 +32,7 @@ using namespace std;
     After compiling the executable will be located in the same directory 
     where the source code is. It may than be called:
 
-    travel [input file] [output file]
+    - travel [input file] [output file]
 
     While running some progress info will be printed to the console All 
     algorithm/neighbourhood parameters have to be set in the input file.
@@ -69,42 +63,42 @@ using namespace std;
     
     Parameters that have to be set always:
     
-    string METHOD [II SA SA_anti TA TS] the algorithm you want to use
-    II: iterative improvement
-    SA: simulated annealing
-    SA_anti: simmulated annealing with anti neighbour
-    TA: threshold accepting
-    TS: tabu search
+    - string METHOD [II SA SA_anti TA TS] the algorithm you want to use
+      - II: iterative improvement
+      - SA: simulated annealing
+      - SA_anti: simmulated annealing with anti neighbour
+      - TA: threshold accepting
+      - TS: tabu search
     
-    string NGHB [RPI API]
-    RPI: random pair interchange
-    API: adjacent pair interchange
+    - string NGHB [RPI API]
+      - RPI: random pair interchange
+      - API: adjacent pair interchange
     
-    long STEPS: the number of steps after which the algorithm should abort
+    - long STEPS: the number of steps after which the algorithm should abort
     
-    long NUMB_STUCKS: the number of stucks after which the algorithm should abort
+    - long NUMB_STUCKS: the number of stucks after which the algorithm should abort
 
-    double ABORT_BOUND: a lower bound for the objective, if reached the algorithm will abort
+    - double ABORT_BOUND: a lower bound for the objective, if reached the algorithm will abort
     
     Parameters that have to be set for II:
     
-    string NGBH_TYPE [ENUM RAND]
-    RAND: random generation of neighbours
-    ENUM: enumerative generation of neighbours
+    - string NGBH_TYPE [ENUM RAND]
+      - RAND: random generation of neighbours
+      - ENUM: enumerative generation of neighbours
 
     Parameters that have to be set for SA, SA_anti and TA:
     
-    long PROB: the start propability for accepting solutions with a worse objective
+    - long PROB: the start propability for accepting solutions with a worse objective
     
-    long MAX_STUCK: the number of stucks after which the threshold/temperature will be raised
+    - long MAX_STUCK: the number of stucks after which the threshold/temperature will be raised
     
     Parameters that have to be set for TS:
     
-    string NGBH_TYPE [ENUM RAND]
+    - string NGBH_TYPE [ENUM RAND]
     
-    long TABU_LENGTH: the length of the tabu list
+    - long TABU_LENGTH: the length of the tabu list
 
-    long NUMB_NGB: the number of neighbours to generate with each step
+    - long NUMB_NGB: the number of neighbours to generate with each step
     
     Further information about the modelling of the problem and the neighbourhoods can be
     found in the documentation for the classes Travel_Graph , Travel_RPI_Neighbourhood 
@@ -122,11 +116,6 @@ using namespace std;
   
     @author Marc Mörig
 */
-//@{
-//@Include: travel_graph.hpp
-//@Include: travel_neighbourhood.hpp
-//@}
-
 int main(int argc, char *argv[]){
   
   // print any errors

@@ -1,17 +1,11 @@
 /*
- ************ travel_neighbourhood.cpp *********************
  * @version 2.3pre3
- *
  * @author Marc Mörig
- *
- * two classes describing the neighbourhood for the traveling salesman
- * problem
- *
  */
 
 #include "travel_neighbourhood.hpp"
 
-//************************************************************************************************
+//**************************************************************************
 
 Travel_RPI_Neighbourhood::Travel_RPI_Neighbourhood(Travel_Graph* prob_in):length(prob_in->get_vertices()){
   
@@ -51,7 +45,7 @@ Travel_RPI_Neighbourhood::Travel_RPI_Neighbourhood(Travel_Graph* prob_in):length
     
 }
 
-//************************************************************************************************
+//**************************************************************************
 
 Travel_RPI_Neighbourhood::~Travel_RPI_Neighbourhood(){
   delete sol[ORIG_SOLUTION];
@@ -66,7 +60,7 @@ Travel_RPI_Neighbourhood::~Travel_RPI_Neighbourhood(){
   if(tabulist) delete tabulist;
 }
 
-//************************************************************************************************
+//**************************************************************************
 
 void inline Travel_RPI_Neighbourhood::put_to_tabu_vector(Lisa_Vector<int>* solution){
   /// since 0 1 2 3 4 , 3 4 0 1 2 and even 2 1 0 4 3 are the same(!) solution 
@@ -94,7 +88,7 @@ void inline Travel_RPI_Neighbourhood::put_to_tabu_vector(Lisa_Vector<int>* solut
   
 }
 
-//************************************************************************************************
+//**************************************************************************
 
 int Travel_RPI_Neighbourhood::prepare_move(const int type){
   static int pos1,pos2;
@@ -125,7 +119,7 @@ int Travel_RPI_Neighbourhood::prepare_move(const int type){
   return OK;
 }
 
-//************************************************************************************************
+//**************************************************************************
 
 int Travel_RPI_Neighbourhood::do_move(){
   
@@ -139,8 +133,8 @@ int Travel_RPI_Neighbourhood::do_move(){
   return OK;
 }
 
-//************************************************************************************************
-//************************************************************************************************
+//**************************************************************************
+//**************************************************************************
 
 int Travel_API_Neighbourhood::prepare_move(const int type){
   /// we will switch a random city with its successor
@@ -181,4 +175,5 @@ int Travel_API_Neighbourhood::prepare_move(const int type){
   return OK; 
 }
 
-//************************************************************************************************
+//**************************************************************************
+

@@ -1,14 +1,6 @@
 /*
- * ******************** iterate.cpp ******************************
- * 
- * description:      The class LiSA_Iterator is the problem-independent
- *                   neighbourhood-iteration-class
- * 
  * @author            Andreas Winkler
  * @version 2.3pre3
- *
- * date:             14.12.1998
- *
  */
 
 #include <stdlib.h>
@@ -405,21 +397,4 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
       } // else ...
     run_stop();
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

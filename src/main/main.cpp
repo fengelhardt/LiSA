@@ -1,13 +1,8 @@
 /*
- * ************** lisa.cpp *******************************
- * 
- * description: Main Program
- *              declare global variables, read preferences file
- *              and start tcl-mainloop
+ * @file
  * @version 2.3pre3
- * @author       Per Willenius
- * date:        16.9.1998
-*/
+ * @author  Per Willenius
+ */
 
 #include <fstream>
 

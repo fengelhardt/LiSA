@@ -1,18 +1,13 @@
 /*
- * ******************** tabu.cpp ******************************
- * 
- * description:      general problem independent tabulist class
- * 
  * @author            Andreas Winkler
  * @version 2.3pre3
- *
- * date:             20.10.1998
- *
  */
  
 #include <stdlib.h>
 
 #include "tabu.hpp"
+
+//**************************************************************************
 
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength )
   {
@@ -44,6 +39,8 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength )
    tabu_4->fill(0);
   }
 
+//**************************************************************************
+
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
   {
     length = ilength;
@@ -56,6 +53,8 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
     pos = 0;
     tabu->fill(0);
   }
+
+//**************************************************************************
 
 Lisa_Tabu::~Lisa_Tabu()
   {
@@ -71,6 +70,8 @@ Lisa_Tabu::~Lisa_Tabu()
       delete tabu;
   }
 
+//**************************************************************************
+
 int Lisa_Tabu::set( int a, int b, int c, int d )
   {
     (*tabu_1)[pos] = a;
@@ -82,6 +83,8 @@ int Lisa_Tabu::set( int a, int b, int c, int d )
     return OK;
   }
 
+//**************************************************************************
+
 int Lisa_Tabu::set_vector( Lisa_Vector<int> *entry )
   {
     (*tabu)[pos] = *entry;
@@ -89,6 +92,8 @@ int Lisa_Tabu::set_vector( Lisa_Vector<int> *entry )
       pos = 0;
     return OK;
   }
+
+//**************************************************************************
 
 int Lisa_Tabu::use( int a, int b, int c, int d )
   {
@@ -101,6 +106,8 @@ int Lisa_Tabu::use( int a, int b, int c, int d )
    return OK;
   }
 
+//**************************************************************************
+
 int Lisa_Tabu::use_vector( Lisa_Vector<int> *entry )
   {
     int i;
@@ -110,4 +117,6 @@ int Lisa_Tabu::use_vector( Lisa_Vector<int> *entry )
 	return !OK;
     return OK;
   }
+
+//**************************************************************************
 

@@ -33,25 +33,33 @@
  */
 class Lisa_ConvertGraph : public Lisa_GenericObject{
 private:
-  // possible problemtypes
+  /// possible problemtypes
   enum {O_CMAX=1,J_CMAX,O_RI_CMAX,J_RI_CMAX,O_LMAX,J_LMAX,O_RI_LMAX,J_RI_LMAX};
 
-  // which problemtype do we have ?
+  /// which problemtype do we have ?
   const int curr_pt;
-  // size of our plan, number of operations==vertice in disjkt/plangraph
+  
+  //@{
+  /// size of our plan, number of operations==vertice in disjkt/plangraph
   const int m;
   const int n;
   int vert,morevert;
-
-  // which vertice belongs to plan(i,j) ?
+  //@}
+  
+  /// which vertice belongs to plan(i,j) ?
   Lisa_Matrix<int>* lookup;
+  
+  //@{
   // at which coordinate is vertice v ?
   Lisa_Vector<int>* I_lookup;
   Lisa_Vector<int>* J_lookup;
-  // the disjkt graph
+  //@}
+  
+  /// the disjkt graph
   Lisa_Graph* disjkt;
   
-  // intern method's ... one for each different problemtype we can handle
+  //@{
+  /// intern method's ... one for each different problemtype we can handle
   void initialize_J_CMAX(Lisa_Matrix<bool>* SIJ,Lisa_MO* MO);
   void initialize_O_CMAX(Lisa_Matrix<bool>* SIJ);
   void plan2graph_O_CMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
@@ -70,8 +78,9 @@ private:
   void initialize_O_RI_LMAX(Lisa_Matrix<bool>* SIJ);
   void plan2graph_J_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph);
   void plan2graph_O_RI_LMAX(Lisa_Matrix<int>* plan,Lisa_Graph* plangraph); 
-
-  // constructor
+  //@}
+  
+  /// constructor
   Lisa_ConvertGraph(const int new_pt,Lisa_Matrix<bool>* SIJ,Lisa_MO* MO=0);
 
 public:
