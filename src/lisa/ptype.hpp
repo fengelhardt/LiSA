@@ -29,13 +29,13 @@
 
 
 //  ************** System Includes  ******************
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 #include <iostream.h>
 
 
 //  ************** Lisa Includes  ******************
-#include "../basics/global.hpp"
-#include "../lisa_dt/filentry.hpp"
+#include "../main/global.hpp"
+#include "filentry.hpp"
 
 
 //  ************** Class Definitions ******************

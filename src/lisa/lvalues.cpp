@@ -16,9 +16,9 @@
 
 
 // **************************** Project Includes ****************************
-#include "../basics/global.hpp"
+#include "../main/global.hpp"
 // error handling:
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 
 // **************************** Local Includes ****************************
 #include "lvalues.hpp"

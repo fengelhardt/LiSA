@@ -21,12 +21,12 @@
 // ztos(...) in  TCTable::draw_table(...) 
 #include "../misc/int2str.hpp"
 // mw_width() 
-#include "../desktop/c_tcl.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
+#include "c_tcl.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
 
-#include "../desktop/callback.hpp"
+#include "callback.hpp"
 // ************************ Local Includes ********************
 #include "win_obj.hpp"
 

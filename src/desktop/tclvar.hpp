@@ -17,7 +17,7 @@
 
 // **************** Project Includes ********************
 // TCLValues:
-#include "../desktop/win_obj.hpp"
+#include "win_obj.hpp"
 
 
 //  **************  Class Definitions  ******************

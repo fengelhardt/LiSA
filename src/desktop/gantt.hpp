@@ -28,7 +28,7 @@
 
 
 // **************** Lisa Includes ********************
-#include "../desktop/win_obj.hpp"
+#include "win_obj.hpp"
 
 /** @name Gantt Chart.
 */

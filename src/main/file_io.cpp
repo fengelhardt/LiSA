@@ -16,15 +16,15 @@
 
 // ********************** LiSA Includes **************************
 // global variables
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
 // error handling
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 // refreshing of the Lisa Main Window
 #include "../desktop/callback.hpp"
 // G_XSchedule
-#include "../lisa_dt/xsched.hpp"
+#include "../scheduling/xsched.hpp"
 
 // ********************** Local Includes **********************
 #include "file_io.hpp"

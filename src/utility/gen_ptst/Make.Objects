@@ -1,18 +1,2 @@
 OBJECTS=\
-	../../../obj/gen_ptst.o \
-	../../../obj/global.o \
-	../../../obj/list.o \
-	../../../obj/matrix.o \
-	../../../obj/pair.o \
-	../../../obj/order.o \
-	../../../obj/except.o \
-	../../../obj/lisa_str.o \
-	../../../obj/ctrlpara.o \
-	../../../obj/mo.o \
-	../../../obj/ptype.o \
-	../../../obj/schedule.o \
-	../../../obj/lvalues.o \
-	../../../obj/js_sched.o \
-	../../../obj/m1_sched.o \
-	../../../obj/os_sched.o \
-	../../../obj/sp_sched.o
+	../../../obj/

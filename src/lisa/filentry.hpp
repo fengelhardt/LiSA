@@ -18,7 +18,7 @@
 
 
 // ********************* Lisa Includes ********************
-#include "../lisa_dt/lsaobjct.hpp" 
+#include "lsaobjct.hpp" 
 
 
 // ********************* Class Definitions *******************

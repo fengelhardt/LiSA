@@ -28,14 +28,14 @@
 #define _ptst_call_hpp
  
 #include "../basics/matrix.hpp"
-#include "../basics/except.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/schedule.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/ctrlpara.hpp"
+#include "../misc/except.hpp"
+#include "../lisa/ptype.hpp"
+#include "../scheduling/schedule.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../lisa/ctrlpara.hpp"
 // some definitions in: ProblemTupel
-#include "../basics/global.hpp"
-#include "../lisa_dt/lisapref.hpp"
+#include "../main/global.hpp"
+#include "../main/lisapref.hpp"
 
 #include "../misc/int2str.hpp"
 

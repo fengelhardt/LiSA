@@ -14,11 +14,11 @@
 #ifndef _dispatch_h
 #define _dispatch_h
 
-#include"../lisa_dt/schedule/js_sched.hpp"
-#include"../lisa_dt/schedule/os_sched.hpp"
-#include"../lisa_dt/schedule.hpp"
-#include"../lisa_dt/ptype.hpp"
-#include"../lisa_dt/lvalues.hpp"
+#include"../scheduling/js_sched.hpp"
+#include"../scheduling/os_sched.hpp"
+#include"../scheduling/schedule.hpp"
+#include"../lisa/ptype.hpp"
+#include"../lisa/lvalues.hpp"
 
 const int NUMBER_RULES=9;
 const int RAND=0;

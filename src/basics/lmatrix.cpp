@@ -8,7 +8,7 @@
  * 11.05.01
  */
 #include<ostream.h>
-#include"lisa_str.hpp"
+#include"../misc/lisa_str.hpp"
 #include "pair.hpp"
 #include"lmatrix.hpp"
 extern string G_ExtraException;

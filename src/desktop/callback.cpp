@@ -15,23 +15,23 @@
 
 
 // for output of the gantt-chart (in show_output())
-#include "../graphics/gantt.hpp"
+#include "../desktop/gantt.hpp"
 
 // G_XSchedule.CP
-#include "../lisa_dt/xsched.hpp"
+#include "../scheduling/xsched.hpp"
 
 // use of G_TclVar.Graphic_io in show_output()
-#include "../lisa_dt/tclvar.hpp"
+#include "tclvar.hpp"
 
 // G_Preferences used in calling of Lisa_classify
-#include "../lisa_dt/lisapref.hpp"
+#include "../main/lisapref.hpp"
 
 // print_error used in update_objective()
 #include "../desktop/c_tcl.hpp"
 
 // the output of the different models depende on the zoom-Flag which is 
 // defined in Lisa_Status
-#include "../basics/status.hpp"
+#include "../main/status.hpp"
 
 // output of the objective value as string
 #include "../misc/int2str.hpp"
@@ -40,7 +40,7 @@
 #include "../basics/order.hpp"
 
 // for use of Lisa_ProblemType:
-#include "../lisa_dt/ptype.hpp"
+#include "../lisa/ptype.hpp"
 
 // ************************ Local Includes ********************
 #include "callback.hpp"

@@ -12,33 +12,33 @@
 
 
 // ********************* System Includes ********************
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 
 
 // ******************** Project Includes ********************
 
 // error handling:
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 // some definitions in: ProblemTupel
-#include "../basics/global.hpp"
+#include "../main/global.hpp"
 // to respond, if anything has changed
 #include "callback.hpp"
 // for the global variables
-#include "../lisa_dt/xsched.hpp"
-#include "../lisa_dt/lisapref.hpp"
-#include "../lisa_dt/tclvar.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
-#include "../basics/status.hpp"
+#include "../scheduling/xsched.hpp"
+#include "../main/lisapref.hpp"
+#include "tclvar.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
+#include "../main/status.hpp"
 // stoz(string) returns string as number 
 #include "../misc/int2str.hpp"
 // translate() function
-#include "../desktop/c_tcl.hpp"
+#include "c_tcl.hpp"
 // To generate the C-Matrix and the objective function
-#include "../lisa_dt/schedule/os_sched.hpp"
+#include "../scheduling/os_sched.hpp"
 // for calculations in gantt-chart (in show_output())
-#include "../graphics/gantt.hpp"
+#include "gantt.hpp"
 // output of the bibtex references (in TC_getvar(REFERENCES))
 #include "../classify/classify.hpp"
 // ************************ Local Includes ********************

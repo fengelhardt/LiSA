@@ -30,14 +30,14 @@
 const int LENGHT_OF_EXTRA_VECTOR = 5;
 
 //  ************** System Includes  ******************
-//#include "../basics/lisa_str.hpp"
+//#include "../misc/lisa_str.hpp"
 #include <iostream.h>
 
 
 //  ************** Lisa Includes  ******************
 #include "../basics/matrix.hpp"
-#include "../lisa_dt/mo.hpp"
-#include "../lisa_dt/filentry.hpp"
+#include "../scheduling/mo_jo.hpp"
+#include "filentry.hpp"
 
 
 //  ************** Class Definitions ******************

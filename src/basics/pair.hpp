@@ -14,7 +14,7 @@
 #ifndef _pair_h 
 #define _pair_h 
 
-#include "../lisa_dt/lsaobjct.hpp"
+#include "../lisa/lsaobjct.hpp"
 // ******************** class definitions ********************
 
 /// Ordered Pairs are often used as Basistyp

@@ -10,9 +10,9 @@
  * history: 21.10.99  made several methods const
 */
 
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 #include "matrix.hpp"
-#include "global.hpp"
+#include "../main/global.hpp"
 #include "pair.hpp"
 
 template<class T>

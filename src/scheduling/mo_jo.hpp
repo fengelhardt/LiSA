@@ -7,8 +7,8 @@
  * 27.8.1998
 */
 
-#ifndef _mo_h 
-#define _mo_h
+#ifndef _mo_jo_h 
+#define _mo_jo_h
 
 #include <iostream.h>
 #include"../basics/matrix.hpp"

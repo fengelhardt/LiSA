@@ -14,10 +14,10 @@
 #include <fstream.h>
 
 // ************************ LiSA Includes ********************
-#include "../basics/global.hpp"
+#include "../main/global.hpp"
 //#include "../desktop/callback.hpp"
 // error handling:
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 // ************************ Local Includes ********************
 #include "alg_call.hpp"
 #include "../algo/dispatch.hpp"

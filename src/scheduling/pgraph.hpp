@@ -19,7 +19,7 @@
 
 
 //  ************** Lisa Includes  ****************** 
-#include "../lisa_dt/schedule.hpp"
+#include "schedule.hpp"
 
 
 //  ************** Class Definitions  ******************

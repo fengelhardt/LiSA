@@ -9,7 +9,7 @@
  */
 
 #include"dispatch.hpp"
-#include"../basics/status.hpp"
+#include"../main/status.hpp"
 extern Lisa_Status G_Status;
 
 TIMETYP Lisa_Dispatcher::priority(int i, int j)

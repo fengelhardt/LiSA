@@ -22,7 +22,7 @@
 
 
 //  ************** System Includes  ******************
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 
 
 //  **************** Functions  ******************

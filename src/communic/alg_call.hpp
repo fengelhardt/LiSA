@@ -19,23 +19,23 @@
 
  
 //  ********************** System Includes ***************************
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 #include <tcl.h>
 
 //  ********************** LiSA Includes ***************************
 // Lisa_ProblemType, Lisa_Values, Lisa_Schedule, Lisa_ControlParameters
 // and Lisa_Preferences as parameters
-#include "../lisa_dt/ctrlpara.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
-#include "../lisa_dt/lisapref.hpp"
+#include "../lisa/ctrlpara.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
+#include "../main/lisapref.hpp"
 
 // sorting used for priority rules
 #include "../basics/order.hpp"
 
 // Lisa_Status used as parameter for priority rules
-#include "../basics/status.hpp"
+#include "../main/status.hpp"
 
 /// priority rules
 void start_prior(Tcl_Interp *interp,Lisa_ProblemType & G_ProblemType,

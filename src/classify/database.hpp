@@ -13,9 +13,9 @@
 #define _database_h
 
 #include "redgraph.hpp"
-#include "../basics/except.hpp"
-#include "../basics/global.hpp"
-#include "../lisa_dt/ptype.hpp"
+#include "../misc/except.hpp"
+#include "../main/global.hpp"
+#include "../lisa/ptype.hpp"
 
 /// maximal number of BiBTeX entries.
 const int MAX_REC=200;

@@ -17,8 +17,8 @@
 #include <stdio.h>
 
 // ********************** Project Includes *******************
-//#include "../lisa_dt/problem.hpp"
-#include "../lisa_dt/lvalues.hpp"
+//#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
 
 
 // ************************ Local Includes ********************

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 #include <string.h>
 #include <fstream.h>
 #include "database.hpp"

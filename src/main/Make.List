@@ -1,40 +1,40 @@
 CXXSOURCES=\
-	lisa.cpp \
+	file_io.cpp \
+	global.cpp \
+	lisapref.cpp \
+	main.cpp \
+	status.cpp \
+	../algo/dispatch.cpp \
 	../basics/list.cpp \
-	../basics/global.cpp \
 	../basics/matrix.cpp \
 	../basics/order.cpp \
-	../basics/pgraph.cpp \
-	../basics/status.cpp \
-	../basics/except.cpp \
-	../basics/lisa_str.cpp \
 	../basics/pair.cpp \
-	../communic/alg_call.cpp \
-	../communic/ptst_call.cpp \
-	../desktop/c_tcl.cpp \
-	../desktop/setreadv.cpp \
-	../desktop/callback.cpp \
-	../desktop/file_io.cpp \
-	../desktop/tcl_c.cpp \
-	../desktop/basicwin.cpp \
-	../desktop/win_obj.cpp \
-	../graphics/gantt.cpp \
-	../lisa_dt/lisapref.cpp \
-	../lisa_dt/mo.cpp \
-	../lisa_dt/ptype.cpp \
-	../lisa_dt/lvalues.cpp \
-	../lisa_dt/schedule.cpp \
-	../lisa_dt/ctrlpara.cpp \
-	../lisa_dt/tclvar.cpp \
-	../lisa_dt/xsched.cpp \
-	../lisa_dt/schedule/os_sched.cpp \
-	../lisa_dt/schedule/js_sched.cpp \
-	../lisa_dt/schedule/sp_sched.cpp \
-	../misc/int2str.cpp \
-	../algo/dispatch.cpp \
 	../classify/classify.cpp \
 	../classify/database.cpp \
 	../classify/redgraph.cpp \
+	../communic/alg_call.cpp \
+	../communic/ptst_call.cpp \
+	../desktop/basicwin.cpp \
+	../desktop/c_tcl.cpp \
+	../desktop/callback.cpp \
+	../desktop/gantt.cpp \
+	../desktop/setreadv.cpp \
+	../desktop/tcl_c.cpp \
+	../desktop/tclvar.cpp \
+	../desktop/win_obj.cpp \
+	../lisa/ctrlpara.cpp \
+	../lisa/lvalues.cpp \
+	../lisa/ptype.cpp \
+	../misc/except.cpp \
+	../misc/int2str.cpp \
+	../misc/lisa_str.cpp \
+	../scheduling/js_sched.cpp \
+	../scheduling/mo_jo.cpp \
+	../scheduling/os_sched.cpp \
+	../scheduling/pgraph.cpp \
+	../scheduling/schedule.cpp \
+	../scheduling/sp_sched.cpp \
+	../scheduling/xsched.cpp
 
 DOCSOURCES=\
      doc_main.hpp

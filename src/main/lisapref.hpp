@@ -12,7 +12,7 @@
 
 /** @name Class to manage preference information
 
-  file: LiSA/src/lisa_dt/lisapref.h
+  file: LiSA/src/main/lisapref.h
 
   uses: string
 
@@ -28,16 +28,16 @@
 //  ************** System Includes  ******************
 
 /* for: string LISA_HOME */
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 /* for definition of Tcl_Interp */
 #include <tk.h>
 
 //  ************** Lisa Includes **********************
 /*   public Lisa_FileEntry   */
-#include "../lisa_dt/filentry.hpp"
+#include "../lisa/filentry.hpp"
 
 /* for Lisa_ControlParameters */
-#include "../lisa_dt/ctrlpara.hpp"
+#include "../lisa/ctrlpara.hpp"
 
 /* for  Lisa_Vector<int> *colors*/
 #include "../basics/matrix.hpp"

@@ -27,11 +27,11 @@
 #ifndef _m1_sched_h
 #define _m1_sched_h
 
-#include"../../basics/global.hpp"
-#include"../../basics/matrix.hpp"
-#include"../ptype.hpp"
-#include"../schedule.hpp"
-#include"../lvalues.hpp"
+#include"../basics/global.hpp"
+#include"../basics/matrix.hpp"
+#include"../lisa/ptype.hpp"
+#include"schedule.hpp"
+#include"../lisa/lvalues.hpp"
 #include"sp_sched.hpp"
 #include <stdlib.h>
 

@@ -20,7 +20,7 @@
 
 
 //  ************** System Includes  ******************
-#include "../basics/lisa_str.hpp"
+#include "lisa_str.hpp"
 
 
 //  ************** Functions  ******************

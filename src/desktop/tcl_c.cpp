@@ -12,7 +12,7 @@
 
 
 // ********************* System Includes ********************
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 // used in TC_open_schedule():
 #include <fstream.h>
 #include <unistd.h>
@@ -21,35 +21,35 @@
 // ******************** Project Includes ********************
 
 // error handling:
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 // some definitions in: ProblemTupel
-#include "../basics/global.hpp"
+#include "../main/global.hpp"
 // to respond, if anything has changed
 #include "callback.hpp"
 // to start the external Branch and Bound Algorithm
 #include "../communic/alg_call.hpp"
 // for the global variables
-//#include "../lisa_dt/xschedule.hpp"
+//#include "../scheduling/xschedule.hpp"
 // order used in TC_update_seq()
 #include "../basics/order.hpp"
-#include "../lisa_dt/lisapref.hpp"
-#include "../lisa_dt/tclvar.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
-#include "../lisa_dt/xsched.hpp"
-#include "../basics/status.hpp"
+#include "../main/lisapref.hpp"
+#include "../desktop/tclvar.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
+#include "../scheduling/xsched.hpp"
+#include "../main/status.hpp"
 // in TC_save
-#include "../desktop/file_io.hpp"
+#include "../main/file_io.hpp"
 #include "../misc/int2str.hpp"
 // translate() function
-#include "../desktop/c_tcl.hpp"
+#include "c_tcl.hpp"
 // To generate the C-Matrix and the objective function
-#include "../lisa_dt/schedule/os_sched.hpp"
+#include "../scheduling/os_sched.hpp"
 // output of the classification scheme (in TC_classify())
 #include "../classify/classify.hpp"
 // for calculations in gantt-chart (in show_output())
-#include "../graphics/gantt.hpp"
+#include "gantt.hpp"
 
 // ************************ Local Includes ********************
 #include "tcl_c.hpp"

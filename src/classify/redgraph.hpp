@@ -12,8 +12,8 @@
 #ifndef _redgraph_h
 #define _redgraph_h
 
-#include "../basics/global.hpp"
-#include "../lisa_dt/ptype.hpp"
+#include "../main/global.hpp"
+#include "../lisa/ptype.hpp"
 
 /// used for indication of terminal nodes graphs
 const int MY_NULL=100;

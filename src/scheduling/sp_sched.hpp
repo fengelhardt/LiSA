@@ -21,10 +21,10 @@
 #ifndef _sp_sched_h
 #define _sp_sched_h
 
-#include"../../basics/global.hpp"
-#include"../../basics/matrix.hpp"
-#include"../lvalues.hpp"
-#include"../lsaobjct.hpp"
+#include"../main/global.hpp"
+#include"../basics/matrix.hpp"
+#include"../lisa/lvalues.hpp"
+#include"../lisa/lsaobjct.hpp"
 
 const int SOURCE=0;
 const int SINK=0;

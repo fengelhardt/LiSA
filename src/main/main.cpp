@@ -19,26 +19,26 @@
 // ********************** Project Includes **************************
 
 // definition of the global variables
-#include "../lisa_dt/xsched.hpp"
-#include "../lisa_dt/lisapref.hpp"
-#include "../lisa_dt/tclvar.hpp"
-#include "../lisa_dt/ptype.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
+#include "../scheduling/xsched.hpp"
+#include "lisapref.hpp"
+#include "../desktop/tclvar.hpp"
+#include "../lisa/ptype.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
 
-#include "../basics/status.hpp"
+#include "status.hpp"
 
 // Tk_myMain()
 #include "../desktop/c_tcl.hpp"
 
 // read(G_Preferences.get_string("STARTFILE"),D_ALLES); 
-#include "../desktop/file_io.hpp"
+#include "file_io.hpp"
 
 // new_mn()
 #include "../desktop/callback.hpp"
 
 // error handling
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 
 // ********************** Global Variables ********************
 class Lisa_ProblemType G_ProblemType;

@@ -14,10 +14,10 @@
 #define _matching_h
 
 #include <iostream.h>
-#include "matrix.hpp"
-#include "global.hpp"
-#include "order.hpp"
-#include "except.hpp"
+#include "../basics/matrix.hpp"
+#include "../main/global.hpp"
+#include "../basics/order.hpp"
+#include "../misc/except.hpp"
 
 /** @name Matchings
     The classes Lisa_BipartMatching, Lisa_WeightedMatching 

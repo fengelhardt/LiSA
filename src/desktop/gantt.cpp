@@ -15,15 +15,15 @@
 // **************** Project Includes ********************
 
 // **************** Lisa Includes ********************
-#include "../lisa_dt/xsched.hpp"
-#include "../lisa_dt/lvalues.hpp"
-#include "../lisa_dt/schedule.hpp"
+#include "../scheduling/xsched.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
 #include "../basics/matrix.hpp"
 #include "../misc/int2str.hpp"
-#include "../lisa_dt/lisapref.hpp"
+#include "../main/lisapref.hpp"
 #include "../desktop/c_tcl.hpp"
 #include "../desktop/basicwin.hpp"
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 
 
 //******************** Local Includes ********************

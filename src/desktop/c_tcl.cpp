@@ -12,7 +12,7 @@
 
 // ********************* System Includes ********************
 // string used in string file
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 
 
 // ******************** Project Includes ********************
@@ -23,16 +23,16 @@
 #include "../communic/ptst_call.hpp"
 
 // G_Preferences
-#include "../lisa_dt/lisapref.hpp"
+#include "../main/lisapref.hpp"
 
 // G_TclVar.alive
-#include "../lisa_dt/tclvar.hpp"
+#include "../desktop/tclvar.hpp"
 
 // G_ProblemType
-#include "../lisa_dt/ptype.hpp"
+#include "../lisa/ptype.hpp"
 
 // Exception handling
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 
 // ************************ Local Includes ********************
 #include "c_tcl.hpp"

@@ -28,13 +28,13 @@
 
 // **************** Project Includes ********************
 // Lisa_Schedule *P
-#include "../lisa_dt/schedule.hpp"
+#include "schedule.hpp"
 // Lisa_Matrix *CP
 #include "../basics/matrix.hpp"
 // Lisa_SGraph
-#include "../basics/pgraph.hpp"
+#include "pgraph.hpp"
 // Exception handling
-#include "../basics/except.hpp"
+#include "../misc/except.hpp"
 
 /** Lisa_XSchedule is an extension of Lisa_Schedule.
     To guarantee the communication with Lisa_Schedule

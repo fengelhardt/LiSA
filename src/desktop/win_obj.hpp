@@ -52,19 +52,19 @@ const float VERTICE_RADIUS =20;
 
 //  ********************** System Includes ***************************
 #include <tk.h>
-#include "../basics/lisa_str.hpp"
+#include "../misc/lisa_str.hpp"
 
 // ********************** Lisa Includes **************************
 // Lisa_Canvas definition:
-#include "../desktop/basicwin.hpp"
+#include "basicwin.hpp"
 // Lisa_Matrix parameter in draw_table(...)
 #include "../basics/matrix.hpp"
 // Lisa_MO in parameter in draw_table(...)
-#include "../lisa_dt/mo.hpp"
+#include "../scheduling/mo_jo.hpp"
 // Lisa_SGraph in void TCGraphic::draw_SG(...)
-#include "../basics/pgraph.hpp"
+#include "../scheduling/pgraph.hpp"
 // Schedule-object
-#include "../lisa_dt/schedule/os_sched.hpp"
+#include "../scheduling/os_sched.hpp"
 
 
 /// graphical in-and output of Lisa_Schedule

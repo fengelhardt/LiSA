@@ -11,7 +11,7 @@
 
 #ifndef _lmatrix_h
 #define _lmatrix_h
-#include "global.hpp"
+#include "../main/global.hpp"
 #include "matrix.hpp"
 #include "list.hpp"
 

@@ -23,8 +23,8 @@
 #define _callback_h 
 
 // To generate the C-Matrix and the objective function
-#include "../lisa_dt/schedule/os_sched.hpp"
-#include "../basics/global.hpp"
+#include "../scheduling/os_sched.hpp"
+#include "../main/global.hpp"
 
 //  ************** Functions  ******************
 

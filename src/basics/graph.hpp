@@ -11,7 +11,7 @@
 
 #include "matrix.hpp"
 #include "pair.hpp"
-#include "../lisa_dt/filentry.hpp"
+#include "../lisa/filentry.hpp"
 #include<iostream.h>
 
 

@@ -1,37 +1,37 @@
 OBJECTS=\
-	../../obj/lisa.o \
-	../../obj/list.o \
+	../../obj/file_io.o \
 	../../obj/global.o \
+	../../obj/lisapref.o \
+	../../obj/main.o \
+	../../obj/status.o \
+	../../obj/dispatch.o \
+	../../obj/list.o \
 	../../obj/matrix.o \
 	../../obj/order.o \
-	../../obj/pgraph.o \
-	../../obj/status.o \
-	../../obj/except.o \
-	../../obj/lisa_str.o \
 	../../obj/pair.o \
-	../../obj/alg_call.o \
-	../../obj/ptst_call.o \
-	../../obj/c_tcl.o \
-	../../obj/setreadv.o \
-	../../obj/callback.o \
-	../../obj/file_io.o \
-	../../obj/tcl_c.o \
-	../../obj/basicwin.o \
-	../../obj/win_obj.o \
-	../../obj/gantt.o \
-	../../obj/lisapref.o \
-	../../obj/mo.o \
-	../../obj/ptype.o \
-	../../obj/lvalues.o \
-	../../obj/schedule.o \
-	../../obj/ctrlpara.o \
-	../../obj/tclvar.o \
-	../../obj/xsched.o \
-	../../obj/os_sched.o \
-	../../obj/js_sched.o \
-	../../obj/sp_sched.o \
-	../../obj/int2str.o \
-	../../obj/dispatch.o \
 	../../obj/classify.o \
 	../../obj/database.o \
-	../../obj/redgraph.o
+	../../obj/redgraph.o \
+	../../obj/alg_call.o \
+	../../obj/ptst_call.o \
+	../../obj/basicwin.o \
+	../../obj/c_tcl.o \
+	../../obj/callback.o \
+	../../obj/gantt.o \
+	../../obj/setreadv.o \
+	../../obj/tcl_c.o \
+	../../obj/tclvar.o \
+	../../obj/win_obj.o \
+	../../obj/ctrlpara.o \
+	../../obj/lvalues.o \
+	../../obj/ptype.o \
+	../../obj/except.o \
+	../../obj/int2str.o \
+	../../obj/lisa_str.o \
+	../../obj/js_sched.o \
+	../../obj/mo_jo.o \
+	../../obj/os_sched.o \
+	../../obj/pgraph.o \
+	../../obj/schedule.o \
+	../../obj/sp_sched.o \
+	../../obj/xsched.o

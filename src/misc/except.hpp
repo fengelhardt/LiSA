@@ -11,9 +11,9 @@
 #ifndef _except_h 
 #define _except_h 
 
-#include "../basics/lisa_str.hpp"
+#include "lisa_str.hpp"
 #include <ostream.h>
-#include "list.hpp"
+#include "../basics/list.hpp"
 
 /** @name Exception handling.
      Due to compatibility problems LiSA does not use C++ exception handling 

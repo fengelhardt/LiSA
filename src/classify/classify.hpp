@@ -12,10 +12,10 @@
 #define _classify_h 
 
 #include <tk.h>
-#include "../basics/lisa_str.hpp"
-#include "../basics/except.hpp"
+#include "../misc/lisa_str.hpp"
+#include "../misc/except.hpp"
 #include "../desktop/c_tcl.hpp"
-#include "../lisa_dt/ptype.hpp"
+#include "../lisa/ptype.hpp"
 #include "database.hpp"
 
 // flag: minmal NP-hard or maximal polynomial problem

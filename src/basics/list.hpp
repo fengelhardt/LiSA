@@ -15,9 +15,9 @@
 #define _list_h
 #include<iostream.h>
 #include <strstream.h>
-#include "global.hpp"
-#include "../lisa_dt/lsaobjct.hpp"
-#include "../basics/lisa_str.hpp"
+#include "../main/global.hpp"
+#include "../lisa/lsaobjct.hpp"
+#include "../misc/lisa_str.hpp"
 
 // just a little bit of hide and seek, written to annoy the developer
 void error(string);

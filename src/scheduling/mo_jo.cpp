@@ -7,8 +7,8 @@
  * 27.8.1998
 */
 
-#include"mo.hpp"
-#include"../basics/lisa_str.hpp"
+#include"mo_jo.hpp"
+#include"../misc/lisa_str.hpp"
 
 Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(const int n_in)
   {

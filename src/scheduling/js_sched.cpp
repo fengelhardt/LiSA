@@ -9,7 +9,7 @@
 */
 
 #include"js_sched.hpp"
-#include"../../basics/order.hpp"
+#include"../basics/order.hpp"
 #define debug
 
 //############# problem instance ######################################

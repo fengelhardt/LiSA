@@ -13,7 +13,7 @@
 #define _matrix_h 
 
 #include <iostream.h>
-#include "except.hpp"
+#include "../misc/except.hpp"
 
 // remove the following line in the final program:
 #define DEBUG
