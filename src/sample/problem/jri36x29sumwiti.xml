@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE solution PUBLIC "" "/home/spock/Coding/LaborPraktikum/LiSA/data/LiSA.dtd">
+<!DOCTYPE solution PUBLIC "" "../data/LiSA.dtd">
 <solution xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
   <problem>
     <alpha env="J"/>
