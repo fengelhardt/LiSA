@@ -17,10 +17,10 @@ Lisa_ProblemType= { 1 / / Lmax }
 Lisa_ProblemType= { 1 / / Cmax }
 </PROBLEMTYPE>
 <PROBLEMTYPE>
-Lisa_ProblemType= { 1 / / SumTi }
+Lisa_ProblemType= { 1 / / SumCi }
 </PROBLEMTYPE>
 <PROBLEMTYPE>
-Lisa_ProblemType= { 1 / / SumWiTi }
+Lisa_ProblemType= { 1 / / SumWiCi }
 </PROBLEMTYPE>
 </EXACT>
 
