@@ -419,4 +419,4 @@ dnl## File output
 dnl##
 dnl##--------------------------------------------------------------------
 
-AC_OUTPUT(Make.Config src/main/lisa src/external/eval/evaluate)
+AC_OUTPUT(Make.Config src/main/lisa src/external/evaluate/evaluate)

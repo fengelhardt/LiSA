@@ -90,7 +90,7 @@ int Tcl_myAppInit(int, char**, Tcl_Interp *interp)
   LISA_HOME = Tcl_GetVar2(interp,"env","LISAHOME",0);
   mainWindow = Tk_MainWindow(interp);
   
-  file=LISA_HOME+ "/tcl/external/eval/menu.tcl";
+  file=LISA_HOME+ "/tcl/external/evaluate/menu.tcl";
   retcode = Tcl_EvalFile( interp, (char*) file.c_str() );
   
   if(retcode != TCL_OK) 

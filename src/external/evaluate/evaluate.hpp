@@ -12,7 +12,7 @@
 
 /**  @name Graphical Output
   
-  file: LiSA/tcl/external/eval/evaluate.hpp
+  file: LiSA/tcl/external/evaluate/evaluate.hpp
   
   include:  <iostream.h>, <tk.h>, lisa_str.hpp, matrix.hpp, basicwin.hpp, 
 	    <fstream.h>, <math.h>, ctrlpara.hpp, inout.hpp and int2str.hpp

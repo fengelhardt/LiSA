@@ -7,13 +7,13 @@
 #
 global widget; 
 
-source $env(LISAHOME)/tcl/external/eval/german.tcl
-source $env(LISAHOME)/tcl/external/eval/trend.tcl
-source $env(LISAHOME)/tcl/external/eval/pie.tcl
-source $env(LISAHOME)/tcl/external/eval/corr.tcl
-source $env(LISAHOME)/tcl/external/eval/characte.tcl
-source $env(LISAHOME)/tcl/external/eval/confid.tcl
-source $env(LISAHOME)/tcl/external/eval/export.tcl
+source $env(LISAHOME)/tcl/external/evaluate/german.tcl
+source $env(LISAHOME)/tcl/external/evaluate/trend.tcl
+source $env(LISAHOME)/tcl/external/evaluate/pie.tcl
+source $env(LISAHOME)/tcl/external/evaluate/corr.tcl
+source $env(LISAHOME)/tcl/external/evaluate/characte.tcl
+source $env(LISAHOME)/tcl/external/evaluate/confid.tcl
+source $env(LISAHOME)/tcl/external/evaluate/export.tcl
 
 
 global export
