@@ -52,11 +52,12 @@ static void Compute_Tail(int ActualOp)
   
   register struct List  *help;
   int op_array[MaxOpProMachine+1];
-  register int i, max = 0, num, news;
+  register int i, max = 0, num, news = 0;
 
   help = ConjArcs->succ[ActualOp];
   while (help != NIL) {
-     if ((news = OpData[help->number].process_time + tail[help->number]) > max)
+     news = OpData[help->number].process_time + tail[help->number];
+     if (news > max)
         max = news;
      help = help->next;
   }
