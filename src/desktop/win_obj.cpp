@@ -487,7 +487,7 @@ void TCSeqGraph::draw(Lisa_Matrix<bool> &CP,
        int vj=myOsSchedule.GetJOpred(j+1,i+1)-1;
        if (vj>=0) {
 	 // --> critical-path-check...	       
-	 if ( (CP)[j][i] && ((CP)[hj][hi]) &&  (myOsSchedule.GetHead(j+1,i+1)==myOsSchedule.GetHead(vj+1,vi+1)+(*(myOsSchedule.P->time))[vj+1][vi+1] ))    
+	 if ( (CP)[j][i] && ((CP)[vj][vi]) &&  (myOsSchedule.GetHead(j+1,i+1)==myOsSchedule.GetHead(vj+1,vi+1)+(*(myOsSchedule.P->time))[vj+1][vi+1] ))    
 	   sprintf(color,"Red");
 	 else sprintf(color,"Black");
 	 dist=j-vj; if(dist<0) dist=-dist;
