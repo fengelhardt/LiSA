@@ -739,7 +739,7 @@ int Lisa_MatrixListGraph::next_neighbour(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_successors(const int knot){
+int Lisa_MatrixListGraph::get_successors(const int knot)const{
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -779,7 +779,7 @@ int Lisa_MatrixListGraph::get_successors(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_predecessors(const int knot){
+int Lisa_MatrixListGraph::get_predecessors(const int knot)const{
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -819,7 +819,7 @@ int Lisa_MatrixListGraph::get_predecessors(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_neighbours(const int knot){
+int Lisa_MatrixListGraph::get_neighbours(const int knot)const{
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -1148,7 +1148,7 @@ bool Lisa_MatrixListGraph::valid(){
 //**************************************************************************
 
 bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
-                             Lisa_Vector<int> *const knot_sequence){
+                            Lisa_Vector<int> *const knot_sequence){
 #ifdef LISA_DEBUG
   if(knot_sequence->get_m() != g->get_vertices()){
     G_ExceptionList.lthrow("Argument vector size incorrect in Lisa_GraphAlgo::topsort().",

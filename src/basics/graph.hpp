@@ -160,17 +160,17 @@ public:
   /// returns the number of successors for a vertex
   /** Sum of all EDGE's and ARC's connected to that vertex. This functions
       works independently from init_successor(), next_successor().*/
-  virtual int get_successors(const int vertex)=0;
+  virtual int get_successors(const int vertex)const=0;
 
   /// returns the number of predecessors for a vertex
   /** Sum of all EDGE's and CRA's connected to that vertex. This functions
       works independently from init_predecessor(), next_predecessor().*/
-  virtual int get_predecessors(const int vertex)=0;
+  virtual int get_predecessors(const int vertex)const=0;
   
   /// returns the number of neighbours for a vertex
   /** Sum of all EDGE's connected to that vertex. This functions
       works independently from init_neighbour(), next_neighbour().*/
-  virtual int get_neighbours(const int vertex)=0;
+  virtual int get_neighbours(const int vertex)const=0;
 
   /// write a Lisa_Graph to a stream
   /** The data is written as an adjacency matrix, as returned by
@@ -301,11 +301,11 @@ public:
   
   int next_neighbour(const int vertex);
   
-  int get_successors(const int vertex);
+  int get_successors(const int vertex)const;
 
-  int get_predecessors(const int vertex);
+  int get_predecessors(const int vertex)const;
   
-  int get_neighbours(const int vertex);
+  int get_neighbours(const int vertex)const;
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */
