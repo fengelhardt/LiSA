@@ -6,6 +6,7 @@
  * owner:       Per Willenius
  * date:        28.9.1999
  * patch        15.02.2000 by TAU
+ * patch        02.07.2002 by eldeh
  * version:     V 1.0
 */ 
 
@@ -46,7 +47,10 @@ extern class Lisa_ProblemType G_ProblemType;
 
 int Tk_myMain(int argc, char **argv) {
   interp = Tcl_CreateInterp();
+
+// Cygwin needs the following line due to a TCL bug therein
   Tcl_FindExecutable(argv[0]);
+  
   if (  Tcl_myAppInit( argc, argv, interp ) != TCL_OK ) 
     {
       fprintf( stderr, "\nUnexpected application error!" );
