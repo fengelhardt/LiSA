@@ -53,118 +53,781 @@ Legt fest, wie viele der neu erzeugten Pl&auml;ne nach jeder Iteration
 weiterbetrachtet werden.
     </ul>
     <li> <a name="Einf"></a><b><i>Einf&uuml;gereihenfolge:</i></b></li>
+  </ul>
+</dl>
+<div style="margin-left: 40px;">&nbsp;&nbsp;&nbsp; Legt die Reihenfolge
+fest, in der die Operationen in den partiellen Plan eingef&uuml;gt
+werden. </div>
+<ul>
+  <ul>
+    <li> <b>LPT (longest processing time first)<br>
+      </b></li>
+  </ul>
+  <ul>
+    <dd>monoton fallende Bearbeitungszeiten</dd>
+    <br>
+    <li>SPT (shortes processing time first)</li>
+monoton steigende Bearbeitungszeiten<br>
+  </ul>
+  <ul>
+    <li>ECT (earliest completion time)<br>
+    </li>
+  </ul>
+  <ul>
+Die n&auml;chste einzuordnende Operation hat minimale
+Fertigstellungszeit in einem Plan, der die bereits eingeordneten
+Operationen, die entsprechend ihrer Reihenfolge eingef&uuml;gt wurden,
+enth&auml;lt.<br>
+  </ul>
+</ul>
+<dl>
+  <ul>
     <ul>
-Reihenfolge, in der Beam Search die Operationen einf&uuml;gt :
+      <li> <b>RANDOM</b></li>
+      <dd>zuf&auml;llige Reihenfolge.<br>
+      </dd>
+      <li> <b>DIAGONAL</b></li>
       <ul>
-        <li> <b>LPT</b></li>
-      </ul>
-      <ul>
-        <dd>geordnet nach monoton nichtsteigenden Bearbeitungszeiten</dd>
-      </ul>
-      <ul>
-        <li> <b>RANDOM</b></li>
-      </ul>
-      <ul>
-        <dd>in zuf&auml;lliger Reihenfolge</dd>
-      </ul>
-      <ul>
-        <li> <b>DIAGONAL1</b></li>
-        <br>
-Beispiel:
+Basiert auf der diagonalen Anordnung in einem Quadrat der Gr&ouml;sse
+M=min(m,n).<br>
+F&uuml;r Operation (i,j) sei :
         <ul>
-&nbsp;
-          <table border="1" cellpadding="2" cols="6" width="100"
- nosave="">
-            <tbody>
-              <tr align="center" valign="CENTER" nosave="">
-                <td nosave=""><b><font color="#3333ff">13</font></b></td>
-                <td nosave=""><b><font color="#cc33cc">7</font></b></td>
-                <td><b><font color="#ff0000">1</font></b></td>
-                <td><b><font color="#009900">19</font></b></td>
-                <td><b><font color="#3333ff">14</font></b></td>
-                <td><b><font color="#cc33cc">8</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td nosave=""><b><font color="#009900">20</font></b></td>
-                <td><b><font color="#3333ff">15</font></b></td>
-                <td><b><font color="#cc33cc">9</font></b></td>
-                <td><b><font color="#ff0000">2</font></b></td>
-                <td><b><font color="#009900">21</font></b></td>
-                <td><b><font color="#3333ff">16</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td><b><font color="#ff0000">3</font></b></td>
-                <td><b><font color="#009900">22</font></b></td>
-                <td nosave=""><b><font color="#3333ff">17</font></b></td>
-                <td><b><font color="#cc33cc">10</font></b></td>
-                <td><b><font color="#ff0000">4</font></b></td>
-                <td><b><font color="#009900">23</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td><b><font color="#cc33cc">11</font></b></td>
-                <td><b><font color="#ff0000">5</font></b></td>
-                <td align="center" valign="CENTER" nosave=""><b><font
- color="#009900">24</font></b></td>
-                <td><b><font color="#3333ff">18</font></b></td>
-                <td><b><font color="#cc33cc">12</font></b></td>
-                <td><b><font color="#ff0000">6</font></b></td>
-              </tr>
-            </tbody>
-          </table>
-          <br>
-&nbsp;
+          <li>&nbsp;d(i,j) = (i - j)
+mod M&nbsp;&nbsp; die Nummer der Diagonalen in der (i,j) liegt.</li>
+          <li>&nbsp;p(i,j) = i*M
++ (j div M)*M*M + j mod M&nbsp;&nbsp;&nbsp; die Position der Operation
+(i,j) in der Diagonalen d(i,j)&nbsp; .</li>
         </ul>
-        <li> <b>DIAGONAL2</b></li>
-        <br>
-so &auml;hnlich, aber mehr unabh&auml;ngige Operationen <br>
-Beispiel:
-        <ul>
-&nbsp;
-          <table border="1" cellpadding="2" cols="6" width="100"
- nosave="">
-            <tbody>
-              <tr align="center" valign="CENTER" nosave="">
-                <td nosave=""><b><font color="#ff0000">1</font></b></td>
-                <td nosave=""><b><font color="#3333ff">5</font></b></td>
-                <td><b><font color="#009900">9</font></b></td>
-                <td><b><font color="#cc33cc">13</font></b></td>
-                <td><b><font color="#ffcc00">17</font></b></td>
-                <td><b><font color="#33ccff">21</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td nosave=""><b><font color="#33ccff">22</font></b></td>
-                <td><b><font color="#ff0000">2</font></b></td>
-                <td><b><font color="#3333ff">6</font></b></td>
-                <td><b><font color="#009900">10</font></b></td>
-                <td><b><font color="#cc33cc">14</font></b></td>
-                <td><b><font color="#ffcc00">18</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td><b><font color="#ffcc00">19</font></b></td>
-                <td><b><font color="#33ccff">23</font></b></td>
-                <td nosave=""><b><font color="#ff0000">3</font></b></td>
-                <td><b><font color="#3333ff">7</font></b></td>
-                <td><b><font color="#009900">11</font></b></td>
-                <td><b><font color="#cc33cc">15</font></b></td>
-              </tr>
-              <tr align="center" valign="CENTER" nosave="">
-                <td><b><font color="#cc33cc">16</font></b></td>
-                <td><b><font color="#ffcc00">20</font></b></td>
-                <td align="center" valign="CENTER" nosave=""><b><font
- color="#33ccff">24</font></b></td>
-                <td><b><font color="#ff0000">4</font></b></td>
-                <td><b><font color="#3333ff">8</font></b></td>
-                <td><b><font color="#009900">12</font></b></td>
-              </tr>
-            </tbody>
-          </table>
-          <b><font color="#33ccff"></font></b> <br>
-          <b><font color="#33ccff"></font></b>&nbsp;
-        </ul>
-        <li> <b>MACHINEWISE</b></li>
-        <br>
-spaltenweise
+Daraus ergibt sich formal die folgende Ordnung:<br>
+&nbsp;&nbsp;&nbsp; (i,j) &lt; (k,l) gdw. d(i,j) &lt;= d(k,l) und p(i,j)
+&lt; p(k,l)<br>
+Damit kann der folgende Schl&uuml;ssel k(i,j) f&uuml;r eine
+aufsteigende Sortierung der Operationen berechnet werden, <br>
+so da&szlig; k(i,j) &lt; k(k,l) gdw. (i,j) &lt; (k,l) :<br>
+&nbsp;&nbsp;&nbsp; k(i,j) = d(i,j)&nbsp; * S * M*M +&nbsp; p(i,j),
+wobei S =&nbsp; max(n,m) / M, falls M | max(m,n) und max(n,m) div M +
+1, sonst.<br>
+Beispiel:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; n=4 ; m = 6; S=2<br>
       </ul>
+    </ul>
+  </ul>
+</dl>
+<table
+ style="width: 565px; height: 195px; text-align: left; margin-left: auto; margin-right: auto;"
+ border="1" cellspacing="2" cellpadding="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">d(i,j):<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">p(i,j):<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">k(i,j):<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <table style="width: 174px; height: 152px;" border="1"
+ cellpadding="2" cols="6" nosave="">
+        <tbody>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td nosave=""><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td><span style="font-weight: bold;">3</span><br>
+            </td>
+            <td><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td><span style="font-weight: bold;">1</span><br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">3</span><br>
+            </td>
+            <td><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td><span style="font-weight: bold;">3</span><br>
+            </td>
+            <td><span style="font-weight: bold;">0</span><br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td><span style="font-weight: bold;">3</span><br>
+            </td>
+            <td nosave=""><span style="font-weight: bold;"></span>0<br>
+            </td>
+            <td><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td><span style="font-weight: bold;">3</span><br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td align="center" valign="CENTER" nosave=""><span
+ style="font-weight: bold;">3</span><br>
+            </td>
+            <td><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="vertical-align: top;">
+      <table style="width: 199px; height: 151px;" border="1"
+ cellpadding="2" cols="6" nosave="">
+        <tbody>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td nosave=""><span style="font-weight: bold;">1</span><br>
+            </td>
+            <td><span style="font-weight: bold;">2</span><br>
+            </td>
+            <td><span style="font-weight: bold;">3</span><br>
+            </td>
+            <td><span style="font-weight: bold;">16</span><br>
+            </td>
+            <td style="vertical-align: middle;">17<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">4</span><br>
+            </td>
+            <td><span style="font-weight: bold;">5</span><br>
+            </td>
+            <td><span style="font-weight: bold;">6</span><br>
+            </td>
+            <td><span style="font-weight: bold;">7</span><br>
+            </td>
+            <td><span style="font-weight: bold;">20</span><br>
+            </td>
+            <td style="vertical-align: middle;">21<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">8</span><br>
+            </td>
+            <td><span style="font-weight: bold;">9</span><br>
+            </td>
+            <td nosave="">10<br>
+            </td>
+            <td><span style="font-weight: bold;">11</span><br>
+            </td>
+            <td><span style="font-weight: bold;">24</span><br>
+            </td>
+            <td style="vertical-align: middle;">25<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">12</span><br>
+            </td>
+            <td><span style="font-weight: bold;">13</span><br>
+            </td>
+            <td align="center" valign="CENTER" nosave=""><span
+ style="font-weight: bold;">14</span><br>
+            </td>
+            <td><span style="font-weight: bold;">15</span><br>
+            </td>
+            <td><span style="font-weight: bold;"></span>28<br>
+            </td>
+            <td style="vertical-align: middle;">29<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="vertical-align: top;">
+      <table style="width: 199px; height: 151px;" border="1"
+ cellpadding="2" cols="6" nosave="">
+        <tbody>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">0</span><br>
+            </td>
+            <td nosave=""><span style="font-weight: bold;">33</span><br>
+            </td>
+            <td><span style="font-weight: bold;">66</span><br>
+            </td>
+            <td><span style="font-weight: bold;">99</span><br>
+            </td>
+            <td><span style="font-weight: bold;">16</span><br>
+            </td>
+            <td style="vertical-align: middle;">49<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td nosave=""><span style="font-weight: bold;">100</span><br>
+            </td>
+            <td><span style="font-weight: bold;">5</span><br>
+            </td>
+            <td><span style="font-weight: bold;">38</span><br>
+            </td>
+            <td><span style="font-weight: bold;">71</span><br>
+            </td>
+            <td><span style="font-weight: bold;">116</span><br>
+            </td>
+            <td style="vertical-align: middle;">21<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">72</span><br>
+            </td>
+            <td><span style="font-weight: bold;">105</span><br>
+            </td>
+            <td nosave="">10<br>
+            </td>
+            <td><span style="font-weight: bold;">43</span><br>
+            </td>
+            <td><span style="font-weight: bold;">88</span><br>
+            </td>
+            <td style="vertical-align: middle;">121<br>
+            </td>
+          </tr>
+          <tr align="center" valign="CENTER" nosave="">
+            <td><span style="font-weight: bold;">44</span><br>
+            </td>
+            <td><span style="font-weight: bold;">77</span><br>
+            </td>
+            <td align="center" valign="CENTER" nosave=""><span
+ style="font-weight: bold;">110</span><br>
+            </td>
+            <td>15<span style="font-weight: bold;"></span><br>
+            </td>
+            <td><span style="font-weight: bold;"></span>60<br>
+            </td>
+            <td style="vertical-align: middle;">93 </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<dl>
+  <ul>
+    <ul>
+      <ul>
+&nbsp;&nbsp;&nbsp; Damit wird folgende Reihenfolge erzeugt (gleiche
+Diagonalen haben gleiche Farbe) :<br>
+      </ul>
+    </ul>
+  </ul>
+</dl>
+<table
+ style="text-align: left; margin-left: auto; margin-right: auto; height: 151px; width: 199px;"
+ border="1" cellpadding="2" cols="6" nosave="">
+  <tbody>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="background-color: rgb(255, 0, 0);" nosave="">1<br>
+      </td>
+      <td style="background-color: rgb(255, 255, 51);" nosave="">7<br>
+      </td>
+      <td style="background-color: rgb(51, 255, 51);">13<br>
+      </td>
+      <td style="background-color: rgb(51, 204, 255);">19<br>
+      </td>
+      <td style="background-color: rgb(255, 0, 0);">5<br>
+      </td>
+      <td
+ style="vertical-align: middle; background-color: rgb(255, 255, 51);">11<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="background-color: rgb(51, 204, 255);" nosave="">20<br>
+      </td>
+      <td style="background-color: rgb(255, 0, 0);">2<br>
+      </td>
+      <td style="background-color: rgb(255, 255, 51);">8<br>
+      </td>
+      <td style="background-color: rgb(51, 255, 51);">14<br>
+      </td>
+      <td style="background-color: rgb(51, 204, 255);">23<br>
+      </td>
+      <td
+ style="vertical-align: middle; background-color: rgb(255, 0, 0);">6<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="background-color: rgb(51, 255, 51);">15<br>
+      </td>
+      <td style="background-color: rgb(51, 204, 255);">21<br>
+      </td>
+      <td style="background-color: rgb(255, 0, 0);" nosave="">3<br>
+      </td>
+      <td style="background-color: rgb(255, 255, 51);">9<br>
+      </td>
+      <td style="background-color: rgb(51, 255, 51);">17<br>
+      </td>
+      <td
+ style="vertical-align: middle; background-color: rgb(51, 204, 255);">24<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="background-color: rgb(255, 255, 51);">10<br>
+      </td>
+      <td style="background-color: rgb(51, 255, 51);">16<br>
+      </td>
+      <td style="background-color: rgb(51, 204, 255);" align="center"
+ valign="CENTER" nosave="">22<br>
+      </td>
+      <td style="background-color: rgb(255, 0, 0);">4<br>
+      </td>
+      <td style="background-color: rgb(255, 255, 51);">12<br>
+      </td>
+      <td
+ style="vertical-align: middle; background-color: rgb(51, 255, 51);">18</td>
+    </tr>
+  </tbody>
+</table>
+<dl>
+  <ul>
+    <ul>
+      <ul>
+        <li><span style="font-weight: bold;">QUEEN_SWEEP</span></li>
+Diese Reihenfolge wird durch ein M&times;M Schachbrett erzeugt,
+da&szlig; &uuml;ber die Matrix der Operationen bewegt wird, wobei M =
+min(n,m). F&uuml;r ein M&times;M Schachbrett existiert eine allgemeine
+L&ouml;sung des sogenannten M-Damen-Problems. Dieses besteht darin M
+Damen so auf das Schachbrett zu stellen, da&szlig; keine eine andere
+Dame bedroht. Diese Anordnung wird nun solange &uuml;ber die Matrix
+bewegt, bis jede Operation genau einmal mit der Position einer Dame
+&uuml;bereinstimmte. In jedem Schritt dieser Bewegung wird eine Menge
+von M unabh&auml;ngigen Operationen (Damenpositionen auf dem Brett von
+oben nach unten) an die Reihenfolge angef&uuml;gt.<br>
+        <br>
+Generic solution of an M&times;M chequerboard; i.e. derive column
+number j from given row number i:<br>
+L&ouml;sung f&uuml;r ein M&times;M Schachbrett die von einer gegebenen
+Zeile i die Spalte j ermittelt, in der die Dame stehen muss.<br>
+&nbsp;&nbsp;&nbsp; M sei gerade. Fallunterscheidung : f&uuml;r jedes k
+sei M<br>
+        <ol>
+          <li>nicht 6k+2 : j = 2i+1, f&uuml;r 0 &lt;= i &lt; M/2 und j
+=
+2i mod M, f&uuml;r M/2 &lt;= i &lt; M<br>
+          </li>
+          <li>nicht 6k : j = (M/2 + 2i -1) mod M, f&uuml;r 0 &lt;= i
+&lt;
+M/2 und j = (M/2 + 2i + 2) mod M, f&uuml;r M/2 &lt;= i<br>
+          </li>
+        </ol>
+      </ul>
+    </ul>
+  </ul>
+</dl>
+<div style="margin-left: 120px;">&nbsp;&nbsp;&nbsp; M ist ungerade.<br>
+&nbsp;&nbsp;&nbsp; Man berechnet die L&ouml;sung f&uuml;r ein
+(M-1)&times;(M-1)-Schachbrett und setzt die M-te Dame auf das Feld i =
+M-1, j = M-1<br>
+<br>
+Beispiel: M = 6 : <br>
+<table style="width: 222px; height: 216px;" border="1" cellpadding="2"
+ cols="6" nosave="">
+  <tbody>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;" nosave=""><br>
+      </td>
+      <td style="text-align: center;" nosave="">X<br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;" nosave=""><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;">X<br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;" nosave=""><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;">X<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">X<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;" valign="CENTER" nosave="">X<br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+      <td style="text-align: center;"><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">X<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+Daraus ergibt sich die oben erw&auml;hnte Gruppierung wie folgt
+(gleiche Zahl bedeutet gleiche Gruppe):<br>
+<table style="width: 222px; height: 216px;" border="1" cellpadding="2"
+ cols="6" nosave="">
+  <tbody>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;" nosave="">5<br>
+      </td>
+      <td style="text-align: center; background-color: rgb(255, 0, 0);"
+ nosave="">0<br>
+      </td>
+      <td style="text-align: center;">1<br>
+      </td>
+      <td style="text-align: center;">2<br>
+      </td>
+      <td style="text-align: center;">3<br>
+      </td>
+      <td style="text-align: center;">4<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;" nosave="">3<br>
+      </td>
+      <td style="text-align: center;">4<br>
+      </td>
+      <td style="text-align: center;">5<br>
+      </td>
+      <td style="text-align: center; background-color: rgb(255, 0, 0);">0<br>
+      </td>
+      <td style="text-align: center;">1<br>
+      </td>
+      <td style="text-align: center;">2<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;">1<br>
+      </td>
+      <td style="text-align: center;">2<br>
+      </td>
+      <td style="text-align: center;" nosave="">3<br>
+      </td>
+      <td style="text-align: center;">4<br>
+      </td>
+      <td style="text-align: center;">5<br>
+      </td>
+      <td style="text-align: center; background-color: rgb(255, 0, 0);">0<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; text-align: center; background-color: rgb(255, 0, 0);">0<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">1<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">2<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">3<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">4<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">5<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td style="text-align: center;">4<br>
+      </td>
+      <td style="text-align: center;">5<br>
+      </td>
+      <td style="text-align: center; background-color: rgb(255, 0, 0);"
+ valign="CENTER" nosave="">0<br>
+      </td>
+      <td style="text-align: center;">1<br>
+      </td>
+      <td style="text-align: center;">2<br>
+      </td>
+      <td style="text-align: center;">3<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; text-align: center;">2<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">3<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">4<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">5<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; background-color: rgb(255, 0, 0);">0<br>
+      </td>
+      <td style="vertical-align: top; text-align: center;">1<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+&nbsp;
+Die folgende Reihenfolge wird eruegt: n=6 and m = 8:<br>
+<table style="width: 299px; height: 216px;" border="1" cellpadding="2"
+ cols="6" nosave="">
+  <tbody>
+    <tr align="center" valign="CENTER" nosave="">
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(0, 153, 0);"
+ nosave="">42<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 0, 0);"
+ nosave="">0<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 255);">6<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 51);">12<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 153, 255);">18<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 255, 153);">24<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(51, 153, 153);">30<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 102, 0);">36<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 153, 153);"
+ nosave="">31<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 102, 0);">37<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(0, 153, 0);">43<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 0, 0);">1<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 255);">7<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 51);">13<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 153, 255);">19<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 255, 153);">25<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 153, 255);">20<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 255, 153);">26<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 153, 153);"
+ nosave="">32<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 102, 0);">38<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(0, 153, 0);">44<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 0, 0);">2<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(51, 255, 255);">8<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(51, 255, 51);">14<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 0, 0);">3<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(51, 255, 255);">9<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(51, 255, 51);">15<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 153, 255);">21<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 255, 153);">27<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(51, 153, 153);">33<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 102, 0);">39<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(0, 153, 0);">45<br>
+      </td>
+    </tr>
+    <tr align="center" valign="CENTER" nosave="">
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 102, 0);">40<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(0, 153, 0);">46<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 0, 0);"
+ valign="CENTER" nosave="">4<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 255);">10<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(51, 255, 51);">16<br>
+      </td>
+      <td
+ style="text-align: center; width: 8%; background-color: rgb(255, 153, 255);">22<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 255, 153);">28<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(51, 153, 153);">34<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 255, 153);">29<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(51, 153, 153);">35<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 102, 0);">41<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(0, 153, 0);">47<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(255, 0, 0);">5<br>
+      </td>
+      <td
+ style="vertical-align: top; text-align: center; width: 8%; background-color: rgb(51, 255, 255);">11<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(51, 255, 51);">17<br>
+      </td>
+      <td
+ style="vertical-align: top; width: 8%; background-color: rgb(255, 153, 255);">23<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Operationen der gleichen Gruppe haben gleiche Farben. Jedes Farbmuster
+ist die Kopie der Standardl&ouml;sung, wenn sie &uuml;ber die Matrix
+bewegt wird. Die Richtung dieser Bewegeung h&auml;ngt davon ab, ob
+n&gt;=m oder n &lt; m.<br>
+DerVollstandigkeit halber sei hier noch die Schl&uuml;sselfunktion
+k(i,j) gegeben:<br>
+&nbsp;&nbsp;&nbsp; Sei Dame(M,i) die Spalte in der eine Dame in Zeile i
+auf einem M&times;M-Schachbrett&nbsp; steht. <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Sei m&gt;=n (horizontal):<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; In Schritt s (0
+&lt;= s &lt; m) : setze den Schl&uuml;ssel von Operation
+(i, (Dame(n,i) + s) mod M ) auf <br>
+</div>
+<div style="margin-left: 80px;">
+<div style="margin-left: 320px;">i + s*n f&uuml;r alle i mit 0 &lt;= i
+&lt;
+n.<br>
+</div>
+</div>
+<div style="margin-left: 120px;">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+Sei m &lt; n (vertikal):<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; In Schritt s (0
+&lt;= s &lt; n) :&nbsp; setze den Schl&uuml;ssel von Operation (
+(i + s) mod n , Dame(m, i) ) auf<br>
+<div style="margin-left: 280px;">&nbsp;i + s*m f&uuml;r alle i mit 0
+&lt;= i &lt;
+m.<br>
+</div>
+</div>
+<ul>
+  <li><b>MACHINEWISE</b></li>
+spaltenweise<br>
+</ul>
+<dl>
+  <ul>
+    <ul>
     </ul>
     <li> <a name="Auswahlmethode"></a><b><i>Auswahlmethode:</i></b></li>
     <ul>

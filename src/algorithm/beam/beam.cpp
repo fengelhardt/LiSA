@@ -27,9 +27,13 @@ enum InsertionOrder{
   rndm,
   line_by_line,
   diagonal,
+		queens,
 		spt,
 		ect
 };
+
+//define modulo to always be a positive integer even if a is negative 
+#define MOD(a,b) (((a)%(b))+(b))%(b)
 
 enum InsertionMethod {
   insert1,
@@ -54,7 +58,7 @@ InsertionMethod insertionMethod = insert1;
 
 int main(int argc, char *argv[]){
   
-  G_ExceptionList.set_output_to_cout();   
+  //G_ExceptionList.set_output_to_cout();   
   
   // open files and assure existence:
   if (argc != 3){
@@ -157,12 +161,23 @@ int main(int argc, char *argv[]){
   InsertionOrder iord = lpt;
   if (Parameter.defined("INS_ORDER")) {
     if (Parameter.get_string("INS_ORDER")=="LPT") iord = lpt;
-    if (Parameter.get_string("INS_ORDER")=="RANDOM") iord = rndm;
-    if (Parameter.get_string("INS_ORDER")=="MACHINEWISE") iord = line_by_line;
-    if (Parameter.get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
-				if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
-				if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
+    else if (Parameter.get_string("INS_ORDER")=="RANDOM") iord = rndm;
+    else if (Parameter.get_string("INS_ORDER")=="MACHINEWISE") iord = line_by_line;
+    else if (Parameter.get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
+    else if (Parameter.get_string("INS_ORDER")=="QUEEN_SWEEP") iord = queens;
+				else if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
+				else if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
+				else{
+						cout << "ERROR: \"" << Parameter.get_string("INS_ORDER")
+											<< "\" unknown Insertion Order. Aborting." << endl;
+						exit(1);
+				}
   }
+		else
+				{
+						cout << "ERROR: \"INS_ORDER\" undefined. Aborting." << endl;
+						exit(1);
+				}
 
 
   //which choice method was selected
@@ -339,16 +354,26 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
 }
 
 Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem);
+Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem);
+
+//static ofstream out("/tmp/out");
 
 Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem){
 		if(iord == ect)
 				return makeECT(ops,os_problem);
+		if(iord == queens)
+				return makeQueenSweep(ops,os_problem);
 		Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
 		int l = os_problem->n * os_problem->m;
 		//use system time for independent random numbers
   //this is not reversable
   long seed = (long)time(NULL);
-  
+  int max_mn = MAX(os_problem->n,os_problem->m);
+  int min_mn = MIN(os_problem->n,os_problem->m);
+		int squares = max_mn/min_mn;
+		if( (max_mn % min_mn) != 0)
+				squares++;
+
 		//create the insertion order
   for (int i=0; i < os_problem->n; i++)
     for (int j=0; j < os_problem->m; j++) {
@@ -365,8 +390,21 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
 								order->read_one_key( i, j, -(*(os_problem->time))[i+1][j+1]);
 						else if (iord == spt) 
 								order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
-      else if (iord == diagonal)
-								order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
+      else if (iord == diagonal){
+								/*
+										int d = MOD(j-i,min_mn);
+										int p =  i*min_mn + (j/min_mn)*min_mn*min_mn + j%min_mn;
+										int key = d*min_mn*min_mn*squares + p;
+										order->read_one_key(i,j, key);
+										out << "(" << i << "," << j << ") --> " 
+										<< " d=" << d
+										<< " p=" << p
+										<< " key=" << key << endl;
+								*/
+								order->read_one_key(i,j, 
+																												(MOD(j-i,min_mn))*min_mn*min_mn*squares + 
+																												i*min_mn + (j/min_mn)*min_mn*min_mn + j%min_mn);
+						}
       else if (iord == line_by_line)
 								order->read_one_key( i, j, j * os_problem->n + i);
       else 
@@ -374,6 +412,15 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
     }
 		order->sort();
 		ops = l;
+		
+		/*
+				out << "----- Order ------" << endl;
+				for(int o = 0; o < ops; o++){
+				out << "(" << order->row(o) << "," << order->col(o) << "), ";
+				}
+				out << endl << "------------------" << endl;
+		*/
+		
 		return order;
 }
 
@@ -438,5 +485,63 @@ Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem){
 		delete ECT;
 		ops = l;
 		order->sort();
+		return order;
+}
+
+
+#define QUEEN_POS_EVEN(M,I) (((M)%6!=2)?((I<(M)/2)?(2*(I)+1):((2*(I))%(M))):((I<(M)/2)?((M)/2+2*(I)+1):((2*(I)+(M)/2+2)%(M))))
+
+#define QUEEN_POS(M,I) (((M)%2==0)?QUEEN_POS_EVEN(M,I):((I)<((M)-1))?(QUEEN_POS_EVEN(((M)-1),I)):((M)-1))
+
+Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
+		int n = os_problem->n, m = os_problem->m;
+		int l = n*m;
+		Lisa_Order *order = new Lisa_Order(n,m);
+		int pos = 0;
+		//horizontal sweep
+		if(m >= n){
+				for(int sweep = 0; sweep < m; sweep++){
+						for(int i = 0; i < n; i++){
+								pos = (QUEEN_POS(n,i) + sweep) % m;
+								if (! (*os_problem->sij)[i+1][pos+1])
+										{
+												l--;
+												continue;
+										}
+								order->read_one_key(i, pos, i + sweep*n);
+								/*
+										out << "(" << i << "," << pos << ") --> " 
+										<< " q_pos = " << (QUEEN_POS(n,i))
+										<< " key=" << i + sweep*n  << endl;
+								*/
+								
+						}
+				}
+		}
+		//vertical sweep
+		else{
+				int row = 0;
+				for(int sweep = 0; sweep < n; sweep++){
+						for(int i = 0; i < m; i++){
+								row = (i + sweep)%n;
+								pos = QUEEN_POS(m,i); //column
+								if (! (*os_problem->sij)[row+1][pos+1])
+										{
+												l--;
+												continue;
+										}
+								order->read_one_key(row, pos, i + sweep*m);
+						}	
+				}
+		}
+		ops = l;
+		order->sort();
+		/*
+				out << "----- Order ------" << endl;
+				for(int o = 0; o < ops; o++){
+				out << "(" << order->row(o) << "," << order->col(o) << "), ";
+				}
+				out << endl << "------------------" << endl;
+		*/
 		return order;
 }

@@ -32,8 +32,8 @@
     <integer name="K_BRANCHES" caption="Beamwidth" default="5"/>
     <choice name="INS_ORDER" caption="Insertion order">
       <item name="MACHINEWISE"/>
-      <item name="DIAGONAL1"/>
-      <item name="DIAGONAL2"/>
+      <item name="DIAGONAL"/>
+      <item name="QUEEN_SWEEP"/>
       <item name="RANDOM"/>
 						<item name="LPT"/>
 						<item name="ECT"/>
