@@ -14,7 +14,7 @@ Lisa_ExceptionList G_ExceptionList;
 
 //**************************************************************************
 
-void Lisa_ExceptionList::lthrow(const string msg, const exception code){
+void Lisa_ExceptionList::lthrow(const string msg, const int code){
   
   string type_word="ERROR";
   if (code==WARNING) type_word="WARNING";
@@ -37,7 +37,7 @@ void Lisa_ExceptionList::lthrow(const string msg, const exception code){
   
 //**************************************************************************
 
-void Lisa_ExceptionList::lfthrow(const string msg, const exception code){
+void Lisa_ExceptionList::lfthrow(const string msg, const int code){
   string type_word="ERROR";
   if (code==WARNING) type_word="WARNING";
   
@@ -59,7 +59,7 @@ void Lisa_ExceptionList::lfthrow(const string msg, const exception code){
   
 //**************************************************************************
 
-std::list<Lisa_ExceptionNode>::iterator Lisa_ExceptionList::search_first(const exception code){
+std::list<Lisa_ExceptionNode>::iterator Lisa_ExceptionList::search_first(const int code){
   std::list<Lisa_ExceptionNode>::iterator it = Messages.begin();
   
   while(it != Messages.end()){
@@ -83,7 +83,7 @@ string Lisa_ExceptionList::lcatch(){
   
 //**************************************************************************
    
-string Lisa_ExceptionList::lcatch(const exception code){
+string Lisa_ExceptionList::lcatch(const int code){
   list<Lisa_ExceptionNode>::iterator it = search_first(code);
   
   if(it == Messages.end()) return "No error of this kind in list.";
