@@ -124,13 +124,7 @@ public:
       After running an neighbourhood algorithm calling this method
       will put the best solution bach into the input object. */
   void inline write_best(){prob->set_solution(sol[BEST_SOLUTION]);}
-	
-  /** call constructor for a solution ... \\
-      
-      This is only used for #BEST_SOLUTION# and #BEST_NGH_SOLUTION#.*/
-  int inline get_solution(const int solution){ 
-    if(!sol[solution]) sol[solution]= new Lisa_Vector<int>(length); return OK;}
-  
+
   /** copy #WORK_SOLUTION# to #ORIG_SOLUTION# */
   int inline accept_solution(){*sol[ORIG_SOLUTION]=*sol[WORK_SOLUTION]; return OK;}
   

@@ -20,8 +20,8 @@ Travel_RPI_Neighbourhood::Travel_RPI_Neighbourhood(Travel_Graph* prob_in):length
   /// create some solution vectors
   sol[ORIG_SOLUTION] = new Lisa_Vector<int>(length);
   sol[WORK_SOLUTION] = new Lisa_Vector<int>(length);
-  sol[BEST_SOLUTION] = 0;
-  sol[BEST_NGH_SOLUTION] = 0;
+  sol[BEST_SOLUTION] = new Lisa_Vector<int>(length);
+  sol[BEST_NGH_SOLUTION] = new Lisa_Vector<int>(length);
   sol[POSS_SOLUTION] = new Lisa_Vector<int>(length);
 
   /// create two tabu vectors
