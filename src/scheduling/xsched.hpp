@@ -47,18 +47,10 @@ public:
   class Lisa_Matrix<bool> *CP;
   /// sequence graph
   class Lisa_SGraph *PG; 
-/*  
-  /// Comparability Graph
-  class Cgraph *CG; 
-  /// transitive closure
-  class Cgraph *TH; 
-  /// reverse transitive closure
-  class Cgraph *TH_V; */
+
   /// complete sequence graph
   class CSgraph *CS; 
-/*  /// Implicationclasses
-  class Lisa_ImplicationClass *IKL; 
-  */
+
   /// constructor
   Lisa_XSchedule();
   /// constructor
@@ -66,12 +58,11 @@ public:
   /// if maschine or job number changed
   void init();
   /// refresh the internal structure
-  void updateLR(Lisa_Matrix<bool> *SIJ) {  
-    P_to_PG();PG_to_LR(SIJ); P->valid=TRUE;}  
+  void updateLR(Lisa_Matrix<bool> *SIJ) {P_to_PG();PG_to_LR(SIJ); P->valid=TRUE;} 
+  
   /// mekes the critical path
   void make_CP();
-  /// test, if sequence is irreducible
-  int irreducibel(){return 1;}
+
   /// generate Sequence Graph
   int P_to_PG();
   /// generate Latin Rectangle

@@ -306,15 +306,15 @@ Lisa_SGraph::~Lisa_SGraph(){
 }
 
 //**************************************************************************
-
+/*
 Cgraph::Cgraph(int pm, int pn){
   m=pm;
   n=pn;
   new_graph();
 }
-
+*/
 //**************************************************************************
-
+/*
 Cgraph::Cgraph(Cgraph & same_G){  
   int i;  
   m=same_G.m;
@@ -332,9 +332,9 @@ Cgraph::Cgraph(Cgraph & same_G){
   }
   
 }
-
+*/
 //**************************************************************************
-
+/*
 Cgraph::Cgraph(Cgraph & same_G, int flag){
   int i;
   m=same_G.m;
@@ -354,9 +354,9 @@ Cgraph::Cgraph(Cgraph & same_G, int flag){
     }
   }
 }
-
+*/
 //**************************************************************************
-
+/*
 Cgraph::Cgraph(Lisa_SGraph & CG) {
   int i,hnf,vnf;
   m=CG.m;
@@ -393,9 +393,9 @@ Cgraph::Cgraph(Lisa_SGraph & CG) {
   }
   
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::new_graph() {
   int i;
   tUndir=0;
@@ -412,32 +412,32 @@ void Cgraph::new_graph() {
   for (i=0;i<n*m*n*m;i++) adm[i]=0;
   for (i=0;i<n*m;i++) {val[i]=0;}
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::ins_edge(int v, int w){
   if (adm[n*m*v+w]==0){
     adm[n*m*v+w]=1;
     adlst[v]->add_e(w);
   }
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::del_edge(int v, int w){
   adm[n*m*v+w]=0;
   adlst[v]->del_e(w);
 }
-
+*/
 //**************************************************************************
-
+/*
 int  Cgraph::next(int v){
   if(v>=0)  if (adlst[v]) return adlst[v]->next();
   return -1;
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::make_undirected(){
   tUndir=1;
   
@@ -452,21 +452,21 @@ void Cgraph::make_undirected(){
     }
   }
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::reset(int v){
   if (adlst[v]) adlst[v]->reset();
 }
-
+*/
 //**************************************************************************
-
+/*
 int Cgraph::edge(int v, int w){
   return adm[n*m*v+w];
 }
-
+*/
 //**************************************************************************
-
+/*
 void Cgraph::print(){
   int i;
   int knoten;
@@ -483,30 +483,30 @@ void Cgraph::print(){
   }
   printf("\n**************************\n");
 }
-
+*/
 //**************************************************************************
-
+/*
 int Cgraph::index(int ni, int mi){		
   return(m*ni+mi);				
 }
-
+*/
 //**************************************************************************
-
+/*
 int Cgraph::row(int i){
   return(int(i/m));
 }
-
+*/
 //**************************************************************************
-
+/*
 int Cgraph::column(int i){
   int zahl;
   
   zahl=int(i/m);
   return i-zahl*m;
 }
-
+*/
 //**************************************************************************
-
+/*
 int Cgraph::operator <(Cgraph & zweite){
   int echte_reduktion=0;
   int v,w; // Knoten
@@ -525,9 +525,9 @@ int Cgraph::operator <(Cgraph & zweite){
     }
   return 0;
 }
-
+*/
 //**************************************************************************
-
+/*
 Cgraph::~Cgraph(){
   int i;
   for(i=0;i<n*m;i++){ if (adlst[i]) delete adlst[i]; }
@@ -535,7 +535,7 @@ Cgraph::~Cgraph(){
   delete [] adm;
   delete [] val;
 }
-
+*/
 //**************************************************************************
 
 ad_list::ad_list(int on, int om){
@@ -689,45 +689,6 @@ int Vlist::next(){
   int alt=actual;
   actual=succ[actual];
   return(feld[alt]);
-}
-
-//**************************************************************************
-
-vertice_set::vertice_set(int size){
-  if((v_set= new int[size])==NULL) ende("v-set");
-  number_of_vertices=size;
-  del_all();
-}
-
-void vertice_set::del_all(){
-  int i;
-  for(i=0;i<number_of_vertices;i++) v_set[i]=0;
-}
-
-//**************************************************************************
-
-vertice_set::~vertice_set(){ delete [] v_set;}
-
-//**************************************************************************
-
-void vertice_set::add_vertice(int v){ v_set[v]=1;}
-
-//**************************************************************************
-
-void vertice_set::del_vertice(int v){ v_set[v]=0;}
-
-//**************************************************************************
-
-int vertice_set::tst_vertice(int v){ return v_set[v];}
-
-//**************************************************************************
-
-int vertice_set::operator <=(vertice_set & zweite){
-  int i;
-  for(i=0;i<number_of_vertices;i++){  
-    if (v_set[i]&& zweite.tst_vertice(i)==0) return 0;    
-  }
-  return 1;
 }
 
 //**************************************************************************
@@ -1018,136 +979,6 @@ CSgraph::~CSgraph(){
   delete [] v_adlst;
   delete [] h_adlst;
   
-}
-
-//**************************************************************************
-
-Lisa_ImplicationClass::Lisa_ImplicationClass(){
-  size=0;
-  new_icl();
-}
-
-//**************************************************************************
-
-Lisa_ImplicationClass::Lisa_ImplicationClass(int gr){
-  size=gr;
-  new_icl();
-}
-
-//**************************************************************************
-
-void Lisa_ImplicationClass::new_icl(){
-  int i;
-  
-  icla = new int [size];
-  iclb = new int [size];
-  iclc = new int [size];
-  icld = new int [size];
-  iclz = new int [size];
-  zaehler = new int [size];
-  Iklanz = new int [size];
-  
-  for(i=0;i<size;i++){
-    icla[i]=0;
-    iclb[i]=0;
-    iclc[i]=0;
-    icld[i]=0;
-    iclz[i]=0;
-    zaehler[i]=0;
-    Iklanz[i]=0;
-  }
-  actual_icl=0;
-  next_free=0;
-  number_of_icl=0; // Mindestens eine Klasse
-}
-
-//**************************************************************************
-
-void Lisa_ImplicationClass::add_edge(int z1, int s1, int z2, int s2){
-  // Fuegt Kante (z1,s1)(z2,s2) an aktuelle Impl.klss an
-  if (next_free<size){
-    icla[next_free]=z1;
-    iclb[next_free]=s1;
-    iclc[next_free]=z2;
-    icld[next_free]=s2;
-    next_free++;
-    Iklanz[number_of_icl]=next_free;}
-}
-
-//**************************************************************************
-
-void Lisa_ImplicationClass::next_ikl(){
-  Iklanz[number_of_icl]=next_free;
-  number_of_icl++;
-  iclz[number_of_icl]=next_free;
-  }
-
-//**************************************************************************
-
-void Lisa_ImplicationClass::reset(int ikl){
-  zaehler[ikl]=iclz[ikl];
-}
-
-//**************************************************************************
-
-Lisa_Edge Lisa_ImplicationClass::next_edge(int ikl){
-  // liefert naechste Kante in Implklss ikl
-  int akt;
-  class Lisa_Edge edge;
-  
-  if (zaehler[ikl]>=Iklanz[ikl]){
-    reset(ikl);
-    edge.z1=-1;
-    return edge;
-  }
-  akt=zaehler[ikl];
-  edge.z1=icla[akt];
-  edge.s1=iclb[akt];
-  edge.z2=iclc[akt];
-  edge.s2=icld[akt];
-  zaehler[ikl]++;
-  
-  return edge;
-}
-
-//**************************************************************************
-
-void Lisa_ImplicationClass::print(){
-  int i;
-  Lisa_Edge edge;
-  edge.z1=edge.z2=edge.s1=edge.z2=5;
-  edge.s2=-1;
-  
-  printf("\n Implikationsklassen\n");
-  
-  for(i=0;i<number_of_icl;i++){
-    reset(i);
-    printf(" Ikl: ********  %d  ************\n",i+1);
-    edge=next_edge(i);
-    while(edge.z1>=0&&edge.s2>=0){
-      printf("(%d,%d)(%d,%d)\n",edge.z1,edge.s1,edge.z2,edge.s2 );
-      edge=next_edge(i);
-    }
-  }
-  printf("\n ******************\n\n");
-}
-
-//**************************************************************************
-
-Lisa_ImplicationClass::~Lisa_ImplicationClass(){
-  delete [] icla;
-  delete [] iclb;
-  delete [] iclc;
-  delete [] icld;
-  delete [] iclz;
-  delete [] zaehler;
-  delete [] Iklanz ;
-}
-
-//**************************************************************************
-
-Lisa_Edge::Lisa_Edge(){
-  z1=s1=z2=s2=-1;  
 }
 
 //**************************************************************************

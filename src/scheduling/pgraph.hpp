@@ -73,55 +73,6 @@ public:
 
 //**************************************************************************
 
-class Cgraph { // allgemeiner Graph (vor allen fuer
-  // transitive Huelle und Comp_graph)
-  int tUndir; // =1, wenn ungerichtet
-public:
-  int n,m;
-  int number_of_edges;  // Anzahl Kanten
-  int * val;
-  class ad_list ** adlst;     // Adjazenzliste fuer jeden Knoten
-  int * adm;     // Adjazenzmatrix
-  Cgraph( Cgraph & CG);
-  Cgraph( Lisa_SGraph & PG);
-  Cgraph(int pm, int pn);
-  Cgraph(Cgraph & CG, int flag);
-  Cgraph();
-  void new_graph();
-  void ins_edge(int v, int w); // Fuegt Kante ein
-  void del_edge(int v, int w); // Entfernt Kante
-  int next(int v); // naechster zu v adjazenter Knoten
-  void reset(int v); // setzt den Zaehler von v zurueck
-  int edge(int v, int w); // testet ob (v,w) existiert
-  void mksh(); // Symmetrische Huelle (mache ungerichtet)
-  int index(int ni, int mi); // Index des Knotens (ni,mi) 
-  int row(int i);           // Zeile des Knotens mit Index i
-  int column(int i);           // Spalte des Knotens mit Index i
-  ~Cgraph();
-  void make_undirected(); // Symmetrische Huelle (mache ungerichtet)
-  void print();
-int operator <(Cgraph & zweite);
-};
-
-//**************************************************************************
-
-class vertice_set{ // Knotenmenge
-public:
-  int number_of_vertices;
-  int * v_set; // Knotenmenge (1, wenn Knoten)
-  vertice_set();
-  vertice_set(int groesse);
-  ~vertice_set();
-  void add_vertice(int v);
-  void del_vertice(int v);
-  int tst_vertice(int v);
-  void del_all();
-  void del_vertice();
-  int operator <=(vertice_set & zweite);
-};
-
-//**************************************************************************
-
 class ad_list{
 public:
   int m,n;
@@ -199,42 +150,6 @@ public:
   int index(int ni, int mi); // gibt Index des Knotens (ni,mi) zurueck
   int row(int i);           // gibt Zeile des Knotens mit Index i zurueck
   int column(int i);           // gibt Spalte des Knotens mit Index i zurueck
-};
-
-//**************************************************************************
-
-class Lisa_ImplicationClass{ // Implikationsklassen
-  
-  // Ikl besteht aus fuenf Listen, 
-  // 1-4: die Indizes der Kanten (Ikla, ...., Ikld)
-  // 5: Zeigt auf jeweils erstes Element in Impl.klasse (Iklz)
-  
-  void new_icl();
-  int size; // vor allem Feldgroesse
-public:
-  int * icla, * iclb, * iclc, * icld;
-  int * iclz; // Zeiger
-  int * Iklanz;
-  int * zaehler; // Zaehler fuer next_edge
-  int actual_icl; // Aktuelle Impl.klsse
-  int next_free; // Zeiger auf freien Eintrag
-  int number_of_icl; // Anzahl der Impl.klssn
-  Lisa_ImplicationClass();
-  Lisa_ImplicationClass(int gr);  
-  class Lisa_Edge next_edge(int ikl);  // Naechste Kante in dieser Impl.klsse
-  void reset(int ikl);
-  void add_edge(int z1, int s1, int z2, int s2);
-  void print();
-  void next_ikl();
-  ~Lisa_ImplicationClass();
-};
-
-//**************************************************************************
-
-class Lisa_Edge{
-public:
-  int z1,s1,z2,s2;
-  Lisa_Edge();
 };
 
 //**************************************************************************
