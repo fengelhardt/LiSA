@@ -749,7 +749,7 @@ bool Lisa_MatrixListGraph::topsort(Lisa_Vector<int> *const knot_sequence){
       
       //remove all connections of the first source found
       if(v<=size){
-        top->remove_all_con(v);
+        top->clear(v);
         (*knot_sequence)[v-1]=next;
         next++;
       }
@@ -766,7 +766,7 @@ bool Lisa_MatrixListGraph::topsort(Lisa_Vector<int> *const knot_sequence){
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::remove_all_con(const int knot){
+void Lisa_MatrixListGraph::clear(const int knot){
 
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){

@@ -283,8 +283,8 @@ public:
       undefined */ 
   bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
-  /// delete all ARC's CRA's and edges connected with that vertice
-  void remove_all_con(const int vertex);
+  /// delete all ARC's CRA's and EDGE's connected with that vertice
+  void clear(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */

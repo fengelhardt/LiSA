@@ -17,7 +17,7 @@ public:
   static inline void clear(Lisa_MatrixListGraph* graph){
     const int vert = graph->get_vertices();
     for (int i=1;i<=vert;i++){
-      graph->remove_all_con(i);
+      graph->clear(i);
     } 
   }
    
