@@ -104,7 +104,7 @@ SHELL=${CONFIG_SHELL-/bin/sh}
 # only ac_max_sed_lines should be used.
 : ${ac_max_here_lines=38}
 
-ac_unique_file="src/main/lisa.cpp"
+ac_unique_file="src/main/main.cpp"
 ac_subdirs_all="$ac_subdirs_all rivet"
 
 # Initialize some variables set by options.
