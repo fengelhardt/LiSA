@@ -172,6 +172,8 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
 		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
  Tcl_CreateCommand(interp, "TC_stop_extalg",TC_stop_extalg, (ClientData) 
 		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
+ Tcl_CreateCommand(interp, "TC_kill",TC_kill, (ClientData) 
+		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
 
  mainWindow = Tk_MainWindow(interp);
 

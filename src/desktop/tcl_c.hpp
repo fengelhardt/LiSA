@@ -223,9 +223,13 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , char **);
 
 ///send <ctrl-C> Signal to external Algorithm
 int TC_stop_extalg(ClientData,	Tcl_Interp *, int , char **);
+
+// a TCL wrapper for the UNIX kill command
+int TC_kill(ClientData /* clientData */,
+	 Tcl_Interp * /*interp*/,
+	 int /*argc*/, char *argv[]);
+
 #endif
 
 //@}
-
-
 

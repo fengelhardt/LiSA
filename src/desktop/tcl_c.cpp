@@ -16,6 +16,7 @@
 // used in TC_open_schedule():
 #include <fstream.h>
 #include <unistd.h>
+#include <signal.h>
 
 
 // ******************** Project Includes ********************
@@ -1094,5 +1095,22 @@ string str2= " ";
 execl(str.c_str(),str2.c_str());
 //  cenum(&G_Values);
   return TCL_OK; 
+}
+
+// a TCL wrapper for the UNIX kill command
+int TC_kill(ClientData /* clientData */,
+	 Tcl_Interp * /*interp*/,
+	 int /*argc*/, char *argv[])  
+{
+  // two parameters:
+  // 1.parameter  signal to send
+  // 2.parameter  pid to send signal to
+  int signal;
+  int pid;
+  sscanf(argv[1],"-%d",&signal);
+  sscanf(argv[2],"%d",&pid);
+  kill(pid, signal);
+  cerr << "signal: " << signal << ", pid: " << pid << "\n";
+  return TCL_OK;
 }
 
