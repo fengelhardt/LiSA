@@ -14,7 +14,7 @@
 #define false                 0
 #define NIL                   0
 #define MaxInt            32000
-#include "../../lisa_dt/schedule/js_sched.hpp"
+#include "../../scheduling/js_sched.hpp"
 
 typedef int boolean;        
 

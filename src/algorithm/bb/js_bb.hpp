@@ -15,7 +15,7 @@
 #define _js_bb_h
 
 #include"bb_env.hpp"
-#include"../../lisa_dt/schedule/js_sched.hpp"
+#include"../../scheduling/js_sched.hpp"
 
 class JS_BB: public Lisa_GenericBb
   {

@@ -5,15 +5,15 @@ OBJECTS=\
 	../../../obj/irrednode.o \
 	../../../obj/irredtest.o \
 	../../../obj/graph.o \
-	../../../obj/pair.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
 	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
 	../../../obj/global.o \
 	../../../obj/except.o \
-	../../../obj/matrix.o \
-	../../../obj/list.o \
-	../../../obj/ctrlpara.o \
 	../../../obj/lisa_str.o \
-	../../../obj/ptype.o \
-	../../../obj/mo.o \
-	../../../obj/lvalues.o \
+	../../../obj/mo_jo.o \
 	../../../obj/schedule.o

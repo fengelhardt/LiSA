@@ -11,7 +11,7 @@
 #ifndef irrednode_h
 #define irrednode_h
 
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 #include "../../basics/list.hpp"
 #include "../../basics/graph.hpp"
 #include "graphalgo.hpp"

@@ -16,7 +16,7 @@
 #define _oshp_shft_h
 
 #include "../neighbor.hpp"
-#include "../../../lisa_dt/schedule/os_sched.hpp"
+#include "../../../scheduling/os_sched.hpp"
 #include "../tabu.hpp"
 #include "osp_api.hpp"
 

@@ -9,7 +9,7 @@
 */
 
 #include"js_bb.hpp"
-#include"../../basics/global.hpp"
+#include"../../main/global.hpp"
 #include"../../basics/order.hpp"
 
 // start the algorithm

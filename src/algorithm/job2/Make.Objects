@@ -1,2 +1,13 @@
 OBJECTS=\
-	../../../obj/
+	../../../obj/job2.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/mo_jo.o \
+	../../../obj/schedule.o

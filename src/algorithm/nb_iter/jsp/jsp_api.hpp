@@ -16,7 +16,7 @@
 #define _jsp_api_h
 
 #include "../neighbor.hpp"
-#include "../../../lisa_dt/schedule/js_sched.hpp"
+#include "../../../scheduling/js_sched.hpp"
 #include "../../../basics/order.hpp"
 #include "../tabu.hpp"
 

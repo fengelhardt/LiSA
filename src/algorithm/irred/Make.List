@@ -5,18 +5,18 @@ CXXSOURCES=\
 	irrednode.cpp \
 	irredtest.cpp \
 	../../basics/graph.cpp \
-	../../basics/pair.cpp \
-	../../basics/order.cpp \
-	../../basics/global.cpp \
-	../../basics/except.cpp \
-	../../basics/matrix.cpp \
 	../../basics/list.cpp \
-	../../lisa_dt/ctrlpara.cpp\
-	../../basics/lisa_str.cpp \
-	../../lisa_dt/ptype.cpp \
-	../../lisa_dt/mo.cpp \
-	../../lisa_dt/lvalues.cpp \
-	../../lisa_dt/schedule.cpp \
+	../../basics/matrix.cpp \
+	../../basics/order.cpp \
+	../../basics/pair.cpp \
+	../../lisa/ctrlpara.cpp\
+	../../lisa/lvalues.cpp \
+	../../lisa/ptype.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/lisa_str.cpp \
+	../../scheduling/mo_jo.cpp \
+	../../scheduling/schedule.cpp \
 
 DOCSOURCES=\
      irred.cpp

@@ -1,2 +1,19 @@
 OBJECTS=\
-	../../../obj/
+	../../../obj/bottle.o \
+	../../../obj/Shifting_Bottleneck.o \
+	../../../obj/graph.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/schedule.o \
+	../../../obj/sp_sched.o \
+	../../../obj/Single_Machine_BB.o \
+	../../../obj/order.o

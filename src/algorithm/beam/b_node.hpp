@@ -1,16 +1,16 @@
 #ifndef _B_NODE_H_
 #define _B_NODE_H_
 
-#include"../../basics/global.hpp"
-#include"../../lisa_dt/schedule/os_sched.hpp"
+#include"../../main/global.hpp"
+#include"../../scheduling/os_sched.hpp"
 #include"../../basics/order.hpp"
 
-#include"../../lisa_dt/ctrlpara.hpp"
-#include"../../lisa_dt/schedule.hpp"
-#include"../../lisa_dt/ptype.hpp"
-#include"../../lisa_dt/lvalues.hpp"
+#include"../../lisa/ctrlpara.hpp"
+#include"../../scheduling/schedule.hpp"
+#include"../../lisa/ptype.hpp"
+#include"../../lisa/lvalues.hpp"
 #include <fstream.h>
-#include"../../basics/except.hpp"
+#include"../../misc/except.hpp"
 
 enum CostFunc {
   CMax,

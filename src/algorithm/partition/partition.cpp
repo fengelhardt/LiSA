@@ -9,14 +9,14 @@
 */
 
 #include<iostream.h>
-#include"../../basics/global.hpp"
+#include"../../main/global.hpp"
 #include"../../basics/matrix.hpp"
-#include"../../lisa_dt/ctrlpara.hpp"
-#include"../../lisa_dt/schedule.hpp"
-#include"../../lisa_dt/ptype.hpp"
-#include"../../lisa_dt/lvalues.hpp"
+#include"../../lisa/ctrlpara.hpp"
+#include"../../scheduling/schedule.hpp"
+#include"../../lisa/ptype.hpp"
+#include"../../lisa/lvalues.hpp"
 #include<fstream.h>
-#include"../../basics/except.hpp"
+#include"../../misc/except.hpp"
 
 int main(int argc, char *argv[]) 
 {

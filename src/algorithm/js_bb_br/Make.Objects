@@ -1,2 +1,31 @@
 OBJECTS=\
-	../../../obj/jb_sort.o
+	../../../obj/js_bb_br.o \
+	../../../obj/jb_block.o \
+	../../../obj/jb_brnch.o \
+	../../../obj/jb_fix.o \
+	../../../obj/jb_hd_tl.o \
+	../../../obj/jb_heur.o \
+	../../../obj/jb_init.o \
+	../../../obj/jb_list.o \
+	../../../obj/jb_low.o \
+	../../../obj/jb_rd_dt.o \
+	../../../obj/jb_selct.o \
+	../../../obj/jb_sort.o \
+	../../../obj/jb_stack.o \
+	../../../obj/jb_table.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/js_sched.o \
+	../../../obj/m1_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/os_sched.o \
+	../../../obj/schedule.o \
+	../../../obj/sp_sched.o

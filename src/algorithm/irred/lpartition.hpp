@@ -13,8 +13,8 @@
 #include<stdlib.h>
 #include<iostream.h>
 #include<fstream.h>
-#include"../../basics/global.hpp"
-#include"../../basics/except.hpp"
+#include"../../main/global.hpp"
+#include"../../misc/except.hpp"
 #include"../../basics/matrix.hpp"
 /** @name Partitionize Sets
 

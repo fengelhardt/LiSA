@@ -15,7 +15,7 @@
 #define _os_bb_h
 
 #include"bb_env.hpp"
-#include"../../lisa_dt/schedule/os_sched.hpp"
+#include"../../scheduling/os_sched.hpp"
 
 class OS_BB: public Lisa_GenericBb
   {

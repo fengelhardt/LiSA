@@ -1,2 +1,16 @@
 OBJECTS=\
-	../../../obj/
+	../../../obj/reducing_set.o \
+	../../../obj/list.o \
+	../../../obj/lmatrix.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/matching.o \
+	../../../obj/mo_jo.o \
+	../../../obj/schedule.o

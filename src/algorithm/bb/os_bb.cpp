@@ -9,7 +9,7 @@
 */
 
 #include"os_bb.hpp"
-#include"../../basics/global.hpp"
+#include"../../main/global.hpp"
 #include"../../basics/order.hpp"
 
 OS_BB::OS_BB()

@@ -14,9 +14,9 @@
 
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/lvalues.hpp"
-#include "../../lisa_dt/schedule.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../scheduling/schedule.hpp"
 #include <iostream.h>
 
 /** The SingleMachineBB object solves single-machine-problems by a

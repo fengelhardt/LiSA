@@ -3,14 +3,14 @@
  */ 
 
 #include<iostream.h>
-#include"../../basics/global.hpp"
-#include"../../lisa_dt/ctrlpara.hpp"
-#include"../../lisa_dt/schedule.hpp"
-#include"../../lisa_dt/ptype.hpp"
-#include"../../lisa_dt/lvalues.hpp"
+#include"../../main/global.hpp"
+#include"../../lisa/ctrlpara.hpp"
+#include"../../scheduling/schedule.hpp"
+#include"../../lisa/ptype.hpp"
+#include"../../lisa/lvalues.hpp"
 #include<fstream.h>
-#include"../../basics/except.hpp" 
-#include "b_node.h"
+#include"../../misc/except.hpp" 
+#include "b_node.hpp"
 #include "unistd.h"
 #include <time.h>
 

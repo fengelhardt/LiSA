@@ -11,11 +11,11 @@
 
 #ifndef convertgraph_h
 #define convertgraph_h
-#include"../../basics/except.hpp"
+#include"../../misc/except.hpp"
 #include"../../basics/matrix.hpp"
 #include"../../basics/graph.hpp"
-#include"../../lisa_dt/mo.hpp"
-#include"../../lisa_dt/ptype.hpp"
+#include"../../scheduling/mo_jo.hpp"
+#include"../../lisa/ptype.hpp"
 #include"graphalgo.hpp"
 
 /** @name Create The Corresponding Graph's For A Problem

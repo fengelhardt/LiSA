@@ -12,14 +12,14 @@
 #include<stdlib.h>
 #include<iostream.h>
 #include<fstream.h>
-#include"../../basics/matching.hpp"
-#include"../../basics/global.hpp"
+#include"../../scheduling/matching.hpp"
+#include"../../main/global.hpp"
 #include"../../basics/list.hpp"
-#include"../../lisa_dt/ctrlpara.hpp"
-#include"../../lisa_dt/schedule.hpp"
-#include"../../lisa_dt/ptype.hpp"
-#include"../../lisa_dt/lvalues.hpp"
-#include"../../basics/except.hpp"
+#include"../../lisa/ctrlpara.hpp"
+#include"../../scheduling/schedule.hpp"
+#include"../../lisa/ptype.hpp"
+#include"../../lisa/lvalues.hpp"
+#include"../../misc/except.hpp"
 /** @name Matching Heuristics
 
  This algorithm is a simple heuristic for the O| |Cmax Problem. It also demonstrates how to use 

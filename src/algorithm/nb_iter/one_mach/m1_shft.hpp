@@ -24,7 +24,7 @@
 #define _m1_nb_sh_h
 
 #include "../neighbor.hpp"
-#include "../../../lisa_dt/schedule/m1_sched.hpp"
+#include "../../../scheduling/m1_sched.hpp"
 #include "../tabu.hpp"
 #include "m1_api.hpp"
 

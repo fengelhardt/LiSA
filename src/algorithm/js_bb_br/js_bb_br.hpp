@@ -28,11 +28,11 @@
 #include "jb_table.hpp"
 
 #include "../../basics/matrix.hpp"
-#include "../../lisa_dt/schedule/js_sched.hpp"
-#include "../../lisa_dt/ptype.hpp"
-#include "../../lisa_dt/schedule.hpp"
-#include "../../lisa_dt/lvalues.hpp"
-#include "../../lisa_dt/ctrlpara.hpp"
-#include "../../basics/except.hpp"
+#include "../../scheduling/js_sched.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../lisa/ctrlpara.hpp"
+#include "../../misc/except.hpp"
 
 

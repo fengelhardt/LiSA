@@ -1,21 +1,21 @@
 CXXSOURCES=\
 	single.cpp\
 	Single_Machine_BB.cpp\
-	../../lisa_dt/schedule/js_sched.cpp\
-	../../lisa_dt/schedule/sp_sched.cpp\
- 	../../basics/order.cpp\
-	../../basics/global.cpp \
-	../../basics/except.cpp \
-	../../basics/matrix.cpp \
-	../../basics/pair.cpp \
 	../../basics/graph.cpp \
 	../../basics/list.cpp \
-	../../lisa_dt/ctrlpara.cpp\
-	../../basics/lisa_str.cpp \
-	../../lisa_dt/ptype.cpp \
-	../../lisa_dt/mo.cpp \
-	../../lisa_dt/lvalues.cpp \
-	../../lisa_dt/schedule.cpp \
+	../../basics/matrix.cpp \
+	../../basics/pair.cpp \
+	../../lisa/ctrlpara.cpp\
+	../../lisa/lvalues.cpp \
+	../../lisa/ptype.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/lisa_str.cpp \
+	../../scheduling/js_sched.cpp\
+	../../scheduling/mo_jo.cpp \
+	../../scheduling/schedule.cpp \
+	../../scheduling/sp_sched.cpp\
+ 	../../basics/order.cpp\
 
 DOCSOURCES=\
      Single_Machine.hpp

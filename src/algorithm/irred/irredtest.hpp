@@ -12,7 +12,7 @@
 
 #include <time.h>
 #include <math.h>
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 #include "../../basics/list.hpp"
 #include "../../basics/order.hpp"

@@ -14,11 +14,11 @@
 
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/lvalues.hpp"
-#include "../../lisa_dt/schedule.hpp"
-#include"../../lisa_dt/schedule/js_sched.hpp"
-#include"../../lisa_dt/schedule/sp_sched.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../scheduling/schedule.hpp"
+#include"../../scheduling/js_sched.hpp"
+#include"../../scheduling/sp_sched.hpp"
 #include"../../basics/order.hpp"
 #include <iostream.h>
 

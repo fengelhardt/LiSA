@@ -1,4 +1,4 @@
-#include "b_node.h"
+#include "b_node.hpp"
 
 B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)
 {
