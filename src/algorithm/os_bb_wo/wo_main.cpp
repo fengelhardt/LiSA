@@ -119,7 +119,9 @@ int main(int argc,char *argv[]){
           Update_Arcs();                 
         }
     }
-  } 
+  }
+  
+  Write_Solution(argv[2]);
     
   return(0); 
 }

@@ -10,12 +10,17 @@
 #include <cstdlib>
 
 #include <fstream>
+#include <vector>
+#include <utility>
 
 #include "../../lisa/ctrlpara.hpp"
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
+#include "../../basics/pair.hpp"
 #include "../../scheduling/schedule.hpp"
+
+#include "../../xml/LisaXmlFile.hpp"
 
 #include "wo_data.hpp"
 #include "wo_table.hpp"
@@ -38,12 +43,17 @@ Lisa_ProblemType Problem;
 Lisa_ControlParameters Parameter;   
 Lisa_Values Values;
 
+//machine and job order
+Lisa_Matrix<int> *MJ;
+
+//find machine and job for an operation
+std::vector<std::pair<int,int> > lookup;
+
 void Read_Data(char *FileName){
   
   std::ifstream i_strm(FileName);
   if (!i_strm){
-    std::cout << "ERROR: cannot open file " << FileName << " for reading." << 
-    std::endl;
+    G_ExceptionList.lthrow((std::string)"Cannot open file "+FileName+" for reading.");    
     exit(1);
   }
   i_strm.close();
@@ -85,16 +95,19 @@ void Read_Data(char *FileName){
     G_ExceptionList.lthrow((std::string) "Can not handle more than "+
                            ztos(MaxNumOfMachines)+" machines and "+
                            ztos(MaxNumOfJobs)+" jobs, you may want to "+
-                           "recompile.",Lisa_ExceptionList::INCONSISTENT_INPUT);  
+                           "recompile.",Lisa_ExceptionList::INCONSISTENT_INPUT);
+    exit(1);
   }
   
+  // write data into algorithm data structures
   int sum = 0;
-  
   for(int i=1;i<=NumOfJobs;i++){
     for(int j=1;j<=NumOfMachines;j++){
       
       if((*Values.SIJ)[i-1][j-1]){
         sum++;
+        
+        lookup.push_back(std::pair<int,int>(i-1,j-1));
         
         OpData[sum].process_time = (int) (*Values.PT)[i-1][j-1];
         OpData[sum].machine_nr = j;
@@ -110,50 +123,105 @@ void Read_Data(char *FileName){
   }
   
   NumOfOperations = sum;
-/*  
- int      i,j,num_of_op_for_job;
- sum = 1;
- FILE     *fp;
-
- if ((fp = fopen(FileName,"r")) == NIL)
-    exit(1);   
-*/
- /* ermitteln des Problems (m x n - Problem);
-    erfassen der Daten in den globalen Variablen NumOfMachines, NumOfJobs;    
- *//*
- if ( !fscanf(fp,"%d %d ", &NumOfMachines, &NumOfJobs))  
-    exit(1);
-
- for (i = 1; i <= NumOfJobs; ++i) 
- {
-    if (!fscanf(fp,"%d", &num_of_op_for_job)) 
-      exit(1);
-
- */  /* ermitteln der Bearbeitungszeit u. Maschinennummer einer Operation;
-       erfassen der Daten in der globalen Variablen OpData[];
-       Operationen, die auf derselben Maschine bearbeitet werden, kommen in
-       eine gemeinsame globale Liste OpsOnMachine[];
-       Operationen, die zum selben Job gehoeren, kommen in
-       eine gemeinsame globale Liste OpsOfJob[] 
-    *//*
-    for (j = 1; j <= num_of_op_for_job; ++j)
-    {
-       if (!fscanf(fp,"%d %d ",&OpData[sum].process_time,
-                               &OpData[sum].machine_nr) )
-          exit(1);
-
-       OpData[sum].job_nr = i;
-
-       OpsOnMachine[OpData[sum].machine_nr] =
-			     Insert(OpsOnMachine[OpData[sum].machine_nr],sum);
-       OpsOfJob[OpData[sum].job_nr] = 
-			     Insert(OpsOfJob[OpData[sum].job_nr],sum);
-
-       sum ++;
-    
-    }
- }
- fclose(fp); 
- NumOfOperations = --sum;
-  */
+  MJ = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines);
 }
+
+void Set_Solution(List** machines, List** jobs){
+  MJ->fill(0);
+  
+  List* help;
+  int pos;
+  
+  // create sum of job and machine order
+  for(int i=1;i<=NumOfJobs;i++){
+    help = jobs[i];
+    pos = 0;
+    while(help != NIL){
+      pos++;
+      (*MJ)[i-1][lookup[help->number-1].second] = pos;
+      help = help->next;
+    }
+  }
+  
+  for(int i=1;i<=NumOfMachines;i++){
+    help = machines[i];
+    pos = 0;
+    while(help != NIL){
+      pos++;
+      (*MJ)[lookup[help->number-1].first][i-1] += pos;
+      help = help->next;
+    }
+  }
+  
+}
+
+void Write_Solution(char * FileName){
+  std::vector<int> z(NumOfJobs);
+  std::vector<int> s(NumOfMachines);
+  
+  for(int i=0;i<NumOfJobs;i++) z[i] = 0;
+  for(int j=0;j<NumOfMachines;j++) s[j] = 0;
+  
+  Lisa_Matrix<bool> SIJ(*Values.SIJ);
+  
+  
+  Lisa_Schedule Schedule(NumOfJobs,NumOfMachines);
+  Schedule.make_LR();
+  Schedule.LR->fill(0);
+
+  int k=1;
+  bool found;
+  do{
+        
+    found = false;
+    for(int i=0;i<NumOfJobs;i++){
+      for(int j=0;j<NumOfJobs;j++){
+        if(SIJ[i][j] && (*MJ)[i][j]==2){
+          (*Schedule.LR)[i][j] = k;
+          z[i] = s[j] = 1;
+          SIJ[i][j] = false;
+          found = true;
+        }
+      }
+    }
+    if(!found){
+      G_ExceptionList.lthrow("Job order and machine order infeasible!");
+      exit(1);
+    }
+    
+    k++;
+    
+    found = false;
+    for(int i=0;i<NumOfJobs;i++){
+      for(int j=0;j<NumOfMachines;j++){
+        if(SIJ[i][j]){
+          (*MJ)[i][j] = (*MJ)[i][j] - z[i] - s[j];
+          found = true;
+        }
+      }
+    }
+    
+    for(int i=0;i<NumOfJobs;i++) z[i] = 0;
+    for(int j=0;j<NumOfMachines;j++) s[j] = 0;
+      
+
+  }while(found);
+
+  delete MJ;
+    
+  std::ofstream o_strm(FileName);
+  if (!o_strm){
+    G_ExceptionList.lthrow((std::string) "Could not open "+FileName+
+                           " for writing.");
+    exit(1);
+  }
+  o_strm.close();
+  
+  LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+  //pipe objects to this
+  xmlOutput << Problem << Values << Parameter << Schedule;
+  //write content to a file
+  xmlOutput.write(FileName);
+  
+}
+

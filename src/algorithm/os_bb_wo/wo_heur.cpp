@@ -15,6 +15,9 @@
 #include "wo_table.hpp"
 #include "wo_list.hpp"
 #include "wo_heur.hpp"
+#include "wo_read.hpp"
+
+#include <iostream>
 
 
 /* Bestimmung eines Matchings mit der Eigenschaft, dass die Summe ueber 
@@ -450,59 +453,10 @@ void Heuristic_Schedule()
       Selektion mit Angabe des aktuellen Suchbaumknotens in "output.dat" 
       zur Verfuegung gestellt.
    */
-   if ( c_max < UpperBound )
-   {   
+   if ( c_max < UpperBound ){   
       UpperBound = c_max;       
-      fp = fopen("output.dat","a");
-      fprintf(fp,"Upper Bound %d after %d search tree nodes\n",
-					    UpperBound, SearchTreeNodes);
-
-      fprintf(fp,"\n");
-
-      /* Ausgabe der Jobreihenfolgen 
-      */
-      for ( i = 1; i <= NumOfJobs; ++i )
-      {
-	 fprintf(fp,"JobNo %3d :  ",i);
-	 help = joblist[i];
-	 while ( help != NIL )
-	 {
-	    fprintf(fp,"%3d ", help->number);
-	    help = help->next;
-	 }
-	 fprintf(fp,"\n");
-      }
-      fprintf(fp,"\n");                              
- 
-
-      /* Ausgabe der Maschinenreihenfolgen 
-      */
-      for ( i = 1; i <= NumOfMachines; ++i )
-      {
-	 fprintf(fp,"MaschineNo %3d :  ",i);
-	 help = maschlist[i];
-	 while ( help != NIL)
-	 {
-	    fprintf(fp,"%3d ", help->number);
-	    help = help->next;
-	 }
-	 fprintf(fp,"\n");
-      }
-      fprintf(fp,"\n");                                
-
-      /* Ausgabe des krit.Pfades
-      */
-      fprintf(fp,"Kritischer Pfad: \n");
-      for ( i = 1; i < PathPos - 1; ++i )
-      {
-	 fprintf(fp,"%d  --> ", CriticalPath[i]);
-      }
-      fprintf(fp,"%d", CriticalPath[i]);               
-
-      fprintf(fp,"\n\n");                              
-
-
-      fclose(fp);
+      std::cout << "OBJECTIVE= " << UpperBound << std::endl;
+      Set_Solution(maschlist,joblist);
    } 
 
    

@@ -1,14 +1,14 @@
-../../../obj/wo_block.o: wo_block.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_block.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_block.o wo_block.cpp
+../../../obj/wo_block.o: wo_block.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_block.hpp ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_block.o wo_block.cpp
 ../../../obj/wo_head.o: wo_head.cpp wo_data.hpp wo_table.hpp wo_list.hpp wo_sort.hpp   wo_head.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_head.o wo_head.cpp
-../../../obj/wo_main.o: wo_main.cpp wo_data.hpp wo_table.hpp wo_list.hpp wo_init.hpp   wo_read.hpp wo_head.hpp wo_heur.hpp wo_block.hpp wo_branch.hpp   wo_stack.hpp wo_fix.hpp wo_select.hpp wo_low.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_main.o wo_main.cpp
-../../../obj/wo_stack.o: wo_stack.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_stack.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_stack.o wo_stack.cpp
-../../../obj/wo_branch.o: wo_branch.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_branch.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_branch.o wo_branch.cpp
-../../../obj/wo_heur.o: wo_heur.cpp wo_data.hpp wo_calc.hpp wo_table.hpp wo_list.hpp   wo_heur.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_heur.o wo_heur.cpp
-../../../obj/wo_init.o: wo_init.cpp wo_data.hpp wo_table.hpp wo_init.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_init.o wo_init.cpp
-../../../obj/wo_read.o: wo_read.cpp wo_data.hpp wo_table.hpp wo_read.hpp wo_list.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_read.o wo_read.cpp
+../../../obj/wo_main.o: wo_main.cpp wo_data.hpp wo_table.hpp wo_list.hpp wo_init.hpp   wo_read.hpp wo_head.hpp wo_heur.hpp wo_block.hpp wo_branch.hpp   wo_stack.hpp wo_fix.hpp wo_select.hpp wo_low.hpp ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_main.o wo_main.cpp
+../../../obj/wo_stack.o: wo_stack.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_stack.hpp ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_stack.o wo_stack.cpp
+../../../obj/wo_branch.o: wo_branch.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_branch.hpp ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_branch.o wo_branch.cpp
+../../../obj/wo_heur.o: wo_heur.cpp wo_data.hpp wo_calc.hpp wo_table.hpp wo_list.hpp   wo_heur.hpp wo_read.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_heur.o wo_heur.cpp
+../../../obj/wo_init.o: wo_init.cpp wo_data.hpp wo_table.hpp wo_init.hpp   ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_init.o wo_init.cpp
+../../../obj/wo_read.o: wo_read.cpp ../../lisa/ctrlpara.hpp ../../basics/list.hpp   ../../main/global.hpp ../../lisa/lsaobjct.hpp ../../misc/except.hpp   ../../xml/LisaXmlFile.hpp ../../lisa/ptype.hpp ../../lisa/filentry.hpp   ../../lisa/lvalues.hpp ../../basics/matrix.hpp ../../misc/int2str.hpp   ../../scheduling/mo_jo.hpp ../../basics/pair.hpp   ../../scheduling/schedule.hpp wo_data.hpp wo_table.hpp wo_read.hpp   wo_list.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_read.o wo_read.cpp
 ../../../obj/wo_table.o: wo_table.cpp wo_data.hpp wo_table.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_table.o wo_table.cpp
 ../../../obj/wo_calc.o: wo_calc.cpp wo_table.hpp wo_data.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_calc.o wo_calc.cpp
-../../../obj/wo_list.o: wo_list.cpp wo_data.hpp wo_table.hpp wo_list.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_list.o wo_list.cpp
+../../../obj/wo_list.o: wo_list.cpp wo_data.hpp wo_table.hpp wo_list.hpp   ../../misc/except.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_list.o wo_list.cpp
 ../../../obj/wo_select.o: wo_select.cpp wo_data.hpp wo_table.hpp wo_list.hpp   wo_head.hpp wo_sort.hpp wo_select.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_select.o wo_select.cpp
 ../../../obj/wo_fix.o: wo_fix.cpp wo_data.hpp wo_table.hpp wo_list.hpp wo_fix.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_fix.o wo_fix.cpp
 ../../../obj/wo_low.o: wo_low.cpp wo_data.hpp wo_table.hpp wo_sort.hpp wo_low.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/wo_low.o wo_low.cpp

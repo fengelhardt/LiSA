@@ -10,6 +10,7 @@
 #define _READ_H
 
 #include "wo_data.hpp"
+#include "wo_list.hpp"
 
 /* ************************************************************************* */
 /*                           Procedure      Read_Data()                      */
@@ -24,5 +25,8 @@
 
 void Read_Data(char *FileName);
 
+void Set_Solution(List** machines, List** jobs);
+
+void Write_Solution(char *FileName);
 
 #endif
