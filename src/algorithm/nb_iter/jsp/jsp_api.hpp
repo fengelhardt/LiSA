@@ -54,8 +54,7 @@ class JSHOP_API_Ngbh: public Lisa_Neighborhood
 		    and specified problem datas   */
 		JSHOP_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
 		~JSHOP_API_Ngbh();
-		/// get a new schedule, param. is number of schedule
-		int   get_solution( int );
+
 	        /// set the objective type
 	        void  set_objective_type( int );
 		/** specify the objective function;

@@ -167,12 +167,11 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
     if ( steps >= 400 )
       steps_per_output_line = long(steps/PROGRESS_INDICATOR_STEPS);
     
-    // getting some memory:    
-    NB->get_solution( BEST_SOLUTION );
+    // getting some memory <-- removed this -marc-
+
     NB->put_orig_to_best();
 
-    if ( method == TS )
-      NB->get_solution( BEST_NGH_SOLUTION );
+
 
     if ( (objective_type==IRREG1) || (objective_type==IRREG2) )
       exit(7);

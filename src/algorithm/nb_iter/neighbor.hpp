@@ -108,14 +108,6 @@ public:
       Objectives can be requested for #WORK_SOLUTION#,#BEST_SOLUTION#,
       #BEST_NGH_SOLUTION# and #ORIG_SOLUTION# */
   virtual TIMETYP get_objective_value(int solution) = NULL;
-
-  /** create objects holding a solution ...\\
-
-      Used by the algorithm to create represenations for 
-      #BEST_SOLUTION# and #BEST_NGH_SOLUTION#. It should return #OK#
-      if the requested solution object could be created, 
-      otherwise it should return #!OK# */
-  virtual int get_solution(int solution) = NULL;
   
   /** accept the current #WORK_SOLUTION# ...\\
       

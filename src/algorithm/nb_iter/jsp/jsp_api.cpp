@@ -34,8 +34,22 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
 	exit( 7 );
       };
     P[1]->ComputeHeadsTails( 1, 1 );
-    P[2] = NULL;
-    P[3] = NULL;
+
+
+    if ( !( P[2] = new Lisa_JsSchedule( PP ) ))
+      {
+	G_ExceptionList.lthrow("out of memory",2);
+	exit( 7 );
+      };
+    P[2]->ComputeHeadsTails( 1, 1 );
+
+    if ( !( P[3] = new Lisa_JsSchedule( PP ) ))
+      {
+	G_ExceptionList.lthrow("out of memory",2);
+	exit( 7 );
+      };
+    P[3]->ComputeHeadsTails( 1, 1 );
+
     tabulist = NULL;
   };
 
@@ -78,32 +92,6 @@ int JSHOP_API_Ngbh::put_work_to_best_ngh()
 {
   return copy_schedule( WORK_SOLUTION, BEST_NGH_SOLUTION );
 }
-
-int JSHOP_API_Ngbh::get_solution( int p )
-  {
-   if ( p==2 )
-     {
-      if ( !( P[2] = new Lisa_JsSchedule( PP ) ))
-	{
-	 G_ExceptionList.lthrow("out of memory",2);
-	 exit( 7 );
-	}
-      P[2]->ComputeHeadsTails( 1, 1 );
-      return OK;
-     };
-   if ( p==3 )
-     {
-      if ( !( P[3] = new Lisa_JsSchedule( PP ) ))
-	{
-	 G_ExceptionList.lthrow("out of memory",2);
-	 exit( 7 );
-	}
-      P[3]->ComputeHeadsTails( 1, 1 );
-      return OK;
-     };
-   G_ExceptionList.lthrow("wrong number in get_plan("+string(p)+")");
-   exit( 7 );
-  };
 
 
 int JSHOP_API_Ngbh::prepare_move( int typ )

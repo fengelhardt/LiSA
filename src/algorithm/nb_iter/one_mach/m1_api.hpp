@@ -57,8 +57,7 @@ class API_Neighborhood: public Lisa_Neighborhood
 		    and specified problem datas    */
 		API_Neighborhood(Lisa_1Schedule*,Lisa_1Problem*);
 		~API_Neighborhood();
-		/// get a new schedule, param. is number of schedule
-		int   get_solution( int );
+
 	        /// set the objective type
 	        void  set_objective_type( int );
 		/** specify the objective function;
