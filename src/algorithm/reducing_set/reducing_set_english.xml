@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Gonzales &amp; Sahni (Research)" type="constructive" call="reducing_set" code="external" help_file="algorithm/reducing_set_english.html">
+  <exact>
+    <problem>
+      <alpha env="1"/>
+      <beta pmtn="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta pmtn="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls/>
+</algorithm>

@@ -9,6 +9,8 @@
 #include <unistd.h>
 #include <fstream>
 
+#include "../../xml/LisaXmlFile.hpp"
+
 #include "../../scheduling/matching.hpp"
 #include "../../scheduling/schedule.hpp"
 #include "../../main/global.hpp"
@@ -207,49 +209,86 @@ int main(int argc, char *argv[]){
       cout << "Usage: " << argv[0] << " [input file] [output file]" << endl;
       exit(1);
     }
-    
-    
-    Lisa_ProblemType * lpr = new Lisa_ProblemType;
-    //    Lisa_ControlParameters * sp = new Lisa_ControlParameters;
-    Lisa_Values * my_werte=new Lisa_Values;
 
     cout << "PID= " << getpid() << endl; 
 
     ifstream i_strm(argv[1]);
+    ofstream o_strm(argv[2]);
     if(!i_strm){
       cout << "Could not open '" << argv[1] << "' for reading." << endl;
       exit(1);
+    }  
+    if(!o_strm){
+      cout << "Could not open '" << argv[2] << "' for writing." << endl;
+      exit(1);      
     }
-    
-    // read problem description 
-    i_strm >> (*lpr);
-    // read control parameters: 
-    // i_strm >> (*sp);
-    // read problem instance:
-    i_strm >> (*my_werte);
+    o_strm.close();
     i_strm.close();
     
-    if(!G_ExceptionList.empty()){
-     cout << "ERROR: cannot read input data, aborting program." << endl;
-     exit(1);
-    }  
+    Lisa_ProblemType lpr;
+    Lisa_ControlParameters sp;
+    Lisa_Values my_werte;
     
-    n=my_werte->get_n();
-    m=my_werte->get_m();
-    P_input=my_werte->PT;
-    nondelay=lpr->get_property(NO_WAIT);
+    // read problem instance:
+   //initialize class
+   LisaXmlFile::initialize();
+   //create Input handler
+   LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+   
+   //parse xml file
+    xmlInput.read(argv[1]);
+    //determine document type
+    LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+    
+    //check for successful parsing and valid document type
+    if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    //get Problem
+    if( !(xmlInput >> lpr))
+    {
+      cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+      exit(1);
+    }
+    //get ControlParameters
+    if( !(xmlInput >> sp))
+    {
+      cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+      exit(1);
+    }
+    //get Values
+    if( !(xmlInput >> my_werte))
+    {
+      cout << "ERROR: cannot read Values , aborting program." << endl;
+      exit(1);
+    }
+    // if something else went wrong
+    if (!G_ExceptionList.empty())
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    
+    
+    
+    n=my_werte.get_n();
+    m=my_werte.get_m();
+    P_input=my_werte.PT;
+    nondelay=lpr.get_property(NO_WAIT);
 
     MatchingMatrix=new Lisa_Matrix<bool>(m+n,m+n);
-    result_pmtnP  = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
-    result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
+    result_pmtnP  = new Lisa_MatrixOfLists<TIMETYP>(my_werte.get_n(),my_werte.get_m());
+    result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte.get_n(),my_werte.get_m());
 
     if (nondelay) {
       allMatchings=new Lisa_List<Lisa_Pair>();
       allDeltas=new Lisa_List<TIMETYP>();
     }
 
-    rowsums=new Lisa_Vector<TIMETYP>(my_werte->get_n());
-    colsums=new Lisa_Vector<TIMETYP>(my_werte->get_m());
+    rowsums=new Lisa_Vector<TIMETYP>(my_werte.get_n());
+    colsums=new Lisa_Vector<TIMETYP>(my_werte.get_m());
 
     calc_RowAndColSums(*P_input);
 
@@ -347,22 +386,30 @@ int main(int argc, char *argv[]){
     /**                                                     **
      **  ok - here the algorithm itself finishes...         **
      *********************************************************/
-    ofstream o_strm(argv[2]);
-    if(!o_strm){
+
+    // writing the result to file or stdout...
+    //create xml output handler
+    LisaXmlFile xmlOutput(LisaXmlFile::INSTANCE);
+    //pipe objects to this
+    xmlOutput << lpr << my_werte << sp;
+    //write content to a file
+    xmlOutput.write(argv[2]);
+    
+    ofstream oo_strm(argv[2],ios::out|ios::app); 
+    if(!oo_strm){
       cout << "Could not open '" << argv[2] << "' for writing." << endl;
       exit(1);      
     }
 
-    // writing the result to file or stdout...
-    o_strm <<"pmtnP= " << *result_pmtnP;
-    o_strm <<"pmtnLR= " << *result_pmtnLR;      
-    o_strm <<"level= " << level<<endl;
-    
-    o_strm.close();
-    
+    // add real solution as comment
+    oo_strm << "<!--" << endl 
+            << "pmtnP= " << *result_pmtnP << endl
+            << "pmtnLR= " << *result_pmtnLR << endl 
+            << "level= " << level << endl 
+            << "-->";
+    oo_strm.close();
 
     //cleaning up...
-    delete P_input;
     delete MatchingMatrix;
     delete result_pmtnP;
     delete result_pmtnLR;
