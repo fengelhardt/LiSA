@@ -17,20 +17,16 @@ enum{UNDEFINED /** unknown type */ =0
     };
 
 /// Organizes communication between LiSA and its external modules.     
-/** You can define keywords and values of type string, double or int for each
+/** You can define keywords and values of type string, double or long for each
     of these words. Lisa_ControlParameters holds these values and can write and 
     read them on files.
 
     An example of a Lisa_ControlParameters entry in a file: 
 
     <CONTROLPARAMETERS>
-
-    string    Method= SA
-
-    int       Zahl1= 14
-
-    double     Parameter1= 23.23
-
+     string method SA
+     long   number 14
+     double parameter 23.23
     </CONTROLPARAMETERS>
   
     @author Per Willenius, Thomas Tautenhahn 
