@@ -219,7 +219,13 @@ version:
 	@echo "updating $(SOURCEPATH)/main/version.hpp"
 	@$(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' $(SOURCEPATH)/main/version.hpp
 	@echo
-	@echo "updating $(TOPPROGRAMPATH)/setup.tcl"
+	@echo "updating $(SOURCEPATH)/setup/setup.tcl"
 	@$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(SOURCEPATH)/setup/setup.tcl
+	@echo
+	@echo "updating $(SOURCEPATH)/doc/english/about.txt"
+	@date -I | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) released on {}' $(SOURCEPATH)/doc/english/about.txt
+	@echo
+	@echo "updating $(SOURCEPATH)/doc/german/about.txt"
+	@date -I | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) vom {}' $(SOURCEPATH)/doc/german/about.txt
 	@echo
 
