@@ -158,22 +158,28 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
     next.first = order->row(step)+1;
     next.second = order->col(step)+1;
     return true;
-  }
-  else { //dynamic next
+  }else { //dynamic next
     //attachment minimum head is first machine/job
-    TIMETYP best = std::numeric_limits<TIMETYP>::infinity(), head;
-    next.first = next.second = 1;
+    TIMETYP best, head;
+    bool found_best = false;
     for (int i=1; i<=parent->P->n; i++)
       for (int j=1; j<=parent->P->m; j++){
-	if(! ((*problem->sij)[i][j]) || parent->exists(i,j))
-	  continue;
-	head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
-	if(head < best){
-	  next.first = i; next.second = j;
-	  best = head;
-	}
+        if(! ((*problem->sij)[i][j]) || parent->exists(i,j)) continue;
+        head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
+        if(found_best){
+          if(head < best){
+            next.first = i;
+            next.second = j;
+            best = head;
+          }
+        }else{
+          next.first = i;
+          next.second = j;
+          best = head;
+          found_best = true;
+        }
       }
-    return true;
+    return found_best;
   }
   return false;
 }
@@ -187,22 +193,24 @@ void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, In
   case jobs:
     //find the machine numbers of all non-delay insertables
     pos.second = parent.GetMOpred(insOp.first,SINK);
-    for (int j=1; j<=parent.P->m; j++)
+    for (int j=1; j<=parent.P->m; j++){
       if (((*problem->sij)[insOp.first][j]) && !parent.exists(insOp.first,j) && (head >=  parent.GetHead(SINK,j))){
-	pos.first = parent.GetJOpred(SINK,j);
-	insOp.second = j;
-	ins.push_back(OpInsertion(insOp,pos));
+        pos.first = parent.GetJOpred(SINK,j);
+        insOp.second = j;
+        ins.push_back(OpInsertion(insOp,pos));
       }
+    }
     break;
   case machines:
     //find the job numbers of all non-delay insertables
     pos.first = parent.GetJOpred(SINK,insOp.second);
-    for (int i=1; i<=parent.P->n; i++)
+    for (int i=1; i<=parent.P->n; i++){
       if (((*problem->sij)[i][insOp.second]) &&  !parent.exists(i,insOp.second) && (parent.GetHead(i,SINK) <=  head)){
-	pos.second = parent.GetMOpred(i,SINK);
-	insOp.first = i;
-	ins.push_back(OpInsertion(insOp,pos));
+        pos.second = parent.GetMOpred(i,SINK);
+        insOp.first = i;
+        ins.push_back(OpInsertion(insOp,pos));
       }
+    }
     break;
   default:
     return;
@@ -280,7 +288,7 @@ bool BeamSearch::run(){
 	n_ops++;
   B_Node *b = new B_Node(problem);   //the root of the tree = an empty schedule
   Operation next;  //next ob to be inserted
-  OpInsertion opIns;   //next insertion to perform
+  // OpInsertion opIns;   //next insertion to perform
   fathers->add(b);   //create the root of the search tree
   TIMETYP objective = 0; //progress display
   //insertion list
