@@ -12,4 +12,8 @@ CXXSOURCES=\
 	../../scheduling/matching.cpp \
 	../../scheduling/mo_jo.cpp \
 	../../scheduling/schedule.cpp \
-
+	../../xml/LisaXmlFile.cpp \
+	../../xml/lisa_xml.cpp \
+	../../xml/Lisa_NativeDataHandler.cpp \
+	../../xml/Lisa_IO_Factory.cpp
+    

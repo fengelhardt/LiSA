@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Matching Heuristics" type="constructive" call="match" code="external" help_file="algorithm/match.html">
+  <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <choice name="TYPEOF" caption="Kind of algorithm :">
+      <item name="BOTTLENECK"/>
+      <item name="WEIGHTED"/>
+    </choice>
+    <choice name="MINMAX" caption="Kind of matching :">
+      <item name="HEADS"/>
+      <item name="MIN"/>
+      <item name="MAX"/>
+    </choice>
+  </alg_controls>
+</algorithm>

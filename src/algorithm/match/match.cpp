@@ -14,6 +14,8 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
 
+#include "../../xml/LisaXmlFile.hpp"
+
 using namespace std;
 
 //**************************************************************************
@@ -84,86 +86,115 @@ int main(int argc, char *argv[]){
 
    // write errors, so lisa can catch them up
    G_ExceptionList.set_output_to_cout();
+   cout << "PID= " << getpid() << endl; 
    
    if(argc != 3){
      cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
      exit(1);
    }
      
-   cout << "PID= " << getpid() << endl; 
-   
+
    ifstream i_strm(argv[1]);
+   ofstream o_strm(argv[2]);
    if (!i_strm){
      cout << "ERROR: cannot open file '" << argv[1] << "' for reading." << endl;
      exit(1);
    }
-   
+   if(!o_strm){
+     cout << "Could not open '"<<argv[2]<<"' for writing." << endl;
+     exit(1);
+   }
+   i_strm.close();
+   o_strm.close();
+ 
    // read problem description, algorithm control parameters
    // and problem values
-   Lisa_ProblemType * lpr = new Lisa_ProblemType;
-   i_strm >> (*lpr);
- 
-   Lisa_ControlParameters * sp = new Lisa_ControlParameters;
-   i_strm >> (*sp);
- 
-   Lisa_Values * my_werte=new Lisa_Values;
-   i_strm >> (*my_werte);
-  
-   i_strm.close();
- 
-   if (!G_ExceptionList.empty()){
-     cout << "ERROR: cannot read problem data, aborting program." << endl;
-     exit(1);
-   }  
+   Lisa_ProblemType lpr;
+   Lisa_ControlParameters sp;
+   Lisa_Values my_values;
    
+  // read problem instance:
+  //initialize class
+  LisaXmlFile::initialize();
+  //create Input handler
+  LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+  
+  //parse xml file
+  xmlInput.read(argv[1]);
+  //determine document type
+  LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+  
+  //check for successful parsing and valid document type
+  if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+  {
+    cout << "ERROR: cannot read input , aborting program." << endl;
+    exit(1);
+  }
+  //get Problem
+  if( !(xmlInput >> lpr))
+  {
+    cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+    exit(1);
+  }
+  //get ControlParameters
+  if( !(xmlInput >> sp))
+  {
+    cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+    exit(1);
+  }
+  //get Values
+  if( !(xmlInput >> my_values))
+  {
+    cout << "ERROR: cannot read Values , aborting program." << endl;
+    exit(1);
+  }
+  // if something else went wrong
+  if (!G_ExceptionList.empty())
+  {
+    cout << "ERROR: cannot read input , aborting program." << endl;
+    exit(1);
+  }
+
+
    /// problem type applicable ?
-   if (lpr->get_property(M_ENV)!=O){
-        cout << "ERROR: cannot read problem type, aborting program." << endl;
-        exit(1);
-   }
-   string cannot_handle="";
-   if (lpr->get_property(PMTN)) cannot_handle="preemption";
-   if (lpr->get_property(PRECEDENCE)!=EMPTY) 
-        cannot_handle="precedence constraints"; 
-   if (lpr->get_property(BATCH))  cannot_handle="batching"; 
-   if (lpr->get_property(NO_WAIT))  cannot_handle="no-wait constraints";
-   if (cannot_handle!=""){
-     cout << "ERROR: MATCH cannot handle " << cannot_handle << 
-             ". Aborting program."<< endl;
-     exit(1);
-   }  
-   delete lpr;   
+  bool accept=true;
+  if(lpr.output_beta() != "" ) accept = false;
+  if(lpr.get_property(OBJECTIVE) != CMAX && lpr.get_property(OBJECTIVE) != SUM_CI) accept = false; 
+  if(lpr.get_property(M_ENV)!=O) accept = false;
+  if(!accept){
+    G_ExceptionList.lthrow("Matching heuristics cannot handle "+lpr.output_problem()
+                           +" .",Lisa_ExceptionList::INCONSISTENT_INPUT);
+    exit(1);
+  }
 
    //parse control parameters
    bool min = 0;
    bool bottle = 0;
    bool heads = 0;
-   if (sp->defined("MINMAX")==Lisa_ControlParameters::STRING){ 
-     if (sp->get_string("MINMAX")=="MIN") min = 1;
-     else if (sp->get_string("MINMAX")=="MAX") min = 0;
-     else if (sp->get_string("MINMAX")=="HEADS"){
+   if (sp.defined("MINMAX")==Lisa_ControlParameters::STRING){ 
+     if (sp.get_string("MINMAX")=="MIN") min = 1;
+     else if (sp.get_string("MINMAX")=="MAX") min = 0;
+     else if (sp.get_string("MINMAX")=="HEADS"){
        min = 1;
        heads = 1;
      }else cout << "WARNING: MINMAX value out of Range, using MAX" << endl;
    }else cout << "WARNING: Could not read MINMAX parameter, using MAX." << endl;
    
-   if (sp->defined("TYPEOF")==Lisa_ControlParameters::STRING){ 
-     if (sp->get_string("TYPEOF")=="BOTTLENECK") bottle = 1;
-     else if (sp->get_string("TYPEOF")=="WEIGHTED") bottle = 0;
+   if (sp.defined("TYPEOF")==Lisa_ControlParameters::STRING){ 
+     if (sp.get_string("TYPEOF")=="BOTTLENECK") bottle = 1;
+     else if (sp.get_string("TYPEOF")=="WEIGHTED") bottle = 0;
      else cout << "WARNING: TYPEOF value out of Range, using WEIGHTED" << endl;
    }else cout << "WARNING: Could not read TYPEOF parameter, using WEIGHTED." << endl;
-   
-   delete sp;
 
-   const int m = my_werte->get_m();
-   const int n = my_werte->get_n();
+   const int m = my_values.get_m();
+   const int n = my_values.get_n();
    const int mx = (m<n?n:m);
 
-   Lisa_Schedule * out_schedule = new Lisa_Schedule(n,m);
-   out_schedule->make_LR();
+   Lisa_Schedule out_schedule(n,m);
+   out_schedule.make_LR();
    
-   My_Heads* my_heads = new My_Heads(n,m);
-   Lisa_Matrix<TIMETYP>* op_rel = new Lisa_Matrix<TIMETYP>(n,m);
+   My_Heads my_heads(n,m);
+   Lisa_Matrix<TIMETYP> op_rel(n,m);
 
    const Lisa_Vector<int> *I_matched;
    
@@ -171,8 +202,8 @@ int main(int argc, char *argv[]){
         
    Lisa_Matching* matching;
    
-   if (bottle) matching = new Lisa_BottleneckMatching(my_werte->PT);  
-   else matching = new Lisa_WeightedMatching(my_werte->PT);
+   if (bottle) matching = new Lisa_BottleneckMatching(my_values.PT);  
+   else matching = new Lisa_WeightedMatching(my_values.PT);
    
    if (min) matching->invert();
    
@@ -183,38 +214,33 @@ int main(int argc, char *argv[]){
      for (int i=0;i<mx;i++){
        const int j = (*I_matched)[i];
        matching->remove(i,j);
-       if (j<m&&i<n&&(*my_werte->SIJ)[i][j]){
-         my_heads->add_operation(i,j,(*my_werte->PT)[i][j]);
-         (*out_schedule->LR)[i][j]= a;
-         (*my_werte->SIJ)[i][j] = 0;
+       if (j<m&&i<n&&(*my_values.SIJ)[i][j]){
+         my_heads.add_operation(i,j,(*my_values.PT)[i][j]);
+         (*out_schedule.LR)[i][j]= a;
+         (*my_values.SIJ)[i][j] = 0;
        } // if
      }// for	
      
      if(heads){
        for(int i=0;i<n;i++)
-       for(int j=0;j<m;j++){
-         (*op_rel)[i][j] = (*my_werte->PT)[i][j] + my_heads->get_release(i,j);
-       }
-       matching->set_all_edges(op_rel);
+         for(int j=0;j<m;j++){
+           op_rel[i][j] = (*my_values.PT)[i][j] + my_heads.get_release(i,j);
+         }
+       matching->set_all_edges(&op_rel);
      }// if
      
-     cout << "OBJECTIVE= " << my_heads->get_max() << endl;
+     cout << "OBJECTIVE= " << my_heads.get_max() << endl;
      
    } // for
    
-   ofstream o_strm(argv[2]);
-   if(!o_strm){
-     cout << "Could not open '"<<argv[2]<<"' for writing." << endl;
-     exit(1);
-   }
-   o_strm << *out_schedule;
-   o_strm.close();
-   
+   //create xml output handler
+   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+   //pipe objects to this
+   xmlOutput << lpr << my_values << sp << out_schedule;
+   //write content to a file
+   xmlOutput.write(argv[2]);
+  
    delete matching;
-   delete op_rel;
-   delete out_schedule;
-   delete my_werte;
-   delete my_heads;
  }
 
 //**************************************************************************
