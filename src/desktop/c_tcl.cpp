@@ -82,8 +82,6 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
   Tcl_CreateCommand(interp, "TC_open_schedule", TC_open_schedule,(ClientData) 
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);
-  Tcl_CreateCommand(interp, "TC_prior", TC_prior,(ClientData) 
-		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);
   Tcl_CreateCommand(interp, "TC_t", TC_open, (ClientData) 
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);
   Tcl_CreateCommand(interp, "TC_save", TC_save, (ClientData) 

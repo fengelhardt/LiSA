@@ -47,11 +47,6 @@ int TC_open_schedule(ClientData clientData,
 	    Tcl_Interp *interp,
 	    int argc, char *argv[]);  
 
-/// Priority Lists
-int TC_prior(ClientData clientData,
-	    Tcl_Interp *interp,
-	    int argc, char *argv[]);  
-
 /// write file
 int TC_save(ClientData clientData,
 	      Tcl_Interp *interp,

@@ -84,8 +84,6 @@ proc vTclWindow.schedulewin {base} {
         -label $Name(Semiactive_mark) -variable schedule(semiactive) \
 	-command { change_semiactive }
     $base.fra19.men21.m add separator
-    $base.fra19.men21.m add command -command {TC_prior RAND} \
-        -label $Name(Generate_Sequence)
   #   $base.fra19.men21.m add command \
 #         -label $Name(Irreducible_Test)  -state disabled
     $base.fra19.men21.m add command -command { TC_rev_seq } \
@@ -447,8 +445,6 @@ proc LR_is_displayed { } {
     global schedule
     .schedulewin.fra19.men20.m  entryconfigure \
 	$Name(Latin_Rectangle) -state active
-    .schedulewin.fra19.men21.m  entryconfigure \
-	$Name(Generate_Sequence) -state active
     if { [TC_getvar M_ENV]!="F" && [TC_getvar M_ENV]!="J" } {
 	.schedulewin.fra19.men21.m  entryconfigure \
 	    $Name(Revers) -state active
@@ -457,8 +453,6 @@ proc LR_is_displayed { } {
 	$Name(Update_Sequence) -state active   
     .schedulewin.fra19.but22 configure -state active
   if { $schedule(semiactive)=="0"} {	
-      .schedulewin.fra19.men21.m  entryconfigure \
-	  $Name(Generate_Sequence) -state disabled
       .schedulewin.fra19.men21.m  entryconfigure \
 	  $Name(Revers) -state disabled
       .schedulewin.fra19.men21.m  entryconfigure \
@@ -470,8 +464,6 @@ proc LR_is_displayed { } {
 
 proc SCHEDULE_is_displayed { } {
     global Name
-    .schedulewin.fra19.men21.m  entryconfigure \
-	$Name(Generate_Sequence) -state disabled
     .schedulewin.fra19.men21.m  entryconfigure \
 	$Name(Revers) -state disabled
     .schedulewin.fra19.men21.m  entryconfigure \

@@ -178,20 +178,6 @@ int TC_open_schedule(ClientData /* clientData*/ ,
   return TCL_OK;
 }
 
-
-// Priority Lists
-int TC_prior(ClientData /* clientData */,
-	    Tcl_Interp *interp,
-	     int argc, char *argv[]) {
-    if (argc<2) return TCL_OK; // no rule given
-  // only to test: sortet by pij
-    start_prior(interp,G_ProblemType,*G_Schedule,G_Values,G_Status,argv[1]);
-    update_LR();
-    
-    //new_schedule();
-    return TCL_OK;
-}
-
 int TC_save(ClientData /* clientData */,
 	    Tcl_Interp * /* interp */,
 	    int argc, char *argv[])  
