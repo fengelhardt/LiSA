@@ -114,7 +114,7 @@ int Lisa_MO::read_rank(Lisa_Matrix<int>* lr)
     return TRUE;
   }
 
-void Lisa_MO::write (ostream& strm = cout) const
+void Lisa_MO::write (ostream& strm) const
   {
     Lisa_Vector<int> * rank=new Lisa_Vector<int>(m);
     int i;
@@ -128,7 +128,7 @@ void Lisa_MO::write (ostream& strm = cout) const
     delete rank;
   }
 
-void Lisa_MO::read (istream& strm = cin)
+void Lisa_MO::read (istream& strm)
   {
     string S;
     Lisa_Vector<int> * rank=new Lisa_Vector<int>(m);
@@ -194,7 +194,7 @@ int Lisa_JO::read_rank(Lisa_Matrix<int>* lr)
     return TRUE; 
   }
 
-void Lisa_JO::write (ostream& strm = cout) const
+void Lisa_JO::write (ostream& strm) const
   {
     Lisa_Matrix<int> * LR=new Lisa_Matrix<int>(n,m);
     write_rank(LR);
@@ -202,7 +202,7 @@ void Lisa_JO::write (ostream& strm = cout) const
     delete LR;
   }
 
-void Lisa_JO::read (istream& strm = cin)
+void Lisa_JO::read (istream& strm)
   {
     Lisa_Matrix<int> * LR=new Lisa_Matrix<int>(n,m);
     strm >> *LR;

@@ -375,7 +375,7 @@ bool Lisa_BipartMatching::is_perfect(){
 
 //****************************************************
 
-void Lisa_BipartMatching::write(ostream & strm = cout) const {
+void Lisa_BipartMatching::write(ostream & strm) const {
   strm << "<BIPARTMATCHING>"<<endl;
   
   strm << "  ";
@@ -632,7 +632,7 @@ void Lisa_WeightedMatching::invert(){
 
 //****************************************************
 
-void Lisa_WeightedMatching::write(ostream & strm = cout) const {
+void Lisa_WeightedMatching::write(ostream & strm) const {
   
   int i,j;
   
@@ -944,7 +944,7 @@ TIMETYP Lisa_BottleneckMatching::get_edge(const int i,const int j)const{
 
 //****************************************************
 
-void Lisa_BottleneckMatching::write(ostream & strm = cout) const{
+void Lisa_BottleneckMatching::write(ostream & strm) const{
   strm << "<BOTTLENECKMATCHING>" << endl;
   strm << (*lst);
   strm << (*bipart);
