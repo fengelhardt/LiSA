@@ -124,7 +124,9 @@ public:
   /// returns the objective value
   TIMETYP  GetValue();
   /// shift( pos1, pos2 ) shifts job at pos1 to pos2
-  int shift( int a, int b);
+  int shift(const int a,const int b);
+  /// swap jobs at position a and b;
+  int swap(const int a,const int b);
   /// returns the operation on the specified position
   int get_sequ(int i);
   ///assignment operator

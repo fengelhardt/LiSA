@@ -458,33 +458,54 @@ int Lisa_1Schedule::pulltail( int i )
 
 //**************************************************************************
 
-int Lisa_1Schedule::shift(int a, int b)
-  {
-    int c,i;
-    if ((b>=PP->n+1)||(a<1)||(a>=PP->n+1)||(b<1)||(a==b))
-      { 
-	G_ExceptionList.lthrow("wrong position in shift("+ztos(a)+ztos(b)+").");
-	exit( 7 );
-      }
+int Lisa_1Schedule::shift(const int a,const int b){
+#ifdef LISA_DEBUG
+    if ((b>=PP->n+1)||(a<1)||(a>=PP->n+1)||(b<1)||(a==b)){ 
+      G_ExceptionList.lthrow("wrong position in shift("+ztos(a)+" "+ztos(b)+").");
+      exit( 7 );
+    }
+#endif
+
     // test, wether exists(a) and exists(b) !
 
-    if (a>b) 
-      { 
-	c=(*sequ)[a];
-	for (i=a; i>b; i--)
-	  (*sequ)[i]=(*sequ)[i-1];
-	(*sequ)[b]=c;
-      }
-    else
-      { 
-	c=(*sequ)[a];
-	for (i=a; i<b; i++)
-	  (*sequ)[i]=(*sequ)[i+1];
-	(*sequ)[b]=c;
-      }
-    if (a<b) get_Ci(a); else get_Ci(b);
+    if(a==b) return OK;
+    
+    if (a>b){ 
+      const int c=(*sequ)[a];
+      for (int i=a; i>b; i--) (*sequ)[i]=(*sequ)[i-1];
+      (*sequ)[b]=c;
+    }else{ 
+      const int c=(*sequ)[a];
+      for (int i=a; i<b; i++) (*sequ)[i]=(*sequ)[i+1];
+      (*sequ)[b]=c;
+    }
+    
+    get_Ci(min(a,b));
+    
     return OK;
   }
+
+//**************************************************************************
+int Lisa_1Schedule::swap(const int a,const int b){
+#ifdef LISA_DEBUG
+    if ((b>=PP->n+1)||(a<1)||(a>=PP->n+1)||(b<1)||(a==b)){ 
+      G_ExceptionList.lthrow("wrong position in swap("+ztos(a)+" "+ztos(b)+").");
+      exit( 7 );
+    }
+#endif
+
+    // test, wether exists(a) and exists(b) !
+
+    if(a==b) return OK;
+    
+    const int c=(*sequ)[a];
+    (*sequ)[a]=(*sequ)[b];
+    (*sequ)[b]=c;
+    
+    get_Ci(min(a,b));
+
+    return OK;
+}
 
 //**************************************************************************
 
