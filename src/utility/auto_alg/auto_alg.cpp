@@ -19,6 +19,7 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
 #include "../../scheduling/os_sched.hpp"
+#include "../../xml/LisaXmlFile.hpp"
 
 //**************************************************************************
 
@@ -213,27 +214,39 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
                            "' for writing.",Lisa_ExceptionList::FILE_NOT_FOUND);
     exit(-1);
   }
-  
-  in_file << pt << std::endl;
-  in_file << cp << std::endl;
-  in_file << val << std::endl;
-  if(sched.valid) in_file << sched << std::endl;
-  
   in_file.close();
+  
+  LisaXmlFile::DOC_TYPE type = LisaXmlFile::INSTANCE;
+  if(sched.valid) type = LisaXmlFile::SOLUTION;
+  
+  LisaXmlFile xmlOutput(type);
+  xmlOutput << pt << val << cp;
+  if(sched.valid) xmlOutput << sched;
+  xmlOutput.write(algin);
 }
 
 //**************************************************************************
     
 void readAlgOutput(Lisa_Schedule &sched){
-  
   std::ifstream out_file(algout);
   if(!out_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algout+
                            "' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
     exit(-1);
   }
+  out_file.close();
   
-  out_file >> sched;
+ LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+ xmlInput.read(algout);
+ 
+ //check for successful parsing and valid document type   
+ LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+ if( !xmlInput || !(type == LisaXmlFile::SOLUTION) || !(xmlInput >> sched)){
+   G_ExceptionList.lthrow("ERROR: Could not read solution.",
+                          Lisa_ExceptionList::INCONSISTENT_INPUT);
+   exit(-1);
+  }
+  
   if(!G_ExceptionList.empty()) exit(-1);
   
   if(sched.get_m() != m || sched.get_n() != n){
@@ -243,7 +256,6 @@ void readAlgOutput(Lisa_Schedule &sched){
     exit(-1);
   }
   
-  out_file.close();    
 }
   
 //**************************************************************************
@@ -285,6 +297,9 @@ int main(int argc, char *argv[]){
                          " [input file]",Lisa_ExceptionList::ANY_ERROR);
   exit(-1);  
  }
+ 
+ //initialize xml input stuff
+ LisaXmlFile::initialize();
  
  //open input file
  std::ifstream in_file(argv[1]);

@@ -12,4 +12,8 @@ CXXSOURCES=\
   ../../scheduling/schedule.cpp \
   ../../scheduling/sp_sched.cpp \
   ../../scheduling/os_sched.cpp \
+  ../../xml/LisaXmlFile.cpp \
+	../../xml/lisa_xml.cpp \
+	../../xml/Lisa_NativeDataHandler.cpp \
+	../../xml/Lisa_IO_Factory.cpp \
 	auto_alg.cpp
