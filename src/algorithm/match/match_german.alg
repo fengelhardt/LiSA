@@ -13,6 +13,9 @@ Help= algorithm/match.html
 <PROBLEMTYPE> 
 Lisa_ProblemType= { O /  / Cmax }
 </PROBLEMTYPE>
+<PROBLEMTYPE> 
+Lisa_ProblemType= { O /  / SumCi }
+</PROBLEMTYPE>
 </HEURISTIC>
 
 <PARAMETERS>
