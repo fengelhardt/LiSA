@@ -17,7 +17,7 @@
     WARNING: jobs are internally indexed 1,2,3, ...
     @see Lisa_1Schedule
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
 */  
 class Lisa_1Problem {
 public: 
@@ -50,7 +50,7 @@ public:
 /** WARNING: the numeration is here beginning at 0 
     @see Lisa_1Problem
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
 */
 class Lisa_1Schedule{
 private: 

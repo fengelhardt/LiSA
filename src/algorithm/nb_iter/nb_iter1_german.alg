@@ -161,12 +161,12 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 string NGBH ( API SHIFT CR_API BL_API CR_SHIFT BL_SHIFT 3_CR ) "Nachbarschaft"
 string METHOD ( TabuSearch ThresholdAccepting IterativeImprovement SimulatedAnnealing ) "Suchmethode"
 string TYPE ( ENUM RAND ) "Erzeugemodus"
-long STEPS 5000 "Anzahl der Lösungen"
-long NUMB_STUCKS 10000 "Abbruch nach Stillständen (Abbruchkriterium)";
+long STEPS 5000 "Anzahl der Loesungen"
+long NUMB_STUCKS 10000 "Abbruch nach Stillstaenden (Abbruchkriterium)";
 double ABORT_BOUND 0 "Abbruchschranke (Abbruchkriterium)"
-long PROB 12 "Anfangswahrscheinlichkeit (nur für SA / TA)"
-long MAX_STUCK 30 "Maximale Stillstandsanzahl (nur für SA / TA)"
-long TABULENGTH 40 "Tabulistenlänge (nur für TS)"
-long NUMB_NGHB 40 "Anzahl der Nachbarn (nur für TS)"
+long PROB 12 "Anfangswahrscheinlichkeit (nur fuer SA / TA)"
+long MAX_STUCK 30 "Maximale Stillstandsanzahl (nur fuer SA / TA)"
+long TABULENGTH 40 "Tabulistenlaenge (nur fuer TS)"
+long NUMB_NGHB 40 "Anzahl der Nachbarn (nur fuer TS)"
 </PARAMETERS>
 

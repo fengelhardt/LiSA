@@ -23,7 +23,7 @@
     These sets can then be requested from the object.
 
     @author Marc Moerig
-    @version 2.3rc1
+    @version 2.3final
 */
 class Lisa_Partition : public Lisa_GenericObject{
 private:

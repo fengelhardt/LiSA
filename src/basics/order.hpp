@@ -15,7 +15,7 @@
     Lisa_List can even sort keys which cannot be casted into float values. 
 
     @author Thomas Tautenhahn
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_Vector
     @see Lisa_Matrix 
 */ 

@@ -1,6 +1,6 @@
 /**
  * @author  Lars Dornheim
- * @version 2.3rc1
+ * @version 2.3final
  */
 
 #include <unistd.h>

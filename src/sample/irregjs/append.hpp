@@ -8,7 +8,7 @@
 /// needs documentation
 /**
  * @author Thomas Tautenhahn
- * @version 2.3rc1
+ * @version 2.3final
  */
 void ECT_reverse(Lisa_JsSchedule *);
 

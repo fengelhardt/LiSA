@@ -1,6 +1,6 @@
 /**
  * @author  Andreas Winkler
- * @version 2.3rc1
+ * @version 2.3final
  */
 
 #include "jsp_crtm.hpp"

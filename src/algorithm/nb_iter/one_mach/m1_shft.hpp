@@ -12,7 +12,7 @@
     machine problem, it swaps two arbitrary jobs on the machine.
 
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_Neighbourhood
     @see API_Neighbourhood
 */

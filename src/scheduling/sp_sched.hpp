@@ -22,7 +22,7 @@ const int ERROR=-1;
     
     WARNING: jobs and machines are internally indexed 1,2,...
     @author Thomas Tautenhahn, Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_ShpSchedule
 */
 class Lisa_ShpProblem { 
@@ -53,7 +53,7 @@ public:
 /// basic class and interface for Lisa_OsSchedule and Lisa_JsSchedule 
 /**
     @author Thomas Tautenhahn and Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_OsSchedule 
     @see Lisa_JsSchedule
     @see Lisa_ShpProblem

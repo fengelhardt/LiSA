@@ -22,7 +22,7 @@ enum{GANTT_RED=0,GANTT_GREEN,GANTT_BLUE,GANTT_BROWN,GANTT_YELLOW};
 
 /// class to manage preference information 
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class Lisa_Preferences : public Lisa_FileEntry{
 public:

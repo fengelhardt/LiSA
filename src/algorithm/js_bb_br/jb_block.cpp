@@ -3,7 +3,7 @@
 /*                                                                           */
 /*   Export: Procedure Compute_Blocks:                                       */
 /*                     Calculation of the blocks on the critical path        */
-//   @version 2.3rc1
+//   @version 2.3final
 /* ************************************************************************* */
 
 #include <malloc.h>

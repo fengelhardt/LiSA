@@ -206,7 +206,7 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 
 <PARAMETERS>
 string ACTIVE ( FALSE  TRUE) "Aktiven Plan erzeugen"
-string RULE ( RAND FCFS EDD LQUE SPT WSPT ECT WI LPT ) "Prioritätsregel"
+string RULE ( RAND FCFS EDD LQUE SPT WSPT ECT WI LPT ) "Prioritaetsregel"
 </PARAMETERS>
 
 

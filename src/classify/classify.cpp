@@ -1,6 +1,6 @@
 /**
  * @author  Martin Harborth
- * @version 2.3rc1
+ * @version 2.3final
  */
  
 #include <stdio.h>

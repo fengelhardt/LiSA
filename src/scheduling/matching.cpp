@@ -1,6 +1,6 @@
 /**
- * @author  Marc Mörig
- * @version 2.3rc1
+ * @author  Marc Moerig
+ * @version 2.3final
  */
 
 #include "matching.hpp"

@@ -2,7 +2,7 @@
 /*                       Filename: Datastruct.h                              */
 /*                                                                           */
 /*    Export: Global constants and datastructures                            */
-//   @version 2.3rc1
+//   @version 2.3final
 /* ************************************************************************* */
 
 #ifndef _DATASTRUCT_H

@@ -20,8 +20,16 @@ installation of the source distribtution (UNIX like environments):
 
 - ./configure
 
-- edit Make.Config if configure is unable to find some of the includes or libraries
+- edit Make.Config if configure is unable to find some of the includes or 
+  libraries
 
+- optimizations (recommended, but not nessecary)
+  edit Make.Config to add compiler flags like -O3 -march=pentium4, you may 
+  also try to use another compiler, intels icc works fine for me, and really
+  gives great results
+  edit global.hpp and comment #define LISA_DEBUG this will switch off alot
+  of error cecking and results in a great speed improvement
+  
 - make
 
 - ./lisa

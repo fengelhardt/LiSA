@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-VERSION=2.3pre3
+VERSION=2.3final
 
 # ------------------------------------------------------------------------------
 
@@ -57,8 +57,8 @@ about: logo
 	@echo "Copyright LiSA Group at Magdeburg University 2002"
 	@echo
 	@echo "Team: Heidemarie Braesel, Lars Dornheim, Martin Harborth, Sandra Kutz,"
-	@echo "      Ivo Rössling, Thomas Tautenhahn, Ines Wasmund, Per Willenius,"
-	@echo "      Andreas Winkler, Marc Mörig, Christian Schulz, Manuela Vogel "
+	@echo "      Ivo Roessling, Thomas Tautenhahn, Ines Wasmund, Per Willenius,"
+	@echo "      Andreas Winkler, Marc Moerig, Christian Schulz, Manuela Vogel "
 	@echo
 	@echo "E-Mail: lisagroup@lisa.math.uni-magdeburg.de"
 	@echo

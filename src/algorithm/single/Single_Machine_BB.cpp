@@ -1,6 +1,6 @@
 /**
  * @author  Christian Schulz
- * @version 2.3rc1
+ * @version 2.3final
  */
  
 #include "Single_Machine_BB.hpp"

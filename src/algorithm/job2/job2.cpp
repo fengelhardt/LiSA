@@ -1,6 +1,6 @@
 /**
  * @author  Thomas Klemm
- * @version 2.3rc1
+ * @version 2.3final
  */
 
 #include <unistd.h>
@@ -85,7 +85,6 @@ int main(int argc, char *argv[])
 	 
 
 //check validity of processing times matrix
-//Zulässigkeit der Bearbeitungszeitenmatrix 
  
 	for (i=0;i<n;i++) 
 		{if (P[i][0]==0)	 

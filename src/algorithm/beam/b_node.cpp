@@ -1,6 +1,6 @@
 /**
  * @author  Jan Tusch, Andre Herms
- * @version 2.3rc1
+ * @version 2.3final
  */
  
 #include "b_node.hpp"

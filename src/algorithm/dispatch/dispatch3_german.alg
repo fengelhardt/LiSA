@@ -19,7 +19,7 @@ Lisa_ProblemType= { O / p_ij=1  / Cmax }
 </EXACT>
 
 <PARAMETERS>
-string RULE ( RAND FCFS ) "Prioritätsregel"
+string RULE ( RAND FCFS ) "Prioritaetsregel"
 </PARAMETERS>
 
 <FIXED>

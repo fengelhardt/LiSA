@@ -13,7 +13,7 @@
     a machine). It is inherited from the class Lisa_Neighbourhood.
 
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_Neighbourhood
 */
 class JSHOP_API_Ngbh: public Lisa_Neighbourhood{

@@ -25,7 +25,7 @@ enum{SECOND_TO_FIRST /** the second problem polynomially reduces to the first pr
     problem objects with the aid of the reduction graphs.
     
     @author Martin Harborth 
-    @version 2.3rc1
+    @version 2.3final
 */
 class Lisa_RedGraph{ 
 private:

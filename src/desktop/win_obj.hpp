@@ -45,7 +45,7 @@ const float VERTICE_RADIUS = 20;
 
 /// graphical in and output of Lisa_Schedule
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCSchedule: public TCTable {
 public:
@@ -70,7 +70,7 @@ public:
 
 /// graphical output of a list of Lisa_Schedule's lisa
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCScheduleList: public TCTable {
 public:
@@ -93,7 +93,7 @@ public:
 
 /// graphical in and output of Lisa_Values
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCValues: public TCTable {
 public:
@@ -120,7 +120,7 @@ public:
 
 /// graphical in and output of th CIJ matrix in Lisa_Schedule
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCCMatrix: public TCTable {
 public:
@@ -140,7 +140,7 @@ public:
  
 /// graphical output of graphs
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCGraph:  public TCGraphic {
 public:
@@ -158,7 +158,7 @@ public:
  
 /// graphical output of the sequence graph
 /** @author Per Willenius
-    @version 2.3rc1
+    @version 2.3final
  */
 class TCSeqGraph: public TCGraph {
 public:

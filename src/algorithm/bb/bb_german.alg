@@ -205,10 +205,10 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 </HEURISTIC>
 
 <PARAMETERS>
-long NB_SOLUTIONS 1 "Anzahl der Lösungen"
+long NB_SOLUTIONS 1 "Anzahl der Loesungen"
 double LOWER_BOUND 0 "Untere Schranke"
 double UPPER_BOUND 1000000 "Obere Schranke"
-string INS_ORDER ( RANDOM LPT ) "Einfügereihenfolge"
+string INS_ORDER ( RANDOM LPT ) "Einfuegereihenfolge"
 string BOUNDING ( EXTENDED NORMAL ) "Art der unteren Schranke"
 </PARAMETERS>
 

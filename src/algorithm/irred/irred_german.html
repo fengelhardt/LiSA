@@ -8,9 +8,9 @@
 
 <h2>Irreduzibilit&auml;tstest</h2>
     Dieser Algorithmus &uuml;berpr&uuml;ft einen vorgegebenen Plan auf Irreduzibilit&auml;t. Ein Plan S* reduziert 
-    einen anderen Plan S wenn er für jede Wahl von Bearbeitungszeiten einen besseren Zielfunktionswert liefert als 
-    S. S ist also irreduzibel wenn kein solcher Plan existiert.<br><br>Der Test funktioniert für Open, Job und Flow
-    Shop Probleme, in Kombination mit Freigabezeiten und für die Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi
+    einen anderen Plan S wenn er f&uuml;r jede Wahl von Bearbeitungszeiten einen besseren Zielfunktionswert liefert als 
+    S. S ist also irreduzibel wenn kein solcher Plan existiert.<br><br>Der Test funktioniert f&uuml;r Open, Job und Flow
+    Shop Probleme, in Kombination mit Freigabezeiten und f&uuml;r die Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi
     und SumWiTi Zielfunktionen.
 <h2>So wird der Test gestartet:</h2>
 Stellen sie sicher, das der <a href="../problem.html">Problemtyp</a> und alle <a href="../values.html">Problemparameter</a>
@@ -32,7 +32,7 @@ aus dem Menu <i>Algorithmen</i> , editieren sie die Optionen und dr&uuml;cken si
 
 <dd>Alle Pl&auml;ne die den Eingebeplan reduzieren werden erzeugt. Wenn kein solcher Plan existiert wird der 
     Eingabeplan zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur die irreduziblen
-    Pl&auml;ne zurückgegeben werden. Die Option Pl&auml;ne in zuf&auml;lliger Reihenfolge  zu erzeugen hat auf
+    Pl&auml;ne zur&uuml;ckgegeben werden. Die Option Pl&auml;ne in zuf&auml;lliger Reihenfolge  zu erzeugen hat auf
     diesen Algorithmus keinen Einfluss.</dd>
 
 <dt>ITERATIVE_REDUCING</dt>
@@ -40,7 +40,7 @@ aus dem Menu <i>Algorithmen</i> , editieren sie die Optionen und dr&uuml;cken si
 <dd>Sobald ein Plan gefunden wurde, der den urspr&uuml;nglichen Plan reduziert wird der Algorithmus unterbrochen 
     und mit dem neuen Plan neu gestartet. Dies wird fortgef&uuml;hrt bis ein irreduzibler Plan gefunden wurde. 
     Pl&auml;ne k&ouml;nnen in zuf&auml;lliger Reihenfolge erzeugt werden, so das bei wiederholten Aufrufen des 
-    Algorithmus unterschiedliche Resultate erzielt werden können. Sollte der urspr&uuml;ngliche Plan irreduzibel 
+    Algorithmus unterschiedliche Resultate erzielt werden k&ouml;nnen. Sollte der urspr&uuml;ngliche Plan irreduzibel 
     sein, so wird er zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur der letzte
     (irreduzible) Plan zur&uuml;ckgegeben werden.</dd>
 

@@ -21,7 +21,7 @@ using namespace std;
 /// a simple class for calculation heads
 /** this class is used to calculate heads for the matching algorithm
     @author  Marc Moerig
-    @version 2.3rc1
+    @version 2.3final
 */
 class My_Heads {
 private:

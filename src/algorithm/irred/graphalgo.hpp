@@ -7,7 +7,7 @@
 /// Just some helpfull operations on graphs.
 /** Needed for the irreducibility test.
     @see Lisa_Graph
-    @version 2.3rc1
+    @version 2.3final
     @author Marc Moerig   
  */
 class Lisa_GraphAlgorithms{

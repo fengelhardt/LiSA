@@ -32,7 +32,7 @@
     @see Lisa_DataBase 
     @see Lisa_RedGraph
     @author Martin Harborth
-    @version 2.3rc1
+    @version 2.3final
 */
 std::string Lisa_classify(Lisa_ProblemType* G_Problem,
                           std::string home,std::string file);  

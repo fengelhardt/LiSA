@@ -13,7 +13,7 @@
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */  

@@ -1,5 +1,5 @@
 <GENERAL>
-Name= Irreduzibilitätstest (Research)
+Name= Irreduzibilitaetstest (Research)
 Type= iterative
 Call= irred
 Code= external
@@ -157,9 +157,9 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 </HEURISTIC>
 
 <PARAMETERS>
-string TYPE ( SIMILAR ALL_REDUCING ITERATIVE_REDUCING ) "Erzeuge Pläne: "
-string RETURN ( ONLY_IRREDUCIBLE ALL ) "Gib folgende Pläne zurück: "
-string RNDM ( NO YES ) "Erzeuge Pläne in zufälliger Reihenfolge: "
+string TYPE ( SIMILAR ALL_REDUCING ITERATIVE_REDUCING ) "Erzeuge Plaene: "
+string RETURN ( ONLY_IRREDUCIBLE ALL ) "Gib folgende Plaene zurueck: "
+string RNDM ( NO YES ) "Erzeuge Plaene in zufaelliger Reihenfolge: "
 </PARAMETERS>
 
 

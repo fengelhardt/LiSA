@@ -1,6 +1,6 @@
 /**
  * @author  Manuela Vogel
- * @version 2.3rc1
+ * @version 2.3final
  */
 
 #include <stdlib.h>

@@ -15,7 +15,7 @@
     order of the critical operations.
 
     @author Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_Neighbourhood
     @see OSHOP_API_Ngbh
     @see OSHOP_cr_API_Ngbh

@@ -19,7 +19,7 @@ extern std::string G_ExtraException;
     but uses a global list of error messages instead.
     
     @author Thomas Tautenhahn
-    @version 2.3rc1
+    @version 2.3final
  */
 class Lisa_ExceptionList{
 public:

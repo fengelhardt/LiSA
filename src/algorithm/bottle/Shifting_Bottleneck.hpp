@@ -16,7 +16,7 @@
 
 /// Shifting_Bottleneck object for Lisa
 /** use the Shifting_Bottleneck heuristic to solve job shop problems 
-    @version 2.3rc1
+    @version 2.3final
     @author Christian Schulz
 */ 
 class Shifting_Bottleneck{

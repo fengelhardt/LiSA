@@ -19,7 +19,7 @@ void error(std::string);
 /** you should not use this type explicitly
     @see Lisa_List 
     @author Thomas Tautenhahn
-    @version 2.3rc1
+    @version 2.3final
  */
 template<class T>
 class Lisa_Node{
@@ -50,7 +50,7 @@ public:
     T be a pointer to the desired type.
 
     @author Thomas Tautenhahn
-    @version 2.3rc1
+    @version 2.3final
 */    
 template<class T>
 class Lisa_List: public Lisa_Object{

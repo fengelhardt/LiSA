@@ -20,7 +20,7 @@ class Lisa_JO;
 
 /// basic class representing an order
 /** for just one machine or job
-    @version 2.3rc1
+    @version 2.3final
     @author unknown
 */ 
 class Lisa_OrderWithoutRepetition{
@@ -68,7 +68,7 @@ public:
 
 /// class representing a machine order 
 /** Do not confuse Lisa_MO and Lisa_JO !
-    @version 2.3rc1
+    @version 2.3final
     @author unknown
 */
 class Lisa_MO:public Lisa_Object{
@@ -110,7 +110,7 @@ public:
 
 /// class representing a job order 
 /** Do not confuse Lisa_MO and Lisa_JO !
-    @version 2.3rc1
+    @version 2.3final
     @author unknown
 */
 class Lisa_JO:public Lisa_Object{

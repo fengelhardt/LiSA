@@ -12,7 +12,7 @@
     Warning: jobs and machines are internally numbered 1,2,...
     
     @author Thomas Tautenhahn, Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
   */
 class Lisa_OsProblem : public Lisa_ShpProblem{ 
 public:
@@ -25,7 +25,7 @@ public:
 /// special schedule class for open shop problems
 /**
     @author Thomas Tautenhahn, Andreas Winkler
-    @version 2.3rc1
+    @version 2.3final
     @see Lisa_OsProblem
   */
 class Lisa_OsSchedule  : public Lisa_ShpSchedule{ 

@@ -9,7 +9,7 @@
 /// vector for football pool problem
 /**
  * @author        Thomas Tautenhahn
- * @version 2.3rc1
+ * @version 2.3final
  */
 class FP_Vector :public Lisa_GenericObject{
 private:

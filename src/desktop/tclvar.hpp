@@ -7,7 +7,7 @@
 /// In c++ used Tcl variables
 /**
   @author          Per Willenius
-  @version 2.3rc1
+  @version 2.3final
  */
 class Lisa_TCLVar{
 public:

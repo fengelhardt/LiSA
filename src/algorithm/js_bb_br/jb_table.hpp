@@ -2,7 +2,7 @@
 /*                       Filename: table.h                                   */
 /*                                                                           */
 /*    Export: Global variables                                               */
-//   @version 2.3rc1
+//   @version 2.3final
 /* ************************************************************************* */
 
 #include "jb_dtstr.hpp"
