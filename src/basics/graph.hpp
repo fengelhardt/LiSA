@@ -312,9 +312,10 @@ public:
  
       This Method however does it the other way around, so that i is 
       the position while (*knot_sequence)[i] contains the vertex. */
-  static bool topsort_inverse(Lisa_Graph* graph,Lisa_Vector<int>* knot_sequence);
+  static bool topsort_inverse(const Lisa_Graph *const g,
+                              Lisa_Vector<int> *const vertex_sequence);
                       
-    /// Replaces each ARC with an EDGE.
+  /// Replaces each ARC with an EDGE.
   static void build_semigraph(Lisa_Graph *const graph);
    
   /// Create a comparability graph.

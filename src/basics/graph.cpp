@@ -1129,15 +1129,26 @@ bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
 
 //**************************************************************************
 
-bool Lisa_GraphAlg::topsort_inverse(Lisa_Graph* graph,Lisa_Vector<int>* knot_sequence){
-  const int vert = graph->get_vertices();
+bool Lisa_GraphAlg::topsort_inverse(const Lisa_Graph *const g,
+                                    Lisa_Vector<int> *const knot_sequence){
+#ifdef LISA_DEBUG
+  if(knot_sequence->get_m() != g->get_vertices()){
+    G_ExceptionList.lthrow("Argument vector size incorrect in Lisa_GraphAlgo::topsort_inverse().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return false;
+  }
+#endif
+
+  const int vert = g->get_vertices();
   
   Lisa_Vector<int> sort(vert);
-  const bool done = Lisa_GraphAlg::topsort(graph,&sort);
   
-  for (int i=0;i<vert;i++)  (*knot_sequence)[sort[i]-1]=i+1;
+  if(topsort(g,&sort)){
+    for (int i=0;i<vert;i++)  (*knot_sequence)[sort[i]-1]=i+1;
+    return true;
+  }
   
-  return done;
+  return false;
 }
 
 //**************************************************************************
@@ -1160,6 +1171,14 @@ void Lisa_GraphAlg::build_semigraph(Lisa_Graph *const graph){
 //************************************************************************** 
 
 void Lisa_GraphAlg::build_compgraph(Lisa_Graph *const source,Lisa_Graph *const target){
+#ifdef LISA_DEBUG
+  if(source->get_vertices() != target->get_vertices()){
+    G_ExceptionList.lthrow("Size mismatch in Lisa_GraphAlgo::build_compgraph().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return;
+  }
+#endif
+  
   const int vert = source->get_vertices();
   
   Lisa_Vector<int> queue(vert+1);
@@ -1199,6 +1218,14 @@ void Lisa_GraphAlg::build_compgraph(Lisa_Graph *const source,Lisa_Graph *const t
 //**************************************************************************
 
 bool Lisa_GraphAlg::smaller(const Lisa_Graph *const first,const Lisa_Graph *const second){
+#ifdef LISA_DEBUG
+  if(first->get_vertices() != second->get_vertices()){
+    G_ExceptionList.lthrow("Size mismatch in Lisa_GraphAlgo::build_compgraph().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return false;
+  }
+#endif
+
   const int vert = first->get_vertices();
   int fc,sc;
   bool missing=0;
@@ -1220,6 +1247,14 @@ bool Lisa_GraphAlg::smaller(const Lisa_Graph *const first,const Lisa_Graph *cons
 //************************************************************************** 
 
 bool Lisa_GraphAlg::equal(const Lisa_Graph *const first,const Lisa_Graph *const second){
+#ifdef LISA_DEBUG
+  if(first->get_vertices() != second->get_vertices()){
+    G_ExceptionList.lthrow("Size mismatch in Lisa_GraphAlgo::build_compgraph().",
+                           Lisa_ExceptionList::ANY_ERROR);
+    return false;
+  }
+#endif
+
   const int vert = first->get_vertices();
   
   for (int i=1;i<=vert;i++){
