@@ -3,7 +3,7 @@
 // E-Mail: eldeh@web.de
 // WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
-#include <iostream>
+#include <iostream.h>
 #include <string.h>
 #include <unistd.h>
 
