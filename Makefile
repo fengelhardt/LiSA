@@ -187,9 +187,11 @@ version:
 	| gawk '{print "\"" $$0 "\""}' \
 	| xargs -n 1 $(TOPPROGRAMPATH)/make_version $(VERSION)
 	@echo
-	@echo "updating $(SOURCEPATH)/general/version.hpp"
-	$(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' $(SOURCEPATH)/general/version.hpp
+	@echo "updating $(SOURCEPATH)/main/version.hpp"
+	@$(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' $(SOURCEPATH)/main/version.hpp
+	@echo
 	@echo "updating $(TOPPROGRAMPATH)/setup.tcl"
-	$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(TOPPROGRAMPATH)/setup.tcl
+	@$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(TOPPROGRAMPATH)/setup.tcl
+	@chmod 755 $(TOPPROGRAMPATH)/setup.tcl
 	@echo
 

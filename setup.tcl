@@ -223,12 +223,12 @@ proc vTcl:project:info {} {
 proc {doInstall} {} {
      global tcl_platform
      switch $tcl_platform(platform) {
-          unixe {
+          unix {
                doUNIXInstall
                showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa\" in LiSA/bin ."
                exit
           }
-          unix {
+          windows {
                doWinInstall
                showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa.bat\" in LiSA\\bin ."
                exit
