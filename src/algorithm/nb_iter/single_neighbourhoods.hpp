@@ -65,7 +65,7 @@ public:
 
 /// single machine SHIFT neighbourhood
 /** This is the problem dependent SHIFT neighbourhood class for the single 
-    machine problem, it swaps two arbitrary jobs on the machine.
+    machine problem, it shifts an arbitrary job on the machine.
 
     @author Andreas Winkler
     @version 2.3final
@@ -74,13 +74,42 @@ public:
 */
 class shift_Neighbourhood: public API_Neighbourhood{
 private: 
+  /// shift operation on pos1 to pos2
+  int pos1, pos2;
   /// private data needs documentation
-  int pos1, pos2, inc_dec;
+  int inc_dec;
 
 public:  
   /// construct shift_Neighbourhood
   /** with a start schedule and specified problem data  */
   shift_Neighbourhood(Lisa_1Schedule*,Lisa_1Problem*);
+
+  int prepare_move(int );
+
+  int do_move();
+};
+
+//**************************************************************************
+
+/// single machine PI neighbourhood
+/** This is the problem dependent PI neighbourhood class for the single 
+    machine problem, it swaps two arbitrary jobs on the machine. It only
+    supports random moves but no enumeration.
+
+    @author Marc Moerig
+    @version 2.3final
+    @see Lisa_Neighbourhood
+    @see API_Neighbourhood
+*/
+class PI_Neighbourhood: public API_Neighbourhood{
+private: 
+  /// swap operations on pos1 and pos2
+  int pos1, pos2;
+
+public:  
+  /// construct shift_Neighbourhood
+  /** with a start schedule and specified problem data  */
+  PI_Neighbourhood(Lisa_1Schedule*,Lisa_1Problem*);
 
   int prepare_move(int );
 

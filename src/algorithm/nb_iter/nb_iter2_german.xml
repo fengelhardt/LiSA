@@ -94,6 +94,7 @@
     <choice name="NGBH" caption="Nachbarschaft">
       <item name="API"/>
       <item name="SHIFT"/>
+      <item name="PI"/>
     </choice>
     <choice name="METHOD" caption="Suchmethode">
       <item name="TabuSearch"/>

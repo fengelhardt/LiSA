@@ -85,6 +85,7 @@ const int MAXLONG = 214748000;
   const int SC_API       = 24;
   const int CR_SHIFT_MIX = 25;
   const int CR_TRANS_MIX = 26;
+  const int PI           = 27;
   //const int API       = 21;
   //const int SHIFT     = 22;
   //const int 3_API     = 23;
@@ -111,6 +112,7 @@ const int MAXLONG = 214748000;
   Lisa_Neighbourhood       *ngbh;
   API_Neighbourhood        *m1_api;
   shift_Neighbourhood      *m1_shift;
+  PI_Neighbourhood         *m1_pi;
   OSHOP_API_Ngbh           *os_api;
   OSHOP_shift_Ngbh         *os_shift;
   OSHOP_3_API_Ngbh         *os_api_3;
@@ -225,23 +227,26 @@ int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lis
 	  cout << "Ci: " << *m1_Plan->Ci << "\n";
 	  // end of transfering
 	  
-	  switch ( NGBH )
-	    {
+	  switch( NGBH ){
 	    case API:
-	      if (!(ngbh = m1_api = new API_Neighbourhood(m1_Plan,m1_Prob)))
-		{
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      if (!(ngbh = m1_api = new API_Neighbourhood(m1_Plan,m1_Prob))){
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
 	      break;
 	    case SHIFT:
-	      if(!(ngbh=m1_shift=new shift_Neighbourhood(m1_Plan,m1_Prob)))
-		{
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      if(!(ngbh=m1_shift=new shift_Neighbourhood(m1_Plan,m1_Prob))){
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
 	      break;
-	    default: 
+	    case PI:
+        if(!(ngbh=m1_pi=new PI_Neighbourhood(m1_Plan,m1_Prob))){
+          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+          exit( 7 );
+        }
+        break;
+      default: 
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
 	    }
@@ -258,9 +263,9 @@ int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lis
 	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: if (NUMB_NGHB < m1_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
-	             it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
+	    case TS: /*if (NUMB_NGHB < m1_Prob->n)
+	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);*/
+	             it->init( TS, TABULENGTH, NUMB_NGHB, TYPE ); break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	    }
@@ -273,8 +278,7 @@ int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lis
 	  it->iterate( ngbh, OBJ_TYPE, STEPS );
 	  delete it;
 	  
-	  switch ( NGBH )
-	    {
+	  switch( NGBH ){
 	    case API:
 	      m1_api->return_schedule( m1_Plan );
 	      delete m1_api;
@@ -283,7 +287,11 @@ int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lis
 	      m1_shift->return_schedule( m1_Plan );
 	      delete m1_shift;
 	      break;
-	    }
+	    case PI:
+        m1_pi->return_schedule( m1_Plan );
+	      delete m1_pi;
+	      break;       
+      }
 	    
 	    
 	  // append schedule to solutions
@@ -467,9 +475,9 @@ int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: if (NUMB_NGHB < os_Prob->n)
+	    case TS: /* if (NUMB_NGHB < os_Prob->n)
 	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
-                     it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
+                  */   it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	    }
@@ -754,9 +762,9 @@ int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: if (NUMB_NGHB < js_Prob->n)
+	    case TS: /* if (NUMB_NGHB < js_Prob->n)
 	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
-                     it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
+                  */   it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	    }
@@ -1039,35 +1047,8 @@ int main(int argc, char *argv[])
 
   //set flags for algorithms
   cout << "Neighborhood : \"" << NGBH_St << "\"" << endl;
-
-
-  if ( NGBH_St     == "M1_API"           ) NGBH = API;
-  else if ( NGBH_St     == "M1_SHIFT"         ) NGBH = SHIFT;
-  else if ( NGBH_St     == "OSP_API"          ) NGBH = API;
-  else if ( NGBH_St     == "OSP_SHIFT"        ) NGBH = SHIFT;
-  else if ( NGBH_St     == "OSP_3_API"        ) NGBH = _3_API;
-  else if ( NGBH_St     == "OSP_3_CR"         ) NGBH = _3_CR;
-  else if ( NGBH_St     == "OSP_CR_API"       ) NGBH = CR_API;
-  else if ( NGBH_St     == "OSP_BL_API"       ) NGBH = BL_API;
-  else if ( NGBH_St     == "OSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
-  else if ( NGBH_St     == "OSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
-  else if ( NGBH_St     == "OSP_CR_TST"       ) NGBH = CR_TST;
-  else if ( NGBH_St     == "JSP_API"          ) NGBH = API;
-  else if ( NGBH_St     == "JSP_SWAP"         ) NGBH = SWAP;
-  else if ( NGBH_St     == "JSP_SHIFT"        ) NGBH = SHIFT;
-  else if ( NGBH_St     == "JSP_TRANS"        ) NGBH = TRANS;
-  else if ( NGBH_St     == "JSP_CR_TRANS"     ) NGBH = CR_TRANS;
-  else if ( NGBH_St     == "JSP_CR_TRANS_MIX" ) NGBH = CR_TRANS_MIX;
-  else if ( NGBH_St     == "JSP_SC_TRANS"     ) NGBH = SC_TRANS;
-  else if ( NGBH_St     == "JSP_3_API"        ) NGBH = _3_API;
-  else if ( NGBH_St     == "JSP_3_CR"         ) NGBH = _3_CR;
-  else if ( NGBH_St     == "JSP_CR_API"       ) NGBH = CR_API;
-  else if ( NGBH_St     == "JSP_SC_API"       ) NGBH = SC_API;
-  else if ( NGBH_St     == "JSP_BL_API"       ) NGBH = BL_API;
-  else if ( NGBH_St     == "JSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
-  else if ( NGBH_St     == "JSP_CR_SHIFT_MIX" ) NGBH = CR_SHIFT_MIX;
-  else if ( NGBH_St     == "JSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
-  else if ( NGBH_St     == "API"              ) NGBH = API;
+    
+       if ( NGBH_St     == "API"              ) NGBH = API;
   else if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
   else if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
   else if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
@@ -1083,41 +1064,29 @@ int main(int argc, char *argv[])
   else if ( NGBH_St     == "CR_SHIFT_MIX"     ) NGBH = CR_SHIFT_MIX;
   else if ( NGBH_St     == "BL_SHIFT"         ) NGBH = BL_SHIFT;
   else if ( NGBH_St     == "CR_TST"           ) NGBH = CR_TST;
+  else if ( NGBH_St     == "PI"               ) NGBH = PI;
+  else{
+    G_ExceptionList.lthrow("Neighbourhood "+NGBH_St+" unknown.");
+    exit(7);
+  }
+  
   if      ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
   else if ( METHOD_St   == "SimulatedAnnealing"       ) METHOD   = SA;
   else if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
   else if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
   else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
+  else{
+    G_ExceptionList.lthrow("Method "+METHOD_St+" unknown.");
+    exit(7);
+  }
+  
   if      ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
   else if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
+  else{
+    G_ExceptionList.lthrow("TYPE "+TYPE_St+" unknown.");
+    exit(7);
+  }
 
-  /*
-  switch ( NGBH )
-    {
-    case M1_API:       art_of_problem = SingleMachine; break;
-    case M1_SHIFT:     art_of_problem = SingleMachine; break;
-    case OSP_API:      art_of_problem = OSP; break;
-    case OSP_SHIFT:    art_of_problem = OSP; break;
-    case OSP_3_API:    art_of_problem = OSP; break;
-    case OSP_3_CR:     art_of_problem = OSP; break;  
-    case OSP_CR_API:   art_of_problem = OSP; break;
-    case OSP_BL_API:   art_of_problem = OSP; break;  
-    case OSP_CR_SHIFT: art_of_problem = OSP; break;
-    case OSP_BL_SHIFT: art_of_problem = OSP; break;
-    case OSP_CR_TST:   art_of_problem = OSP; break;
-    case JSP_API:      art_of_problem = JSP; break;
-    case JSP_SHIFT:    art_of_problem = JSP; break;
-    case JSP_3_API:    art_of_problem = JSP; break;
-    case JSP_3_CR:     art_of_problem = JSP; break;
-    case JSP_CR_API:   art_of_problem = JSP; break;
-    case JSP_BL_API:   art_of_problem = JSP; break;
-    case JSP_CR_SHIFT: art_of_problem = JSP; break;
-    case JSP_BL_SHIFT: art_of_problem = JSP; break;
-    default: G_ExceptionList.lthrow("unknown Neighbourhood specified in ITERATE");
-             exit(7);  
-    }
-    */
-  // end of special-data-input
 
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
