@@ -157,12 +157,12 @@ Every Neighborhood must be an inherit of the class #Lisa_Neighborhood#.\\
 To insert a new Neighborhood you must make some variances in the following 
 files : \\
 \\
-in #source/external/neighbor/nb_iter.hpp# :\\
+in #source/external/nb_iter/nb_iter.hpp# :\\
 - insert  \##include "file.hpp"#\\
 - insert #const int NAME = CONSTANT#\\
 - insert a definition of a name of an instance of the new neighborhood class\\
 \\
-in #source/external/neighbor/nb_iter.cpp# :\\
+in #source/external/nb_iter/nb_iter.cpp# :\\
 - in one of the procedures #one_mach_iter#, #osp_iter# or #jsp_iter# (or in additional new procedures) according to the problem-structure of the neighborhood :\\
 - - insert the initialization of the instance of the neighborhood class\\
 - - insert the return of the schedule and the kill of the class instance\\
@@ -179,7 +179,7 @@ in #tcl/dia_ngbh.tcl# :\\
 in #tcl/ngbhptst.tcl# :\\
 - insert an additional menu item by #..NGBH..#\\
 \\
-in #source/external/neighbor/Make.List# :\\
+in #source/external/nb_iter/Make.List# :\\
 - insert the neighborhood\\
 \\
 Second: To insert a new schedule\\
@@ -188,15 +188,15 @@ Second: To insert a new schedule\\
 You should define a problem class for your schedule class. Both classes should have the same structure like the other classes.\\
 For usage the new class in neighborhoodsearch you must make the following modifications:\\
 \\
-in #source/external/neighbor/nb_iter.hpp# :\\
+in #source/external/nb_iter/nb_iter.hpp# :\\
 - insert  \##include "file.hpp"#\\
 - insert #const int NAME = CONSTANT#\\
 - insert a definition of names for instance of the new problem class and schedule class\\
 \\  
-in #source/external/neighbor/nb_iter.cpp# :\\
+in #source/external/nb_iter/nb_iter.cpp# :\\
 - you must insert an analogical procedure for the new schedule-typ like the procedures #one_mach_iter#, #osp_iter# or #jsp_iter#\\
 - in procedure #main# you must insert a branching into the new procedure dependent on #art_of_problem#\\
-in #source/external/neighbor/Make.List# :\\
+in #source/external/nb_iter/Make.List# :\\
 - insert the schedule class\\
 */
 //@{

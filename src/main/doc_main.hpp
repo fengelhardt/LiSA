@@ -91,7 +91,7 @@
 
   /** @name External Modules */
   //@{
-    //@Include: ../external/neighbor/doc_nghb.hpp
+    //@Include: ../external/nb_iter/doc_nghb.hpp
     //@Include: ../external/irred/irred.cpp
     //@Include: ../external/match/match.cpp
     //@Include: ../external/bb/bb_main.hpp

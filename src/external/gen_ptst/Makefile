@@ -12,7 +12,7 @@ INSTALLNAME=gen_ptst
 
 # ------------------------------------------------------------------------------
 
-TOPPROGRAMPATH=../../../..
+TOPPROGRAMPATH=../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
 DOCPATH=$(TOPPROGRAMPATH)/doc/develop/neighbor
 OBJPATH=$(TOPPROGRAMPATH)/obj

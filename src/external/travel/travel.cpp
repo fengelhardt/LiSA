@@ -13,7 +13,7 @@
 #include <fstream.h>
 #include "travel_graph.hpp"
 #include "travel_neighbourhood.hpp"
-#include "../neighbor/iterate.hpp"
+#include "../nb_iter/iterate.hpp"
 #include "../../lisa_dt/ctrlpara.hpp"
 
 /** @name An example for using LiSA's neighbourhood algorithms

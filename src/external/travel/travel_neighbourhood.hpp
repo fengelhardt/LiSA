@@ -12,8 +12,8 @@
 #define _travel_neighbour_h
 
 #include "../../basics/matrix.hpp"
-#include "../neighbor/neighbor.hpp"
-#include "../neighbor/tabu.hpp"
+#include "../nb_iter/neighbor.hpp"
+#include "../nb_iter/tabu.hpp"
 #include "travel_graph.hpp"
 
 // just an additional flag indicating a solution

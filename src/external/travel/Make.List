@@ -2,8 +2,8 @@ CXXSOURCES=\
 	travel.cpp \
 	travel_graph.cpp \
 	travel_neighbourhood.cpp \
-	../neighbor/iterate.cpp \
-	../neighbor/tabu.cpp \
+	../nb_iter/iterate.cpp \
+	../nb_iter/tabu.cpp \
 	../../basics/global.cpp \
 	../../basics/matrix.cpp \
 	../../basics/except.cpp \
