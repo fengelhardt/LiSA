@@ -17,34 +17,34 @@
 
 // *********************** functions *************************
 
-bool inttst(double wert){
-  double diff;
-  long int n;
-  n=(long int) wert;
-  diff=wert-(double)n;
+bool inttst(const double wert){
+  const long n = (long) wert;
+  const double diff = wert - (double) n;
+  
   if(diff<=0.001 && diff>=-0.001) return 1;
   else return 0;
 }
 
-string ztos(double wert){
-  string S;
+string ztos(const double wert){
   char umwd[100];
+  
   if(inttst(wert)) sprintf(umwd,"%0.0f",wert);
   else sprintf(umwd,"%0.2f",wert);
-  S=umwd;
-  return S;
+ 
+  return (string) umwd;
 }
 
-string ztofs(double wert){
-  string S;
+string ztofs(const double wert){
   char umwd[100];
+  
   if(inttst(wert)) sprintf(umwd,"%4.0f",wert);
   else sprintf(umwd,"%4.2f",wert);
-  S=umwd;
-  return S;
+  
+  return (string) umwd;
 }
 
-int stoz(string S){
+int stoz(const string S){
+    
   int i1=0,wert=0;
   if ((S=="empty")||(S==""))
     return 0;
@@ -54,6 +54,7 @@ int stoz(string S){
     wert-=48;
     i1++;
   } 
+  
   return wert;
 }
 

@@ -28,16 +28,16 @@ using namespace std;
 //  ************** Functions  ******************
 
 /// returns true if value integer
-bool inttst(double value);
+bool inttst(const double value);
 
 /// returns string
-string ztos(double value);
+string ztos(const double value);
 
 /// returns formated string
-string ztofs(double value);
+string ztofs(const double value);
 
 /// returns numeric value
-int stoz(string);
+int stoz(const string);
 
 #endif
 
