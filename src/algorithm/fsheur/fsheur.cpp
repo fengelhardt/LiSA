@@ -19,6 +19,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 const int NORMAL=0;
 const int EXTENDED=1;
 const int INCREASE=1;
@@ -26,6 +28,8 @@ const int DECREASE=0;
 const int FAST=1;
 const int SLOW=0;
 int objective_function;
+
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
@@ -386,16 +390,5 @@ int main(int argc, char *argv[])
      }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

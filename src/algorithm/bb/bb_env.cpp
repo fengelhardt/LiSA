@@ -10,13 +10,19 @@
 
 using namespace std;
 
+//**************************************************************************
+
 bool abort_algorithm;
+
+//**************************************************************************
 
 void set_abort(int i) 
     {  
       abort_algorithm=TRUE;
       cout << "\nSignal " << i << " received, writing results." << endl;
     } 
+
+//**************************************************************************
       
 Lisa_GenericBb::Lisa_GenericBb() 
     {
@@ -27,6 +33,8 @@ Lisa_GenericBb::Lisa_GenericBb()
       ins_order_type=RANDOM_ORDER;
     }
 
+//**************************************************************************
+
 void Lisa_GenericBb::count_steps()
  {
    steps++;
@@ -34,8 +42,9 @@ void Lisa_GenericBb::count_steps()
       cout << "OBJECTIVE= " << upper_bound << endl;
  }    
 
-// WARNING! The following two functions have to be replaced for Windows!
+//**************************************************************************
 
+// WARNING! The following two functions have to be replaced for Windows!
 void Lisa_GenericBb::run_start()
  {
    signal(SIGINT, &set_abort);
@@ -43,8 +52,12 @@ void Lisa_GenericBb::run_start()
    steps=steps_ok=0;
  }
 
+//**************************************************************************
+
 void Lisa_GenericBb::run_stop()
  {
    signal(SIGINT, SIG_DFL);
  }  
+
+//**************************************************************************
 

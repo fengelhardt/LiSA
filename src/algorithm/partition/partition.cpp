@@ -17,11 +17,13 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int main(int argc, char *argv[]) 
 {
 
     // comment out following line to send error messages to console
-    //G_ExceptionList.set_output_to_cout();   
+    G_ExceptionList.set_output_to_cout();   
 
     Lisa_ProblemType * lpr = new Lisa_ProblemType;
     Lisa_ControlParameters * sp = new Lisa_ControlParameters;
@@ -46,10 +48,6 @@ int main(int argc, char *argv[])
 						     my_werte->get_m());
     out_schedule->make_LR();
     
-    // **************************************************************
-    // *************** Insert your algorithm here: ******************
-    // **************************************************************
-
     //calculating the sum of processing times
     int sum_p = 0;
     int max_n = my_werte->get_n();
@@ -138,11 +136,6 @@ int main(int argc, char *argv[])
     //cout << "WARNING: There are  " << sp->get_int("NB_STEPS") << " steps to do " << endl;
     //cout << "WARNING: Iss" << sp->get_string("NAME")<< endl;
 
-
-    // ***************************************************************
-    // ********************* End of Algorithm ************************ 
-    // ***************************************************************
-    
     // write results to output file:
     o_strm << *lpr;
     o_strm << *my_werte;
@@ -152,4 +145,5 @@ int main(int argc, char *argv[])
     delete lpr;
 }
 
+//**************************************************************************
 

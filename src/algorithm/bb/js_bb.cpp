@@ -8,6 +8,8 @@
 
 #include "js_bb.hpp"
 
+//**************************************************************************
+
 // start the algorithm
 void JS_BB::run(Lisa_JsProblem * Pi, int zfn, 
                 Lisa_List<Lisa_Matrix<int>* > * results)
@@ -54,6 +56,8 @@ void JS_BB::run(Lisa_JsProblem * Pi, int zfn,
       delete Schedule;
       delete order;
     }
+
+//**************************************************************************
 
 void JS_BB::_run(int op_nr)
   {
@@ -109,16 +113,5 @@ void JS_BB::_run(int op_nr)
     delete Schedule2;
  }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

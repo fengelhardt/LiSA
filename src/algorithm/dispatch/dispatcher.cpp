@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 TIMETYP Lisa_Dispatcher::priority(int i, int j)
 {
   // sometimes we add one to make shure that priority>-MAXTIME holds
@@ -37,6 +39,8 @@ TIMETYP Lisa_Dispatcher::priority(int i, int j)
   return 0;
 }  
 
+//**************************************************************************
+
 Lisa_Dispatcher::Lisa_Dispatcher()
 {
   my_problem=ERROR;
@@ -46,6 +50,8 @@ Lisa_Dispatcher::Lisa_Dispatcher()
   myseed=time(0);
 } 
 
+//**************************************************************************
+
 Lisa_Dispatcher::~Lisa_Dispatcher()
 {
   delete problem;
@@ -53,6 +59,8 @@ Lisa_Dispatcher::~Lisa_Dispatcher()
   delete jstart;
   delete mstart; 
 }
+
+//**************************************************************************
 
 bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT, 
                                  Lisa_Values* LValues, Lisa_Schedule* s)
@@ -86,7 +94,7 @@ bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT,
   return TRUE;
 }
 
-
+//**************************************************************************
     
 void Lisa_Dispatcher::SetRule(string r)
 {
@@ -99,7 +107,8 @@ void Lisa_Dispatcher::SetRule(string r)
       }
   G_ExceptionList.lthrow("unknown name of priority rule, assuming SPT");
 }
-   
+
+//**************************************************************************
 
 void Lisa_Dispatcher::js_dispatch_active()
 {
@@ -160,6 +169,8 @@ void Lisa_Dispatcher::js_dispatch_active()
     } while(i!=SINK);
 }
 
+//**************************************************************************
+
 void Lisa_Dispatcher::js_dispatch()
 {
   int i,j;
@@ -208,6 +219,8 @@ void Lisa_Dispatcher::js_dispatch()
 	}
     } while(i!=SINK);
 }
+
+//**************************************************************************
 
 void Lisa_Dispatcher::os_dispatch_active()
 {
@@ -264,6 +277,8 @@ void Lisa_Dispatcher::os_dispatch_active()
   delete opstart;
 }
 
+//**************************************************************************
+
 void Lisa_Dispatcher::os_dispatch()
 {
   int i=0,j=0, k,l;
@@ -306,6 +321,7 @@ void Lisa_Dispatcher::os_dispatch()
     } while(maxprio!=-MAXTIME);
 }
 
+//**************************************************************************
   
 void Lisa_Dispatcher::dispatch()
 {
@@ -326,17 +342,5 @@ void Lisa_Dispatcher::dispatch_active()
   schedule->write_LR(LSchedule->LR);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

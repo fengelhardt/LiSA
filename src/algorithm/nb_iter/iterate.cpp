@@ -17,7 +17,11 @@
 
 using namespace std;
 
+//**************************************************************************
+
 bool abort_algorithm;
+
+//**************************************************************************
 
 void set_abort(int i) 
  {  
@@ -25,19 +29,22 @@ void set_abort(int i)
    cout << "\nSignal " << i << " received, writing results \n";
  }
 
-// ##############################################################
-// WARNING! The following two functions have to be replaced for Windows!
+//**************************************************************************
 
+// WARNING! The following two functions have to be replaced for Windows!
 void Lisa_Iterator::run_start()
  {
    signal(SIGINT, &set_abort);
  }
 
+//**************************************************************************
+
 void Lisa_Iterator::run_stop()
  {
    signal(SIGINT, SIG_DFL);
  }
-// ##############################################################
+
+//**************************************************************************
 
 Lisa_Iterator::Lisa_Iterator()
   {
@@ -53,6 +60,8 @@ Lisa_Iterator::Lisa_Iterator()
     max_stuck=MAXNUMBER;
     anti_neighbor = FALSE;
   }
+
+//**************************************************************************
 
 void Lisa_Iterator::init( int methodi, unsigned int param1 )
   {
@@ -77,6 +86,7 @@ void Lisa_Iterator::init( int methodi, unsigned int param1 )
       }
   }
 
+//**************************************************************************
 
 void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 )
   {
@@ -109,6 +119,8 @@ void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 
       }
   }
 
+//**************************************************************************
+
 void Lisa_Iterator::init( int methodi, unsigned int param1, 
 			  unsigned int param2, unsigned int param3 )
   {
@@ -132,15 +144,21 @@ void Lisa_Iterator::init( int methodi, unsigned int param1,
       }
   }
 
+//**************************************************************************
+
 void Lisa_Iterator::set_abort_at_stuck( int abort )
   {
     abort_stuck = abort;
   }
 
+//**************************************************************************
+
 void Lisa_Iterator::set_abort_at_bound( TIMETYP abort )
   {
     abort_at_bound = abort;
   }
+
+//**************************************************************************
 
 void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type, 
 			     long steps )
@@ -397,4 +415,6 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
       } // else ...
     run_stop();
   }
+
+//**************************************************************************
 

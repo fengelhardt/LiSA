@@ -5,6 +5,8 @@
 
 #include "jsp_crtr.hpp"
 
+//**************************************************************************
+
 JSHOP_cr_trans_Ngbh::JSHOP_cr_trans_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -53,6 +55,8 @@ JSHOP_cr_trans_Ngbh::JSHOP_cr_trans_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *
 
   }
 
+//**************************************************************************
+
 JSHOP_cr_trans_Ngbh::~JSHOP_cr_trans_Ngbh()
   {
     delete JOrd;
@@ -65,6 +69,8 @@ JSHOP_cr_trans_Ngbh::~JSHOP_cr_trans_Ngbh()
     delete kr;
     delete machines;
   }
+
+//**************************************************************************
 
 int JSHOP_cr_trans_Ngbh::prepare_move( int typ )
   {
@@ -253,6 +259,8 @@ int JSHOP_cr_trans_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_cr_trans_Ngbh::do_move()
  {
    int predJ1;
@@ -278,6 +286,8 @@ int JSHOP_cr_trans_Ngbh::do_move()
    return OK;
  }
 
+//**************************************************************************
+
 int JSHOP_cr_trans_Ngbh::init_tabulist( unsigned int length )
   {
     // the tabulist contains the number of the maschine 
@@ -290,10 +300,14 @@ int JSHOP_cr_trans_Ngbh::init_tabulist( unsigned int length )
     return OK;
   }
 
+//**************************************************************************
+
 int JSHOP_cr_trans_Ngbh::use_tabulist()
   {
    return tabulist->use_vector( tabu_0 );
   }
+
+//**************************************************************************
 
 int JSHOP_cr_trans_Ngbh::set_tabulist()
   {
@@ -301,16 +315,19 @@ int JSHOP_cr_trans_Ngbh::set_tabulist()
     return OK;
   }
 
+//**************************************************************************
+
 void JSHOP_cr_trans_Ngbh::store_tabu_param()
   {
     *tabu_1 = *tabu_0;
   }
 
+//**************************************************************************
+
 void JSHOP_cr_trans_Ngbh::clean_tabu_param()
   {
     tabu_0->fill(0);
   }
-    
 
-
+//**************************************************************************
 

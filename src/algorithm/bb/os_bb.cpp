@@ -8,10 +8,14 @@
 
 #include "os_bb.hpp"
 
+//**************************************************************************
+
 OS_BB::OS_BB()
     {
       exclude_reverse=FALSE;
     } 
+
+//**************************************************************************
 
 // start the algorithm
 void OS_BB::run(Lisa_OsProblem * Pi, int zfn, 
@@ -76,6 +80,8 @@ void OS_BB::run(Lisa_OsProblem * Pi, int zfn,
       delete order;
     }
 
+//**************************************************************************
+
 void OS_BB::_run(int op_nr)
   {
     Lisa_OsSchedule *Schedule2;
@@ -136,12 +142,5 @@ void OS_BB::_run(int op_nr)
    delete Schedule2;
  }
 
-
-
-
-
-
-
-
-
+//**************************************************************************
 

@@ -23,12 +23,15 @@
 
 using namespace std;
 
+//**************************************************************************
+
 inline ostream& operator << (ostream&strm, const Lisa_Pair& p)
 {
   strm<<"["<<p.x<<","<<p.y<<"]";
   return strm;
 }
 
+//**************************************************************************
 
 bool nondelay=false;
 
@@ -46,8 +49,7 @@ int m,n;
 Lisa_nestedList<Lisa_Pair> * allMatchings;
 Lisa_nestedList<TIMETYP> * allDeltas;
 
-
-
+//**************************************************************************
 
 // first thing ever to do: calculating the sums for each col and row
 void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
@@ -75,7 +77,7 @@ void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
   return;
 }
 
-
+//**************************************************************************
 
 // determining the maximum delta for calculated set of operations (=matching)
 TIMETYP get_delta(Lisa_Matrix<TIMETYP> & P,
@@ -99,8 +101,7 @@ TIMETYP get_delta(Lisa_Matrix<TIMETYP> & P,
   return delta;
 }
 
-
-
+//**************************************************************************
 
 // this is for updating everything needed in the general case...
 void update(Lisa_Matrix<TIMETYP> & P,
@@ -141,7 +142,7 @@ void update(Lisa_Matrix<TIMETYP> & P,
   }
 }
 
-
+//**************************************************************************
 
 // this is for updating everything needed in the case of nondelay...
 void update_nondelay(Lisa_Matrix<TIMETYP> & P,
@@ -203,8 +204,7 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
   delete MatchingInfo;
 }
 
-
-
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
@@ -358,3 +358,6 @@ int main(int argc, char *argv[])
     delete colsums;
 
 }
+
+//**************************************************************************
+

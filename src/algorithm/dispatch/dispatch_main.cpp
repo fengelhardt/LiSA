@@ -18,6 +18,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int main(int argc, char *argv[]) 
 {
 
@@ -59,10 +61,6 @@ int main(int argc, char *argv[])
 						     my_values->get_m());
     out_schedule->make_LR();
     
-    // **************************************************************
-    // *************** Insert your algorithm here: ******************
-    // **************************************************************
-
     Lisa_Dispatcher * engine=new Lisa_Dispatcher();
     engine->SetProblem(lpr, my_values, out_schedule);
     engine->SetRule((*sp).get_string("RULE"));
@@ -71,10 +69,6 @@ int main(int argc, char *argv[])
     else 
       engine->dispatch();
     delete engine;
-
-    // ***************************************************************
-    // ********************* End of Algorithm ************************ 
-    // ***************************************************************
     
     // The object out_schedule contain the result of this algorithm,
     // which is written into the output file
@@ -83,4 +77,6 @@ int main(int argc, char *argv[])
     delete my_values;
     delete lpr;
 }
+
+//**************************************************************************
 

@@ -17,7 +17,11 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int n,m;
+
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
@@ -47,12 +51,6 @@ int main(int argc, char *argv[])
     Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),
 						     my_werte->get_m());
     out_schedule->make_LR();
-    
-   
-    // **************************************************************
-    // *************** Insert your algorithm here: ******************
-    // **************************************************************
-    
    
 //O2-algorithm 
  
@@ -163,15 +161,12 @@ int main(int argc, char *argv[])
 			{(*out_schedule->LR)[i][j]=PR[i][j];}  
 		}
 
- 
-    // ***************************************************************
-    // ********************* End of Algorithm ************************ 
-    // ***************************************************************
-    
     // write results to output file:
     o_strm << *out_schedule;
     delete out_schedule;
     delete my_werte;
     delete lpr;
 }
+
+//**************************************************************************
 

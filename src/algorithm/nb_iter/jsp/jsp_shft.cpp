@@ -5,6 +5,8 @@
 
 #include "jsp_shft.hpp"
 
+//**************************************************************************
+
 JSHOP_shift_Ngbh::JSHOP_shift_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -27,12 +29,16 @@ JSHOP_shift_Ngbh::JSHOP_shift_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     n = PP->n;
   }
 
+//**************************************************************************
+
 JSHOP_shift_Ngbh::~JSHOP_shift_Ngbh()
   {
     delete JOrd;
     delete tabu_0;
     delete tabu_1;
   }
+
+//**************************************************************************
 
 int JSHOP_shift_Ngbh::prepare_move( int typ )
   {
@@ -107,6 +113,8 @@ int JSHOP_shift_Ngbh::prepare_move( int typ )
    return !OK;
  }
 
+//**************************************************************************
+
 int JSHOP_shift_Ngbh::do_move()
  {
    int predJ1;
@@ -139,6 +147,7 @@ int JSHOP_shift_Ngbh::do_move()
 
  }
 
+//**************************************************************************
 
 int JSHOP_shift_Ngbh::init_tabulist( unsigned int length )
   {
@@ -152,10 +161,14 @@ int JSHOP_shift_Ngbh::init_tabulist( unsigned int length )
     return OK;
   }
 
+//**************************************************************************
+
 int JSHOP_shift_Ngbh::use_tabulist()
   {
    return tabulist->use_vector( tabu_0 );
   }
+
+//**************************************************************************
 
 int JSHOP_shift_Ngbh::set_tabulist()
   {
@@ -163,16 +176,19 @@ int JSHOP_shift_Ngbh::set_tabulist()
     return OK;
   }
 
+//**************************************************************************
+
 void JSHOP_shift_Ngbh::store_tabu_param()
   {
     *tabu_1 = *tabu_0;
   }
 
+//**************************************************************************
+
 void JSHOP_shift_Ngbh::clean_tabu_param()
   {
     tabu_0->fill(0);
   }
-    
 
-
+//**************************************************************************
 

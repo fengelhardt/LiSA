@@ -7,6 +7,8 @@
 
 #include "jsp_3_cr.hpp"
 
+//**************************************************************************
+
 JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -29,11 +31,15 @@ JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
       }
   }
 
+//**************************************************************************
+
 JSHOP_3_CR_Ngbh::~JSHOP_3_CR_Ngbh()
   {
     delete ROrd;
     delete temp_schedule;
   }
+
+//**************************************************************************
 
 int JSHOP_3_CR_Ngbh::prepare_move( int typ )
   {
@@ -125,6 +131,8 @@ int JSHOP_3_CR_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_3_CR_Ngbh::do_move()
  {
    *P[1]=*P[0];
@@ -177,6 +185,8 @@ int JSHOP_3_CR_Ngbh::do_move()
      }
    return !OK;
  }
+
+//**************************************************************************
  
 int JSHOP_3_CR_Ngbh::use_tabulist()
   {
@@ -196,6 +206,8 @@ int JSHOP_3_CR_Ngbh::use_tabulist()
     return ret;
   }
 
+//**************************************************************************
+
 int JSHOP_3_CR_Ngbh::set_tabulist()
   {
     int i;
@@ -205,6 +217,8 @@ int JSHOP_3_CR_Ngbh::set_tabulist()
     return OK;
   }
 
+//**************************************************************************
+
 void JSHOP_3_CR_Ngbh::clean_tabu_param()
   {
     int i;
@@ -212,10 +226,5 @@ void JSHOP_3_CR_Ngbh::clean_tabu_param()
       swaps[i][0] = swaps[i][1] = swaps[i][2] = swaps[i][3] = 0;
   }
 
-
-
-
-
-
-
+//**************************************************************************
 

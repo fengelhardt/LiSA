@@ -7,6 +7,8 @@
 
 #include "osp_3_cr.hpp"
 
+//**************************************************************************
+
 OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )
   {
@@ -29,11 +31,15 @@ OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
       }
   }
 
+//**************************************************************************
+
 OSHOP_3_CR_Ngbh::~OSHOP_3_CR_Ngbh()
   {
     delete ROrd;
     delete temp_schedule;
   }
+
+//**************************************************************************
 
 int OSHOP_3_CR_Ngbh::prepare_move( int typ )
   {
@@ -164,6 +170,8 @@ int OSHOP_3_CR_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int OSHOP_3_CR_Ngbh::do_move()
  {
    int predJ1;
@@ -272,6 +280,8 @@ int OSHOP_3_CR_Ngbh::do_move()
      } 
    return !OK;
  }
+
+//**************************************************************************
  
 int OSHOP_3_CR_Ngbh::use_tabulist()
   {
@@ -292,6 +302,8 @@ int OSHOP_3_CR_Ngbh::use_tabulist()
     return ret;
   }
 
+//**************************************************************************
+
 int OSHOP_3_CR_Ngbh::set_tabulist()
   {
     int i;
@@ -301,6 +313,8 @@ int OSHOP_3_CR_Ngbh::set_tabulist()
     return OK;
   }
 
+//**************************************************************************
+
 void OSHOP_3_CR_Ngbh::clean_tabu_param()
   {
     int i;
@@ -308,9 +322,5 @@ void OSHOP_3_CR_Ngbh::clean_tabu_param()
       swaps[i][0] = swaps[i][1] = swaps[i][2] = swaps[i][3] = 0;
   }
 
-
-
-
-
-
+//**************************************************************************
 

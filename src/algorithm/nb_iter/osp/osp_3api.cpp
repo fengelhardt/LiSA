@@ -7,10 +7,14 @@
 
 #include "osp_3api.hpp"
 
+//**************************************************************************
+
 OSHOP_3_API_Ngbh::OSHOP_3_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )
   {
   }
+
+//**************************************************************************
 
 int OSHOP_3_API_Ngbh::prepare_move( int typ )
   {
@@ -92,6 +96,8 @@ int OSHOP_3_API_Ngbh::prepare_move( int typ )
    return !OK;
  }
 
+//**************************************************************************
+
 int OSHOP_3_API_Ngbh::do_move()
  {
    int predJ1;
@@ -137,6 +143,8 @@ int OSHOP_3_API_Ngbh::do_move()
      }
    return !OK;
  }
+
+//**************************************************************************
  
 int OSHOP_3_API_Ngbh::use_tabulist()
   {
@@ -152,6 +160,8 @@ int OSHOP_3_API_Ngbh::use_tabulist()
     return ret;
   }
 
+//**************************************************************************
+
 int OSHOP_3_API_Ngbh::set_tabulist()
   {
     int i;
@@ -161,11 +171,5 @@ int OSHOP_3_API_Ngbh::set_tabulist()
     return OK;
   }
 
-
-
-
-
-
-
-
+//**************************************************************************
 

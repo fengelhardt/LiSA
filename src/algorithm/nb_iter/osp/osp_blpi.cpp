@@ -7,6 +7,8 @@
 
 #include "osp_blpi.hpp"
 
+//**************************************************************************
+
 OSHOP_cr_bl_API_Ngbh::OSHOP_cr_bl_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )
   {
@@ -28,12 +30,16 @@ OSHOP_cr_bl_API_Ngbh::OSHOP_cr_bl_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProble
     count = 0;
   }
 
+//**************************************************************************
+
 OSHOP_cr_bl_API_Ngbh::~OSHOP_cr_bl_API_Ngbh()
   {
     delete[] cr_list_j;
     delete[] cr_list_m;
     delete[] direction;
   }
+
+//**************************************************************************
 
 int OSHOP_cr_bl_API_Ngbh::prepare_move( int typ )
   {
@@ -182,6 +188,8 @@ int OSHOP_cr_bl_API_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int OSHOP_cr_bl_API_Ngbh::do_move()
  {
    int predJ1;
@@ -224,10 +232,5 @@ int OSHOP_cr_bl_API_Ngbh::do_move()
    return !OK;
  }
 
-
-
-
-
-
-
+//**************************************************************************
 

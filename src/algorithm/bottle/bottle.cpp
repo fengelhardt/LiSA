@@ -26,16 +26,7 @@
 
 using namespace std;
 
-/** @name Shifting Bottleneck
-    
-    A heuristic algorithm for J| |Cmax problems.
-
-    @author Christian Schulz
-    @see Shifting_Bottleneck
-*/
-//@{
-//@Include: Shifting_Bottleneck.hpp
-//@}
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
  {
@@ -137,16 +128,5 @@ int main(int argc, char *argv[])
    delete my_werte;
  }
 
-
-
-  
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

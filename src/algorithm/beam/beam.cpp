@@ -21,17 +21,11 @@
 
 using namespace std;
 
-enum InsertionOrder{
-  lpt,
-  rndm,
-  line_by_line,
-  diagonal
-};
+//**************************************************************************
 
-enum InsertionMethod {
-  insert1,
-  insert2
-};
+enum InsertionOrder{lpt, rndm, line_by_line, diagonal};
+
+enum InsertionMethod {insert1,insert2};
 
 CostFunc costFunc = CLast;
 int myproblemtype = O;
@@ -42,6 +36,8 @@ B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 
 int beam_width = 5;
 InsertionMethod insertionMethod = insert1; 
+
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
@@ -181,7 +177,7 @@ int main(int argc, char *argv[])
  
 }
 
-
+//**************************************************************************
 
 B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
   //the list with the schedules to be expanded
@@ -321,4 +317,6 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
     b= (fathers->list[i]->GetValue() < b->GetValue())?b = fathers->list[i]:b;
   return b;
 }
+
+//**************************************************************************
 

@@ -15,6 +15,19 @@
 #include "lpartition.hpp"
 #include "irrednode.hpp"
 
+/* Irreducibility Test
+   
+This algorithm checks if a given schedule for a problem is irreducible. A 
+schedule S* reduces another schedule S if its objective is better than that for 
+S for any given set of processing types. S is therefore irreducible if no such 
+schedule S* exists.
+
+It works for open, job and flow shop problems, in combination with release 
+dates and for the Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi and SumWiTi 
+objectives.
+
+*/
+
 /** @name The Test Algorithm
   This object runs the irreducibility test.
   

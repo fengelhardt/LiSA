@@ -26,18 +26,7 @@
 
 using namespace std;
 
-/** @name Solving Single Machine Problems
-
-    This is a branch and bound algorithm to solve 
-    single machine problems exactly.
-    
-    @version 2.3pre3
-    @author Christian Schulz
-    @see SingleMachineBB
- */
-//@{
-//@Include: Single_Machine_BB.hpp
-//@}
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
  {
@@ -135,16 +124,5 @@ int main(int argc, char *argv[])
    delete my_werte;
  }
 
-
-
-  
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

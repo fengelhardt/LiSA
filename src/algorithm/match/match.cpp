@@ -20,6 +20,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 /// a simple class for calculation heads
 /**
   this class is used to calculate heads for the matching algorithm
@@ -78,55 +80,9 @@ public:
 
 //**************************************************************************
 
-/// Matching Heuristics
-/**
+/* Matching Heuristics
  This algorithm is a simple heuristic for the O| |Cmax Problem. It also 
- demonstrates how to use LiSA's matching objects.
-
- The algorithm may be called:
-
- match [input file] [output file]
-
- Controlparameters are:
-
- string TYPEOF [WEIGHTED BOTTLENECK]
- string MINMAX [MAX MIN HEADS]
-    
- An example for a valid input file is:
- 
-<PROBLEMTYPE>
-Lisa_ProblemType= { O /  / Cmax }
-</PROBLEMTYPE>
-
-<CONTROLPARAMETERS>
-string TYPEOF WEIGHTED
-string MINMAX MAX
-</CONTROLPARAMETERS>
- 
-<VALUES>
-m= 3
-n= 3
-PT= {
- { 88 10 57 }
- { 48 9 5 }
- { 53 36 87 }
-}
- 
-SIJ= {
- { 1 1 1 }
- { 1 1 1 }
- { 1 1 1 }
-}
- 
-</VALUES>
- 
-<SCHEDULE>
-m= 3
-n= 3
-semiactive= 1
-</SCHEDULE>                
-
-*/
+ demonstrates how to use LiSA's matching objects. */
 int main(int argc, char *argv[])
 { 
 

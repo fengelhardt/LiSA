@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)
 {
   
@@ -17,6 +19,8 @@ B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)
   this->lastAddedRow = p->lastAddedRow;
   this->lastAddedCol = p->lastAddedCol;
 }
+
+//**************************************************************************
    
 B_Node::B_Node(Lisa_OsProblem * p):Lisa_OsSchedule(p) {
   ComputeHeadsTails( true, true);
@@ -25,6 +29,8 @@ B_Node::B_Node(Lisa_OsProblem * p):Lisa_OsSchedule(p) {
   problem = p;
 }
 
+//**************************************************************************
+
 int B_Node::insert(int i, int j, int k, int l) {
   this->lastAddedRow = i;
   this->lastAddedCol = j;
@@ -32,6 +38,8 @@ int B_Node::insert(int i, int j, int k, int l) {
   int res = Lisa_OsSchedule::insert(i,j,k,l);
   return res;
 }
+
+//**************************************************************************
 
 TIMETYP B_Node::getCosts(){
   if (cost == -1) {
@@ -48,13 +56,15 @@ TIMETYP B_Node::getCosts(){
   return cost;
 }
 
+//**************************************************************************
+
 ostream & operator << ( ostream & os , B_Node & b){
   Lisa_Matrix<int> *lr = new Lisa_Matrix<int>(b.problem->n,b.problem->m);
   b.write_LR(lr);
   return os << *lr << endl;
 } 
 
-
+//**************************************************************************
 
 KList::KList(int k) {
   list = new B_Node*[k];
@@ -63,6 +73,7 @@ KList::KList(int k) {
   this->k = k;
 }
 
+//**************************************************************************
 
 void KList::add(B_Node *n) 
 {
@@ -85,6 +96,8 @@ void KList::add(B_Node *n)
       worst_in_list = i;
 }
 
+//**************************************************************************
+
 void KList::add(B_Node *n,  int pos) 
 {
   if (in_list > pos)
@@ -102,8 +115,13 @@ void KList::add(B_Node *n,  int pos)
   }
 }
 
+//**************************************************************************
+
 KList::~KList() {
   for (int i= 0; i < in_list; i++)
     delete list[i];
   delete list;
 }
+
+//**************************************************************************
+

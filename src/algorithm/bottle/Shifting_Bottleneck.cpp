@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
 { 
   single_machine_mode=m;
@@ -22,12 +24,16 @@ Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
   init_graph();
 }
 
+//**************************************************************************
+
 Shifting_Bottleneck::~Shifting_Bottleneck()
 {
   delete JsPro;
   delete Plan;
   delete Done_Machines;
 }
+
+//**************************************************************************
 
 void Shifting_Bottleneck::init_graph()
 {
@@ -47,12 +53,16 @@ void Shifting_Bottleneck::init_graph()
   }
 } 
 
+//**************************************************************************
+
 void Shifting_Bottleneck::run(Lisa_Schedule* pSch)
 {
   shifting_bottleneck();
   pSch->make_LR();
   JsSch->write_LR(pSch->LR);
 }
+
+//**************************************************************************
 
 void Shifting_Bottleneck::shifting_bottleneck()
 { 
@@ -226,3 +236,6 @@ void Shifting_Bottleneck::shifting_bottleneck()
   delete schedule;
   delete t;
 }
+
+//**************************************************************************
+

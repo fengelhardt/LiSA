@@ -7,6 +7,7 @@
 
 #include "jsp_api.hpp"
 
+//**************************************************************************
 
 JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
   {
@@ -49,6 +50,8 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     tabulist = NULL;
   }
 
+//**************************************************************************
+
 JSHOP_API_Ngbh::~JSHOP_API_Ngbh()
   {
     delete P[0];
@@ -61,17 +64,23 @@ JSHOP_API_Ngbh::~JSHOP_API_Ngbh()
       delete tabulist;
   }
 
+//**************************************************************************
+
 int JSHOP_API_Ngbh::copy_schedule( int a , int b )
   {
    *P[b]=*P[a];
    return OK;
   }
 
+//**************************************************************************
+
 int JSHOP_API_Ngbh::accept_solution()
 {
   new_solution = TRUE;
   return copy_schedule( WORK_SOLUTION, ORIG_SOLUTION );
 }
+
+//**************************************************************************
   
 int JSHOP_API_Ngbh::accept_best_ngh()
 {
@@ -79,16 +88,21 @@ int JSHOP_API_Ngbh::accept_best_ngh()
   return copy_schedule( BEST_NGH_SOLUTION, ORIG_SOLUTION );
 }
 
+//**************************************************************************
+
 int JSHOP_API_Ngbh::put_orig_to_best()
 {
   return copy_schedule( ORIG_SOLUTION, BEST_SOLUTION );
 }
+
+//**************************************************************************
 
 int JSHOP_API_Ngbh::put_work_to_best_ngh()
 {
   return copy_schedule( WORK_SOLUTION, BEST_NGH_SOLUTION );
 }
 
+//**************************************************************************
 
 int JSHOP_API_Ngbh::prepare_move( int typ )
   {
@@ -152,6 +166,8 @@ int JSHOP_API_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_API_Ngbh::do_move()
  {
    int predM1;
@@ -171,6 +187,8 @@ int JSHOP_API_Ngbh::do_move()
    tabu_param[0][3] = help;
    return OK;
  }
+
+//**************************************************************************
 
 int JSHOP_API_Ngbh::anti_neighbor()
  {
@@ -290,10 +308,14 @@ int JSHOP_API_Ngbh::anti_neighbor()
    return OK;
  }
 
+//**************************************************************************
+
 void JSHOP_API_Ngbh::set_objective_type( int o )
  {
    objective_type = o;
  }
+
+//**************************************************************************
 
 void JSHOP_API_Ngbh::set_objective( int z, int a)
  {
@@ -305,6 +327,8 @@ void JSHOP_API_Ngbh::set_objective( int z, int a)
    P[a]->SetValue(z);
  }
 
+//**************************************************************************
+
 TIMETYP JSHOP_API_Ngbh::get_objective_value( int a)
  {
   if ((a<0) || (a>=4))
@@ -314,6 +338,8 @@ TIMETYP JSHOP_API_Ngbh::get_objective_value( int a)
     }
   return P[a]->GetValue();
  }
+
+//**************************************************************************
 
 int JSHOP_API_Ngbh::init_tabulist( unsigned int length )
   {
@@ -325,11 +351,15 @@ int JSHOP_API_Ngbh::init_tabulist( unsigned int length )
    return OK;
   }
 
+//**************************************************************************
+
 int JSHOP_API_Ngbh::use_tabulist()
   {
    return tabulist->use(tabu_param[0][0],tabu_param[0][1],
 			tabu_param[0][2],tabu_param[0][3]);
   }
+
+//**************************************************************************
 
 int JSHOP_API_Ngbh::set_tabulist()
   {
@@ -338,12 +368,16 @@ int JSHOP_API_Ngbh::set_tabulist()
     return OK;
   }
 
+//**************************************************************************
+
 void JSHOP_API_Ngbh::store_tabu_param()
   {
     int i;
     for ( i=0; i<=3; i++ )
       tabu_param[1][i] = tabu_param[0][i];
   }
+
+//**************************************************************************
 
 void JSHOP_API_Ngbh::clean_tabu_param()
   {
@@ -352,14 +386,12 @@ void JSHOP_API_Ngbh::clean_tabu_param()
       tabu_param[0][i] = 0;
   }
 
+//**************************************************************************
+
 void JSHOP_API_Ngbh::return_schedule( Lisa_JsSchedule *Plan )
   {
     *Plan = *(P[BEST_SOLUTION]);
   }
 
-
-
-
-
-
+//**************************************************************************
 

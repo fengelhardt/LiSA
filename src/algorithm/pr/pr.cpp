@@ -18,6 +18,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 int maxM(Lisa_Matrix<double> M, int s);
 int minM(Lisa_Matrix<double> M, int s);
 int maxV(Lisa_Vector<double> V);
@@ -26,6 +28,8 @@ bool okM(Lisa_Matrix<double> M, int s);
 int minM1(Lisa_Matrix<double> M, int s, int z);
 
 int n,m;double T;    
+
+//**************************************************************************
 
 int main(int argc, char *argv[]) 
 {
@@ -258,6 +262,8 @@ int main(int argc, char *argv[])
     delete lpr;
 }
 
+//**************************************************************************
+
 int maxM(Lisa_Matrix<double> M, int s)
 {
 int i=0,j=1;
@@ -265,6 +271,8 @@ while (j<n+1)
   {if (M[i][s]<M[j][s]){i=j;j++;}else j++;}
 return i;
 }
+
+//**************************************************************************
 
 int minM(Lisa_Matrix<double> M, int s)
 {
@@ -274,6 +282,8 @@ while (j<n+1)
 return i;
 }
 
+//**************************************************************************
+
 int maxV(Lisa_Vector<double> V)
 {
 int i=0,j=1;
@@ -281,6 +291,8 @@ while (j<n+1)
   {if (V[i]<V[j]){i=j;j++;}else j++;}
 return i;
 }
+
+//**************************************************************************
 
 int minV(Lisa_Vector<double> V)
 {
@@ -290,6 +302,8 @@ while (j<n+1)
 return i;
 }
 
+//**************************************************************************
+
 bool okM(Lisa_Matrix<double> M, int s)
 {
 double x=0;bool ok;
@@ -297,6 +311,8 @@ for (int i=0;i<n;i++) x=x+M[i][s];
 if (x>0) ok=true; else ok=false;
 return ok;
 }
+
+//**************************************************************************
 
 int minM1(Lisa_Matrix<double> M, int s,int z)
 {
@@ -306,3 +322,6 @@ for (int i=0;i<n;i++)
 if (N[i][s]==z) N[i][s]=T;
 return minM(N,s);
 }
+
+//**************************************************************************
+

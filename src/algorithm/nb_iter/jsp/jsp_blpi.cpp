@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "jsp_blpi.hpp"
 
+//**************************************************************************
+
 JSHOP_cr_bl_API_Ngbh::JSHOP_cr_bl_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -27,12 +29,16 @@ JSHOP_cr_bl_API_Ngbh::JSHOP_cr_bl_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProble
     count = 0;
   }
 
+//**************************************************************************
+
 JSHOP_cr_bl_API_Ngbh::~JSHOP_cr_bl_API_Ngbh()
   {
     delete[] cr_list_j;
     delete[] cr_list_m;
     delete[] direction;
   }
+
+//**************************************************************************
 
 int JSHOP_cr_bl_API_Ngbh::prepare_move( int typ )
   {
@@ -144,6 +150,8 @@ int JSHOP_cr_bl_API_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_cr_bl_API_Ngbh::do_move()
  {
    int help;
@@ -159,10 +167,5 @@ int JSHOP_cr_bl_API_Ngbh::do_move()
    return OK;
  }
 
-
-
-
-
-
-
+//**************************************************************************
 

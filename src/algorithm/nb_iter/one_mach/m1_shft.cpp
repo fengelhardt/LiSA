@@ -7,6 +7,8 @@
 
 using namespace std;
 
+//**************************************************************************
+
 shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
 	: API_Neighborhood( Plan, PPi )
   {
@@ -14,6 +16,8 @@ shift_Neighborhood::shift_Neighborhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi
    pos2 = 1;
    inc_dec = 1;
   }
+
+//**************************************************************************
 
 int shift_Neighborhood::prepare_move( int typ )
   {
@@ -140,6 +144,8 @@ int shift_Neighborhood::prepare_move( int typ )
    return NO_NGHBOURS;
   }
 
+//**************************************************************************
+
 int shift_Neighborhood::do_move()
   {
     *P[1]=*P[0];
@@ -149,14 +155,5 @@ int shift_Neighborhood::do_move()
     return P[1]->shift( pos1, pos2 );
   }
 
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

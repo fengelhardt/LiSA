@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "jsp_s_pi.hpp"
 
+//**************************************************************************
+
 JSHOP_semi_API_Ngbh::JSHOP_semi_API_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -17,10 +19,14 @@ JSHOP_semi_API_Ngbh::JSHOP_semi_API_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *
       }
   }
 
+//**************************************************************************
+
 JSHOP_semi_API_Ngbh::~JSHOP_semi_API_Ngbh()
   {
     delete JOrd;
   }
+
+//**************************************************************************
 
 int JSHOP_semi_API_Ngbh::prepare_move( int typ )
   {
@@ -248,6 +254,8 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_semi_API_Ngbh::do_move()
  {
    int help;
@@ -266,7 +274,5 @@ int JSHOP_semi_API_Ngbh::do_move()
    return OK;
  }
 
-
-
-
+//**************************************************************************
 

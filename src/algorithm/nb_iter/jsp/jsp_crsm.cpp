@@ -7,6 +7,8 @@
 
 #include "jsp_crsm.hpp"
 
+//**************************************************************************
+
 JSHOP_cr_shift_mix_Ngbh::JSHOP_cr_shift_mix_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
@@ -29,12 +31,16 @@ JSHOP_cr_shift_mix_Ngbh::JSHOP_cr_shift_mix_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsP
     cr_count = 0;
   }
 
+//**************************************************************************
+
 JSHOP_cr_shift_mix_Ngbh::~JSHOP_cr_shift_mix_Ngbh()
   {
     delete JOrd;
     delete cr_list_j;
     delete cr_list_m;
   }
+
+//**************************************************************************
 
 int JSHOP_cr_shift_mix_Ngbh::prepare_move( int typ )
   {
@@ -246,6 +252,8 @@ int JSHOP_cr_shift_mix_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int JSHOP_cr_shift_mix_Ngbh::do_move()
  {
    *P[1]=*P[0];
@@ -259,7 +267,5 @@ int JSHOP_cr_shift_mix_Ngbh::do_move()
    return OK;
  }
 
-
-
-
+//**************************************************************************
 

@@ -7,10 +7,14 @@
  
 #include "jsp_3api.hpp"
 
+//**************************************************************************
+
 JSHOP_3_API_Ngbh::JSHOP_3_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
                                     : JSHOP_API_Ngbh( Plan, PPi )
   {
   }
+
+//**************************************************************************
 
 int JSHOP_3_API_Ngbh::prepare_move( int typ )
   {
@@ -57,6 +61,8 @@ int JSHOP_3_API_Ngbh::prepare_move( int typ )
    return !OK;
  }
 
+//**************************************************************************
+
 int JSHOP_3_API_Ngbh::do_move()
  {
    int predM1;
@@ -79,6 +85,8 @@ int JSHOP_3_API_Ngbh::do_move()
    return OK;
  
  }
+
+//**************************************************************************
  
 int JSHOP_3_API_Ngbh::use_tabulist()
   {
@@ -94,6 +102,8 @@ int JSHOP_3_API_Ngbh::use_tabulist()
     return ret;
   }
 
+//**************************************************************************
+
 int JSHOP_3_API_Ngbh::set_tabulist()
   {
     int i;
@@ -103,8 +113,5 @@ int JSHOP_3_API_Ngbh::set_tabulist()
     return OK;
   }
 
-
-
-
-
+//**************************************************************************
 

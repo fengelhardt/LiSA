@@ -5,6 +5,8 @@
  
 #include "Single_Machine_BB.hpp"
 
+//**************************************************************************
+
 SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgraph)
 {
  
@@ -22,6 +24,8 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgrap
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
 }
 
+//**************************************************************************
+
 SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool m)
 {
   n=pValues->get_n();
@@ -38,6 +42,8 @@ SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, Lisa_Graph* pgraph, bool 
   maxRD=(*pLV->RD)[(pLV->RD->index_of_max())];
 }
 
+//**************************************************************************
+
 SingleMachineBB::~SingleMachineBB()
 {
   delete Done;
@@ -45,6 +51,8 @@ SingleMachineBB::~SingleMachineBB()
   delete bestSchedule;
   delete Schedule;
 }
+
+//**************************************************************************
 
 bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
 {
@@ -73,6 +81,8 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
   }
   return true;
 }
+
+//**************************************************************************
 
 bool SingleMachineBB::branching(int k)
 { 
@@ -172,6 +182,8 @@ bool SingleMachineBB::branching(int k)
   }
   return true;
 }
+
+//**************************************************************************
 
 double SingleMachineBB::lb(int k)
 {
@@ -291,6 +303,8 @@ double SingleMachineBB::lb(int k)
   
 }
 
+//**************************************************************************
+
 void SingleMachineBB::newSchedule()
 {
   // Lmax value of Schedule;
@@ -324,31 +338,5 @@ void SingleMachineBB::newSchedule()
   }
 }
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

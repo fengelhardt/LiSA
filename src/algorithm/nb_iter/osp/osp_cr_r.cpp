@@ -7,6 +7,8 @@
 
 #include "osp_cr_r.hpp"
 
+//**************************************************************************
+
 OSHOP_cr_TST_Ngbh::OSHOP_cr_TST_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )
   {
@@ -24,10 +26,14 @@ OSHOP_cr_TST_Ngbh::OSHOP_cr_TST_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi
     ROrd->sort();
   }
 
+//**************************************************************************
+
 OSHOP_cr_TST_Ngbh::~OSHOP_cr_TST_Ngbh()
   {
     delete ROrd;
   }
+
+//**************************************************************************
 
 int OSHOP_cr_TST_Ngbh::prepare_move( int typ )
   {
@@ -115,6 +121,8 @@ int OSHOP_cr_TST_Ngbh::prepare_move( int typ )
     return !OK;
   }
 
+//**************************************************************************
+
 int OSHOP_cr_TST_Ngbh::do_move()
  {
    int predJ1;
@@ -158,15 +166,5 @@ int OSHOP_cr_TST_Ngbh::do_move()
    return !OK;
  }
 
-
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

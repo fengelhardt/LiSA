@@ -10,12 +10,13 @@
 
 using namespace std;
 
+//**************************************************************************
+
 /* at first three procedures for the iteration of 
      - one machine problems
      - open shop problems
      - job shop problems
    then the main procedure   */
-
 int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 {
   for ( ii=0; ii<NUMB_PROBLEMS; ii++ )
@@ -200,6 +201,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
   return OK;
 } // End of one_mach_iter()
 
+//**************************************************************************
 
 int osp_iter( ifstream& strm, ofstream& fplan_o )
 {
@@ -456,6 +458,8 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
     } // NUMB_PROBLEMS
   return OK;
 } // End of osp_iter()
+
+//**************************************************************************
 
 int jsp_iter( ifstream& strm, ofstream& fplan_o )
 {
@@ -795,7 +799,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
   return OK;
 } // end of jsp_iter()
 
-
+//**************************************************************************
 
 int main(int argc, char *argv[])
  {
@@ -1078,11 +1082,5 @@ int main(int argc, char *argv[])
   return OK;
  }
 
-
-
-
-
-
-
-
+//**************************************************************************
 

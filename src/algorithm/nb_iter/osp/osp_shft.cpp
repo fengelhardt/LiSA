@@ -5,6 +5,8 @@
 
 #include "osp_shft.hpp"
 
+//**************************************************************************
+
 OSHOP_shift_Ngbh::OSHOP_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_API_Ngbh( Plan, PPi )
   {
@@ -17,6 +19,8 @@ OSHOP_shift_Ngbh::OSHOP_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
     MOpos = new Lisa_Vector<int>( PP->m+1 );  // MOpos[i] is ...
   }
 
+//**************************************************************************
+
 OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh()
   {
     delete JOrd;
@@ -24,6 +28,8 @@ OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh()
     delete JOpos;
     delete MOpos;
   }
+
+//**************************************************************************
 
 int OSHOP_shift_Ngbh::prepare_move( int typ )
   {
@@ -186,6 +192,8 @@ int OSHOP_shift_Ngbh::prepare_move( int typ )
    return !OK;
  }
 
+//**************************************************************************
+
 int OSHOP_shift_Ngbh::do_move()
  {
    int predJ1;
@@ -212,9 +220,5 @@ int OSHOP_shift_Ngbh::do_move()
    return OK;
  }
 
-    
-
-
-
-
+//**************************************************************************
 
