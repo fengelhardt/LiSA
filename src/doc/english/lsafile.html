@@ -3,113 +3,112 @@
 </HEAD>
 <BODY BACKGROUND="../../../img/lisa.gif" BGCOLOR="#e3e3e3">
 <H2>The LiSA file format</H2>
+Lisa uses text files to save and read problems, plans, values and configurations
+ as well as for communication with external programs. Please read this documentation
+ if you want to edit lisa files (*lsa) manually.
 
-Lisa verwendet Textdateien zum Speichern und Einlesen von Problemen, 
-Pl&auml;nen, Werten und Konfigurationen sowie zur Kommunikation mit 
-externen Programmen. Lesen Sie diese Dokumentation, wenn Sie
-LiSA-Dateien mit anderen Programmen, z.B. Texteditoren, erstellen oder 
-anpassen wollen. 
+
+
 <P>
-Eine Lisa-Datei enth&auml;lt Eintr&auml;ge der Typen 
-PROBLEMTYPE, CONTROLPARAMETERS, VALUES und  SCHEDULE. 
-Die Eintr&auml;ge beginnen und enden  mit dem jeweiligen Schl&uuml;sselwort wie in 
-HTML, also z.B.:
+A lisa file contains entries of types 
+PROBLEMTYPE, CONTROLPARAMETERS, VALUES and  SCHEDULE. 
+These entries start and end with their corresponding tags as in e.g. HTML
+example: 
 <PRE>
 &lt;PROBLEMTYPE&gt;
-  (Inhalt)
+  (content)
 &lt;/PROBLEMTYPE&gt; 
 </PRE>
 
-<H3>Eintr&auml;ge des Typs PROBLEMTYPE</H3>
+<H3>Entries of type PROBLEMTYPE</H3>
 
-Die Syntax lautet
+The syntax is
 <PRE>
 &lt;PROBLEMTYPE&gt;
 Lisa_ProblemType= { (alpha) / (beta)  / (gamma) }
 &lt;/PROBLEMTYPE&gt;
 </PRE>
 
-wobei folgende Elemente enthalten sein k&ouml;nnen:
+where the following elements may be included
 <pre>
-alpha: 1  Einmaschinenproblem
+alpha: 1  one machine problem
        F  flow shop
        O  open shop 
        J  job shop
-       X  mixed shop (einige Auftr&auml;ge mit gegebener Technologie)
-       G  general shop (beliebige Vorrangbedingungen zw. Operationen)
-       P  identische Parallelmaschinen
+       X  mixed shop (some jobs with given machine order )
+       G  general shop (arbitrary precedence constraints)
+       P  identical parallel machines
        R  unrelated    "
        Q  uniform      "
-     (genau eine der obigen Angaben)
-       M  Maschinenzahl fest, aber beliebig
-      <m> Maschinenzahl = m (Zahl f&uuml;r m einsetzen)      
+     (excactly one of the elements above)
+       M  machine number  fixed, but arbitrary
+      <m> machine number = m (a special number for m must be set)      
 
 beta: PMTN, INTREE, OUTTREE, TREE, SP_GRAPH, PREC, RI, DI, PIJ_1, BATCH
 
 gamma: CMAX, LMAX, SUM_CI, SUM_WICI, SUM_UI, SUM_WIUI, SUM_TI, SUM_WITI
 </PRE>
 
-<H3> Eintr&auml;ge des Typs VALUES</H3>
+<H3> Entries of type VALUES</H3>
 
 
-Alle Eintr&auml;ge haben die Form  (Schl&uuml;sselwort)= (Inhalt). Als Schl&uuml;sselworte
-sind zul&auml;ssig:
+All entries are of the form  (keyword)= (content). 
+See the list of allowed keywords below:
 <pre>
-n, m  Auftrags- und Maschinenanzahl. Diese Angaben m&uuml;ssen stets 
-      zuerst gemacht werden.
-PT    Bearbeitungszeitmatrix        
-MO    vorgegebene Technologien (Rangmatrix)
-PREC  Vorrangbedingungen zw. Jobs
-PREC* Vorrangbedingungen zw. einzelnen Operationen
-SIJ   Menge der Operationen (0/1-Matrix)
-RD    release dates  (Vektor)    
-DD    due dates      (Vektor)
-Wi    Gewichte       (Vektor)
+n, m  job number  and machine number-  These numbers ALWAYS have to be set first.
+PT    matrix of completion times        
+MO    given technology(machine order) (row matrix)
+PREC  precedence constrains for jobs
+PREC* precedence constraints for single operations
+SIJ   set of operations (0/1-matrix)
+RD    release dates  (vector)    
+DD    due dates      (vector)
+Wi    weights        (vector)
 </PRE>
 
-Inhalt kann jeweils eine Zahl, eine Vektor eine Matrix oder ein Graph sein. 
-Zahlen werden in C-typischem Eingabeformat angegeben.
-Vektoren sind folgen von durch Leerzeichen getrennten Zahlen in geschweiften 
-Klamern, z.B. { 2 3 1 }. Beachte: Vor und nach jedem {, } und nach = muss ein 
-Leerzeichen oder Zeilenende stehen!
-Eine Matrix ist ein Vektor von Vektoren, z.B. { { 0 1 } { 1 0 } }.
-Graphen werden durch Nachfolgerlisten angegeben. Diese enthalten Eintr&auml;ge
-der Form N(i)= { j k l }, wobei Knoten j, k, l die Nachfolger von i sind.
-Knoten k&ouml;nnen auch geordnete Paare sein, d.h.
+The content may be a number, a vector, a matrix or a graph.
+Numbers are written in C input format.
+Vectors are rows of numbers separated by spaces, altogether 
+included in braces, e.g. {2 3 1}. 
+Note: Before and after every brace and after = has to be 
+a space or a line end.  
+A matrix is represented as a vector of vectors, e.g. { { 0 1 } { 1 0 } }.
+Graphs are written as predecessor lists. These contain entries of the form:
+N(i)= { j k l }, where nodes j, k, l are predecessors of i.
+Nodes also may be ordered pairs  i.e.
 N(0,0)= { (0,1) (2,4) }
 
-<H3>Eintr&auml;ge des Typs SCHEDULE</H3>
+<H3>Entries of type SCHEDULE</H3>
 
-Wie bei Werte (Schl&uuml;sselwort)= (Inhalt). Als Schlusselworte sind zul&auml;ssig
-n, m, MO, mit der gleichen Bedeutung wie oben sowie
+Same as values - (keyword)= (content). Allowed keywords are: 
+n, m, MO, with the same meaning es explained above and
 
 <PRE>
-JO   die Organisation (Rangmatrix)
-LR   das lateinische Rechteck
-Cij  die Matrix der Bearbeitungsenden. 
+JO   the job order  (row matrix)
+LR   the latin rectangle
+Cij  the  matrix completion times. 
 </PRE>
 
-F&uuml;r Preemption-Probleme sind die Schl&uuml;sselworte  PPT, PMO, PJO, PLR und PCij
-zul&auml;ssig mit der gleichen Bedeutung wie ohne P nur mit dem Unterschied, dass
-die Matrixelemente auch Listen sein koennen. 
+For preemption problems the keywords PPT, PMO, PJO, PLR  and PCij  are
+allowed. The meaning is the same as without P, but the matrix elements may 
+be lists instead.
 
 
-<H3>Eintr&auml;ge des Typs CONTROLPARAMETERS</H3>
+<H3>Entries of type CONTROLPARAMETERS</H3>
 
-Eine oder mehrere Angaben der Form (Typ) (Schl&uuml;sselwort) (Inhalt), wobei Typ 
-eines der Worte long, float oder String sein muss, als Schl&uuml;sselwort 
-beliebige Strings ohne Leerzeichen zul&auml;ssig sind und der Inhalt den 
-spezifizierten Typ haben muss.
+One or more statements of the form (type) (keyword) (content),
+where the type is restricted to long, float or String. The keyword may be 
+any string without spaces and the content has to be of the specified type. 
 
-<H3>Kommentare</H3>
+<H3>Comments</H3>
 
-Lisa behandelt alles als Kommantar, was ausserhalb der Umgebungen 
-PROBLEMTYPE, CONTROLPARAMETERS, VALUES und  SCHEDULE steht.
+Lisa treats everything as a comment what is written outside the  
+PROBLEMTYPE, CONTROLPARAMETERS, VALUES and  SCHEDULE environment.
 <P>
 <HR>
-<A HREF="main.html"> Inhaltsverzeichnis </A>
+<A HREF="main.html"> Table of contents</A>
 <HR>
-Stand 28.10.99, MH
+ 28.10.99, MH
 </BODY>
 </HTML>
 
