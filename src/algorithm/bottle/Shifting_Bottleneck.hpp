@@ -35,6 +35,11 @@ private:
   void init_graph();
   /// fast algorithm for shifting_bottleneck heuristic
   void shifting_bottleneck();
+  /// create the transitive hull
+  /** Calculates the transitive hull for this graph and writes it into 
+      the target graph. The target graph is assumed to have the same number of 
+      vertices as this graph. It must not contain any edges or arcs. */
+  bool transitive_hull(Lisa_Graph* source,Lisa_Graph* target);
 public:
   /// constructor
   /** initialize the Shifting_Bottleneck object with parameters from 

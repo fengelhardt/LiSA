@@ -171,12 +171,6 @@ public:
   /// delete all ARC's CRA's and edges connected with that vertice
   bool remove_all_con(int knot);
 
-  /// create the transitive hull
-  /** Calculates the transitive hull for this graph and writes it into 
-      the target graph. The target graph is assumed to have the same number of 
-      vertices as this graph. It must not contain any edges or arcs. */
-  bool transitive_hull(Lisa_Graph* target);
-
   /// write this objects data structure to cout
   /** Mostly used for debugging. */
   void show();

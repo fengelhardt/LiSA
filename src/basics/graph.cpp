@@ -73,18 +73,6 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
 
 //**************************************************************************
 
-/*
-Lisa_Graph::Lisa_Graph(Lisa_JsProblem* jpro)
-{
-  matrix=0;
-  succ_pred_pointer=0;
-  init((jpro->n)*(jpro->m));
-  ix=jpro->n;
-  iy=jpro->m;
-*/
-
-//**************************************************************************
-
 int Lisa_Graph::get_knots() const
 {
   return n;
@@ -398,7 +386,7 @@ bool Lisa_Graph::exclude_arc(int start, int end)
 
 void Lisa_Graph::show()
 {
-  //cout<<"SURFENooooooooooooooooooooooo"<<endl;
+
   for (int i=0; i<=n; i++)
     {
       for (int j=0; j<=n; j++)
@@ -701,7 +689,6 @@ bool Lisa_Graph::valid()
   
 Lisa_Matrix<int>* Lisa_Graph::get_ADJ_Matrix( Lisa_Matrix<int> *adj) const
 {
-  //Lisa_Matrix<int> *adj=new Lisa_Matrix<int>(n,n);
 
   for(int i=1; i<=n; i++)
     {
@@ -762,7 +749,6 @@ bool Lisa_Graph::init_succ_pointer(int knot)
 
 const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other) 
 {
-  //cout<<"operator=================="<<endl;
 
   if (n!=other.get_knots()){
     G_ExceptionList.lthrow("wrong format argument to graph.operator=");
@@ -1012,48 +998,6 @@ void Lisa_Graph::read_ADJ(Lisa_Matrix<int>* adj)
 	    }
 	}
     }
-}
-
-//**************************************************************************
-
-bool Lisa_Graph::transitive_hull(Lisa_Graph* target)
-{
-  Lisa_Vector<int> queue(end);
-  Lisa_Vector<bool> done(end);
-  int qs,qe,curr;
-  int succ;
-  
-  for (int i=1; i<end; i++){
-     queue.fill(0);  
-     done.fill(0);
-     qs = qe = 0;
-     
-     init_succ_pointer(i);
-     succ=get_next_successor(i);
-     
-     //alle Nachfolger des Knotens
-     
-     while(succ<end){
-       queue[qe++] = succ;
-       done[succ] = 1;
-       succ=get_next_successor(i);
-     }  
-     
-     while(qs<qe){
-       curr = queue[qs++];
-       target->insert_arc(i,curr);
-       init_succ_pointer(curr);
-       succ=get_next_successor(curr);
-       while(succ<end){
-	 if(!done[succ]){
-	   done[succ]=1;
-	   queue[qe++]=succ;
-	 }
-	 succ=get_next_successor(curr);
-       }
-     }
-  }
-  return true;
 }
 
 //**************************************************************************
