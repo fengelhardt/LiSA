@@ -1,29 +1,16 @@
-/*
- * ************** int2str_.h ******************************
- * 
- * description: functions to convert from int to string 
- *
- * @author Per Willenius
- * date: 15.9.1998
- * version: V.1.0
-*/ 
 
-/** @name Converting numbers in strings
-
-    @author Per Willenius
-    @version 2.3pre3
-*/ 
-
-//@{
 #ifndef _int2str_h 
 #define _int2str_h 
 
 #include <string>
 
-/// returns true if value integer
+/// returns true if value is an integer
 bool inttst(const double value);
 
 /// returns string
+/** @author Per Willenius
+    @version 2.3pre3
+ */
 std::string ztos(const double value);
 
 /// returns formated string
@@ -33,6 +20,4 @@ std::string ztofs(const double value);
 int stoz(const std::string);
 
 #endif
-
-//@}
 

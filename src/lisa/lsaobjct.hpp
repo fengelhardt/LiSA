@@ -1,38 +1,20 @@
-/*
- * ************************* lsaobjct.hpp ******************************
- * 
- * description:      contains class Lisa_GenericObject and Lisa_Object 
- *                   
- *                   
- *                   
- *
- *
- * @author            Per Willenius
- * date:             3.12.1998
- * patch 2.10.99 Thomas Tautenhahn
-*/
 
 #ifndef _lsaobjct_h 
 #define _lsaobjct_h 
 
 #include <iostream>
 
-/** All LiSA-Objects which name starts with Lisa_ must either have
-    Lisa_GenericObject or Lisa_Object as parents. 
-  
-    Include file LiSA/src/lisa_dt/lsaobjkt.h, it uses iostream, 
-
+/// interface having write functionality
+/** Lisa_GenericObject has only a virtual write function and should 
+    be the ''Grandfather'' of all LiSA objects, which can write
+    itself on a stream. 
+           
     @author Per Willenius 
     @version 2.3pre3
-*/ 
-
-/** Lisa_GenericObject has only a virtual write-function and schould 
-    be the ''Grandfather'' of all Lisa-Objects, which can write
-    itself on a stream. 
-    */   
+ */
 class Lisa_GenericObject{
 public:
-  /// write Object-Information on a stream
+  /// write object information on a stream
   virtual void write(std::ostream& = std::cout) const = 0;
   /// virtual destructor
   virtual ~Lisa_GenericObject() { }
@@ -40,7 +22,7 @@ public:
 
 //**************************************************************************
 
-// operators for IO via streams:
+/// stream operator for writing Lisa_GenericObject objects
 inline std::ostream& operator << (std::ostream& strm, 
                                   const Lisa_GenericObject& GenericObject){
   GenericObject.write(strm);
@@ -49,19 +31,23 @@ inline std::ostream& operator << (std::ostream& strm,
 
 //**************************************************************************
 
-/** Lisa_Object has only a virtual write and read function and schould 
-    be the ''Grandfather'' of all Lisa-Objects, which can write
-    itself on a stream and can be written from a stream. 
-    */   
+/// interface having read functionality
+/** Lisa_Object has only a virtual write and read function and should 
+    be the ''Grandfather'' of all LiSA objects, which can write
+    itself on a stream and can be read from a stream.
+           
+    @author Per Willenius 
+    @version 2.3pre3
+ */
 class Lisa_Object : public Lisa_GenericObject {
 public:
-  /// read Object-Information on a stream
+  /// read object information from a stream
   virtual void read(std::istream& = std::cin)= 0;
 };
 
 //**************************************************************************
 
-// operators for IO via streams:
+/// stream operator for writing Lisa_Object objects
 inline std::istream& operator >> (std::istream& strm, Lisa_Object& Object){
   Object.read(strm);
   return strm;

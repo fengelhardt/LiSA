@@ -101,9 +101,8 @@ public:
       
       @param method SA,SA_anti or TA
       @param prob0 Probability for accepting a neighbour with 1% worse 
-             objective value in the first step.
-      @param threshold Start threshold for accepting a neighbour with with a 
-             worse objective value.
+             objective value in the first step. / Start threshold for accepting
+             a neighbour with with a worse objective value.
       @param max_stuck If iteration is stuck for so many steps, then increase 
              temperature or treshold, respectively. */
   void  init(int method, unsigned int prob0, unsigned int max_stuck);

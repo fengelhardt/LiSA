@@ -1,26 +1,4 @@
-/*
- * ************** lvalues.hpp *******************************
- * 
- * description:    definition of class Lisa_Values
- *
- * @author          Per Willenius
- *
- * date:           27.9.1999
- *
- * version:        V 1.0  
- * 
- * history:         7. 9. 98 kleinere Anpassungen TAU
-*/
 
-/**  @name Classes for Communication of LiSA Modules
- 
-    Include file LiSA/src/lisa_dt/problem.h, it uses iostream and string.
-
-    @author Per Willenius and Thomas Tautenhahn
-    @version 2.3pre3
-*/ 
-
-//@{
 #ifndef _lvalues_h 
 #define _lvalues_h 
 
@@ -31,40 +9,46 @@
 #include "../scheduling/mo_jo.hpp"
 #include "filentry.hpp"
 
-const int LENGHT_OF_EXTRA_VECTOR = 5;
-
-/// collection of all values which defines the instance of the problem
+/// collection of all values which defines the instance of a problem
+/** @author Per Willenius, Thomas Tautenhahn
+    @version 2.3pre3
+  */
 class Lisa_Values  : public Lisa_FileEntry{ 
 private:
-  int n,m;   // for Matrix-Handling 
+  /// size of matrices
+  int n,m; 
 public:
-  /// Lisa_Values is valid iff valid==TRUE;
+  /// Lisa_Values is valid if valid==TRUE;
   int valid;
-  /// number of columns in the matrices (number of maschines)
+  /// number of columns in the matrices (number of machines)
   int get_m(void){return m;}
   /// number of rows in the matrices (number of jobs)
   int get_n(void){return n;}
-  /// Processing Time Matrix
+  /// processing time matrix
   Lisa_Matrix<TIMETYP> *PT; 
-  // Processing Time Matrix (with preemtion)
-  //  Lisa_MatrixOfLists<TIMETYP> *PTl;
+  
+  // processing time matrix (with preemtion)
+  // Lisa_MatrixOfLists<TIMETYP> *PTl;
+  
   /// machine order
   Lisa_MO *MO;
-  /// Set of Operations 
+  /// set of operations 
   Lisa_Matrix<bool> *SIJ; 
-  /// Release Dates and Due Dates
+  /// release dates and due dates
   Lisa_Vector<TIMETYP> *RD, *DD; 
-  /// Weights for each job
+  /// weights for each job
   Lisa_Vector<double> * WI; 
-  /// second type of Weights for each job
+  /// second type of weights for each job
   Lisa_Vector<double> * WI2;
   /// additional vector of parameters
   Lisa_Vector<double> * EXTRA;
-  /// construct Processing Time Matrix
+  /// construct processing time matrix
   void make_PT(void);
-  // construct Processing Time Matrix (with preemtion)
+  
+  // construct processing time matrix (with preemtion)
   //void make_PTl(void);	
-  /// construct  machine order
+  
+  /// construct machine order
   void make_MO(void);
   /// returns OK, if MO is valid
   int valid_MO();
@@ -76,32 +60,37 @@ public:
   void no_DD();
   /// delete vector of weights
   void no_WI();
-  /// construct Set of Operations  
+  /// construct set of operations  
   void make_SIJ(void);
-  /// construct Release Dates
+  /// construct release dates
   void make_RD(void);
-  /// construct Due Dates
+  /// construct due dates
   void make_DD(void);
-  /// construct Weights 
+  /// construct weights 
   void make_WI(void);
-  /// construct Weights2
+  /// construct weights2
   void make_WI2(void);
    /// construct additional vector of parameters
   void make_EXTRA(void);
-  /** an entry in SIJ will be set if and only if the corresponding processing time 
-    is greater than zero*/
+  
+  /// set of operations
+  /** an entry in SIJ will be set if and only if the corresponding processing 
+      time is greater than zero*/
   void PT_to_SIJ();
   /// constructor
   Lisa_Values();
   /// destructor
   ~Lisa_Values();
-  /// new number of maschines or jobs
+  
+  /// reinit with new number of maschines or jobs
   void init(int n, int m);
+  
+  /// write object values to a stream
   void write(std::ostream& = std::cout) const;
+  
+  /// read object values from a stream
   void read(std::istream& = std::cin);
 };
 
 #endif
-
-//@}
 
