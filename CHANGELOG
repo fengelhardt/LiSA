@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+known issues
+--------------------------------------------------------------------------------
+loading of *.lsa files is to generous, you may get undefined results from 
+uncorrect files instead of error messages
+
+the iterative improvement algorithm may terminate before reaching a local
+optimum in enumeration mode
+
+for job shop and flow shop problems you can enter latin rectangles that do not
+fit to the given machine order ... this doesn't even give you an error message
+
+--------------------------------------------------------------------------------
+upcoming version
+--------------------------------------------------------------------------------
+Smith Rule is exact for sumWiCi, not sumWiTi.
+
+Enabled further neighbourhoods for the neighbourhood search algorithms.
+
+Fixed some minor bugs in the GUI.
+
+--------------------------------------------------------------------------------
+LiSA 2.3final
+--------------------------------------------------------------------------------
+No real new features, this is a bugfix and consolidation release.
+
+Source code should now be c++ standard compatible.
+
+LiSA can now be compiled with Intel's C++ Compiler 7.0. This has great speed
+advantages for example with the Branch and Bound algorithm.
+
+Directory structure reorganised. Makefiles adapted.
+
+Classification module no longer used to determine usable algorithms. This was
+no longer possible, since the algorithms are unable to do even trivial 
+transformations.
+
+Replaced LiSA's string class with the standard string class. Fixed bugs 
+resulting from that.
+
+While reading from files the syntax is checked more strict.
+
+LiSA's now compatible with Tcl/Tk 8.4 and earlier versions.
+
+Numerous crash reasons fixed, both in algorithms and the main program.
+
+-------------------------------------------------------------------------------- 
+LiSA 2.3pre2
+--------------------------------------------------------------------------------
+Prerelease, showed at the student part of the annual DMV conference in 2002.
+
+This version already contained most of the changes from 2.3final, but was never
+released to the public.
+
+--------------------------------------------------------------------------------
+LiSA 2.1
+--------------------------------------------------------------------------------
+Added various new algorithms made by studends in computer labs. (Beam Search,
+Gonzales and Sahni reducing set algorithm, Johnson Rule, LAPT Rule, MS Rule)
+
+--------------------------------------------------------------------------------
+LiSA 2.0
+--------------------------------------------------------------------------------
+   	
+-------------------------------------------------------------------------------- 
+LiSA 1.0
+--------------------------------------------------------------------------------
+Initial release.
