@@ -201,11 +201,12 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	      }
 	    m_count--;
 
-	    if ( m_count < 0 )
-	      {
-		G_ExceptionList.lthrow("This solution is optimal !",WARNING);
-		return !OK;
-	      }
+	    if( m_count < 0 ){
+        /* this is only true fpr cmax i think -marc-
+        G_ExceptionList.lthrow("This solution is optimal !",WARNING);
+        */
+        return !OK;
+	    }
 	
 	    // determs randomly a machine
 	    machine1 = (*machines)[ lisa_random( 0, m_count, &seed ) ];
