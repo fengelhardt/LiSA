@@ -358,7 +358,7 @@ int Lisa_ProblemType::setgamma(string ga) {
     str=name(OBJECTIVE,i);
     if(ga==str) {tupel[OBJECTIVE]=i;return 0;} 
   }
-  if (tupel[OBJECTIVE]==0) cerr << "'" << ga << "'as objective function unknown\n";
+  if (tupel[OBJECTIVE]==0) cerr << "'" << ga << "' as objective function unknown\n";
   return(1);
 }
 
