@@ -60,9 +60,9 @@ std::string LisaXmlFile::dtd_file = "";
 
 void LisaXmlFile::initialize(std::string prog_path){
 		if(prog_path.empty())
-				TOP_PROGRAM_PATH = "../data";
+				TOP_PROGRAM_PATH = "..";
 		else
-		TOP_PROGRAM_PATH = prog_path;
+          TOP_PROGRAM_PATH = prog_path;
 		//test for dtd file path
 		string file = 	TOP_PROGRAM_PATH;
 		file += "/data/" + DTD_SYSTEM_PHRASE;
