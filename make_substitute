@@ -9,4 +9,6 @@
 
 # just do it
 
-gawk "{if (index(\$0, \"$1\")!=0) {sub(\"$1.*\", \"$1\", \$0); print \$0 \"$2\"; } else print \$0; };"
+rm -f ${3}.temp
+gawk "{if (index(\$0, \"$1\")!=0) {sub(\"$1.*\", \"$1\", \$0); print \$0 \"$2\" >> \"${3}.temp\"; } else print \$0 >> \"${3}.temp\"; };" $3
+mv ${3}.temp ${3}

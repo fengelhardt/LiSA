@@ -1,19 +1,27 @@
-LiSA-Installation (UNIX):
+installation of the binary distribtution:
+-----------------------------------------
 
-	o  make sure that tcl/tk and the g++ compiler are installed
-	   on your machine
+- extract lisa-XXX-bin.tar.bz2 respective lisa-XXX-bin.zip to its final place
 
-	o  gunzip lisa.tar.gz
+- start setup.tcl in the LiSA toplevel dir
 
-	o  tar -xvf lisa.tar
+- start LiSA with the "lisa" start script in LiSA/bin
 
-	o  cd LiSA
 
-	o  ./configure
 
-	o  edit Make.Config if configure is unable to find some of
-	   the includes or libraries.
+installation of the source distribtution (UNIX like environments):
+------------------------------------------------------------------
 
-	o  make
+- make sure that tcl/tk and the g++ compiler are installed on your machine
 
-	o  bin/lisa
+- tar -xjvf lisa-XXX.tar.bz2
+
+- cd LiSA
+
+- ./configure
+
+- edit Make.Config if configure is unable to find some of the includes or libraries
+
+- make
+
+- bin/lisa

@@ -13,6 +13,7 @@ TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
 DATAPATH=$(TOPPROGRAMPATH)/data
 DOCPATH=$(TOPPROGRAMPATH)/doc
+DISTPATH=$(TOPPROGRAMPATH)/dist
 CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
@@ -65,21 +66,22 @@ about: logo
 # ------------------------------------------------------------------------------
 
 help: logo
-	@echo "'make' ............. same as 'make compile'"
-	@echo "'make about' ....... shows the about information"
-	@echo "'make all' ......... compiles and installs all"
-	@echo "'make nongui' ...... compiles and installs everything but the GUI"
-	@echo "'make help' ........ shows this help"
-	@echo "'make compile' ..... compiles all"
-	@echo "'make install' ..... installs all"
-	@echo "'make uninstall' ... uninstalls all"
-	@echo "'make cygwin' ...... creates windows standalone version on cygwin"
-	@echo "'make uncygwin' .... uninstalls windows standalone version"
-	@echo "'make distclean' ... deletes the configuration and the compiled objects"
-	@echo "'make clean' ....... deletes only the compiled objects"
-	@echo "'make depend' ...... creates the dependencies for the compiling"
-	@echo "'make version' ..... updates the version information in the source files"
-	@echo "'make develdoc' .... creates the source code documentation"
+	@echo "'make' ................. same as 'make compile'"
+	@echo "'make about' ........... shows the about information"
+	@echo "'make all' ............. compiles and installs all"
+	@echo "'make nongui' .......... compiles and installs everything but the GUI"
+	@echo "'make help' ............ shows this help"
+	@echo "'make compile' ......... compiles all"
+	@echo "'make install' ......... installs all"
+	@echo "'make uninstall' ....... uninstalls all"
+	@echo "'make dist' ............ creates binary release"
+	@echo "'make undist' .......... uninstalls binary release"
+	@echo "'make dist-cygwin' ..... creates windows standalone version on cygwin"
+	@echo "'make undist-cygwin' ... uninstalls windows standalone version"
+	@echo "'make distclean' ....... deletes the configuration and the compiled objects"
+	@echo "'make clean' ........... deletes only the compiled objects"
+	@echo "'make depend' .......... creates the dependencies for the compiling"
+	@echo "'make version' ......... updates the version information in the source files"
 	@echo
 
 # ------------------------------------------------------------------------------
@@ -111,11 +113,33 @@ uninstall:
 
 # ------------------------------------------------------------------------------
 
-cygwin:
+dist:
+	rm -fr $(DISTPATH)
+	mkdir -p $(DISTPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/README $(DISTPATH)/LiSA/README
+	cp $(TOPPROGRAMPATH)/LICENSE $(DISTPATH)/LiSA/LICENSE
+	cp $(TOPPROGRAMPATH)/setup.tcl $(DISTPATH)/LiSA/setup.tcl
+	cp -r $(BINPATH) $(DISTPATH)/LiSA/bin
+	rm -f $(CYGWINPATH)/LiSA/bin/lisa
+	cp -r $(DOCPATH) $(CYGWINPATH)/LiSA/doc
+	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/tcl $(CYGWINPATH)/LiSA
+	cd $(CYGWINPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
+
+# ------------------------------------------------------------------------------
+
+undist:
+	rm -fr $(DISTPATH)
+
+# ------------------------------------------------------------------------------
+
+dist-cygwin:
 	rm -fr $(CYGWINPATH)
 	mkdir -p $(CYGWINPATH)/LiSA
 	cp $(TOPPROGRAMPATH)/README $(CYGWINPATH)/LiSA/README.txt
 	cp $(TOPPROGRAMPATH)/LICENSE $(CYGWINPATH)/LiSA/LICENSE.txt
+	cp $(TOPPROGRAMPATH)/setup.tcl $(CYGWINPATH)/LiSA/setup.tcl
 	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
 	rm -f $(CYGWINPATH)/LiSA/bin/lisa
 	cp -r $(DOCPATH) $(CYGWINPATH)/LiSA/doc
@@ -130,16 +154,16 @@ cygwin:
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tk* -maxdepth 0`
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
-	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win.zip LiSA
+	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
 
 # ------------------------------------------------------------------------------
 
-uncygwin:
+undist-cygwin:
 	rm -fr $(CYGWINPATH)
 
 # ------------------------------------------------------------------------------
 
-distclean: uncygwin uninstall clean
+distclean: undist-cygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) distclean; cd ../..; done
@@ -163,11 +187,9 @@ version:
 	| gawk '{print "\"" $$0 "\""}' \
 	| xargs -n 1 $(TOPPROGRAMPATH)/make_version $(VERSION)
 	@echo
-	@echo "creating $(SOURCEPATH)/general/version.hpp"
-	@rm -f $(SOURCEPATH)/general/version.hpp.temp
-	@cat $(SOURCEPATH)/general/version.hpp \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' \
-	> $(SOURCEPATH)/general/version.hpp.temp
-	@mv $(SOURCEPATH)/general/version.hpp.temp $(SOURCEPATH)/general/version.hpp
+	@echo "updating $(SOURCEPATH)/general/version.hpp"
+	$(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' $(SOURCEPATH)/general/version.hpp
+	@echo "updating $(TOPPROGRAMPATH)/setup.tcl"
+	$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(TOPPROGRAMPATH)/setup.tcl
 	@echo
 
