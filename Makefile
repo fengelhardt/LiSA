@@ -124,6 +124,8 @@ dist-unix:
 	cp -r $(TOPPROGRAMPATH)/data $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/img $(DISTPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/tcl $(DISTPATH)/LiSA
+	echo -e > $(DISTPATH)/LiSA/setup '#!/bin/sh\n\ncd `dirname $$0`\nbin/setup'
+	chmod 755 $(DISTPATH)/LiSA/setup
 	cd $(DISTPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
 
 # ------------------------------------------------------------------------------

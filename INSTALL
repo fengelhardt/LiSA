@@ -3,7 +3,7 @@ installation of the binary distribtution:
 
 - extract lisa-XXX-bin.tar.bz2 respective lisa-XXX-bin.zip to its final place
 
-- start setup.tcl in the LiSA toplevel dir
+- start setup respective setup.bat on Windows in the LiSA toplevel dir
 
 - start LiSA with the "lisa" start script in LiSA
 
