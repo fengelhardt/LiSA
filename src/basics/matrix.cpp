@@ -33,9 +33,6 @@ Lisa_Vector<T>::Lisa_Vector(const unsigned int m_in):m(m_in)
 template<class T>
 Lisa_Vector<T>::Lisa_Vector(const Lisa_Vector<T>& other):m(other.m)
      {
-#ifdef LISA_DEBUG
-       G_ExceptionList.lthrow("(Warning) vector given by value");
-#endif
        contents= new T[m];
        memcpy (contents, other.contents, m*sizeof(T));
      }
@@ -170,9 +167,6 @@ bool Lisa_Vector<T>::operator<=(const Lisa_Vector<T>& other) const
 template<class T>
 Lisa_Matrix<T>::Lisa_Matrix(const Lisa_Matrix<T>& other):m(other.m),n(other.n){
     
-#ifdef LISA_DEBUG
-       G_ExceptionList.lthrow("(Warning) matrix given by value");
-#endif
        row=new Lisa_Vector<T>[n];
        
        for(unsigned int i=n;i--;){
