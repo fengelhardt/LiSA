@@ -51,50 +51,47 @@ int Lisa_Graph::number_of_pred(const int knot){
 bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
   
   knot_sequence->fill(0);
-  if(no_edges()){
-    //graph copy
-    Lisa_MatrixListGraph* top=new Lisa_MatrixListGraph(this);
-    //stores the number of successors of knot i in i-1
-    Lisa_Vector<int>* succ=new Lisa_Vector<int>(size);
-    Lisa_Vector<int>* pred=new Lisa_Vector<int>(size);
-    int source=0;
-    int v=0;
-    int next=1;
-    
-    while(v<=size){
-      //new predeccessors
-      for(v=1; v<=size; v++){
-        if((*knot_sequence)[v-1]==0){
-          (*pred)[v-1]=top->number_of_pred(v);
-        }
+  
+  //graph copy
+  Lisa_MatrixListGraph* top=new Lisa_MatrixListGraph(this);
+  //stores the number of successors of knot i in i-1
+  Lisa_Vector<int>* succ=new Lisa_Vector<int>(size);
+  Lisa_Vector<int>* pred=new Lisa_Vector<int>(size);
+  int source=0;
+  int v=0;
+  int next=1;
+  
+  while(v<=size){
+    //new predeccessors
+    for(v=1; v<=size; v++){
+      if((*knot_sequence)[v-1]==0){
+        (*pred)[v-1]=top->number_of_pred(v);
       }
-      v=1;
-      source=0;
-      //find first source
-      while((v<=size)&&(source==0)){
-        if(((*knot_sequence)[v-1]==0)&&((*pred)[v-1]==0)){
-          source=1;
-        }
-        else{
-          v++;
-        }
+    }
+    v=1;
+    source=0;
+    //find first source
+    while((v<=size)&&(source==0)){
+      if(((*knot_sequence)[v-1]==0)&&((*pred)[v-1]==0)){
+        source=1;
       }
-      
-      //remove all connections of the first source found
-      if(v<=size){
-        top->clear(v);
-        (*knot_sequence)[v-1]=next;
-        next++;
+      else{
+        v++;
       }
     }
     
-    delete succ;
-    delete pred;
-    delete top;
-    return (next==size+1);
-  }else{
-    return false;
+    //remove all connections of the first source found
+    if(v<=size){
+      top->clear(v);
+      (*knot_sequence)[v-1]=next;
+      next++;
+    }
   }
+  
+  delete succ;
+  delete pred;
+  delete top;
+  return (next==size+1);
 }
 
 //**************************************************************************
@@ -774,19 +771,6 @@ int Lisa_MatrixListGraph::get_next_edge(const int knot){
   } 
   
   return next_knot;
-}
-
-//**************************************************************************
-
-bool Lisa_MatrixListGraph::no_edges(){
-  
-  for(int i=1; i<=size; i++){
-    if(((*matrix)[i][i].x)!=size+1){
-      return false;
-    }
-  }
-
-  return true;
 }
 
 //**************************************************************************

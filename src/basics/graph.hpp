@@ -100,9 +100,6 @@ public:
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
   virtual int get_next_edge(const int vertex)=0;
-
-  /// test if there are no edges in the graph
-  virtual bool no_edges()=0;
   
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   virtual void clear(const int vertex)=0;
@@ -287,9 +284,6 @@ public:
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
   int get_next_edge(const int vertex);
-
-  /// test if there are no edges in the graph
-  bool no_edges();
 
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   void clear(const int vertex);
