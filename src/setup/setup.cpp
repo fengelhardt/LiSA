@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
      if (Tcl_Eval(interp, cmd) == TCL_OK)
           {
-          char* dir = interp->result;
+          char* dir = strcat(strdup(interp->result), "/..");
           chdir(dir);
           }
      else

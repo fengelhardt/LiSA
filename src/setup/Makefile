@@ -57,14 +57,14 @@ objdir:
 # ------------------------------------------------------------------------------
 
 install:
-	cp $(OBJPATH)/$(PROGRAMNAME) $(TOPPROGRAMPATH)/$(PROGRAMNAME)
-	cp setup.tcl $(TOPPROGRAMPATH)/setup.tcl
+	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
+	cp setup.tcl $(BINPATH)/setup.tcl
 
 # ------------------------------------------------------------------------------
 
 uninstall:
-	rm -f $(TOPPROGRAMPATH)/$(PROGRAMNAME)
-	rm -f $(TOPPROGRAMPATH)/setup.tcl
+	rm -f $(BINPATH)/$(PROGRAMNAME)
+	rm -f $(BINPATH)/setup.tcl
 
 # ------------------------------------------------------------------------------
 
