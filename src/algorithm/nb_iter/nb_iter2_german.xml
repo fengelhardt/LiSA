@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Nachbarschaftssuche" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+  <heuristic>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
+    <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="10000"/>
+    <integer name="PROB" caption="Anfangswahrscheinlichkeit (nur fuer SA / TA)" default="12"/>
+    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl (nur fuer SA / TA)" default="30"/>
+    <integer name="TABULENGTH" caption="Tabulistenlaenge (nur fuer TS)" default="40"/>
+    <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn (nur fuer TS)" default="40"/>
+    <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
+    <choice name="NGBH" caption="Nachbarschaft">
+      <item name="API"/>
+      <item name="SHIFT"/>
+    </choice>
+    <choice name="METHOD" caption="Suchmethode">
+      <item name="TabuSearch"/>
+      <item name="ThresholdAccepting"/>
+      <item name="IterativeImprovement"/>
+      <item name="SimulatedAnnealing"/>
+    </choice>
+    <choice name="TYPE" caption="Erzeugemodus">
+      <item name="ENUM"/>
+      <item name="RAND"/>
+    </choice>
+  </alg_controls>
+</algorithm>

@@ -1,13 +1,14 @@
 /**
  * @author  Andreas Winkler
  * @version 2.3final
- */
- 
+ */ 
 #include <stdlib.h>
 #include <unistd.h>
 
 #include <fstream>
 #include <time.h>
+
+#include "../../xml/LisaXmlFile.hpp"
 
 #include "../../basics/matrix.hpp"
 #include "../../scheduling/m1_sched.hpp"
@@ -132,9 +133,9 @@ const int MAXLONG = 214748000;
   Lisa_OsSchedule          *os_Plan;
   Lisa_JsProblem           *js_Prob;
   Lisa_JsSchedule          *js_Plan;
-  Lisa_Neighbourhood        *ngbh;
-  API_Neighbourhood         *m1_api;
-  shift_Neighbourhood       *m1_shift;
+  Lisa_Neighbourhood       *ngbh;
+  API_Neighbourhood        *m1_api;
+  shift_Neighbourhood      *m1_shift;
   OSHOP_API_Ngbh           *os_api;
   OSHOP_shift_Ngbh         *os_shift;
   OSHOP_3_API_Ngbh         *os_api_3;
@@ -163,46 +164,39 @@ const int MAXLONG = 214748000;
 
 //**************************************************************************
 
+//this version is a modification using xml file format
+//it also removes the multiple problem input option
+
+//hopefully I did not mess up the algorithm - it's kind of confusing
+
+
 /* at first three procedures for the iteration of 
      - one machine problems
      - open shop problems
      - job shop problems
    then the main procedure   */
-int one_mach_iter( ifstream& strm, ofstream& fplan_o )
+int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
-  for ( ii=0; ii<NUMB_PROBLEMS; ii++ )
-    {
-	
-      // reading problem data
-      Lisa_Values *problem_in;
-      if ( !( problem_in = new Lisa_Values() ) )
-	{  
-	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	  exit( 7 );
-	} 
-      strm >> (*problem_in);
-      fplan_o << (*problem_in);
-      if ( !( m1_Prob = new Lisa_1Problem( problem_in ) ) )
+      if ( !( m1_Prob = new Lisa_1Problem( &Values ) ) )
 	{
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
 
       // here could standing precedence-constraints
-      delete problem_in;
-	
+      Lisa_Schedule* starter = NULL;
       for ( jj=0; jj<NUMB_PLANS; jj++ )
 	{
-	  // start-schedule-datas
-	  Lisa_Schedule *plan_in;
-	  if ( !( plan_in = new Lisa_Schedule() ) )
-	    {
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-	    
-	  strm >> (*plan_in);
-	  if ( m1_Prob->n != plan_in->get_n() )
+	  starter = Starters.get().actual_schedule;
+      if(!Starters.next()) //stop next loop
+								jj = NUMB_PLANS;
+                                
+						if(starter == NULL)
+								{
+										G_ExceptionList.lthrow("Invalid starting schedule ... aborting");
+										exit(7);
+								}
+	  if ( m1_Prob->n != starter->get_n() )
 	    {
 	      G_ExceptionList.lthrow("dimension mismatch in plan and problem");
 	      exit(7);
@@ -235,14 +229,14 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	      exit( 7 );
 	    }
 	  for ( i=0; i<m1_Prob->n; i++ )
-	    (*LRV)[i] = (*plan_in->LR)[i][0];
+	    (*LRV)[i] = (*starter->LR)[i][0];
 	  //for ( i=0; i<m1_Prob->n; i++ )
 	    LROrder->read( LRV );
 	  LROrder->sort();
 
 	  JOPred = 0;
 	  for ( i=0; i<m1_Prob->n; i++ )
-	    if ( (*plan_in->LR)[(*LROrder)[i]][0] != 0 )
+	    if ( (*starter->LR)[(*LROrder)[i]][0] != 0 )
 	      {
 		m1_Plan->insert( (*LROrder)[i]+1,JOPred); 
 		JOPred = (*LROrder)[i]+1;
@@ -255,7 +249,6 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  cout << "Sq: " << *m1_Plan->sequ << "\n";
 	  cout << "Ci: " << *m1_Plan->Ci << "\n";
 	  // end of transfering
-	  delete plan_in;
 	  
 	  switch ( NGBH )
 	    {
@@ -318,80 +311,63 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    }
 	    
 	    
-	  // return the schedule in a file
+	  // append schedule to solutions
 	  m1_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nbest objective_value: " << m1_Plan->GetValue() << "\n";
 	  
 	  // transfering the datas:
-	  if ( !( plan_in = new Lisa_Schedule( m1_Prob->n, 1 ) ) )
+      Lisa_Schedule* result;
+	  if ( !( result = new Lisa_Schedule( m1_Prob->n, 1 ) ) )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
-	  plan_in->make_LR();
-	  plan_in->make_CIJ();
+	  result->make_LR();
+	  result->make_CIJ();
 	  for ( i=1; i<m1_Prob->n+1; i++ )
 	    {
-	      (*plan_in->LR)[(*m1_Plan->sequ)[i]-1][0] = i;
-	      (*plan_in->CIJ)[i-1][0] = (*m1_Plan->Ci)[i];
+	      (*result->LR)[(*m1_Plan->sequ)[i]-1][0] = i;
+	      (*result->CIJ)[i-1][0] = (*m1_Plan->Ci)[i];
 	    }
-	  fplan_o << (*plan_in);
-
-	  fplan_o << "\n<OBJECTIVE>\n";
-	  fplan_o << "OBJECTIVE= " << m1_Plan->GetValue() << "\n";
-	  fplan_o << "</OBJECTIVE>\n";
-
-	  cout << "Sq: " << *m1_Plan->sequ << "\n";
-
-	  delete plan_in;
+        
+      Results.append(Lisa_ScheduleNode(result));
+      
+      cout << "Sq: " << *m1_Plan->sequ << "\n";
+      
+	  //might be dangerous
+      delete result;
 	  
 	  delete m1_Plan;
 	} // NUMB_PLANS
       delete m1_Prob;
-    } // NUMB_PROBLEMS
   return OK;
 } // End of one_mach_iter()
 
 //**************************************************************************
 
-int osp_iter( ifstream& strm, ofstream& fplan_o )
+int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
-  for ( ii=0; ii<NUMB_PROBLEMS; ii++ )
-    {
-      // problemdatas
-      Lisa_Values *problem_in;
-      if ( !( problem_in = new Lisa_Values() ) )
-	{
-	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	  exit( 7 );
-	} 
-      strm >> (*problem_in);
-      fplan_o << (*problem_in);
-      if ( !( os_Prob = new Lisa_OsProblem(problem_in) ) )
+      if ( !( os_Prob = new Lisa_OsProblem(&Values) ) )
 	{
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
-      delete problem_in;
 
+    Lisa_Schedule* starter = NULL;
       for ( jj=0; jj<NUMB_PLANS; jj++ )
 	{
+						starter = Starters.get().actual_schedule;
+						if(!Starters.next()) //stop next loop
+								jj = NUMB_PLANS;
+                              
 	  if ( !( os_Plan = new Lisa_OsSchedule( os_Prob ) ) )
 	    {
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  os_Plan->ComputeHeadsTails( 1, 1 );
-	  
-	  // start-schedule-datas
-	  Lisa_Schedule *plan_in;
-	  if ( !( plan_in = new Lisa_Schedule() ) )
-	    {
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-	  strm >> (*plan_in);
-	  if ( os_Prob->n != plan_in->get_n() )
+
+	  if ( os_Prob->n != starter->get_n() )
 	    {
 	      G_ExceptionList.lthrow("dimension mismatch in plan and problem");
 	      exit(7);
@@ -407,7 +383,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
-	  LROrder->read( plan_in->LR );
+	  LROrder->read( starter->LR );
 	  LROrder->sort();
 	  
 	  for ( i=1; i<os_Prob->n+1; i++ )
@@ -415,7 +391,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  for ( i=1; i<os_Prob->m+1; i++ )
 	    JOPred[i] = 0;
 	  for ( i=0; i<os_Prob->n*os_Prob->m; i++ )
-	    if ( (*plan_in->LR)[LROrder->row(i)][LROrder->col(i)] != 0 )
+	    if ( (*starter->LR)[LROrder->row(i)][LROrder->col(i)] != 0 )
 	      {	    
 		os_Plan->insert(LROrder->row(i)+1,LROrder->col(i)+1,
 				JOPred[LROrder->col(i)+1],
@@ -426,9 +402,6 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  delete LROrder;
 
 	  // End of the schedule-construction
-
-	  delete plan_in;
-
 	  switch ( NGBH )
 	    {
 	    case API:   
@@ -580,67 +553,51 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  os_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nbest objective_value: " << os_Plan->GetValue() << "\n";
 	  // transfering the datas:
-	    
-	  if ( !( plan_in = new Lisa_Schedule( os_Prob->n, os_Prob->m ) ) )
+	  Lisa_Schedule* result;
+	  if ( !( result = new Lisa_Schedule( os_Prob->n, os_Prob->m ) ) )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  
-	  //os_Plan->print();
-
-	  plan_in->make_LR();
-	  os_Plan->write_LR( plan_in->LR );
+	  result->make_LR();
+	  os_Plan->write_LR( result->LR );
 	     
-	  // write the datas
-	  fplan_o << (*plan_in);
-
-	  fplan_o << "\n<OBJECTIVE>\n";
-	  fplan_o << "OBJECTIVE= " << os_Plan->GetValue() << "\n";
-	  fplan_o << "</OBJECTIVE>\n";
-
-	  delete plan_in;
+      Results.append(Lisa_ScheduleNode(result));
+      
+	  delete result;
 	  
 	  delete os_Plan;
       delete[]  MOPred;
       delete[] JOPred;
 	} // NUMB_PLANS
       delete os_Prob;
-    } // NUMB_PROBLEMS
   return OK;
 } // End of osp_iter()
 
 //**************************************************************************
 
-int jsp_iter( ifstream& strm, ofstream& fplan_o )
+int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
-  for ( ii=0; ii<NUMB_PROBLEMS; ii++ )
-    {
-      // problemdatas
-      Lisa_Values *problem_in;
-      if ( !( problem_in = new Lisa_Values() ) )
-	{  
-	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	  exit( 7 );
-	}
-      strm >> (*problem_in);
-      if ( !(problem_in->MO))
+      if ( !(Values.MO))
 	{
 	  G_ExceptionList.lthrow("you must define a MO for a job-shop-problem !");
 	  exit( 7 );
 	}
 
-      fplan_o << (*problem_in);
-      if ( !( js_Prob = new Lisa_JsProblem(problem_in) ) )
+      if ( !( js_Prob = new Lisa_JsProblem(&Values) ) )
 	{  
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
 
-      delete problem_in;
-
+      Lisa_Schedule* starter = NULL;
       for ( jj=0; jj<NUMB_PLANS; jj++ )
 	{
+						starter = Starters.get().actual_schedule;
+						if(!Starters.next()) //stop next loop
+								jj = NUMB_PLANS;
+						
 	  if ( !( js_Plan = new Lisa_JsSchedule( js_Prob ) ) )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
@@ -648,16 +605,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    }
 	  js_Plan->ComputeHeadsTails( 1, 1 );
 	  
-	  // start-schedule-datas
-	  Lisa_Schedule *plan_in;
-	  if ( !( plan_in = new Lisa_Schedule() ) )
-	    {  
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-
-	  strm >> (*plan_in);
-	  if ( js_Prob->n != plan_in->get_n() )
+	  if ( js_Prob->n != starter->get_n() )
 	    {
 	      G_ExceptionList.lthrow("dimension mismatch in plan and problem");
 	      exit(7);
@@ -676,7 +624,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
-	  LROrder->read( plan_in->LR );
+	  LROrder->read( starter->LR );
 	  LROrder->sort();
 	  
 	  for ( i=1; i<js_Prob->m+1; i++ )
@@ -686,7 +634,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    MOPred[i] = 0;
 	    
 	  for ( i=0; i<js_Prob->n*js_Prob->m; i++ )
-	    if ( (*plan_in->LR)[LROrder->row(i)][LROrder->col(i)] != 0 )
+	    if ( (*starter->LR)[LROrder->row(i)][LROrder->col(i)] != 0 )
 	      {
 		if ( (*js_Prob->MOpred)[LROrder->row(i)+1][LROrder->col(i)+1]
 		     != MOPred[LROrder->row(i)+1] )
@@ -701,8 +649,6 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      }
 	  delete LROrder;
 	  // end of schedule-construction
-	  
-	  delete plan_in;
 
 	  switch ( NGBH )
 	    {
@@ -917,36 +863,28 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  cout << "\nbest objective_value: " << js_Plan->GetValue() << "\n";
 	  
 	  // transfering the datas:
-
-	  if ( !( plan_in = new Lisa_Schedule( js_Prob->n, js_Prob->m ) ) )
+      Lisa_Schedule *result;
+	  if ( !( result = new Lisa_Schedule( js_Prob->n, js_Prob->m ) ) )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  
 	  // constructing LR
-	  plan_in->make_LR();
-	  js_Plan->write_LR( plan_in->LR );
+	  result->make_LR();
+	  js_Plan->write_LR( result->LR );
+	
+      Results.append(Lisa_ScheduleNode(result));
 	     
 	  //js_Plan->print();
 
 	  printf("\n");
-	   
-	  // writing in the file
-	  fplan_o << (*plan_in);
 
-	  fplan_o << "\n<OBJECTIVE>\n";
-	  fplan_o << "OBJECTIVE= " << js_Plan->GetValue() << "\n";
-	  fplan_o << "</OBJECTIVE>\n";
-
-	  delete plan_in;
-	    
 	  delete js_Plan;
       delete[] JOPred;
 	  delete[] MOPred;
 	} // NUMB_PLANS
-      delete js_Prob;
-    } // NUMB_PROBLEMS   
+      delete js_Prob; 
   return OK;
 } // end of jsp_iter()
 
@@ -966,24 +904,66 @@ int main(int argc, char *argv[])
       exit(7);
     }
  
-  cout << "PID= " << getpid() << endl;  
-
-  ifstream strm(argv[1]);    // this file contains the problem, schedule and 
-                             // some parameters
-  ofstream fplan_o(argv[2]); // this file returns the best computed schedule
-
-  if (!strm)
-    {
-      G_ExceptionList.lthrow("could not open file "+string(argv[1]));
-      exit(7);
-    }
-  if (!fplan_o)
-    {
-      G_ExceptionList.lthrow("could not open file "+string(argv[2]));
-      exit(1);
-    }
-  cout << "Problem " << argv[1] << "\n";
-
+ cout << "PID= " << getpid() << endl;  
+ 
+ ifstream i_strm(argv[1]);
+ ofstream o_strm(argv[2]);
+ if (!i_strm)
+ {
+   cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+   exit(1);
+ }
+ if (!o_strm)
+ {
+   cout << "ERROR: cannot find output file " << argv[1] << "." << endl;
+   exit(1);
+ }
+ i_strm.close();
+ o_strm.close();
+ 
+ LisaXmlFile::initialize();
+ LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+ 
+ Lisa_ProblemType Problem;
+ Lisa_ControlParameters Parameter;   
+ Lisa_Values Values;
+ Lisa_List<Lisa_ScheduleNode> Starters;
+ Lisa_List<Lisa_ScheduleNode> Results;
+ 
+ xmlInput.read(argv[1]);
+ LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+ 
+ if (!xmlInput || type != LisaXmlFile::SOLUTION)
+ {
+   cout << "ERROR: cannot read input , aborting program." << endl;
+   exit(1);
+ }
+ if( !(xmlInput >> Problem))
+ {
+   cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+   exit(1);
+ }
+ if( !(xmlInput >> Parameter))
+ {
+   cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+   exit(1);
+ }
+ if( !(xmlInput >> Values))
+ {
+   cout << "ERROR: cannot read Values , aborting program." << endl;
+   exit(1);
+ }
+ if( !(xmlInput >> Starters))
+ {
+   cout << "ERROR: cannot read starting schedule , aborting program." << endl;
+   exit(1);
+ }
+ if (!G_ExceptionList.empty())
+ {
+   cout << "ERROR: cannot read input , aborting program." << endl;
+   exit(1);
+ }
+			
   // start-values
   NGBH = 0;
   METHOD = 0;
@@ -999,161 +979,142 @@ int main(int argc, char *argv[])
   NUMB_STUCKS = MAXINT;
   ABORT_BOUND = -MAXLONG;
 
-  Lisa_ProblemType *prob_type;
-  if ( !( prob_type = new Lisa_ProblemType ) )
-    {
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-    }
-  strm.seekg(0);
-  strm >> (*prob_type);
-  OBJ_TYPE = prob_type->get_property(OBJECTIVE);
-  PROB_TYPE = prob_type->get_property(M_ENV);
-  //cout << "OBJ_TYPE = " << OBJ_TYPE << "\n";
 
-  Lisa_ControlParameters *my_special;
-  if ( !( my_special = new Lisa_ControlParameters ) )
-    {
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-    }
+  OBJ_TYPE = Problem.get_property(OBJECTIVE);
+  PROB_TYPE = Problem.get_property(M_ENV);
 
-  // read the special-datas
-  strm >> (*my_special);
-  if (!(my_special->defined("NGBH")))
+  if (!(Parameter.defined("NGBH")))
     { 
       G_ExceptionList.lthrow("you must define a neighbourhood in the input file");
       exit(7);
     }
-  NGBH_St = my_special->get_string( "NGBH" );
-  if (!(my_special->defined("METHOD")))
+  NGBH_St = Parameter.get_string( "NGBH" );
+  if (!(Parameter.defined("METHOD")))
     { 
       G_ExceptionList.lthrow("you must define a method in the input file");
       exit(7);
     }
-  METHOD_St = my_special->get_string( "METHOD" );
-  if ( my_special->defined("PROB") )
-    PROB = my_special->get_long( "PROB" );
+  METHOD_St = Parameter.get_string( "METHOD" );
+  if ( Parameter.defined("PROB") )
+    PROB = Parameter.get_long( "PROB" );
   if ( PROB < 0 )
     {
       G_ExceptionList.lthrow("PROB must be nonnegative");
       exit(7);
     }
-  if ( my_special->defined("MAX_STUCK") )
-    MAX_STUCK = my_special->get_long( "MAX_STUCK" );
+  if ( Parameter.defined("MAX_STUCK") )
+    MAX_STUCK = Parameter.get_long( "MAX_STUCK" );
   if ( MAX_STUCK < 1 )
     {
       G_ExceptionList.lthrow("MAX_STUCK must be positive");
       exit(7);
     } 
-  if ( my_special->defined("TABULENGTH") )
-    TABULENGTH = my_special->get_long( "TABULENGTH" );
+  if ( Parameter.defined("TABULENGTH") )
+    TABULENGTH = Parameter.get_long( "TABULENGTH" );
   if ( TABULENGTH < 1 )
     {
       G_ExceptionList.lthrow("TABULENGTH must be positive");
       exit(7);
     }
-  if ( my_special->defined("NUMB_NGHB") )
-    NUMB_NGHB = my_special->get_long( "NUMB_NGHB" );
+  if ( Parameter.defined("NUMB_NGHB") )
+    NUMB_NGHB = Parameter.get_long( "NUMB_NGHB" );
   if ( NUMB_NGHB < 1 )
     {
       G_ExceptionList.lthrow("NUMB_NGHB must be positive");
       exit(7);
     }
-  if ( my_special->defined("TYPE") )
-    TYPE_St = my_special->get_string( "TYPE" );
-  //  if ( my_special->defined("OBJ_TYPE") )
-  //  OBJ_TYPE_St = my_special->get_string( "OBJ_TYPE" );
-  if ( my_special->defined("STEPS") )
-    STEPS = my_special->get_long( "STEPS" );
+  if ( Parameter.defined("TYPE") )
+    TYPE_St = Parameter.get_string( "TYPE" );
+  //  if ( Parameter.defined("OBJ_TYPE") )
+  //  OBJ_TYPE_St = Parameter.get_string( "OBJ_TYPE" );
+  if ( Parameter.defined("STEPS") )
+    STEPS = Parameter.get_long( "STEPS" );
   if ( STEPS < 1 )
     {
       G_ExceptionList.lthrow("STEPS must be positive");
       exit(7);
     }
-  if ( my_special->defined("NUMB_PROBLEMS") )
+  if ( Parameter.defined("NUMB_PROBLEMS") )
     { 
-      NUMB_PROBLEMS = my_special->get_long( "NUMB_PROBLEMS" );
-    }
-  if ( my_special->defined("NUMB_PLANS") )
-    { 
-      NUMB_PLANS = my_special->get_long( "NUMB_PLANS" );
+      NUMB_PROBLEMS = Parameter.get_long( "NUMB_PROBLEMS" );
     }
   if ( NUMB_PROBLEMS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_PROBLEMS must be positive");
       exit(7);
     }
+    if ( Parameter.defined("NUMB_PLANS") )
+    { 
+      NUMB_PLANS = Parameter.get_long( "NUMB_PLANS" );
+    }
   if ( NUMB_PLANS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_PLANS must be positive");
       exit(7);
     }
-  if ( my_special->defined("NUMB_STUCKS") )
-    NUMB_STUCKS = my_special->get_long( "NUMB_STUCKS" );
+  if ( Parameter.defined("NUMB_STUCKS") )
+    NUMB_STUCKS = Parameter.get_long( "NUMB_STUCKS" );
   if ( NUMB_STUCKS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_STUCKS must be positive");
       exit(7);
     }
-  if ( my_special->defined("ABORT_BOUND") )
-    ABORT_BOUND = my_special->get_double( "ABORT_BOUND" );
+  if ( Parameter.defined("ABORT_BOUND") )
+    ABORT_BOUND = Parameter.get_double( "ABORT_BOUND" );
 
-  // write the special-datas in fplan_o
-  fplan_o << (*prob_type);
-  fplan_o << (*my_special);
-  delete prob_type;
-  delete my_special;
+  //set flags for algorithms
+  cout << "Neighborhood : \"" << NGBH_St << "\"" << endl;
+
 
   if ( NGBH_St     == "M1_API"           ) NGBH = API;
-  if ( NGBH_St     == "M1_SHIFT"         ) NGBH = SHIFT;
-  if ( NGBH_St     == "OSP_API"          ) NGBH = API;
-  if ( NGBH_St     == "OSP_SHIFT"        ) NGBH = SHIFT;
-  if ( NGBH_St     == "OSP_3_API"        ) NGBH = _3_API;
-  if ( NGBH_St     == "OSP_3_CR"         ) NGBH = _3_CR;
-  if ( NGBH_St     == "OSP_CR_API"       ) NGBH = CR_API;
-  if ( NGBH_St     == "OSP_BL_API"       ) NGBH = BL_API;
-  if ( NGBH_St     == "OSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
-  if ( NGBH_St     == "OSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
-  if ( NGBH_St     == "OSP_CR_TST"       ) NGBH = CR_TST;
-  if ( NGBH_St     == "JSP_API"          ) NGBH = API;
-  if ( NGBH_St     == "JSP_SWAP"         ) NGBH = SWAP;
-  if ( NGBH_St     == "JSP_SHIFT"        ) NGBH = SHIFT;
-  if ( NGBH_St     == "JSP_TRANS"        ) NGBH = TRANS;
-  if ( NGBH_St     == "JSP_CR_TRANS"     ) NGBH = CR_TRANS;
-  if ( NGBH_St     == "JSP_CR_TRANS_MIX" ) NGBH = CR_TRANS_MIX;
-  if ( NGBH_St     == "JSP_SC_TRANS"     ) NGBH = SC_TRANS;
-  if ( NGBH_St     == "JSP_3_API"        ) NGBH = _3_API;
-  if ( NGBH_St     == "JSP_3_CR"         ) NGBH = _3_CR;
-  if ( NGBH_St     == "JSP_CR_API"       ) NGBH = CR_API;
-  if ( NGBH_St     == "JSP_SC_API"       ) NGBH = SC_API;
-  if ( NGBH_St     == "JSP_BL_API"       ) NGBH = BL_API;
-  if ( NGBH_St     == "JSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
-  if ( NGBH_St     == "JSP_CR_SHIFT_MIX" ) NGBH = CR_SHIFT_MIX;
-  if ( NGBH_St     == "JSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
-  if ( NGBH_St     == "API"              ) NGBH = API;
-  if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
-  if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
-  if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
-  if ( NGBH_St     == "CR_TRANS_MIX"     ) NGBH = CR_TRANS_MIX;
-  if ( NGBH_St     == "SC_TRANS"         ) NGBH = SC_TRANS;
-  if ( NGBH_St     == "TRANS"            ) NGBH = TRANS;
-  if ( NGBH_St     == "3_API"            ) NGBH = _3_API;
-  if ( NGBH_St     == "3_CR"             ) NGBH = _3_CR;
-  if ( NGBH_St     == "CR_API"           ) NGBH = CR_API;
-  if ( NGBH_St     == "SC_API"           ) NGBH = SC_API;
-  if ( NGBH_St     == "BL_API"           ) NGBH = BL_API;
-  if ( NGBH_St     == "CR_SHIFT"         ) NGBH = CR_SHIFT;
-  if ( NGBH_St     == "CR_SHIFT_MIX"     ) NGBH = CR_SHIFT_MIX;
-  if ( NGBH_St     == "BL_SHIFT"         ) NGBH = BL_SHIFT;
-  if ( NGBH_St     == "CR_TST"           ) NGBH = CR_TST;
-  if ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
-  if ( METHOD_St   == "SimulatedAnnealing"       ) METHOD   = SA;
-  if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
-  if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
-  if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
-  if ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
-  if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
+  else if ( NGBH_St     == "M1_SHIFT"         ) NGBH = SHIFT;
+  else if ( NGBH_St     == "OSP_API"          ) NGBH = API;
+  else if ( NGBH_St     == "OSP_SHIFT"        ) NGBH = SHIFT;
+  else if ( NGBH_St     == "OSP_3_API"        ) NGBH = _3_API;
+  else if ( NGBH_St     == "OSP_3_CR"         ) NGBH = _3_CR;
+  else if ( NGBH_St     == "OSP_CR_API"       ) NGBH = CR_API;
+  else if ( NGBH_St     == "OSP_BL_API"       ) NGBH = BL_API;
+  else if ( NGBH_St     == "OSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
+  else if ( NGBH_St     == "OSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
+  else if ( NGBH_St     == "OSP_CR_TST"       ) NGBH = CR_TST;
+  else if ( NGBH_St     == "JSP_API"          ) NGBH = API;
+  else if ( NGBH_St     == "JSP_SWAP"         ) NGBH = SWAP;
+  else if ( NGBH_St     == "JSP_SHIFT"        ) NGBH = SHIFT;
+  else if ( NGBH_St     == "JSP_TRANS"        ) NGBH = TRANS;
+  else if ( NGBH_St     == "JSP_CR_TRANS"     ) NGBH = CR_TRANS;
+  else if ( NGBH_St     == "JSP_CR_TRANS_MIX" ) NGBH = CR_TRANS_MIX;
+  else if ( NGBH_St     == "JSP_SC_TRANS"     ) NGBH = SC_TRANS;
+  else if ( NGBH_St     == "JSP_3_API"        ) NGBH = _3_API;
+  else if ( NGBH_St     == "JSP_3_CR"         ) NGBH = _3_CR;
+  else if ( NGBH_St     == "JSP_CR_API"       ) NGBH = CR_API;
+  else if ( NGBH_St     == "JSP_SC_API"       ) NGBH = SC_API;
+  else if ( NGBH_St     == "JSP_BL_API"       ) NGBH = BL_API;
+  else if ( NGBH_St     == "JSP_CR_SHIFT"     ) NGBH = CR_SHIFT;
+  else if ( NGBH_St     == "JSP_CR_SHIFT_MIX" ) NGBH = CR_SHIFT_MIX;
+  else if ( NGBH_St     == "JSP_BL_SHIFT"     ) NGBH = BL_SHIFT;
+  else if ( NGBH_St     == "API"              ) NGBH = API;
+  else if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
+  else if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
+  else if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
+  else if ( NGBH_St     == "CR_TRANS_MIX"     ) NGBH = CR_TRANS_MIX;
+  else if ( NGBH_St     == "SC_TRANS"         ) NGBH = SC_TRANS;
+  else if ( NGBH_St     == "TRANS"            ) NGBH = TRANS;
+  else if ( NGBH_St     == "3_API"            ) NGBH = _3_API;
+  else if ( NGBH_St     == "3_CR"             ) NGBH = _3_CR;
+  else if ( NGBH_St     == "CR_API"           ) NGBH = CR_API;
+  else if ( NGBH_St     == "SC_API"           ) NGBH = SC_API;
+  else if ( NGBH_St     == "BL_API"           ) NGBH = BL_API;
+  else if ( NGBH_St     == "CR_SHIFT"         ) NGBH = CR_SHIFT;
+  else if ( NGBH_St     == "CR_SHIFT_MIX"     ) NGBH = CR_SHIFT_MIX;
+  else if ( NGBH_St     == "BL_SHIFT"         ) NGBH = BL_SHIFT;
+  else if ( NGBH_St     == "CR_TST"           ) NGBH = CR_TST;
+  if      ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
+  else if ( METHOD_St   == "SimulatedAnnealing"       ) METHOD   = SA;
+  else if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
+  else if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
+  else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
+  if      ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
+  else if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
 
   /*
   switch ( NGBH )
@@ -1184,51 +1145,33 @@ int main(int argc, char *argv[])
   // end of special-data-input
 
   if ( METHOD == II )
-    cout<<"parameters: "<<STEPS<<" STEPS ";
+    cout<<"parameters: "<< STEPS <<" STEPS ";
   if ( (METHOD==SA) || (METHOD==TA) || (METHOD==SA_anti) )
-    cout<<"parameters: "<<STEPS<<" STEPS "<<PROB<<" PROB "<<MAX_STUCK<<" MAX_STUCK";
+    cout<<"parameters: "<< STEPS <<" STEPS "<< PROB <<" PROB "<< MAX_STUCK <<" MAX_STUCK";
   if ( METHOD == TS )
     cout<<"parameters: "<<STEPS<<" STEPS "<<TABULENGTH<<" TABULENGTH "<<NUMB_NGHB<<" NUMB_NGHB";
 
-  // starting time:
-  //clock_t time1, time2;
-  time_t time1, time2;
-  time1 = time(&time1);
-
   // ####  SINGLE-MACHINE   ####
   if ( PROB_TYPE == ONE )
-    one_mach_iter( strm, fplan_o );
+    one_mach_iter(Values, Starters, Results);
   // ####  END OF SINGLE-MACHINE  ####
 
   // ####  OPEN-SHOP  ####
   if ( PROB_TYPE == O )
-    osp_iter( strm, fplan_o );
+    osp_iter(Values, Starters, Results);
   // ####  END OF OPEN-SHOP  ####
 
   // ####  JOB-SHOP ####
   if ( (PROB_TYPE==J) || (PROB_TYPE==F) )
-    jsp_iter( strm, fplan_o );
+    jsp_iter(Values, Starters, Results);
   // ####  END OF JOB-SHOP  ####
 
-  // end time:
-  time2 = time(&time2);
-
-  // run time:
-
-  //time2 = (time2 - time1)/CLK_TCK/10000;
-  double elapsed;
-  //elapsed = ( double( time2 - time1 ) ) / CLOCKS_PER_SEC;
-  elapsed = difftime( time2, time1 );
-  fplan_o << "<TIME>\n";
-  fplan_o << "TIME= " << elapsed << "\n";
-  fplan_o << "</TIME>\n";
-
-  my_special = new Lisa_ControlParameters;
-  int i = 1;
-  while (!(G_ExceptionList.empty()))
-    my_special->add_key("EXCEPTION"+ztos(i++), G_ExceptionList.lcatch());
-  fplan_o << (*my_special);
-  delete my_special;
+  
+  //output solution ....
+  
+  LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+  xmlOutput << Problem << Values << Parameter << Results;
+  xmlOutput.write(argv[2]);
 
   return OK;
  }
