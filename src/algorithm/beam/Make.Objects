@@ -1,6 +1,8 @@
 OBJECTS=\
-	../../../obj/beam.o \
+	../../../obj/beam_orders.o \
 	../../../obj/b_node.o \
+	../../../obj/beam_search.o \
+	../../../obj/beam.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \
