@@ -76,7 +76,8 @@ proc vTclWindow.lisa {base} {
     wm overrideredirect $base 0
     wm deiconify $base
     wm title $base $Name(Titel)
-    
+    wm protocol $base WM_DELETE_WINDOW lisa_exit
+
 # mmenf = main menu frame
     frame $base.mmenf \
 	-borderwidth 2 -height 30 -relief groove  -width 489 
@@ -764,11 +765,7 @@ proc  mw_add_motion { } {
 # exits the main program
 proc  lisa_exit { } {
     global Name
-    set flag 1
-    set flag [tk_dialog .dialog $Name(Exit) $Name(really_exit) {} 1 $Name(Yes) $Name(No) ]
-    if {$flag=="0"} {
-	TC_exit
-    }     
+    show_mess_and_choice $Name(Exit) $Name(really_exit) TC_exit
 }
 
 # activate zoom button
