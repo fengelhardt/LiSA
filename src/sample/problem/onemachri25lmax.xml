@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE solution PUBLIC "" "/home/spock/Coding/LaborPraktikum/LiSA/data/LiSA.dtd">
+<solution xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
+  <problem>
+    <alpha env="1"/>
+    <beta release_times="yes"/>
+    <gamma objective="Lmax"/>
+  </problem>
+  <values m="1" n="25">
+    <processing_times model="lisa_native">{
+ { 1 }
+ { 51 }
+ { 84 }
+ { 43 }
+ { 46 }
+ { 80 }
+ { 54 }
+ { 13 }
+ { 13 }
+ { 33 }
+ { 20 }
+ { 73 }
+ { 96 }
+ { 24 }
+ { 33 }
+ { 66 }
+ { 49 }
+ { 18 }
+ { 28 }
+ { 24 }
+ { 22 }
+ { 45 }
+ { 50 }
+ { 30 }
+ { 62 }
+}
+</processing_times>
+    <operation_set model="lisa_native">{
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+ { 1 }
+}
+</operation_set>
+    <release_times model="lisa_native">{ 0 657 0 210 294 1094 0 1957 386 1212 551 569 884 296 517 279 168 1588 962 1126 1330 390 0 2288 0 }
+</release_times>
+    <due_dates>{ 120 910 464 366 340 1201 93 2560 475 1524 764 811 1451 1220 690 581 895 1638 1313 1916 1541 466 473 2357 106 }
+</due_dates>
+  </values>
+  <schedule m="1" n="25" semiactive="yes">
+    <plan model="lisa_native">{
+ { 3 }
+ { 15 }
+ { 4 }
+ { 5 }
+ { 6 }
+ { 19 }
+ { 1 }
+ { 24 }
+ { 9 }
+ { 21 }
+ { 12 }
+ { 13 }
+ { 17 }
+ { 7 }
+ { 14 }
+ { 11 }
+ { 16 }
+ { 23 }
+ { 18 }
+ { 20 }
+ { 22 }
+ { 10 }
+ { 8 }
+ { 25 }
+ { 2 }
+}
+</plan>
+    <completion_times model="lisa_native">{
+ { 117 }
+ { 728 }
+ { 201 }
+ { 253 }
+ { 340 }
+ { 1174 }
+ { 54 }
+ { 1970 }
+ { 427 }
+ { 1245 }
+ { 571 }
+ { 644 }
+ { 980 }
+ { 364 }
+ { 677 }
+ { 538 }
+ { 777 }
+ { 1606 }
+ { 1008 }
+ { 1198 }
+ { 1352 }
+ { 472 }
+ { 414 }
+ { 2318 }
+ { 116 }
+}
+</completion_times>
+  </schedule>
+</solution>

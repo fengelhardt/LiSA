@@ -44,6 +44,7 @@ global vTcl
 
 set env(LLANGUAGE) [TC_getvar LANGUAGE]
 set glob(OLD_LISAHOME) ""
+set glob(OLD_LANGUAGE) ""
 #initialize variable ptupel_name and ptupel_number:
 global ptupel_name;
 global ptupel_number;
@@ -114,14 +115,14 @@ file mkdir proc
 
 ##########################
 # insert additional tcl-files for external algorithms
-#read_all_desc_files
+#read_all_desc_files_xml
 #source  $env(LISAHOME)/tcl/external/ext_alg.tcl
 #if { $glob(OLD_LISAHOME) != $env(LISAHOME) || $glob(OLD_LANGUAGE) != $env(LLANGUAGE) } {
     cd $env(LISAHOME)/tcl
     file mkdir external
     cd $env(LISAHOME)/tcl/external
     file delete ext_alg.tcl
-    read_all_desc_files
+    read_all_desc_files_xml
     source  $env(LISAHOME)/tcl/external/ext_alg.tcl
 #} 
 cd $env(LISAHOME)/data

@@ -32,6 +32,8 @@
 #include "tcl_c.hpp"
 #include "c_tcl.hpp"
 
+#include "../main/defaults.hpp"
+
 using namespace std;
 
 //**************************************************************************
@@ -98,7 +100,7 @@ int TC_open(ClientData /* clientData*/,
   ifile = argv[1];
     // open the file
   if (ifile=="") return TCL_OK;
-  if (read(ifile))   return  TCL_OK;
+  if (read_xml(ifile))   return  TCL_OK;
   return TCL_OK;
 }
 
@@ -111,56 +113,15 @@ int TC_open_schedule(ClientData /* clientData*/ ,
   if (argc<2) return TCL_OK; // no filename given
   ifstream fin( argv[1]);
   if (fin==NULL) { 
-    G_ExceptionList.lthrow("file:"+(string) argv[1]+" cannot be open");
+    G_ExceptionList.lthrow("file:"+(string) argv[1]+" cannot be opened");
     return TCL_OK;
   }
+		fin.close();
   while (G_ExceptionList.empty()==0) print_error();
-  int no_schedules=0;
-  string S;
-  for (;;)
-    {
-      S=""; 
-      fin >>S;
-      if (S=="") 
-	{ 
-	  break;
-	} 
-      if (S=="<SCHEDULE>") no_schedules++;
-    }
 
-  //  fin.seekg(0);
- fin.close();  
-  if (no_schedules>0) {
-    ifstream fin( argv[1]);
-    if (fin==NULL) { 
-      G_ExceptionList.lthrow("file:"+(string) argv[1]+" cannot be open");
-      return TCL_OK;
-    }
-    //    G_ScheduleList->clear();
-     while(!(G_ScheduleList->empty())) 
-	{
-          Lisa_ScheduleNode dummynode;
-          dummynode=G_ScheduleList->pop();
-          if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
-	}
-    Lisa_Schedule *mySchedule=0;
-    Lisa_ScheduleNode *myLisa_ScheduleNode;
-    int i=0;
-    for(i=1;i<=no_schedules;i++) {
-      mySchedule = new Lisa_Schedule(1,1);
-      fin >> (*mySchedule);
-      myLisa_ScheduleNode= new Lisa_ScheduleNode(mySchedule);
-      G_ScheduleList->append(*myLisa_ScheduleNode);
-       delete myLisa_ScheduleNode;
-    }
-    G_Schedule=mySchedule;
-    new_schedule();
-    if (G_ExceptionList.empty(Lisa_ExceptionList::END_OF_FILE)==0) {
-      G_ExceptionList.lcatch(Lisa_ExceptionList::END_OF_FILE);
-      G_ExceptionList.lthrow("no schedule read");
-    } else  new_schedule();
-  }
-  fin.close();  
+  if (read_schedule_xml(string(argv[1])))   return  TCL_OK;
+
+
   return TCL_OK;
 }
 
@@ -176,7 +137,7 @@ int TC_save(ClientData /* clientData */,
   sfile = argv[1];
   // save the file
   if (sfile=="") return TCL_OK;
-  if (save(sfile)) return  TCL_OK;
+  if (save_xml(sfile)) return  TCL_OK;
   return TCL_OK;
 }
 
@@ -897,15 +858,14 @@ int TC_startalg(ClientData /* clientData */,
   algo_call=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"ALGO_CALL",TCL_GLOBAL_ONLY);
   code=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"CODE",TCL_GLOBAL_ONLY);
   if (code=="external") {
-    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
-	       G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
-	       G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/" + DEFAULT_IN_FILE,
+																			G_Preferences.CONFIG_HOME+"/proc/" + DEFAULT_OUT_FILE,
+																			G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
   } else {
-    G_ExceptionList.lthrow((string)"wrong code:" + code + "in description file external or internal expected (assume external)",
-                           Lisa_ExceptionList::SYNTAX_ERROR);
-    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
-		   G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
-		   G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
+    G_ExceptionList.lthrow( (string) "wrong code:" + code + "in description file external or internal expected (assume external)" ,Lisa_ExceptionList::SYNTAX_ERROR);
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/" + DEFAULT_IN_FILE,
+																			G_Preferences.CONFIG_HOME+"/proc/" + DEFAULT_IN_FILE,
+																			G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
   } 
 
   return TCL_OK;
@@ -913,107 +873,64 @@ int TC_startalg(ClientData /* clientData */,
 
 //**************************************************************************
 
-int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
-                         int /*argc*/, TCL_HACK_CHAR *argv[]){
+int TC_problem_reduction(ClientData, // clientData
+Tcl_Interp *interp,
+int, //argc 
+TCL_HACK_CHAR *argv[]){
   
-  Lisa_ProblemType myProblemType;
-  
-  const string type=argv[1];
-  const string filename=argv[2];
+  std::vector<Lisa_ProblemType> Solved;
   
   // set return value to false
   sprintf(interp->result, "%d",0);
+  //nothing appropriate found ???
   
-  ifstream fin(filename.c_str());
-
-  if (fin==NULL) {
-    G_ExceptionList.lthrow("cannot open file: "+filename+"\n",
-                           Lisa_ExceptionList::END_OF_FILE);
+  //if(get_problemList(argv[2],argv[1],Solved))
+  //return TCL_OK;
+  
+  if(get_problemList_xml(argv[2],argv[1],Solved))
     return TCL_OK;
-  }
-    
-  string S;
-  int number_of_solv_probl=0;
   
-  string starttag,endtag;
   
-  if(type=="heuristic"){
-    starttag="<HEURISTIC>";
-    endtag="</HEURISTIC>";
-  }else if(type=="exact"){
-    starttag="<EXACT>";
-    endtag="</EXACT>";
-  }else{
-    return TCL_OK;
-  }
-  
-  // parse files for problem entries
-  for (;;){
+  unsigned num_of_solv_probl = Solved.size();
+  for (unsigned j=0;j<num_of_solv_probl;j++)
+  {
     
-    S=""; 
-    fin >> S;
-    
-    if (S==""){ 
-      G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",
-                             Lisa_ExceptionList::END_OF_FILE);
+    // check if problemtypes match exactly
+    if ( G_ProblemType.output_problem() == Solved[j].output_problem())
+    {
+      sprintf(interp->result, "%d",1);
       return TCL_OK;
-    }else if(S=="<PROBLEMTYPE>"){
-      number_of_solv_probl++;
-    }else if(S==starttag){
-      number_of_solv_probl=0;
-    }else if(S==endtag){
-      break;
-    }
-  }
-  
-  // none found
-  if (number_of_solv_probl==0){
-    return TCL_OK;
-  }else{  
-    //no more test by reduction, alg problem type and current problem type 
-    //have to match exactly
-  
-    //rewind file
-    fin.seekg(0);
-    for (;;){
-      S=""; 
-      fin >>S;
-      if (S==starttag) break;
-    }
-    
-    // now read problemtupel
-    for (int j=0;j<number_of_solv_probl;j++) {
-     fin >> myProblemType;        
-      
-      // check if problemtypes match exactly
-      if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
-        sprintf(interp->result, "%d",1);
-        
       // reduction when algo provides O, current problem is O2 and the like   
-      }else if(G_ProblemType.output_alpha().find(myProblemType.output_alpha()) != string::npos &&
-               G_ProblemType.output_beta()== myProblemType.output_beta() &&
-               G_ProblemType.output_gamma()== myProblemType.output_gamma()){
-         sprintf(interp->result, "%d",1);
-          
-      }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
-               G_ProblemType.output_gamma()==myProblemType.output_gamma()){
-               
+    }
+    else if(G_ProblemType.output_alpha().find(Solved[j].output_alpha()) != string::npos &&
+      G_ProblemType.output_beta()== Solved[j].output_beta() &&
+    G_ProblemType.output_gamma()== Solved[j].output_gamma())
+    {
+      sprintf(interp->result, "%d",1);
+      return TCL_OK;
+    }
+    else if(G_ProblemType.output_alpha()==Solved[j].output_alpha() && 
+      G_ProblemType.output_gamma()==Solved[j].output_gamma())
+      {
+        
         // see if there are unit processing times to handle
-        if ((myProblemType.output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
-            (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")){
-          sprintf(interp->result, "%d",1);
-        }
-
-        // see if there are constant processing times to handle : p_ij=p
-        if (( myProblemType.output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
-           (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=p")  ){
-          sprintf(interp->result, "%d",1);
-        }              
+        if ((Solved[j].output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
+          (G_ProblemType.output_beta() == Solved[j].output_beta()+"; p_ij=1"))
+          {
+            sprintf(interp->result, "%d",1);
+            return TCL_OK;
+          }
+          
+          // see if there are constant processing times to handle : p_ij=p
+          if (( Solved[j].output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
+            (G_ProblemType.output_beta() == Solved[j].output_beta()+"; p_ij=p")  )
+            {
+              sprintf(interp->result, "%d",1);
+              return TCL_OK;
+            }              
       }
       
-    }      
-  }
-
+  }  
   return TCL_OK; 
 }
 
@@ -1056,17 +973,21 @@ int TC_exclude(ClientData /* clientData */, Tcl_Interp */*interp*/,
 //**************************************************************************
 
 /// save Lisa_Preferences in default.lsa
-int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
-  string str=G_Preferences.CONFIG_HOME+"/default.lsa";
-  ofstream fout(str.c_str());
-  if (fout==NULL) {
-    G_ExceptionList.lthrow("cannot write file: "+str+"\n",
-                           Lisa_ExceptionList::END_OF_FILE);
+int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) 
+{
+  string str=G_Preferences.CONFIG_HOME+"/" + DEFAULT_SETTINGS_FILE;
+  
+  LisaXmlFile out(LisaXmlFile::PREFERENCES);
+  out << G_Preferences;
+  if(!out || !out.write(str))
+  {
+    G_ExceptionList.lthrow("cannot write file: "+str+"\n",Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
-  fout << G_Preferences;
- return TCL_OK; 
+  
+  return TCL_OK; 
 }
+
 
 //**************************************************************************
 

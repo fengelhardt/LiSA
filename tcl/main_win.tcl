@@ -58,7 +58,7 @@ proc vTclWindow.lisa {base} {
     set mw(mwout) {Gantt Diagram}    
 # you have to use $Name() here!
     set mw(filetypes) {
-	{{LiSA Files}       {.lsa}        }  
+	{{LiSA Files}       {.xml}        }  
 	{{All Files}        *             }
     }
 # define appearance of the LiSA main window:
@@ -93,13 +93,13 @@ proc vTclWindow.lisa {base} {
         -label "$Name(New)" 
     $base.mmenf.fileb.m add separator
     $base.mmenf.fileb.m add command \
-	-command {TC_open [tk_getOpenFile -defaultextension .lsa \
+	-command {TC_open [tk_getOpenFile -defaultextension .xml \
 			       -filetypes $mw(filetypes) \
 			       -title $Name(Read_File) ] } \
 	-label "$Name(Open)" 
 
     $base.mmenf.fileb.m add command \
-        -command {TC_save [tk_getSaveFile  -defaultextension .lsa \
+        -command {TC_save [tk_getSaveFile  -defaultextension .xml \
 			       -filetypes $mw(filetypes) \
 			       -title $Name(Save_File)]} \
 	-label "$Name(Save_as)" 
@@ -567,7 +567,7 @@ proc problem_exist { } {
     foreach algname $lsa_status(list_of_external_alg) {
 	if { [TC_problem_reduction \
 		  exact \
-		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.alg"]==1 } {
+		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.exakt_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	    .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
@@ -587,7 +587,7 @@ proc problem_exist { } {
     foreach algname $lsa_status(list_of_external_alg) {
 	if { [TC_problem_reduction \
 		  heuristic \
-		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.alg"]==1 } {
+		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.heur_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	     .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \

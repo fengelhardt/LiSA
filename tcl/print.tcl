@@ -213,7 +213,7 @@ proc print_canvas { } {
 	    {{All Files}        *             }
 	}
 	.lisa.frame_for_all_canvas.fra32.cpd34.03 postscript \
-	    -file [tk_getSaveFile  -defaultextension .lsa \
+	    -file [tk_getSaveFile  -defaultextension .xml \
 		       -filetypes  { { {ps} {.ps} } } \
 		       -title $Name(Save_File)] \
 	    -colormode $prnt(COLOR) -height $prnt(HEIGHT) -width $prnt(WIDTH) \

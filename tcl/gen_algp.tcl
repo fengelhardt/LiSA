@@ -314,6 +314,52 @@ proc $algo_name\_set \{ menu value \} \{
 	close $output_file_id
     } else { puts "file: $description_file not exists" }
 }
+proc {read_all_desc_files_xml} { } {
+    global env
+    global lsa_status
+    set lsa_status(list_of_external_alg) ""
+    set descr_dir "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)"    
+    set source_dir "$env(LISAHOME)/tcl/external"
+				set bin_dir "$env(LISAHOME)/bin"
+    cd $env(LISAHOME)/tcl
+    file mkdir external
+    cd $descr_dir
+    set filelist ""
+
+    catch {set filelist [glob "*.xml" ] }
+    set filename "" 
+    set newtime ""
+    set newesttime ""
+
+    foreach filename $filelist {
+								set newtime [file mtime $filename]
+								if { $newesttime<$newtime } { set newesttime $newtime }
+								set filename [file rootname $filename]
+								lappend lsa_status(list_of_external_alg) $filename
+    }
+    if { [file exists $source_dir/ext_alg.tcl] } {
+								if { $newesttime < [file mtime $source_dir/ext_alg.tcl] } {
+												return
+								}
+    }
+				
+    file delete "$source_dir/*.tcl"
+    set ext_alg [open "$source_dir/ext_alg.tcl" "w"]
+				
+				foreach filename $filelist {
+								set filename [file rootname $filename]
+								catch {exec $bin_dir/xml2tcl -s -N $filename $descr_dir/$filename.xml $source_dir/$filename.tcl}
+								puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$filename.tcl\""
+								set ptst_filename "$filename\_ptst"
+								catch {exec $bin_dir/xml2tcl -P -s -N $filename $descr_dir/$filename.xml $source_dir/$ptst_filename.tcl}
+								puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$ptst_filename.tcl\""
+    }
+    puts $ext_alg "set lsa_status(OLD_LISAHOME) $env(LISAHOME)"
+    puts $ext_alg "set lsa_status(OLD_LANGUAGE) $env(LLANGUAGE)"
+				puts $ext_alg "set glob(OLD_LISAHOME) $env(LISAHOME)"
+    puts $ext_alg "set glob(OLD_LANGUAGE) $env(LLANGUAGE)"
+    close $ext_alg
+}
 
 proc {read_all_desc_files} { } {
     global env

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE solution PUBLIC "" "/home/spock/Coding/LaborPraktikum/LiSA/data/LiSA.dtd">
+<solution xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
+  <problem>
+    <alpha env="O"/>
+    <beta/>
+    <gamma objective="Sum_Ci"/>
+  </problem>
+  <values m="3" n="3">
+    <processing_times model="lisa_native">{
+ { 1 1 1 }
+ { 1 2 1 }
+ { 1 2 2 }
+}
+</processing_times>
+    <operation_set model="lisa_native">{
+ { 1 1 1 }
+ { 1 1 1 }
+ { 1 1 1 }
+}
+</operation_set>
+  </values>
+  <schedule m="3" n="3" semiactive="yes">
+    <plan model="lisa_native">{
+ { 2 1 3 }
+ { 1 2 4 }
+ { 3 4 1 }
+}
+</plan>
+    <completion_times model="lisa_native">{
+ { 2 1 3 }
+ { 1 3 4 }
+ { 3 5 2 }
+}
+</completion_times>
+  </schedule>
+</solution>
