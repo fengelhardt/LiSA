@@ -228,6 +228,8 @@
       <item name="DIAGONAL2"/>
       <item name="RANDOM"/>
       <item name="LPT"/>
+						<item name="ECT"/>
+						<item name="SPT"/>
     </choice>
     <choice name="INS_METHOD" caption="Choice method">
       <item name="INSERT1"/>

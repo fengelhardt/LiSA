@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <limits>
 
 #include "../../xml/LisaXmlFile.hpp"
 
@@ -25,7 +26,9 @@ enum InsertionOrder{
   lpt,
   rndm,
   line_by_line,
-  diagonal
+  diagonal,
+		spt,
+		ect
 };
 
 enum InsertionMethod {
@@ -33,10 +36,16 @@ enum InsertionMethod {
   insert2
 };
 
+//this is not working due to the wierd sorting of Lisa_Order (what is a bug in my eyes)
+//static const double DOUBLE_INF = numeric_limits<double>::infinity();
+static const double DOUBLE_INF = 10000000.;
+
 CostFunc costFunc = CObjective;
 int myproblemtype = O;
 //Lisa_MO *myMO;
 TIMETYP objective;
+
+Lisa_Order* makeOrder(InsertionOrder, int& ops, Lisa_OsProblem*);
 
 B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 
@@ -143,10 +152,6 @@ int main(int argc, char *argv[]){
 																																																			Values.get_m());
   out_schedule->make_LR();
    
-  int l = Values.get_n() * Values.get_m();
-  
-  Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
-  
   //which order was selected
   InsertionOrder iord = lpt;
   if (Parameter.defined("INS_ORDER")) {
@@ -154,7 +159,11 @@ int main(int argc, char *argv[]){
     if (Parameter.get_string("INS_ORDER")=="RANDOM") iord = rndm;
     if (Parameter.get_string("INS_ORDER")=="MACHINEWISE") iord = line_by_line;
     if (Parameter.get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
+				if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
+				if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
   }
+
+
   //which choice method was selected
   if (Parameter.defined("INS_METHOD") && (Parameter.get_string("INS_METHOD")=="INSERT2") )
     insertionMethod = insert2;
@@ -167,10 +176,7 @@ int main(int argc, char *argv[]){
   if (Parameter.defined("K_BRANCHES")) {
     beam_width = Parameter.get_long("K_BRANCHES");
   }
-  //use system time for independent random numbers
-  //this is not reversable
-  long seed = (long)time(NULL);
-  
+
   TIMETYP x_bound = 0;
   TIMETYP y_bound = 0;
   TIMETYP r = 0;
@@ -195,24 +201,19 @@ int main(int argc, char *argv[]){
 
   cout << "OBJECTIVE= "<< x_bound << endl; 
 		
-  //create the insertion order
-  for (int i=0; i < os_problem->n; i++)
-    for (int j=0; j < os_problem->m; j++) {
-      //do nothing for non-existing operations
-      if (! (*os_problem->sij)[i+1][j+1]) continue;
-      if (iord == lpt) 
-								order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
-      else if (iord == diagonal)
-								order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
-      else if (iord == line_by_line)
-								order->read_one_key( i, j, j * os_problem->n + i);
-      else 
-								order->read_one_key( i, j, lisa_random(1, 24213, &seed));
-    }
-    order->sort();
-    
-    B_Node * res = beam_search(order, l, os_problem);
-    
+		int l = 0;
+  
+  Lisa_Order *order = makeOrder(iord,l,os_problem);
+  
+		/*
+		//output order
+		cout << "Order : " << Parameter.get_string("INS_ORDER") << endl;
+		for(int i = 0; i < l; i++)
+		cout << "[" << order->row(i) << "," << order->col(i) << "]" << endl;
+		*/
+
+		B_Node * res = beam_search(order, l, os_problem);
+  
     delete order;
     
     res->write_LR(out_schedule->LR);
@@ -336,3 +337,93 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
   return ret;
 }
 
+Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem);
+
+Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem){
+		if(iord == ect)
+				return makeECT(ops,os_problem);
+		Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
+		int l = os_problem->n * os_problem->m;
+		//use system time for independent random numbers
+  //this is not reversable
+  long seed = (long)time(NULL);
+  
+		//create the insertion order
+  for (int i=0; i < os_problem->n; i++)
+    for (int j=0; j < os_problem->m; j++) {
+      //do nothing for non-existing operations
+      if (! (*os_problem->sij)[i+1][j+1]) 
+								{
+										//order sorts non-decreasing
+										//non-existing ops get maximum key : +infinity;
+										l--;
+										order->read_one_key( i, j, DOUBLE_INF);
+								}
+      if (iord == lpt) 
+								order->read_one_key( i, j, -(*(os_problem->time))[i+1][j+1]);
+						else if (iord == spt) 
+								order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
+      else if (iord == diagonal)
+								order->read_one_key( i, j, (i - j + MAX(os_problem->n,os_problem->m)) % MIN(os_problem->n,os_problem->m));
+      else if (iord == line_by_line)
+								order->read_one_key( i, j, j * os_problem->n + i);
+      else 
+								order->read_one_key( i, j, lisa_random(1, 24213, &seed));
+    }
+		order->sort();
+		ops = l;
+		return order;
+}
+
+Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem){
+		int n = os_problem->n, m = os_problem->m;
+		int l = n*m;
+		Lisa_Order *order = new Lisa_Order(n,m);
+		Lisa_Order *ECT = new Lisa_Order(n,m);
+		double *compl_times = new double[l];
+		//initialize order and times
+		for(int i = 0; i< n; i++)
+				for(int j = 0; j < m; j++)
+						{
+								if (! (*os_problem->sij)[i+1][j+1])
+										{
+												l--;
+												compl_times[i + j*m] = DOUBLE_INF;
+												order->read_one_key(i,j,DOUBLE_INF);
+										}
+								else{
+										if(os_problem->ri)
+												compl_times[i + j*m] = (*os_problem->ri)[i+1] + (*os_problem->time)[i+1][j+1];
+										else
+												compl_times[i + j*m] = (*os_problem->time)[i+1][j+1];
+								}
+								ECT->read_one_key(i,j,compl_times[i + j*m]);
+						}
+		ECT->sort();
+		for(int op = 0; op < l; op++)
+				{
+						//next operation found - insert in final order
+						int i = ECT->row(0), j = ECT->col(0);
+						order->read_one_key(i,j,op);
+						//mark current op as processed
+						compl_times[i + j*m] = -1.0;
+						//update completion times on machine j
+						for(int t = 0; t < n; t++)
+								{
+										//put processed to the end
+										if(compl_times[t + j*m] < 0.0)
+												ECT->read_one_key(i,j,DOUBLE_INF);
+										//existing ops on machine j finish later now
+										else if ((*os_problem->sij)[i+1][j+1]){
+												compl_times[t + j*m] += (*os_problem->time)[i+1][j+1];
+												ECT->read_one_key(t,j,compl_times[t + j*m]);
+										}
+								}
+						ECT->sort();
+				}
+		delete[] compl_times;
+		delete ECT;
+		ops = l;
+		order->sort();
+		return order;
+}
