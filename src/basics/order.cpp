@@ -106,23 +106,22 @@ void Lisa_Order::read(Lisa_Vector<float> * ve)
 
 //**************************************************************************  
 
-void  Lisa_Order::sort()
- {
-    int i,j, vi;
-    double v;
-   
-    (*key)[anz]=100000000.; 
-    for (i=anz-2; i>=0 ; i--)
-       {
-         vi=(*index)[i]; v=(*key)[vi]; j=i;
-         while ((*key)[(*index)[j+1]]<v)
-              {
-                (*index)[j]=(*index)[j+1];
-                j++;
-              }
-         (*index)[j]=vi;
-       }
- }
+void  Lisa_Order::sort(){
+
+  for(int i=anz-2; i>=0; i--){
+    
+    const int vi=(*index)[i];
+    const double v=(*key)[vi];
+    int j=i;
+    
+    while ((j+1)<anz && (*key)[(*index)[j+1]]<v){
+      (*index)[j]=(*index)[j+1];
+      j++;
+    }
+    
+    (*index)[j]=vi;
+  }
+}
 
 //**************************************************************************  
    

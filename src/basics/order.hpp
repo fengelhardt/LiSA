@@ -38,7 +38,10 @@ public:
   Lisa_Order(int n, int m);
   /// destructor
   ~Lisa_Order();
- 
+  
+  /// set all keys to value of k
+  void inline init_keys(const double k){ key->fill(k); }
+  
   //@{    
   /// let order read the keys as a matrix
   void read(Lisa_Matrix<int>* keys);
