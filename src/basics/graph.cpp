@@ -788,14 +788,11 @@ int Lisa_MatrixListGraph::number_of_succ(const int knot){
   }
 #endif 
 
-  int succ_count=0;
-    
-  int pointer = knot;
+  int succ_count=0,old_knot=knot,next_knot;
   
-
   for(;;){
-    int old_knot=pointer;
-    int next_knot=(*matrix)[knot][old_knot].x;
+    
+    next_knot=(*matrix)[knot][old_knot].x;
     
     if(next_knot==size+1){
       //START OF AN EDGE LIST
@@ -811,11 +808,10 @@ int Lisa_MatrixListGraph::number_of_succ(const int knot){
     if(next_knot==size+1){
       break;
     }else{
-      pointer=next_knot;
+      old_knot=next_knot;
       succ_count++;
     }
-    
-    
+     
   }
   
   return succ_count;
@@ -833,10 +829,32 @@ int Lisa_MatrixListGraph::number_of_pred(const int knot){
   }
 #endif
   
-  int pred_count=0;
-  init_pred_pointer(knot);
-  while(get_next_predeccessor(knot)<=size) pred_count++;
+  int pred_count=0,old_knot=knot,next_knot;
   
+  for(;;){
+
+    next_knot=abs((*matrix)[knot][old_knot].x);
+    
+    if(next_knot==size+1){
+      //START OF AN EDGE LIST
+      if(old_knot==knot){
+        next_knot=abs((*matrix)[0][knot].x);
+      }else{ //END OF AN EDGE LIST
+        if(old_knot==(*matrix)[knot][knot].y){
+          next_knot=abs((*matrix)[0][knot].x);
+        }
+      }
+    }
+    
+    if(next_knot==size+1){
+      break;
+    }else{
+      old_knot=next_knot;
+      pred_count++;
+    }
+    
+  }
+
   return pred_count;
 }
 
