@@ -33,7 +33,7 @@ if test ! -f "${LISACONFIG}/default.xml"; then
 # setting the LiSA config path
 
 export LISACONFIG
-
+export LISA_DTD_PATH="${LISAHOME}/data"
 
 # starting LiSA
 

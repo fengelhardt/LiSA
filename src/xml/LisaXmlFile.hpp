@@ -237,10 +237,10 @@ class LisaXmlFile {
   DOC_TYPE getDocumentType(){return type;}
 
   /** If you use validation it sets the path to find the internal DTD.
-      @param TOP_PROGRAM_PATH LiSA's root directory
+      @param DTD_PATH Path to LiSA's dtd
   */
   /// Class initializer.
-  static void initialize(std::string TOP_PROGRAM_PATH = "");
+  static void initialize(std::string DTD_PATH = "");
 		
   /// Flag for validation of a document (both after reading, and before writing)
   static bool validate;
@@ -289,8 +289,8 @@ class LisaXmlFile {
   /// Encoding (using latin-1, i.e. western-europe character set)
   static const std::string ENCODING;
 		
-  /// LiSA's root directory (to locate the DTD)
-  static std::string TOP_PROGRAM_PATH;
+  /// Path to locate the DTD
+  static std::string DTD_PATH;
 
   /// Document type
   DOC_TYPE type;

@@ -69,9 +69,10 @@ int main(int argc, char *argv[]) {
   //  G_ExceptionList.set_output_to_cerr();
 
   Pref.close();
-  std::string home = getenv("LISAHOME");
+		char *dtd_env = getenv("LISA_DTD_PATH");
+  std::string dtd_path = (dtd_env)? dtd_env : "";
 
-  LisaXmlFile::initialize(home);
+  LisaXmlFile::initialize(dtd_path);
   LisaXmlFile* conf = new LisaXmlFile();
   if(!conf->read(argv[1]) || !(*conf >> G_Preferences))
   {

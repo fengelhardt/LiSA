@@ -33,6 +33,11 @@ using namespace std;
 
 using namespace std;
 
+#ifndef WINDOWS
+const std::string PATH_SEP = "/";
+#else
+const std::string PATH_SEP = "\\";
+#endif
 
 //static member initialization
 
@@ -45,7 +50,7 @@ const std::string LisaXmlFile::NAMESPACE_PREFIX = "LiSA";
 
 const std::string LisaXmlFile::ENCODING = "ISO-8859-1";
 
-std::string LisaXmlFile::TOP_PROGRAM_PATH = "";
+std::string LisaXmlFile::DTD_PATH = "";
 
 map< pair<int,int> , pair< string, string> > LisaXmlFile::WriteMap;
 map< pair<string,string> , pair<int, int> >  LisaXmlFile::ReadMap;
@@ -58,14 +63,18 @@ xmlDtdPtr LisaXmlFile::DtdPtr = NULL;
 std::string LisaXmlFile::dtd_file = "";
 
 
-void LisaXmlFile::initialize(std::string prog_path){
-		if(prog_path.empty())
-				TOP_PROGRAM_PATH = "..";
+void LisaXmlFile::initialize(std::string dtd_path){
+		DTD_PATH = "";
+		if(dtd_path.empty()){
+				//determine dtd_path from environment variable "LISA_DTD_PATH"
+				char* dtd_env = getenv("LISA_DTD_PATH");
+				DTD_PATH = (dtd_env) ? (dtd_env + PATH_SEP) : "";
+		}
 		else
-          TOP_PROGRAM_PATH = prog_path;
+				DTD_PATH = dtd_path + PATH_SEP;
 		//test for dtd file path
-		string file = 	TOP_PROGRAM_PATH;
-		file += "/data/" + DTD_SYSTEM_PHRASE;
+				
+		string file = 	DTD_PATH + DTD_SYSTEM_PHRASE;
 		if(DtdPtr)
 				xmlFreeDtd(DtdPtr);
 		DtdPtr = xmlParseDTD( (const xmlChar*) DTD_EXTERN_PHRASE.c_str(),
