@@ -4,9 +4,36 @@
  */ 
 
 #include <stdlib.h>
-#include "gen_ptst.hpp"
+
+#include <fstream>
+#include <iomanip> 
+ 
+#include "../../basics/matrix.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/ptype.hpp"
+#include "../../scheduling/schedule.hpp"
+#include "../../lisa/lvalues.hpp"
+#include "../../lisa/ctrlpara.hpp"
 
 using namespace std;
+
+//**************************************************************************
+
+const int MAXINT  = 214748000;
+const int MAXLONG = 214748000;
+
+// definition of parameters for the file-controlling
+// following parameters are possible:
+TIMETYP OBJ_VALUE, BEST_OBJECTIVE;
+
+int n;  // number of jobs
+int i, j, k;
+int count, succ;
+int numb_fix_l, numb_fix_d, numb_fix_s, numb_var;
+int no_objective;
+std::string S;
+std::string CONFIG_HOME_St, LISA_HOME_St, FILE_St;
+std::string DESCRIPTION, CALL;
 
 //**************************************************************************
 
