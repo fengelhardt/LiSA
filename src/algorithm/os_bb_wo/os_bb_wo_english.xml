@@ -10,12 +10,13 @@
   </exact>
   <alg_controls>
     <choice name="HEURISTIC" caption="Heuristic">
+      <!-- these heuristics do not work for non partial operation sets 
       <item name="MIN_MATCHING"/>
       <item name="MAX_MATCHING"/>
       <item name="MIN_BOTTLE_MATCHING"/>
       <item name="MAX_BOTTLE_MATCHING"/>      
       <item name="MIN_BOTTLE_MATCHING_VAR"/>
-      <item name="MAX_BOTTLE_MATCHING_VAR"/>
+      <item name="MAX_BOTTLE_MATCHING_VAR"/> -->
       <item name="LB_PREC_RULE"/>
       <item name="LB_PREC_RULE_VAR"/>
     </choice>
