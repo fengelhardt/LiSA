@@ -240,7 +240,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
 
 bool Shifting_Bottleneck::transitive_hull(Lisa_Graph* source,Lisa_Graph* target)
 {  
-  const int end = source->get_knots()+1;
+  const int end = source->get_vertices()+1;
   
   Lisa_Vector<int> queue(end);
   Lisa_Vector<bool> done(end);

@@ -15,7 +15,7 @@ public:
 
   /// Removes all ARC's and EDGES from the graph.
   static inline void clear(Lisa_Graph* graph){
-    const int vert = graph->get_knots();
+    const int vert = graph->get_vertices();
     for (int i=1;i<=vert;i++){
       graph->remove_all_con(i);
     } 
@@ -23,7 +23,7 @@ public:
    
   /// Replaces each ARC with an EDGE.
   static inline void build_semigraph(Lisa_Graph* graph){
-    const int vert = graph->get_knots();
+    const int vert = graph->get_vertices();
     int c;
     
     for (int i=1;i<=vert;i++){
@@ -42,7 +42,7 @@ public:
       The targetgraph is supposed to have the same number of vertice as the 
       inputgraph, but no edges or arcs at all.*/ 
   static inline void build_compgraph(Lisa_Graph* source,Lisa_Graph* target){
-    const int vert = source->get_knots();
+    const int vert = source->get_vertices();
     
     Lisa_Vector<int> queue(vert+1);
     Lisa_Vector<bool> done(vert+1);
@@ -86,7 +86,7 @@ public:
       This Method however does it the other way around, so that i is 
       the position while (*knot_sequence)[i] contains the vertex. */
   static inline bool topsort(Lisa_Graph* graph,Lisa_Vector<int>* knot_sequence){
-    const int vert = graph->get_knots();
+    const int vert = graph->get_vertices();
     
     Lisa_Vector<int> sort(vert);
     const bool done = graph->topsort(&sort);
@@ -104,7 +104,7 @@ public:
       have the same number of vertices and those are fixed. 
       This method does NOT test if the graphs are isomorph. */
   static inline bool smaller(Lisa_Graph* first,Lisa_Graph* second){
-    const int vert = first->get_knots();
+    const int vert = first->get_vertices();
     int fc,sc;
     bool missing=0;
     
@@ -128,7 +128,7 @@ public:
       graph's need to have the same number of vertices and they are 
       fixed. This method does NOT test if the graphs are isomorph. */
   static inline bool equal(Lisa_Graph* first,Lisa_Graph* second){
-    const int vert = first->get_knots();
+    const int vert = first->get_vertices();
     
     for (int i=1;i<=vert;i++){
       for (int j=i+1;j<=vert;j++){

@@ -10,7 +10,7 @@ using namespace std;
 //**************************************************************************
 
 Lisa_IrreducibilityTest::Lisa_IrreducibilityTest(Lisa_Graph* disjkt_in){
-  vert = disjkt_in->get_knots();
+  vert = disjkt_in->get_vertices();
 
   disjkt = new Lisa_Graph(*disjkt_in);
 

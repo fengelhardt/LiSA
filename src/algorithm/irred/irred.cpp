@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
   
   if (!G_ExceptionList.empty()) exit(1);
  
-  int v = (*convert->get_disjkt()).get_knots();
+  int v = (*convert->get_disjkt()).get_vertices();
   Lisa_Graph pg(v);
   convert->plan2graph(my_schedule.LR,&pg);
   

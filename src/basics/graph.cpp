@@ -10,20 +10,6 @@ using namespace std;
 
 //**************************************************************************
 
-//Spalte 0 :
-//x=Anfang der succ-Liste
-//y=Anfang ist Ende der succ-Liste 
-
-//Zeile 0 :
-//x=Anfang der pred-Liste
-//y=Anfang ist Ende der pred-Liste 
-
-//matrix [i][j] i,j>0
-//x Zeiger in Vorwaertsrichtung
-//y Zeiger in Rueckwaertsrichtung 
-
-//**************************************************************************
-
 Lisa_Graph::~Lisa_Graph()
 {
   delete matrix;
@@ -45,7 +31,7 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph)
 {
   matrix=0;
   succ_pred_pointer=0;
-  init(othergraph.get_knots());
+  init(othergraph.get_vertices());
   
   for(int i=0; i<n+1; i++){
     for(int j=0; j<n+1; j++){
@@ -61,7 +47,7 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
 {
   matrix=0;
   succ_pred_pointer=0;
-  init(othergraph->get_knots());
+  init(othergraph->get_vertices());
   
   for(int i=0; i<n+1; i++){
     for(int j=0; j<n+1; j++){
@@ -69,13 +55,6 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph* othergraph)
       (*matrix)[i][j].y=(*(othergraph->matrix))[i][j].y;
     }
   }
-}
-
-//**************************************************************************
-
-int Lisa_Graph::get_knots() const
-{
-  return n;
 }
 
 //**************************************************************************
@@ -750,7 +729,7 @@ bool Lisa_Graph::init_succ_pointer(int knot)
 const Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other) 
 {
 
-  if (n!=other.get_knots()){
+  if (n!=other.get_vertices()){
     G_ExceptionList.lthrow("wrong format argument to graph.operator=");
     return *this;
   } 
