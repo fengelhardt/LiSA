@@ -6,30 +6,40 @@
 #include <fstream>
 
 #include "../main/global.hpp"
+
+
+#include "../lisa/ptype.hpp"
+#include "../lisa/ctrlpara.hpp"
+#include "../lisa/lvalues.hpp"
+#include "../scheduling/schedule.hpp"
+
+#include "../main/file_io.hpp"
+
 #include "../misc/except.hpp"
+
+
 #include "alg_call.hpp"
 
 using namespace std;
 
 //**************************************************************************
 
-int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, string output_file, string result_file,
+int start_ext_algo(Tcl_Interp *interp,
+         string name_of_algo,
+         string algo_call,
+         string output_file,
+         string result_file,
 	     Lisa_Preferences & G_Preferences,
 	     Lisa_ProblemType & G_ProblemType,
 	     Lisa_ControlParameters & parameter,
-	     Lisa_Schedule & G_Schedule, Lisa_Values & G_Values) {
+	     Lisa_Schedule & G_Schedule,
+         Lisa_Values & G_Values) {
 
   string str="",str2="";
   
   // write algorithm input
-  ofstream fout(output_file.c_str());
-  if(!fout) G_ExceptionList.lthrow("Could not open '"+(string) output_file.c_str()+"' for writing",
-                                   Lisa_ExceptionList::FILE_NOT_FOUND);
-  fout << G_ProblemType;
-  fout << parameter;
-  fout << G_Values;
-  fout << G_Schedule;
-  fout.close();
+  write_alg_call_xml(output_file,G_ProblemType,parameter, G_Schedule, G_Values);
+	
   
   //clean algorithm output file
   ofstream fin(result_file.c_str());

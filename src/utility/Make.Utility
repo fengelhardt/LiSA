@@ -58,7 +58,6 @@ install:
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/utility/$(PROGRAMNAME).html
 	mkdir -p $(DOCPATH)/lisa/german/utility
 	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/utility/$(PROGRAMNAME).html
-    
 # ------------------------------------------------------------------------------
 
 uninstall:

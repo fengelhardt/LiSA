@@ -1,6 +1,6 @@
 CXXSOURCES=\
 	fpool.cpp \
-     fp_set.cpp \
+    fp_set.cpp \
 	fp_vect.cpp \
 	nb_fp.cpp \
 	../../algorithm/nb_iter/iterate.cpp \
@@ -10,5 +10,5 @@ CXXSOURCES=\
 	../../main/global.cpp \
 	../../misc/except.cpp \
 	../../misc/int2str.cpp \
-     ../../algorithm/nb_iter/tabu.cpp
+    ../../algorithm/nb_iter/tabu.cpp
 
