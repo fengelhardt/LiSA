@@ -126,6 +126,7 @@ dist-unix:
 	cp -r $(TOPPROGRAMPATH)/tcl $(DISTPATH)/LiSA
 	printf > $(DISTPATH)/LiSA/setup '#!/bin/sh\n\ncd `dirname $$0`\nbin/setup'
 	chmod 755 $(DISTPATH)/LiSA/setup
+	find $(DISTPATH) -name CVS | xargs rm -fr
 	cd $(DISTPATH); tar -cjvf lisa-$(VERSION)-bin.tar.bz2 LiSA
 
 # ------------------------------------------------------------------------------
@@ -149,12 +150,13 @@ dist-cygwin:
 	cp /bin/cygwin1.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygtcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygtk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
-	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tcl* -maxdepth 0`
+	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tcl* -maxdepth 0`
 	cp -r /usr/share/tcl*/init.tcl $(CYGWINPATH)/LiSA/share/tcl*
-	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share;find tk* -maxdepth 0`
+	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tk* -maxdepth 0`
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
 	printf > $(CYGWINPATH)/LiSA/setup.bat '@echo off\r\n\r\ncd bin\r\nsetup.exe'
+	find $(CYGWINPATH) -name CVS | xargs rm -fr
 	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
 
 # ------------------------------------------------------------------------------
