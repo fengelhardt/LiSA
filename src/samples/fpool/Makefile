@@ -16,7 +16,7 @@ INSTALLNAME=Lisa_fpool
 TOPPROGRAMPATH=../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
 DOCPATH=$(TOPPROGRAMPATH)/doc/develop/neighbor
-OBJPATH=$(TOPPROGRAMPATH)/compiled
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------

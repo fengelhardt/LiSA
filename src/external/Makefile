@@ -117,7 +117,7 @@ depend:
 	cd $(SOURCEPATH)/external/bb; $(MAKE) depend
 	cd $(SOURCEPATH)/external/neighbor; $(MAKE) depend
 	cd $(SOURCEPATH)/external/neighbor/gen_ptst; $(MAKE) depend
-	cd $(SOURCEPATH)/external/travel_neighbour $(MAKE) depend
+	cd $(SOURCEPATH)/external/travel_neighbour; $(MAKE) depend
 	cd $(SOURCEPATH)/external/bb_jsp; $(MAKE) depend
 	cd $(SOURCEPATH)/external/match; $(MAKE) depend
 	cd $(SOURCEPATH)/external/fsheur; $(MAKE) depend

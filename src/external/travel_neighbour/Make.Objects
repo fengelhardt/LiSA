@@ -1,13 +1,13 @@
 OBJECTS=\
-	../../../compiled/travel.o \
-	../../../compiled/travel_graph.o \
-	../../../compiled/travel_neighbourhood.o \
-	../../../compiled/iterate.o \
-	../../../compiled/tabu.o \
-	../../../compiled/global.o \
-	../../../compiled/matrix.o \
-	../../../compiled/except.o \
-	../../../compiled/lisa_str.o \
-	../../../compiled/list.o \
-	../../../compiled/pair.o \
-	../../../compiled/ctrlpara.o
+	../../../obj/travel.o \
+	../../../obj/travel_graph.o \
+	../../../obj/travel_neighbourhood.o \
+	../../../obj/iterate.o \
+	../../../obj/tabu.o \
+	../../../obj/global.o \
+	../../../obj/matrix.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/list.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o

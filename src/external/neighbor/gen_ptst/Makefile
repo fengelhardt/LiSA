@@ -15,7 +15,7 @@ INSTALLNAME=gen_ptst
 TOPPROGRAMPATH=../../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
 DOCPATH=$(TOPPROGRAMPATH)/doc/develop/neighbor
-OBJPATH=$(TOPPROGRAMPATH)/compiled
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
@@ -65,8 +65,8 @@ objdir:
 
 install: bindir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp gen_ptst_english.html $(TOPPROGRAMPATH)/doc/language/english/gen_ptst.html
-	cp gen_ptst_german.html $(TOPPROGRAMPATH)/doc/language/german/gen_ptst.html
+	cp gen_ptst_english.html $(TOPPROGRAMPATH)/doc/external/language/english/gen_ptst.html
+	cp gen_ptst_german.html $(TOPPROGRAMPATH)/doc/external/language/german/gen_ptst.html
 #	rm -f $(BINPATH)/$(INSTALLNAME)
 #	ln -s $(ABSOLUTE_BINPATH)/$(PROGRAMNAME) $(BINPATH)/$(INSTALLNAME)
 #	rm -f $(bindir)/$(INSTALLNAME)

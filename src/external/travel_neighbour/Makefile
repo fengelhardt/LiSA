@@ -12,7 +12,7 @@ INSTALLNAME=travel
 
 TOPPROGRAMPATH=../../..
 BINPATH=.
-OBJPATH=$(TOPPROGRAMPATH)/compiled
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
