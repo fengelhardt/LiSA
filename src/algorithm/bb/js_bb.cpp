@@ -1,8 +1,7 @@
-/**
- * @author  Thomas Tautenhahn
- * @version 2.3pre3
+/** 
+    @author  Thomas Tautenhahn
+    @version 2.3pre3
  */
-
 #include "../../main/global.hpp"
 #include "../../basics/order.hpp"
 

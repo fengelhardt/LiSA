@@ -32,28 +32,28 @@ class Lisa_OsSchedule  : public Lisa_ShpSchedule{
 public:
 
   /// pointer to corresponding problem instance 
-  Lisa_OsProblem * OSP;
+  Lisa_OsProblem* OSP;
   
   /// construct empty schedule for given problem instance
-  Lisa_OsSchedule(Lisa_OsProblem *);
+  Lisa_OsSchedule(Lisa_OsProblem* other);
     
-  /// insert(i,j,k,l) inserts (i,j) after (k,j) and (i,l)
+  /// insert(i,j,woi,woj) inserts (i,j) after (woi,j) and (i,woj)
   /** respectively, return value is OK, PERFEKT (if no other operation is 
       moved) or CYCLE (schedule is destroyed) */
-  int   insert(int,int,int,int);
+  int   insert(int i,int j,int woi,int woj);
   
   /// exclude the operation (i,j) from the schedule
-  void    exclude(int,int);
+  void    exclude(int i,int j);
   
   /// set all orders according to a given LR
   /** warning: this does not test input for validity */ 
   int     read_LR(Lisa_Matrix<int> * lr);
   
   /// fills itself according to given C_ij
-  int read_Cij(Lisa_Matrix<TIMETYP> *);   
+  int read_Cij(Lisa_Matrix<TIMETYP> * cij);   
 
   /// assignment operator
-  void    operator=(Lisa_OsSchedule&);
+  void operator=(Lisa_OsSchedule& other);
 
   /// destructor     
   ~Lisa_OsSchedule();
