@@ -23,7 +23,8 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   
   // write algorithm input
   ofstream fout(output_file.c_str());
-  if(!fout) G_ExceptionList.lthrow("Could not open '"+(string) output_file.c_str()+"' for writing",FILE_NOT_FOUND);
+  if(!fout) G_ExceptionList.lthrow("Could not open '"+(string) output_file.c_str()+"' for writing",
+                                   Lisa_ExceptionList::FILE_NOT_FOUND);
   fout << G_ProblemType;
   fout << parameter;
   fout << G_Values;
@@ -32,7 +33,8 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   
   //clean algorithm output file
   ofstream fin(result_file.c_str());
-  if(!fin) G_ExceptionList.lthrow("Could not open '"+(string) result_file.c_str()+"' for writing",FILE_NOT_FOUND);
+  if(!fin) G_ExceptionList.lthrow("Could not open '"+(string) result_file.c_str()+"' for writing",
+                                  Lisa_ExceptionList::FILE_NOT_FOUND);
   fin.close();
   
   // call the external program
@@ -53,7 +55,8 @@ int start_ext_algo(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   Tcl_Eval(interp,(char*) str.c_str());
   str2=Tcl_GetVar2(interp,"lsa_status","pid",TCL_GLOBAL_ONLY);
   if (str2=="-1") {
-    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",END_OF_FILE);
+    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",
+                           Lisa_ExceptionList::END_OF_FILE);
     return !OK;
   }
   

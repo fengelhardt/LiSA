@@ -36,7 +36,8 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
   
   if (!(mybase=new Lisa_DataBase(db_path)) || !(mygraph=new Lisa_RedGraph))
     {
-      G_ExceptionList.lthrow("No more memory available!\n",NO_MORE_MEMORY);
+      G_ExceptionList.lthrow("No more memory available!\n",
+                             Lisa_ExceptionList::NO_MORE_MEMORY);
       return("No more memory available!\n");
     }
 
@@ -75,7 +76,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
 	      } 
 	    break;
 	  default: G_ExceptionList.lthrow("Error in reduction return value",
-					  UNDEFINED_OBJECT);
+					                          Lisa_ExceptionList::UNDEFINED_OBJECT);
    	  } 
       }  
   if (open)
@@ -101,7 +102,8 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
   
   if (!(mybase=new Lisa_DataBase(db_path)) || !(mygraph=new Lisa_RedGraph))
     {
-      G_ExceptionList.lthrow("No more memory available!\n",NO_MORE_MEMORY);
+      G_ExceptionList.lthrow("No more memory available!\n",
+                             Lisa_ExceptionList::NO_MORE_MEMORY);
       return("No more memory available!\n");
     }
 
@@ -135,7 +137,7 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
 	  case NOT_CMP: 
 	    break;
 	  default: G_ExceptionList.lthrow("Error in reduction return value",
-					  UNDEFINED_OBJECT);
+					                          Lisa_ExceptionList::UNDEFINED_OBJECT);
    	  } 
       }  
   

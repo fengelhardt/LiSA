@@ -39,7 +39,7 @@ int Lisa_ProblemType::set_property(const int prop, const int value)
   if ((prop>=TUPEL_INDEX)||(value>=NUMBER[prop])) 
     {
       G_ExceptionList.lthrow("cannot set this property in problem type",
-                             INCONSISTENT_INPUT);
+                             Lisa_ExceptionList::INCONSISTENT_INPUT);
       return rv;
     }
   tupel[prop]=value;
@@ -573,7 +573,8 @@ void Lisa_ProblemType::read(istream& strm){
   strm >> S;
   while(S != "<PROBLEMTYPE>"){
     if(S == ""){
-      G_ExceptionList.lthrow("No '<PROBLEMTYPE>' entry found in input file.",END_OF_FILE);
+      G_ExceptionList.lthrow("No '<PROBLEMTYPE>' entry found in input file.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }
     S = "";
@@ -584,7 +585,8 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S;
   if(S!="Lisa_ProblemType="){
-    G_ExceptionList.lthrow("'Lisa_ProblemType=' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("'Lisa_ProblemType=' expected in <PROBLEMTYPE>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
@@ -592,7 +594,8 @@ void Lisa_ProblemType::read(istream& strm){
   S = "";
   strm >> S;
   if(S!="{"){
-    G_ExceptionList.lthrow("'{' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("'{' expected in <PROBLEMTYPE>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
@@ -600,7 +603,8 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S; 
   if(setalpha(S)){
-    G_ExceptionList.lthrow("Incorrect alpha entry '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("Incorrect alpha entry '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
@@ -608,7 +612,8 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S; 
   if (S!="/"){
-    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
@@ -617,14 +622,16 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S;
   while (S!="/" && S!=""){
-    if(setbeta(S))  G_ExceptionList.lthrow("Unknown beta restriction '"+S+"'. Ignoring it.",ANY_ERROR);
+    if(setbeta(S))  G_ExceptionList.lthrow("Unknown beta restriction '"+S+"'. Ignoring it.",
+                                           Lisa_ExceptionList::ANY_ERROR);
     S="";
     strm >> S;
   }
 
   // check delimiter
   if (S!="/"){
-    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
@@ -632,20 +639,23 @@ void Lisa_ProblemType::read(istream& strm){
   S="";
   strm >> S;
   if(setgamma(S)){
-    G_ExceptionList.lthrow("Incorrect beta entry '"+S+"'.", INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("Incorrect beta entry '"+S+"'.", 
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     return;
   }
   
   S="";
   strm >> S;
   if(S!="}"){
-    G_ExceptionList.lthrow("'}' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    G_ExceptionList.lthrow("'}' expected in <PROBLEMTYPE>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
   }
   
   S="";
   strm >> S;
   if(S != "</PROBLEMTYPE>"){
-    G_ExceptionList.lthrow("'</PROBLEMTYPE>' expected, found '"+S+"'.", END_OF_FILE);
+    G_ExceptionList.lthrow("'</PROBLEMTYPE>' expected, found '"+S+"'.",
+                           Lisa_ExceptionList::END_OF_FILE);
   }
   
   vld=TRUE;

@@ -54,11 +54,11 @@ public:
   void read(std::istream& strm = std::cin){
     std::string s = ""; strm >> s;
     if (s!="[") 
-      G_ExceptionList.lthrow("[ expected in Lisa_Bottleneck::read()",SYNTAX_ERROR);
+      G_ExceptionList.lthrow("[ expected in Lisa_Bottleneck::read()",Lisa_ExceptionList::SYNTAX_ERROR);
     strm >> i >> j >> value;
     s = ""; strm >> s;
     if (s!="]") 
-      G_ExceptionList.lthrow("] expected in Lisa_Bottleneck::4read()",SYNTAX_ERROR);
+      G_ExceptionList.lthrow("] expected in Lisa_Bottleneck::4read()",Lisa_ExceptionList::SYNTAX_ERROR);
   }
   
   /// compare operator for sorting in Lisa_List

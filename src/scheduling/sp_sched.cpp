@@ -31,7 +31,7 @@ Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
 //                           WARNING);
   if (!(n&&m)) 
     G_ExceptionList.lthrow("shop problem must have machines and jobs",
-                           INCONSISTENT_INPUT);
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
    
   time=new Lisa_Matrix<TIMETYP>(n+1,m+1);
   sij=new Lisa_Matrix<bool>(n+1,m+1);

@@ -43,7 +43,7 @@ void parseParameters(Lisa_ControlParameters &cp){
     timeseed = time(0);
     cp.add_key("TIMESEED",timeseed);
     G_ExceptionList.lthrow((std::string)"No TIMESEED parameter defined,"+
-                           " generated '"+ztos(timeseed)+"'.",WARNING);
+                           " generated '"+ztos(timeseed)+"'.",Lisa_ExceptionList::WARNING);
   }
   
   if(cp.defined("MACHSEED")==Lisa_ControlParameters::LONG){
@@ -53,7 +53,7 @@ void parseParameters(Lisa_ControlParameters &cp){
     machseed = rand();
     cp.add_key("MACHSEED",machseed);
     G_ExceptionList.lthrow((std::string)"No MACHSEED parameter defined,"+
-                           " generated '"+ztos(machseed)+"'.",WARNING);
+                           " generated '"+ztos(machseed)+"'.",Lisa_ExceptionList::WARNING);
   }
   
   if(cp.defined("M")==Lisa_ControlParameters::LONG){
@@ -61,7 +61,7 @@ void parseParameters(Lisa_ControlParameters &cp){
   }else{
     cp.add_key("M",(long)m);
     G_ExceptionList.lthrow((std::string)"No M parameter defined,"+
-                           " using default '"+ztos(m)+"'.",WARNING);
+                           " using default '"+ztos(m)+"'.",Lisa_ExceptionList::WARNING);
   }
   
   if(cp.defined("N")==Lisa_ControlParameters::LONG){
@@ -69,7 +69,7 @@ void parseParameters(Lisa_ControlParameters &cp){
   }else{
     cp.add_key("N",(long)n);
     G_ExceptionList.lthrow((std::string)"No N parameter defined,"+
-                           " using default '"+ztos(n)+"'.",WARNING);
+                           " using default '"+ztos(n)+"'.",Lisa_ExceptionList::WARNING);
   }
 
   if(cp.defined("MINPT")==Lisa_ControlParameters::LONG){
@@ -77,7 +77,7 @@ void parseParameters(Lisa_ControlParameters &cp){
   }else{
     cp.add_key("MINPT",(long)minpt);
     G_ExceptionList.lthrow((std::string)"No MINPT parameter defined,"+
-                           " using default '"+ztos(minpt)+"'.",WARNING);
+                           " using default '"+ztos(minpt)+"'.",Lisa_ExceptionList::WARNING);
   }  
   
   if(cp.defined("MAXPT")==Lisa_ControlParameters::LONG){
@@ -85,7 +85,7 @@ void parseParameters(Lisa_ControlParameters &cp){
   }else{
     cp.add_key("MAXPT",(long)maxpt);
     G_ExceptionList.lthrow((std::string)"No MAXPT parameter defined,"+
-                           " using default '"+ztos(maxpt)+"'.",WARNING);
+                           " using default '"+ztos(maxpt)+"'.",Lisa_ExceptionList::WARNING);
   }
 
   if(cp.defined("NUMBERPROBLEMS")==Lisa_ControlParameters::LONG){
@@ -94,7 +94,7 @@ void parseParameters(Lisa_ControlParameters &cp){
     cp.add_key("NUMBERPROBLEMS",(long)numberproblems);
     G_ExceptionList.lthrow((std::string)"No NUMBERPROBLEMS parameter "+
                            "defined, using default '"+ztos(numberproblems)+
-                           "'.",WARNING);
+                           "'.",Lisa_ExceptionList::WARNING);
   }  
   
   if(cp.defined("NUMBERALGORITHMS")==Lisa_ControlParameters::LONG){
@@ -103,7 +103,7 @@ void parseParameters(Lisa_ControlParameters &cp){
     cp.add_key("NUMBERALGORITHMS",(long)numberalgorithms);
     G_ExceptionList.lthrow((std::string)"No NUMBERALGORITHMS parameter "+
                            "defined, using default '"+ztos(numberalgorithms)+
-                           "'.",WARNING);
+                           "'.",Lisa_ExceptionList::WARNING);
   } 
 }
 
@@ -124,7 +124,7 @@ void checkProblemType(Lisa_ProblemType &pt){
  
   G_ExceptionList.lthrow((std::string)"Cannot handle '"+pt.output_alpha()+
                           " / "+pt.output_beta()+" / "+pt.output_gamma()+
-                          "'.",INCONSISTENT_INPUT);
+                          "'.",Lisa_ExceptionList::INCONSISTENT_INPUT);
   exit(-1);
 }
 
@@ -139,7 +139,7 @@ void checkAlgo(Lisa_ControlParameters &cp){
     executable = cp.get_string("EXECUTABLE");
   }else{
     G_ExceptionList.lthrow((std::string)"No EXECUTABLE parameter defined."
-                           ,INCONSISTENT_INPUT);
+                           ,Lisa_ExceptionList::INCONSISTENT_INPUT);
     exit(-1);
   }
   
@@ -150,7 +150,7 @@ void checkAlgo(Lisa_ControlParameters &cp){
   }else{
     G_ExceptionList.lthrow((std::string)"Executable '"+
                            executable+"' doesn't seem to exist.",
-                           INCONSISTENT_INPUT);
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     exit(-1); 
   } */
 }
@@ -202,7 +202,7 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
   std::ofstream out_file(algout);
   if(!out_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algout+
-                           "' for writing.",FILE_NOT_FOUND);
+                           "' for writing.",Lisa_ExceptionList::FILE_NOT_FOUND);
     exit(-1);
   }
   out_file.close();
@@ -210,7 +210,7 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
   std::ofstream in_file(algin);
   if(!in_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algin+
-                           "' for writing.",FILE_NOT_FOUND);
+                           "' for writing.",Lisa_ExceptionList::FILE_NOT_FOUND);
     exit(-1);
   }
   
@@ -229,7 +229,7 @@ void readAlgOutput(Lisa_Schedule &sched){
   std::ifstream out_file(algout);
   if(!out_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algout+
-                           "' for reading.",FILE_NOT_FOUND);
+                           "' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
     exit(-1);
   }
   
@@ -239,7 +239,7 @@ void readAlgOutput(Lisa_Schedule &sched){
   if(sched.get_m() != m || sched.get_n() != n){
     G_ExceptionList.lthrow((std::string)
                            "Schedule size does not match problem.",
-                           INCONSISTENT_INPUT);
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
     exit(-1);
   }
   
@@ -282,7 +282,7 @@ int main(int argc, char *argv[]){
  
  if(argc < 2){
   G_ExceptionList.lthrow((std::string)"Usage: "+argv[0]+
-                         " [input file]",ANY_ERROR);
+                         " [input file]",Lisa_ExceptionList::ANY_ERROR);
   exit(-1);  
  }
  
@@ -290,7 +290,7 @@ int main(int argc, char *argv[]){
  std::ifstream in_file(argv[1]);
  if(! in_file){
    G_ExceptionList.lthrow((std::string)"Could not open '"+argv[1]+
-                          "' for reading.",FILE_NOT_FOUND);
+                          "' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
    exit(-1);   
  }
 
@@ -307,7 +307,7 @@ int main(int argc, char *argv[]){
  parseParameters(cp);
  
  // clean up warnings
- do{}while(G_ExceptionList.lcatch(WARNING) != "No error of this kind in list.");
+ do{}while(G_ExceptionList.lcatch(Lisa_ExceptionList::WARNING) != "No error of this kind in list.");
  
  // read parameters for algorithms to call
  Lisa_ControlParameters* cps = new Lisa_ControlParameters[numberalgorithms];
@@ -334,7 +334,7 @@ int main(int argc, char *argv[]){
    std::ofstream out_file(((std::string)argv[1]+"."+fstr(i+1)+".lsa").c_str());
    if(!out_file){
      G_ExceptionList.lthrow((std::string)"Could not open '"+argv[1]+"."+
-                            fstr(i+1)+".lsa"+"' for reading.",FILE_NOT_FOUND);
+                            fstr(i+1)+".lsa"+"' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
      exit(-1);
    }
    

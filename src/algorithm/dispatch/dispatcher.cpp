@@ -83,7 +83,7 @@ bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT,
       problem= new Lisa_JsProblem(LValues);
       my_problem=J;
       if (PT->get_property(M_ENV)==ONE)
-	G_ExceptionList.lcatch(INCONSISTENT_INPUT);      
+	G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);      
       break;
     default: G_ExceptionList.lthrow("wrong problemtype for Lisa_Dispatcher");
       return FALSE;

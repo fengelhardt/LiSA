@@ -495,12 +495,13 @@ Lisa_DataBase::error_output(int rec,int pn)
      "Error while reading BibTeX database!\nSyntax error in record "+
      ztos(rec+1)+":\n\n"+(string) E[rec].author+", "+
      (string) E[rec].year+",\nProblem Number "+ztos(pn+1)+
-     "\n\n",SYNTAX_ERROR); 
+     "\n\n",Lisa_ExceptionList::SYNTAX_ERROR); 
   if (pn==NO_ANNOTE)
-    G_ExceptionList.lfthrow("ANNOTE entry is missing!\n\n",SYNTAX_ERROR);
+    G_ExceptionList.lfthrow("ANNOTE entry is missing!\n\n",
+                            Lisa_ExceptionList::SYNTAX_ERROR);
   else if (pn==NO_AUTHOR)
     G_ExceptionList.lfthrow("AUTHOR and TITLE entry is missing!\n\n",
-			   SYNTAX_ERROR);
+			                      Lisa_ExceptionList::SYNTAX_ERROR);
   return(0);
 }
 

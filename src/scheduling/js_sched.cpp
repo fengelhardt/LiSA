@@ -32,7 +32,7 @@ Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin )
 	 else
 	   {
 	     G_ExceptionList.lthrow("no machine orders, assuming flow shop",
-				    WARNING);
+				                      Lisa_ExceptionList::WARNING);
 	     // create MOs to make it a flowshop
 	     for (i=1; i<=n; i++)
 	       {
@@ -69,10 +69,9 @@ Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin )
        {
 	 for ( i=1; i<=n; i++ )
 	   for ( j=1; j<=m; j++ )
-	     if ((*Pin->SIJ)[i-1][j-1] != (*sij)[i][j])
-               G_ExceptionList.lthrow
-		 ("given job orders do not fit operation set", 
-		  INCONSISTENT_INPUT);
+	     if ((*Pin->SIJ)[i-1][j-1] != (*sij)[i][j]) 
+         G_ExceptionList.lthrow("given job orders do not fit operation set", 
+		                            Lisa_ExceptionList::INCONSISTENT_INPUT);
        }
    }
 

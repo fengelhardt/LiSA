@@ -232,14 +232,22 @@ void Lisa_Schedule::write(ostream& strm) const {
 
 int Lisa_Schedule::valid_LR(Lisa_Matrix<bool> *SIJ) { 
   int i=0,j=0;
-  if (LR==NULL) {valid=FALSE;return !OK;} 
-  if (SIJ==NULL) {  G_ExceptionList.lthrow("No valid SIJ",UNDEFINED_OBJECT);
-  valid=FALSE; return !OK; 
+  
+  if (LR==NULL){
+    valid=FALSE;
+    return !OK;
+  } 
+  if (SIJ==NULL){
+    G_ExceptionList.lthrow("No valid SIJ",Lisa_ExceptionList::UNDEFINED_OBJECT);
+    valid=FALSE;
+    return !OK; 
   }
   for (i=0; i<n; i++) {
     for (j=0;j<m; j++) {
-      if ( (*SIJ)[i][j]==1 && (*LR)[i][j]<1 ) 
-	{valid=FALSE;return !OK;} 
+      if ( (*SIJ)[i][j]==1 && (*LR)[i][j]<1 ){
+        valid=FALSE;
+        return !OK;
+      } 
     }
   }
   valid=TRUE;
@@ -293,7 +301,8 @@ void Lisa_Schedule::read(istream& strm) {
   
   // check input stream
   if (strm==NULL) {
-    G_ExceptionList.lthrow("No valid stream in Lisa_Schedule::read().",ANY_ERROR);
+    G_ExceptionList.lthrow("No valid stream in Lisa_Schedule::read().",
+                            Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
@@ -304,7 +313,8 @@ void Lisa_Schedule::read(istream& strm) {
     S=""; 
     strm >>S;
     if (S==""){ 
-      G_ExceptionList.lthrow("No '<SCHEDULE>' entry found.",END_OF_FILE);
+      G_ExceptionList.lthrow("No '<SCHEDULE>' entry found.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     } 
     if (S=="<SCHEDULE>") break;
@@ -319,7 +329,8 @@ void Lisa_Schedule::read(istream& strm) {
     strm >>S;  
     
     if (S==""){
-      G_ExceptionList.lthrow("Closing tag '</SCHEDULE>' not found.",END_OF_FILE);
+      G_ExceptionList.lthrow("Closing tag '</SCHEDULE>' not found.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }else if (S=="</SCHEDULE>"){
       break; 
@@ -336,40 +347,46 @@ void Lisa_Schedule::read(istream& strm) {
       strm >> semiactive;
     }else if (S=="LR="){ 
       if(mf || nf || semif){
-        G_ExceptionList.lthrow("Problem size/semiactive not given before 'LR='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'LR='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!LR) make_LR();  
         strm >> *LR;
       }
     }else if (S=="NMO="){ 
       if(mf || nf || semif){
-        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NMO='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NMO='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!NMO) make_NMO();
         strm >> *NMO;
       }
     }else if (S=="NJO="){ 
       if(mf || nf || semif){
-        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NJO='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'NJO='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!NJO) make_NJO();
         strm >> *NJO;
       }
     }else if (S=="CIJ="){
       if(mf || nf || semif){
-        G_ExceptionList.lthrow("Problem size/semiactive not given before 'CIJ='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size/semiactive not given before 'CIJ='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{      
         if (!CIJ) make_CIJ();
         strm >> *CIJ;
       }
     }else{
-      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",SYNTAX_ERROR);
+      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",
+                             Lisa_ExceptionList::SYNTAX_ERROR);
     }
 
   }
   
   if(mf || nf || semif){
-    G_ExceptionList.lthrow("Problem size/semiactive not given in Lisa_Schedule::read().",SYNTAX_ERROR);
+    G_ExceptionList.lthrow("Problem size/semiactive not given in Lisa_Schedule::read().",
+                           Lisa_ExceptionList::SYNTAX_ERROR);
   }else{
     valid=TRUE;
   }

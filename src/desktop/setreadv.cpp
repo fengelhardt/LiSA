@@ -337,7 +337,7 @@ int TC_getvar(ClientData /* clientData */,
        while (G_ExceptionList.empty()==0) print_error();
        Lisa_OsProblem  myOsProblem(&G_Values);
        Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-       G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+       G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
        str=ztos(update_objective(myOsSchedule));
      } else str= "schedule_not_valid";
   }else if (name=="lower_bound"){
@@ -531,14 +531,15 @@ else if (name=="SIJ") {
 	if ( (*G_Values.DD)[row]>=value) (*G_Values.RD)[row]=value;
 	else {
 	  G_ExceptionList.lthrow("Release Dates cannot be greater than Due Dates",
-				  INCONSISTENT_INPUT);
+				                   Lisa_ExceptionList::INCONSISTENT_INPUT);
 	  (*G_Values.RD)[row]=(*G_Values.DD)[row];
 	  Tcl_Eval(interp,"TC_draw_dat");
 	}
       }
       else (*G_Values.RD)[row]=value;
     }
-    else  G_ExceptionList.lthrow("Release Dates not defined",UNDEFINED_OBJECT);
+    else  G_ExceptionList.lthrow("Release Dates not defined",
+                                 Lisa_ExceptionList::UNDEFINED_OBJECT);
     show_output();
   }
   else if (name=="DD") {
@@ -549,14 +550,15 @@ else if (name=="SIJ") {
 	if ( (*G_Values.RD)[row]<=value) (*G_Values.DD)[row]=value;
 	else {
 	  G_ExceptionList.lthrow("Release Dates cannot be greater than Due Dates",
-				 INCONSISTENT_INPUT);
+				                   Lisa_ExceptionList::INCONSISTENT_INPUT);
 	  (*G_Values.DD)[row]=(*G_Values.RD)[row];
 	  Tcl_Eval(interp,"TC_draw_dat");
 	 }
        }
        else  (*G_Values.DD)[row]=value; 
     }
-    else  G_ExceptionList.lthrow("Due Dates not defined",UNDEFINED_OBJECT);
+    else  G_ExceptionList.lthrow("Due Dates not defined",
+                                 Lisa_ExceptionList::UNDEFINED_OBJECT);
     show_output();
   }
   else if (name=="WI") {
@@ -579,7 +581,7 @@ else if (name=="SIJ") {
       while (G_ExceptionList.empty()==0) print_error();
       Lisa_OsProblem  myOsProblem(&G_Values);
       Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-      G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+      G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
       myOsSchedule.read_LR(G_Schedule->LR);
       
       JOsucc=myOsSchedule.GetJOsucc(row,column);

@@ -19,13 +19,15 @@ void Lisa_Preferences::init(Tcl_Interp *interp){
   if(Tcl_GetVar2(interp,"env","LISAHOME",0) != 0){
     LISA_HOME = Tcl_GetVar2(interp,"env","LISAHOME",0);
   }else{
-    G_ExceptionList.lthrow("Enviroment variable 'LISAHOME' not set.",ANY_ERROR);
+    G_ExceptionList.lthrow("Enviroment variable 'LISAHOME' not set.",
+                           Lisa_ExceptionList::ANY_ERROR);
   }
   
   if(Tcl_GetVar2(interp,"env","LISACONFIG",0) != 0){
     CONFIG_HOME = Tcl_GetVar2(interp,"env","LISACONFIG",0);
   }else{
-    G_ExceptionList.lthrow("Enviroment variable 'LISACONFIG' not set.",ANY_ERROR);
+    G_ExceptionList.lthrow("Enviroment variable 'LISACONFIG' not set.",
+                           Lisa_ExceptionList::ANY_ERROR);
   }
   
   gantt_orient = GANTT_MACHINE;

@@ -33,11 +33,11 @@ Lisa_ConvertGraph* Lisa_ConvertGraph::make_object(Lisa_ProblemType* pt,
       pt->get_property(BATCH) || pt->get_property(NO_WAIT) || env==2 ||
       obj==2){ 
     G_ExceptionList.lthrow("Problemtype "+pt->output_problem()+
-			   " not supported by Lisa_ConvertGraph.",INCONSISTENT_INPUT);
+			   " not supported by Lisa_ConvertGraph.",Lisa_ExceptionList::INCONSISTENT_INPUT);
     return 0;
   }else if(env==1 && MO==0){
     G_ExceptionList.lthrow("No machine order given to  "+pt->output_problem()+
-			   " Problem.",INCONSISTENT_INPUT);
+			   " Problem.",Lisa_ExceptionList::INCONSISTENT_INPUT);
     return 0;
   }
 

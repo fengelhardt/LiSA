@@ -154,8 +154,8 @@ int TC_open_schedule(ClientData /* clientData*/ ,
     }
     G_Schedule=mySchedule;
     new_schedule();
-    if (G_ExceptionList.empty(END_OF_FILE)==0) {
-      G_ExceptionList.lcatch(END_OF_FILE);
+    if (G_ExceptionList.empty(Lisa_ExceptionList::END_OF_FILE)==0) {
+      G_ExceptionList.lcatch(Lisa_ExceptionList::END_OF_FILE);
       G_ExceptionList.lthrow("no schedule read");
     } else  new_schedule();
   }
@@ -390,7 +390,7 @@ int TC_update_cij(ClientData /* clientData */,
   Lisa_OsSchedule myOsSchedule(&myOsProblem);
   myOsSchedule.ComputeHeadsTails(TRUE,TRUE);
   if (myOsSchedule.read_Cij(G_Schedule->CIJ)!=OK) {
-    G_ExceptionList.lthrow("Cij-Matrix not valid",ANY_ERROR);
+    G_ExceptionList.lthrow("Cij-Matrix not valid",Lisa_ExceptionList::ANY_ERROR);
   }
  return TCL_OK;
 }
@@ -523,7 +523,7 @@ int TC_draw_schedule_list(ClientData /* clientData */,
       while (G_ExceptionList.empty()==0) print_error();
       Lisa_OsProblem  myOsProblem(&G_Values);
       Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-      G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+      G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
       //myLisa_ScheduleNode=G_ScheduleList->get();
       G_Schedule=G_ScheduleList->get().actual_schedule;
       (*G_ScheduleList->get().schedule_info)[0]=j+1;
@@ -670,7 +670,8 @@ int TC_references(ClientData /* clientData */,
     str2="lisa_text  $Name(References) {" + str + "}" ;
     Tcl_Eval(interp, (char *) str2.c_str());
   }
-    else G_ExceptionList.lthrow("No references found",ANY_ERROR);
+    else G_ExceptionList.lthrow("No references found",
+                                Lisa_ExceptionList::ANY_ERROR);
   return TCL_OK; 
 }
 
@@ -678,9 +679,10 @@ int TC_references(ClientData /* clientData */,
 
 /// If an error in the Tk- Application occour
 int TC_error(ClientData /* clientData */,
-	    Tcl_Interp * /*interp*/,
-		int /*argc*/, TCL_HACK_CHAR *argv[]) {
-  G_ExceptionList.lthrow(argv[1],ANY_ERROR);
+	           Tcl_Interp * /*interp*/,
+		         int /*argc*/, TCL_HACK_CHAR *argv[]) {
+               
+  G_ExceptionList.lthrow(argv[1],Lisa_ExceptionList::ANY_ERROR);
   return TCL_OK; 
 }
 
@@ -736,7 +738,7 @@ return TCL_OK;
     while (G_ExceptionList.empty()==0) print_error();
     Lisa_OsProblem  myOsProblem(&G_Values);
     Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-    G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+    G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
     myOsSchedule.read_LR(G_Schedule->LR);
 
     JOsucc=myOsSchedule.GetJOsucc(row,column);
@@ -783,7 +785,8 @@ return TCL_OK;
     } else return TCL_OK;
     
     if (return_value==CYCLE) {
-      G_ExceptionList.lthrow("cycle: modification not possible",ANY_ERROR);
+      G_ExceptionList.lthrow("cycle: modification not possible",
+                             Lisa_ExceptionList::ANY_ERROR);
       return TCL_OK; 
     }
     if (return_value==ERROR) {
@@ -897,7 +900,8 @@ int TC_startalg(ClientData /* clientData */,
 	       G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
 	       G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
   } else {
-    G_ExceptionList.lthrow( (string) "wrong code:" + code + "in description file external or internal expected (assume external)" ,SYNTAX_ERROR);
+    G_ExceptionList.lthrow((string)"wrong code:" + code + "in description file external or internal expected (assume external)",
+                           Lisa_ExceptionList::SYNTAX_ERROR);
     start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.CONFIG_HOME+"/proc/algo_in.lsa",
 		   G_Preferences.CONFIG_HOME+"/proc/algo_out.lsa",
 		   G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
@@ -922,7 +926,8 @@ int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
   ifstream fin(filename.c_str());
 
   if (fin==NULL) {
-    G_ExceptionList.lthrow("cannot open file: "+filename+"\n",END_OF_FILE);
+    G_ExceptionList.lthrow("cannot open file: "+filename+"\n",
+                           Lisa_ExceptionList::END_OF_FILE);
     return TCL_OK;
   }
     
@@ -948,7 +953,8 @@ int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
     fin >> S;
     
     if (S==""){ 
-      G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",END_OF_FILE);
+      G_ExceptionList.lthrow("no extry: "+endtag+" in file: "+filename+"\n",
+                             Lisa_ExceptionList::END_OF_FILE);
       return TCL_OK;
     }else if(S=="<PROBLEMTYPE>"){
       number_of_solv_probl++;
@@ -1017,7 +1023,8 @@ int TC_exclude(ClientData /* clientData */, Tcl_Interp */*interp*/,
 		           int argc, TCL_HACK_CHAR *argv[]) {
 
   if(argc<2){
-    G_ExceptionList.lthrow("Wrong number of arguments in TC_exclude",TCLTK_ERROR);
+    G_ExceptionList.lthrow("Wrong number of arguments in TC_exclude",
+                           Lisa_ExceptionList::TCLTK_ERROR);
     return TCL_OK;  
   }
   
@@ -1052,7 +1059,8 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
   string str=G_Preferences.CONFIG_HOME+"/default.lsa";
   ofstream fout(str.c_str());
   if (fout==NULL) {
-    G_ExceptionList.lthrow("cannot write file: "+str+"\n",END_OF_FILE);
+    G_ExceptionList.lthrow("cannot write file: "+str+"\n",
+                           Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
   fout << G_Preferences;

@@ -114,7 +114,8 @@ void Lisa_Vector<T>::read(istream& strm){
   string S="";
   strm >> S; 
   if (S!="{"){ 
-    G_ExceptionList.lthrow("'{' expected in Lisa_Vector::read(), found '"+S+"'.",SYNTAX_ERROR);
+    G_ExceptionList.lthrow("'{' expected in Lisa_Vector::read(), found '"+S+"'.",
+                           Lisa_ExceptionList::SYNTAX_ERROR);
     return;
   }
   
@@ -123,7 +124,8 @@ void Lisa_Vector<T>::read(istream& strm){
   S="";
   strm >> S; 
   
-  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Vector::read(), found '"+S+"'.",SYNTAX_ERROR);
+  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Vector::read(), found '"+S+"'.",
+                                     Lisa_ExceptionList::SYNTAX_ERROR);
 }
 
 //**************************************************************************
@@ -241,7 +243,8 @@ void Lisa_Matrix<T>::read(istream& strm){
   string S="";
   strm >> S; 
   if (S!="{"){
-   G_ExceptionList.lthrow("'{' expected in Lisa_Matrix::read(), found '"+S+"'.",SYNTAX_ERROR);
+   G_ExceptionList.lthrow("'{' expected in Lisa_Matrix::read(), found '"+S+"'.",
+                          Lisa_ExceptionList::SYNTAX_ERROR);
    return;
   }
   
@@ -250,7 +253,8 @@ void Lisa_Matrix<T>::read(istream& strm){
   S="";
   strm >> S; 
   
-  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Matrix::read(), found '"+S+"'.",SYNTAX_ERROR); 
+  if (S!="}") G_ExceptionList.lthrow("'}' expected in Lisa_Matrix::read(), found '"+S+"'.",
+                                     Lisa_ExceptionList::SYNTAX_ERROR); 
 } 
 
 //**************************************************************************

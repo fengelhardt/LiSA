@@ -1077,7 +1077,7 @@ void Lisa_Graph::read(istream & strm)
 {
   if (strm==NULL)
     {
-      G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",ANY_ERROR);
+      G_ExceptionList.lthrow("(in Lisa_Graph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
       return;
     }
 
@@ -1090,7 +1090,7 @@ void Lisa_Graph::read(istream & strm)
       strm >>S;
       if (S=="") 
 	{ 
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",END_OF_FILE);
+	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
 	  return;
 	} 
       if (S=="<GRAPH>") break;
@@ -1104,7 +1104,7 @@ void Lisa_Graph::read(istream & strm)
       strm >>S;  
       if (S=="") 
 	{
-	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",END_OF_FILE);
+	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Graph.read",Lisa_ExceptionList::END_OF_FILE);
 	  return;
 	}
       

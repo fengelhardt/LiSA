@@ -354,7 +354,8 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
   main_canvas->clear();canv_horizontal->clear();canv_vertikal->clear();
   if(G_Schedule->valid != TRUE)
     {
-      G_ExceptionList.lthrow("Schedule is not valid",ANY_ERROR);
+      G_ExceptionList.lthrow("Schedule is not valid",
+                             Lisa_ExceptionList::ANY_ERROR);
       return;
     }
   
@@ -429,7 +430,8 @@ operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
   my_data.time=-1;
   if(G_Schedule->valid != TRUE)
     {
-      G_ExceptionList.lthrow("Schedule is not valid",ANY_ERROR);
+      G_ExceptionList.lthrow("Schedule is not valid",
+                             Lisa_ExceptionList::ANY_ERROR);
       return(&my_data);
     }
   
@@ -510,7 +512,8 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
   canv_horizontal->set_wh(main_canvas->get_width(),40);
   if(G_Schedule->valid != TRUE)
     {
-      G_ExceptionList.lthrow("Schedule is not valid",ANY_ERROR);
+      G_ExceptionList.lthrow("Schedule is not valid",
+                             Lisa_ExceptionList::ANY_ERROR);
       return;
     }
   
@@ -524,12 +527,14 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
 	y_value=machine;
       else	
 	{
-	  G_ExceptionList.lthrow("Machinenumber is invalid",OUT_OF_RANGE);
+	  G_ExceptionList.lthrow("Machinenumber is invalid",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
 	  return;
 	}
       if (job<0 || job>=number_x_values)
 	{
-	  G_ExceptionList.lthrow("Jobnumber is invalid",OUT_OF_RANGE);
+	  G_ExceptionList.lthrow("Jobnumber is invalid",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
 	  return;
 	}
     }
@@ -537,14 +542,16 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
     {
       if (machine<0 || machine>=number_x_values)
 	{
-	  G_ExceptionList.lthrow("Machinenumber is invalid",OUT_OF_RANGE);
+	  G_ExceptionList.lthrow("Machinenumber is invalid",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
 	  return;
 	}
       if (job>=0 && job<number_y_values)
 	y_value=job;
       else
 	{
-	  G_ExceptionList.lthrow("Jobnumber is invalid",OUT_OF_RANGE);
+	  G_ExceptionList.lthrow("Jobnumber is invalid",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
 	  return;
 	}
     }

@@ -227,7 +227,7 @@ void show_output() {
       while (G_ExceptionList.empty()==0) print_error();
       Lisa_OsProblem  myOsProblem(&G_Values);
       Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-      G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+      G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
       objective=update_objective(myOsSchedule);
       if (mw_output=="Gantt Diagram") {
 	double maximum=0;
@@ -290,7 +290,7 @@ TIMETYP update_objective(Lisa_OsSchedule &myOsSchedule ) {
     }
     else {
       if (myOsSchedule.read_Cij(G_Schedule->CIJ)!=OK) {
-	G_ExceptionList.lthrow("Cij-Matrix not valid",ANY_ERROR);
+	G_ExceptionList.lthrow("Cij-Matrix not valid",Lisa_ExceptionList::ANY_ERROR);
 	return 0;
       }
     } 
@@ -354,7 +354,7 @@ void update_LR() {
   while (G_ExceptionList.empty()==0) print_error();
   Lisa_OsProblem  myOsProblem(&G_Values);
   Lisa_OsSchedule  myOsSchedule(&myOsProblem);
-  G_ExceptionList.lcatch(INCONSISTENT_INPUT);
+  G_ExceptionList.lcatch(Lisa_ExceptionList::INCONSISTENT_INPUT);
   myOsSchedule.read_LR(G_Schedule->LR);
   myOsSchedule.write_LR(G_Schedule->LR);
   new_schedule();

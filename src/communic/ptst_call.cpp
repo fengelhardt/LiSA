@@ -220,7 +220,8 @@ int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   Tcl_Eval(interp,(char*) str.c_str());
   str2=Tcl_GetVar2(interp,"lsa_status","pid",TCL_GLOBAL_ONLY);
   if (str2=="-1") {
-    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",END_OF_FILE);
+    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",
+                           Lisa_ExceptionList::END_OF_FILE);
     return !OK;
   }
   

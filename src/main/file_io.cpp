@@ -35,7 +35,7 @@ int read(string dname){
   
   ifstream fin(dname.c_str());
   if (fin==NULL) {
-    G_ExceptionList.lthrow("Cannot open file '"+dname+"' for reading.",END_OF_FILE);
+    G_ExceptionList.lthrow("Cannot open file '"+dname+"' for reading.",Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
   
@@ -58,7 +58,7 @@ int read(string dname){
   fin.close();
   ifstream in(dname.c_str());
   if (in==NULL) {
-    G_ExceptionList.lthrow("Cannot reopen file '"+dname+"' for reading.",END_OF_FILE);
+    G_ExceptionList.lthrow("Cannot reopen file '"+dname+"' for reading.",Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
 
@@ -66,7 +66,7 @@ int read(string dname){
   if (fproblemtype) { 
     in >> G_ProblemType;
   } else {
-    G_ExceptionList.lthrow("No problem defined in file '"+dname+"'.",END_OF_FILE);
+    G_ExceptionList.lthrow("No problem defined in file '"+dname+"'.",Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
   
@@ -119,7 +119,7 @@ int save(string dname) {
   
   ofstream fout(dname.c_str());
   if (fout==NULL) {
-    G_ExceptionList.lthrow("Cannot open file: '"+dname+"' for writing.",END_OF_FILE);
+    G_ExceptionList.lthrow("Cannot open file: '"+dname+"' for writing.",Lisa_ExceptionList::END_OF_FILE);
     return 1;
   }
   

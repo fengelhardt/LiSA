@@ -108,7 +108,8 @@ void Lisa_Values::init(int nin, int min){
 
 void Lisa_Values::write(ostream& strm) const {
   if (valid==FALSE) {
-    G_ExceptionList.lthrow("Lisa_Values not valid. Nothing written.",ANY_ERROR);
+    G_ExceptionList.lthrow("Lisa_Values not valid. Nothing written.",
+                           Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
@@ -134,7 +135,8 @@ void Lisa_Values::read(istream& strm) {
   
   // assure stream existence
   if (strm==NULL) {
-    G_ExceptionList.lthrow("No valid stream in Lisa_Values::read().",ANY_ERROR);
+    G_ExceptionList.lthrow("No valid stream in Lisa_Values::read().",
+                           Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
@@ -147,7 +149,8 @@ void Lisa_Values::read(istream& strm) {
     S=""; 
     strm >>S;
     if (S==""){ 
-      G_ExceptionList.lthrow("No '<VALUES>' entry in file.",END_OF_FILE);
+      G_ExceptionList.lthrow("No '<VALUES>' entry in file.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     } 
     if (S=="<VALUES>") break;
@@ -159,7 +162,8 @@ void Lisa_Values::read(istream& strm) {
     strm >>S;  
     
     if (S==""){ 
-      G_ExceptionList.lthrow("Closing tag '</VALUES>' not found.",END_OF_FILE);
+      G_ExceptionList.lthrow("Closing tag '</VALUES>' not found.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }else if(S=="</VALUES>"){
       return; 
@@ -173,67 +177,77 @@ void Lisa_Values::read(istream& strm) {
       nfound = 0;
     }else if(S=="PT="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'PT='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'PT='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if(!PT) make_PT();
         strm >> *PT;
       }
     }else if(S=="MO="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'MO='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'MO='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if(!MO) make_MO();
         strm >> *MO;
       }
     }else if(S=="SIJ="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'SIJ='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'SIJ='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{      
         if (!SIJ) make_SIJ();
         strm >> *SIJ;
       }
 	  }else if(S=="RD="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'RD='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'RD='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{      
         if (!RD) make_RD();
         strm >> *RD;
       }
     }else if(S=="DD="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'DD='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'DD='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if(!DD) make_DD();
         strm >> *DD;
       }
 	  }else if(S=="WI="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'WI='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'WI='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!WI) make_WI();
         strm >> *WI;
       }
     }else if(S=="WI2="){
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'WI2='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'WI2='. Skipping.",
+                                Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!WI2) make_WI2();
         strm >> *WI2;
       }
     }else if(S=="EXTRA="){ 
       if(mfound || nfound){
-        G_ExceptionList.lthrow("Problem size not given before 'EXTRA='. Skipping.",SYNTAX_ERROR);
+        G_ExceptionList.lthrow("Problem size not given before 'EXTRA='. Skipping.",
+                               Lisa_ExceptionList::SYNTAX_ERROR);
       }else{
         if (!EXTRA) make_EXTRA();
         strm >> *EXTRA;
       }
     }else{
-      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",SYNTAX_ERROR);
+      G_ExceptionList.lthrow("Unknown token '"+S+"' found. Skipping.",
+                             Lisa_ExceptionList::SYNTAX_ERROR);
     }
   }
   
   if(mfound || nfound){
-    G_ExceptionList.lthrow("Problem size not given in Lisa_Values::read().",SYNTAX_ERROR);
+    G_ExceptionList.lthrow("Problem size not given in Lisa_Values::read().",
+                           Lisa_ExceptionList::SYNTAX_ERROR);
   }else{
     valid=TRUE;
   }
@@ -261,7 +275,8 @@ int Lisa_Values::valid_MO(void) {
   if(MO==NULL) return !OK;
   
   if(SIJ==NULL){
-    G_ExceptionList.lthrow("No valid SIJ in Lisa_Values::valid_MO().",UNDEFINED_OBJECT);
+    G_ExceptionList.lthrow("No valid SIJ in Lisa_Values::valid_MO().",
+                           Lisa_ExceptionList::UNDEFINED_OBJECT);
     return !OK; 
   }
   
@@ -359,12 +374,14 @@ void Lisa_Values::make_EXTRA(void) {
 void Lisa_Values::PT_to_SIJ() {
 
   if (SIJ==NULL) { 
-    G_ExceptionList.lthrow("In Lisa_Values::PT_to_SIJ(): no SIJ.",ANY_ERROR);
+    G_ExceptionList.lthrow("In Lisa_Values::PT_to_SIJ(): no SIJ.",
+                           Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
   if (PT==NULL)  {  
-    G_ExceptionList.lthrow("In Lisa_Values::PT_to_SIJ(): no PT.",ANY_ERROR); 
+    G_ExceptionList.lthrow("In Lisa_Values::PT_to_SIJ(): no PT.",
+                           Lisa_ExceptionList::ANY_ERROR); 
     return;
   }
   

@@ -190,12 +190,14 @@ void Lisa_VectorOfLists<T>::read(istream& strm){
   
        S="";strm >> S; 
        if (S!="{") 
-          G_ExceptionList.lthrow("{ expected in listvector.read",SYNTAX_ERROR);
+          G_ExceptionList.lthrow("{ expected in listvector.read",
+                                 Lisa_ExceptionList::SYNTAX_ERROR);
        for (i=0;i<m;i++)
           strm >> contents[i];
        S="";strm >> S; 
        if (S!="}")
-          G_ExceptionList.lthrow("} expected in listvector.read",SYNTAX_ERROR);
+          G_ExceptionList.lthrow("} expected in listvector.read",
+                                 Lisa_ExceptionList::SYNTAX_ERROR);
 }
 
 //**************************************************************************
@@ -357,14 +359,16 @@ void Lisa_MatrixOfLists<T>::read(istream& strm)
   
        S="";strm >> S; 
        if (S!="{")           
-         G_ExceptionList.lthrow("} expected in listmatrix.read",SYNTAX_ERROR);
+         G_ExceptionList.lthrow("} expected in listmatrix.read",
+                                Lisa_ExceptionList::SYNTAX_ERROR);
        for (i=0;i<n;i++)
           {
 	    strm >> row[i];
           }
        S="";strm >> S; 
        if (S!="}")           
-         G_ExceptionList.lthrow("} expected in listmatrix.read",SYNTAX_ERROR);
+         G_ExceptionList.lthrow("} expected in listmatrix.read",
+                                Lisa_ExceptionList::SYNTAX_ERROR);
      } 
 
 //**************************************************************************

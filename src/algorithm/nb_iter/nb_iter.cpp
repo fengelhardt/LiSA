@@ -291,7 +291,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
 	    case TS: if (NUMB_NGHB < m1_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",WARNING);
+	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
 	             it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
@@ -520,7 +520,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
 	    case TS: if (NUMB_NGHB < os_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",WARNING);
+	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
                      it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
@@ -834,7 +834,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
 	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
 	    case TS: if (NUMB_NGHB < js_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",WARNING);
+	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
                      it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);

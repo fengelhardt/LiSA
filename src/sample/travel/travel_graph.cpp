@@ -109,7 +109,8 @@ void Travel_Graph::read(istream& strm){
     strm >> S;
       
     if(S==""){ 
-      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",END_OF_FILE);
+      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }else if(S=="<TRAVELGRAPH>"){ 
       break; // so we found our object ... start reading
@@ -121,7 +122,8 @@ void Travel_Graph::read(istream& strm){
     strm >> S;
     
     if (S==""){ 
-      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",END_OF_FILE);
+      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }else if (S=="vertices="){
       strm >> vertices_in; // ok .. now we got our graph size
@@ -143,7 +145,8 @@ void Travel_Graph::read(istream& strm){
       strm >> S;
       
       if (S==""){ 
-	G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",END_OF_FILE);
+	G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",
+                         Lisa_ExceptionList::END_OF_FILE);
 	return;
       }else if (S=="graph="){
 	strm >> *graph;
@@ -156,7 +159,8 @@ void Travel_Graph::read(istream& strm){
       strm >> S;
       
       if (S==""){ 
-	G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",END_OF_FILE);
+	G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",
+                         Lisa_ExceptionList::END_OF_FILE);
 	return;
       }else if (S=="solution="){
 	init_solution();
@@ -184,7 +188,8 @@ void Travel_Graph::read(istream& strm){
     strm >> S;
     
     if (S==""){ 
-      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",END_OF_FILE);
+      G_ExceptionList.lthrow("Travel_Graph::read() Unexpected end of file.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     }else if (S=="</TRAVELGRAPH>"){ 
       return; // we also found our end tag

@@ -256,7 +256,8 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
                           else
 			    if ( ++ stuck_since > abort_stuck )
                               {
-                                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",WARNING);
+                                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
+                                                       Lisa_ExceptionList::WARNING);
                                 abort_algorithm = TRUE;
                               }
   			  break;
@@ -270,7 +271,8 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 			    }
 			  if (++total_stuck>=abort_stuck)
 			    {
-			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",WARNING);
+			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
+                                   Lisa_ExceptionList::WARNING);
 			      abort_algorithm = TRUE;
 			    }
 			  if (++stuck_since>=max_stuck)  
@@ -294,7 +296,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 			       - NB->get_objective_value(ORIG_SOLUTION) < t );
 			  if (++total_stuck>=abort_stuck)
 			    {
-			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",WARNING);
+			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
 			      abort_algorithm = TRUE;
 			    }
 			  if (++stuck_since>=max_stuck)  
@@ -317,7 +319,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 		     NB->put_orig_to_best();
 		     if ( best_value <= abort_at_bound )
 		       {
-			 G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",WARNING);
+			 G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
 			 abort_algorithm = TRUE;
 		       }
 		   }
@@ -404,7 +406,8 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 	       NB->put_orig_to_best();
 	       if ( best_value <= abort_at_bound )
 		 {
-		   G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",WARNING);
+		   G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",
+                              Lisa_ExceptionList::WARNING);
 		   abort_algorithm = TRUE;
 		 }
 	     }

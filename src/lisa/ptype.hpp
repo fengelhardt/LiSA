@@ -53,7 +53,7 @@ public:
   inline int get_property(const int prop) const {
 #ifdef LISA_DEBUG
     if(prop<0 || prop >= TUPEL_INDEX){
-      G_ExceptionList.lthrow("Index out of range in Lisa_ProblemType::get_property()",OUT_OF_RANGE);
+      G_ExceptionList.lthrow("Index out of range in Lisa_ProblemType::get_property()",Lisa_ExceptionList::OUT_OF_RANGE);
       return EMPTY;
     }
 #endif

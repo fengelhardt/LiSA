@@ -7,10 +7,6 @@
 
 #include "../basics/list.hpp"
 
-/// error codes
-enum{ANY_ERROR=0,OUT_OF_RANGE,NO_MORE_MEMORY,END_OF_FILE,SYNTAX_ERROR,
-     UNDEFINED_OBJECT,TCLTK_ERROR,FILE_NOT_FOUND,INCONSISTENT_INPUT,WARNING};
-
 // extra error message for objects which cannot use Lisa_ExceptionList 
 extern std::string G_ExtraException;
 
@@ -22,10 +18,24 @@ extern std::string G_ExtraException;
     @version 2.3final
  */
 class Lisa_ExceptionList{
-public:
+private:
+  /// output flag
+  bool output_to_cerr;
+  /// output flag
+  bool output_to_cout;
+ 
+  /// list with error messages
+  Lisa_List<std::string> Messages;
+  /// list with error codes
+  Lisa_List<int> Codes;
   
+public:
+  /// error codes
+  enum{ANY_ERROR=0,OUT_OF_RANGE,NO_MORE_MEMORY,END_OF_FILE,SYNTAX_ERROR,
+     UNDEFINED_OBJECT,TCLTK_ERROR,FILE_NOT_FOUND,INCONSISTENT_INPUT,WARNING};
+
   /// constructor 
-  Lisa_ExceptionList(){ 
+  inline Lisa_ExceptionList(){ 
       output_to_cerr=FALSE;
       output_to_cout=FALSE; 
   }
@@ -53,18 +63,6 @@ public:
   
   /// test whether error with given code is in list
   inline bool empty(int code) { return !(Codes.search_first(code)); }
-
-private:
-
-  /// output flag
-  bool output_to_cerr;
-  /// output flag
-  bool output_to_cout;
- 
-  /// list with error messages
-  Lisa_List<std::string> Messages;
-  /// list with error codes
-  Lisa_List<int> Codes;
 };
 
 /// global instance of exception list:

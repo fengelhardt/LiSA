@@ -122,8 +122,8 @@ int main(int argc, char *argv[])
 	break;
       }
    if ((problem_type==F)||(problem_type==ONE))
-     G_ExceptionList.lcatch(WARNING);
-   if (!G_ExceptionList.empty(INCONSISTENT_INPUT))
+     G_ExceptionList.lcatch(Lisa_ExceptionList::WARNING);
+   if (!G_ExceptionList.empty(Lisa_ExceptionList::INCONSISTENT_INPUT))
      {
        cout << "ERROR: No valid input in bb, aborting program." << endl;
        exit(1);
