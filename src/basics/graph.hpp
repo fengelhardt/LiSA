@@ -32,7 +32,7 @@ public:
   virtual void get_adjacency_matrix(Lisa_Matrix<int> *const adj)const=0;
 
   /// create predecessor and successor lists with the help of an adjacency matrix
-  virtual void read_adjacency_matrix(const Lisa_Matrix<int> *const adj)=0;
+  virtual void set_adjacency_matrix(const Lisa_Matrix<int> *const adj)=0;
 
   /// insert an edge into the graph
   /** Add edge from vertex start to vertex end. 
@@ -72,42 +72,42 @@ public:
   virtual int get_connection(const int start,const int end)const=0;
 
   ///initialize the pointer for the successors list of a given vertex
-  virtual void init_succ_pointer(const int vertex)=0;
+  virtual void init_successor(const int vertex)=0;
 
   /// initialize the pointer for the predecessor list of a given vertex
-  virtual void init_pred_pointer(const int vertex)=0;
+  virtual void init_predecessor(const int vertex)=0;
 
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 
       pointer to the next following successor. Returning n+1 stands for the end 
       of this vertice's successor list and for a new initialization of its 
       successor list pointer. */  
-  virtual int get_next_successor(const int vertex)=0;
+  virtual int next_successor(const int vertex)=0;
 
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
       vertex pointer to the next following predeccessor. Returning n+1 stands
       for the end of this vertex's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
-  virtual int get_next_predeccessor(const int vertex)=0;
+  virtual int next_predecessor(const int vertex)=0;
 
   /// get vertices that form an edge together with the argument vertex 
   /** returns only connected edges of a vertex, returning n+1 stands for the 
       end of this vertex's edge list ... it works on the successor list, so
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
-  virtual int get_next_edge(const int vertex)=0;
+  virtual int next_edge(const int vertex)=0;
   
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   virtual void clear(const int vertex)=0;
     
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
-  virtual int number_of_succ(const int vertex)=0;
+  virtual int get_successors(const int vertex)=0;
 
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
-  virtual int number_of_pred(const int vertex)=0;
+  virtual int get_predecessors(const int vertex)=0;
 
   /// write the object to a stream 
   void write(std::ostream& = std::cout) const;
@@ -206,7 +206,7 @@ public:
   void get_adjacency_matrix(Lisa_Matrix<int> *const adj) const;
 
   /// create predecessor and successor lists with the help of an adjazent matrix
-  void read_adjacency_matrix(const Lisa_Matrix<int> *const adj);
+  void set_adjacency_matrix(const Lisa_Matrix<int> *const adj);
 
   /// insert an edge into the graph
   /** Add edge from vertex start to vertex end. 
@@ -246,42 +246,42 @@ public:
   int get_connection(const int start,const int end)const;
 
   ///initialize the pointer for the successors list of a given vertex
-  void init_succ_pointer(const int vertex);
+  void init_successor(const int vertex);
 
   /// initialize the pointer for the predecessor list of a given vertex
-  void init_pred_pointer(const int vertex);
+  void init_predecessor(const int vertex);
 
   /// get a successsor of a vertex
   /** Returns the next successor of a vertex and moves the according list 
       pointer to the next following successor. Returning n+1 stands for the end 
       of this vertice's successor list and for a new initialization of its 
       successor list pointer. */  
-  int get_next_successor(const int vertex);
+  int next_successor(const int vertex);
 
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
       vertex pointer to the next following predeccessor. Returning n+1 stands
       for the end of this vertex's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
-  int get_next_predeccessor(const int vertex);
+  int next_predecessor(const int vertex);
 
   /// get vertices that form an edge together with the argument vertex 
   /** returns only connected edges of a vertex, returning n+1 stands for the 
       end of this vertex's edge list ... it works on the successor list, so
       you have to call init_succ_pointer() to (re)initialize and can not use
       both at the same time */
-  int get_next_edge(const int vertex);
+  int next_edge(const int vertex);
 
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   void clear(const int vertex);
   
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
-  int number_of_succ(const int vertex);
+  int get_successors(const int vertex);
 
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
-  int number_of_pred(const int vertex);
+  int get_predecessors(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */

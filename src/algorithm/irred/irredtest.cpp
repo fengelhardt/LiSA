@@ -75,22 +75,22 @@ const int param){
     a = start_v[i];
     b = end_v[i];
     
-    plan->init_succ_pointer(a);
-    c = plan->get_next_successor(a);
+    plan->init_successor(a);
+    c = plan->next_successor(a);
     while(c!=vert+1){
       if (comp->get_connection(c,b)==Lisa_Graph::NONE){
         party.join(i,lookup[a][c]);
       }
-      c = plan->get_next_successor(a);
+      c = plan->next_successor(a);
     }
     
-    plan->init_pred_pointer(b);
-    c = plan->get_next_predeccessor(b);
+    plan->init_predecessor(b);
+    c = plan->next_predecessor(b);
     while(c!=vert+1){
       if (comp->get_connection(c,a)==Lisa_Graph::NONE){
         party.join(i,lookup[c][b]);
       }
-      c = plan->get_next_predeccessor(b);
+      c = plan->next_predecessor(b);
     } 
   }
   

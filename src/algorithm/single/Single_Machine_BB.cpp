@@ -73,7 +73,7 @@ bool SingleMachineBB::run(Lisa_Schedule* pSchedule)
     }
     
     for(int i=0; i<n; i++){
-      (*Sources)[i]=priority->number_of_pred(i+1);
+      (*Sources)[i]=priority->get_predecessors(i+1);
     }
   }
   else{

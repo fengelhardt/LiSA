@@ -69,7 +69,7 @@ void Lisa_Graph::read(istream & strm){
   strm >> S; 
   if (S=="adjacency_matrix="){  
     strm >> *adj_Matrix;
-    read_adjacency_matrix(adj_Matrix);
+    set_adjacency_matrix(adj_Matrix);
     delete adj_Matrix;
   }else{
     G_ExceptionList.lthrow("'adjacency_matrix=' expected in <GRAPH>, found '"+S+"'.",
@@ -133,7 +133,7 @@ Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_Graph *const othergraph){
   
   Lisa_Matrix<int> out(size,size);
   othergraph->get_adjacency_matrix(&out);
-  read_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
 }
   
 //**************************************************************************
@@ -160,7 +160,7 @@ Lisa_MatrixListGraph::Lisa_MatrixListGraph(const Lisa_Graph & othergraph){
   
   Lisa_Matrix<int> out(size,size);
   othergraph.get_adjacency_matrix(&out);
-  read_adjacency_matrix(&out);
+  set_adjacency_matrix(&out);
 }
 
 //**************************************************************************
@@ -234,7 +234,7 @@ void Lisa_MatrixListGraph::get_adjacency_matrix(Lisa_Matrix<int> *const adj)cons
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
+void Lisa_MatrixListGraph::set_adjacency_matrix(const Lisa_Matrix<int> *const adj){
 #ifdef LISA_DEBUG
   if(adj->get_n() != size || adj->get_m() != size){
     G_ExceptionList.lthrow("Wrong matrix size in argument to Lisa_MatrixListGraph::read_adjacency_matrix().",
@@ -555,7 +555,7 @@ int Lisa_MatrixListGraph::get_connection(const int start,const int end)const{
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::init_succ_pointer(const int knot){
+void Lisa_MatrixListGraph::init_successor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -570,7 +570,7 @@ void Lisa_MatrixListGraph::init_succ_pointer(const int knot){
 
 //**************************************************************************
 
-void Lisa_MatrixListGraph::init_pred_pointer(const int knot){
+void Lisa_MatrixListGraph::init_predecessor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -585,7 +585,7 @@ void Lisa_MatrixListGraph::init_pred_pointer(const int knot){
  
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_next_successor(const int knot){
+int Lisa_MatrixListGraph::next_successor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -610,7 +610,7 @@ int Lisa_MatrixListGraph::get_next_successor(const int knot){
   }
   
   if(next_knot==size+1){
-    init_succ_pointer(knot);
+    init_successor(knot);
   }else{
     (*succ_pred_pointer)[knot-1].x=next_knot;
   }
@@ -620,7 +620,7 @@ int Lisa_MatrixListGraph::get_next_successor(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_next_predeccessor(const int knot){
+int Lisa_MatrixListGraph::next_predecessor(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -645,7 +645,7 @@ int Lisa_MatrixListGraph::get_next_predeccessor(const int knot){
   }
   
   if(next_knot==size+1){
-    init_pred_pointer(knot);
+    init_predecessor(knot);
   }else{
     (*succ_pred_pointer)[knot-1].y=next_knot;
   }
@@ -655,7 +655,7 @@ int Lisa_MatrixListGraph::get_next_predeccessor(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::get_next_edge(const int knot){
+int Lisa_MatrixListGraph::next_edge(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -665,7 +665,7 @@ int Lisa_MatrixListGraph::get_next_edge(const int knot){
   }
 #endif 
 
-  int next_knot=get_next_successor(knot);
+  int next_knot=next_successor(knot);
   
   if((next_knot!=size+1)&&(get_connection(knot,next_knot)!=EDGE)){  
     next_knot=size+1;
@@ -712,7 +712,7 @@ void Lisa_MatrixListGraph::clear(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::number_of_succ(const int knot){
+int Lisa_MatrixListGraph::get_successors(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -753,7 +753,7 @@ int Lisa_MatrixListGraph::number_of_succ(const int knot){
 
 //**************************************************************************
 
-int Lisa_MatrixListGraph::number_of_pred(const int knot){
+int Lisa_MatrixListGraph::get_predecessors(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
     G_ExceptionList.lthrow("Vertex "+ztos(knot)+
@@ -1101,7 +1101,7 @@ bool Lisa_GraphAlg::topsort(const Lisa_Graph *const g,
     //new predeccessors
     for(v=1; v<=top.get_vertices(); v++){
       if((*knot_sequence)[v-1]==0){
-        pred[v-1]=top.number_of_pred(v);
+        pred[v-1]=top.get_predecessors(v);
       }
     }
     v=1;
@@ -1191,25 +1191,25 @@ void Lisa_GraphAlg::build_compgraph(Lisa_Graph *const source,Lisa_Graph *const t
     done.fill(0);
     qs = qe = 0;
     
-    source->init_succ_pointer(i);
-    succ=source->get_next_successor(i);
+    source->init_successor(i);
+    succ=source->next_successor(i);
     while((succ<vert+1)){
       queue[qe++] = succ;
       done[succ] = 1;
-      succ=source->get_next_successor(i);
+      succ=source->next_successor(i);
     }  
     
     while(qs<qe){
       curr = queue[qs++];
       target->insert_edge(i,curr);
-      source->init_succ_pointer(curr);
-      succ=source->get_next_successor(curr);
+      source->init_successor(curr);
+      succ=source->next_successor(curr);
       while((succ<vert+1)){
         if(!done[succ]){
           done[succ] = 1;
           queue[qe++] = succ;
         }
-        succ = source->get_next_successor(curr);
+        succ = source->next_successor(curr);
       }
     } 
   }  
@@ -1238,26 +1238,26 @@ void Lisa_GraphAlg::transitive_hull(Lisa_Graph *const source,Lisa_Graph *const t
     done.fill(0);
     qs = qe = 0;
     
-    source->init_succ_pointer(i);
-    succ=source->get_next_successor(i);
+    source->init_successor(i);
+    succ=source->next_successor(i);
         
     while(succ<end){
       queue[qe++] = succ;
       done[succ] = 1;
-      succ=source->get_next_successor(i);
+      succ=source->next_successor(i);
     }  
     
     while(qs<qe){
       curr = queue[qs++];
       target->insert_arc(i,curr);
-      source->init_succ_pointer(curr);
-      succ=source->get_next_successor(curr);
+      source->init_successor(curr);
+      succ=source->next_successor(curr);
       while(succ<end){
         if(!done[succ]){
           done[succ]=1;
           queue[qe++]=succ;
         }
-        succ=source->get_next_successor(curr);
+        succ=source->next_successor(curr);
       }
     }
   }
