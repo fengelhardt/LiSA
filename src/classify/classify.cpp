@@ -26,7 +26,7 @@ const int PATHMAX=500;
 string 
 Lisa_classify(const Lisa_ProblemType& G_Problem,string home,string file) 
 {
-  int           i, j, comp, cplx, open=true;
+  int           j, comp, cplx, open=true;
   string        db_path, output="";
   Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
@@ -48,11 +48,11 @@ Lisa_classify(const Lisa_ProblemType& G_Problem,string home,string file)
   // mybase->output();
 
   // start of the classification
-  for (i=0; i<mybase->entries; i++)
-    for (j=0; j<mybase->E[i].no_of_prbls; j++)
+  for (int i=0; i<mybase->get_entries(); i++)
+    for (j=0; j<mybase->records[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,mybase->E[i].problem[j]);
-	cplx = mybase->E[i].tex_an[j].np_flag;
+   	comp = mygraph->compare(G_Problem,mybase->records[i].problem[j]);
+	cplx = mybase->records[i].tex_an[j].np_flag;
    	switch (comp)
    	  {
 	  case IDENT: 
@@ -92,7 +92,7 @@ Lisa_classify(const Lisa_ProblemType& G_Problem,string home,string file)
 string
 Lisa_full_ref(const Lisa_ProblemType& G_Problem,string home,string file) 
 {
-  int           i, j, comp, cplx, open=true, notice=-1;
+  int           j, comp, cplx, open=true, notice=-1;
   string        db_path, full_ref="";
   Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
@@ -108,29 +108,29 @@ Lisa_full_ref(const Lisa_ProblemType& G_Problem,string home,string file)
     }
 
   // collecting the requested references:
-  for (i=0; i<mybase->entries; i++)
-    for (j=0; j<mybase->E[i].no_of_prbls; j++)
+  for (int i=0; i<mybase->get_entries(); i++)
+    for (j=0; j<mybase->records[i].no_of_prbls; j++)
       {
-   	comp = mygraph->compare(G_Problem,mybase->E[i].problem[j]);
-	cplx = mybase->E[i].tex_an[j].np_flag;
+   	comp = mygraph->compare(G_Problem,mybase->records[i].problem[j]);
+	cplx = mybase->records[i].tex_an[j].np_flag;
    	switch (comp)
    	  {
 	  case IDENT:
 	    if (i!=notice)
-	      full_ref+=(string) mybase->E[i].bibentry;
+	      full_ref+=(string) mybase->records[i].bibentry;
 	    open=false; notice=i; 
 	    break;
 	  case FIRST_TO_SECOND:
 	    if ((i!=notice) && ((cplx==POLYN) || (cplx==PS_POLYN)))
 	      {
-		full_ref+=(string) mybase->E[i].bibentry;
+		full_ref+=(string) mybase->records[i].bibentry;
 		open=false; notice=i; 
 	      } 
 	    break;
 	  case SECOND_TO_FIRST:
 	    if ((i!=notice) && ((cplx==STR_NP_HARD) || (cplx==NP_HARD)))
 	      {
-		full_ref+=(string) mybase->E[i].bibentry;
+		full_ref+=(string) mybase->records[i].bibentry;
 		open=false; notice=i; 
 	      } 
 	    break;
@@ -202,8 +202,8 @@ reference_output(int i,int j,Lisa_DataBase* mybase)
 {
   string s;
 
-  s=(string) mybase->E[i].tex_an[j].prbl+"\n"+translate("SEE")+" "+
-    (string) mybase->E[i].author+", "+(string) mybase->E[i].year+
+  s=(string) mybase->records[i].tex_an[j].prbl+"\n"+translate("SEE")+" "+
+    (string) mybase->records[i].author+", "+(string) mybase->records[i].year+
     "\n\n\n\n";
   return(s);
 }

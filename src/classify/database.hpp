@@ -29,18 +29,11 @@ const int MAX_PRBLMS=40;
 ///hardness of problems
 enum{STR_NP_HARD=-2,NP_HARD,OPEN,PS_POLYN,POLYN};
 
-//@{
-/// flag for missing entry
-const int NO_AUTHOR=-1;
-const int NO_ANNOTE=-2;
-//@}
-
 //**************************************************************************
 
 /// BiBTeX Annote entry
 /** contains the problem and its complexity status */
-class TexAnnote{
-public:
+struct Lisa_TexAnnote{
   /// problem in ascii code
   char prbl[LINE];
   /// complexity status of problem
@@ -50,8 +43,7 @@ public:
 //**************************************************************************
 
 /// Class for records of BiBTeX entries.
-class Record{ 
-public:
+struct Lisa_DBRecord{ 
   ///  whole bibtex entry as ascii text, read step by step
   char       bibentry[BIBENTRY];  
   ///  author item
@@ -59,7 +51,7 @@ public:
   ///  year item
   char       year[YEAR];         
   ///  array of annote items
-  TexAnnote  tex_an[MAX_PRBLMS];  
+  Lisa_TexAnnote  tex_an[MAX_PRBLMS];  
   ///  array of tupel items
   Lisa_ProblemType  problem[MAX_PRBLMS];
   /// number of annote and tupel items per bibtex entry
@@ -80,23 +72,24 @@ public:
 class Lisa_DataBase{
 private:
   /// extract author, year, etc. from bibtex entry
-  int    bib_entry(char*,int);    
+  int    bib_entry(const char *const,int);    
   /// translate problem given in annote notation into Lisa_ProblemType notation
   int    prbl_into_tupel(char*,int,int);
   /// error output function for errors while reading the database
-  int    error_output(int,int,std::string);
-
+  void    error_output(int,int,std::string);
+  /// number of entries in database
+  int entries;
 public:
  
   /// constructor
   /** initialize and read database */
-  Lisa_DataBase(std::string);  
-  /// array of bibtex entries
-  Record E[MAX_REC]; 
-  /// total number of bibtex entries in database
-  int    entries;   
+  Lisa_DataBase(std::string filename);  
+  /// bibtex entries
+  std::vector<Lisa_DBRecord> records; 
+  /// get total number of bibtex entries in database
+  inline int get_entries()const{return entries;};   
   /// output of database
-  int    output(void);
+  /*int   output(void); */
 };
 
 //**************************************************************************
