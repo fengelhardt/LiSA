@@ -907,11 +907,9 @@ int TC_problem_reduction(ClientData /* clientData */,
 	 Tcl_Interp *interp,
 	 int /*argc*/, char *argv[])  
 {
-  int i,result=-1;
+  int i;
   string type="", filename="";
   Lisa_ProblemType myProblemType;
-  Lisa_RedGraph *myRedGraph;
-  myRedGraph = new Lisa_RedGraph;
   type=argv[1];
   filename=argv[2];
   ifstream fin(filename.c_str());
@@ -954,8 +952,13 @@ int TC_problem_reduction(ClientData /* clientData */,
       // now read problemtupel
       for (i=1;i<= number_of_heursolv_probl;i++) {
 	fin >> myProblemType;
-	result=myRedGraph->compare(&G_ProblemType,&myProblemType);
-	if (result==FIRST_TO_SECOND||result==IDENT) {
+        // cerr<<G_ProblemType.output_problem();  
+        // cerr<<filename+": " +myProblemType.output_problem()+"\n";
+	if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
+             (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 &&
+              G_ProblemType.output_beta()== myProblemType.output_beta() &&
+              G_ProblemType.output_gamma()== myProblemType.output_gamma()))
+	{
 	  sprintf(interp->result, "%d",1);
 	}
       }      
@@ -991,10 +994,17 @@ int TC_problem_reduction(ClientData /* clientData */,
       // now read problemtupel
       for (i=1;i<= number_of_exactsolv_probl;i++) {
 	fin >> myProblemType;
-	result=myRedGraph->compare(&G_ProblemType,&myProblemType);
-	if (result==FIRST_TO_SECOND||result==IDENT) {
+        //cerr<<G_ProblemType.output_problem(); 
+        //cerr<<G_ProblemType.output_alpha()+"\n";
+        //cerr<<filename+": " +myProblemType.output_problem()+"\n";
+	if ( G_ProblemType.output_problem() == myProblemType.output_problem() ||
+             (G_ProblemType.output_alpha().find(myProblemType.output_alpha())>=0 &&
+              G_ProblemType.output_beta()== myProblemType.output_beta() &&
+              G_ProblemType.output_gamma()== myProblemType.output_gamma()))
+	{
 	  sprintf(interp->result, "%d",1);
-	} 
+	}
+         
       }
     }
   } 
