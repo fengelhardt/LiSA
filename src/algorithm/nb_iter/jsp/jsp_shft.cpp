@@ -13,17 +13,17 @@ JSHOP_shift_Ngbh::JSHOP_shift_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     // JOrd[i] is the job on position i on the machine
     if ( !( JOrd = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( tabu_0 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( tabu_1 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     n = PP->n;
@@ -155,7 +155,7 @@ int JSHOP_shift_Ngbh::init_tabulist( unsigned int length )
     // and the order of the jobs on this maschine
     if ( !(tabulist = new Lisa_Tabu( length, n+1 )) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     return OK;

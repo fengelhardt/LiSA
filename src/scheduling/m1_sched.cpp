@@ -22,15 +22,15 @@ Lisa_1Problem::Lisa_1Problem( Lisa_Values * Pin )
     int i,j;
 
     if ( !( time = new Lisa_Vector<TIMETYP>( n+1 ) ))
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( wi = new Lisa_Vector<float>( n+1 ) ))
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( ri = new Lisa_Vector<TIMETYP>( n+1 ) ))
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( di = new Lisa_Vector<TIMETYP>( n+1 ) ))
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( prec = new Lisa_Matrix<int>( n+1, n+1 ) ))
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 
     // copy the problem datas
     if ( Pin->PT )
@@ -80,22 +80,22 @@ Lisa_1Schedule::Lisa_1Schedule( Lisa_1Problem *PPi )
     PP = PPi;
     if ( !( sequ = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory.n",2);
+	G_ExceptionList.lthrow("out of memory.n",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( Ci   = new Lisa_Vector<TIMETYP>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory.",2);
+	G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( JOsucc = new Lisa_Vector<int>( PP->n+1 ) ) )
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( JOpred = new Lisa_Vector<int>( PP->n+1 ) ) )
-      G_ExceptionList.lthrow("no more memory",2); 
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY); 
     if ( !( head = new Lisa_Vector<TIMETYP>( PP->n+1 ) ) )
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     if ( !( tail = new Lisa_Vector<TIMETYP>( PP->n+1 ) ) )
-      G_ExceptionList.lthrow("no more memory",2);
+      G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
     for (i=0; i<=(PP->n); i++)
       { 
 	(*JOsucc)[i] = SINK;
@@ -148,7 +148,7 @@ void  Lisa_1Schedule::ComputeHeadsTails(bool h, bool t)
     if (t && (!tail))
       {
 	if (!(tail  =new Lisa_Vector<TIMETYP>(PP->n+1)))
-	  G_ExceptionList.lthrow("no more memory",2);
+	  G_ExceptionList.lthrow("no more memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	tail->fill( 0 );
       }
   }

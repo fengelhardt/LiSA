@@ -15,7 +15,7 @@ JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     // make a order for randomly choice the operations
     if ( !(ROrd = new Lisa_Order(PP->n, PP->m)) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     OrdCount = 0;
@@ -26,7 +26,7 @@ JSHOP_3_CR_Ngbh::JSHOP_3_CR_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     ROrd->sort();
     if ( !(temp_schedule = new Lisa_JsSchedule(PP)) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
   }

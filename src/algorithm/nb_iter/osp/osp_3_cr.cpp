@@ -15,7 +15,7 @@ OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
     // make a order for randomly choice the operations
     if ( !(ROrd = new Lisa_Order(PP->n, PP->m)) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     OrdCount = 0;
@@ -26,7 +26,7 @@ OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
     ROrd->sort();
     if ( !(temp_schedule = new Lisa_OsSchedule(PP)) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
   }

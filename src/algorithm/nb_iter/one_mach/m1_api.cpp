@@ -20,26 +20,26 @@ API_Neighbourhood::API_Neighbourhood( Lisa_1Schedule *Plan, Lisa_1Problem *PPi )
 
    if ( !( P[0] = new Lisa_1Schedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
    *(P[0])=*Plan;
 
    if ( !( P[1] = new Lisa_1Schedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
 
    if ( !( P[2] = new Lisa_1Schedule( PP ) ))
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    
    if ( !( P[3] = new Lisa_1Schedule( PP ) ))
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    
@@ -220,7 +220,7 @@ int API_Neighbourhood::init_tabulist( unsigned int length )
   {
    if ( !(tabulist = new Lisa_Tabu( length )) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    return OK;

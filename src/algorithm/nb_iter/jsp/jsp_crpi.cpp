@@ -14,12 +14,12 @@ JSHOP_cr_API_Ngbh::JSHOP_cr_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi
   {
    if ( !(cr_list_j = new int[PP->n*PP->m]) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !(cr_list_m = new int[PP->n*PP->m]) )
      {
-      G_ExceptionList.lthrow("out of memory",2);
+      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
      }
    count = 0;

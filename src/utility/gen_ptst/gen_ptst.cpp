@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
    Lisa_ControlParameters *ptest_special;
    if ( !( ptest_special = new Lisa_ControlParameters ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
 
@@ -77,31 +77,31 @@ int main(int argc, char *argv[])
    Lisa_List<string> *Fix_Param_long;
    if ( !(Fix_Param_long = new Lisa_List<string>()) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
       Lisa_List<string> *Fix_Param_double;
    if ( !(Fix_Param_double = new Lisa_List<string>()) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
       Lisa_List<string> *Fix_Param_string;
    if ( !(Fix_Param_string = new Lisa_List<string>()) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_List<string> *Var_Param;
    if ( !(Var_Param = new Lisa_List<string>()) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_List<string> *Var_Param_type;
    if ( !(Var_Param_type = new Lisa_List<string>()) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
 
@@ -199,55 +199,55 @@ int main(int argc, char *argv[])
    Lisa_Vector<long> *FP_long;
    if ( !(FP_long = new Lisa_Vector<long>(numb_fix_l)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *FP_double;
    if ( !(FP_double = new Lisa_Vector<double>(numb_fix_d)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<string> *FP_string;
    if ( !(FP_string = new Lisa_Vector<string>(numb_fix_s)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *VP_init;
    if ( !(VP_init = new Lisa_Vector<double>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *VP_max;
    if ( !(VP_max = new Lisa_Vector<double>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *VP_incr;
    if ( !(VP_incr = new Lisa_Vector<double>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<string> *VP_FA;
    if ( !(VP_FA = new Lisa_Vector<string>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *variable;
    if ( !(variable = new Lisa_Vector<double>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    Lisa_Vector<double> *VP_best;
    if ( !(VP_best = new Lisa_Vector<double>(numb_var)) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
 
@@ -313,7 +313,7 @@ int main(int argc, char *argv[])
    Lisa_ProblemType *prob_type;
    if ( !( prob_type = new Lisa_ProblemType ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        return !OK;
      }
    strm.seekg(0);
@@ -323,7 +323,7 @@ int main(int argc, char *argv[])
    Lisa_Values *problem_in;
    if ( !( problem_in = new Lisa_Values() ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        return !OK;
      }	  
    strm >> (*problem_in);
@@ -332,7 +332,7 @@ int main(int argc, char *argv[])
    Lisa_Schedule *plan_in;
    if ( !( plan_in = new Lisa_Schedule() ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        return !OK;
      } 
    strm >> (*plan_in);
@@ -519,7 +519,7 @@ int main(int argc, char *argv[])
 		   Lisa_ControlParameters *my_special;
 		   if ( !( my_special = new Lisa_ControlParameters ) )
 		     {
-		       G_ExceptionList.lthrow("out of memory",2);
+		       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		       return !OK;
 		     }
 	       
@@ -705,7 +705,7 @@ int main(int argc, char *argv[])
 	   Lisa_ControlParameters *my_special;
 	   if ( !( my_special = new Lisa_ControlParameters ) )
 	     {
-	       G_ExceptionList.lthrow("out of memory",2);
+	       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	       return !OK;
 	     }
 	       
@@ -811,7 +811,7 @@ int main(int argc, char *argv[])
        Lisa_ControlParameters *my_special;
        if ( !( my_special = new Lisa_ControlParameters ) )
 	 {
-	   G_ExceptionList.lthrow("out of memory",2);
+	   G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	   return !OK;
 	 }
        

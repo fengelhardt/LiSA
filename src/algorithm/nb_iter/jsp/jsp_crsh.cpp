@@ -15,17 +15,17 @@ JSHOP_cr_shift_Ngbh::JSHOP_cr_shift_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *
     // JOrd[i] is the job on position i on the machine
     if ( !( JOrd = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( cr_list_j = new Lisa_Vector<int>( PP->n*PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( cr_list_m = new Lisa_Vector<int>( PP->n*PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     cr_count = 0;

@@ -14,12 +14,12 @@ OSHOP_cr_API_Ngbh::OSHOP_cr_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi
   {
     if ( !(cr_list_j = new int[PP->n*PP->m]) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !(cr_list_m = new int[PP->n*PP->m]) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     count = 0;

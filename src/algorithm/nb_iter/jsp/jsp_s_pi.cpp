@@ -14,7 +14,7 @@ JSHOP_semi_API_Ngbh::JSHOP_semi_API_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *
     // JOrd[i] is the job on position i on the machine
     if ( !( JOrd = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
   }

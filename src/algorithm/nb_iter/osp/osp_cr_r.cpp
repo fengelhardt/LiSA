@@ -15,7 +15,7 @@ OSHOP_cr_TST_Ngbh::OSHOP_cr_TST_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi
     // create a randomly order of the operatins
     if ( !(ROrd = new Lisa_Order(PP->n, PP->m)) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     OrdCount = 0;

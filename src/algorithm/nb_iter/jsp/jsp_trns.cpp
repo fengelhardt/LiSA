@@ -14,12 +14,12 @@ JSHOP_trans_Ngbh::JSHOP_trans_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     JOrd = new Lisa_Vector<int>( PP->n+1 );   // JOrd[i] is the job on position i on the machine
     if ( !( tabu_0 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( tabu_1 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
   }
@@ -135,7 +135,7 @@ int JSHOP_trans_Ngbh::init_tabulist( unsigned int length )
     // and the order of the jobs on this maschine
     if ( !(tabulist = new Lisa_Tabu( length, PP->n+1 )) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     return OK;

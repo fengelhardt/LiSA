@@ -19,26 +19,26 @@ OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
 
    if ( !( P[0] = new Lisa_OsSchedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
    *(P[0])=*Plan;
 
    if ( !( P[1] = new Lisa_OsSchedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
 
    if ( !( P[2] = new Lisa_OsSchedule( PP ) ))
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
 
    if ( !( P[3] = new Lisa_OsSchedule( PP ) ))
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    
@@ -332,7 +332,7 @@ int OSHOP_API_Ngbh::init_tabulist( unsigned int length )
   {
    if ( !(tabulist = new Lisa_Tabu( length )) )
      {
-      G_ExceptionList.lthrow("out of memory",2);
+      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
      }
    return OK;

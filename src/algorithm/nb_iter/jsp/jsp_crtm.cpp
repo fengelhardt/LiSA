@@ -14,42 +14,42 @@ JSHOP_cr_trans_mix_Ngbh::JSHOP_cr_trans_mix_Ngbh(Lisa_JsSchedule *Plan, Lisa_JsP
     JOrd = new Lisa_Vector<int>( PP->n+1 );       
     if ( !( tabu_0 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( tabu_1 = new Lisa_Vector<int>( PP->n+1 ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( LR = new Lisa_Matrix<int>( PP->n, PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( cij = new Lisa_Matrix<TIMETYP>( PP->n, PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( krv = new Lisa_Matrix<int>( PP->n, PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( krr = new Lisa_Matrix<int>( PP->n, PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( kr = new Lisa_Matrix<int>( PP->n, PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     if ( !( machines = new Lisa_Vector<int>( PP->m ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
 
@@ -337,7 +337,7 @@ int JSHOP_cr_trans_mix_Ngbh::init_tabulist( unsigned int length )
     // and the order of the jobs on this maschine
     if ( !(tabulist = new Lisa_Tabu( length, PP->n+1 )) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     return OK;

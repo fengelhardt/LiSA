@@ -19,7 +19,7 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
     
     if ( !( P[0] = new Lisa_JsSchedule( PP ) ) )
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     P[0]->ComputeHeadsTails( 1, 1 );
@@ -27,7 +27,7 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
 
     if ( !( P[1] = new Lisa_JsSchedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     P[1]->ComputeHeadsTails( 1, 1 );
@@ -35,14 +35,14 @@ JSHOP_API_Ngbh::JSHOP_API_Ngbh( Lisa_JsSchedule *Plan, Lisa_JsProblem *PPi )
 
     if ( !( P[2] = new Lisa_JsSchedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     P[2]->ComputeHeadsTails( 1, 1 );
 
     if ( !( P[3] = new Lisa_JsSchedule( PP ) ))
       {
-	G_ExceptionList.lthrow("out of memory",2);
+	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     P[3]->ComputeHeadsTails( 1, 1 );
@@ -204,23 +204,23 @@ int JSHOP_API_Ngbh::anti_neighbour()
 
    if ( !( copied = new Lisa_JsSchedule( PP ) ))
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    
    if ( !( cr_job = new Lisa_Vector<int>( PP->m * PP->n ) ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !( cr_mach = new Lisa_Vector<int>( PP->m * PP->n ) ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !( JOrd = new Lisa_Vector<int>( PP->n+2 ) ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
 
@@ -245,12 +245,12 @@ int JSHOP_API_Ngbh::anti_neighbour()
    // determs the order to insert the operations
    if ( !( cr_rand = new Lisa_Vector<int>( cr_count ) ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !( cr_order = new Lisa_Order( cr_count ) ) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    for (i=0; i<cr_count; i++)
@@ -345,7 +345,7 @@ int JSHOP_API_Ngbh::init_tabulist( unsigned int length )
   {
    if ( !(tabulist = new Lisa_Tabu( length )) )
      {
-       G_ExceptionList.lthrow("out of memory",2);
+       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
      }
    return OK;

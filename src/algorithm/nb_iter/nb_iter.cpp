@@ -177,14 +177,14 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
       Lisa_Values *problem_in;
       if ( !( problem_in = new Lisa_Values() ) )
 	{  
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	} 
       strm >> (*problem_in);
       fplan_o << (*problem_in);
       if ( !( m1_Prob = new Lisa_1Problem( problem_in ) ) )
 	{
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
 
@@ -197,7 +197,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  Lisa_Schedule *plan_in;
 	  if ( !( plan_in = new Lisa_Schedule() ) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	    
@@ -210,7 +210,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    
 	  if ( !( m1_Plan = new Lisa_1Schedule( m1_Prob ) ) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 
@@ -226,12 +226,12 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  Lisa_Vector<int> *LRV;
 	  if ( !(LRV = new Lisa_Vector<int>(m1_Prob->n)) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  if ( !(LROrder = new Lisa_Order(m1_Prob->n)) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  for ( i=0; i<m1_Prob->n; i++ )
@@ -262,14 +262,14 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	    case API:
 	      if (!(ngbh = m1_api = new API_Neighbourhood(m1_Plan,m1_Prob)))
 		{
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case SHIFT:
 	      if(!(ngbh=m1_shift=new shift_Neighbourhood(m1_Plan,m1_Prob)))
 		{
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -280,7 +280,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  
 	  if ( !( it = new Lisa_Iterator() ) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 
@@ -325,7 +325,7 @@ int one_mach_iter( ifstream& strm, ofstream& fplan_o )
 	  // transfering the datas:
 	  if ( !( plan_in = new Lisa_Schedule( m1_Prob->n, 1 ) ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  plan_in->make_LR();
@@ -362,14 +362,14 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
       Lisa_Values *problem_in;
       if ( !( problem_in = new Lisa_Values() ) )
 	{
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	} 
       strm >> (*problem_in);
       fplan_o << (*problem_in);
       if ( !( os_Prob = new Lisa_OsProblem(problem_in) ) )
 	{
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
       delete problem_in;
@@ -378,7 +378,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	{
 	  if ( !( os_Plan = new Lisa_OsSchedule( os_Prob ) ) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  os_Plan->ComputeHeadsTails( 1, 1 );
@@ -387,7 +387,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  Lisa_Schedule *plan_in;
 	  if ( !( plan_in = new Lisa_Schedule() ) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  strm >> (*plan_in);
@@ -404,7 +404,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
       int* JOPred = new int[os_Prob->m+1];
 	  if ( !(LROrder = new Lisa_Order(os_Prob->n, os_Prob->m)) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  LROrder->read( plan_in->LR );
@@ -434,47 +434,47 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    case API:   
 	      if(!(ngbh = os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob )))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case SHIFT: 
 	      if(!(ngbh = os_shift = new OSHOP_shift_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case _3_API: /// broken -marc-
 	   /*   if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob)))
 	      	{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 	        } */ 
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		} 
 	      break;
 	    case _3_CR:
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case CR_API:
 	      if(!(ngbh=os_cr_api = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break; 
 	    case BL_API:
 	      if(!(ngbh=os_bl_api=new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;   
@@ -482,7 +482,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh = os_cr_shift 
 		   = new OSHOP_cr_shift_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -490,14 +490,14 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh = os_bl_shift 
 		   = new OSHOP_cr_bl_shift_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case CR_TST:
 	      if(!(ngbh=os_cr_tst = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -510,7 +510,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	  
 	  if ( !( it = new Lisa_Iterator() ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  switch ( METHOD )
@@ -583,7 +583,7 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 	    
 	  if ( !( plan_in = new Lisa_Schedule( os_Prob->n, os_Prob->m ) ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  
@@ -620,7 +620,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
       Lisa_Values *problem_in;
       if ( !( problem_in = new Lisa_Values() ) )
 	{  
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
       strm >> (*problem_in);
@@ -633,7 +633,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
       fplan_o << (*problem_in);
       if ( !( js_Prob = new Lisa_JsProblem(problem_in) ) )
 	{  
-	  G_ExceptionList.lthrow("out of memory",2);
+	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
 
@@ -643,7 +643,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	{
 	  if ( !( js_Plan = new Lisa_JsSchedule( js_Prob ) ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  js_Plan->ComputeHeadsTails( 1, 1 );
@@ -652,7 +652,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  Lisa_Schedule *plan_in;
 	  if ( !( plan_in = new Lisa_Schedule() ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 
@@ -673,7 +673,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  int* MOPred = new int[js_Prob->n+1];
 	  if ( !(LROrder = new Lisa_Order(js_Prob->n, js_Prob->m)) )
 	    {
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  LROrder->read( plan_in->LR );
@@ -709,28 +709,28 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	    case API:   
 	      if(!(ngbh = js_api = new JSHOP_API_Ngbh( js_Plan, js_Prob )))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case SWAP:   
 	      if(!(ngbh = js_swap = new JSHOP_swap_Ngbh( js_Plan, js_Prob )))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case SHIFT: 
 	      if(!(ngbh= js_shift = new JSHOP_shift_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		} 
 	      break;
 	    case TRANS: 
 	      if(!(ngbh= js_trans = new JSHOP_trans_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -738,7 +738,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh= js_cr_trans 
 		   = new JSHOP_cr_trans_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -746,7 +746,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh= js_cr_trans_mix 
 		   = new JSHOP_cr_trans_mix_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -754,42 +754,42 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh= js_sc_trans 
 		   = new JSHOP_semi_trans_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case _3_API:
 	      if(!(ngbh= js_api_3 = new JSHOP_3_API_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
 	    case _3_CR:
 	      if(!(ngbh= js_cr_3 = new JSHOP_3_CR_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;	      
 	    case CR_API:
 	      if(!(ngbh=js_cr_api = new JSHOP_cr_API_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break; 
 	    case SC_API:
 	      if(!(ngbh=js_sc_api = new JSHOP_semi_API_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break; 
 	    case BL_API:
 	      if(!(ngbh=js_bl_api=new JSHOP_cr_bl_API_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break; 
@@ -797,7 +797,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh = js_cr_shift 
 		   = new JSHOP_cr_shift_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -805,7 +805,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh = js_cr_shift_mix
 		   = new JSHOP_cr_shift_mix_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -813,7 +813,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	      if(!(ngbh = js_bl_shift 
 		   = new JSHOP_cr_bl_shift_Ngbh(js_Plan,js_Prob)))
 		{  
-		  G_ExceptionList.lthrow("out of memory",2);
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		  exit( 7 );
 		}
 	      break;
@@ -824,7 +824,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 	  
 	  if ( !( it = new Lisa_Iterator() ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  switch ( METHOD )
@@ -920,7 +920,7 @@ int jsp_iter( ifstream& strm, ofstream& fplan_o )
 
 	  if ( !( plan_in = new Lisa_Schedule( js_Prob->n, js_Prob->m ) ) )
 	    {  
-	      G_ExceptionList.lthrow("out of memory",2);
+	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
 	  
@@ -1002,7 +1002,7 @@ int main(int argc, char *argv[])
   Lisa_ProblemType *prob_type;
   if ( !( prob_type = new Lisa_ProblemType ) )
     {
-      G_ExceptionList.lthrow("out of memory",2);
+      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
     }
   strm.seekg(0);
@@ -1014,7 +1014,7 @@ int main(int argc, char *argv[])
   Lisa_ControlParameters *my_special;
   if ( !( my_special = new Lisa_ControlParameters ) )
     {
-      G_ExceptionList.lthrow("out of memory",2);
+      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
     }
 

@@ -14,22 +14,22 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength )
    length = ilength;
    if ( !(tabu_1 = new Lisa_Vector<int>(length) ) )
      {
-       G_ExceptionList.lthrow("out of memory.",2);
+       G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !(tabu_2 = new Lisa_Vector<int>(length) ) )
      {
-       G_ExceptionList.lthrow("out of memory.",2);
+       G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !(tabu_3 = new Lisa_Vector<int>(length) ) )
      {
-       G_ExceptionList.lthrow("out of memory.",2);
+       G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
        exit( 7 );
      }
    if ( !(tabu_4 = new Lisa_Vector<int>(length) ) )
      {
-      G_ExceptionList.lthrow("out of memory.",2);
+      G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
       exit( 7 );
      }
    pos = 0;
@@ -47,7 +47,7 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
     vec_length = ivector_length;
     if ( !(tabu = new Lisa_Matrix<int>( length, vec_length ) ) )
       {
-	G_ExceptionList.lthrow("out of memory.",2);
+	G_ExceptionList.lthrow("out of memory.",Lisa_ExceptionList::NO_MORE_MEMORY);
 	exit( 7 );
       }
     pos = 0;
