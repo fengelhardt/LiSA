@@ -1,12 +1,3 @@
-/*
- * ************** except.h ******************************************
- * 
- * List of error messages for use with LiSA 
- *
- * @author Thomas Tautenhahn
- *
- * 15.12.1998
-*/
 
 #ifndef _except_h 
 #define _except_h 
@@ -16,44 +7,24 @@
 
 #include "../basics/list.hpp"
 
-/** @name Exception handling.
-     Due to compatibility problems LiSA does not use C++ exception handling 
-     but uses a global list of error messages instead.
-    @Author Thomas Tautenhahn
-    @version 2.3pre3
- */
-
-//@{
-  
-/// predefined error code
-const int ANY_ERROR=0;
-/// predefined error code
-const int OUT_OF_RANGE=1;
-/// predefined error code
-const int NO_MORE_MEMORY=2;
-/// predefined error code
-const int END_OF_FILE=3;
-/// predefined error code
-const int SYNTAX_ERROR=4;
-/// predefined error code
-const int UNDEFINED_OBJECT=5;
-/// predefined error code
-const int TCLTK_ERROR=6;
-/// predefined error code
-const int FILE_NOT_FOUND=7;
-/// predefined error code
-const int INCONSISTENT_INPUT=8;
-/// predefined error code
-const int WARNING=9;
+/// error codes
+enum{ANY_ERROR=0,OUT_OF_RANGE,NO_MORE_MEMORY,END_OF_FILE,SYNTAX_ERROR,
+     UNDEFINED_OBJECT,TCLTK_ERROR,FILE_NOT_FOUND,INCONSISTENT_INPUT,WARNING};
 
 // extra error message for objects which cannot use Lisa_ExceptionList 
 extern std::string G_ExtraException;
 
 /// class for storing error messages and error codes
+/** Due to compatibility problems LiSA does not use C++ exception handling 
+    but uses a global list of error messages instead.
+    
+    @author Thomas Tautenhahn
+    @version 2.3pre3
+ */
 class Lisa_ExceptionList{
 public:
   
-  //constructor 
+  /// constructor 
   Lisa_ExceptionList(){ 
       output_to_cerr=FALSE;
       output_to_cout=FALSE; 
@@ -84,15 +55,20 @@ public:
   bool empty(int code) { return !(Codes.search_first(code)); }
 
 private:
+
+  /// output flag
   bool output_to_cerr;
+  /// output flag
   bool output_to_cout;
+ 
+  /// list with error messages
   Lisa_List<std::string> Messages;
+  /// list with error codes
   Lisa_List<int> Codes;
 };
 
 /// global instance of exception list:
 extern Lisa_ExceptionList G_ExceptionList;
 
-//@}
 #endif
 

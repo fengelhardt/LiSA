@@ -1,38 +1,16 @@
-/*
- * ************************* filentry.h ******************************
- * 
- * description:      contains class Lisa_FileEntry
- *                   
- *                   
- *                   
- *
- *
- * @author            Per Willenius
- * date:             3.12.1998
-*/
 
 #ifndef _filentry_h 
 #define _filentry_h 
 
 #include "lsaobjct.hpp" 
 
-/** The Objects: Lisa_ControlParameters, Lisa_problemType, 
-    Lisa_Values and Lisa_Schedule are children of Lisa_FileEntry
-    because they are used for file commmunication
-  
-    Include file LiSA/src/lisa_dt/lsaobjkt.h, 
-
+/// Lisa_FileEntry has only a symbolic function.
+/** All LiSA objects, which are used for communication 
+    through files of the type *.lsa should be children of Lisa_FileEntry.
+        
     @author Per Willenius 
-    @version 2.3pre3
-*/ 
-
-/** Lisa_FileEntry has only a symbolic function.
-    All Lisa-Objects, which are used for file-communication 
-    via files of type *.lsa are children of  Lisa_FileEntry.
-    */   
-class Lisa_FileEntry : public Lisa_Object{
-
-};
+    @version 2.3pre3 */   
+class Lisa_FileEntry : public Lisa_Object{};
 
 #endif
 

@@ -11,7 +11,7 @@ using namespace std;
 
 //**************************************************************************
 
-fp_set::fp_set(int ni, int sigmai)
+FP_Set::FP_Set(int ni, int sigmai)
   {
     int i;
     n=ni;
@@ -30,7 +30,7 @@ fp_set::fp_set(int ni, int sigmai)
 
 //**************************************************************************
 
-const fp_set& fp_set::operator=(fp_set& other)
+const FP_Set& FP_Set::operator=(FP_Set& other)
  { 
    int i;
    n=other.n;
@@ -44,7 +44,7 @@ const fp_set& fp_set::operator=(fp_set& other)
 
 //**************************************************************************
 
-fp_vector* fp_set::replace_vector(int pos , fp_vector * nv)
+fp_vector* FP_Set::replace_vector(int pos , fp_vector * nv)
   {
     int i;
     fp_vector * ov;
@@ -59,7 +59,7 @@ fp_vector* fp_set::replace_vector(int pos , fp_vector * nv)
 
 //**************************************************************************
 
-void fp_set::spread()
+void FP_Set::spread()
   {
     int i,j,k, elem;
     long seed=12345671l;
@@ -101,7 +101,7 @@ void fp_set::spread()
 
 //**************************************************************************
 
-void fp_set::random(long * seed)
+void FP_Set::random(long * seed)
   {
     int i,j;
     fp_vector * other=new fp_vector(n);
@@ -116,7 +116,7 @@ void fp_set::random(long * seed)
 
 //**************************************************************************
 
-void fp_set::random2(long * seed)
+void FP_Set::random2(long * seed)
   {
     int i,j,k,l;
     k=1;
@@ -136,7 +136,7 @@ void fp_set::random2(long * seed)
 
 //**************************************************************************
 
-void fp_set::write(ostream& strm) const
+void FP_Set::write(ostream& strm) const
   {
     int i;
     for (i=0; i<sigma; i++)
@@ -147,7 +147,7 @@ void fp_set::write(ostream& strm) const
 
 //**************************************************************************
 
-fp_set::~fp_set()
+FP_Set::~FP_Set()
   {
     int i; 
     for (i=0; i<sigma; i++)

@@ -1,9 +1,3 @@
-/** @name Database of Problems with Known Complexity
-    This section contains the classes, functions and varibales used for
-    the database of minimal np-hard and maximal polynomial problems for 
-    scheduling problem classification. 
-*/
-//@{
 
 #ifndef _database_h
 #define _database_h
@@ -31,6 +25,9 @@ const int ANNOTE=40*LINE;
 /// maximal number of problems per annote item.
 const int MAX_PRBLMS=40;
 
+//@{
+/// a constant
+  
 const int NP_HARD=-1;
 const int STR_NP_HARD=-2;
 const int PS_POLYN=1;
@@ -39,27 +36,25 @@ const int OPEN=0;
 
 const int NO_AUTHOR=-1;
 const int NO_ANNOTE=-2;
+//@}
 
 //**************************************************************************
 
-/// BiBTeX Annote entry: contains the problem and its complexity status
+/// BiBTeX Annote entry
+/** contains the problem and its complexity status */
 class TexAnnote{
-private:
-  
 public:
   /// problem in ascii code
   char prbl[LINE];
-  /// complexity status of prbl
+  /// complexity status of problem
   int  np_flag;
 };
 
 //**************************************************************************
 
 /// Class for records of BiBTeX entries.
-class Record{
- private:
-  
- public:
+class Record{ 
+public:
   ///  whole bibtex entry as ascii text, read step by step
   char       bibentry[BIBENTRY];  
   ///  author item
@@ -76,8 +71,8 @@ class Record{
 
 //**************************************************************************
  
-/** Database class: minimal np-hard and maximal polynomial problems.
-    A database object parses the BiBTeX file {\tt classify.bib}
+/// Database class: minimal np-hard and maximal polynomial problems.
+/** A database object parses the BiBTeX file classify.bib
     containing all known polynomially solvable, pseudopolynomially
     solvable, np-hard, and np-hard (in strong sense) problems.
 
@@ -86,16 +81,18 @@ class Record{
     @version 2.3pre3
 */  
 class Lisa_DataBase{
- private:
-  /// extracting author, year, etc. from bibtex entry
+private:
+  /// extract author, year, etc. from bibtex entry
   int    bib_entry(char*,int);    
-  /// translating problem given in annote notation into Lisa_Problem notation
+  /// translate problem given in annote notation into Lisa_ProblemType notation
   int    prbl_into_tupel(char*,int,int);
   /// error output function for errors while reading the database
   int    error_output(int,int);
 
- public:
-  /// initializing and reading database
+public:
+ 
+  /// constructor
+  /** initialize and read database */
   Lisa_DataBase(std::string);  
   /// array of bibtex entries
   Record E[MAX_REC]; 
@@ -108,5 +105,4 @@ class Lisa_DataBase{
 //**************************************************************************
 
 #endif
-//@}
 

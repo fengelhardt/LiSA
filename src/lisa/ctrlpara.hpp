@@ -1,16 +1,3 @@
-/*
- * ************************* ctrlpara.hpp ******************************
- * 
- * description:      contains class Lisa_ControlParameters 
- *                   This class can be used to hold three types of variables
- *                   (string, int, float)
- *                   This makes it easy to communicate with external programs.
- *
- *
- * @author            Per Willenius
- * date:             25.2.1998
- * version:          V 1.0
-*/
 
 #ifndef _ctrlpara_h 
 #define _ctrlpara_h 
@@ -22,21 +9,19 @@
 #include "../basics/list.hpp"
 #include "lsaobjct.hpp"
 
-const int UNDEFINED=0;
-const int INT=1;
-const int DOUBLE=2;
-const int STRING=3;
+/// flags for type of value
+enum{UNDEFINED /** unknown type */ =0
+    ,INT /// integer type
+    ,DOUBLE /// floating point type
+    ,STRING /// string type
+    };
 
+/// Organizes communication between LiSA and its external modules.     
+/** You can define keywords and values of type string, double or int for each
+    of these words. Lisa_ControlParameters holds these values and can write and 
+    read them on files.
 
-// ********************* Class Definitions *******************
-
-/** Organizes communication between LiSA and its external modules.     
-    You can define keywords and values of type string, double or int for each
-    of these words. Lisa_ControlParameters holds these values and can write and read 
-    them on files. For definition of file format see 
-    LiSA/doc/use/fileform.doc. 
-
-    An Example of a Lisa_ControlParameters Entry in a file: 
+    An example of a Lisa_ControlParameters entry in a file: 
 
     <CONTROLPARAMETERS>
 
@@ -48,49 +33,50 @@ const int STRING=3;
 
     </CONTROLPARAMETERS>
   
-    Include file LiSA/src/lisa_dt/ctrlpara.h, it uses iostream, string, 
-    glist and nodewith.
-
-    @author Per Willenius and Thomas Tautenhahn 
+    @author Per Willenius, Thomas Tautenhahn 
     @version 2.3pre3
 */   
-class Lisa_ControlParameters: public  Lisa_Object
-{
-  private:
-    // 6 separate lists to avoid type checking (searching is faster this way): 
-    Lisa_List<std::string> StringKeyList, IntKeyList, DoubleKeyList;
-    Lisa_List<std::string> StringList;
-    Lisa_List<long int> IntList;
-    Lisa_List<double> DoubleList;
-  public:
-    /**@name define keywords and values: */
-    //@{
-     /// add a new int-entry with name and value
-     void add_key(const std::string name, long int value=0);
-     /// add a new double-entry with name and value
-     void add_key(const std::string name, double value=0.0);
-     /// add a new string-entry with name and value
-     void add_key(const std::string name, std::string value);
-    //@}
-    /**@name access values by keyword: */
-    //@{ 
-     /// test how keyword is defined (INT, DOUBLE, STRING or UNDEFINED)
-     int defined(const std::string name);
-     /// returns int-value which suits to the key
-     long int get_int(const std::string name);
-     /// returns double-value which suits to the key
-     double get_double(const std::string name);
-     /// returns string-value which suits to the key
-     std::string get_string(const std::string name);
-    //@}
-    /**@name in- and output: */
-    //@{
-     /// write in stream
-     void write(std::ostream & = std::cout) const;
-     /// read from stream
-     void read(std::istream& = std::cin);
-    //@} 
- };
+class Lisa_ControlParameters: public  Lisa_Object{
+private:
+
+  //@{
+  /// 6 separate lists to avoid type checking (searching is faster this way) 
+  Lisa_List<std::string> StringKeyList, IntKeyList, DoubleKeyList;
+  Lisa_List<std::string> StringList;
+  Lisa_List<long int> IntList;
+  Lisa_List<double> DoubleList;
+  //@}
+  
+public:
+
+    /// add a new int-entry with name and value
+    void add_key(const std::string name, long int value=0);
+    
+    /// add a new double-entry with name and value
+    void add_key(const std::string name, double value=0.0);
+    
+    /// add a new string-entry with name and value
+    void add_key(const std::string name, std::string value);
+
+    /// test how keyword is defined (INT, DOUBLE, STRING or UNDEFINED)
+    int defined(const std::string name);
+    
+    /// returns int-value which suits to the key
+    long int get_int(const std::string name);
+    
+    /// returns double-value which suits to the key
+    double get_double(const std::string name);
+    
+    /// returns string-value which suits to the key
+    std::string get_string(const std::string name);
+
+    /// write in stream
+    void write(std::ostream & = std::cout) const;
+    
+    /// read from stream
+    void read(std::istream& = std::cin);
+
+};
 
 #endif
 

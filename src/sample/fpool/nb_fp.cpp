@@ -17,8 +17,8 @@ fp_nb::fp_nb(int ni, int sigmai)
    fixed=1;
    for (int h=0; h<n/2; h++) fixed*=3;
    seed=1234567;
-   solution= new fp_set(n, sigma);
-   best_solution= new fp_set(n, sigma);
+   solution= new FP_Set(n, sigma);
+   best_solution= new FP_Set(n, sigma);
    modification= new fp_vector(n);
    best_modification= new fp_vector(n);
  }  

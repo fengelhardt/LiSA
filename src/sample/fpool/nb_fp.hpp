@@ -23,8 +23,8 @@ class fp_nb: public Lisa_Neighborhood
            int n, sigma, fixed;
            long seed;
            Lisa_Tabu * tabu;
-           fp_set * solution;
-           fp_set * best_solution;
+           FP_Set * solution;
+           FP_Set * best_solution;
            fp_vector * modification;
            fp_vector * best_modification;
            int  work_value, best_step_value; 
