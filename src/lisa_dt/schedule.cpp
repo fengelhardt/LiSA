@@ -286,7 +286,7 @@ void Lisa_Schedule::read(istream& strm) {
 	  G_ExceptionList.lthrow("Unexpected End of File in Lisa_Schedule.read",END_OF_FILE);
 	  return;
 	} 
-      if (S=="<\\SCHEDULE>"||S=="</SCHEDULE>") break; 
+      if (S=="</SCHEDULE>") break; 
       // d.h. ich soll weiterlesen:  
        if (S=="m=") 
          {  

@@ -172,7 +172,7 @@ void Lisa_Values::read(istream& strm) {
 				 END_OF_FILE);
 	  return;
 	} 
-      if (S=="<\\VALUES>"||S=="</VALUES>") return; 
+      if (S=="</VALUES>") return; 
       // d.h. ich soll weiterlesen:  
        if (S=="m=") 
          {  

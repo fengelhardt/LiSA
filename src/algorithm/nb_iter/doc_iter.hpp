@@ -19,7 +19,7 @@ The input-file must have the following structure:\\
 \\
 #<PROBLEMTYPE>#\\
 #Lisa_ProblemType= { alpha / betta / gamma }#\\
-#<\PROBLEMTYPE>#\\
+#</PROBLEMTYPE>#\\
 
 #<CONTROLPARAMETERS>#\\
 	// number of considered problems\\
@@ -46,17 +46,17 @@ The input-file must have the following structure:\\
 #long   NUMB_STUCKS   [ int-Wert > 0 ]#\\
 	// abort-value for the objective (not necessary to give)\\
 #float  ABORT_BOUND   [ float-Wert > 0 ]#\\
-#<\CONTROLPARAMETERS>#\\
+#</CONTROLPARAMETERS>#\\
 \\
 #<VALUES>#\\
 ...\\
 	//see class Lisa-Values\\
 ...\\
-#<\VALUES>#\\
+#</VALUES>#\\
 \\
-#<SCHEDULE># ... #<\SCHEDULE>#\\
+#<SCHEDULE># ... #</SCHEDULE>#\\
 ...	corresponding to the number of schedules per problem (see Lisa_Schedule)\\
-#<SCHEDULE># ... #<\SCHEDULE>#\\
+#<SCHEDULE># ... #</SCHEDULE>#\\
 \\
 ...     and so on, corresponding to the number of problems\\
 \\
@@ -103,7 +103,7 @@ An example for an open shop problem. Objective function is #Cmax#.\\
 \\
 #<PROBLEMTYPE>#\\
 #Lisa_ProblemType= { O /  / Cmax }#\\
-#<\PROBLEMTYPE>#\\
+#</PROBLEMTYPE>#\\
 \\
 #<CONTROLPARAMETERS>#\\
 #long   NUMB_PROBLEMS 1#\\
@@ -116,7 +116,7 @@ An example for an open shop problem. Objective function is #Cmax#.\\
 #long   NUMB_NGHB 10#\\
 #string TYPE RAND#\\
 #long   STEPS 200#\\
-#<\CONTROLPARAMETERS>#\\
+#</CONTROLPARAMETERS>#\\
 \\
 #<VALUES>#\\
 #n= 4#\\
@@ -133,7 +133,7 @@ An example for an open shop problem. Objective function is #Cmax#.\\
 # { 0 1 1 0 }#\\
 # { 1 0 1 1 }#\\
 #}#\\
-#<\VALUES>#\\
+#</VALUES>#\\
 \\
 #<SCHEDULE>#\\
 #m= 4#\\
@@ -144,7 +144,7 @@ An example for an open shop problem. Objective function is #Cmax#.\\
 # { 0 6 4 0 }#\\
 # { 1 0 2 8 }#\\
 #}#\\
-#<\SCHEDULE>#\\
+#</SCHEDULE>#\\
 */
 //@{
 //@}

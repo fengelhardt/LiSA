@@ -51,7 +51,7 @@ const int STRING=3;
 
     double     Parameter1= 23.23
 
-    <\CONTROLPARAMETERS>\\
+    </CONTROLPARAMETERS>\\
   
     Include file LiSA/src/lisa_dt/ctrlpara.h, it uses iostream, string, 
     glist and nodewith.

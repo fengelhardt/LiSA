@@ -12,10 +12,10 @@ Help= dispatch.html
 <EXACT>
 <PROBLEMTYPE>
 Lisa_ProblemType= { 1 / / Cmax }
-<\PROBLEMTYPE>
+</PROBLEMTYPE>
 <PROBLEMTYPE>
 Lisa_ProblemType= { 1 / / SumWiTi }
-<\PROBLEMTYPE>
+</PROBLEMTYPE>
 </EXACT>
 
 
