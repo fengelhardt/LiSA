@@ -20,10 +20,7 @@ public:
        ,NONE
        ,ARC
        ,EDGE};
-  
-  Lisa_Graph(){};
-  ~Lisa_Graph(){};
-  
+
   /// return the number of vertices
   inline int get_vertices()const{return size;};
 
@@ -106,6 +103,28 @@ public:
 
   /// test if there are no edges in the graph
   virtual bool no_edges()=0;
+  
+  /// delete all ARC's CRA's and EDGE's connected with that vertice
+  virtual void clear(const int vertex)=0;
+  
+  /// returns the number of successors for a vertex
+  /** This is the sum of edges and arcs. It uses and reinitializes
+      the successor list. */
+  int number_of_succ(const int vertex);
+
+  /// returns the number of predecessors for a vertice
+  /** This is the sum of edges and backwards arcs (CRA's). It uses and 
+      reinitializes the predecessor list. */
+  int number_of_pred(const int vertex);
+
+  /// sort vertices topologically
+  /** The vertices will be put in topoligical order into the 
+      vertex_sequence vector, i.e. vertex i in the original graph 
+      is assigned to the vertex indicated by knot_sequence(i).
+      returns true: all vertices are topsorted, graph contains no cycles
+      returns false: graph contains cycle, elements of vertex_sequence are 
+      undefined */ 
+  bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
   /// write the object to a stream 
   void write(std::ostream& = std::cout) const;
@@ -172,6 +191,10 @@ public:
   /// constructor
   /** Create a graph as the copy of another graph. */
   Lisa_MatrixListGraph(const Lisa_MatrixListGraph *const othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_MatrixListGraph(const Lisa_Graph *const othergraph);
   
   /// constructor
   /** Create a graph as the copy of another graph. */
@@ -263,25 +286,6 @@ public:
 
   /// test if there are no edges in the graph
   bool no_edges();
-
-  /// returns the number of successors for a vertex
-  /** This is the sum of edges and arcs. It uses and reinitializes
-      the successor list. */
-  int number_of_succ(const int vertex);
-
-  /// returns the number of predecessors for a vertice
-  /** This is the sum of edges and backwards arcs (CRA's). It uses and 
-      reinitializes the predecessor list. */
-  int number_of_pred(const int vertex);
-
-  /// sort vertices topologically
-  /** The vertices will be put in topoligical order into the 
-      vertex_sequence vector, i.e. vertex i in the original graph 
-      is assigned to the vertex indicated by knot_sequence(i).
-      returns true: all vertices are topsorted, graph contains no cycles
-      returns false: graph contains cycle, elements of vertex_sequence are 
-      undefined */ 
-  bool topsort(Lisa_Vector<int> *const vertex_sequence);
 
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   void clear(const int vertex);
