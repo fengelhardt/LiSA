@@ -5,7 +5,7 @@
 using namespace std;
 
 BeamSearch::BeamSearch(){
-  problem = NULL;
+  problem = NULL; 
   result = NULL;
   order = NULL;
   clear();

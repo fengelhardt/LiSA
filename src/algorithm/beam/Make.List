@@ -1,8 +1,12 @@
-CXXSOURCES=\
+ALG_SOURCES=\
 	beam_orders.cpp \
 	b_node.cpp \
 	beam_search.cpp \
-	beam.cpp \
+	beam.cpp
+
+
+CXXSOURCES=\
+	$(ALG_SOURCES)\
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

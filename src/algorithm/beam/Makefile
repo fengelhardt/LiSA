@@ -19,7 +19,8 @@ ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 
-ALGEXT = xml
+ALGEXT=xml
+LANGS=english german
 
 # ------------------------------------------------------------------------------
 
@@ -39,6 +40,8 @@ DEPENDCXXFLAGS=$(CXXINCL) -Wall
 -include Make.List
 
 -include Make.Objects
+
+CLEAN_OBJECTS=$(addprefix $(OBJPATH)/,$(addsuffix .o,$(basename $(ALG_SOURCES))))
 
 # ------------------------------------------------------------------------------
 
@@ -60,11 +63,9 @@ objdir:
 
 -include Make.Depend
 
-LANGS=english german
-
 # ------------------------------------------------------------------------------
 
-install:
+install: install_xml install_doc
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	for l in ${LANGS}; do \
@@ -72,19 +73,35 @@ install:
 		  mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp $(PROGRAMNAME)_$${l}*.html $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME).html; ); done
 # ------------------------------------------------------------------------------
 
-uninstall:
+install_xml:
+	for l in ${LANGS}; do \
+	( mkdir -p $(ALGPATH)/language/$${l} && cp $(PROGRAMNAME)_$${l}*.$(ALGEXT) $(ALGPATH)/language/$${l});done
+
+install_doc:
+	for l in ${LANGS}; do \
+	( mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp $(PROGRAMNAME)_$${l}*.html $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME).html; ); done
+
+clean_doc:
+	for l in ${LANGS}; do \
+	( rm $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME)*.html; ); done
+
+clean_xml:
+	for l in ${LANGS}; do \
+		( rm $(ALGPATH)/language/$${l}/$(PROGRAMNAME)*.$(ALGEXT) ); done
+
+uninstall: clean_xml
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.$(ALGEXT)
 	rm -f $(DOCPATH)/lisa/*/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
-distclean: clean
+distclean: clean clean_xml clean_doc
 
 # ------------------------------------------------------------------------------
 
 clean:
-	rm -fr $(OBJPATH)
+	rm -f $(CLEAN_OBJECTS)
+	rm -f $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 
 # ------------------------------------------------------------------------------
 
@@ -101,4 +118,3 @@ depend:
 	| gawk '{objectfile=$$0; sub("_point_o.*", "_point_o", objectfile); sourcefile=$$0; sub("_point_cpp.*", "_point_cpp", sourcefile); sub(".*: ", "", sourcefile); print "$(OBJPATH)/" $$0 "; $$(CXX) -c $$(CXXFLAGS) -o $(OBJPATH)/" objectfile " " sourcefile; };' - \
 	| sed -e "s/_point_/./g" \
 	> Make.Depend
-
