@@ -80,8 +80,8 @@ public:
   inline T& operator[] (const unsigned int j){ 
 #ifdef LISA_DEBUG
     if (j>=m){
-        G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
-                                ztos((int)m)+"-element vector requested",
+        G_ExceptionList.lthrow("element "+ztos(j)+" of a "+
+                                ztos(m)+"-element vector requested",
                                 OUT_OF_RANGE);
 	  return contents[0];
 	}
@@ -92,8 +92,8 @@ public:
   inline T operator[](const unsigned int j)const{ 
 #ifdef LISA_DEBUG
     if (j>=m){
-      G_ExceptionList.lthrow("element "+ztos((int)j)+" of a "+
-				             ztos((int)m)+"-element vector requested",
+      G_ExceptionList.lthrow("element "+ztos(j)+" of a "+
+				             ztos(m)+"-element vector requested",
                              OUT_OF_RANGE);
 	  return contents[0];
 	}
