@@ -10,6 +10,45 @@
 using namespace std;
 
 //**************************************************************************
+// helper methods: 
+
+/**
+ * return the earliest possible completion time of operation (i,j) 
+ * with respect to the existing partial schedule
+ */
+TIMETYP Lisa_Dispatcher::getECT(int i, int j)
+{
+  return MAX((*jstart)[i],(*mstart)[j])+(*problem->time)[i][j];
+}
+
+/**
+ * return the earliest possible starting time of operation (i,j) 
+ * with respect to the existing partial schedule
+ */
+TIMETYP Lisa_Dispatcher::getEST(int i, int j)
+{
+  return MAX((*jstart)[i],(*mstart)[j]);
+}
+
+/**
+ * return earliest possible completion time of any unscheduled operation 
+ * with respect to the existing partial schedule
+ */
+TIMETYP Lisa_Dispatcher::getEECT() 
+{
+  TIMETYP rv=MAXTIME;
+  for (int i=1; i<=n; i++)
+	for (int j=1; j<=m; j++)
+	  if ((!schedule->exists(i,j))&& (getECT(i,j)<rv)&&
+              (*problem->sij)[i][j])
+	    {
+	      rv=getECT(i,j);
+	    }
+  return rv;
+}
+
+
+//**************************************************************************
 
 TIMETYP Lisa_Dispatcher::priority(int i, int j)
 {
@@ -24,15 +63,19 @@ TIMETYP Lisa_Dispatcher::priority(int i, int j)
 	                +(*problem->time)[i][j];
                else 
 		 {
-		   TIMETYP slack=-(*problem->di)[i]+1;
+		   TIMETYP slack=1-(*problem->di)[i];
 		   for (int k=1; k<=m; k++)
-		     if (!schedule->exists(i,j))
+		     if (!schedule->exists(i,k))
 		       slack+=(*problem->time)[i][k];
-		   return slack;
+		   TIMETYP machineRemainingLoad=0;
+		   for (int l=1; l<=n; l++)
+		     if (!schedule->exists(l,j))
+		       machineRemainingLoad+=(*problem->time)[l][j];
+		   return slack-1/machineRemainingLoad;
 		 }
     case SPT : return -(*problem->time)[i][j];
     case WSPT: return (*problem->wi)[i]/(*problem->time)[i][j];
-    case ECT : return -MAX((*jstart)[i],(*mstart)[j])-(*problem->time)[i][j];
+    case ECT : return -getECT(i,j);
     case WI  : return (*problem->wi)[i]; 
     case LPT : return (*problem->time)[i][j];
     }
@@ -110,7 +153,7 @@ void Lisa_Dispatcher::SetRule(string r)
 
 //**************************************************************************
 
-void Lisa_Dispatcher::js_dispatch_active()
+void Lisa_Dispatcher::js_dispatch_nondelay()
 {
   int i,j;
   float maxprio;
@@ -171,6 +214,65 @@ void Lisa_Dispatcher::js_dispatch_active()
 
 //**************************************************************************
 
+void Lisa_Dispatcher::js_dispatch_active()
+{
+  Lisa_Vector<int> * nextMachine = new Lisa_Vector<int>(n+1);
+  for (int i=1; i<=n; i++)
+      (*nextMachine)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][SOURCE];
+
+  (*jstart)=(*problem->ri);
+  mstart->fill(0);
+
+  // initialize schedule:
+  delete schedule;
+  schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
+ 
+  // append operations to the schedule:
+  int choosenJob=SINK;
+  do 
+    {
+      TIMETYP latestStart=MAXTIME;
+      for (int i=1; i<=n; i++)
+	if (((*nextMachine)[i]!=SINK)&& 
+            (getECT(i,(*nextMachine)[i])<latestStart))
+	  {
+	    latestStart=getECT(i,(*nextMachine)[i]);
+	  }
+      
+      // choose one of the available operation:
+      float maxprio=-MAXTIME; 
+      choosenJob=SINK;      
+      for (int i=1; i<=n; i++)
+	{
+	  int j=(*nextMachine)[i];
+	  if ( (j!=SINK) && (priority(i,j)>maxprio) && 
+	       (getEST(i,j)<latestStart) )
+	    {
+	      maxprio=priority(i,j);
+	      choosenJob=i;
+	    }
+	}
+      
+      if (choosenJob!=SINK)
+	{
+	  // append operation:
+	  int i=choosenJob;
+          int j=(*nextMachine)[choosenJob];
+	  ((Lisa_JsSchedule*)schedule)->
+	    insert(i,j, schedule->GetJOpred(SINK,j));
+          
+	  (*jstart)[i]=(*mstart)[j]=
+	    MAX((*jstart)[i],(*mstart)[j])+(*problem->time)[i][j];
+	  
+          // include new operation into set:
+          (*nextMachine)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][j];
+	}
+    } while(choosenJob!=SINK);
+}
+
+//**************************************************************************
+
 void Lisa_Dispatcher::js_dispatch()
 {
   int i,j;
@@ -222,7 +324,7 @@ void Lisa_Dispatcher::js_dispatch()
 
 //**************************************************************************
 
-void Lisa_Dispatcher::os_dispatch_active()
+void Lisa_Dispatcher::os_dispatch_nondelay()
 {
   int i=0,j=0, k,l;
   float maxprio;
@@ -275,6 +377,49 @@ void Lisa_Dispatcher::os_dispatch_active()
 	}
     } while(time<MAXTIME);
   delete opstart;
+}
+
+//**************************************************************************
+
+void Lisa_Dispatcher::os_dispatch_active()
+{
+  int i=0,j=0, k,l;
+  float maxprio;
+  
+  // initialize schedule:
+  delete schedule;
+  schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
+  if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
+
+  (*jstart)=(*problem->ri);
+  mstart->fill(0);
+
+  // append operations to the schedule:
+  do 
+    {
+      TIMETYP latestStart=getEECT();
+      // choose one of the available operation:
+      maxprio=-MAXTIME; 
+      for (k=1; k<=n; k++)
+	for (l=1; l<=m; l++)
+	  if ((!schedule->exists(k,l))&& (priority(k,l)>maxprio)&&
+	      getEST(k,l)<latestStart &&
+              (*problem->sij)[k][l])
+	    {
+	      maxprio=priority(k,l);
+	      i=k; j=l;
+	    }
+      if (maxprio!=-MAXTIME)
+	{
+	  // append operation:
+	  ((Lisa_OsSchedule*)schedule)
+	    ->insert(i,j, schedule->GetJOpred(SINK,j),
+                          schedule->GetMOpred(i,SINK));
+	  
+	  (*jstart)[i]=(*mstart)[j]=MAX((*jstart)[i],(*mstart)[j])+
+	      (*problem->time)[i][j];
+	}
+    } while(maxprio!=-MAXTIME);
 }
 
 //**************************************************************************
@@ -339,6 +484,18 @@ void Lisa_Dispatcher::dispatch_active()
 {
   if (my_problem==J) js_dispatch_active();
   if (my_problem==O) os_dispatch_active();
+  if (my_problem==ERROR) 
+    G_ExceptionList.lthrow("cannot dispatch without defined problem");
+  // write the result to the output object
+  schedule->write_LR(LSchedule->LR);
+}
+
+//**************************************************************************
+
+void Lisa_Dispatcher::dispatch_nondelay()
+{
+  if (my_problem==J) js_dispatch_nondelay();
+  if (my_problem==O) os_dispatch_nondelay();
   if (my_problem==ERROR) 
     G_ExceptionList.lthrow("cannot dispatch without defined problem");
   // write the result to the output object

@@ -46,7 +46,12 @@ keine Einstellungen vorhanden.
    <DT> FCFS <DD> schon am l&auml;ngsten bereitsteht,
    <DT> EDD  <DD> den kleinsten F&auml;lligkeitstermin hat,
    <DT> LQUE  <DD> die kleinste Differenz F&auml;lligkeitstermin -
-        (Bearbeitungszeit+Tail) hat, 
+        (Bearbeitungszeit+Tail) hat. Im Fall von Open Shop wird statt des 
+        Tails die Summe der Bearbeitungszeiten aller noch nicht angeordneten 
+	Operationen des jeweiligen Auftrags betrachtet. Als zweitrangige 
+	Auswahlregel wird die Operation gewählt, auf deren Maschine 
+	die Summe der Bearbeitungszeiten der noch nicht angeordneten 
+	Operationen am größten ist.
    <DT> SPT  <DD> den kleinste  Bearbeitungszeit hat,
    <DT> WSPT <DD> den kleinsten Quotionten Bearbeitungszeit/Gewicht hat,
    <DT> ECT  <DD> am schnellsten fertiggestellt werden kann,
@@ -67,7 +72,7 @@ keine Einstellungen vorhanden.
 <HR>
 <A HREF="../main.html"> Inhaltsverzeichnis </A>
 <HR>
-29.10.99 TAU
+29.10.99 TAU / aktualisiert  29.06.04 TAU
 </BODY>
 </HTML>
 

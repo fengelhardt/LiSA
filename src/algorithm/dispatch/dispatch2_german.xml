@@ -325,8 +325,12 @@
   </heuristic>
   <alg_controls>
     <choice name="ACTIVE" caption="Aktiven Plan erzeugen">
-      <item name="FALSE"/>
       <item name="TRUE"/>
+      <item name="FALSE"/>
+    </choice>
+    <choice name="NONDELAY" caption="Non-delay Plan erzeugen">
+      <item name="TRUE"/>
+      <item name="FALSE"/>
     </choice>
     <choice name="RULE" caption="Prioritaetsregel">
       <item name="RAND"/>

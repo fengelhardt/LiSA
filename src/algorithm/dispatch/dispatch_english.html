@@ -38,9 +38,11 @@ also be listed as exact algorithms.
    <DT> RAND <DD> which is randomly determined,
    <DT> FCFS <DD> which became ready first,
    <DT> EDD  <DD> with the smallest due date,
-   <DT> LQUE  <DD> with smallest difference du date-(processing time +
-   tail),
-   <DT> SPT  <DD> with smallest processing time
+   <DT> LQUE  <DD> with smallest difference due date-(processing time +
+   tail). In case of open shop instead of the tail the total processing 
+   processing time of all unscheduled operations of the respective job
+   is considered. To break ties, the operation with largest total 
+   unscheduled processing time on the corresponding machine is choosen.     	  <DT> SPT  <DD> with smallest processing time
    <DT> WSPT <DD> with smallest ratio (processing time / weight)
    <DT> ECT  <DD> which can be completed first
    <DT> WI   <DD> with biggest weight,
@@ -60,7 +62,7 @@ also be listed as exact algorithms.
 <HR>
 <A HREF="../main.html"> Table of Contents </A>
 <HR>
-29.10.99 TAU
+29.10.99 TAU / updated  29.06.04 TAU
 </BODY>
 </HTML>
 

@@ -48,6 +48,15 @@ private:
   /// when is a machine free again ?
   Lisa_Vector<TIMETYP> * mstart;
   
+  /// returns ECT of unscheduled operation (i,j) 
+  TIMETYP Lisa_Dispatcher::getECT(int i, int j);
+
+  /// returns earliest start time of unscheduled operation (i,j) 
+  TIMETYP Lisa_Dispatcher::getEST(int i, int j);
+
+  /// returns earliest ECT of any unscheduled operation
+  TIMETYP Lisa_Dispatcher::getEECT();
+
   /// returns priority for operation (i,j) according to current rule
   TIMETYP priority(int i, int j); 
   
@@ -58,6 +67,10 @@ private:
   /// internal object holding schedule for problem
   Lisa_ShpSchedule * schedule;
   
+  /// internal nondelay schedule dispatcher for open shop
+  void os_dispatch_nondelay();
+  /// internal nondelay schedule dispatcher for job shop
+  void js_dispatch_nondelay();
   /// internal active schedule dispatcher for open shop
   void os_dispatch_active();
   /// internal active schedule dispatcher for job shop
@@ -78,10 +91,15 @@ public:
   /// chooses the priority rule (default SPT)
   void SetRule(std::string rule);
   
-  /// active schedule dispatcher
+  /// non-delay schedule dispatcher
   /** At each time a machine or job becomes available, schedule the operation 
       with the highest priority among the available ones. The resulting 
       schedule will be active. */ 
+  void dispatch_nondelay();
+
+  /// active schedule dispatcher
+  /** Among all unscheduled operations which can start before the nect ECT 
+      operation would complete, schedule the one with highest priority. */
   void dispatch_active();
   
   /// semiactive schedule dispatcher

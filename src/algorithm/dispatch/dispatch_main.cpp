@@ -109,9 +109,12 @@ int main(int argc, char *argv[]){
    engine.SetProblem(&lpr, &my_values, &out_schedule);
    engine.SetRule(sp.get_string("RULE"));
    
-   if (sp.get_string("ACTIVE")=="TRUE") engine.dispatch_active();
-   else engine.dispatch();
-   
+   if(sp.get_string("NONDELAY")=="TRUE"){
+     engine.dispatch_nondelay();
+   }else{
+    if (sp.get_string("ACTIVE")=="TRUE") engine.dispatch_active(); 
+    else engine.dispatch();
+   }
    // The object out_schedule contain the result of this algorithm,
    // which is written into the output file
    // write results to output file:

@@ -325,8 +325,12 @@
   </heuristic>
   <alg_controls>
     <choice name="ACTIVE" caption="construct active schedule">
-      <item name="FALSE"/>
       <item name="TRUE"/>
+      <item name="FALSE"/>
+    </choice>
+    <choice name="NONDELAY" caption="construct non-delay schedule">
+      <item name="TRUE"/>
+      <item name="FALSE"/>
     </choice>
     <choice name="RULE" caption="priority">
       <item name="RAND"/>
