@@ -7,7 +7,6 @@
 #include "../../basics/graph.hpp"
 #include "../../scheduling/mo_jo.hpp"
 #include "../../lisa/ptype.hpp"
-#include "graphalgo.hpp"
 
 /// convert schedules to graphs
 /** The irreducibility test runs completly on graphs. Therefore we need to 

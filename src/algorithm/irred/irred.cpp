@@ -17,7 +17,6 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
 
-#include "graphalgo.hpp"
 #include "convertgraph.hpp"
 #include "irrednode.hpp"
 #include "irredtest.hpp"

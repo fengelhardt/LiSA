@@ -5,7 +5,6 @@
 #include "../../main/global.hpp"
 #include "../../basics/list.hpp"
 #include "../../basics/graph.hpp"
-#include "graphalgo.hpp"
 
 /// Hold results of an irreducibilitytest.
 /** A node can hold the plangraph and the comparability graph for a given 
