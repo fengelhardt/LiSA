@@ -78,7 +78,7 @@ install:
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME).alg
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME)*.alg
 	rm -f $(DOCPATH)/lisa/*/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
