@@ -345,9 +345,7 @@ proc {read_all_desc_files} { } {
 	set filename [string trimright $filename ".alg"]
 	genparawin "$descr_dir/$filename.alg" "$source_dir/$filename.tcl" $filename
 	puts $ext_alg "source \"$source_dir/$filename.tcl\""
-	if { [string length $filename] >6 } {
-	    set ptst_filename "[string range $filename 0 6]\_t"
-	} else {  set ptst_filename "$filename\_t" }
+	set ptst_filename "$filename\_t"
 	
  	genparatestwin "$descr_dir/$filename.alg" "$source_dir/$ptst_filename.tcl" $filename
  	puts $ext_alg "source \"$source_dir/$ptst_filename.tcl\""
