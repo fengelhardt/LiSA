@@ -55,7 +55,7 @@ long Lisa_ControlParameters::get_long(const string name)
  {
   if (!IntKeyList.search_first(name)) 
     {
-      cerr << "ERROR: keyword int " << name << " not defined!\n";
+      cerr << "ERROR: keyword long " << name << " not defined!\n";
       return 0;
     }
   return IntList[IntKeyList.get_index()]; 
