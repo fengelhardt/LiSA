@@ -12,7 +12,6 @@ VERSION=2.3pre1
 TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
 DATAPATH=$(TOPPROGRAMPATH)/data
-ALGPATH=$(DATAPATH)/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
@@ -108,7 +107,7 @@ install: logo
 uninstall:
 	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) uninstall; cd ../..; done
 	rm -fr $(BINPATH)
-	rm -fr $(ALGPATH)
+	rm -fr $(DATAPATH)
 
 # ------------------------------------------------------------------------------
 
@@ -144,7 +143,6 @@ distclean: uncygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) distclean; cd ../..; done
-	rm -fr $(DATAPATH)
 	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------
