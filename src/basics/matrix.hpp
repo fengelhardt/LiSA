@@ -1,16 +1,3 @@
-/*
- * ************** matrix.h*******************************
- * 
- * vectors and matrices with dynamic size and fast access
- *
- * @author Thomas Tautenhahn 
- *        21.10.99
- *
- * Patch: Marc Moerig 
- *        03.01.2003
- *
- *
-*/
 
 #ifndef _lisa_matrix_h_ 
 #define _lisa_matrix_h_ 
@@ -21,31 +8,25 @@
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
 
-/** @name Vectors and Matrices
-    Classes Lisa_Vector<T> and Lisa_Matrix<T> provide easy to use 
-    vectors and matrices with dynamic size and fast access to the elements.
-    Define LISA_DEBUG to get automatic array bounds check! 
-    
-    Include file LiSA/src/basics/matrix.hpp, it uses iostream.
-    Use only for basic types int, bool, long, float. Elements of vectors 
-    must not allocate memory dynamically! For matrices of lists use 
-    lmatrix.h 
-    
-    Allways be carefull to use the right operator []! If X is of type 
-    Lisa_Vector<int>*, then the first Element of X is (*X)[0] and not 
-    "*X[0]" or "X[0]"!
-    @author Thomas Tautenhahn
-    @version 2.3pre3
-    @see Lisa_VectorOfLists
-    @see Lisa_MatrixOfLists 
-*/ 
+//**************************************************************************
 
-//@{
-    
 template<class T> class Lisa_Matrix;
 
-/** Basic vector class in LiSA. */
+//**************************************************************************
 
+/// basic vector class in LiSA.
+/** Class Lisa_Vector provides an easy to use vector with dynamic size and 
+    fast access to the elements.
+    
+    Define LISA_DEBUG to get an automatic array bounds check! 
+    
+    Elements of vectors must not allocate memory dynamically! For vectors of 
+    lists use Lisa_VectorOfLists.
+    
+    @author Thomas Tautenhahn
+    @version 2.3pre3
+    @see Lisa_Matrix
+*/
 template<class T>
 class Lisa_Vector{
 private:
@@ -55,10 +36,10 @@ private:
   /// array to hold elements
   T* contents;
   
-  /** default constructor to create an empty vector */
+  /// default constructor to create an empty vector
   Lisa_Vector();
 
-  /// friends
+  /// friend needed to hack around non std constructs in Lisa_Matrix
   friend class Lisa_Matrix<T>;
 public:
 
@@ -87,6 +68,7 @@ public:
     return contents[j];
   }
   
+  /// access to j-th element of vector  
   inline T operator[](const unsigned int j)const{ 
 #ifdef LISA_DEBUG
     if (j>=m){
@@ -132,13 +114,24 @@ public:
 
 //**************************************************************************
 
-/** Basic matrix class in LiSA. A Lisa_Matrix is a vector of vectors. */
+/// basic matrix class in LiSA
+/** A Lisa_Matrix is a vector of vectors, it provides an easy to use matrix 
+    with dynamic size and fast access to the elements.
+    
+    Define LISA_DEBUG to get an automatic array bounds check! 
+    
+    Elements of matrices must not allocate memory dynamically! For matrices of 
+    lists use Lisa_MatrixOfLists.
+    
+    @author Thomas Tautenhahn
+    @version 2.3pre3
+    @see Lisa_Vector
+*/
 template<class T>
 class Lisa_Matrix{
 private: 
   /// size
-  const unsigned int m;
-  const unsigned int n;
+  const unsigned int m,n;
   /// array holding contents 
   Lisa_Vector<T>* row;
 public:
@@ -167,6 +160,7 @@ public:
     return row[i];
   } 
   
+  /// access to i-th row vector  
   inline const Lisa_Vector<T>& operator[](const unsigned i)const{ 
 #ifdef LISA_DEBUG
     if (i>=n){
@@ -209,7 +203,7 @@ public:
 
 //**************************************************************************
 
-/// output stream operator for Lisa_Vector<T> 
+/// output stream operator for Lisa_Vector
 template<class T>
 inline std::ostream& operator << (std::ostream& strm, const Lisa_Vector<T>& v){
      v.write(strm);
@@ -218,7 +212,7 @@ inline std::ostream& operator << (std::ostream& strm, const Lisa_Vector<T>& v){
 
 //**************************************************************************
 
-/// input stream operator for Lisa_Vector<T> 
+/// input stream operator for Lisa_Vector
 template<class T>
 inline std::istream& operator >> (std::istream& strm, Lisa_Vector<T>& v){
      v.read(strm);
@@ -227,7 +221,7 @@ inline std::istream& operator >> (std::istream& strm, Lisa_Vector<T>& v){
 
 //**************************************************************************
 
-/// output stream operator for Lisa_Matrix<T> 
+/// output stream operator for Lisa_Matrix
 template<class T>
 inline std::ostream& operator << (std::ostream& strm, const Lisa_Matrix<T>& m){
      m.write(strm);
@@ -236,7 +230,7 @@ inline std::ostream& operator << (std::ostream& strm, const Lisa_Matrix<T>& m){
 
 //**************************************************************************
 
-/// input stream operator for Lisa_Matrix<T> 
+/// input stream operator for Lisa_Matrix
 template<class T>
 inline std::istream& operator >> (std::istream& strm, Lisa_Matrix<T>& m){
      m.read(strm);
@@ -245,6 +239,8 @@ inline std::istream& operator >> (std::istream& strm, Lisa_Matrix<T>& m){
 
 //**************************************************************************
 
+/// dummy stream read operator
+/** why is this here ? */
 inline std::istream& operator >> (std::istream& strm, void* ){
      return strm;
 }
@@ -252,6 +248,4 @@ inline std::istream& operator >> (std::istream& strm, void* ){
 //**************************************************************************
 
 #endif
-
-//@}
 
