@@ -13,7 +13,7 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 MODULENAME=algorithm
 MODULEPATH=$(SOURCEPATH)/$(MODULENAME)
 
-SKIP_MODULES_REGEX=/CVS$$|/irred$$|/sample$$
+SKIP_MODULES_REGEX=/CVS$$|/sample$$
 
 # ------------------------------------------------------------------------------
 
