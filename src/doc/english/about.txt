@@ -6,7 +6,7 @@
                        http://lisa.math.uni-magdeburg.de
                      lisagroup@lisa.math.uni-magdeburg.de
 
-                    Version 2.3final released on 2003-03-26
+                    Version 2.3final released on 26.03.2003
 
 The software package LiSA was developed within the framework of the research 
 project Latin Rectangles in Scheduling Theory (supported by the German State
@@ -21,8 +21,7 @@ Programming - Research Assistents: Martin Harborth,
 Programming - Students:  Lars Dornheim, Ines Wasmund, Andreas Winkler,
                          Ivo Roessling, Sandra Kutz, Marc Moerig
 
-Contact Address: 
-                 Heidemarie Braesel, 
+Contact Address: Heidemarie Braesel, 
                  Otto-von-Guericke-Universitaet Magdeburg,
                  Institut fuer Algebra und Geometrie
                  PSF 4120

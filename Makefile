@@ -223,9 +223,9 @@ version:
 	@$(TOPPROGRAMPATH)/make_substitute "set version " '\"$(VERSION)\"' $(SOURCEPATH)/setup/setup.tcl
 	@echo
 	@echo "updating $(SOURCEPATH)/doc/english/about.txt"
-	@date -I | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) released on {}' $(SOURCEPATH)/doc/english/about.txt
+	@date +%d.%m.%Y | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) released on {}' $(SOURCEPATH)/doc/english/about.txt
 	@echo
 	@echo "updating $(SOURCEPATH)/doc/german/about.txt"
-	@date -I | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) vom {}' $(SOURCEPATH)/doc/german/about.txt
+	@date +%d.%m.%Y | xargs -i $(TOPPROGRAMPATH)/make_substitute "Version " '$(VERSION) vom {}' $(SOURCEPATH)/doc/german/about.txt
 	@echo
 

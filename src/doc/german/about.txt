@@ -6,7 +6,7 @@
                        http://lisa.math.uni-magdeburg.de
                      lisagroup@lisa.math.uni-magdeburg.de
 
-                       Version 2.3final vom 2003-03-26
+                       Version 2.3final vom 26.03.2003
 
 Das Softwarepaket LiSA wurde im Rahmen des vom Land Sachsen Anhalt 
 gefoerderten Projektes "Lateinische Rechtecke in der Scheduling-Theorie" 
@@ -21,8 +21,7 @@ Programmierung - Wissenschaftliche Assistenten: Martin Harborth,
 Programmierung - Studenten: Lars Dornheim, Ines Wasmund, Andreas Winkler, 
                             Ivo Roessling, Sandra Kutz, Marc Moerig
 
-Kontaktadresse: 
-                Heidemarie Braesel, 
+Kontaktadresse: Heidemarie Braesel, 
                 Otto-von-Guericke-Universitaet Magdeburg,
                 Institut fuer Algebra und Geometrie
                 PSF 4120
