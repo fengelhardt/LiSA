@@ -20,7 +20,7 @@ CXXINCL=$(INCL)
 CXXFLAGS=$(CXXINCL) -Wall
 LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
 
-DEPENDCXX=g++
+DEPENDCXX=$(CXX)
 DEPENDCXXFLAGS=$(CXXINCL) -Wall
 
 # ------------------------------------------------------------------------------

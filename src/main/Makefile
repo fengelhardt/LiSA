@@ -29,7 +29,7 @@ CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
 CXXFLAGS=$(CXXINCL) -Wall
 LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
 
-DEPENDCXX=g++
+DEPENDCXX=$(CXX)
 DEPENDCXXFLAGS=$(CXXINCL) -Wall
 
 # ------------------------------------------------------------------------------
