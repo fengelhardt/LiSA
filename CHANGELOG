@@ -10,6 +10,9 @@ optimum in enumeration mode
 for job shop and flow shop problems you can enter latin rectangles that do not
 fit to the given machine order ... this doesn't even give you an error message
 
+schedules that are not semiactive may be edited manually, this may also lead to
+invalid schedules, but no error checking occurs
+
 --------------------------------------------------------------------------------
 upcoming version
 --------------------------------------------------------------------------------
