@@ -57,7 +57,7 @@ extern class Lisa_List<ScheduleNode> *G_ScheduleList;
 // write MO as Matrix in Lisa_MO
 int TC_adopt_MO(ClientData /* clientData*/,
 		Tcl_Interp * /* interp*/,
-		int /*argc*/, const char ** /* argv[]*/ ) {
+		int /*argc*/, TCL_HACK_CHAR ** /* argv[]*/ ) {
   
   int i=0,j=0;
   if (G_TclVar.MO_as_Matrix) {
@@ -81,7 +81,7 @@ int TC_adopt_MO(ClientData /* clientData*/,
 // write Lisa_MO in Matrix in G_TclVar
 int TC_make_MO_Matrix(ClientData /*clientData*/,
 		      Tcl_Interp * /* interp*/,
-		      int /*argc*/, const char **/* argv[]*/) {
+		      int /*argc*/, TCL_HACK_CHAR **/* argv[]*/) {
   if (G_Values.MO) {
     if (G_TclVar.MO_as_Matrix==NULL) {
       G_TclVar.make_MO(G_Values.get_n(),G_Values.get_m());
@@ -96,7 +96,7 @@ int TC_make_MO_Matrix(ClientData /*clientData*/,
 
 int TC_open(ClientData /* clientData*/,
 	    Tcl_Interp */* interp*/,
-	    int argc, const char *argv[])
+	    int argc, TCL_HACK_CHAR *argv[])
 {
   if (argc<2) return TCL_OK; // no filename given
   string ifile;
@@ -112,7 +112,7 @@ int TC_open(ClientData /* clientData*/,
 
 int TC_open_schedule(ClientData /* clientData*/ ,
 	    Tcl_Interp * /* interp*/ ,
-	    int argc, const char *argv[])
+	    int argc, TCL_HACK_CHAR *argv[])
 {
   if (argc<2) return TCL_OK; // no filename given
   ifstream fin( argv[1]);
@@ -174,7 +174,7 @@ int TC_open_schedule(ClientData /* clientData*/ ,
 
 int TC_save(ClientData /* clientData */,
 	    Tcl_Interp * /* interp */,
-	    int argc, const char *argv[])  
+	    int argc, TCL_HACK_CHAR *argv[])  
 { 
   if (argc<2) return TCL_OK; // no filename given
   string sfile;
@@ -191,7 +191,7 @@ int TC_save(ClientData /* clientData */,
 // generate randomly processing time matrix with parameters min,max,step,seed1,seed2
 int TC_genpt(ClientData /* clientData */,
 	     Tcl_Interp * /*interp */,
-	     int /*argc*/, const char *argv[])  
+	     int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   float min,max,step;
   int i,j;
@@ -236,7 +236,7 @@ int TC_genpt(ClientData /* clientData */,
 // generate randomly column with parameters min,max,step,seed1,name
 int TC_gen_column(ClientData /* clientData */,
 	     Tcl_Interp * /*interp*/,
-	     int /*argc*/, const char *argv[])  
+	     int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   float min,max,step;
   int j;
@@ -278,7 +278,7 @@ int TC_gen_column(ClientData /* clientData */,
 // generate randomly a schedule
 int TC_gen_seq(ClientData /* clientData */,
 	      Tcl_Interp * /*interp*/,
-	      int /*argc*/, const char **/*argv[]*/)  
+	      int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  
 {
   int m,n;
 
@@ -297,7 +297,7 @@ int TC_gen_seq(ClientData /* clientData */,
 // generate randomly operation set
 int TC_gen_sij(ClientData /* clientData */,
 	      Tcl_Interp * /*interp*/,
-	      int /*argc*/, const char *argv[])  
+	      int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   float probab=0;
   int m,n,i,j;
@@ -326,7 +326,7 @@ int TC_gen_sij(ClientData /* clientData */,
 // generate randomly machine order
 int TC_gen_mo(ClientData /* clientData */,
 	      Tcl_Interp * interp,
-	      int /*argc*/, const char *argv[])  
+	      int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   int m,n,i,j,no_of_machines,k,index;
 
@@ -365,7 +365,7 @@ int TC_gen_mo(ClientData /* clientData */,
 // reverse a schedule
 int TC_rev_seq(ClientData /* clientData */,
 	      Tcl_Interp */*interp*/,
-	      int /*argc*/, const char **/*argv[]*/)  
+	      int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  
 {
   int ni,mi;
   int max=G_Values.get_n()*G_Values.get_m();
@@ -381,7 +381,7 @@ int TC_rev_seq(ClientData /* clientData */,
 // update a schedule
 int TC_update_seq(ClientData /* clientData */,
 	      Tcl_Interp * /*interp*/ ,
-	      int /*argc*/, const char **/*argv[]*/)  
+	      int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  
 {
   update_LR();
   return TCL_OK; 
@@ -392,7 +392,7 @@ int TC_update_seq(ClientData /* clientData */,
 /// update  C-matrix
 int TC_update_cij(ClientData /* clientData */,
 		  Tcl_Interp * /*interp*/,
-		  int /*argc*/, const char **/*argv[]*/) {
+		  int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   Lisa_OsProblem myOsProblem(&G_Values);
   Lisa_OsSchedule myOsSchedule(&myOsProblem);
   myOsSchedule.ComputeHeadsTails(TRUE,TRUE);
@@ -407,7 +407,7 @@ int TC_update_cij(ClientData /* clientData */,
 // refresh the output
 int TC_draw_output(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int /*argc*/, const char **/*argv[]*/)  
+	      int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  
 {
   if ( ( (string) Tcl_GetVar2(interp,"mw","mwout",0)=="Sequence Graph" ||
 	 (string) Tcl_GetVar2(interp,"mw","mwout",0)=="Gantt Diagram")  &&
@@ -424,7 +424,7 @@ int TC_draw_output(ClientData /* clientData */,
 // Draw Value Window
 int TC_draw_dat(ClientData /* clientData */,
 	       Tcl_Interp *interp,
-	       int /*argc*/, const char **/*argv[]*/)  {
+	       int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  {
   TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
   Lisa_Matrix<int> *myMO=NULL;
   Lisa_Matrix<TIMETYP> *myPT=NULL;
@@ -457,7 +457,7 @@ int TC_draw_dat(ClientData /* clientData */,
 /// Update an entry in the value Window
 int TC_draw_dat_entry(ClientData /* clientData */,
 		      Tcl_Interp *interp,
-		      int argc, const char *argv[]) {
+		      int argc, TCL_HACK_CHAR *argv[]) {
   TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
   int xpos=0,ypos=0;
   string value;
@@ -474,7 +474,7 @@ int TC_draw_dat_entry(ClientData /* clientData */,
 // Mark an entry in the Value Window
 int TC_mark_value_entry(ClientData /* clientData */,
 			Tcl_Interp *interp,
-			int /*argc*/, const char *argv[])  {
+			int /*argc*/, TCL_HACK_CHAR *argv[])  {
   int row=0,column=0;
   TCValues myValues(interp,VW_MAINCANV,VW_HORICANV,VW_VERTCANV,VW_LABEL);
   sscanf(argv[1],"%d",&row);
@@ -488,7 +488,7 @@ int TC_mark_value_entry(ClientData /* clientData */,
 // Draw Schedule Window
 int TC_draw_schedule(ClientData /* clientData */,
 	       Tcl_Interp *interp,
-	       int /*argc*/, const char **/*argv[]*/)  {
+	       int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  {
     TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
     string str = Tcl_GetVar2(interp,"schedule","Matrix",TCL_GLOBAL_ONLY); 
     Lisa_Matrix<TIMETYP> *myCIJ=NULL;
@@ -510,7 +510,7 @@ int TC_draw_schedule(ClientData /* clientData */,
 // Draw List of Schedules
 int TC_draw_schedule_list(ClientData /* clientData */,
 	       Tcl_Interp *interp,
-	       int /*argc*/, const char **/*argv[]*/)  {
+	       int /*argc*/, TCL_HACK_CHAR **/*argv[]*/)  {
   int no_schedules=G_ScheduleList->length();
   if (no_schedules>=1) {
     ScheduleNode myScheduleNode;
@@ -593,7 +593,7 @@ int TC_draw_schedule_list(ClientData /* clientData */,
 // Update an entry in the schedule Window
 int TC_draw_schedule_entry(ClientData /* clientData */,
 		      Tcl_Interp *interp,
-		      int argc, const char *argv[]) {
+		      int argc, TCL_HACK_CHAR *argv[]) {
   TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
   int xpos=0,ypos=0;
   string value;
@@ -608,7 +608,7 @@ int TC_draw_schedule_entry(ClientData /* clientData */,
 // If new ProblemType defined
 int TC_new_problem(ClientData /* clientData */,
 		   Tcl_Interp * /*interp*/,
-		   int /*argc*/, const char **/*argv[]*/) {
+		   int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   new_problemtype();
   return TCL_OK; 
 }
@@ -618,7 +618,7 @@ int TC_new_problem(ClientData /* clientData */,
 // If new Lisa_Values defined
 int TC_new_values(ClientData /* clientData */,
 		  Tcl_Interp * /*interp*/,
-		  int /*argc*/, const char **/*argv[]*/) {
+		  int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   new_values();
   return TCL_OK; 
 }
@@ -628,7 +628,7 @@ int TC_new_values(ClientData /* clientData */,
 // Mark an entry in the schedule window
 int TC_mark_schedule_entry(ClientData /* clientData */,
 			   Tcl_Interp *interp,
-			   int /*argc*/, const char *argv[])  {
+			   int /*argc*/, TCL_HACK_CHAR *argv[])  {
   int row=0,column=0;
   TCSchedule mySchedule(interp,SW_MAINCANV,SW_HORICANV,SW_VERTCANV,SW_LABEL);
   sscanf(argv[1],"%d",&row);
@@ -641,7 +641,7 @@ int TC_mark_schedule_entry(ClientData /* clientData */,
 
 int TC_exit(ClientData /* clientData */,
 		Tcl_Interp * /*interp*/,
-		int /*argc*/, const char **/*argv[]*/) {  
+		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {  
   G_TclVar.alive=0;
   return TCL_OK;
 }
@@ -651,7 +651,7 @@ int TC_exit(ClientData /* clientData */,
 /// Problem Classification
 int TC_classify(ClientData /* clientData */,
 	    Tcl_Interp * interp ,
-		int /*argc*/, const char **/*argv[]*/) {
+		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   Tcl_Eval(interp, "Window show .textaus");
   mw_set_label ("$Name(Classification");
   textobj mytext(interp);
@@ -669,7 +669,7 @@ int TC_classify(ClientData /* clientData */,
 
 int TC_references(ClientData /* clientData */,
 	    Tcl_Interp * interp ,
-		int /*argc*/, const char **/*argv[]*/) {
+		int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   string str2="";
   string str=Lisa_full_ref(&G_ProblemType,G_Preferences.LISA_HOME,
 			   "/data/classify/classify.bib");
@@ -686,7 +686,7 @@ int TC_references(ClientData /* clientData */,
 /// If an error in the Tk- Application occour
 int TC_error(ClientData /* clientData */,
 	    Tcl_Interp * /*interp*/,
-		int /*argc*/, const char *argv[]) {
+		int /*argc*/, TCL_HACK_CHAR *argv[]) {
   G_ExceptionList.lthrow(argv[1],ANY_ERROR);
   return TCL_OK; 
 }
@@ -696,7 +696,7 @@ int TC_error(ClientData /* clientData */,
 /// Delete all global objects
 int TC_new(ClientData /* clientData */,
 	   Tcl_Interp * /*interp*/,
-	   int /*argc*/, const char **/*argv[]*/) {
+	   int /*argc*/, TCL_HACK_CHAR **/*argv[]*/) {
   int i;
   for(i=0;i<TUPEL_INDEX;i++) G_ProblemType.set_property(i,EMPTY);
   //  G_ProblemType.valid=FALSE;
@@ -712,7 +712,7 @@ int TC_new(ClientData /* clientData */,
 /// write G_Schedule.LR in G_TCLVar.LR
 int  TC_save_old_sequence(ClientData /* clientData */,
 	   Tcl_Interp * /*interp*/,
-	   int /*argc*/, const char ** /*argv[]*/) {
+	   int /*argc*/, TCL_HACK_CHAR ** /*argv[]*/) {
   G_TclVar.make_LR(G_Values.get_n(),G_Values.get_m());
   *(G_TclVar.LR)=*(G_Schedule->LR);
  return TCL_OK; 
@@ -723,7 +723,7 @@ int  TC_save_old_sequence(ClientData /* clientData */,
 /// move operation
 int TC_move_operation(ClientData /* clientData */,
 	   Tcl_Interp * interp,
-	   int /*argc*/, const char *argv[]) {
+	   int /*argc*/, TCL_HACK_CHAR *argv[]) {
   string type="";
   int return_value=ERROR;
   int row=0,column=0;
@@ -816,7 +816,7 @@ return TCL_OK;
 /// Choose new Sequence
 int TC_choose_sequence(ClientData /* clientData */,
 		       Tcl_Interp * /*interp*/,
-		       int argc, const char *argv[]) {
+		       int argc, TCL_HACK_CHAR *argv[]) {
    if (argc>1) {
      int seq_no=0;
      sscanf(argv[1],"%d",&seq_no);
@@ -833,7 +833,7 @@ int TC_choose_sequence(ClientData /* clientData */,
 /// Sort list of sequences
 int TC_sort_sl(ClientData /* clientData */,
 	       Tcl_Interp * interp,
-	       int argc, const char *argv[]) {
+	       int argc, TCL_HACK_CHAR *argv[]) {
   int obj_name=0;
   
   if (argc>1) {
@@ -863,7 +863,7 @@ int TC_sort_sl(ClientData /* clientData */,
 /// starts external algorithm
 int TC_startalg(ClientData /* clientData */,
 		Tcl_Interp *interp,
-		int /*argc*/, const char *argv[]) {
+		int /*argc*/, TCL_HACK_CHAR *argv[]) {
 
   
   string name_of_algo,str="",type,name_of_parameter;
@@ -916,7 +916,7 @@ int TC_startalg(ClientData /* clientData */,
 //**************************************************************************
 
 int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
-                         int /*argc*/, const char *argv[]){
+                         int /*argc*/, TCL_HACK_CHAR *argv[]){
   
   Lisa_ProblemType myProblemType;
   
@@ -1022,7 +1022,7 @@ int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
 /// exclude sequences from list
 int TC_exclude(ClientData /* clientData */,
 		Tcl_Interp */*interp*/,
-		int argc, const char *argv[]) {
+		int argc, TCL_HACK_CHAR *argv[]) {
 
   if (argc <2 ) {
     G_ExceptionList.lthrow("Wrong number of arguments in TC_exclude",TCLTK_ERROR);
@@ -1053,7 +1053,7 @@ int TC_exclude(ClientData /* clientData */,
 //**************************************************************************
 
 /// save Lisa_Preferences in default.lsa
-int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
+int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
   string str=G_Preferences.CONFIG_HOME+"/default.lsa";
   ofstream fout(str.c_str());
   if (fout==NULL) {
@@ -1067,7 +1067,7 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
 //**************************************************************************
 
 ///  start Enumeration Algorithm
-// int TC_cenum(ClientData,	Tcl_Interp *, int , const char **) {
+// int TC_cenum(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
  
 //  cenum(&G_Values);
 //  return TCL_OK; 
@@ -1076,7 +1076,7 @@ int TC_save_options(ClientData,	Tcl_Interp *, int , const char **) {
 //**************************************************************************
 
 ///send <ctrl-C> Signal to external Algorithm
-int TC_stop_extalg(ClientData,	Tcl_Interp *, int , const char **) {
+int TC_stop_extalg(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
 
 string str;
 str ="dir";
@@ -1091,7 +1091,7 @@ execl(str.c_str(),str2.c_str());
 // a TCL wrapper for the UNIX kill command
 int TC_kill(ClientData /* clientData */,
 	 Tcl_Interp * /*interp*/,
-	 int /*argc*/, const char *argv[])  
+	 int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   // two parameters:
   // 1.parameter  signal to send

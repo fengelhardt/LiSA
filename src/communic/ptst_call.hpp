@@ -46,12 +46,29 @@
 
 using namespace std;
 
-//  **************  Function Definitions ******************
+//**************************************************************************
+
+//tcl version hack
+#if TCL_MAJOR_VERSION < 8
+ #define TCL_HACK_CHAR char
+#elseif TCL_MAJOR_VERSION == 8 
+ #if TCL_MINOR_VERSION < 4
+  #define TCL_HACK_CHAR char
+ #else
+  #define TCL_HACK_CHAR const char
+ #endif
+#else
+ #define TCL_HACK_CHAR const char
+#endif
+
+//**************************************************************************
 
 /// starts external algorithm parameter test
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
-		int /*argc*/, const char *argv[]);
+		int /*argc*/, TCL_HACK_CHAR *argv[]);
+
+//**************************************************************************
 
 /// call external algorithm parameter test
 int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call,
@@ -60,7 +77,10 @@ int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call,
 	       Lisa_ProblemType & G_ProblemType,
 	       Lisa_ControlParameters & parameter,
 	       Lisa_Schedule & G_Schedule, Lisa_Values & G_Values);
- //@}
+
+//**************************************************************************
+
+//@}
 #endif
 
 

@@ -18,18 +18,19 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+//**************************************************************************
+
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_Preferences G_Preferences;
 
-// *********************** functions *************************
+//**************************************************************************
 
 /// starts external algorithm parameter test
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
-		int /*argc*/, const char *argv[]) {
+		int /*argc*/, TCL_HACK_CHAR *argv[]) {
 
 
  //  long no_of_solutions=0;
@@ -192,6 +193,7 @@ int TC_startparam(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
 
 int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call, string output_file, string result_file,
 	     Lisa_Preferences & G_Preferences,
@@ -238,14 +240,5 @@ int start_paratest(Tcl_Interp *interp, string name_of_algo, string algo_call, st
   return OK;
 }
 
-
-
-
-
-
-
-
-
-
-
+//**************************************************************************
 

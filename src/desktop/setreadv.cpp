@@ -32,7 +32,8 @@
 
 using namespace std;
 
-// ********************** Global Variables ********************
+//**************************************************************************
+
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
@@ -43,12 +44,11 @@ extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
 extern class Lisa_List<ScheduleNode> *G_ScheduleList;
 
-// *********************** functions *************************
-
+//**************************************************************************
 
 int TC_set_p(ClientData /* clientData */,
 	 Tcl_Interp * /* interp*/,
-	 int /* argc*/, const char *argv[])  
+	 int /* argc*/, TCL_HACK_CHAR *argv[])  
 {
   string ms,ns,ws;
   int m,n,value;
@@ -61,9 +61,11 @@ int TC_set_p(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 int TC_get_p(ClientData /* clientData */,
 	 Tcl_Interp *interp,
-	 int /*argc*/, const char *argv[])  
+	 int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
 int n,m;
 
@@ -73,9 +75,11 @@ int n,m;
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 int TC_set_prob(ClientData /* clientData */,
 	       Tcl_Interp *interp,
-	       int /*argc*/, const char ** /*argv[]*/)  
+	       int /*argc*/, TCL_HACK_CHAR ** /*argv[]*/)  
 {
   const char *ms,*ns;
   int m,n,mold,nold;
@@ -92,10 +96,12 @@ int TC_set_prob(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 // set processing times
 int TC_set_pt(ClientData /* clientData */,
 	     Tcl_Interp *interp,
-	     int /*argc*/, const char *argv[])  
+	     int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   string ms,ns,ws;
   int m,n;
@@ -115,10 +121,12 @@ int TC_set_pt(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 // read processing time
 int TC_get_pt(ClientData /* clientData */,
 	     Tcl_Interp *interp,
-	     int /*argc*/, const char *argv[])  
+	     int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   int n,m;
   sscanf(argv[1],"%d",&n);
@@ -130,10 +138,12 @@ int TC_get_pt(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // set an entry in Lisa_Problen.tupel
 int TC_set_Tupel(ClientData /* clientData */,
 	 Tcl_Interp * /*interp*/,
-	 int /*argc*/, const char *argv[])  
+	 int /*argc*/, TCL_HACK_CHAR *argv[])  
 {
   // two parameters:
   // 1.parameter  number of tupel-entry
@@ -153,10 +163,12 @@ int TC_set_Tupel(ClientData /* clientData */,
   return TCL_OK;
 }
 
+//**************************************************************************
+
 // returns the values of C++ variables
 int TC_getvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int argc, const char *argv[])  {
+	      int argc, TCL_HACK_CHAR *argv[])  {
   int temp=0,row=0,column=0,n=0,m=0,i=0;
   float xpos=0,ypos=0;
   string name="",str="NOT_DEFINED",str2="",str3="",str4="";
@@ -484,10 +496,12 @@ int TC_getvar(ClientData /* clientData */,
   return TCL_OK; 
 }
 
+//**************************************************************************
+
 // Set C++ variables 
 int TC_setvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
-	      int /*argc*/, const char *argv[])  {
+	      int /*argc*/, TCL_HACK_CHAR *argv[])  {
   int int_value=1;
   int width=0,height=0;
   int row=0, column=0;
@@ -699,4 +713,5 @@ else if (name=="SIJ") {
   return TCL_OK; 
 }
 
+//**************************************************************************
 
