@@ -11,7 +11,9 @@
 */ 
 
 //  ********************** System Includes ***************************
-#include <fstream.h>
+#include <fstream>
+
+using namespace std;
 
 // ************************ LiSA Includes ********************
 #include "../main/global.hpp"

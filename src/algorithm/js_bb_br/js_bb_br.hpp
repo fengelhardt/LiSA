@@ -8,10 +8,13 @@
 #include <malloc.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include <time.h>
 #include <signal.h>
+
+using namespace std;
+
 #include "jb_block.hpp"
 #include "jb_brnch.hpp"
 #include "jb_dtstr.hpp"

@@ -7,8 +7,11 @@
  *
  * 19.9.1998
  */
-#include<ostream.h>
-#include"../misc/lisa_str.hpp"
+#include <ostream>
+#include <string>
+
+using namespace std;
+
 #include"list.hpp"
 extern string G_ExtraException;
 

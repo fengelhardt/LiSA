@@ -11,7 +11,10 @@
 #ifndef _irredjs_h 
 #define _irredjs_h 
 
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
+
 #include "../../misc/except.hpp"
 #include "../../scheduling/js_sched.hpp"
 

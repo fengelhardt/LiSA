@@ -10,9 +10,9 @@
  */
 
 #include<stdlib.h>
-#include<iostream.h>
+#include<iostream>
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
 #include"../../scheduling/schedule.hpp"
@@ -24,6 +24,8 @@
 #include"convertgraph.hpp"
 #include"irrednode.hpp"
 #include"irredtest.hpp"
+
+using namespace std;
 
 /** @name Irreducibility Test
    

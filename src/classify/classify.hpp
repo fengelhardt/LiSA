@@ -11,8 +11,11 @@
 #ifndef _classify_h 
 #define _classify_h 
 
+#include <string>
 #include <tk.h>
-#include "../misc/lisa_str.hpp"
+
+using namespace std;
+
 #include "../misc/except.hpp"
 #include "../desktop/c_tcl.hpp"
 #include "../lisa/ptype.hpp"

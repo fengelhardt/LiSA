@@ -9,7 +9,7 @@
 */
 
 
-#include<iostream.h>
+#include<iostream>
 #include"os_bb.hpp"
 #include"js_bb.hpp"
 #include"../../basics/list.hpp"
@@ -19,7 +19,9 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
+
+using namespace std;
 
 int main(int argc, char *argv[]) 
  {

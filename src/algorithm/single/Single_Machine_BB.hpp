@@ -17,7 +17,9 @@
 #include "../../misc/except.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
 
 /** The SingleMachineBB object solves single-machine-problems by a
     branch and bound method. To determine which job should be the next, the 

@@ -12,6 +12,10 @@
 #ifndef _bottleneck_h 
 #define _bottleneck_h 
 
+#include <iostream>
+
+using namespace std;
+
 #include "../../basics/matrix.hpp"
 #include "../../basics/graph.hpp"
 #include "../../misc/except.hpp"
@@ -20,7 +24,8 @@
 #include"../../scheduling/js_sched.hpp"
 #include"../../scheduling/sp_sched.hpp"
 #include"../../basics/order.hpp"
-#include <iostream.h>
+
+
 
 
 /** Shifting_Bottleneck object for Lisa, using the Shifting_Bottleneck 

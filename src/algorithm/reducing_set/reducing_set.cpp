@@ -11,9 +11,12 @@
 
 #include<stdlib.h>
 #include<stdio.h>
-#include<iostream.h>
+#include<iostream>
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
+
+using namespace std;
+
 #include"../../scheduling/matching.hpp"
 #include"../../main/global.hpp"
 #include"../../basics/list.hpp"
@@ -28,7 +31,7 @@
 #include"../../basics/lmatrix.hpp"
 
 
-inline ostream& operator << (ostream&strm, const pair& p)
+inline ostream& operator << (ostream&strm, const Lisa_Pair& p)
 {
   strm<<"["<<p.x<<","<<p.y<<"]";
   return strm;
@@ -48,7 +51,7 @@ Lisa_Matrix<TIMETYP> * P_input;
 Lisa_Matrix<bool> * MatchingMatrix;
 int level;
 int m,n;		  
-Lisa_nestedList<pair> * allMatchings;
+Lisa_nestedList<Lisa_Pair> * allMatchings;
 Lisa_nestedList<TIMETYP> * allDeltas;
 
 
@@ -153,14 +156,14 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 	    const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J,
 	    TIMETYP delta) 
 {
-  Lisa_nestedList<pair> * MatchingEdges=new Lisa_nestedList<pair>();
+  Lisa_nestedList<Lisa_Pair> * MatchingEdges=new Lisa_nestedList<Lisa_Pair>();
   int edgecount=0;
   LB-=delta;
   if (n>=m) {
     for(int j=0;j<n;j++)
       if ((matching_I[j]>=0) && (matching_I[j]<m) && (P[j][matching_I[j]]>0)) {
 	edgecount++;
-	pair * edge= new pair();
+	Lisa_Pair * edge= new Lisa_Pair();
 	edge->x=matching_I[j];
 	edge->y=j;
 	MatchingEdges->append(*edge);
@@ -175,7 +178,7 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
     for(int i=0;i<m;i++)
       if (matching_J[i]>=0 && matching_J[i]<n &&  P[matching_J[i]][i]>0) {
 	edgecount++;
-	pair * edge= new pair();
+	Lisa_Pair * edge= new Lisa_Pair();
 	edge->x=i;
 	edge->y=matching_J[i];
 	MatchingEdges->append(*edge);
@@ -190,8 +193,8 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 
   allDeltas->append(delta);
 
-  pair *MatchingInfo=new pair();
-  pair *EdgesAndDelta=new pair();
+  Lisa_Pair *MatchingInfo=new Lisa_Pair();
+  Lisa_Pair *EdgesAndDelta=new Lisa_Pair();
 
   EdgesAndDelta->x=level-1;
   EdgesAndDelta->y=(int)MatchingEdges;
@@ -243,7 +246,7 @@ int main(int argc, char *argv[])
     result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte->get_n(),my_werte->get_m());
 
     if (nondelay) {
-      allMatchings=new Lisa_nestedList<pair>();
+      allMatchings=new Lisa_nestedList<Lisa_Pair>();
       allDeltas=new Lisa_nestedList<TIMETYP>();
     }
 
@@ -300,8 +303,8 @@ int main(int argc, char *argv[])
     if (nondelay) {
       
       // just a few variables for later use...
-      pair* currMatchingInfo=new pair();
-      pair* anEdge=new pair();
+      Lisa_Pair* currMatchingInfo=new Lisa_Pair();
+      Lisa_Pair* anEdge=new Lisa_Pair();
       
       // converting the list of deltas into an array - this makes the algorithm faster!
       Lisa_Vector<TIMETYP> * arrayOfDeltas=new Lisa_Vector<TIMETYP>(allMatchings->length());
@@ -318,8 +321,8 @@ int main(int argc, char *argv[])
 	  // extracting current matching with all additional information
 	  // out of the queue
 	  (*currMatchingInfo)=allMatchings->dequeue();
-	  pair * EdgesAndDelta=(pair*)currMatchingInfo->y;
-	  Lisa_nestedList<pair> * currMatching=(Lisa_nestedList<pair>*)EdgesAndDelta->y;
+	  Lisa_Pair * EdgesAndDelta=(Lisa_Pair*)currMatchingInfo->y;
+	  Lisa_nestedList<Lisa_Pair> * currMatching=(Lisa_nestedList<Lisa_Pair>*)EdgesAndDelta->y;
 
  	  // going through all edges of the current matching and 
 	  // and updating the preemtive P and LR

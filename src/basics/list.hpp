@@ -13,11 +13,16 @@
 
 #ifndef _list_h
 #define _list_h
-#include<iostream.h>
-#include <strstream.h>
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
 #include "../main/global.hpp"
 #include "../lisa/lsaobjct.hpp"
-#include "../misc/lisa_str.hpp"
+
 
 // just a little bit of hide and seek, written to annoy the developer
 void error(string);
@@ -553,7 +558,7 @@ public:
       char* S;      // benutze char*, da C-Library kein stream(string) kennt
       
       S = new char[80];      
-      istrstream *is;
+      istringstream *is;
       
       clear();
       strm >> S;
@@ -563,7 +568,7 @@ public:
       
       while(S[0]!=')' && S!="") 
 	{
-	  is=new istrstream(S);
+	  is = new istringstream(S);
 	  *is >> value;
 	  delete is;
 	  append(value);

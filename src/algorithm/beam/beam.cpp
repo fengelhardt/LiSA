@@ -2,17 +2,19 @@
  * @author : jan tusch, andre herms
  */ 
 
-#include<iostream.h>
+#include<iostream>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp" 
 #include "b_node.hpp"
 #include <unistd.h>
 #include <time.h>
+
+using namespace std;
 
 enum InsertionOrder{
   lpt,

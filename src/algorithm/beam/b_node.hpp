@@ -1,6 +1,10 @@
 #ifndef _B_NODE_H_
 #define _B_NODE_H_
 
+#include <fstream>
+
+using namespace std;
+
 #include"../../main/global.hpp"
 #include"../../scheduling/os_sched.hpp"
 #include"../../basics/order.hpp"
@@ -9,7 +13,6 @@
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
-#include <fstream.h>
 #include"../../misc/except.hpp"
 
 enum CostFunc {

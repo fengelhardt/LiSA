@@ -9,8 +9,11 @@
  */
 
 
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
 #include "travel_graph.hpp"
 #include "travel_neighbourhood.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"

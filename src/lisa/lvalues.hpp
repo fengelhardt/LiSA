@@ -30,8 +30,9 @@
 const int LENGHT_OF_EXTRA_VECTOR = 5;
 
 //  ************** System Includes  ******************
-//#include "../misc/lisa_str.hpp"
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
 
 
 //  ************** Lisa Includes  ******************

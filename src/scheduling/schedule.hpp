@@ -37,9 +37,10 @@ const int NO_OF_SINKS = 11;
 const int NO_OF_IKL =12;
 
 //  ************** System Includes  ******************
-#include "../misc/lisa_str.hpp"
-#include <iostream.h>
+#include <string>
+#include <iostream>
 
+using namespace std;
 
 //  ************** Lisa Includes  ******************
 #include "../basics/matrix.hpp"

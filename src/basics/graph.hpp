@@ -9,10 +9,13 @@
  *
 */
 
+#include <iostream>
+
+using namespace std;
+
 #include "matrix.hpp"
 #include "pair.hpp"
 #include "../lisa/filentry.hpp"
-#include<iostream.h>
 
 
 #ifndef _graph_h 
@@ -49,9 +52,9 @@ private:
   int   n;
   int end;
   ///storage for the predecessor and successor lists of every knot
-  Lisa_Matrix<pair> *matrix;
+  Lisa_Matrix<Lisa_Pair> *matrix;
   ///pointer to a Vector, that storages the actuall positin within the successor and predeccessor list of every knot
-  Lisa_Vector<pair> *succ_pred_pointer;
+  Lisa_Vector<Lisa_Pair> *succ_pred_pointer;
   ///determine the signum of a connection
   int   signum(int start, int end) const;
 

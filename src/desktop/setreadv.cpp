@@ -12,7 +12,9 @@
 
 
 // ********************* System Includes ********************
-#include "../misc/lisa_str.hpp"
+#include <string>
+
+using namespace std;
 
 
 // ******************** Project Includes ********************

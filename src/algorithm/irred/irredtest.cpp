@@ -150,8 +150,8 @@ bool Lisa_IrreducibilityTest::test(Lisa_Graph* plan, Lisa_Graph* comp,const int 
   double count = 0;
   double oldcount = count;
   double tocheck;
-  if(all && param!=GENERATE_SIMILAR) tocheck = pow(2,num-1)-1;
-  else tocheck = pow(2,num)-1;
+  if(all && param!=GENERATE_SIMILAR) tocheck = pow(2. , (double) num-1)-1;
+  else tocheck = pow(2. ,(double) num)-1;
   double step = tocheck/400;
 
   cout << "OBJECTIVE= 1 " << count << "/" << tocheck << endl;

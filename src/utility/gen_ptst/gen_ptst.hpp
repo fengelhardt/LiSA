@@ -17,8 +17,11 @@
 #include "../../lisa/ctrlpara.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
 
-#include <fstream.h>
-#include <iomanip.h>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
 #include <stdlib.h>
   const int MAXINT  = 214748000;
   const int MAXLONG = 214748000;

@@ -12,12 +12,13 @@
 
 
 // ********************* System Includes ********************
-#include "../misc/lisa_str.hpp"
+#include <string>
 // used in TC_open_schedule():
-#include <fstream.h>
+#include <fstream>
 #include <unistd.h>
 #include <signal.h>
 
+using namespace std;
 
 // ******************** Project Includes ********************
 

@@ -8,7 +8,7 @@
  * 30.04.2001
 */
 
-#include<iostream.h>
+#include<iostream>
 #include"../../main/global.hpp"
 #include"../../basics/matrix.hpp"
 #include"../../lisa/ctrlpara.hpp"
@@ -16,8 +16,10 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
+
+using namespace std;
 
 int main(int argc, char *argv[]) 
 {

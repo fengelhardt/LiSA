@@ -13,8 +13,10 @@
 
 
 // ********************* System Includes ********************
-#include "../misc/lisa_str.hpp"
-#include <fstream.h>
+#include <string>
+#include <fstream>
+
+using namespace std;
 
 // ************************ Local Includes ********************
 #include "ptst_call.hpp"

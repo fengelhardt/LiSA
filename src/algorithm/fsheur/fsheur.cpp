@@ -8,7 +8,7 @@
  * 11.09.2000
 */
 
-#include<iostream.h>
+#include<iostream>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
 #include"../../scheduling/schedule.hpp"
@@ -16,9 +16,11 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
 #include "../../basics/order.hpp"
+
+using namespace std;
 
 const int NORMAL=0;
 const int EXTENDED=1;

@@ -10,7 +10,10 @@
  * history: 21.10.99  made several methods const
 */
 
-#include "../misc/lisa_str.hpp"
+#include <string>
+
+using namespace std;
+
 #include "matrix.hpp"
 #include "../main/global.hpp"
 #include "pair.hpp"
@@ -247,18 +250,14 @@ template class Lisa_Matrix<int>;
 template class Lisa_Matrix<float>;
 template class Lisa_Matrix<double>;
 template class Lisa_Matrix<bool>;
-template class Lisa_Matrix<pair>;
+template class Lisa_Matrix<Lisa_Pair>;
 
 template class Lisa_Vector<int>;
 template class Lisa_Vector<float>;
 template class Lisa_Vector<double>;
 template class Lisa_Vector<bool>;
 template class Lisa_Vector<string>;
-template class Lisa_Vector<pair>;
-
-
-// template class Lisa_Matrix<void *>;
-// template class Lisa_Vector<void *>;
+template class Lisa_Vector<Lisa_Pair>;
 
 template class Lisa_Matrix<long>;
 template class Lisa_Vector<long>;

@@ -61,8 +61,11 @@
 #include "jsp/jsp_blsh.hpp"
 #include "jsp/jsp_3_cr.hpp"
 
-#include <fstream.h>
+#include <fstream>
 #include <time.h>
+
+using namespace std;
+
   const int MAXINT  = 214748000;
   const int MAXLONG = 214748000;
 

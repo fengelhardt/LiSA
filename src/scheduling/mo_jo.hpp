@@ -10,7 +10,10 @@
 #ifndef _mo_jo_h 
 #define _mo_jo_h
 
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
+
 #include"../basics/matrix.hpp"
 
 const int MO_SOURCE=-1;

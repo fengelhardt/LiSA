@@ -16,8 +16,11 @@
 #define _c_tcl_h 
 
 //  ************** System Includes  ******************
+#include <string>
 #include <tk.h>
-#include "../misc/lisa_str.hpp"
+
+using namespace std;
+
 
 //  ************** Functions  ***********************
 

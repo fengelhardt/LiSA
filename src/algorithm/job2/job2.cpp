@@ -6,7 +6,7 @@
  * 13.07.2001
 */
 
-#include<iostream.h>
+#include<iostream>
 #include"../../basics/matrix.hpp"
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
@@ -14,9 +14,11 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
 #include"../../scheduling/mo_jo.hpp"
+
+using namespace std;
 
 int n,m;
 

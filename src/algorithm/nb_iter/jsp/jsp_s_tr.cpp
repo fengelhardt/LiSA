@@ -172,7 +172,7 @@ int JSHOP_semi_trans_Ngbh::prepare_move( int typ )
 	// the sum of numbers of critical ways
 	sum = 0;
 	for (i=1; i<=count; i++)
-	  sum += int( exp(2*log( (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
+	  sum += int( exp(2*log( (double) (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
 		    
 	// determs randomly two positions in JOrd
 	// it will transpose the sequence between these positions
@@ -180,7 +180,7 @@ int JSHOP_semi_trans_Ngbh::prepare_move( int typ )
 	j = 0;
 	for (i=1; i<=count; i++)
 	  {
-	    j += int( exp(2*log( (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
+	    j += int( exp(2*log( (double) (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
 	    if ( k <= j )
 	      {
 		pos1 = i;
@@ -194,7 +194,7 @@ int JSHOP_semi_trans_Ngbh::prepare_move( int typ )
 	    j = 0;
 	    for (i=1; i<=count; i++)
 	      {
-		j += int( exp(2*log( (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
+		j += int( exp(2*log( (double) (*kr)[(*JOrd)[i-1]-1][machine1-1]+1 )) );
 		if ( k <= j )
 		  {
 		    pos2 = i;

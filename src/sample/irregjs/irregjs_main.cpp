@@ -9,8 +9,11 @@
 */
 
 
-#include<iostream.h>
-#include<fstream.h>
+#include<iostream>
+#include<fstream>
+
+using namespace std;
+
 #include"irregjs.hpp"
 #include"insert.hpp"
 #include"append.hpp"

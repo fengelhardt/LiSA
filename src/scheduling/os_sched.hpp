@@ -26,9 +26,13 @@
 #ifndef _osplan_h
 #define _osplan_h
 
-#include<stdio.h>
-#include"sp_sched.hpp"
-#include<iostream.h>
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+#include "sp_sched.hpp"
+
 
 /** Class for representing an instance of open shop to be used by Lisa_OsSchedule.
     Warning: jobs and machines are internally numbered 1,2, ... */

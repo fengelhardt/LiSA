@@ -22,11 +22,11 @@ OBJPATH=$(TOPPROGRAMPATH)/obj
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
-CXXFLAGS=$(CXXINCL) -Wall -Wno-deprecated
+CXXFLAGS=$(CXXINCL) -Wall 
 LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)
-DEPENDCXXFLAGS=$(CXXINCL) -Wall -Wno-deprecated
+DEPENDCXXFLAGS=$(CXXINCL) -Wall 
 
 # ------------------------------------------------------------------------------
 

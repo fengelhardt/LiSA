@@ -11,8 +11,10 @@
 
 
 //  ********************** System Includes ***************************
-#include <fstream.h>
+#include <fstream>
 #include <stdio.h>
+
+using namespace std;
 
 // ********************** LiSA Includes **************************
 // global variables

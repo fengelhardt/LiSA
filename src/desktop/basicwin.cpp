@@ -12,9 +12,11 @@
 */ 
 
 //  ********************** System Includes ***************************
-#include <iostream.h>
+#include <iostream>
 #include <math.h>
 #include <string.h>
+
+using namespace std;
 
 // ************************ Local Includes ********************
 #include "basicwin.hpp"

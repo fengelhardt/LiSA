@@ -21,6 +21,8 @@ int main(int argc, char *argv[])
    // print a message that the programm started:
    cout << "\n\nThis is the general LiSA Parameter Test Module Version 10.09.1999" << endl;
 
+   long cnt;
+   
    if (argc != 3) 
      {
        cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
@@ -343,11 +345,11 @@ int main(int argc, char *argv[])
 	 tab_out << "string ROW_NAME " << (*Var_Param)[numb_var-2] << "=\n";
        tab_out << "long NB_COL ";
        // how many table entrys for the parameter [numb_var-1] ?
-       (*variable)[numb_var-1] = (*VP_init)[numb_var-1]; count = 0;
+       (*variable)[numb_var-1] = (*VP_init)[numb_var-1]; cnt = 0;
        if ( (*VP_FA)[numb_var-1]=="FACTOR" )
 	 do 
 	   {
-	     count += 1;
+	     cnt += 1;
 	     if ( (*Var_Param_type)[numb_var-1] == "long" )
 	       (*variable)[numb_var-1] 
 		 = long( (*variable)[numb_var-1] * (*VP_incr)[numb_var-1] );
@@ -358,7 +360,7 @@ int main(int argc, char *argv[])
        else
 	 do
 	   {
-	     count +=1;
+	     cnt +=1;
 	     if ( (*Var_Param_type)[numb_var-1] == "long" )
 	       (*variable)[numb_var-1] 
 		 = long( (*variable)[numb_var-1] + (*VP_incr)[numb_var-1] );
@@ -366,16 +368,16 @@ int main(int argc, char *argv[])
 	       (*variable)[numb_var-1] += (*VP_incr)[numb_var-1];
 	   }
 	 while ( (*variable)[numb_var-1] <= (*VP_max)[numb_var-1] );
-       tab_out << count << "\n";
+       tab_out << cnt << "\n";
        tab_out << "long NB_ROW ";
        if ( numb_var > 1 )
 	 {
 	   // how many table entrys for the parameter [numb_var-2] ?
-	   (*variable)[numb_var-2] = (*VP_init)[numb_var-2]; count = 0;
+	   (*variable)[numb_var-2] = (*VP_init)[numb_var-2]; cnt = 0;
 	   if ( (*VP_FA)[numb_var-2]=="FACTOR" )
 	     do 
 	       {
-		 count += 1;
+		 cnt += 1;
 		 if ( (*Var_Param_type)[numb_var-2] == "long" )
 		   (*variable)[numb_var-2] 
 		     = long((*variable)[numb_var-2] * (*VP_incr)[numb_var-2]);
@@ -386,7 +388,7 @@ int main(int argc, char *argv[])
 	   else
 	     do
 	       {
-		 count +=1;
+		 cnt +=1;
 		 if ( (*Var_Param_type)[numb_var-2] == "long" )
 		   (*variable)[numb_var-2] 
 		     = long((*variable)[numb_var-2] + (*VP_incr)[numb_var-2]);
@@ -394,7 +396,7 @@ int main(int argc, char *argv[])
 		   (*variable)[numb_var-2] += (*VP_incr)[numb_var-2];
 	       }
 	     while ( (*variable)[numb_var-2] <= (*VP_max)[numb_var-2] );
-	   tab_out << count << "\n";
+	   tab_out << cnt << "\n";
 	 }
        else 
 	 tab_out << "1\n";

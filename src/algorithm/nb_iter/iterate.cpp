@@ -13,7 +13,7 @@
 #include "iterate.hpp"
 #include <signal.h>
 #include <math.h>         
-#include <ostream.h>
+#include <ostream>
 #include <stdlib.h>
 #include <time.h>
 #include "../../main/global.hpp"
@@ -194,7 +194,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
 	case SA: t = double ( NB->get_objective_value(ORIG_SOLUTION) )
 		      * factor0;
 	         t_end = double ( NB->get_objective_value(ORIG_SOLUTION) )
-		   * (-0.001 / log( exp( -3 * log( 10 )) ) );
+		   * (-0.001 / log( exp( -3 * log( 10. )) ) );
 		 decr = 1 / exp( log(t/t_end) / steps );
 		 t_old = t;
 		 t_first = t;

@@ -11,7 +11,9 @@
 
 #include"Shifting_Bottleneck.hpp"
 #include"../single/Single_Machine_BB.hpp"
-#include<fstream.h>
+#include<fstream>
+
+using namespace std;
 
 Shifting_Bottleneck::Shifting_Bottleneck(Lisa_JsSchedule* pJsSch, bool m)
 { 

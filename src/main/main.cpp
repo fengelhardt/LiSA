@@ -13,7 +13,9 @@
 //  ********************** System Includes ***************************
 
 // input of the preference file
-#include <fstream.h>
+#include <fstream>
+
+using namespace std;
 
 
 // ********************** Project Includes **************************

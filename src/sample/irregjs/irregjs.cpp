@@ -8,8 +8,12 @@
  * 19.9.1998
 */
 
+#include <string>
+
+using namespace std;
+
 #include "irregjs.hpp"
-#include "../../misc/lisa_str.hpp"
+
 
 NM_JsProblem::NM_JsProblem(Lisa_Values * Pin) : Lisa_JsProblem( Pin ) 
   {

@@ -28,9 +28,11 @@
 //  ************** System Includes  ******************
 
 /* for: string LISA_HOME */
-#include "../misc/lisa_str.hpp"
+#include <string>
 /* for definition of Tcl_Interp */
 #include <tk.h>
+
+using namespace std;
 
 //  ************** Lisa Includes **********************
 /*   public Lisa_FileEntry   */

@@ -7,8 +7,11 @@
  *
  * 11.05.01
  */
-#include<ostream.h>
-#include"../misc/lisa_str.hpp"
+#include <ostream>
+#include <string>
+
+using namespace std;
+
 #include "pair.hpp"
 #include"lmatrix.hpp"
 extern string G_ExtraException;
@@ -431,14 +434,14 @@ Lisa_MatrixOfLists<T>::Lisa_MatrixOfLists(Lisa_Matrix<int> *other_A) {
 */
 
 // define classes for following types T:
-template class Lisa_nestedList<pair>;
+template class Lisa_nestedList<Lisa_Pair>;
 
 
 template class Lisa_MatrixOfLists<int>;
 template class Lisa_MatrixOfLists<float>;
 template class Lisa_MatrixOfLists<double>;
 template class Lisa_MatrixOfLists<bool>;
-template class Lisa_MatrixOfLists<pair>;
+template class Lisa_MatrixOfLists<Lisa_Pair>;
 
 
 template class Lisa_VectorOfLists<int>;
@@ -446,11 +449,7 @@ template class Lisa_VectorOfLists<float>;
 template class Lisa_VectorOfLists<double>;
 template class Lisa_VectorOfLists<bool>;
 template class Lisa_VectorOfLists<string>;
-template class Lisa_VectorOfLists<pair>;
-
-
-//template class Lisa_MatrixOfLists<void *>;
-//template class Lisa_VectorOfLists<void *>;
+template class Lisa_VectorOfLists<Lisa_Pair>;
 
 template class Lisa_MatrixOfLists<long>;
 template class Lisa_VectorOfLists<long>;

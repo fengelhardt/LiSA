@@ -29,8 +29,10 @@
 
 
 //  ************** System Includes  ******************
-#include "../misc/lisa_str.hpp"
-#include <iostream.h>
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 
 //  ************** Lisa Includes  ******************

@@ -7,9 +7,11 @@
  *
  * 12.2.1999
 */
+#include <iostream>
 
-#include"order.hpp"
-#include<iostream.h>
+using namespace std;
+
+#include "order.hpp"
 
 /* up to now key is copied, perhaps better write an access function for 
    matrix or vector */

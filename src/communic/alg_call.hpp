@@ -19,8 +19,10 @@
 
  
 //  ********************** System Includes ***************************
-#include "../misc/lisa_str.hpp"
+#include <string>
 #include <tcl.h>
+
+using namespace std;
 
 //  ********************** LiSA Includes ***************************
 // Lisa_ProblemType, Lisa_Values, Lisa_Schedule, Lisa_ControlParameters

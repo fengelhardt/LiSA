@@ -7,8 +7,8 @@
 /* *********************************************************************** */
 
 #include <stdio.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
 #include "jb_dtstr.hpp"
 #include "jb_table.hpp"
 #include "jb_list.hpp"
@@ -17,6 +17,7 @@
 #include "../../basics/matrix.hpp"
 #include "../../basics/order.hpp"
 
+using namespace std;
 
 static int     op_array[MaxOpProMachine+1],
                temp_head[MaxNumOfOperations+1];

@@ -40,10 +40,11 @@
 #include "../misc/int2str.hpp"
 
 #include <tk.h>
-#include <fstream.h>
-#include <iomanip.h>
+#include <fstream>
+#include <iomanip>
 #include <stdlib.h>
 
+using namespace std;
 
 //  **************  Function Definitions ******************
 

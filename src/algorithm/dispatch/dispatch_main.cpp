@@ -8,17 +8,19 @@
  * 13.8.2002
 */
 
-#include<iostream.h>
+#include<iostream>
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
 #include"../../scheduling/schedule.hpp"
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
 
 #include "dispatcher.hpp"
+
+using namespace std;
 
 int main(int argc, char *argv[]) 
 {

@@ -6,7 +6,7 @@
  * 23.02.2000
 */
 
-#include<iostream.h>
+#include<iostream>
 #include<string.h>
 #include<time.h>
 #include"../../main/global.hpp"
@@ -15,7 +15,7 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
 #include"../../basics/graph.hpp"
 
@@ -24,6 +24,8 @@
 #include"../../basics/order.hpp"
 //#include"Single_Machine_BB.hpp"
 #include"Shifting_Bottleneck.hpp"
+
+using namespace std;
 
 /** @name Shifting Bottleneck
     

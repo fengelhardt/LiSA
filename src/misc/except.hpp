@@ -11,8 +11,11 @@
 #ifndef _except_h 
 #define _except_h 
 
-#include "lisa_str.hpp"
-#include <ostream.h>
+#include <string>
+#include <ostream>
+
+using namespace std;
+
 #include "../basics/list.hpp"
 
 /** @name Exception handling.

@@ -19,7 +19,9 @@
 
 
 // ********************* System Includes ********************
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
 
 
 // ********************* Class Definitions *******************

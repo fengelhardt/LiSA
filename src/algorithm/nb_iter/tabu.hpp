@@ -16,7 +16,10 @@
 #ifndef _tabu_h
 #define _tabu_h
 
-#include <ostream.h>
+#include <ostream>
+
+using namespace std;
+
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 

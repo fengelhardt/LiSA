@@ -6,9 +6,12 @@
  *
  * 27.8.1998
 */
+#include <string>
+
+using namespace std;
 
 #include"mo_jo.hpp"
-#include"../misc/lisa_str.hpp"
+
 
 Lisa_OrderWithoutRepetition::Lisa_OrderWithoutRepetition(const int n_in)
   {

@@ -579,10 +579,10 @@ void Lisa_Graph::init(int n_in)
   end=n+1;
 
   if(matrix){delete matrix;};
-  matrix= new Lisa_Matrix<pair>(n+1,n+1);
+  matrix= new Lisa_Matrix<Lisa_Pair>(n+1,n+1);
 
   if(succ_pred_pointer){delete succ_pred_pointer;};
-  succ_pred_pointer=new Lisa_Vector<pair>(n);
+  succ_pred_pointer=new Lisa_Vector<Lisa_Pair>(n);
 
   for (int i=0; i<=n; i++){
     for (int j=0; j<=n; j++){

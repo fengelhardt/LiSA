@@ -13,7 +13,10 @@
 #ifndef _matching_h
 #define _matching_h
 
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
+
 #include "../basics/matrix.hpp"
 #include "../main/global.hpp"
 #include "../basics/order.hpp"

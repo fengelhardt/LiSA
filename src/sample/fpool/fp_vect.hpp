@@ -16,7 +16,9 @@
 #define _fp_vector_h
 
 #include "../../basics/matrix.hpp"
-#include <ostream.h>
+#include <ostream>
+
+using namespace std;
 
 class fp_vector
   {

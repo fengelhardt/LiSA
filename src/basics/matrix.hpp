@@ -12,7 +12,10 @@
 #ifndef _matrix_h 
 #define _matrix_h 
 
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
+
 #include "../misc/except.hpp"
 #include "../misc/int2str.hpp"
 

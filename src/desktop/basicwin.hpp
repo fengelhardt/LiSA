@@ -29,8 +29,10 @@ const int ENTRYHEIGHT =25;
 const int ENTRYWIDTH =60;
 
 //  ********************** System Includes ***************************
+#include <string>
 #include <tk.h>
-#include "../misc/lisa_str.hpp"
+
+using namespace std;
 
 // ************************ defines *********************************
 const int MAX_CANV_COLORS=23;

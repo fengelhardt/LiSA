@@ -19,16 +19,16 @@
 
 /// Ordered Pairs are often used as Basistyp
 
-class pair : public Lisa_Object{ 
+class Lisa_Pair : public Lisa_Object{ 
 public: int x,y;
    /// output to stream (stream operator itself is already defined)
    virtual void write(ostream & = cout) const;
   /// input from stream (stream operator itself is already defined)
    virtual void read(istream &   = cin);
-  bool operator!=(const  pair&) const;
+  bool operator!=(const  Lisa_Pair&) const;
   /// compare lexicographically
- bool operator<(const  pair&) const;
- bool operator>(const  pair&) const;
+ bool operator<(const  Lisa_Pair&) const;
+ bool operator>(const  Lisa_Pair&) const;
 };    
 
 

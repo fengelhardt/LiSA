@@ -1,8 +1,11 @@
 #include <stdio.h>
-#include "../misc/lisa_str.hpp"
+#include <string>
+#include <fstream>
+
+using namespace std;
+
 #include "../misc/int2str.hpp"
 #include <string.h>
-#include <fstream.h>
 #include "database.hpp"
 
 

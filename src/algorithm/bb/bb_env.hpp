@@ -14,9 +14,12 @@
 #ifndef _bb_env_h
 #define _bb_env_h
 
-#include<iostream.h>
-#include"../../basics/list.hpp"
-#include"../../basics/order.hpp"
+#include <iostream>
+
+using namespace std;
+
+#include "../../basics/list.hpp"
+#include "../../basics/order.hpp"
 
 
 /// flag to store whether current abort signal (in unix SIGINT) was received

@@ -11,7 +11,10 @@
  */
 
 #include <time.h>
-#include <iostream.h>
+#include <iostream>
+
+using namespace std;
+
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 #include "../../misc/except.hpp"

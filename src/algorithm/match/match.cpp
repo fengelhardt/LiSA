@@ -10,9 +10,9 @@
  */
 
 #include<stdlib.h>
-#include<iostream.h>
+#include<iostream>
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../scheduling/matching.hpp"
 #include"../../main/global.hpp"
 #include"../../basics/list.hpp"
@@ -21,6 +21,9 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include"../../misc/except.hpp"
+
+using namespace std;
+
 /** @name Matching Heuristics
 
  This algorithm is a simple heuristic for the O| |Cmax Problem. It also demonstrates how to use 

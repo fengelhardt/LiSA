@@ -3,13 +3,15 @@
 // E-Mail: eldeh@web.de
 // WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
-#include <iostream.h>
+#include <string>
+#include <iostream>
 #include <string.h>
 #include <unistd.h>
 
 #include <tk.h>
 
-#include "../misc/lisa_str.hpp"
+using namespace std;
+
 
 int main(int argc, char* argv[])
      {

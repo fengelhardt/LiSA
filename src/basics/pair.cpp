@@ -12,15 +12,15 @@
 
 #include"pair.hpp"
 
-void pair::read(istream & strm) {
+void Lisa_Pair::read(istream & strm) {
   //strm >> *actual_schedule;
 }
 
-void pair::write(ostream & strm) const {
+void Lisa_Pair::write(ostream & strm) const {
  
 }
 
-bool pair::operator!=(const pair & other) const
+bool Lisa_Pair::operator!=(const Lisa_Pair & other) const
      { 
        if (x!=other.x||y!=other.y)
          return true;
@@ -28,7 +28,7 @@ bool pair::operator!=(const pair & other) const
          return false;
      }
 
-bool pair::operator<(const pair & other) const
+bool Lisa_Pair::operator<(const Lisa_Pair & other) const
      { 
        if (x<other.x)
          return true;
@@ -39,7 +39,7 @@ bool pair::operator<(const pair & other) const
        return false;
      }
 
-bool pair::operator>(const pair & other) const
+bool Lisa_Pair::operator>(const Lisa_Pair & other) const
      { 
        if (x>other.x)
          return true;

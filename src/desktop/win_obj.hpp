@@ -51,8 +51,10 @@ const float VERTICE_RADIUS =20;
 
 
 //  ********************** System Includes ***************************
+#include <string>
 #include <tk.h>
-#include "../misc/lisa_str.hpp"
+
+using namespace std;
 
 // ********************** Lisa Includes **************************
 // Lisa_Canvas definition:

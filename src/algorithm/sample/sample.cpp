@@ -21,8 +21,10 @@
 // The file except.hpp is used for the exception handling.  
 
 #include <unistd.h>
-#include <iostream.h>
-#include <fstream.h>
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"

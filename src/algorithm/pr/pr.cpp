@@ -8,7 +8,7 @@
  * 21.05.2001
 */
 
-#include<iostream.h>
+#include<iostream>
 #include"../../basics/matrix.hpp"
 #include"../../main/global.hpp"
 #include"../../lisa/ctrlpara.hpp"
@@ -17,8 +17,10 @@
 #include"../../lisa/ptype.hpp"
 #include"../../lisa/lvalues.hpp"
 #include<unistd.h>
-#include<fstream.h>
+#include<fstream>
 #include"../../misc/except.hpp"
+
+using namespace std;
 
 int maxM(Lisa_Matrix<double> M, int s);
 int minM(Lisa_Matrix<double> M, int s);

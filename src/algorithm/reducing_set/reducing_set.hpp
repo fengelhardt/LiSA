@@ -13,11 +13,16 @@
 
 #ifndef _list_h
 #define _list_h
-#include<iostream.h>
-#include <strstream.h>
+
+#include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
 #include "global.hpp"
 #include "../lisa_dt/lsaobjct.hpp"
-#include "../basics/lisa_str.hpp"
+
 
 // just a little bit of hide and seek, written to annoy the developer
 void error(string);

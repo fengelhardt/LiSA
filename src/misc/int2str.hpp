@@ -20,7 +20,9 @@
 
 
 //  ************** System Includes  ******************
-#include "lisa_str.hpp"
+#include <string>
+
+using namespace std;
 
 
 //  ************** Functions  ******************
