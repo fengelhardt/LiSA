@@ -322,9 +322,10 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
 //**************************************************************************
 
 /// open shop SHIFT neighbourhood
-/** This is the problem dependent SHIFT neighbourhood class for the 
-    open shop problem (i.e. these neighbourhood swaps two arbitrary
-    opererations on one machine or for one job).
+/** This is the problem dependent SHIFT neighbourhood class for the open shop
+    problem, these neighbourhood shifts an arbitrary operation on one machine
+    or one job.
+    
     It is inherited from the class OSHOP_API_Ngbh.
 
     @author Andreas Winkler
@@ -334,8 +335,9 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
  */
 class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
   private:
-    /// where to swap  
+    /// shift from pos1 to pos2  
     int   pos1, pos2;
+    
     /// private data needs documentation
 		Lisa_Vector<int> *JOrd, *MOrd, *JOpos, *MOpos;
 	public:	

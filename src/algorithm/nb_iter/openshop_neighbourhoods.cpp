@@ -8,376 +8,360 @@
 
 //**************************************************************************
 
-OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-  {
-   machine1 = 1;
-   witch_swap = JO;
-   job1 = 0;
-   seed = 247639875L;
-   PP = PPi;
+OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi ){
+  machine1 = 1;
+  witch_swap = JO;
+  job1 = 0;
+  seed = 247639875L;
+  PP = PPi;
 
-   if ( !( P[0] = new Lisa_OsSchedule( PP ) ))
-      {
-	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	exit( 7 );
-      }
-   *(P[0])=*Plan;
+  if ( !( P[0] = new Lisa_OsSchedule( PP ) )){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 );
+  }
+  
+  *(P[0])=*Plan;
 
-   if ( !( P[1] = new Lisa_OsSchedule( PP ) ))
-      {
-	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	exit( 7 );
-      }
+  if ( !( P[1] = new Lisa_OsSchedule( PP ) )){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 );
+  }
 
-   if ( !( P[2] = new Lisa_OsSchedule( PP ) ))
-     {
-       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-       exit( 7 );
-     }
+  if ( !( P[2] = new Lisa_OsSchedule( PP ) )){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 );
+  }
 
-   if ( !( P[3] = new Lisa_OsSchedule( PP ) ))
-     {
-       G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-       exit( 7 );
-     }
+  if ( !( P[3] = new Lisa_OsSchedule( PP ) )){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 );
+  }
    
-   tabulist = NULL;
-  }
+   tabulist = 0;
+}
 
 //**************************************************************************
 
-OSHOP_API_Ngbh::~OSHOP_API_Ngbh()
-  {
-    delete P[0];
-    delete P[1];
-    if ( P[2] != NULL )
-      delete P[2];
-    if ( P[3] != NULL )
-      delete P[3];
-    if ( tabulist != NULL )
-      delete tabulist;
-  }
+OSHOP_API_Ngbh::~OSHOP_API_Ngbh(){
+    if( P[0] ) delete P[0];
+    if( P[1] ) delete P[1];
+    if( P[2] ) delete P[2];
+    if( P[3] ) delete P[3];
+    if( tabulist ) delete tabulist;
+}
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::copy_schedule( int a , int b )
-  {
-   *P[b]=*P[a];
-   return OK;
-  }
+int OSHOP_API_Ngbh::copy_schedule( int a , int b ){
+  *P[b]=*P[a];
+  return OK;
+}
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::accept_solution()
-{
+int OSHOP_API_Ngbh::accept_solution(){
   return copy_schedule( WORK_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
   
-int OSHOP_API_Ngbh::accept_best_ngh()
-{
+int OSHOP_API_Ngbh::accept_best_ngh(){
   return copy_schedule( BEST_NGH_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::put_orig_to_best()
-{
+int OSHOP_API_Ngbh::put_orig_to_best(){
   return copy_schedule( ORIG_SOLUTION, BEST_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::put_work_to_best_ngh()
-{
+int OSHOP_API_Ngbh::put_work_to_best_ngh(){
   return copy_schedule( WORK_SOLUTION, BEST_NGH_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::prepare_move( int typ )
-  {
-    // determs a possible move
-    // typ=ENUM : enumerativ
-    // typ=RAND : randomly
-    int test;
-    test = OK;
+int OSHOP_API_Ngbh::prepare_move( int typ ){
+  
+  // determs a possible move
+  // typ=ENUM : enumerativ
+  // typ=RAND : randomly
+  int test = OK;
 
-   if ( typ == RAND )
-     {
-       // determs randomly if swap in JO oder MO
-       witch_swap = lisa_random( 1, 2, &seed );
-       if ( witch_swap == JO )
-	 {
-           // determs randomly a machine:
-           machine1 = lisa_random( 1, PP->m, &seed );
-           // determs randomly a job and look, if it have a predecessor
-           do
-  	     {
-	       do 
-		 job2 = lisa_random( 1, PP->n, &seed );
-	       while ( (*PP->sij)[job2][machine1] == 0 );
-	       job1 = P[0]->GetJOpred( job2, machine1 );
-	     }
-           while (( job1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
-	   // is this move setting to be tabu ? :
-	   tabu_param[0][0] = JO;
-	   tabu_param[0][1] = machine1;
-	   tabu_param[0][2] = job1;
-	   tabu_param[0][3] = job2;
-           // here could standing precedence constraints
-           return OK;
-	 }
-       else
-	 {
-	   //determs randomly a job:
-           job1 = lisa_random( 1, PP->n, &seed );
-           // determs randomly a machine and look, if it have a predecessor
-           do
-  	     {
-	       do
-		 machine2 = lisa_random( 1, PP->m, &seed );
-	       while ( (*PP->sij)[job1][machine2] == 0 );
-	       machine1 = P[0]->GetMOpred( job1, machine2 );
-	     }
-           while (( machine1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
-	   // is this move setting to be tabu ? :
-	   tabu_param[0][0] = MO;
-	   tabu_param[0][1] = job1;
-	   tabu_param[0][2] = machine1;
-	   tabu_param[0][3] = machine2;
-           // here could stay precedence constraints
-           return OK;
-	 }
+  if ( typ == RAND ){
+    // determs randomly if swap in JO oder MO
+    witch_swap = lisa_random( 1, 2, &seed );
+    if ( witch_swap == JO ){
       
-     }
-   if ( typ == ENUM )
-     {
-
-       int return_OK = !OK;
-       while ( return_OK == !OK )
-	 {
-	   test = OK;
-	   if (witch_swap == JO)
-	     // swap in JO
-	     {
-	       job1 = P[0]->GetJOsucc( job1, machine1 );
-	       job2 = P[0]->GetJOsucc( job1, machine1 );
-	       if (( job1 == 0 ) || ( job2 == 0 ))
-		 {
-		   machine1++;
-		   if ( machine1 == PP->m+1 )
-		     {
-		       witch_swap = MO;
-		       job1 = 1;
-		       machine1 = 0;
-		       //return !OK;
-		       test = !OK;
-		     }
-		   if ( test==OK )
-		     {
-		       job1 = P[0]->GetJOsucc( 0, machine1 );
-		       job2 = P[0]->GetJOsucc( job1, machine1 );
-		     }
-		 }
-	       if ( test==OK )
-		 {
-		   if (( (*PP->sij)[job1][machine1]==0 ) 
-		       || ( (*PP->sij)[job2][machine1]==0 ))
-		     //return !OK;
-		     continue;
-		   // is this move setting to be tabu ? :
-		   tabu_param[0][0] = JO;
-		   tabu_param[0][1] = machine1;
-		   tabu_param[0][2] = job1;
-		   tabu_param[0][3] = job2;
-		   if ( use_tabulist() != OK )
-		     //return !OK;
-		     continue;
-		   return_OK = OK;
-		 }
-	     }
-	   if (witch_swap == MO)
-	     // swap in MO 
-	     {
-	       machine1 = P[0]->GetMOsucc( job1, machine1 );
-	       machine2 = P[0]->GetMOsucc( job1, machine1 );
-	       if (( machine1 == 0 ) || ( machine2 == 0 ))
-		 {
-		   job1++;
-		   if ( job1 == PP->n+1 )
-		     {
-		       witch_swap = JO;
-		       job1 = 0;
-		       machine1 = 1;
-		       //return NO_NGHBOURS;
-		       test = !OK;
-		     }
-		   if ( test==OK )
-		     {
-		       machine1 = P[0]->GetMOsucc( job1, 0 );
-		       machine2 = P[0]->GetMOsucc( job1, machine1 );
-		     }
-		 }
-	       if (( (*PP->sij)[job1][machine1]==0 ) 
-		   || ( (*PP->sij)[job1][machine2]==0 ))
-		 //return !OK;
-		 continue;
-	       // is this move setting to be tabu ? :
-	       tabu_param[0][0] = MO;
-	       tabu_param[0][1] = job1;
-	       tabu_param[0][2] = machine1;
-	       tabu_param[0][3] = machine2;
-	       if ( use_tabulist() != OK )
-		 //return !OK;
-		 continue;
-	       return_OK = OK;
-	     }
-
-	 }
-       return OK;
-
-     }
-   G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
-   return !OK;
-  }
-
-//**************************************************************************
-
-int OSHOP_API_Ngbh::do_move()
- {
-   int predJ1;
-   int predM1;
-   int help;
-   *P[1]=*P[0];
-   if (witch_swap==JO)   // swap in JO
-     {
-       predM1 = P[1]->GetMOpred(job1,machine1);
-       P[1]->exclude( job1, machine1 );
-       if ( P[1]->insert(job1,machine1,job2,predM1) == CYCLE )
-	 {
-	   //printf("\nnot OK by insert Job1");
-	   return !OK;
-	 }
-       // the following swap means, that in next time the re-move is set 
-       // to be tabu
-       help = tabu_param[0][2];
-       tabu_param[0][2] = tabu_param[0][3];
-       tabu_param[0][3] = help;
-       return OK;
-     }
-
-   if (witch_swap==MO)   // swap in MO
-     {
-       predJ1 = P[1]->GetJOpred(job1,machine1);
-       P[1]->exclude( job1, machine1 );
-       if ( P[1]->insert(job1,machine1,predJ1,machine2) == CYCLE )
-	 {
-	   //printf("\nnot OK by insert machine1");
-	   return !OK;
-	 }
-       // the following swap means, that in next time the re-move is set 
-       // to be tabu
-       help = tabu_param[0][2];
-       tabu_param[0][2] = tabu_param[0][3];
-       tabu_param[0][3] = help;
-       return OK;
-     }
-   return !OK;
- }
-
-//**************************************************************************
-
-int OSHOP_API_Ngbh::anti_neighbour()
- {
-   return OK;
- }
-
-//**************************************************************************
-
-void OSHOP_API_Ngbh::set_objective_type( int o )
- {
-   objective_type = o;
- }
-
-//**************************************************************************
-
-void OSHOP_API_Ngbh::set_objective( int z, int a)
- {
-   if ((a<0) || (a>=4))
-     {
-      G_ExceptionList.lthrow("wrong plan in set_objective_type("+ztos(a)+")");
-      exit( 7 );
-     }
-   P[a]->SetValue(z);
- }
-
-//**************************************************************************
-
-TIMETYP OSHOP_API_Ngbh::get_objective_value( int a)
- {
-  if ((a<0) || (a>=4))
-    {
-     G_ExceptionList.lthrow("wrong plan in get_objective_type("+ztos(a)+")");
-     exit( 7 );
+      // determs randomly a machine:
+      machine1 = lisa_random( 1, PP->m, &seed );
+      
+      // determs randomly a job and look, if it has a predecessor
+      do{
+	    
+        do{
+          job2 = lisa_random( 1, PP->n, &seed );
+        }while ( (*PP->sij)[job2][machine1] == 0 );
+	       
+        job1 = P[0]->GetJOpred( job2, machine1 );
+	    
+      }while (( job1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
+	     
+       // is this move setting to be tabu ? :
+	     tabu_param[0][0] = JO;
+	     tabu_param[0][1] = machine1;
+	     tabu_param[0][2] = job1;
+	     tabu_param[0][3] = job2;
+       
+       // here could standing precedence constraints
+      return OK;
+    
+    }else{
+	    
+      //determs randomly a job:
+      job1 = lisa_random( 1, PP->n, &seed );
+      // determs randomly a machine and look, if it have a predecessor
+      do{
+	    
+        do{
+          machine2 = lisa_random( 1, PP->m, &seed );
+        }while ( (*PP->sij)[job1][machine2] == 0 );
+	      
+        machine1 = P[0]->GetMOpred( job1, machine2 );
+      
+      }while (( machine1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
+	     
+      // is this move setting to be tabu ? :
+	    tabu_param[0][0] = MO;
+	    tabu_param[0][1] = job1;
+	    tabu_param[0][2] = machine1;
+	    tabu_param[0][3] = machine2;
+      
+      // here could stay precedence constraints
+     return OK;
+    
     }
-  return P[a]->GetValue();
- }
+      
+  }else if ( typ == ENUM ){
 
-//**************************************************************************
+    int return_OK = !OK;
+    
+    while ( return_OK == !OK ){
+      
+      test = OK;
+      if (witch_swap == JO){ // swap in JO
+        job1 = P[0]->GetJOsucc( job1, machine1 );
+	      job2 = P[0]->GetJOsucc( job1, machine1 );
+	      
+        if (( job1 == 0 ) || ( job2 == 0 )){
+          machine1++;
+          
+          if ( machine1 == PP->m+1 ){
+            
+            witch_swap = MO;
+            job1 = 1;
+            machine1 = 0;
+            
+            //return !OK;
+            test = !OK;
+          }
+		  
+          if ( test==OK ){
+            job1 = P[0]->GetJOsucc( 0, machine1 );
+            job2 = P[0]->GetJOsucc( job1, machine1 );
+          }
+        }
+	      
+        if ( test==OK ){
+		   
+          //return !OK;
+          if (( (*PP->sij)[job1][machine1]==0 ) || ( (*PP->sij)[job2][machine1]==0 )) continue;
+		   
+          // is this move setting to be tabu ? :
+          tabu_param[0][0] = JO;
+          tabu_param[0][1] = machine1;
+          tabu_param[0][2] = job1;
+          tabu_param[0][3] = job2;
+          
+          //return !OK;
+          if ( use_tabulist() != OK ) continue;
+		   
+          return_OK = OK;
+        }
+      }else if (witch_swap == MO){ // swap in MO 
+	     
+        machine1 = P[0]->GetMOsucc( job1, machine1 );
+        machine2 = P[0]->GetMOsucc( job1, machine1 );
+        
+        if (( machine1 == 0 ) || ( machine2 == 0 )){
+          
+          job1++;
+          
+          if ( job1 == PP->n+1 ){
+            witch_swap = JO;
+            job1 = 0;
+            machine1 = 1;
+            //return NO_NGHBOURS;
+            test = !OK;
+          }
+          
+          if ( test==OK ){
+            machine1 = P[0]->GetMOsucc( job1, 0 );
+            machine2 = P[0]->GetMOsucc( job1, machine1 );
+          }
+        }
+	      
+        //return !OK;
+        if (( (*PP->sij)[job1][machine1]==0 ) || ( (*PP->sij)[job1][machine2]==0 )) continue;
+	      
+        // is this move setting to be tabu ? :
+	      tabu_param[0][0] = MO;
+	      tabu_param[0][1] = job1;
+	      tabu_param[0][2] = machine1;
+	      tabu_param[0][3] = machine2;
+	      
+        //return !OK;   
+        if ( use_tabulist() != OK ) continue;
+	      
+        return_OK = OK;
+      }
 
-int OSHOP_API_Ngbh::init_tabulist( unsigned int length )
-  {
-   if ( !(tabulist = new Lisa_Tabu( length )) )
-     {
-      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-      exit( 7 );
-     }
-   return OK;
+    }
+    
+    return OK;
+
   }
 
-//**************************************************************************
+  G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
+  return !OK;
 
-int OSHOP_API_Ngbh::use_tabulist()
-  {
-   return tabulist->use(tabu_param[0][0],tabu_param[0][1],
-			tabu_param[0][2],tabu_param[0][3]);
-  }
+}
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::set_tabulist()
-  {
-    tabulist->set(tabu_param[1][0],tabu_param[1][1],
-		  tabu_param[1][2],tabu_param[1][3]);
+int OSHOP_API_Ngbh::do_move(){
+
+  int predJ1,predM1;
+  
+  *P[1]=*P[0];
+  
+  if (witch_swap==JO){ // swap in JO
+    predM1 = P[1]->GetMOpred(job1,machine1);
+    P[1]->exclude( job1, machine1 );
+    
+    if ( P[1]->insert(job1,machine1,job2,predM1) == CYCLE ){
+	    //printf("\nnot OK by insert Job1");
+	    return !OK;
+    }
+    
+    // the following swap means, that in next time the re-move is set 
+    // to be tabu
+    const int help = tabu_param[0][2];
+    tabu_param[0][2] = tabu_param[0][3];
+    tabu_param[0][3] = help;
+    return OK;
+  }else if (witch_swap==MO){   // swap in MO
+    predJ1 = P[1]->GetJOpred(job1,machine1);
+    P[1]->exclude( job1, machine1 );
+    
+    if ( P[1]->insert(job1,machine1,predJ1,machine2) == CYCLE ){
+	    //printf("\nnot OK by insert machine1");
+	    return !OK;
+    }
+    
+    // the following swap means, that in next time the re-move is set 
+    // to be tabu
+    const int help = tabu_param[0][2];
+    tabu_param[0][2] = tabu_param[0][3];
+    tabu_param[0][3] = help;
     return OK;
   }
 
-//**************************************************************************
-
-void OSHOP_API_Ngbh::store_tabu_param()
-  {
-    int i;
-    for ( i=0; i<=3; i++ )
-      tabu_param[1][i] = tabu_param[0][i];
-  }
+  return !OK;
+}
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::clean_tabu_param()
-  {
-    int i;
-    for ( i=0; i<4; i++ )
-      tabu_param[0][i] = 0;
-  }
+int OSHOP_API_Ngbh::anti_neighbour(){
+  return OK;
+}
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::return_schedule( Lisa_OsSchedule *Plan )
-  {
-    *Plan = *(P[BEST_SOLUTION]);
+void OSHOP_API_Ngbh::set_objective_type( int o ){
+  objective_type = o;
+}
+
+//**************************************************************************
+
+void OSHOP_API_Ngbh::set_objective( int z, int a){
+#ifdef LISA_DEBUG
+  if ((a<0) || (a>=4)){
+    G_ExceptionList.lthrow("wrong plan in set_objective_type("+ztos(a)+")");
+    exit( 7 );
   }
+#endif
+  P[a]->SetValue(z);
+}
+
+//**************************************************************************
+
+TIMETYP OSHOP_API_Ngbh::get_objective_value( int a){
+#ifdef LISA_DEBUG
+  if ((a<0) || (a>=4)){
+    G_ExceptionList.lthrow("wrong plan in get_objective_type("+ztos(a)+")");
+    exit( 7 );
+  }
+#endif
+
+  return P[a]->GetValue();
+}
+
+//**************************************************************************
+
+int OSHOP_API_Ngbh::init_tabulist( unsigned int length ){
+  if( tabulist ) delete tabulist;
+  if( !(tabulist = new Lisa_Tabu( length )) ){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 );
+  }
+  return OK;
+}
+
+//**************************************************************************
+
+int OSHOP_API_Ngbh::use_tabulist(){
+  return tabulist->use(tabu_param[0][0],tabu_param[0][1],
+                       tabu_param[0][2],tabu_param[0][3]);
+}
+
+//**************************************************************************
+
+int OSHOP_API_Ngbh::set_tabulist(){
+  tabulist->set(tabu_param[1][0],tabu_param[1][1],
+		            tabu_param[1][2],tabu_param[1][3]);
+  return OK;
+}
+
+//**************************************************************************
+
+void OSHOP_API_Ngbh::store_tabu_param(){
+  for (int i=0; i<=3; i++ ) tabu_param[1][i] = tabu_param[0][i];
+}
+
+//**************************************************************************
+
+void OSHOP_API_Ngbh::clean_tabu_param(){
+  for (int i=0; i<4; i++ ) tabu_param[0][i] = 0;
+}
+
+//**************************************************************************
+
+void OSHOP_API_Ngbh::return_schedule( Lisa_OsSchedule *Plan ){
+  *Plan = *(P[BEST_SOLUTION]);
+}
 
 //**************************************************************************
 //**************************************************************************
@@ -1836,216 +1820,216 @@ int OSHOP_cr_shift_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_shift_Ngbh::OSHOP_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
-  {
-    witch_swap = JO;
-    job1 = 1; job2 = 1;
-    machine1 = 1; machine2 = 0;
-    JOrd = new Lisa_Vector<int>( PP->n+1 );   // JOrd[i] is the job on position i on the machine
-    MOrd = new Lisa_Vector<int>( PP->m+1 );   // MOrd[i] is ...
-    JOpos = new Lisa_Vector<int>( PP->n+1 );  // JOpos[i] is the position of job i on the machine
-    MOpos = new Lisa_Vector<int>( PP->m+1 );  // MOpos[i] is ...
-  }
+                                  :OSHOP_API_Ngbh( Plan, PPi ){
+  witch_swap = JO;
+  job1 = 1; job2 = 1;
+  machine1 = 1; machine2 = 0;
+  JOrd = new Lisa_Vector<int>( PP->n+1 );   // JOrd[i] is the job on position i on the machine
+  MOrd = new Lisa_Vector<int>( PP->m+1 );   // MOrd[i] is ...
+  JOpos = new Lisa_Vector<int>( PP->n+1 );  // JOpos[i] is the position of job i on the machine
+  MOpos = new Lisa_Vector<int>( PP->m+1 );  // MOpos[i] is ...
+}
 
 //**************************************************************************
 
-OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh()
-  {
-    delete JOrd;
-    delete MOrd;
-    delete JOpos;
-    delete MOpos;
-  }
+OSHOP_shift_Ngbh::~OSHOP_shift_Ngbh(){
+  delete JOrd;
+  delete MOrd;
+  delete JOpos;
+  delete MOpos;
+}
 
 //**************************************************************************
 
-int OSHOP_shift_Ngbh::prepare_move( int typ )
-  {
-    // determs a possible move
-    // typ=ENUM : enumerativ
-    // typ=RAND : randomly
-    int pos_job1=0, pos_job2, pos_mach1=0, pos_mach2;
-    int test, succ, i;
-    test = OK;
+int OSHOP_shift_Ngbh::prepare_move( int typ ){
+  // determs a possible move
+  // typ=ENUM : enumerativ
+  // typ=RAND : randomly
+  int pos_job1=0, pos_job2, pos_mach1=0, pos_mach2;
+  int test, succ, i;
+  test = OK;
 
-   if ( typ == RAND )
-     {
+  if ( typ == RAND ){ // determs randomly a machine and a job
+  
+    do{
+      
+      machine1 = lisa_random( 1, PP->m, &seed );
+      job1     = lisa_random( 1, PP->n, &seed );
+	 
+    }while ( (*PP->sij)[job1][machine2]==0 ); 
+    
+    // determs the order on the machine1
+    succ = 0; i = 0;
+    
+    do{
+      succ = P[0]->GetJOsucc( succ, machine1 );
+      (*JOrd)[i] = succ;
+      if ( succ == job1 ) pos_job1 = i+1;
+      i++;
+	 
+    }while (succ != 0);
 
-       // determs randomly a machine and a job
-       do
-	 {
-	   machine1 = lisa_random( 1, PP->m, &seed );
-	   job1     = lisa_random( 1, PP->n, &seed );
-	 }
-       while ( (*PP->sij)[job1][machine2]==0 ); 
-       // determs the order on the machine1
-       succ = 0; i = 0;
-       do
-	 {
-	   succ = P[0]->GetJOsucc( succ, machine1 );
-	   (*JOrd)[i] = succ;
-	   if ( succ == job1 )
-	     pos_job1 = i+1;
-	   i++;
-	 }
-       while (succ != 0);
+    // determs randomly a second position in JOrd
+    do{
+	   
+     do{
+       pos_job2 = lisa_random( 1, i-1, &seed );
+	   }while ( pos_job1 == pos_job2 );
+	   
+     job2 = (*JOrd)[pos_job2-1];
+    
+    }while (0); // here could stay precedence constraints
 
-       // determs randomly a second position in JOrd
-       do
-	 {
-	   do
-	     pos_job2 = lisa_random( 1, i-1, &seed );
-	   while ( pos_job1 == pos_job2 );
-	   job2 = (*JOrd)[pos_job2-1];
-	 }
-       while (0); // here could stay precedence constraints
-
-       // determs the order on the job1
-       succ = 0; i = 0;
-       do
-	 {
-	   succ = P[0]->GetMOsucc( job1, succ );
+    // determs the order on the job1
+    succ = 0; i = 0;
+    
+    do{
+	   
+     succ = P[0]->GetMOsucc( job1, succ );
 	   (*MOrd)[i] = succ;
-	   if ( succ == machine1 )
-	     pos_mach1 = i+1;
+	   if ( succ == machine1 ) pos_mach1 = i+1;
 	   i++;
-	 }
-       while (succ != 0);	
+	 
+    }while (succ != 0);	
 
-       // determs randomly a second position in MOrd
-       do
-	 {
-	   do
-	     pos_mach2 = lisa_random( 1, i-1, &seed );
-	   while ( pos_mach1 == pos_mach2 );
-	   machine2 = (*MOrd)[pos_mach2-1];
-	 }
-       while (0); // here could stay prcedence constraints
+    // determs randomly a second position in MOrd
+    do{
+	   
+      do{
+        pos_mach2 = lisa_random( 1, i-1, &seed );
+      }while ( pos_mach1 == pos_mach2 );
+	   
+      machine2 = (*MOrd)[pos_mach2-1];
+    }while (0); // here could stay prcedence constraints
 
-       if (( (*PP->sij)[job1][machine2]==0 ) 
-	   || ( (*PP->sij)[job2][machine1]==0 ))
-	 return !OK;
-       // is this move setting to be tabu ? :
-       tabu_param[0][0] = job1;
-       tabu_param[0][1] = machine1;
-       if (pos_job1<pos_job2) 
-	 tabu_param[0][2] = 1;
-       else
-	 tabu_param[0][2] = -1;
-       if (pos_mach1<pos_mach2) 
-	 tabu_param[0][3] = 1;
-       else
-	 tabu_param[0][3] = -1;
-       return OK;
-     }
+    
+    if (( (*PP->sij)[job1][machine2]==0 ) || ( (*PP->sij)[job2][machine1]==0 )) 
+      return !OK;
+       
+    // is this move setting to be tabu ? :
+    tabu_param[0][0] = job1;
+    tabu_param[0][1] = machine1;
+    
+    if (pos_job1<pos_job2) tabu_param[0][2] = 1;
+    else tabu_param[0][2] = -1;
+    
+    if (pos_mach1<pos_mach2) tabu_param[0][3] = 1;
+    else tabu_param[0][3] = -1;
+    
+    return OK;
+  }
 
+  if ( typ == ENUM ){
 
-   if ( typ == ENUM )
-     {
-       int return_OK = !OK;
-       while ( return_OK == !OK )
-	 {
-	   machine2 += 1;
-	   if ( machine2 == machine1 )
-	     machine2 += 1;
-	   if ( machine2 >= PP->m+1 )
-	     {
-	       job2 += 1; machine2 = 1;
-	       if ( job2 == job1 )
-		 job2 += 1;
-	       if ( job2 >= PP->n+1 )
-		 {
-		   job1 += 1; job2 = 1;
-		   if ( job1 >= PP->n+1 )
-		     {
-		       machine1 += 1; job1 = 1;
-		       if ( machine1 >= PP->m+1 )
-			 {
-			   machine1 = 1; machine2 = 2;
-			 }
-		     }
-		 }
-	     }
-	   if (( (*PP->sij)[job1][machine1]==0 ) 
-	       || ( (*PP->sij)[job2][machine1]==0 )
-	       || ( (*PP->sij)[job1][machine2]==0 ))
-	     continue;	   
+    int return_OK = !OK;
+    
+    while ( return_OK == !OK ){
+	   
+      machine2 += 1;
+      if ( machine2 == machine1 ) machine2 += 1;
+	   
+      if ( machine2 >= PP->m+1 ){
+       
+        job2 += 1;
+        machine2 = 1;
+	     
+        if ( job2 == job1 ) job2 += 1;
+	     
+        if ( job2 >= PP->n+1 ){
+		    
+          job1 += 1;
+          job2 = 1;
+		    
+          if ( job1 >= PP->n+1 ){
+            machine1 += 1;
+            job1 = 1;
+		    
+            if ( machine1 >= PP->m+1 ){
+              machine1 = 1;
+              machine2 = 2;
+            }
+          }
+        }
+      } 	   
+    
+      if (   ( (*PP->sij)[job1][machine1]==0 ) 
+	        || ( (*PP->sij)[job2][machine1]==0 )
+	        || ( (*PP->sij)[job1][machine2]==0 ) ) continue;	   
 
-	   // determs the order on machine1:
-	   succ = 0; i = 0;
-	   do
-	     {
-	       succ = P[0]->GetJOsucc( succ, machine1 );
-	       (*JOpos)[succ] = i + 1;
-	       i++;
-	     }
-	   while (succ != 0);
-	   pos_job1 = (*JOpos)[job1];
-	   pos_job2 = (*JOpos)[job2];
+      // determs the order on machine1:
+      succ = 0;
+      i = 0;
+	   
+      do{
+        succ = P[0]->GetJOsucc( succ, machine1 );
+        (*JOpos)[succ] = i + 1;
+        i++;
+      }while (succ != 0);
+	   
+      pos_job1 = (*JOpos)[job1];
+	    pos_job2 = (*JOpos)[job2];
 
-	   // determs the order on job1:
-	   succ = 0; i = 0;
-	   do
-	     {
-	       succ = P[0]->GetMOsucc( job1, succ );
-	       (*MOpos)[succ] = i + 1;
-	       i++;
-	     }
-	   while (succ != 0);
-	   pos_mach1 = (*MOpos)[machine1];
-	   pos_mach2 = (*MOpos)[machine2];
+      // determs the order on job1:
+      succ = 0;
+      i = 0;
+	   
+      do{
+        succ = P[0]->GetMOsucc( job1, succ );
+        (*MOpos)[succ] = i + 1;
+        i++;
+      }while (succ != 0);
+     
+      pos_mach1 = (*MOpos)[machine1];
+      pos_mach2 = (*MOpos)[machine2];
 
-	   //cout<<" ("<<job1<<","<<machine1<<")-("
-	   //    <<job2<<","<<machine2<<")";
+	    //cout<<" ("<<job1<<","<<machine1<<")-("
+	    //    <<job2<<","<<machine2<<")";
 
-	   // is this move setting to be tabu ? :
-	   tabu_param[0][0] = job1;
-	   tabu_param[0][1] = machine1;
-	   if (pos_job1<pos_job2) 
-	     tabu_param[0][2] = 1;
-	   else
-	     tabu_param[0][2] = -1;
-	   if (pos_mach1<pos_mach2) 
-	     tabu_param[0][3] = 1;
-	   else
-	     tabu_param[0][3] = -1;
+	    // is this move setting to be tabu ? :
+	    tabu_param[0][0] = job1;
+	    tabu_param[0][1] = machine1;
+	   
+      if (pos_job1<pos_job2) tabu_param[0][2] = 1;
+	    else tabu_param[0][2] = -1;
+	   
+      if (pos_mach1<pos_mach2) tabu_param[0][3] = 1;
+	    else tabu_param[0][3] = -1;
 
-	   if ( use_tabulist() != OK )
-	     continue;
-	   return_OK = OK;
-	 }
-       return OK;
-     }
-   G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
-   return !OK;
- }
+	    if ( use_tabulist() != OK ) continue;
+	    return_OK = OK;
+    } 
+
+    return OK;
+  }
+
+  G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
+  return !OK;
+}
 
 //**************************************************************************
 
-int OSHOP_shift_Ngbh::do_move()
- {
-   int predJ1;
-   int predM1;
-   *P[1]=*P[0];
+int OSHOP_shift_Ngbh::do_move(){
+  
+  int predJ1;
+  int predM1;
+  *P[1]=*P[0];
 
-   if (tabu_param[0][2]==1)
-     predJ1 = job2;
-   else
-     predJ1 = P[1]->GetJOpred(job2,machine1);
+  if (tabu_param[0][2]==1) predJ1 = job2;
+  else predJ1 = P[1]->GetJOpred(job2,machine1);
 
-   if (tabu_param[0][3]==1)
-     predM1 = machine2; 
-   else
-     predM1 = P[1]->GetMOpred(job1,machine2);
+  if (tabu_param[0][3]==1) predM1 = machine2; 
+  else predM1 = P[1]->GetMOpred(job1,machine2);
 
-   P[1]->exclude( job1, machine1 );
-   if ( P[1]->insert(job1,machine1,predJ1,predM1) == CYCLE )
-     return !OK;
-   // the following means, that in next time the re-move is set 
-   // to be tabu
-   tabu_param[0][2] *= -1;
-   tabu_param[0][3] *= -1;
-   return OK;
- }
+  P[1]->exclude( job1, machine1 );
+   
+  if ( P[1]->insert(job1,machine1,predJ1,predM1) == CYCLE ) return !OK;
+   
+  // the following means, that in next time the re-move is set 
+  // to be tabu
+  tabu_param[0][2] *= -1;
+  tabu_param[0][3] *= -1;
+  return OK;
+
+}
 
 //**************************************************************************
