@@ -190,10 +190,10 @@ proc vTcl:project:info {} {
         array set save {}
     }
     namespace eval ::widgets::.top64.mes65 {
-        array set save {-font 1 -padx 1 -pady 1 -relief 1 -textvariable 1 -width 1}
+        array set save {-padx 1 -pady 1 -relief 1 -textvariable 1 -width 1}
     }
     namespace eval ::widgets::.top64.mes66 {
-        array set save {-font 1 -justify 1 -padx 1 -pady 1 -textvariable 1 -width 1}
+        array set save {-justify 1 -padx 1 -pady 1 -textvariable 1 -width 1}
     }
     namespace eval ::widgets::.top64.fra67 {
         array set save {-borderwidth 1 -height 1 -width 1}
@@ -465,11 +465,9 @@ proc vTclWindow.top64 {base {container 0}} {
     vTcl:FireEvent $base <<Create>>
     }
     message $base.mes65 \
-        -font {Helvetica 18 bold} -padx 5 -pady 2 -relief groove \
-        -textvariable lisaVersionText -width 127 
+        -padx 5 -pady 2 -relief groove -textvariable lisaVersionText -width 127
     message $base.mes66 \
-        -font {Helvetica -12 {}} -justify center -padx 5 -pady 2 \
-        -textvariable installText -width 250 
+        -justify center -padx 5 -pady 2 -textvariable installText -width 250
     frame $base.fra67 \
         -borderwidth 2 -height 75 -width 176 
     button $base.fra67.but68 \
