@@ -27,7 +27,7 @@ extern TIMETYP objective;
 
 ///  B_Node a modified Lisa_OsSchedule
 /**  @author Jan Tusch Andre Herms
-     @version 2.3pre3
+     @version 2.3rc1
      @see Lisa_OsSchedule
      @see KList
 */ 
@@ -64,7 +64,7 @@ public:
 
 /// represents a container with capacity k and special functionality regarding insertion
 /** @author Jan Tusch & Andre Herms
-    @version 2.3pre3
+    @version 2.3rc1
     @see B_Node
 */
 class KList {

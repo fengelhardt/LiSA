@@ -8,7 +8,7 @@
 
 /// branch and bound implementation for open shop
 /** @author Thomas Tautenhahn
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class OS_BB: public Lisa_GenericBb{
 private:

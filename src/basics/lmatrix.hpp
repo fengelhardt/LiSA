@@ -16,7 +16,7 @@ template<class T> class Lisa_MatrixOfLists;
 /**
  * @see Lisa_MatrixOfLists
  * @author Ivo Roessling
- * @version 2.3pre3
+ * @version 2.3rc1
  */
 template<class T>
 class Lisa_VectorOfLists{ 
@@ -137,7 +137,7 @@ inline std::istream& operator>>(std::istream& strm, Lisa_VectorOfLists<T>& l){
 /**
  * @see Lisa_VectorOfLists
  * @author Ivo Roessling
- * @version 2.3pre3
+ * @version 2.3rc1
  */
 template<class T>
 class Lisa_MatrixOfLists: public Lisa_Object{

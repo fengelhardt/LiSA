@@ -13,7 +13,7 @@
     as tupel with TUPEL_INDEX entries
     
     @author Per Willenius, Thomas Tautenhahn, Martin Harborth
-    @version 2.3pre3
+    @version 2.3rc1
 */
 class Lisa_ProblemType : public Lisa_FileEntry{
 private:

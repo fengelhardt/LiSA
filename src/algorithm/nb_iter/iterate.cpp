@@ -1,6 +1,6 @@
 /**
  * @author  Andreas Winkler
- * @version 2.3pre3
+ * @version 2.3rc1
  */
 
 #include <stdlib.h>

@@ -28,7 +28,7 @@ const char RULE_NAMES[NUMBER_RULES][5]= { "RAND","FCFS","EDD","LQUE","SPT",
     LR!
 
     @author Thomas Tautenhahn
-    @version 2.3pre3
+    @version 2.3rc1
     @see Lisa_List
  */ 
 class Lisa_Dispatcher{ 	

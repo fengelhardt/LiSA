@@ -19,7 +19,7 @@
     versa.
 
     @author Marc Moerig
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class Lisa_ConvertGraph : public Lisa_GenericObject{
 private:

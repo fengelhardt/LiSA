@@ -10,7 +10,7 @@
 
 /// write MO as Matrix in Lisa_MO
 /** @author Per Willenius
-    @version 2.3pre3
+    @version 2.3rc1
  */
 int TC_adopt_MO(ClientData clientData, Tcl_Interp *interp,
 	              int argc, TCL_HACK_CHAR *argv[]);  

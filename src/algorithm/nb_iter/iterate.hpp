@@ -56,7 +56,7 @@ enum{NOMETHOD /** none  */ =0
     @see Lisa_Tabu
 
     @author Andreas Winkler
-    @version 2.3pre3
+    @version 2.3rc1
 */
 class Lisa_Iterator {
 private: 

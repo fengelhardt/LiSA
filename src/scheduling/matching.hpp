@@ -18,7 +18,7 @@
     time matrix.
     
    @author Marc Moerig
-   @version 2.3pre3
+   @version 2.3rc1
 */
 class Lisa_BottleneckNode : public Lisa_Object{
 public:
@@ -74,7 +74,7 @@ public:
 /// Class for calculating maximum matchings on unweighted bipartite graphs.
 /** It also works if |I| != |J|.
    @author Marc Moerig
-   @version 2.3pre3
+   @version 2.3rc1
 */
 class Lisa_BipartMatching : public Lisa_GenericObject{
 private: 
@@ -198,7 +198,7 @@ public:
 /** This interface provides a unified way to use Lisa_WeightedMatching and
     Lisa_BottleneckMatching. 
    @author Marc Moerig
-   @version 2.3pre3
+   @version 2.3rc1
 */
 class Lisa_Matching : public Lisa_GenericObject{
 protected:
@@ -270,7 +270,7 @@ public:
     The weightings have to be from 0 to MAXTIME. This will also work if
     |I| != |J|.
     @author Marc Moerig
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class Lisa_WeightedMatching : public Lisa_Matching{
 private:
@@ -339,7 +339,7 @@ public:
     The weightigs should always be from 0 to MAXTIME. This will also work if
     |I| != |J|.
     @author Marc Moerig
-    @version 2.3pre3
+    @version 2.3rc1
 */
 class Lisa_BottleneckMatching : public Lisa_Matching{
 private:

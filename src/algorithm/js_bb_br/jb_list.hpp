@@ -10,7 +10,7 @@
 /*          Procedure PrintList:       Print list on screen                  */
 /*          Procedure Update_DisjArcs: Updating of fixed disjunctive arcs    */
 /*                                     during the backtracking               */
-//   @version 2.3pre3
+//   @version 2.3rc1
 /* ************************************************************************* */
 
 #ifndef _LIST_H

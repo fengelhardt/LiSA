@@ -11,7 +11,7 @@
     problem (i.e. this neighbourhood swaps two arbitrary adjacent jobs).
    
     @author Andreas Winkler
-    @version 2.3pre3
+    @version 2.3rc1
     @see Lisa_Neighbourhood  
  */
 class API_Neighbourhood: public Lisa_Neighbourhood{

@@ -30,7 +30,7 @@ enum{NOT_POSSIBLE=-2
     remark: (number of knots + 1) determines the end of a list
     
     @author Christian Schulz
-    @version 2.3pre3
+    @version 2.3rc1
 */  
 class Lisa_Graph  : public Lisa_FileEntry {
 private:

@@ -1,6 +1,6 @@
 /** 
  * @author  Lars Dornheim
- * @version 2.3pre3
+ * @version 2.3rc1
  */
  
 #include <string.h>

@@ -8,7 +8,7 @@
 /// branch and bound implementation for job shop
 /**
     @author Thomas Tautenhahn
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class JS_BB: public Lisa_GenericBb{
 private: 

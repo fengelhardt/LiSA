@@ -10,7 +10,7 @@
     itself on a stream. 
            
     @author Per Willenius 
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class Lisa_GenericObject{
 public:
@@ -37,7 +37,7 @@ inline std::ostream& operator << (std::ostream& strm,
     itself on a stream and can be read from a stream.
            
     @author Per Willenius 
-    @version 2.3pre3
+    @version 2.3rc1
  */
 class Lisa_Object : public Lisa_GenericObject {
 public:

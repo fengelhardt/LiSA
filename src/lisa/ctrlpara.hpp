@@ -34,7 +34,7 @@ enum{UNDEFINED /** unknown type */ =0
     </CONTROLPARAMETERS>
   
     @author Per Willenius, Thomas Tautenhahn 
-    @version 2.3pre3
+    @version 2.3rc1
 */   
 class Lisa_ControlParameters: public  Lisa_Object{
 private:

@@ -6,7 +6,7 @@
                        http://lisa.math.uni-magdeburg.de
                      lisagroup@lisa.math.uni-magdeburg.de
 
-                         Version 2.3pre3 vom 9.9.2002
+                         Version 2.3rc1 vom 15.03.2003
 
 Das Softwarepaket LiSA wurde im Rahmen des vom Land Sachsen Anhalt 
 gefoerderten Projektes "Lateinische Rechtecke in der Scheduling-Theorie" 

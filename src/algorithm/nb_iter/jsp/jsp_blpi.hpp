@@ -14,7 +14,7 @@
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3pre3
+    @version 2.3rc1
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
