@@ -1,12 +1,3 @@
-/*
- * ************** c_tcl.hpp ******************************
- * 
- * description: C++ functions to call tcl/tk routines
- *
- * @author Per Willenius
- * date: 28.9.1999
- * @version 2.3pre3
- */ 
 
 #ifndef _c_tcl_h 
 #define _c_tcl_h 
@@ -14,12 +5,15 @@
 #include <string>
 #include <tk.h>
 
-int Tcl_myAppInit(int argc, char **argv, 
-    Tcl_Interp *interp );
+/// start the Tcl/Tk part of LiSA
+/** registers c++ function for use within Tcl/Tk and enters main idle loop 
+ * @author Per Willenius
+ * @version 2.3pre3
+ */
+int Tcl_myAppInit(int argc, char **argv, Tcl_Interp *interp );
 
+/// start the Tcl/Tk part of LiSA
 int Tk_myMain(int argc, char **argv );   
- 
-int Tcl_AppInit(Tcl_Interp *interp);
 
 /// open a message window and display a message
 void message(std::string title,std::string text);
@@ -27,8 +21,8 @@ void message(std::string title,std::string text);
 /// open a message window and display a message
 void message(std::string text);
 
-/** Translate the word in the actual language.
-    The function returns the value of $Name(word) which has to defined
+/// Translate the word to the current language.
+/** The function returns the value of $Name(word) which has to be defined
     in the file: LiSA/tcl/<actual_language>/main.tcl. */
 std::string translate(std::string word);
 

@@ -1,8 +1,3 @@
-/** @name Classification Function
-    This section contains the main function for the classification
-    of a input problem object.
-*/
-//@{
 
 #ifndef _classify_h 
 #define _classify_h 
@@ -15,16 +10,8 @@
 #include "../lisa/ptype.hpp"
 #include "database.hpp"
 
-
-// flag: minmal NP-hard or maximal polynomial problem
-const int MINMAX=TRUE;
-// flag: opposite of MINMAX
-const int NORMAL=FALSE;
-// maximal number of characters of data base path name
-const int PATHMAX=500;
-
-/** Scheduling problem classification - main function.  
-    The function Lisa_classify initializes the database of minimal np-hard
+/// Scheduling problem classification - main function.  
+/**  The function Lisa_classify initializes the database of minimal np-hard
     and maximal polynomial problems located in LISA_HOME/data/classify/classify.bib
     
     The function also initializes the reduction graphs.
@@ -61,5 +48,4 @@ std::string result_text(int,int);
 std::string reference_output(int,int,Lisa_DataBase*);
 
 #endif
-//@}
 

@@ -14,6 +14,15 @@ using namespace std;
 
 //**************************************************************************
 
+// flag: minmal NP-hard or maximal polynomial problem
+const int MINMAX=TRUE;
+// flag: opposite of MINMAX
+const int NORMAL=FALSE;
+// maximal number of characters of data base path name
+const int PATHMAX=500;
+
+//**************************************************************************
+
 string 
 Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file) 
 {
