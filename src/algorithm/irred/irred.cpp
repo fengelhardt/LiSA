@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
   
   if (irre && alg_param!=Lisa_IrreducibilityTest::GENERATE_SIMILAR){
     cout << "WARNING: Plan is irreducible !" << endl;
-    cout << my_schedule;
+    o_strm << my_schedule;
   }else{
     if(alg_param==Lisa_IrreducibilityTest::JUST_TEST ||
        alg_param==Lisa_IrreducibilityTest::JUST_TEST_RANDOM){
