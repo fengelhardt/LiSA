@@ -154,8 +154,6 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);   
  Tcl_CreateCommand(interp, "TC_new", TC_new, (ClientData) 
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);   
- Tcl_CreateCommand(interp, "TC_nb_ptst", TC_nb_ptst, (ClientData) 
-		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);   
  Tcl_CreateCommand(interp, "TC_save_old_sequence", TC_save_old_sequence , (ClientData) 
 		    Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL);   
  Tcl_CreateCommand(interp, "TC_move_operation", TC_move_operation, (ClientData) 

@@ -48,11 +48,6 @@
 
 //  **************  Function Definitions ******************
 
-/// test some parameters of neighborhood search methods
-int  TC_nb_ptst(ClientData /*clientData*/,
-	    Tcl_Interp *interp,
-	    int /*argc*/, char *argv[]);  
-
 /// starts external algorithm parameter test
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
