@@ -19,7 +19,7 @@ ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
 
-ALGEXT = alg
+ALGEXT = xml
 
 # ------------------------------------------------------------------------------
 

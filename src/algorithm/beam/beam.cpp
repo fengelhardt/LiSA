@@ -8,6 +8,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "../../xml/LisaXmlFile.hpp"
+
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"
 #include "../../scheduling/schedule.hpp"
@@ -41,60 +43,78 @@ B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 int beam_width = 5;
 InsertionMethod insertionMethod = insert1; 
 
-int main(int argc, char *argv[]) 
-{
+int main(int argc, char *argv[]){
+  
   G_ExceptionList.set_output_to_cout();   
   
   // open files and assure existence:
-  if (argc != 3) 
-    {
-						cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
-      exit(1);
-    }
+  if (argc != 3){
+    cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
+    exit(1);
+  }
   
-		cout << "PID= " << getpid() << endl;
+  cout << "PID= " << getpid() << endl;
   
-		ifstream i_strm(argv[1]);
+  ifstream i_strm(argv[1]);
   ofstream o_strm(argv[2]);
-  if (!i_strm)
-    {
-      cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
-      exit(1);
-    }
-		if (!o_strm)
-    {
-      cout << "ERROR: cannot write output file " << argv[1] << "." << endl;
-      exit(1);
-    }
+  if (!i_strm){
+    cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+    exit(1);
+  }
+  if (!o_strm){
+    cout << "ERROR: cannot write output file " << argv[1] << "." << endl;
+    exit(1);
+  }
+  i_strm.close();
+  o_strm.close();
 		
   // read problem description and decide whether program is applicable:
-		
   Lisa_ProblemType Problem;
-		// read control parameters: 
   Lisa_ControlParameters Parameter;
-		
-  // read problem instance:
   Lisa_Values Values;
-      
-		i_strm >> Problem;
-		if (!G_ExceptionList.empty())
-				{
-						cout << "ERROR: Beam Search cannot read problem type, aborting program." << endl;
-						exit(1);
-				}  
-		i_strm >> Parameter;
-		if (!G_ExceptionList.empty())
-				{
-						cout << "ERROR: Beam Search cannot read parameters, aborting program." << endl;
-						exit(1);
-				}  
-		i_strm >> Values;
-		if (!G_ExceptionList.empty())
-				{
-						cout << "ERROR: Beam Search cannot read values, aborting program." << endl;
-						exit(1);
-				}  
-		
+  
+	//initialize class
+    LisaXmlFile::initialize();
+    //create Input handler
+    LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+    //communication objects
+    
+    //parse xml file
+    xmlInput.read(argv[1]);
+    //determine document type
+    LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+    
+    //check for successful parsing and valid document type
+    if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    //get Problem
+    if( !(xmlInput >> Problem))
+    {
+      cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+      exit(1);
+    }
+    //get ControlParameters
+    if( !(xmlInput >> Parameter))
+    {
+      cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+      exit(1);
+    }
+    //get Values
+    if( !(xmlInput >> Values))
+    {
+      cout << "ERROR: cannot read Values , aborting program." << endl;
+      exit(1);
+    }
+    // if something else went wrong
+    if (!G_ExceptionList.empty())
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+	
   myproblemtype = Problem.get_property(M_ENV);
 
   string cannot_handle="";
@@ -103,19 +123,17 @@ int main(int argc, char *argv[])
     cannot_handle="precedence constraints"; 
   if (Problem.get_property(BATCH))  cannot_handle="batching"; 
   if (Problem.get_property(NO_WAIT))  cannot_handle="no-wait constraints";
-  if (cannot_handle!="")  
-    {
-      cout << "ERROR: beam cannot handle " << cannot_handle << 
-								". Aborting program."<< endl;
-      exit(1);
-    }  
+  if (cannot_handle!=""){
+    cout << "ERROR: beam cannot handle " << cannot_handle << 
+    ". Aborting program."<< endl;
+    exit(1);
+  }  
   
-		//check more ....
-		B_Node::setObjective(Problem.get_property(OBJECTIVE));
-
-
-
-
+  //check more ....
+  B_Node::setObjective(Problem.get_property(OBJECTIVE));
+  
+  
+  
   // solve the problem and store results in a schedule object
   // Insert your solution algorithm here:
   
@@ -191,23 +209,21 @@ int main(int argc, char *argv[])
       else 
 								order->read_one_key( i, j, lisa_random(1, 24213, &seed));
     }
-  order->sort();
-		
-  B_Node * res = beam_search(order, l, os_problem);
-
-		delete order;
-		
-  res->write_LR(out_schedule->LR);
-  delete res;
-		
-		o_strm << 
-				Problem << 
-				Values << 
-				Parameter << 
-				*out_schedule;
-		
-  delete out_schedule;
-		delete os_problem;
+    order->sort();
+    
+    B_Node * res = beam_search(order, l, os_problem);
+    
+    delete order;
+    
+    res->write_LR(out_schedule->LR);
+    delete res;
+    
+    LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+    xmlOutput << Problem << Values << Parameter << *out_schedule;
+    xmlOutput.write(argv[2]);
+    
+    delete out_schedule;
+    delete os_problem;
 }
 
 
