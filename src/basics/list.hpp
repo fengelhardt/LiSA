@@ -57,11 +57,8 @@ template<class T>
 class Lisa_List: public Lisa_Object
 {
 private:
-  unsigned int size;
   int where;
   bool where_ok;
-  Lisa_Node<T> *first_last; 
-  Lisa_Node<T> *current_node;
 
   void swap_nodes(Lisa_Node<T>* first,Lisa_Node<T>* second){
 
@@ -184,6 +181,12 @@ private:
       delete pos; 
       return value;
     }
+
+protected:
+  unsigned int size;
+  Lisa_Node<T> *first_last; 
+  Lisa_Node<T> *current_node;
+
 public:
   /** @name General Functions: */
   //@{
@@ -256,14 +259,14 @@ public:
 
   /** constructor ...\\
       create an empty new list*/
-  Lisa_List() 
+  Lisa_List()
     {
       where_ok=FALSE; 
       size=0;      
       first_last=new Lisa_Node<T>;
       first_last->succ=first_last->pred=first_last;
     }
-  
+
   /** destructor */
   ~Lisa_List()
     {
@@ -279,7 +282,7 @@ public:
     {
       if (&other == this)
       return *this;
-      
+
       clear();
       Lisa_Node<T>* temp;
       temp=other.first_last->succ;
@@ -291,6 +294,68 @@ public:
       
       return *this;
     }
+
+  // by iroess
+  const bool operator!=( Lisa_List<T> const & other) { return !(*this == other); }
+
+  const bool operator==( Lisa_List<T> const & other) 
+    {
+      if (&other == this)
+      return true;
+      if (!(other.length()==length())) return false;
+
+
+      Lisa_Node<T>* temp=first_last->succ;
+      Lisa_Node<T>* temp_other=other.first_last->succ;
+
+      for (int i=0;
+	   (temp!=first_last && temp_other!=other.first_last); 
+	   i++,temp=temp->succ,temp_other=temp_other->succ) 
+      { 
+	if (temp->value!=temp_other->value ) return FALSE;
+      }
+      
+      return true;
+    }
+
+  // by iroess
+  const bool operator>( Lisa_List<T> const & other) { 
+      if (&other == this)
+      return false;
+
+      Lisa_Node<T>* temp=first_last->succ;
+      Lisa_Node<T>* temp_other=other.first_last->succ;
+
+      for (int i=0;
+	   (temp!=first_last && temp_other!=other.first_last); 
+	   i++,temp=temp->succ,temp_other=temp_other->succ) 
+      { 
+	if (temp->value>temp_other->value ) return TRUE;
+      }
+      if (length()>other.length()) return TRUE;
+
+      return FALSE;
+  }
+
+
+  // by iroess
+  const bool operator<( Lisa_List<T> const & other) { 
+      if (&other == this)
+      return false;
+
+      Lisa_Node<T>* temp=first_last->succ;
+      Lisa_Node<T>* temp_other=other.first_last->succ;
+
+      for (int i=0;
+	   (temp!=first_last && temp_other!=other.first_last); 
+	   i++,temp=temp->succ,temp_other=temp_other->succ) 
+      { 
+	if (temp->value<temp_other->value ) return TRUE;
+      }
+      if (length()<other.length()) return TRUE;
+
+      return FALSE;
+  }
    
   /** create a new list with another list ...\\
       a new list will be created and all elements from the other list
@@ -336,12 +401,12 @@ public:
       current_node=current_node->succ;
       return destroy_node(temp); 
     }
-
   //@}
- 
+
+
   /** @name Stack and Queue: */
   //@{
-  
+
   /** put a new value into stack or queue, respectively */
   void push(const T & value) { create_node(value, first_last); }
 
@@ -351,6 +416,7 @@ public:
   /** take value from queue */
   T dequeue()        { return destroy_node(first_last->pred); }      
   //@}
+
 
   /** @name Direct Adressing: */     
   //@{      
@@ -394,6 +460,43 @@ public:
 	}
       return current_node->value;
     };
+  
+  /** locates and returns the maximum element of the list ...\\
+      if that is not empty also puts the internal pointer to this node */       
+  T max()
+    {
+      if (!size) 
+	  error( "maximum over an empty list undefined");
+      Lisa_Node<T> *test;
+      where_ok=FALSE;
+      current_node=test=first_last->succ;
+      while (test->succ!=first_last)
+	{
+	  test=test->succ;
+	  if (test->value > current_node->value ) 
+	    current_node=test;
+	}
+      return current_node->value;
+    }; 
+
+  // sum the values of all the entries...
+  /*
+  T sum()
+    {
+      T result=0;
+      if (!size)
+	  error( "sum over an empty list undefined");
+      Lisa_Node<T> *test;
+      where_ok=FALSE;
+      test=first_last->succ;
+      while (test->succ!=first_last)
+	{
+	  result+=test->value;
+	  test=test->succ;
+	}
+      return result;
+    }; 
+  */
 
   /** moves the internal pointer to the first occurance of the value ...\\
       returns TRUE if that value is in the list FALSE otherwise */
@@ -423,6 +526,7 @@ public:
        if (size>1) qsort(first_last->succ,first_last->pred);
     };
   //@}
+
 
  /** @name In- and Output:*/
  //@{
@@ -472,12 +576,19 @@ public:
   //@}
 };
 
-#endif             
+// usual i/o - stuff:
+template<class T>
+inline ostream& operator << (ostream&strm, const Lisa_List<T>& l)
+{
+  l.write(strm);
+  return strm;
+};
 
+template<class T>
+inline istream& operator >> (istream&strm, Lisa_List<T>& l)
+{
+  l.read(strm);
+  return strm;
+};
 
-
-
-
-
-
-
+#endif
