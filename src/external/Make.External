@@ -1,22 +1,14 @@
-# LiSA Makefile
-# Copyright Lars Dornheim 1998
+# LiSA External Module Makefile Common Part
+# Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 # ------------------------------------------------------------------------------
 
-# LiSA part: gen_ptst
-
-PROGRAMNAME=gen_ptst
-INSTALLNAME=gen_ptst
-
-# ------------------------------------------------------------------------------
-
-TOPPROGRAMPATH=../../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop/neighbor
-OBJPATH=$(TOPPROGRAMPATH)/compiled
-SOURCEPATH=$(TOPPROGRAMPATH)/src
+ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
+DOCPATH=$(TOPPROGRAMPATH)/doc/external
+OBJPATH=$(TOPPROGRAMPATH)/obj
 
 # ------------------------------------------------------------------------------
 
@@ -24,13 +16,9 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
 
-ABSOLUTE_BINPATH=$(ABSOLUTE_PROGRAMPATH)/bin
-
-# ------------------------------------------------------------------------------
-
 CXXINCL=$(INCL)
 CXXFLAGS=$(CXXINCL) -Wall
-LDFLAGS=$(STANDARDLIBS) $(LIBS) -s -Wall
+LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=g++
 DEPENDCXXFLAGS=$(CXXINCL) -Wall
@@ -63,15 +51,14 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir
+install: bindir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp gen_ptst_english.html $(TOPPROGRAMPATH)/doc/language/english/gen_ptst.html
-	cp gen_ptst_german.html $(TOPPROGRAMPATH)/doc/language/german/gen_ptst.html
-#	rm -f $(BINPATH)/$(INSTALLNAME)
-#	ln -s $(ABSOLUTE_BINPATH)/$(PROGRAMNAME) $(BINPATH)/$(INSTALLNAME)
-#	rm -f $(bindir)/$(INSTALLNAME)
-#	ln -s $(ABSOLUTE_BINPATH)/$(PROGRAMNAME) $(bindir)/$(INSTALLNAME)
-
+	cp $(PROGRAMNAME)_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME).alg
+	cp $(PROGRAMNAME)_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME).alg
+	cp $(PROGRAMNAME)_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME).alg
+	cp $(PROGRAMNAME)_english.html $(DOCPATH)/language/english/$(PROGRAMNAME).html
+	cp $(PROGRAMNAME)_german.html $(DOCPATH)/language/german/$(PROGRAMNAME).html
+    
 # ------------------------------------------------------------------------------
 
 bindir:
@@ -79,10 +66,27 @@ bindir:
 
 # ------------------------------------------------------------------------------
 
+algdir:
+	@mkdir -p $(ALGPATH)/language/english
+	@mkdir -p $(ALGPATH)/language/german
+	@mkdir -p $(ALGPATH)/language/german_u
+
+# ------------------------------------------------------------------------------
+
+docdir:
+	@mkdir -p $(DOCPATH)/language/english
+	@mkdir -p $(DOCPATH)/language/german
+	@mkdir -p $(DOCPATH)/language/german_u
+
+# ------------------------------------------------------------------------------
+
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(BINPATH)/$(INSTALLNAME)
-	rm -f $(bindir)/$(INSTALLNAME)
+	rm -f $(ALGPATH)/language/english/$(PROGRAMNAME).alg
+	rm -f $(ALGPATH)/language/german/$(PROGRAMNAME).alg
+	rm -f $(ALGPATH)/language/german_u/$(PROGRAMNAME).alg
+	rm -f $(DOCPATH)/language/english/$(PROGRAMNAME).html
+	rm -f $(DOCPATH)/language/german/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
@@ -111,13 +115,12 @@ depend:
 
 # ------------------------------------------------------------------------------
 
-doc: docdir
-	rm -f $(DOCPATH)/* $(DOCPATH)/.*html
-	doc++ -B /dev/null -d $(DOCPATH) -f -m $(DOCSOURCES)
+develdoc: develdocdir
+#	rm -f $(DOCPATH)/develop/$(PROGRAMNAME)/* $(DOCPATH)/develop/$(PROGRAMNAME)/.*html
+#	doc++ -B /dev/null -d $(DOCPATH)/develop/$(PROGRAMNAME) -f -m $(DOCSOURCES)
 
 # ------------------------------------------------------------------------------
 
-docdir:
-	@mkdir -p $(DOCPATH)
-
+develdocdir:
+	@mkdir -p $(DOCPATH)/develop/$(PROGRAMNAME)
 

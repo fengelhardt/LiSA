@@ -9,7 +9,7 @@
 
 # setting the LiSA homepath
 
-LISAHOME="/home/eldeh/z/lisa_new/LiSA"
+LISAHOME="/home/eldeh/z/lisa/LiSA"
 export LISAHOME
 
 

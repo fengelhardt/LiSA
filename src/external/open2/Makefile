@@ -1,5 +1,5 @@
-# LiSA Makefile
-# Copyright Lars Dornheim 1998
+# LiSA External Module Makefile
+# Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
@@ -8,116 +8,12 @@
 # LiSA part: open2
 
 PROGRAMNAME=open2
-INSTALLNAME=open2
 
 # ------------------------------------------------------------------------------
 
 TOPPROGRAMPATH=../../..
-BINPATH=$(TOPPROGRAMPATH)/bin
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop/open2
-OBJPATH=$(TOPPROGRAMPATH)/compiled
-SOURCEPATH=$(TOPPROGRAMPATH)/src
-
 
 # ------------------------------------------------------------------------------
 
--include $(TOPPROGRAMPATH)/Make.Config
-
-# ------------------------------------------------------------------------------
-
-ABSOLUTE_BINPATH=$(ABSOLUTE_PROGRAMPATH)/bin
-
-# ------------------------------------------------------------------------------
-
-CXXINCL=$(INCL)
-CXXFLAGS=$(CXXINCL) -Wall
-LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
-
-DEPENDCXX=g++
-DEPENDCXXFLAGS=$(CXXINCL) -Wall
-
-# ------------------------------------------------------------------------------
-
--include Make.List
-
--include Make.Objects
-
-# ------------------------------------------------------------------------------
-
-all: compile install
-
-# ------------------------------------------------------------------------------
-
-compile: objdir $(OBJPATH)/$(PROGRAMNAME)
-
-$(OBJPATH)/$(PROGRAMNAME): $(OBJECTS)
-	$(LD) -o $(OBJPATH)/$(PROGRAMNAME) $(OBJECTS) $(LDFLAGS)
-
-# ------------------------------------------------------------------------------
-
-objdir:
-	@mkdir -p $(OBJPATH)
-
-
-# ------------------------------------------------------------------------------
-
--include Make.Depend
-
-# ------------------------------------------------------------------------------
-
-install: bindir
-	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp open2_engl.alg $(TOPPROGRAMPATH)/data/alg_desc/language/english/open2.alg
-	cp open2_ger.alg $(TOPPROGRAMPATH)/data/alg_desc/language/german/open2.alg
-	cp open2_geru.alg $(TOPPROGRAMPATH)/data/alg_desc/language/german_u/open2.alg
-	cp open2_engl.html $(TOPPROGRAMPATH)/doc/language/english/open2.html
-	cp open2_ger.html $(TOPPROGRAMPATH)/doc/language/german/open2.html
-    
-# ------------------------------------------------------------------------------
-
-bindir:
-	@mkdir -p $(BINPATH)
-
-# ------------------------------------------------------------------------------
-
-uninstall:
-	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(BINPATH)/$(INSTALLNAME)
-	rm -f $(bindir)/$(INSTALLNAME)
-
-# ------------------------------------------------------------------------------
-
-distclean: clean
-
-# ------------------------------------------------------------------------------
-
-clean:
-	rm -fr $(OBJPATH)
-
-# ------------------------------------------------------------------------------
-
-depend:
-	$(DEPENDCXX) -MM $(DEPENDCXXFLAGS) $(CXXSOURCES) \
-	| gawk 'BEGIN {line=""; }; {if (substr($$0, length($$0), 1)=="\\") line=line substr($$0, 1, length($$0)-1); else {line=line $$0; print line; line=""; }; };' - \
-	| sed -e "s/\./_point_/g" \
-	| gawk 'BEGIN {print "OBJECTS=\\"; objectfile=""; }; {if (objectfile!="") print "\t$(OBJPATH)/" objectfile " \\"; objectfile=$$0; sub("_point_o.*", "_point_o", objectfile); }; END {print "\t$(OBJPATH)/" objectfile; };' - \
-	| sed -e "s/_point_/./g" \
-	> Make.Objects
-	$(DEPENDCXX) -MM $(DEPENDCXXFLAGS) $(CXXSOURCES) \
-	| gawk 'BEGIN {line=""; }; {if (substr($$0, length($$0), 1)=="\\") line=line substr($$0, 1, length($$0)-1); else {line=line $$0; print line; line=""; }; };' - \
-	| sed -e "s/\./_point_/g" \
-	| gawk '{objectfile=$$0; sub("_point_o.*", "_point_o", objectfile); sourcefile=$$0; sub("_point_cpp.*", "_point_cpp", sourcefile); sub(".*: ", "", sourcefile); print "$(OBJPATH)/" $$0 "; $$(CXX) -c $$(CXXFLAGS) -o $(OBJPATH)/" objectfile " " sourcefile; };' - \
-	| sed -e "s/_point_/./g" \
-	> Make.Depend
-
-# ------------------------------------------------------------------------------
-
-doc: docdir
-	rm -f $(DOCPATH)/* $(DOCPATH)/.*html
-	doc++ -B /dev/null -d $(DOCPATH) -f -m $(DOCSOURCES)
-
-# ------------------------------------------------------------------------------
-
-docdir:
-	@mkdir -p $(DOCPATH)
+include ../Make.External
 

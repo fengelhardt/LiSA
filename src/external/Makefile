@@ -1,5 +1,5 @@
-# LiSA Global Makefile
-# Copyright Lars Dornheim 1998
+# LiSA External Module Makefile
+# Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
@@ -7,8 +7,8 @@
 
 TOPPROGRAMPATH=../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-OBJPATH=$(TOPPROGRAMPATH)/compiled
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop/html
+DOCPATH=$(TOPPROGRAMPATH)/doc/external
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
@@ -32,6 +32,7 @@ all:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) all
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) all
 	cd $(SOURCEPATH)/external/pr; $(MAKE) all
+
 # ------------------------------------------------------------------------------
 
 compile:
@@ -49,6 +50,7 @@ compile:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) compile
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) compile
 	cd $(SOURCEPATH)/external/pr; $(MAKE) compile
+
 # ------------------------------------------------------------------------------
 
 install:
@@ -66,6 +68,7 @@ install:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) install
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) install
 	cd $(SOURCEPATH)/external/pr; $(MAKE) install
+
 # ------------------------------------------------------------------------------
 
 uninstall:
@@ -83,7 +86,8 @@ uninstall:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external/pr; $(MAKE) uninstall
-	rm -fr $(BINPATH)
+	rm -fr $(DOCPATH)
+
 # ------------------------------------------------------------------------------
 
 distclean:
@@ -101,9 +105,10 @@ distclean:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) distclean
 	cd $(SOURCEPATH)/external/pr; $(MAKE) distclean
+
 # ------------------------------------------------------------------------------
 
-clean: logo
+clean:
 	rm -fr $(OBJPATH)
 
 # ------------------------------------------------------------------------------
@@ -123,21 +128,23 @@ depend:
 	cd $(SOURCEPATH)/external/job2; $(MAKE) depend
 	cd $(SOURCEPATH)/external/flow2; $(MAKE) depend
 	cd $(SOURCEPATH)/external/pr; $(MAKE) depend
+
 # ------------------------------------------------------------------------------
 
-doc: 	
-#	cd $(SOURCEPATH)/external/bb; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/eval; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/neighbor; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/neighbor/paratest; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/neighbor/gen_ptst; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/bb_jsp; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/match; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/fsheur; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/beam; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/bottle; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/single; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/open2; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/job2; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/flow2; $(MAKE) doc
-#	cd $(SOURCEPATH)/external/pr; $(MAKE) doc
+develdoc: 	
+	cd $(SOURCEPATH)/external/bb; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/eval; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/neighbor; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/neighbor/gen_ptst; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/travel_neighbour; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/bb_jsp; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/match; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/fsheur; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/beam; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/bottle; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/single; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/open2; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/job2; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/flow2; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external/pr; $(MAKE) develdoc
+

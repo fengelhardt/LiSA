@@ -1,5 +1,5 @@
-# LiSA Makefile
-# Copyright Lars Dornheim 1998
+# LiSA Main Module Makefile
+# Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
@@ -14,10 +14,10 @@ INSTALLNAME=lisa
 
 TOPPROGRAMPATH=../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop
-OBJPATH=$(TOPPROGRAMPATH)/compiled
+ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
+DOCPATH=$(TOPPROGRAMPATH)/doc/lisa
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
-ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc/language
 
 # ------------------------------------------------------------------------------
 
@@ -60,19 +60,20 @@ objdir:
 
 # ------------------------------------------------------------------------------
 
-install: bindir
+install: bindir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(INSTALLNAME) $(BINPATH)/$(INSTALLNAME)
 	chmod 755 $(BINPATH)/$(INSTALLNAME)
-	cp $(SOURCEPATH)/algo/disp1_engl.alg $(ALGPATH)/english/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_engl.alg $(ALGPATH)/english/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_engl.alg $(ALGPATH)/english/disp3.alg
-	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/german/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/german/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/german/disp3.alg
-	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/german_u/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/german_u/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/german_u/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_engl.alg $(ALGPATH)/language/english/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_engl.alg $(ALGPATH)/language/english/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_engl.alg $(ALGPATH)/language/english/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/language/german/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/language/german/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/language/german/disp3.alg
+	cp $(SOURCEPATH)/algo/disp1_ger.alg $(ALGPATH)/language/german_u/disp1.alg
+	cp $(SOURCEPATH)/algo/disp2_ger.alg $(ALGPATH)/language/german_u/disp2.alg
+	cp $(SOURCEPATH)/algo/disp3_ger.alg $(ALGPATH)/language/german_u/disp3.alg
+	cp -r $(SOURCEPATH)/doc/language $(DOCPATH)
 
 # ------------------------------------------------------------------------------
 
@@ -81,12 +82,31 @@ bindir:
 
 # ------------------------------------------------------------------------------
 
+algdir:
+	@mkdir -p $(ALGPATH)/language/english
+	@mkdir -p $(ALGPATH)/language/german
+	@mkdir -p $(ALGPATH)/language/german_u
+
+# ------------------------------------------------------------------------------
+
+docdir:
+	@mkdir -p $(DOCPATH)
+
+# ------------------------------------------------------------------------------
+
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
 	rm -f $(BINPATH)/$(INSTALLNAME)
-	rm -f $(ALGPATH)/english/*.alg
-	rm -f $(ALGPATH)/german/*.alg
-	rm -f $(ALGPATH)/german_u/*.alg
+	rm -f $(ALGPATH)/language/english/disp1.alg
+	rm -f $(ALGPATH)/language/english/disp2.alg
+	rm -f $(ALGPATH)/language/english/disp3.alg
+	rm -f $(ALGPATH)/language/german/disp1.alg
+	rm -f $(ALGPATH)/language/german/disp2.alg
+	rm -f $(ALGPATH)/language/german/disp3.alg
+	rm -f $(ALGPATH)/language/german_u/disp1.alg
+	rm -f $(ALGPATH)/language/german_u/disp2.alg
+	rm -f $(ALGPATH)/language/german_u/disp3.alg
+	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------
 
@@ -97,7 +117,6 @@ distclean: clean
 
 clean:
 	rm -fr $(OBJPATH)
-	rm -f  $(TOPPROGRAMPATH)/tcl/external/*.tcl
 
 # ------------------------------------------------------------------------------
 
@@ -117,6 +136,12 @@ depend:
 
 # ------------------------------------------------------------------------------
 
-doc:    
-	doc++ -l -B /dev/null -d $(DOCPATH) -F $(DOCSOURCES)
+develdoc: develdocdir
+#	rm -f $(DOCPATH)/develop/$(PROGRAMNAME)/* $(DOCPATH)/develop/$(PROGRAMNAME)/.*html
+#	doc++ -B /dev/null -d $(DOCPATH)/develop/$(PROGRAMNAME) -f -m $(DOCSOURCES)
+
+# ------------------------------------------------------------------------------
+
+develdocdir:
+	@mkdir -p $(DOCPATH)/develop/$(PROGRAMNAME)
 

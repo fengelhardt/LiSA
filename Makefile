@@ -1,9 +1,7 @@
 # LiSA Global Makefile
-# Copyright Lars Dornheim 1998
+# Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
-
-# LiSA parts: Main, bb, eval, neighbor
 
 # ------------------------------------------------------------------------------
 
@@ -26,8 +24,9 @@ PATCH_LEVEL=$(VERSION)$(RELEASE_LEVEL_LETTER)$(RELEASE_SERIAL)
 
 TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
-OBJPATH=$(TOPPROGRAMPATH)/compiled
-DOCPATH=$(TOPPROGRAMPATH)/doc/develop/html
+ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
+DOCPATH=$(TOPPROGRAMPATH)/doc
+OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
@@ -58,18 +57,19 @@ logo:
 
 about: logo
 	@echo "Library of Scheduling Algorithms (LiSA)"
-	@echo ""
+	@echo
 	@echo "Version: $(PATCH_LEVEL)"
-	@echo ""
-	@echo "Copyright LiSA Group at Magdeburg University 2001"
-	@echo ""
+	@echo
+	@echo "Copyright LiSA Group at Magdeburg University 2002"
+	@echo
 	@echo "Team: Heidemarie Braesel, Lars Dornheim, Martin Harborth, Sandra Kutz,"
-	@echo "      Thomas Tautenhahn, Ines Wasmund, Per Willenius, Andreas Winkler"
-	@echo "      Marc Mörig, Christian Schulz, Manuela Vogel "
+	@echo "      Ivo Rössling, Thomas Tautenhahn, Ines Wasmund, Per Willenius,"
+	@echo "      Andreas Winkler, Marc Mörig, Christian Schulz, Manuela Vogel "
+	@echo
 	@echo "E-Mail: lisagroup@lisa.math.uni-magdeburg.de"
-	@echo ""
+	@echo
 	@echo "WWW: http://lisa.math.uni-magdeburg.de"
-	@echo ""
+	@echo
 
 # ------------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ help: logo
 	@echo "'make clean' ....... deletes only the compiled objects"
 	@echo "'make depend' ...... creates the dependencies for the compiling"
 	@echo "'make version' ..... updates the version information in the source files"
-	@echo "'make doc' ......... creates the source code documentation"
+	@echo "'make develdoc' .... creates the source code documentation"
 	@echo
 
 # ------------------------------------------------------------------------------
@@ -93,22 +93,27 @@ help: logo
 all: logo
 	cd $(SOURCEPATH)/main; $(MAKE) all
 	cd $(SOURCEPATH)/external; $(MAKE) all
+
 # ------------------------------------------------------------------------------
 
 compile: logo
 	cd $(SOURCEPATH)/main; $(MAKE) compile
 	cd $(SOURCEPATH)/external; $(MAKE) compile
+
 # ------------------------------------------------------------------------------
 
 install: logo
 	cd $(SOURCEPATH)/main; $(MAKE) install
 	cd $(SOURCEPATH)/external; $(MAKE) install
+
 # ------------------------------------------------------------------------------
 
-uninstall: logo
+uninstall:
 	cd $(SOURCEPATH)/main; $(MAKE) uninstall
 	cd $(SOURCEPATH)/external; $(MAKE) uninstall
 	rm -fr $(BINPATH)
+	rm -fr $(ALGPATH)
+
 # ------------------------------------------------------------------------------
 
 distclean: uninstall clean
@@ -116,9 +121,11 @@ distclean: uninstall clean
 	rm -f $(TOPPROGRAMPATH)/Make.Config
 	cd $(SOURCEPATH)/main; $(MAKE) distclean
 	cd $(SOURCEPATH)/external; $(MAKE) distclean
+	rm -fr $(DOCPATH)
+
 # ------------------------------------------------------------------------------
 
-clean: logo
+clean:
 	rm -fr $(OBJPATH)
 
 # ------------------------------------------------------------------------------
@@ -126,6 +133,7 @@ clean: logo
 depend:
 	cd $(SOURCEPATH)/main; $(MAKE) depend
 	cd $(SOURCEPATH)/external; $(MAKE) depend
+
 # ------------------------------------------------------------------------------
 
 version:
@@ -150,6 +158,6 @@ version:
 
 # ------------------------------------------------------------------------------
 
-doc: 	
-	cd $(SOURCEPATH)/main; $(MAKE) doc
-	cd $(SOURCEPATH)/external; $(MAKE) doc
+develdoc: 	
+	cd $(SOURCEPATH)/main; $(MAKE) develdoc
+	cd $(SOURCEPATH)/external; $(MAKE) develdoc
