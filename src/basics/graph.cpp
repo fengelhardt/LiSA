@@ -10,6 +10,22 @@ using namespace std;
 
 //**************************************************************************
 
+Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
+#ifdef LISA_DEBUG 
+  if (size!=other.size){
+    G_ExceptionList.lthrow("Wrong size in argument to Lisa_Graph::operator= .");
+  }
+#endif
+  
+  Lisa_Matrix<int> out(size,size);
+  other.get_adjacency_matrix(&out);
+  read_adjacency_matrix(&out);
+  
+  return *this;
+}      
+
+//**************************************************************************
+
 int Lisa_Graph::number_of_succ(const int knot){
 #ifdef LISA_DEBUG
   if( knot<=0 || knot>size ){
@@ -260,25 +276,6 @@ Lisa_MatrixListGraph::~Lisa_MatrixListGraph(){
 
 //**************************************************************************
 
-const Lisa_MatrixListGraph& Lisa_MatrixListGraph::operator=(const Lisa_MatrixListGraph& other){
-  
-  if (size!=other.size){
-    G_ExceptionList.lthrow("Wrong size in argument to Lisa_MatrixListGraph::operator= .");
-    return *this;
-  } 
-  
-  
-  for (int i=0; i<=size; i++){
-    (*succ_pred_pointer)[i]=(*(other.succ_pred_pointer))[i];
-    for (int j=0; j<=size; j++){
-      (*matrix)[i][j]=(*(other.matrix))[i][j];
-    }
-  }
-  return *this;
-}      
-
-//**************************************************************************
-
 void Lisa_MatrixListGraph::init(const int n_in){  
   size = n_in;
   
@@ -350,6 +347,7 @@ void Lisa_MatrixListGraph::read_adjacency_matrix(const Lisa_Matrix<int> *const a
   }
 #endif  
   
+  clear();
   
   for(int i=0; i<size; i++){
     for(int j=0; j<size; j++){

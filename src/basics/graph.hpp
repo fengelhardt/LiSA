@@ -104,14 +104,16 @@ public:
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   virtual void clear(const int vertex)=0;
   
+  /// assign another graph
+  /** Copy one graph object to the other */ 
+  Lisa_Graph& operator=(const Lisa_Graph& other);
+  
   /// returns the number of successors for a vertex
-  /** This is the sum of edges and arcs. It uses and reinitializes
-      the successor list. */
+  /** This is the sum of edges and arcs. */
   int number_of_succ(const int vertex);
 
   /// returns the number of predecessors for a vertice
-  /** This is the sum of edges and backwards arcs (CRA's). It uses and 
-      reinitializes the predecessor list. */
+  /** This is the sum of edges and backwards arcs (CRA's). */
   int number_of_pred(const int vertex);
 
   /// sort vertices topologically
@@ -203,10 +205,6 @@ public:
 
   /// destructor
   ~Lisa_MatrixListGraph();
-
-  /// assign another graph
-  /** Copy one graph object to the other */ 
-  const Lisa_MatrixListGraph& operator=(const Lisa_MatrixListGraph& other);
 
   /// (re)initialize a graph with a given number of vertices
   /** this will clear the graph */
