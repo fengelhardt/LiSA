@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include <signal.h>
 
-#include <cstdio>
 #include <cstring>
 #include <cstdlib>
 

@@ -6,7 +6,6 @@
 /*                    Suchbaumknotens SonNode.                               */
 /* ************************************************************************* */
 
-#include <cstdio>
 #include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"

@@ -7,7 +7,6 @@
 /*		       Loescht einen Suchbaumknoten vom Stack                */
 /* ************************************************************************* */
 
-#include <cstdio>
 #include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"

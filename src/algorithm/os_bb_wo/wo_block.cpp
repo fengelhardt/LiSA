@@ -5,7 +5,6 @@
 /*                     Berechnung der Bloecke auf dem kritischen Pfad        */
 /* ************************************************************************* */
 
-#include <cstdio>
 #include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"

@@ -5,7 +5,6 @@
 /*                      Initialisierung globaler Variablen                  */ 
 /* ************************************************************************ */
 
-#include <cstdio>
 #include <cstdlib>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
