@@ -1,5 +1,5 @@
 <GENERAL>
-Name= LAPT-Regel
+Name= LAPT-Rule
 Type= constructive
 Call= pr
 Code= external

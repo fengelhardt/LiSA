@@ -8,6 +8,9 @@ Help= algorithm/reducing_set_english.html
 
 <EXACT>
 <PROBLEMTYPE> 
+Lisa_ProblemType= { 1 / pmtn  / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE> 
 Lisa_ProblemType= { O / pmtn  / Cmax }
 </PROBLEMTYPE>
 </EXACT>

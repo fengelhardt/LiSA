@@ -7,11 +7,17 @@ Help= algorithm/dispatch.html
 </GENERAL>
 
 <HEURISTIC>
+<PROBLEMTYPE>
+Lisa_ProblemType= { 1 / / Lmax }
+</PROBLEMTYPE>
 </HEURISTIC>
 
 <EXACT>
 <PROBLEMTYPE>
 Lisa_ProblemType= { 1 / / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE>
+Lisa_ProblemType= { 1 / / SumTi }
 </PROBLEMTYPE>
 <PROBLEMTYPE>
 Lisa_ProblemType= { 1 / / SumWiTi }

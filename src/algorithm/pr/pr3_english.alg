@@ -1,5 +1,5 @@
 <GENERAL>
-Name= ERD-Regel
+Name= ERD-Rule
 Type= constructive
 Call= pr
 Code= external
@@ -10,6 +10,9 @@ Help= algorithm/pr.html
 </EXACT>
 
 <HEURISTIC>
+<PROBLEMTYPE> 
+Lisa_ProblemType= { 1 / / Cmax }
+</PROBLEMTYPE>
 <PROBLEMTYPE> 
 Lisa_ProblemType= { 1 / r_i / Cmax }
 </PROBLEMTYPE>

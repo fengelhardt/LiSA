@@ -11,6 +11,9 @@ Help= algorithm/pr.html
 
 <HEURISTIC>
 <PROBLEMTYPE> 
+Lisa_ProblemType= { 1 / / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE> 
 Lisa_ProblemType= { 1 / r_i / Cmax }
 </PROBLEMTYPE>
 </HEURISTIC>

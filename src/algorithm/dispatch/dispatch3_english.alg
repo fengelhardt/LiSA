@@ -11,6 +11,9 @@ Help= algorithm/dispatch.html
 
 <EXACT>
 <PROBLEMTYPE>
+Lisa_ProblemType= { O / p_ij=1  / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE>
 Lisa_ProblemType= { O / r_i, p_ij=1  / Cmax }
 </PROBLEMTYPE>
 </EXACT>

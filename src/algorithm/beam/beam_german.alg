@@ -10,6 +10,10 @@ Help= algorithm/beam.html
 </EXACT>
 
 <HEURISTIC>
+
+<PROBLEMTYPE>
+Lisa_ProblemType = { 1 / / Cmax }
+</PROBLEMTYPE>
 <PROBLEMTYPE>
 Lisa_ProblemType = { O / / Cmax }
 </PROBLEMTYPE>

@@ -8,8 +8,8 @@ Help= algorithm/partition.html
 
 <EXACT>
 <PROBLEMTYPE> 
-Lisa_ProblemType= { O2 /  / Cmax }
-Lisa_ProblemType= { P2 /  / Cmax }
+Lisa_ProblemType= { O2 / / Cmax }
+Lisa_ProblemType= { P2 / / Cmax }
 </PROBLEMTYPE>
 </EXACT>
 

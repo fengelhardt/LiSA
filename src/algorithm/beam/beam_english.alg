@@ -11,6 +11,9 @@ Help= algorithm/beam.html
 
 <HEURISTIC>
 <PROBLEMTYPE>
+Lisa_ProblemType = { 1 / / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE>
 Lisa_ProblemType = { O / / Cmax }
 </PROBLEMTYPE>
 </HEURISTIC>

@@ -11,6 +11,9 @@ Help= algorithm/bottle.html
 
 <HEURISTIC>
 <PROBLEMTYPE> 
+Lisa_ProblemType= { F / / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE> 
 Lisa_ProblemType= { J / / Cmax }
 </PROBLEMTYPE>
 </HEURISTIC>

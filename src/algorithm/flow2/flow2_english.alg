@@ -8,6 +8,9 @@ Help= algorithm/flow2.html
 
 <EXACT>
 <PROBLEMTYPE> 
+Lisa_ProblemType= { 1 / / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE> 
 Lisa_ProblemType= { F2 / / Cmax }
 </PROBLEMTYPE>
 </EXACT>

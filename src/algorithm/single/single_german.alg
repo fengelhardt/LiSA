@@ -7,10 +7,15 @@ Help= algorithm/single.html
 </GENERAL>
 
 <EXACT>
+<PROBLEMTYPE> 
 Lisa_ProblemType= { 1 / / Lmax }
+</PROBLEMTYPE>
 </EXACT>
 
 <HEURISTIC>
+<PROBLEMTYPE> 
+Lisa_ProblemType= { 1 / / Cmax }
+</PROBLEMTYPE>
 </HEURISTIC>
 
 <PARAMETERS>
