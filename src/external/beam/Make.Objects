@@ -1,17 +1,17 @@
 OBJECTS=\
-	../../../compiled/beam.o \
-	../../../compiled/b_node.o \
-	../../../compiled/global.o \
-	../../../compiled/except.o \
-	../../../compiled/matrix.o \
-	../../../compiled/list.o \
-	../../../compiled/order.o \
-	../../../compiled/ctrlpara.o \
-	../../../compiled/lisa_str.o \
-	../../../compiled/ptype.o \
-	../../../compiled/mo.o \
-	../../../compiled/lvalues.o \
-	../../../compiled/schedule.o \
-	../../../compiled/os_sched.o \
-	../../../compiled/sp_sched.o \
-	../../../compiled/pair.o
+	../../../obj/beam.o \
+	../../../obj/b_node.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/matrix.o \
+	../../../obj/list.o \
+	../../../obj/order.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lisa_str.o \
+	../../../obj/ptype.o \
+	../../../obj/mo.o \
+	../../../obj/lvalues.o \
+	../../../obj/schedule.o \
+	../../../obj/os_sched.o \
+	../../../obj/sp_sched.o \
+	../../../obj/pair.o
