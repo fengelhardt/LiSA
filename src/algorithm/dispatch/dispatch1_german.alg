@@ -1,9 +1,9 @@
 <GENERAL>
-Name= Smith Rule
+Name= Smith-Regel
 Type= constructive
 Call= dispatch
-Code= internal
-Help= dispatch.html
+Code= external
+Help= algorithm/dispatch.html
 </GENERAL>
 
 <HEURISTIC>

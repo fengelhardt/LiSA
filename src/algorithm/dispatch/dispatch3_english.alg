@@ -1,9 +1,9 @@
 <GENERAL>
-Name= Aktiver Plan
+Name= Active Schedule
 Type= constructive
-Code= internal
+Code= external
 Call= dispatch
-Help= dispatch.html
+Help= algorithm/dispatch.html
 </GENERAL>
 
 <HEURISTIC>
@@ -16,7 +16,7 @@ Lisa_ProblemType= { O / r_i, p_ij=1  / Cmax }
 </EXACT>
 
 <PARAMETERS>
-string RULE ( RAND FCFS ) "Prioritätsregel"
+string RULE ( RAND FCFS ) "Priority rule"
 </PARAMETERS>
 
 <FIXED>

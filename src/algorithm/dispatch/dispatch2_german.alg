@@ -1,9 +1,9 @@
 <GENERAL>
 Name= Reihungsregeln
 Type= constructive
-Code= internal
+Code= external
 Call= dispatch
-Help= dispatch.html
+Help= algorithm/dispatch.html
 </GENERAL>
 
 <EXACT>

@@ -1,23 +1,21 @@
-# LiSA Main Module Makefile
+# LiSA Algorithm Module Makefile
 # Copyright Lars Dornheim 1998, 2002
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 # ------------------------------------------------------------------------------
 
-# LiSA part: main
+# LiSA part: dispatch
 
-PROGRAMNAME=main
-INSTALLNAME=lisa
+PROGRAMNAME=dispatch
 
 # ------------------------------------------------------------------------------
 
-TOPPROGRAMPATH=../..
+TOPPROGRAMPATH=../../..
 BINPATH=$(TOPPROGRAMPATH)/bin
-DATAPATH=$(TOPPROGRAMPATH)/data
+ALGPATH=$(TOPPROGRAMPATH)/data/alg_desc
 DOCPATH=$(TOPPROGRAMPATH)/doc
 OBJPATH=$(TOPPROGRAMPATH)/obj
-SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
 
@@ -25,9 +23,9 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 
 # ------------------------------------------------------------------------------
 
-CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
+CXXINCL=$(INCL)
 CXXFLAGS=$(CXXINCL) -Wall
-LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
+LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=g++
 DEPENDCXXFLAGS=$(CXXINCL) -Wall
@@ -63,32 +61,29 @@ objdir:
 install:
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	cp $(INSTALLNAME) $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	chmod 755 $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	mkdir -p $(DATAPATH)
-	cp $(SOURCEPATH)/main/default.lsa $(DATAPATH)
-	mkdir -p $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
-	cp $(SOURCEPATH)/classify/classify.tex $(DATAPATH)/classify
-	cp -r $(SOURCEPATH)/sample/problem $(DATAPATH)/sample
-	mkdir -p $(DOCPATH)/lisa
-	cp -r $(SOURCEPATH)/doc/* $(DOCPATH)/lisa
+	mkdir -p $(ALGPATH)/language/english
+	cp $(PROGRAMNAME)1_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)1.alg
+	cp $(PROGRAMNAME)2_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)2.alg
+	cp $(PROGRAMNAME)3_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME)3.alg
+	mkdir -p $(ALGPATH)/language/german
+	cp $(PROGRAMNAME)1_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)1.alg
+	cp $(PROGRAMNAME)2_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)2.alg
+	cp $(PROGRAMNAME)3_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME)3.alg
+	mkdir -p $(DOCPATH)/lisa/english/algorithm
+	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
+	mkdir -p $(DOCPATH)/lisa/german/algorithm
+	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(TOPPROGRAMPATH)/$(INSTALLNAME)
-	rm -f $(DATAPATH)/default.lsa
-	rm -fr $(DATAPATH)/classify
-	rm -fr $(DATAPATH)/sample
-	rm -f $(DOCPATH)/lisa/*.html
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME).alg
+	rm -f $(DOCPATH)/lisa/*/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
 
 distclean: clean
-	rm -f $(INSTALLNAME)
 
 # ------------------------------------------------------------------------------
 

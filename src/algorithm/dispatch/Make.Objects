@@ -1,0 +1,18 @@
+OBJECTS=\
+	../../../obj/dispatch_main.o \
+	../../../obj/dispatcher.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/os_sched.o \
+	../../../obj/schedule.o \
+	../../../obj/sp_sched.o
