@@ -5,15 +5,14 @@
 #
 ######## Generate Icon: ####################
 
-proc make_lisa_icon { iconfile } {
-    if {$iconfile==""} { set iconfile "$env(LISAHOME)/img/llogo_s.gif" }
-
-    set ac(xpm.ApaControl) [image create photo -file $iconfile]
-    
-    set icon ".__Icon"
-    toplevel $icon
-    label $icon.pm -image $ac(xpm.ApaControl); pack $icon.pm
-}
+#proc make_lisa_icon { iconfile } {
+#    if {$iconfile==""} { set iconfile "$env(LISAHOME)/img/llogo_s.gif" }
+#    set ac(xpm.ApaControl) [image create photo -file $iconfile]
+#   
+#    set icon ".__Icon"
+#    toplevel $icon
+#    label $icon.pm -image $ac(xpm.ApaControl); pack $icon.pm
+#}
 
 ######################################################################
 ######## create root of the window hierarchy #########################
@@ -409,11 +408,7 @@ proc vTclWindow.lisa {base} {
 	}
     }
     
-    # open logo:
-    if {$system(screen)=="big"} {
-	set  mw(LiSAsymbol) [ image create  photo -file "$env(LISAHOME)/img/llogo_xl.gif"] } else {
-	    set  mw(LiSAsymbol) [ image create  photo -file "$env(LISAHOME)/img/llogo_l.gif"] }
-    
+    set mw(LiSAsymbol) [image create photo -file "$env(LISAHOME)/img/llogo_xl.gif"]
     mw_add_logo
 
     bind $base <Destroy> {TC_exit }
@@ -734,8 +729,12 @@ proc config_zoom_button { } {
 # add lisa symbol
 proc mw_add_logo { } {
     global mw
-    
-    .lisa.frame_for_all_canvas.fra32.cpd34.03 create image 0 0 -anchor nw -image $mw(LiSAsymbol)
+    # -65 and -150 are hand tuned since the values of
+    # [winfo width .lisa.frame_for_all_canvas.fra32.cpd34.03] jump strangely
+    # -marc-
+    set x [expr { ( [winfo width .lisa] - 65 ) / 2 - [image width $mw(LiSAsymbol)] / 2 } ]
+    set y [expr { ( [winfo height .lisa] - 150 ) / 2 - [image height $mw(LiSAsymbol)]  / 2 } ]
+    .lisa.frame_for_all_canvas.fra32.cpd34.03 create image $x $y -anchor nw -image $mw(LiSAsymbol)
 }
 
 # draw rectangles to set the zoom area
