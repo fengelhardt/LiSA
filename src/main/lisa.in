@@ -24,9 +24,9 @@ if test ! -d "${LISACONFIG}"; then
      rm -fr "${LISACONFIG}"
      mkdir "${LISACONFIG}"
      fi
-if test ! -f "${LISACONFIG}/default.lsa"; then
-     rm -fr "${LISACONFIG}/default.lsa"
-     cp "${LISAHOME}/data/default.lsa" "${LISACONFIG}"
+if test ! -f "${LISACONFIG}/default.xml"; then
+     rm -fr "${LISACONFIG}/default.xml"
+     cp "${LISAHOME}/data/default.xml" "${LISACONFIG}"
      fi
 
 
@@ -37,4 +37,4 @@ export LISACONFIG
 
 # starting LiSA
 
-exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.lsa"
+exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.xml"
