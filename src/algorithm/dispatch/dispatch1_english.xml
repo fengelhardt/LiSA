@@ -26,9 +26,7 @@
     </problem>
   </exact>
   <alg_controls>
-    <choice name="ACTIVE" caption="construct active schedule">
-      <item name="FALSE"/>
-    </choice>
+    <fixed name="ACTIVE" value="FALSE"/>
     <choice name="RULE" caption="priority">
       <item name="WSPT"/>
     </choice>

@@ -14,9 +14,7 @@
     </problem>
   </exact>
   <alg_controls>
-    <choice name="ACTIVE" caption="construct active schedule">
-      <item name="TRUE"/>
-    </choice>
+    <fixed name="ACTIVE" value="TRUE"/>
     <choice name="RULE" caption="Priority rule">
       <item name="RAND"/>
       <item name="FCFS"/>

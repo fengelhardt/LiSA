@@ -26,9 +26,7 @@
     </problem>
   </exact>
   <alg_controls>
-    <choice name="ACTIVE" caption="Aktiven Plan erzeugen">
-      <item name="FALSE"/>
-    </choice>
+    <fixed name="ACTIVE" value="FALSE"/>
     <choice name="RULE" caption="Prioritaetsregel">
       <item name="WSPT"/>
     </choice>

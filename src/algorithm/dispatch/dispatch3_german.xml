@@ -14,9 +14,7 @@
     </problem>
   </exact>
   <alg_controls>
-    <choice name="ACTIVE" caption="Aktiven Plan erzeugen">
-      <item name="TRUE"/>
-    </choice>
+    <fixed name="ACTIVE" value="TRUE"/>
     <choice name="RULE" caption="Prioritaetsregel">
       <item name="RAND"/>
       <item name="FCFS"/>
