@@ -29,6 +29,9 @@ DOCPATH=$(TOPPROGRAMPATH)/doc
 CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
 SOURCEPATH=$(TOPPROGRAMPATH)/src
+NONGUI_MODULES=algorithm utility sample
+GUI_MODULES=main
+MODULES=$(GUI_MODULES) $(NONGUI_MODULES)
 
 # ------------------------------------------------------------------------------
 
@@ -78,6 +81,7 @@ help: logo
 	@echo "'make' ............. same as 'make compile'"
 	@echo "'make about' ....... shows the about information"
 	@echo "'make all' ......... compiles and installs all"
+	@echo "'make nongui' ...... compiles and installs everything but the GUI"
 	@echo "'make help' ........ shows this help"
 	@echo "'make compile' ..... compiles all"
 	@echo "'make install' ..... installs all"
@@ -94,34 +98,27 @@ help: logo
 # ------------------------------------------------------------------------------
 
 all: logo
-	cd $(SOURCEPATH)/main; $(MAKE) all
-	cd $(SOURCEPATH)/algorithm; $(MAKE) all
-	cd $(SOURCEPATH)/utility; $(MAKE) all
-	cd $(SOURCEPATH)/sample; $(MAKE) all
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) all; cd ../..; done
+
+# ------------------------------------------------------------------------------
+
+nongui: logo
+	@for MODULE in $(NONGUI_MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) all; cd ../..; done
 
 # ------------------------------------------------------------------------------
 
 compile: logo
-	cd $(SOURCEPATH)/main; $(MAKE) compile
-	cd $(SOURCEPATH)/algorithm; $(MAKE) compile
-	cd $(SOURCEPATH)/utility; $(MAKE) compile
-	cd $(SOURCEPATH)/sample; $(MAKE) compile
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) compile; cd ../..; done
 
 # ------------------------------------------------------------------------------
 
 install: logo
-	cd $(SOURCEPATH)/main; $(MAKE) install
-	cd $(SOURCEPATH)/algorithm; $(MAKE) install
-	cd $(SOURCEPATH)/utility; $(MAKE) install
-	cd $(SOURCEPATH)/sample; $(MAKE) install
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) install; cd ../..; done
 
 # ------------------------------------------------------------------------------
 
 uninstall:
-	cd $(SOURCEPATH)/main; $(MAKE) uninstall
-	cd $(SOURCEPATH)/algorithm; $(MAKE) uninstall
-	cd $(SOURCEPATH)/utility; $(MAKE) uninstall
-	cd $(SOURCEPATH)/sample; $(MAKE) uninstall
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) uninstall; cd ../..; done
 	rm -fr $(BINPATH)
 	rm -fr $(ALGPATH)
 
@@ -163,10 +160,7 @@ uncygwin:
 distclean: uncygwin uninstall clean
 	rm -f $(TOPPROGRAMPATH)/config.*
 	rm -f $(TOPPROGRAMPATH)/Make.Config
-	cd $(SOURCEPATH)/main; $(MAKE) distclean
-	cd $(SOURCEPATH)/algorithm; $(MAKE) distclean
-	cd $(SOURCEPATH)/utility; $(MAKE) distclean
-	cd $(SOURCEPATH)/sample; $(MAKE) distclean
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) distclean; cd ../..; done
 	rm -fr $(DOCPATH)
 
 # ------------------------------------------------------------------------------
@@ -177,10 +171,7 @@ clean:
 # ------------------------------------------------------------------------------
 
 depend:
-	cd $(SOURCEPATH)/main; $(MAKE) depend
-	cd $(SOURCEPATH)/algorithm; $(MAKE) depend
-	cd $(SOURCEPATH)/utility; $(MAKE) depend
-	cd $(SOURCEPATH)/sample; $(MAKE) depend
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) depend; cd ../..; done
 
 # ------------------------------------------------------------------------------
 
@@ -207,8 +198,5 @@ version:
 # ------------------------------------------------------------------------------
 
 develdoc: 	
-	cd $(SOURCEPATH)/main; $(MAKE) develdoc
-	cd $(SOURCEPATH)/algorithm; $(MAKE) develdoc
-	cd $(SOURCEPATH)/utility; $(MAKE) develdoc
-	cd $(SOURCEPATH)/sample; $(MAKE) develdoc
+	@for MODULE in $(MODULES); do cd $(SOURCEPATH)/$${MODULE}; $(MAKE) develdoc; cd ../..; done
 
