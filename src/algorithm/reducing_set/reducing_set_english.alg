@@ -1,5 +1,5 @@
 <GENERAL>
-Name= Reducing Operation-Set (Research)
+Name= Gonzales & Sahni (Research)
 Type= constructive
 Call= reducing_set
 Code= external
