@@ -3,7 +3,6 @@
 #define _list_h
 
 #include <iostream>
-#include <sstream>
 #include <string>
 
 #include "../main/global.hpp"
@@ -614,33 +613,31 @@ public:
 
 //**************************************************************************
 
-  /// read the list values from a stream
-  void read(std::istream& strm) 
-    {
-      T value;
-      char* S;      // benutze char*, da C-Library kein stream(string) kennt
-      
-      S = new char[80];      
-      std::istringstream *is;
-      
-      clear();
-      strm >> S;
-      if (S[0]!='(') 
-	error ("( expected in tlist.read");
-      strm >> S;
-      
-      while(S[0]!=')' && S!="") 
-	{
-	  is = new std::istringstream(S);
-	  *is >> value;
-	  delete is;
-	  append(value);
-	  strm >> S; 
-	}
-      if (S[0]!=')') 
-        error(") expected in tlist.read");
-      delete S;
-    }
+/// read the list values from a stream
+void read(std::istream& strm){
+  T value;
+
+  clear();
+    
+  std::string S = "";
+  strm >> S;
+  if (S!="(") error ("( expected in Lisa_List::read().");
+  
+  std::streampos pos = strm.tellg();
+  strm >> S;
+  
+  while(S!=")" && S != ""){
+    
+    strm.seekg(pos);
+    strm >> value;
+    append(value);
+    
+    pos = strm.tellg();
+    strm >> S; 
+  }
+  
+  if (S!=")") error(") expected in Lisa_List::read().");
+}
 
 //**************************************************************************
 
