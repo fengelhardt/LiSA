@@ -359,7 +359,8 @@ int main(int argc, char *argv[]){
     
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
-    std::cout << "Current objective: " << os.GetValue() << std::endl;
+    std::cout << "Objective after algorithm " << j+1 << ": "
+              << os.GetValue() << std::endl;
     /*
     out_file << "************************************************************"
              << "****************" << std::endl << std::endl
