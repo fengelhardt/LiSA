@@ -83,86 +83,81 @@ public:
 /* Matching Heuristics
  This algorithm is a simple heuristic for the O| |Cmax Problem. It also 
  demonstrates how to use LiSA's matching objects. */
-int main(int argc, char *argv[])
-{ 
+int main(int argc, char *argv[]){ 
 
-   G_ExceptionList.set_output_to_cout();   
-   // open files and assure existence:
-   if (argc != 3) 
-     {
-       cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
-       exit(1);
-     }
-   cout << "PID= " << getpid() << endl; 
-   ifstream i_strm(argv[1]);
-   ofstream o_strm(argv[2]);
-   if (!i_strm)
-     {
-       cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
-       exit(1);
-     }
+   // write errors, so lisa can catch them up
+   G_ExceptionList.set_output_to_cout();
    
-   // read problem description and decide whether program is applicable:
+   if(argc != 3){
+     cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
+     exit(1);
+   }
+     
+   cout << "PID= " << getpid() << endl; 
+   
+   ifstream i_strm(argv[1]);
+   if (!i_strm){
+     cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+     exit(1);
+   }
+   
+   // read problem description, algorithm control parameters
+   // and problem values
    Lisa_ProblemType * lpr = new Lisa_ProblemType;
    i_strm >> (*lpr);
-   if (!G_ExceptionList.empty())
-   {
-     cout << "ERROR: cannot read problem type, aborting program." << endl;
+ 
+   Lisa_ControlParameters * sp = new Lisa_ControlParameters;
+   i_strm >> (*sp);
+ 
+   Lisa_Values * my_werte=new Lisa_Values;
+   i_strm >> (*my_werte);
+  
+   i_strm.close();
+ 
+   if (!G_ExceptionList.empty()){
+     cout << "ERROR: cannot read problem data, aborting program." << endl;
      exit(1);
    }  
    
-   if (lpr->get_property(M_ENV)!=O)
-        {
+   /// problem type applicable ?
+   if (lpr->get_property(M_ENV)!=O){
         cout << "ERROR: cannot read problem type, aborting program." << endl;
         exit(1);
-        }
+   }
    string cannot_handle="";
    if (lpr->get_property(PMTN)) cannot_handle="preemption";
    if (lpr->get_property(PRECEDENCE)!=EMPTY) 
         cannot_handle="precedence constraints"; 
    if (lpr->get_property(BATCH))  cannot_handle="batching"; 
    if (lpr->get_property(NO_WAIT))  cannot_handle="no-wait constraints";
-   if (cannot_handle!="")  
-        {
-        cout << "ERROR: MATCH cannot handle " << cannot_handle << 
+   if (cannot_handle!=""){
+     cout << "ERROR: MATCH cannot handle " << cannot_handle << 
              ". Aborting program."<< endl;
-        exit(1);
-        }  
+     exit(1);
+   }  
    delete lpr;   
 
-   // read control parameters:
-   
+   //parse control parameters
    bool min = 0;
    bool bottle = 0;
    bool heads = 0;
-
-   Lisa_ControlParameters * sp = new Lisa_ControlParameters;
-   i_strm >> (*sp);
-   
    if (sp->defined("MINMAX")==STRING){ 
-       if (sp->get_string("MINMAX")=="MIN") min = 1;
-       else if (sp->get_string("MINMAX")=="MAX") min = 0;
-       else if (sp->get_string("MINMAX")=="HEADS"){
-	 min = 1;
-	 heads = 1;
-       }
-       else cout << "WARNING: MINMAX value out of Range, using MAX" << endl;
-     }
-   else cout << "WARNING: Could not read MINMAX parameter, using MAX." << endl;
+     if (sp->get_string("MINMAX")=="MIN") min = 1;
+     else if (sp->get_string("MINMAX")=="MAX") min = 0;
+     else if (sp->get_string("MINMAX")=="HEADS"){
+       min = 1;
+       heads = 1;
+     }else cout << "WARNING: MINMAX value out of Range, using MAX" << endl;
+   }else cout << "WARNING: Could not read MINMAX parameter, using MAX." << endl;
    
    if (sp->defined("TYPEOF")==STRING){ 
      if (sp->get_string("TYPEOF")=="BOTTLENECK") bottle = 1;
      else if (sp->get_string("TYPEOF")=="WEIGHTED") bottle = 0;
      else cout << "WARNING: TYPEOF value out of Range, using WEIGHTED" << endl;
-   }
-   else cout << "WARNING: Could not read TYPEOF parameter, using WEIGHTED." << endl;
+   }else cout << "WARNING: Could not read TYPEOF parameter, using WEIGHTED." << endl;
    
    delete sp;
 
-   // read problem instance:
-   Lisa_Values * my_werte=new Lisa_Values;
-   i_strm >> (*my_werte);
-  
    const int m = my_werte->get_m();
    const int n = my_werte->get_n();
    const int mx = (m<n?n:m);
@@ -185,24 +180,24 @@ int main(int argc, char *argv[])
    if (min) matching->invert();
    
    for (int a=1;a<=mx;a++){
-       
+     
      I_matched = matching->get_matching_I();
-
+     
      for (int i=0;i<mx;i++){
        const int j = (*I_matched)[i];
        matching->remove(i,j);
        if (j<m&&i<n&&(*my_werte->SIJ)[i][j]){
-	 my_heads->add_operation(i,j,(*my_werte->PT)[i][j]);
-	 (*out_schedule->LR)[i][j]= a;
-	 (*my_werte->SIJ)[i][j] = 0;
+         my_heads->add_operation(i,j,(*my_werte->PT)[i][j]);
+         (*out_schedule->LR)[i][j]= a;
+         (*my_werte->SIJ)[i][j] = 0;
        } // if
      }// for	
      
      if(heads){
        for(int i=0;i<n;i++)
-	 for(int j=0;j<m;j++){
-	   (*op_rel)[i][j] = (*my_werte->PT)[i][j] + my_heads->get_release(i,j);
-	 }
+       for(int j=0;j<m;j++){
+         (*op_rel)[i][j] = (*my_werte->PT)[i][j] + my_heads->get_release(i,j);
+       }
        matching->set_all_edges(op_rel);
      }// if
      
@@ -210,7 +205,13 @@ int main(int argc, char *argv[])
      
    } // for
    
+   ofstream o_strm(argv[2]);
+   if(!o_strm){
+     cout << "Could not open '"<<argv[2]<<"' for writing." << endl;
+     exit(1);
+   }
    o_strm << *out_schedule;
+   o_strm.close();
    
    delete matching;
    delete op_rel;
