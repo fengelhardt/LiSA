@@ -314,7 +314,7 @@ void Heuristic_Schedule (int problem_n, int problem_m )
         OutputList[i] = Makeempty(OutputList[i]); 
      fclose(fp);
 
-     ofstream JO_out("jo_out.lsa");
+     ofstream JO_out("jo_out.dat");
      JO_out << *JO;
      JO_out.close();
      delete JOOrder;
