@@ -26,7 +26,7 @@ enum{CRA=-1 /// backwards ARC ;)
     - ARC + EDGE =EDGE
     - EDGE - ARC = (backwards) ARC
 
-    remark: (number of knots + 1) determines the end of a list
+   (number of vertices + 1) determines the end of a list
     
     @author Christian Schulz
     @version 2.3final
@@ -60,7 +60,7 @@ private:
     */
   Lisa_Matrix<Lisa_Pair> *matrix;
   
-  ///pointer to a Vector
+  /// pointer to a Vector
   /** that storages the current position within the successor and predeccessor 
       list of every vertex */
   Lisa_Vector<Lisa_Pair> *succ_pred_pointer;
@@ -77,6 +77,10 @@ public:
   /// constructor
   /** Create a graph as the copy of another graph. */
   Lisa_Graph(const Lisa_Graph *const othergraph);
+  
+  /// constructor
+  /** Create a graph as the copy of another graph. */
+  Lisa_Graph(const Lisa_Graph & othergraph);
 
   /// destructor
   ~Lisa_Graph();
@@ -99,19 +103,32 @@ public:
   void read_adjacency_matrix(const Lisa_Matrix<int> *const adj);
 
   /// insert an edge into the graph
-  /** Add edge from vertice start to vertice end. */
+  /** Add edge from vertex start to vertex end. 
+      Regardless of what the connection between start and end was, after this
+      operation it will be an edge.*/
   void insert_edge(const int start,const int end);
 
   /// insert an arc into the graph
-  /** Add arc from vertice start to vertice  end. */
+  /** Add arc from vertex start to vertex end. If there is a CRA between 
+      start and end it will be an EDGE afterwards, if there ist no connection,
+      an ARC will be created. All other connections will remain unchanged.*/
   void insert_arc(const int start,const int end);
-
+  
+  /// remove any connection between to vertices
+  /** Delete any connection between vertex start and vertex end. */
+  void exclude_all(const int start,const int end);
+  
   /// remove an edge from the graph 
-  /** Delete edge from vertice start to vertice end. */
+  /** Delete edge from vertex start to vertex end. This only works 
+      if there is an EDGE between start and end, an ARC or CRA will not
+      be removed. */
   void exclude_edge(const int start,const int end);
 
   /// remove an arc from the graph
-  /** Delete arc from vertice start to vertice end. */
+  /** Delete arc from vertice start to vertice end. If there is an
+      ARC from start to end it will be deleted, if there is an EDGE it
+      will be converted into a CRA. In any other case the connection will 
+      remain unchanged. */
   void exclude_arc(const int start,const int end);
 
   /// get the kind of connection between two vertices 
@@ -122,10 +139,10 @@ public:
       - EDGE 2 */
   int get_connection(const int start,const int end);
 
-  ///initialize the pointer for the successors list of a given vertice
+  ///initialize the pointer for the successors list of a given vertex
   void init_succ_pointer(const int vertex);
 
-  /// initialize the pointer for the predecessor list of a given vertice
+  /// initialize the pointer for the predecessor list of a given vertex
   void init_pred_pointer(const int vertex);
 
   /// get a successsor of a vertex
@@ -137,27 +154,27 @@ public:
 
   /// get a predecessor of a vertex
   /** Returns the next predeccessor of a vertex and moves the according 
-      vertice pointer to the next following predeccessor. Returning n+1 stands
-      for the end of this vertice's predeccessor list and for a new 
+      vertex pointer to the next following predeccessor. Returning n+1 stands
+      for the end of this vertex's predeccessor list and for a new 
       initialization of its predeccessor list pointer. */  
   int get_next_predeccessor(const int vertex);
 
-  /// get vertices that form an edge together with the argument vertice 
-  /** returns only connected edges of a vertice, returning n+1 stands for the 
-      end of this vertice's edge list ... it works on the successor list, so
+  /// get vertices that form an edge together with the argument vertex 
+  /** returns only connected edges of a vertex, returning n+1 stands for the 
+      end of this vertex's edge list ... it works on the successor list, so
       you have to call init_succ_pointer() to (re)initialize and can not use
-      both at the same time*/
+      both at the same time */
   int get_next_edge(const int vertex);
 
   /// test if there are no edges in the graph
   bool no_edges();
 
-  /// returns the number of successors for a vertice
+  /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. It uses and reinitializes
       the successor list. */
   int number_of_succ(const int vertex);
 
-  /// returns the number of successors for a vertice
+  /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). It uses and 
       reinitializes the predecessor list. */
   int number_of_pred(const int vertex);

@@ -11,7 +11,7 @@ using namespace std;
 //**************************************************************************
 
 int Lisa_Graph::signum(const int start,const int end)const{
-  if(start==end) {return 0;}
+  if(start==end) return 0;
   
   if(((*matrix)[start][end].x>0)&&((*matrix)[start][end].y>0)){
     return 1;
@@ -39,6 +39,21 @@ Lisa_Graph::Lisa_Graph(const Lisa_Graph *const othergraph){
     for(int j=0; j<n+1; j++){
       (*matrix)[i][j].x=(*(othergraph->matrix))[i][j].x;
       (*matrix)[i][j].y=(*(othergraph->matrix))[i][j].y;
+    }
+  }
+}
+
+//**************************************************************************
+
+Lisa_Graph::Lisa_Graph(const Lisa_Graph& othergraph){
+  matrix=0;
+  succ_pred_pointer=0;
+  init(othergraph.get_vertices());
+  
+  for(int i=0; i<n+1; i++){
+    for(int j=0; j<n+1; j++){
+      (*matrix)[i][j].x=(*(othergraph.matrix))[i][j].x;
+      (*matrix)[i][j].y=(*(othergraph.matrix))[i][j].y;
     }
   }
 }
@@ -143,14 +158,16 @@ void Lisa_Graph::read_adjacency_matrix(const Lisa_Matrix<int> *const adj){
 
 void Lisa_Graph::insert_edge(const int start,const int end){
 #ifdef LISA_DEBUG
-  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+  if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
                            " out of range in Lisa_Graph::insert_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
 #endif
-
+  
+  if(start==end) return;
+  
   int con=get_connection(start, end);
   
   if(con!=EDGE){
@@ -199,7 +216,7 @@ void Lisa_Graph::insert_edge(const int start,const int end){
 
 void Lisa_Graph::insert_arc(const int start,const int end){
 #ifdef LISA_DEBUG
-  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+  if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
                            " out of range in Lisa_Graph::insert_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
@@ -207,6 +224,8 @@ void Lisa_Graph::insert_arc(const int start,const int end){
   }
 #endif
 
+  if(start==end) return;
+  
   int con=get_connection(start, end);
   
   //Test ob arc schon vorhanden
@@ -246,18 +265,45 @@ void Lisa_Graph::insert_arc(const int start,const int end){
   }
 
 }
+//**************************************************************************
+
+void Lisa_Graph::exclude_all(const int start,const int end){
+#ifdef LISA_DEBUG
+  if( start<=0 || start>n || end<=0 || end>n ){
+    G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
+                           " out of range in Lisa_Graph::exclude_all().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return;
+  }
+#endif
+
+  if(start==end) return;
+  
+  int con=get_connection(start,end);
+  
+  if(con==EDGE){
+    exclude_edge(start,end);
+  }else if(con==ARC){
+    exclude_arc(start,end);
+  }else if(con==CRA){
+    exclude_arc(end,start);
+  }
+
+}
 
 //**************************************************************************
 
 void Lisa_Graph::exclude_edge(const int start,const int end){
 #ifdef LISA_DEBUG
-  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+  if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
                            " out of range in Lisa_Graph::exclude_edge().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
     return;
   }
-#endif  
+#endif
+
+  if(start==end) return;
 
   //Test ob Kante vorhanden
   int con=get_connection(start,end);
@@ -309,7 +355,7 @@ void Lisa_Graph::exclude_edge(const int start,const int end){
 
 void Lisa_Graph::exclude_arc(const int start,const int end){
 #ifdef LISA_DEBUG
-  if( start<=0 || start>n || end<=0 || end>n || start==end ){
+  if( start<=0 || start>n || end<=0 || end>n ){
     G_ExceptionList.lthrow("Vertexpair "+ztos(start)+" "+ztos(end)+
                            " out of range in Lisa_Graph::exclude_arc().",
                            Lisa_ExceptionList::OUT_OF_RANGE);
@@ -317,8 +363,9 @@ void Lisa_Graph::exclude_arc(const int start,const int end){
   }
 #endif
 
-  //Test ob Bogen vorhanden
+  if(start==end) return;
   
+  //Test ob Bogen vorhanden
   int con=get_connection(start,end);
   
   if(con==ARC){
@@ -360,10 +407,7 @@ void Lisa_Graph::exclude_arc(const int start,const int end){
     (*matrix)[end][start].x=0;
     (*matrix)[end][start].y=0;
     
-    //return true;
-  }
-  
-  if(con==EDGE){
+  }else if(con==EDGE){
     exclude_edge(start, end);
     insert_arc(end, start);
   }
@@ -384,7 +428,7 @@ int Lisa_Graph::get_connection(const int start,const int end){
 
   if(start==end) return NO;
   
-  if(((*matrix)[start][end].x==0)&&((*matrix)[start][end].y==0)){
+  if((((*matrix)[start][end]).x==0)&&(((*matrix)[start][end]).y==0)){
     return NO;
   }else{
 
