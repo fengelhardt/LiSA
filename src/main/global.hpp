@@ -4,11 +4,11 @@
  * description:      convention for consistent usage with values
  *                   often used functions
  * 
- * owner:            Per Willenius
+ * @author            Per Willenius
  *
  * date:             17.9.1998
  *
- * version:          V 1.0
+ * @version 2.3pre3
  */ 
 
 #ifndef _global_h 

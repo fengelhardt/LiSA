@@ -3,7 +3,7 @@
  * 
  * description:        Class Lisa_XSchedule
  *
- * owner:              Per Willenius
+ * @author              Per Willenius
  *
  * date:               28.9.1999
  *

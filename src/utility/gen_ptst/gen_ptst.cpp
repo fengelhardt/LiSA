@@ -3,11 +3,11 @@
  * 
  * description:        general parametertest program
  *
- * owner:              Andreas Winkler
+ * @author              Andreas Winkler
  *
  * date:               9.9.1999
  *
- * version:            V 1.0
+ * @version 2.3pre3
 */ 
 
 // *********************** functions *************************

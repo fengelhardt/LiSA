@@ -3,7 +3,8 @@
  * 
  * description:      job shop critical-block-SHIFT neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
+ * @version 2.3pre3
  *
  * date:             11.01.1999
  *

@@ -3,7 +3,7 @@
  * 
  * classes Lisa_List<T> where T is a C++ standard type
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
  *

@@ -7,9 +7,9 @@
  *                   This makes it easy to communicate with external programs.
  *
  *
- * owner:            Thomas Tautenhahn
+ * @author            Thomas Tautenhahn
  * date:             30.9.1998
- * version:          V 1.1
+ * @version 2.3pre3
 */
 
 // ********************* Local Includes ********************

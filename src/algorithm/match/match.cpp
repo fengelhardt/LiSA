@@ -3,7 +3,8 @@
  * 
  * Heuristic for OS problems based on Bipartite Matchings
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
+ * @version 2.3pre3
  *
  * 03.07.00
  * last changes 12.09.00

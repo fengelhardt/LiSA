@@ -3,13 +3,13 @@
  * 
  * description:   draw Gantt Chart in main window
  *
- * owner:         Ines Wasmund
+ * @author         Ines Wasmund
  *
  * date:          08.03.1999
  *
  */
 
-/** @version
+/** @version 2.3pre3
  */ 
 
 #include "../scheduling/xsched.hpp"

@@ -3,14 +3,17 @@
  * 
  * description:      manage the calling of internal and external Algorithms
  *
- * owner:            Per Willenius
+ * @author            Per Willenius
  *
  * date:             8.10.1999
  *
  *
 */ 
 
-/**@name Calling internal and external algorithms */
+/**@name Calling internal and external algorithms 
+   @version 2.3pre3
+  */
+  
 //@{
 
 

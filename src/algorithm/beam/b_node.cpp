@@ -1,3 +1,6 @@
+/**
+ * @version 2.3pre3
+ */
 #include "b_node.hpp"
 
 B_Node::B_Node(B_Node *p):Lisa_OsSchedule(p->problem)

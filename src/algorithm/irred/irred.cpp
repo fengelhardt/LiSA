@@ -1,9 +1,10 @@
 /*
  * ************** irred.cpp *******************************
+ * @version 2.3pre3
  * 
  * test schedules for irreducibility
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
  *
  * 21.02.01
  * last changes 27.03.01

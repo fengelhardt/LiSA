@@ -3,7 +3,7 @@
  * 
  * priority rules for jobshop
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 10.9.1999
 */

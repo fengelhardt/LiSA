@@ -3,11 +3,11 @@
  * 
  * description: C++ functions to call tcl/tk routines
  *
- * owner:       Per Willenius
+ * @author       Per Willenius
  * date:        28.9.1999
  * patch        15.02.2000 by TAU
  * patch        02.07.2002 by eldeh
- * version:     V 1.0
+ * @version 2.3pre3
 */ 
 
 #include <stdlib.h>

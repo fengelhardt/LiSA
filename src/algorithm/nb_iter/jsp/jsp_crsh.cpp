@@ -3,7 +3,8 @@
  * 
  * description:      job shop critical shift neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
+ * @version 2.3pre3
  *
  * date:             18.10.2000
  *

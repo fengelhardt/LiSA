@@ -3,11 +3,11 @@
  * 
  * description:     spezific system values
  * 
- * owner:           Per Willenius
+ * @author           Per Willenius
  *
  * date:            16.09.1998
  *
- * version:         V 1.0
+ * @version 2.3pre3
 */
 
 

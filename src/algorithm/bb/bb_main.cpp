@@ -2,8 +2,9 @@
  * ************** bb_main.h *******************************
  * 
  * branch and bound external LiSA module
+ * @version 2.3pre3
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 25.10.1999
 */

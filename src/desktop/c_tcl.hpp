@@ -3,13 +3,13 @@
  * 
  * description: C++ functions to call tcl/tk routines
  *
- * owner: Per Willenius
+ * @author Per Willenius
  * date: 28.9.1999
- * version: V 1.0
 */ 
 
 /** 
-  @version:
+  @version 2.3pre3
+  
   */
 
 #ifndef _c_tcl_h 

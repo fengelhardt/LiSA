@@ -3,7 +3,7 @@
  * 
  * description:        functions which was called as tcl/tk command
  *
- * owner:              Per Willenius
+ * @author              Per Willenius
  *
  * date:               28.9.1999
  *

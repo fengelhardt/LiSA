@@ -3,7 +3,8 @@
  * 
  * This are Priorityrules for Single-, Open-Shop
  *
- * Owner: Marco Kleber
+ * @author Marco Kleber
+ * @version 2.3pre3
  *
  * 21.05.2001
 */

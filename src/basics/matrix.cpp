@@ -3,8 +3,9 @@
  * 
  * vectors and matrices with dynamic size and fast access
  *
- * Owner: Thomas Tautenhahn 21.10.99
+ * @author Thomas Tautenhahn 21.10.99
  * history: 21.10.99  made several methods const
+ * @version 2.3pre3
  *
  * Patch: Marc Mörig 03.01.2003
  */

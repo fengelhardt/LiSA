@@ -7,7 +7,7 @@
  *                   This makes it easy to communicate with external programs.
  *
  *
- * owner:            Per Willenius
+ * @author            Per Willenius
  * date:             25.2.1998
  * version:          V 1.0
 */

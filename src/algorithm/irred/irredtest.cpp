@@ -1,7 +1,8 @@
 /*
  * ************** irredtest.cpp *******************************
+ * @version 2.3pre3
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
  *
  * 27.07.01
  * last changed 27.07.01

@@ -4,11 +4,11 @@
  *                Sequence Graph, Complete Sequence Graph
  *                and Comparability Graph.
  *
- * owner:         Per Willenius
+ * @author         Per Willenius
  *
  * date:          15.9.1998
  *
- * version:       V 1.0
+ * @version 2.3pre3
  *
 */
 #include <stdio.h>

@@ -4,6 +4,7 @@
 /*    Export: Procedure Heuristic_Schedule:                                */
 /*                      Calculation of a heuristic solution for the        */
 /*                      search tree node SonNode.                          */
+/*   @version 2.3pre3
 /* *********************************************************************** */
 
 #ifndef _HEUR_H

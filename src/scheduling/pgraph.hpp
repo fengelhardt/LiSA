@@ -4,10 +4,10 @@
  *              Sequence Graph, Complete Sequence Graph
  *              and Comparability Graph.
  *
- * owner: Per Willenius
+ * @author Per Willenius
  *
  * date:18.11.1997
- * version: V 1.0
+ * @version 2.3pre3
 */
 
 #ifndef _pgraph_h

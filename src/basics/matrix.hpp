@@ -3,7 +3,7 @@
  * 
  * vectors and matrices with dynamic size and fast access
  *
- * Owner: Thomas Tautenhahn 
+ * @author Thomas Tautenhahn 
  *        21.10.99
  *
  * Patch: Marc Moerig 

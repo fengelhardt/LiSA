@@ -3,12 +3,14 @@
  * 
  * description:      manage the calling of internal and external Algorithms
  *
- * owner:            Per Willenius
+ * @author            Per Willenius
  *
  * date:             19.10.1998
- *
- *
-*/ 
+ */
+ 
+/**
+  *  @version 2.3pre3
+  */ 
 
 #include <fstream>
 

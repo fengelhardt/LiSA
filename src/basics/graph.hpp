@@ -3,7 +3,8 @@
  * 
  * Graph-Object
  *
- * Owner: Christian Schulz
+ * @author Christian Schulz
+ * @version 2.3pre3
  *
  * 29.11.00
  *

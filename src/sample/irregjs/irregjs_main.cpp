@@ -2,8 +2,9 @@
  * ************** irj_main.cpp *******************************
  * 
  * part of neumann project
+ * @version 2.3pre3
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
 */

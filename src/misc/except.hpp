@@ -3,7 +3,7 @@
  * 
  * List of error messages for use with LiSA 
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 15.12.1998
 */
@@ -22,7 +22,7 @@ using namespace std;
      Due to compatibility problems LiSA does not use C++ exception handling 
      but a global list of error messages instead.
     @Author Thomas Tautenhahn
-    @version
+    @version 2.3pre3
     */
 
 //@{

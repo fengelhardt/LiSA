@@ -3,7 +3,7 @@
  * 
  * description:      single machine SHIFT neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             15.12.1998
  *

@@ -3,7 +3,7 @@
  * 
  * Doc++ start file for external module branch and bound
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
 */

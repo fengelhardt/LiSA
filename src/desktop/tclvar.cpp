@@ -3,11 +3,11 @@
  * 
  * description:    class Lisa_TCLVar
  * 
- * owner:          Per Willenius
+ * @author          Per Willenius
  * 
  * date:           16.9.1998
  *
- * version:        V 1.0
+ * @version 2.3pre3
 */
 
 

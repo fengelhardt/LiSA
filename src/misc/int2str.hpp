@@ -3,7 +3,7 @@
  * 
  * description: functions to convert from int to string 
  *
- * owner: Per Willenius
+ * @author Per Willenius
  * date: 15.9.1998
  * version: V.1.0
 */ 

@@ -3,7 +3,8 @@
  * 
  * classes listvector & listmatrix
  *
- * Owner: Ivo Roessling
+ * @author Ivo Roessling
+ * @version 2.3pre3
  *
  * 11.05.2001
  * 

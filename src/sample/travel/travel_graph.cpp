@@ -1,7 +1,8 @@
 /*
  ************* travel_graph.cpp *********
  *
- * Marc Mörig
+ * @author Marc Mörig
+ * @version 2.3pre3
  *
  * an object describing our traveling salesman problem
  * just for input/output from/to files and to calculate us the objective

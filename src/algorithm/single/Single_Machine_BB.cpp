@@ -1,4 +1,6 @@
-
+/**
+ * @version 2.3pre3
+ */
 #include "Single_Machine_BB.hpp"
 
 SingleMachineBB::SingleMachineBB(Lisa_Values* pValues, bool m, Lisa_Graph* pgraph)

@@ -3,7 +3,8 @@
  * 
  * description:      job shop critical-block-API neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
+ * @version 2.3pre3
  *
  * date:             5.01.1999
  *

@@ -7,7 +7,7 @@
  *                   
  *
  *
- * owner:            Per Willenius
+ * @author            Per Willenius
  * date:             3.12.1998
  * patch 2.10.99 Thomas Tautenhahn
 */

@@ -3,7 +3,7 @@
  * 
  * object for indirect sorting, mainly written for ordering matrix elements
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
 */

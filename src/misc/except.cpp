@@ -3,7 +3,8 @@
  * 
  * special exception classes for use with LiSA 
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * 15.12.1998
 */

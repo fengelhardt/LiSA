@@ -3,7 +3,7 @@
  * 
  * description:      open shop 3-critical-API neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             15.12.1998
  *

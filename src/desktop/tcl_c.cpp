@@ -3,11 +3,11 @@
  * 
  * description:        functions which was called as tcl/tk command
  *
- * owner:              Per Willenius
+ * @author              Per Willenius
  *
  * date:               16.9.1998
  *
- * version:            V 1.0
+ * @version 2.3pre3
 */ 
 
 #include <stdlib.h>

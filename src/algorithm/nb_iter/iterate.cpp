@@ -4,7 +4,8 @@
  * description:      The class LiSA_Iterator is the problem-independent
  *                   neighbourhood-iteration-class
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
+ * @version 2.3pre3
  *
  * date:             14.12.1998
  *

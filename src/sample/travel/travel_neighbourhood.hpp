@@ -1,7 +1,8 @@
-/*+
+/*
  ************ travel_neighbourhood.hpp *********************
+ * @version 2.3pre3
  *
- * Marc Mörig
+ * @author Marc Mörig
  *
  * the class describing the neighbourhood for the traveling salesman
  * problem

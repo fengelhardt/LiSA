@@ -3,7 +3,8 @@
  * 
  * description:      neighbourhood for football pool problem
  * 
- * owner:            Thomas Tautenhahn
+ * @author            Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * date:             20.10.1998
  *

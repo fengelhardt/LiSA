@@ -3,7 +3,8 @@
  * 
  * vectors and matrices with dynamic size and fast access
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * 21.10.99
 */

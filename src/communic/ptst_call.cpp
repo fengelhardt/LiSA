@@ -4,11 +4,11 @@
  * description:        functions which was called as tcl/tk command
  *                     parametertest of the neighborhood iteration
  *
- * owner:              Andreas Winkler
+ * @author              Andreas Winkler
  *
  * date:               14.4.1999
  *
- * version:            V 1.0
+ * @version 2.3pre3
 */ 
 
 #include <string>

@@ -3,7 +3,7 @@
  * 
  * description: file read and file save
  * 
- * owner: Per Willenius
+ * @author Per Willenius
  *
  * date: 28.9.1999
  * version: V 1.0

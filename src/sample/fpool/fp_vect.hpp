@@ -3,7 +3,8 @@
  * 
  * description:  vector for football pool problem
  * 
- * owner:        Thomas Tautenhahn
+ * @author        Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * date:         17. 11. 1998
  *

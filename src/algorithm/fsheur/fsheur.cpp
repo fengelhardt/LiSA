@@ -3,10 +3,11 @@
  * 
  * A flow shop heuristic.
  *
- * Owner: Manuela Vogel
+ * @author Manuela Vogel
+ * @version 2.3pre3
  *
  * 11.09.2000
-*/
+ */
 
 #include <stdlib.h>
 #include <unistd.h>

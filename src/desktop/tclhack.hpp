@@ -1,9 +1,10 @@
 /*
  * ***************** tclhack.hpp ******************************
  *
- * owner:              Marc Mörig
+ * @author              Marc Mörig
  *
  * date:               07.03.2003
+ * @version 2.3pre3
  */ 
 
 #ifndef _tclhack_h 

@@ -1,9 +1,10 @@
 /*
  * ************** insert.hpp *******************************
+ * @version 2.3pre3
  * 
  * part of neumann project
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
 */

@@ -1,7 +1,8 @@
 /*
  * ************** irrednode.hpp *******************************
+ * @version 2.3pre3
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
  *
  * 08.06.01
  * last changed 08.06.01

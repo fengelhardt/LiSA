@@ -1,5 +1,6 @@
 /**
  * @author : jan tusch, andre herms
+ * @version 2.3pre3
  */ 
 #include <stdlib.h>
 #include <unistd.h>

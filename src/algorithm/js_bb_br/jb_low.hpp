@@ -7,6 +7,7 @@
 /*                                        the optimal preemptive schedule    */
 /*                                        for a set of operations on one     */
 /*                                        machine                            */
+/*   @version 2.3pre3
 /* ************************************************************************* */
 
 

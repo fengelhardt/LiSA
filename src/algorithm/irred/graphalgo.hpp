@@ -1,7 +1,8 @@
 /*
  * ************** graphalgo.hpp *******************************
+ * @version 2.3pre3
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
  *
  * 01.06.01
  * last changed 01.06.01

@@ -3,7 +3,7 @@
  * 
  * description:    definition of class Lisa_ProblemType, 
  *                 
- * owner:          Per Willenius
+ * @author          Per Willenius
  *
  * date:           27.9.1999
  *

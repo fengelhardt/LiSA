@@ -1,7 +1,8 @@
 /*
  * ************** bottle.cpp *******************************
  * 
- * Owner: Christian Schulz
+ * @author Christian Schulz
+ * @version 2.3pre3
  *
  * 23.02.2000
 */

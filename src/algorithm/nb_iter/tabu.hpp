@@ -3,7 +3,7 @@
  * 
  * description:      general problem independent tabulist class
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             20.10.1998
  *

@@ -1,7 +1,7 @@
 /*
  * ************** single.cpp *******************************
  * 
- * Owner: Christian Schulz
+ * @author Christian Schulz
  *
  * 23.02.2000
 */
@@ -32,7 +32,8 @@ using namespace std;
 
     This is a branch and bound algorithm to solve 
     single machine problems exactly.
-
+    
+    @version 2.3pre3
     @author Christian Schulz
     @see SingleMachineBB
  */

@@ -3,7 +3,8 @@
  *
  * this class will create the graph to a given plan and problem type and vice versa 
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
+ * @version 2.3pre3
  *
  * 15.07.01
  * last changed 15.07.01

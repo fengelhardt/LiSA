@@ -3,11 +3,11 @@
  * 
  * description:        Class Lisa_XSchedule
  *
- * owner:              Per Willenius
+ * @author              Per Willenius
  *
  * date:               17.9.1998
  *
- * version:            V 1.0
+ * @version 2.3pre3
 */
 
 #include "xsched.hpp"

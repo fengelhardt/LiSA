@@ -3,7 +3,7 @@
  * 
  * description:  basic class for shop schedules used in fast algorithms
  *
- * owner:        Thomas Tautenhahn
+ * @author        Thomas Tautenhahn
  *
  * date:         11.12.1998
  *

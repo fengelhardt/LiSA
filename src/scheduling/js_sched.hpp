@@ -3,7 +3,7 @@
  * 
  * inherit for a schedule for the job shop problem
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
  *
  * 19.9.1998
 */

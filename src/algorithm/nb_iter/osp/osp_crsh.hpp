@@ -3,7 +3,7 @@
  * 
  * description:      open shop critical SHIFT neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             15.12.1998
  *

@@ -4,7 +4,7 @@
  * description:        functions which was called as tcl/tk command
  *                     parametertest of the neighborhood iteration
  *
- * owner:              Andreas Winkler
+ * @author              Andreas Winkler
  *
  * date:               14.4.1999
  *

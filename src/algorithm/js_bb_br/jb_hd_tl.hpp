@@ -4,6 +4,7 @@
 /*  Export: Procedure Compute_ Compute_Head_Tail:                            */
 /*                    Calculation of heads and tail based on fixed           */
 /*                    disjunctions.                                          */
+/*   @version 2.3pre3
 /* ************************************************************************* */
 
 

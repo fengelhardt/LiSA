@@ -3,7 +3,8 @@
  * 
  * Shifting_Bottleneck heuristic
  *
- * Owner: Christian Schulz
+ * @author Christian Schulz
+ * @version 2.3pre3
  *
  * 14.5.2001
  *

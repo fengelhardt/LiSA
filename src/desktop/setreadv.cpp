@@ -3,11 +3,11 @@
  * 
  * description:        functions to connect tcl and C++ varaibles
  *                     
- * owner:              Per Willenius
+ * @author              Per Willenius
  *
  * date:               7.9.1999
  *
- * version:            V 1.0
+ * @version 2.3pre3
 */ 
 
 #include <string>

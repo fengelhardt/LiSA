@@ -3,7 +3,7 @@
  * 
  * description:   draw Gantt Chart in main window
  *
- * owner:         Ines Wasmund
+ * @author         Ines Wasmund
  *
  * date:          08.03.1999
  *

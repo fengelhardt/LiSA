@@ -1,7 +1,8 @@
 /*
  * ************** lpartition.hpp *******************************
  *
- * Owner: Marc Moerig
+ * @author Marc Moerig
+ * @version 2.3pre3
  *
  * 25.02.01
  * last changed 26.02.01

@@ -3,7 +3,8 @@
  * 
  * a matching algorithm for LiSA
  *
- * Owner: Marc Mörig
+ * @author Marc Mörig
+ * @version 2.3pre3
  *
  * started 11.06.00
  * last changes 05.11.01

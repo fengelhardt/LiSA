@@ -3,7 +3,7 @@
  * 
  * description:      job shop semicritical-API neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             17.10.2000
  *

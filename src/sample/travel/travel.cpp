@@ -1,7 +1,8 @@
 /*
  *************** travel.cpp **************
  *
- * Owner: Marc Mörig
+ * @author Marc Mörig
+ * @version 2.3pre3
  *
  * heuristic for the travelling salesman problem
  * showing how to use LiSA's neighbourhood algorithms 

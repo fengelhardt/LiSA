@@ -4,8 +4,8 @@
  * description: Main Program
  *              declare global variables, read preferences file
  *              and start tcl-mainloop
- *
- * owner:       Per Willenius
+ * @version 2.3pre3
+ * @author       Per Willenius
  * date:        16.9.1998
 */
 

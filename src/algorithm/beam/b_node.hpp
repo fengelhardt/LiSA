@@ -25,6 +25,7 @@ extern TIMETYP objective;
 
 /**  B_Node a modified Lisa_OsSchedule
      @author Jan Tusch & Andre Herms
+      @version 2.3pre3
      @see Lisa_OsSchedule
      @see KList
 */ 

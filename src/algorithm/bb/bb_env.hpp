@@ -3,7 +3,8 @@
  * 
  * common features of the Lisa_*Bb classes 
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * 19.9.1998
 */

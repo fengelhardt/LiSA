@@ -3,7 +3,7 @@
  * 
  * description:      open shop critical-block-SHIFT neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             11.01.1999
  *

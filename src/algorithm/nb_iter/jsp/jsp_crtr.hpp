@@ -3,7 +3,7 @@
  * 
  * description:      job shop critical-TRANSPOSE neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             16.10.2000
  *

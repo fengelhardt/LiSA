@@ -3,7 +3,8 @@
  * 
  * schedule for a shop problem and inherit for special schedules
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * 11.12.1998
 */

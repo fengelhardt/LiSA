@@ -3,7 +3,8 @@
  * 
  * inherit for a schedule for the open shop problem
  *
- * Owner: Thomas Tautenhahn
+ * @author Thomas Tautenhahn
+ * @version 2.3pre3
  *
  * 11.12.1998
 */

@@ -3,7 +3,7 @@
  * 
  * description:      general problem independent neighborhood class
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             14.12.1998
  *

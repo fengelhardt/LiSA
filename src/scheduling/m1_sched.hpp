@@ -3,7 +3,7 @@
  * 
  * description:      single machine problem and schedule class
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             10.11.1998
  *

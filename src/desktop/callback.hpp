@@ -4,7 +4,7 @@
  * description: to manage which functions are called, if anything has changed
  * 
  * 
- * owner: Per Willenius
+ * @author Per Willenius
  *
  * date: 28.9.1999
  * version: V 1.0

@@ -7,7 +7,7 @@
  *                   
  *
  *
- * owner:            Per Willenius
+ * @author            Per Willenius
  * date:             3.12.1998
 */
 

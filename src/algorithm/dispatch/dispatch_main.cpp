@@ -3,7 +3,8 @@
  * 
  * Dispatching rules
  *
- * Owner: Lars Dornheim
+ * @author Lars Dornheim
+ * @version 2.3pre3
  *
  * 13.8.2002
 */

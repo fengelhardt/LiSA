@@ -3,7 +3,7 @@
  * 
  * description:      the main program for iteration
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             5.01.1999
  *

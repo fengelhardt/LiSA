@@ -1,6 +1,7 @@
 /*
  * 
- * Owner: iroess
+ * @author iroess
+ * @version 2.3pre3
  *
  *
  * 30.04.2001

@@ -6,7 +6,8 @@
  * 
  * Sample how to implement an algorithm for LiSA
  *
- * Owner: LiSA
+ * @author LiSA
+ * @version 2.3pre3
  *
  * 30.04.2001
 */

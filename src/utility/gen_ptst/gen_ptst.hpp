@@ -3,7 +3,8 @@
  * 
  * description:      convention for the neighborhood parameter test
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
+ * @version 2.3pre3
  *
  * date:             14.04.1999
  *

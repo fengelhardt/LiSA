@@ -3,7 +3,7 @@
  * 
  * description:      job shop SWAP neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             19.09.2000
  *

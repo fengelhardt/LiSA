@@ -3,7 +3,7 @@
  * 
  * description:      job shop TRANSPOSE neighborhood
  * 
- * owner:            Andreas Winkler
+ * @author            Andreas Winkler
  *
  * date:             02.10.2000
  *
