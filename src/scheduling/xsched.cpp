@@ -53,14 +53,14 @@ int Lisa_XSchedule::P_to_PG(){
   if (P->get_m()==m&&P->get_n()==n)
     {
       if (CS) delete CS;
-      CS=new CSgraph(P);
+      CS=new Lisa_CSGraph(P);
       if (PG) delete PG;
       PG=new Lisa_SGraph(*CS);
     }
   else {
     init();
     if (CS) delete CS;
-    CS=new CSgraph(P);
+    CS=new Lisa_CSGraph(P);
     if (PG) delete PG;
     PG=new Lisa_SGraph(*CS);
   }

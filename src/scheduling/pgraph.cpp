@@ -42,7 +42,7 @@ Lisa_SGraph::Lisa_SGraph(int pm, int pn){
 
 //**************************************************************************
 
-Lisa_SGraph::Lisa_SGraph(CSgraph & myCSG){
+Lisa_SGraph::Lisa_SGraph(Lisa_CSGraph & myCSG){
   m=myCSG.m;
   n=myCSG.n;
   new_graph();
@@ -95,7 +95,7 @@ Lisa_SGraph::Lisa_SGraph(CSgraph & myCSG){
   int *ein_val; // Eingangsvalenz
   
   ein_val= new int [n*m];
-  class ad_list quelle(m,n);
+  class AD_List quelle(m,n);
   
   // Initialisierung der Valenzmatrix und der Quellen
   for(v=0;v<n*m;v++) { 
@@ -172,7 +172,7 @@ void Lisa_SGraph::ausplan(Lisa_Schedule * PL){
   if(n!=PL->get_n()||m!=PL->get_m()) 
     {printf("Fehler bei ausplan (%d,%d)!=(%d,%d)\n",n,m,PL->get_n(),PL->get_m());return;}
   int i,mi,ni;
-  Vlist rnglst(n*m);
+  V_List rnglst(n*m);
    for(i=0;i<n*m;i++) 
     {
       if ( (*G_Values.SIJ)[row(i)][column(i)]) 
@@ -399,9 +399,9 @@ Cgraph::Cgraph(Lisa_SGraph & CG) {
 void Cgraph::new_graph() {
   int i;
   tUndir=0;
-  if((adlst=new ad_list * [n*m] )==NULL) ende("Cgraph");
+  if((adlst=new AD_List * [n*m] )==NULL) ende("Cgraph");
   for(i=0;i<n*m;i++){
-    if((adlst[i]=new ad_list(n,m))==NULL) ende("Cgraph");
+    if((adlst[i]=new AD_List(n,m))==NULL) ende("Cgraph");
   }
   
   if((adm=new int[n*n*m*m])==NULL) ende("Cgraph");
@@ -538,14 +538,14 @@ Cgraph::~Cgraph(){
 */
 //**************************************************************************
 
-ad_list::ad_list(int on, int om){
+AD_List::AD_List(int on, int om){
   int i;
   n=on;
   m=om;
   first=0; 
   actual=0;
   last=0;
-  if((all= new ad_list_el * [n*m])==NULL) ende("ad_list");
+  if((all= new AD_List_Node * [n*m])==NULL) ende("AD_List");
   for(i=0;i<n*m;i++){
     all[i]=0;
   }
@@ -554,14 +554,14 @@ ad_list::ad_list(int on, int om){
 
 //**************************************************************************
 
-void ad_list::reset()
+void AD_List::reset()
 {
   actual=first;
 }
 
 //**************************************************************************
 
-int  ad_list::next(){
+int  AD_List::next(){
   int v;
   if (actual){
     v=actual->adj_vertice; 
@@ -573,10 +573,10 @@ int  ad_list::next(){
 
 //**************************************************************************
 
-void ad_list::add_e( int v){
+void AD_List::add_e( int v){
   if (v>=0){
-    ad_list_el * new_el;
-    if((new_el =new ad_list_el)==NULL) ende("ad_list add_e");
+    AD_List_Node * new_el;
+    if((new_el =new AD_List_Node)==NULL) ende("AD_List add_e");
     if (first){
       last->next=  new_el;
       new_el->next=0;
@@ -594,9 +594,9 @@ void ad_list::add_e( int v){
 
 //**************************************************************************
 
-void ad_list::del_e( int v){
+void AD_List::del_e( int v){
   if (all[v]){ // Aha, Kante existiert
-    ad_list_el * vor,* nach;
+    AD_List_Node * vor,* nach;
      vor=all[v]->pred;
     nach=all[v]->next;
     if (all[v]==first)
@@ -621,7 +621,7 @@ void ad_list::del_e( int v){
 
 //**************************************************************************
 
-ad_list::~ad_list(){
+AD_List::~AD_List(){
   int i;
   for(i=0;i<n*m;i++) if(all[i]!=NULL) delete all[i];
   delete [] all;
@@ -629,23 +629,23 @@ ad_list::~ad_list(){
 
 //**************************************************************************
 
-ad_list_el::ad_list_el(){
+AD_List_Node::AD_List_Node(){
   pred=0; next=0;
   adj_vertice=0;
 }
 
 //**************************************************************************
 
-Vlist::Vlist()
+V_List::V_List()
 {
 }
 
 //**************************************************************************
 
-Vlist::Vlist(int size){
+V_List::V_List(int size){
   int i;
-  if((feld= new int[2*size])==NULL) ende("Vlist");
-  if((succ= new int[2*size+1])==NULL) ende("Vlist");
+  if((feld= new int[2*size])==NULL) ende("V_List");
+  if((succ= new int[2*size+1])==NULL) ende("V_List");
   
   for(i=0;i<2*size;i++) {feld[i]=-1;succ[i]=i+1;}
   ef=size;
@@ -654,14 +654,14 @@ Vlist::Vlist(int size){
 
 //**************************************************************************
 
-Vlist::~Vlist(){
+V_List::~V_List(){
   if (feld) delete [] feld;
   delete [] succ;
 }
 
 //**************************************************************************
 
-void Vlist::insert(int ki,int rank)
+void V_List::insert(int ki,int rank)
 {
   int rnk;
   rnk=rank-1;
@@ -678,14 +678,14 @@ void Vlist::insert(int ki,int rank)
 
 //**************************************************************************
 
-void Vlist::reset()
+void V_List::reset()
 {
   actual=0;
 }
 
 //**************************************************************************
 
-int Vlist::next(){
+int V_List::next(){
   int alt=actual;
   actual=succ[actual];
   return(feld[alt]);
@@ -693,14 +693,14 @@ int Vlist::next(){
 
 //**************************************************************************
 
-CSgraph::CSgraph(){
+Lisa_CSGraph::Lisa_CSGraph(){
   m=0;n=0;
   new_graph();
 }
 
 //**************************************************************************
 
-CSgraph::CSgraph(Lisa_Schedule *PL){
+Lisa_CSGraph::Lisa_CSGraph(Lisa_Schedule *PL){
   int i,j,k;
   m=PL->get_m();n=PL->get_n();
   new_graph();
@@ -719,7 +719,7 @@ CSgraph::CSgraph(Lisa_Schedule *PL){
 
 //**************************************************************************
 
-void CSgraph::new_graph(){
+void Lisa_CSGraph::new_graph(){
   int i;
   h_edge =new int[n*m*m];
   v_edge =new int[m*n*n]; 
@@ -727,18 +727,18 @@ void CSgraph::new_graph(){
   for(i=0;i<n*m*m;i++)h_edge[i]=0;
   for(i=0;i<m*n*n;i++)v_edge[i]=0;
   
-  if((v_adlst=new ad_list * [n*m])==NULL) ende("CSgraph");
+  if((v_adlst=new AD_List * [n*m])==NULL) ende("Lisa_CSGraph");
   for(i=0;i<n*m;i++)
-    if((v_adlst[i]=new ad_list(n,m))==NULL) ende("CSgraph");
+    if((v_adlst[i]=new AD_List(n,m))==NULL) ende("Lisa_CSGraph");
   
-  if((h_adlst=new ad_list * [n*m])==NULL) ende("CSgraph");
+  if((h_adlst=new AD_List * [n*m])==NULL) ende("Lisa_CSGraph");
   for(i=0;i<n*m;i++)
-    if((h_adlst[i]=new ad_list(n,m))==NULL) ende("CSgraph");
+    if((h_adlst[i]=new AD_List(n,m))==NULL) ende("Lisa_CSGraph");
 }
 
 //**************************************************************************
 
-CSgraph::CSgraph(Lisa_Schedule *PL, int tst){
+Lisa_CSGraph::Lisa_CSGraph(Lisa_Schedule *PL, int tst){
   int i,j,k;
   if(tst==-1){
     m=PL->get_m();n=PL->get_n();
@@ -760,20 +760,20 @@ CSgraph::CSgraph(Lisa_Schedule *PL, int tst){
 
 //**************************************************************************
 
-void CSgraph::reset(int v){
+void Lisa_CSGraph::reset(int v){
   if (v_adlst[v]) v_adlst[v]->reset();
   if (h_adlst[v]) h_adlst[v]->reset();
 }
 
 //**************************************************************************
 
-void CSgraph::reset_vertice(){
+void Lisa_CSGraph::reset_vertice(){
   i_index=j_index=-1;
 }
 
 //**************************************************************************
 
-int CSgraph::next_vertice(){
+int Lisa_CSGraph::next_vertice(){
   if(i_index<0){i_index=j_index=0;}
   else{
     j_index++;
@@ -789,7 +789,7 @@ int CSgraph::next_vertice(){
 
 //**************************************************************************
 
-void CSgraph::add_edge(int v, int w){
+void Lisa_CSGraph::add_edge(int v, int w){
   int z1,s1,z2,s2;
   z1=row(v);
   s1=column(v);
@@ -815,7 +815,7 @@ void CSgraph::add_edge(int v, int w){
 
 //**************************************************************************
 
-void CSgraph::del_edge(int v, int w){
+void Lisa_CSGraph::del_edge(int v, int w){
   int z1,s1,z2,s2;
   z1=row(v);
   s1=column(v);
@@ -841,7 +841,7 @@ void CSgraph::del_edge(int v, int w){
 
 //**************************************************************************
 
-int  CSgraph::next(int v){
+int  Lisa_CSGraph::next(int v){
 
   if(v>=0){
     int merke=-1;
@@ -855,7 +855,7 @@ int  CSgraph::next(int v){
 
 //**************************************************************************
 
-int  CSgraph::next_v(int v){
+int  Lisa_CSGraph::next_v(int v){
   if(v>=0)
     {
       if (v_adlst[v]) return v_adlst[v]->next();
@@ -865,7 +865,7 @@ int  CSgraph::next_v(int v){
 
 //**************************************************************************
 
-int  CSgraph::next_h(int v){
+int  Lisa_CSGraph::next_h(int v){
   
   if(v>=0)
     {
@@ -876,7 +876,7 @@ int  CSgraph::next_h(int v){
 
 //**************************************************************************
 
-void CSgraph::add_vedge(int column, int i, int j){
+void Lisa_CSGraph::add_vedge(int column, int i, int j){
   if(tst_vedge(column,i,j)==0) // noch nicht gesetzt
     {
       v_edge[n*(n*column+i)+j]=1;
@@ -886,13 +886,13 @@ void CSgraph::add_vedge(int column, int i, int j){
 
 //**************************************************************************
 
-int CSgraph::tst_vedge(int column, int i, int j){
+int Lisa_CSGraph::tst_vedge(int column, int i, int j){
   return v_edge[n*(n*column+i)+j];
 }
 
 //**************************************************************************
 
-void CSgraph::add_hedge(int row, int i, int j){
+void Lisa_CSGraph::add_hedge(int row, int i, int j){
   
   if(tst_hedge(row,i,j)==0) // noch nicht gesetzt
     { 
@@ -903,13 +903,13 @@ void CSgraph::add_hedge(int row, int i, int j){
 
 //**************************************************************************
 
-int CSgraph::tst_hedge(int row, int i, int j){
+int Lisa_CSGraph::tst_hedge(int row, int i, int j){
   return h_edge[m*(m*row+i)+j];
 }
 
 //**************************************************************************
 
-int CSgraph::edge(int v, int w){
+int Lisa_CSGraph::edge(int v, int w){
   int z1,s1,z2,s2;
   z1=row(v);
   s1=column(v);
@@ -930,7 +930,7 @@ int CSgraph::edge(int v, int w){
 
 //**************************************************************************
 
-void CSgraph::print(){
+void Lisa_CSGraph::print(){
   int v=0,w=0;
   
   printf("\n ************ CS-Graph *******************\n");
@@ -946,19 +946,19 @@ void CSgraph::print(){
 
 //**************************************************************************
 
-int CSgraph::index(int ni, int mi){		
+int Lisa_CSGraph::index(int ni, int mi){		
   return(m*ni+mi);				
 }
 
 //**************************************************************************
 
-int CSgraph::row(int i){
+int Lisa_CSGraph::row(int i){
   return(int(i/m));
 }
 
 //**************************************************************************
 
-int CSgraph::column(int i){
+int Lisa_CSGraph::column(int i){
   int zahl;
   
   zahl=int(i/m);
@@ -967,7 +967,7 @@ int CSgraph::column(int i){
 
 //**************************************************************************
 
-CSgraph::~CSgraph(){
+Lisa_CSGraph::~Lisa_CSGraph(){
   int i;
   
   for(i=0;i<n*m;i++)

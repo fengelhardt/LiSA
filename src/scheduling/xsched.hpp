@@ -49,7 +49,7 @@ public:
   class Lisa_SGraph *PG; 
 
   /// complete sequence graph
-  class CSgraph *CS; 
+  class Lisa_CSGraph *CS; 
 
   /// constructor
   Lisa_XSchedule();

@@ -38,7 +38,7 @@ public:
   /// create sequence from a schedule
   Lisa_SGraph(Lisa_Schedule *PL);
   /// copy constructor
-  Lisa_SGraph(class CSgraph & myCSG);
+  Lisa_SGraph(class Lisa_CSGraph & myCSG);
   ///destructor
   ~Lisa_SGraph();
   
@@ -73,65 +73,65 @@ public:
 
 //**************************************************************************
 
-class ad_list{
+class AD_List_Node{
+public:
+  AD_List_Node * pred;
+  AD_List_Node * next;
+  int adj_vertice;
+  AD_List_Node();
+};
+
+//**************************************************************************
+
+class AD_List{
 public:
   int m,n;
-  class ad_list_el * leer;
-  class ad_list_el * first;
-  class ad_list_el * actual;
-  class ad_list_el * last;
-  class ad_list_el ** all; // Zeigt fuer jeden Knoten auf das
-  // entsprechende ad_list_el 
+  AD_List_Node * leer;
+  AD_List_Node * first;
+  AD_List_Node * actual;
+  AD_List_Node * last;
+  AD_List_Node ** all; // Zeigt fuer jeden Knoten auf das
+  // entsprechende AD_List_Node 
   // 0, wenn v nicht adjazent  
   void add_e( int v); // Fuegt Kante hinzu
   void del_e( int v); // entfernt Kante
-  ad_list(int m, int n);
+  AD_List(int m, int n);
   void reset();  // setzt den aktuellen Nachbarknoten zurueck
   int next(); // naechster Nachbarknoten
-  ~ad_list();
+  ~AD_List();
 };
 
 //**************************************************************************
 
-class ad_list_el{
-public:
-  ad_list_el * pred;
-  ad_list_el * next;
-  int adj_vertice;
-  ad_list_el();
-};
-
-//**************************************************************************
-
-class Vlist{
+class V_List{
 public: 
   int actual;
   int *feld;
   int *succ;  // Enthaelt Index des naechsten
   int ef; // Zeigt auf den ersten freien
 
-  Vlist();
-  Vlist(int groesse);
+  V_List();
+  V_List(int groesse);
   void insert(int ki, int rank);
-  ~Vlist();
+  ~V_List();
   void reset(); // setzt aktuell zurueck
   int next(); // gibt naechstes Element zurueck
 };
 
 //**************************************************************************
 
-class CSgraph{ //Enthaelt die Kanten des CS-Graphen  
+class Lisa_CSGraph{ //Enthaelt die Kanten des CS-Graphen  
   int *h_edge; // Horizontale Kanten
   int *v_edge;  // Vertikale Kanten
-  class ad_list ** v_adlst;     // Adjazenzliste (vertikale Kanten) fuer jeden Knoten
-  class ad_list ** h_adlst;     // Adjazenzliste (horizontale Kanten) fuer jeden Knoten
+  class AD_List ** v_adlst;     // Adjazenzliste (vertikale Kanten) fuer jeden Knoten
+  class AD_List ** h_adlst;     // Adjazenzliste (horizontale Kanten) fuer jeden Knoten
   int i_index,j_index; // Zur Knotenzaehlung
 public:
   int m,n;
-  CSgraph();
+  Lisa_CSGraph();
   void new_graph();
-  CSgraph(Lisa_Schedule *PL);
-  CSgraph(Lisa_Schedule *PL, int tst);
+  Lisa_CSGraph(Lisa_Schedule *PL);
+  Lisa_CSGraph(Lisa_Schedule *PL, int tst);
   void add_edge(int v, int w); // Fuegt Kante hinzu
   void add_vedge(int column, int i, int j);
   void add_hedge(int row, int i, int j);
@@ -146,7 +146,7 @@ public:
   int edge(int v, int w);
   void reset(int v);
   void print();
-  ~CSgraph();
+  ~Lisa_CSGraph();
   int index(int ni, int mi); // gibt Index des Knotens (ni,mi) zurueck
   int row(int i);           // gibt Zeile des Knotens mit Index i zurueck
   int column(int i);           // gibt Spalte des Knotens mit Index i zurueck
