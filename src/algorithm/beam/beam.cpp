@@ -356,7 +356,11 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
 Lisa_Order* makeECT(int& ops, Lisa_OsProblem *os_problem);
 Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem);
 
-//static ofstream out("/tmp/out");
+//#define DEBUG_TO_FILE
+
+#ifdef DEBUG_TO_FILE
+static ofstream out("/tmp/out");
+#endif
 
 Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem){
 		if(iord == ect)
@@ -506,20 +510,22 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 								if (! (*os_problem->sij)[i+1][pos+1])
 										{
 												l--;
+												order->read_one_key(i,pos,DOUBLE_INF);
 												continue;
 										}
 								order->read_one_key(i, pos, i + sweep*n);
-								/*
+#ifdef DEBUG_TO_FILE
 										out << "(" << i << "," << pos << ") --> " 
 										<< " q_pos = " << (QUEEN_POS(n,i))
 										<< " key=" << i + sweep*n  << endl;
-								*/
+#endif
 								
 						}
 				}
 		}
 		//vertical sweep
 		else{
+				//out << "off we go " << endl;
 				int row = 0;
 				for(int sweep = 0; sweep < n; sweep++){
 						for(int i = 0; i < m; i++){
@@ -528,6 +534,7 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 								if (! (*os_problem->sij)[row+1][pos+1])
 										{
 												l--;
+												order->read_one_key(row,pos,DOUBLE_INF);
 												continue;
 										}
 								order->read_one_key(row, pos, i + sweep*m);
@@ -535,13 +542,16 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 				}
 		}
 		ops = l;
+		//out << "done ... sorting" << endl;
 		order->sort();
-		/*
-				out << "----- Order ------" << endl;
-				for(int o = 0; o < ops; o++){
+
+#ifdef DEBUG_TO_FILE
+		out << "----- Order ------" << endl;
+		for(int o = 0; o < ops; o++){
 				out << "(" << order->row(o) << "," << order->col(o) << "), ";
-				}
-				out << endl << "------------------" << endl;
-		*/
-		return order;
+		}
+		out << endl << "------------------" << endl;
+#endif
+		
+return order;
 }
