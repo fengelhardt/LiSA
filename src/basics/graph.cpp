@@ -26,44 +26,6 @@ Lisa_Graph& Lisa_Graph::operator=(const Lisa_Graph& other){
 
 //**************************************************************************
 
-int Lisa_Graph::number_of_succ(const int knot){
-#ifdef LISA_DEBUG
-  if( knot<=0 || knot>size ){
-    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::number_of_succ().",
-                           Lisa_ExceptionList::OUT_OF_RANGE);
-    return 0;
-  }
-#endif 
-
-  int succ_count=0;
-  init_succ_pointer(knot);
-  while(get_next_successor(knot)<=size) succ_count++;
-  
-  return succ_count;
-}
-
-//**************************************************************************
-
-int Lisa_Graph::number_of_pred(const int knot){
-#ifdef LISA_DEBUG
-  if( knot<=0 || knot>size ){
-    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
-                           " out of range in Lisa_Graph::number_of_pred().",
-                           Lisa_ExceptionList::OUT_OF_RANGE);
-    return 0;
-  }
-#endif
-  
-  int pred_count=0;
-  init_pred_pointer(knot);
-  while(get_next_predeccessor(knot)<=size) pred_count++;
-  
-  return pred_count;
-}
-
-//**************************************************************************
-
 bool Lisa_Graph::topsort(Lisa_Vector<int> *const knot_sequence){
 #ifdef LISA_DEBUG
   if(knot_sequence->get_m() != size){
@@ -812,6 +774,70 @@ void Lisa_MatrixListGraph::clear(const int knot){
     next=(*matrix)[0][knot].x;
   } 
   
+}
+
+//**************************************************************************
+
+int Lisa_MatrixListGraph::number_of_succ(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::number_of_succ().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif 
+
+  int succ_count=0;
+    
+  int pointer = knot;
+  
+
+  for(;;){
+    int old_knot=pointer;
+    int next_knot=(*matrix)[knot][old_knot].x;
+    
+    if(next_knot==size+1){
+      //START OF AN EDGE LIST
+      if(old_knot==knot){
+        next_knot=(*matrix)[knot][0].x;
+      }else{//END OF AN EDGE LIST
+        if(old_knot==(*matrix)[knot][knot].y){
+          next_knot=(*matrix)[knot][0].x; 
+        }
+      }
+    }
+    
+    if(next_knot==size+1){
+      break;
+    }else{
+      pointer=next_knot;
+      succ_count++;
+    }
+    
+    
+  }
+  
+  return succ_count;
+}
+
+//**************************************************************************
+
+int Lisa_MatrixListGraph::number_of_pred(const int knot){
+#ifdef LISA_DEBUG
+  if( knot<=0 || knot>size ){
+    G_ExceptionList.lthrow("Vertex "+ztos(knot)+
+                           " out of range in Lisa_Graph::number_of_pred().",
+                           Lisa_ExceptionList::OUT_OF_RANGE);
+    return 0;
+  }
+#endif
+  
+  int pred_count=0;
+  init_pred_pointer(knot);
+  while(get_next_predeccessor(knot)<=size) pred_count++;
+  
+  return pred_count;
 }
 
 //**************************************************************************

@@ -110,11 +110,11 @@ public:
   
   /// returns the number of successors for a vertex
   /** This is the sum of edges and arcs. */
-  int number_of_succ(const int vertex);
+  virtual int number_of_succ(const int vertex)=0;
 
   /// returns the number of predecessors for a vertice
   /** This is the sum of edges and backwards arcs (CRA's). */
-  int number_of_pred(const int vertex);
+  virtual int number_of_pred(const int vertex)=0;
 
   /// sort vertices topologically
   /** The vertices will be put in topoligical order into the 
@@ -285,6 +285,14 @@ public:
 
   /// delete all ARC's CRA's and EDGE's connected with that vertice
   void clear(const int vertex);
+  
+  /// returns the number of successors for a vertex
+  /** This is the sum of edges and arcs. */
+  int number_of_succ(const int vertex);
+
+  /// returns the number of predecessors for a vertice
+  /** This is the sum of edges and backwards arcs (CRA's). */
+  int number_of_pred(const int vertex);
 
   /// write this objects data structure to cout
   /** Mostly used for debugging. */
