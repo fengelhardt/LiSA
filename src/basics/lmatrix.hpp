@@ -19,7 +19,7 @@ template<class T> class Lisa_MatrixOfLists;
  * @version 2.3rc1
  */
 template<class T>
-class Lisa_VectorOfLists{ 
+class Lisa_VectorOfLists : public Lisa_Object{ 
 protected:
   /// length of vector
   unsigned int m;
@@ -115,24 +115,6 @@ public:
 
 //**************************************************************************
 
-/// stream operator for writing Lisa_VectorOfLists objects
-template<class T>
-inline std::ostream& operator<<(std::ostream& strm, const Lisa_VectorOfLists<T>& l){
-  l.write(strm);
-  return strm;
-}
-
-//**************************************************************************
-
-/// stream operator for reading Lisa_VectorOfLists objects
-template<class T>
-inline std::istream& operator>>(std::istream& strm, Lisa_VectorOfLists<T>& l){
-  l.read(strm);
-  return strm;
-}
-
-//**************************************************************************
-
 /// matrix of lists
 /**
  * @see Lisa_VectorOfLists
@@ -217,22 +199,6 @@ public:
 };
 
 //**************************************************************************
-
-/// stream operator for writing Lisa_MatrixOfLists objects
-template<class T>
-inline std::ostream& operator<<(std::ostream& strm,const Lisa_MatrixOfLists<T>& l){
-  l.write(strm);
-  return strm;
-}
-
-//**************************************************************************
-
-/// stream operator for reading Lisa_MatrixOfLists objects
-template<class T>
-inline std::istream& operator>>(std::istream& strm,Lisa_MatrixOfLists<T>& l){
-  l.read(strm);
-  return strm;
-}
 
 #endif             
 

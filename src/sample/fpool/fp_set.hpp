@@ -9,7 +9,7 @@
 /** @author        Thomas Tautenhahn
  *  @version 2.3rc1
  */
-class FP_Set{
+class FP_Set: public Lisa_GenericObject{
 private:
   //@{
   /// private variable,needs documentation
@@ -43,12 +43,6 @@ public:
 };
 
 //**************************************************************************
-
-/// stream operator for writing FP_Set object
-inline std::ostream& operator << (std::ostream& strm, const FP_Set& l){
-  l.write(strm);
-  return strm;
-}
 
 #endif
 

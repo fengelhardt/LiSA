@@ -11,7 +11,7 @@
  * @author        Thomas Tautenhahn
  * @version 2.3rc1
  */
-class FP_Vector{
+class FP_Vector :public Lisa_GenericObject{
 private:
   /// size:
   int n;
@@ -39,14 +39,6 @@ public:
   /// destructor
   ~FP_Vector(){ delete v; delete neighbour;}
 };    
-
-//**************************************************************************
-
-/// stream operator for writing FP_Vector object      
-inline std::ostream& operator << (std::ostream& strm, const FP_Vector& l){
-  l.write(strm);
-  return strm;
-}
 
 //**************************************************************************
 

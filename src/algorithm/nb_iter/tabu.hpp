@@ -26,6 +26,7 @@
     @version 2.3rc1
 */  
 class Lisa_Tabu{
+private:
   //@{
   /// single tabu lists
   Lisa_Vector<int> *tabu_1;
@@ -43,7 +44,7 @@ class Lisa_Tabu{
   /// length of tabu list
   unsigned int length;
   /// number of entrys in vector tabu list
-  unsigned int vector_length;
+  unsigned int vec_length;
   
 public:
 

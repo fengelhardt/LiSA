@@ -28,7 +28,7 @@ template<class T> class Lisa_Matrix;
     @see Lisa_Matrix
 */
 template<class T>
-class Lisa_Vector{
+class Lisa_Vector:public Lisa_Object{
 private:
   /// size
   unsigned int m;
@@ -128,7 +128,7 @@ public:
     @see Lisa_Vector
 */
 template<class T>
-class Lisa_Matrix{
+class Lisa_Matrix:public Lisa_Object{
 private: 
   /// size
   const unsigned int m,n;
@@ -200,42 +200,6 @@ public:
   /// pointer after last row (for iterating the contents)
   inline Lisa_Vector<T> * end_row() const { return row+n; }
 };
-
-//**************************************************************************
-
-/// output stream operator for Lisa_Vector
-template<class T>
-inline std::ostream& operator << (std::ostream& strm, const Lisa_Vector<T>& v){
-     v.write(strm);
-     return strm;
-}
-
-//**************************************************************************
-
-/// input stream operator for Lisa_Vector
-template<class T>
-inline std::istream& operator >> (std::istream& strm, Lisa_Vector<T>& v){
-     v.read(strm);
-     return strm;
-}
-
-//**************************************************************************
-
-/// output stream operator for Lisa_Matrix
-template<class T>
-inline std::ostream& operator << (std::ostream& strm, const Lisa_Matrix<T>& m){
-     m.write(strm);
-     return strm;
-}
-
-//**************************************************************************
-
-/// input stream operator for Lisa_Matrix
-template<class T>
-inline std::istream& operator >> (std::istream& strm, Lisa_Matrix<T>& m){
-     m.read(strm);
-     return strm;
-}
 
 //**************************************************************************
 

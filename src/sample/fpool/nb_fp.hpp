@@ -2,8 +2,8 @@
 #ifndef _nb_fp_h
 #define _nb_fp_h
 
-#include "../../algorithm/nb_iter/neighbour.hpp"
 #include "../../algorithm/nb_iter/tabu.hpp"
+#include "../../algorithm/nb_iter/neighbour.hpp"
 #include "fp_set.hpp"
 
 /// neighbourhood for football pool problem
@@ -29,13 +29,13 @@ public:
   FP_Neighbourhood( int , int);
 
   /// compute objective function of type param1 to solution param2
-  inline void  set_objective( int, int ){}
+  void inline set_objective( int, int ){}
 
   /// returns objective value of solution nr.
   TIMETYP get_objective_value( int );
   
   /// call constructor for solution nr. 
-  inline int get_solution( int ){ return 0;}
+  int inline get_solution( int ){ return 0;}
   
   /// set the objective type
   void  set_objective_type( int );

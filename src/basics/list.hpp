@@ -653,26 +653,6 @@ void read(std::istream& strm){
 };
 
 //**************************************************************************
-/*
-/// stream operator for writing a Lisa_List
-template<class T>
-inline std::ostream& operator << (std::ostream& strm, const Lisa_List<T>& l)
-{
-  l.write(strm);
-  return strm;
-}
-*/
-//**************************************************************************
-/*
-/// stream operator for reading a Lisa_List
-template<class T>
-inline std::istream& operator >> (std::istream&strm, Lisa_List<T>& l)
-{
-  l.read(strm);
-  return strm;
-}
-*/
-//**************************************************************************
 
 #endif
 

@@ -44,8 +44,8 @@ Lisa_Tabu::Lisa_Tabu( unsigned int ilength )
 Lisa_Tabu::Lisa_Tabu( unsigned int ilength, unsigned int ivector_length )
   {
     length = ilength;
-    vector_length = ivector_length;
-    if ( !(tabu = new Lisa_Matrix<int>( length, vector_length ) ) )
+    vec_length = ivector_length;
+    if ( !(tabu = new Lisa_Matrix<int>( length, vec_length ) ) )
       {
 	G_ExceptionList.lthrow("out of memory.",2);
 	exit( 7 );
