@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Search (Anfügen)" type="constructive" call="beam" code="external" help_file="algorithm/beam.html">
+  <heuristic>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+      <problem>
+       <alpha env="1"/>
+       <beta/>
+       <gamma objective="Sum_Ci"/>
+      </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+     <problem>
+       <alpha env="1"/>
+       <beta release_times="yes"/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+     <problem>
+       <alpha env="O"/>
+       <beta/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+     <problem>
+       <alpha env="O"/>
+       <beta release_times="yes"/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Lmax"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_Ci"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_wiCi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_Ui"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_wiUi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_Ti"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Sum_wiTi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Lmax"/> -->
+<!--     </problem> -->
+<!--       <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_Ci"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_wiCi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_Ui"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_wiUi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_Ti"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Sum_wiTi"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta/> -->
+<!--       <gamma objective="Cmax"/> -->
+<!--     </problem> -->
+<!--     <problem> -->
+<!--       <alpha env="F"/> -->
+<!--       <beta release_times="yes"/> -->
+<!--       <gamma objective="Cmax"/> -->
+<!--     </problem> -->
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </heuristic>
+  <exact>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls>
+    <integer name="K_BRANCHES" caption="Anzahl zu verfolgender Zweige" default="5"/>
+    <choice name="INS_METHOD" caption="Auswahlmethode">
+      <item name="INSERT1"/>
+      <item name="INSERT2"/>
+    </choice>
+    <choice name="CRITERION" caption="Auswahlkriterium">
+      <item name="CLAST"/>
+      <item name="LB(Sum_Ci)"/>
+      <item name="OBJECTIVE"/>
+    </choice>
+    <choice name="ATTACH_WHAT" caption="Anfügekriterium">
+      <item name="Machines"/>
+      <item name="Jobs"/>
+      <item name="Machines+Jobs"/>
+    </choice>
+    <choice name="BREAK_TIES" caption="Tie Breaking">
+	<item name="LPT"/>
+	<item name="SPT"/>
+	<item name="RANDOM"/>
+	<item name="FCFS"/>
+    </choice>
+    <fixed name="MODE" value="ATTACH"/>
+  </alg_controls>
+</algorithm>

@@ -60,24 +60,16 @@ objdir:
 
 -include Make.Depend
 
+LANGS=english german
+
 # ------------------------------------------------------------------------------
 
 install:
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
-	mkdir -p $(ALGPATH)/language/english
-	cp $(PROGRAMNAME)_english1.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)1.$(ALGEXT)
-	cp $(PROGRAMNAME)_english2.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)2.$(ALGEXT)
-	cp $(PROGRAMNAME)_english3.$(ALGEXT) $(ALGPATH)/language/english/$(PROGRAMNAME)3.$(ALGEXT)
-	mkdir -p $(ALGPATH)/language/german
-	cp $(PROGRAMNAME)_german1.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)1.$(ALGEXT)
-	cp $(PROGRAMNAME)_german2.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)2.$(ALGEXT)
-	cp $(PROGRAMNAME)_german3.$(ALGEXT) $(ALGPATH)/language/german/$(PROGRAMNAME)3.$(ALGEXT)
-	mkdir -p $(DOCPATH)/lisa/english/algorithm
-	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
-	mkdir -p $(DOCPATH)/lisa/german/algorithm
-	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/algorithm/$(PROGRAMNAME).html
-
+	for l in ${LANGS}; do \
+		( mkdir -p $(ALGPATH)/language/$${l} && cp $(PROGRAMNAME)_$${l}*.$(ALGEXT) $(ALGPATH)/language/$${l} && \
+		  mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp $(PROGRAMNAME)_$${l}*.html $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME).html; ); done
 # ------------------------------------------------------------------------------
 
 uninstall:

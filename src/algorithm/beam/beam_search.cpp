@@ -10,6 +10,34 @@ BeamSearch::BeamSearch(){
   order = NULL;
   clear();
 }
+//clone a search
+BeamSearch::BeamSearch(const BeamSearch& other){
+  value = other.value;
+  step = other.step;
+  n_ops = other.n_ops;
+  costFunc = other.costFunc;
+  destObjective = other.destObjective;
+  problemtype = other.problemtype;
+  beam_width = other.beam_width;
+  insertionMethod = other.insertionMethod;
+  iord = other.iord;
+  attach = other.attach;
+  mode = other.mode;
+  tieBreak = other.tieBreak;
+  Problem = other.Problem;
+  Parameter = other.Parameter;
+  Lisa_Values Values = other.Values;
+
+  if(other.problem){ 
+    problem = new Lisa_OsProblem(*(other.problem)); 
+  }
+  
+  if(other.result){  
+    result = new Lisa_Schedule(*(other.result));
+  }
+  //created in run
+  order = NULL;
+}
 
 BeamSearch::~BeamSearch(){
   clear();
@@ -26,6 +54,8 @@ void BeamSearch::clear(){
   insertionMethod = insert1;
   iord = lpt;
   attach = both;
+  mode = INSERT;
+  tieBreak = FCFS;
   if(problem){ delete problem; problem = NULL; }
   if(result){ delete result; result = NULL; }
   if(order){ delete order; order = NULL; }
@@ -79,33 +109,64 @@ bool BeamSearch::init(LisaXmlFile& xmlInput){
   result = new Lisa_Schedule(Values.get_n(), Values.get_m());
   result->make_LR();
   
-  //which order was selected
-  if (!Parameter.defined("INS_ORDER")) {
-    cout << "ERROR: \"INS_ORDER\" undefined. Aborting." << endl;
+  if (!Parameter.defined("MODE")) {
+    cout << "ERROR: \"MODE\" undefined. Aborting." << endl;
     return false;
   }
-  if (Parameter.get_string("INS_ORDER")=="LPT") iord = lpt;
-  else if (Parameter.get_string("INS_ORDER")=="RANDOM") iord = rndm;
-  else if (Parameter.get_string("INS_ORDER")=="MACHINEWISE") iord = line_by_line;
-  else if (Parameter.get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
-  else if (Parameter.get_string("INS_ORDER")=="QUEEN_SWEEP") iord = queens;
-  else if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
-  else if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
-  else if (Parameter.get_string("INS_ORDER")=="ATTACH") iord = att;
+  if (Parameter.get_string("MODE")=="INSERT") mode = INSERT;
+  else if (Parameter.get_string("MODE")=="ATTACH") mode = ATTACH;
   else{
-    cout << "ERROR: \"" << Parameter.get_string("INS_ORDER")
-	 << "\" unknown Insertion Order. Aborting." << endl;
+    cout << "ERROR: \"" << Parameter.get_string("MODE")
+	 << "\" unknown Mode. Aborting." << endl;
     return false;
   }
-  
-  if (iord == att && Parameter.defined("ATTACH_WHAT")) {
-    if (Parameter.get_string("ATTACH_WHAT")=="Machines") attach=machines;
-    else if (Parameter.get_string("ATTACH_WHAT")=="Jobs") attach=jobs;
-    else if (Parameter.get_string("ATTACH_WHAT")=="Machines+Jobs") attach=both;
-    else{
-      cout << "ERROR: \"" << Parameter.get_string("ATTACH_WHAT")
-	   << "\" unknown Attachment rule. Aborting." << endl;
+
+  //which order was selected
+  if(mode == INSERT){
+    if (!Parameter.defined("INS_ORDER")) {
+      cout << "ERROR: \"INS_ORDER\" undefined. Aborting." << endl;
       return false;
+    }
+    if (Parameter.get_string("INS_ORDER")=="LPT") iord = lpt;
+    else if (Parameter.get_string("INS_ORDER")=="RANDOM") iord = rndm;
+    else if (Parameter.get_string("INS_ORDER")=="MACHINEWISE") iord = line_by_line;
+    else if (Parameter.get_string("INS_ORDER")=="DIAGONAL") iord = diagonal;
+    else if (Parameter.get_string("INS_ORDER")=="QUEEN_SWEEP") iord = queens;
+    else if (Parameter.get_string("INS_ORDER")=="SPT") iord = spt;
+    else if (Parameter.get_string("INS_ORDER")=="ECT") iord = ect;
+    else{
+      cout << "ERROR: \"" << Parameter.get_string("INS_ORDER")
+	   << "\" unknown Insertion Order. Aborting." << endl;
+      return false;
+    }
+  }
+  else { //mode == ATTACH
+    if (Parameter.defined("ATTACH_WHAT")) {
+      if (Parameter.get_string("ATTACH_WHAT")=="Machines") attach=machines;
+      else if (Parameter.get_string("ATTACH_WHAT")=="Jobs") attach=jobs;
+      else if (Parameter.get_string("ATTACH_WHAT")=="Machines+Jobs") attach=both;
+      else{
+	cout << "ERROR: \"" << Parameter.get_string("ATTACH_WHAT")
+	     << "\" unknown Attachment rule. Aborting." << endl;
+	return false;
+      }
+    }
+    else {
+      cout << "WARNING: No Attachment rule given. Using default=both" << endl;
+    }
+    if (Parameter.defined("BREAK_TIES")) {
+      if (Parameter.get_string("BREAK_TIES")=="FCFS") tieBreak=FCFS;
+      else if (Parameter.get_string("BREAK_TIES")=="LPT") tieBreak=LPT;
+      else if (Parameter.get_string("BREAK_TIES")=="SPT") tieBreak=SPT;
+      else if (Parameter.get_string("BREAK_TIES")=="RANDOM") tieBreak=RANDOM;
+      else{
+	cout << "ERROR: \"" << Parameter.get_string("BREAK_TIES")
+	     << "\" unknown tie breaking rule. Aborting." << endl;
+	return false;
+      }
+    }
+    else {
+      cout << "WARNING: No tie breaking rule given. Using default=FCFS" << endl;
     }
   }
   //which choice method was selected
@@ -113,9 +174,18 @@ bool BeamSearch::init(LisaXmlFile& xmlInput){
     insertionMethod = insert2;
   
   //which choice criterion was selected
-  if (Parameter.defined("CRITERION") && (Parameter.get_string("CRITERION")=="CLAST") )
-    costFunc = CLast;
-  
+  if (Parameter.defined("CRITERION")){
+    if (Parameter.get_string("CRITERION")=="CLAST") costFunc = CLast;
+    else if (Parameter.get_string("CRITERION")=="OBJECTIVE") costFunc = CObjective;
+    else if (Parameter.get_string("CRITERION")=="LB(Sum_Ci)") costFunc = CLb_Sum_Ci;
+    else {
+      cout << "ERROR: \"" << Parameter.get_string("CRITERION")
+	   << "\" unknown choice criterion. Aborting." << endl;
+      return false;
+    }
+  }
+  else cout << "WARNING: No CRITERION rule given. Using default=OBJECTIVE" << endl;
+ 
   //which beamwidth was entered
   if (Parameter.defined("K_BRANCHES")) {
     beam_width = Parameter.get_long("K_BRANCHES");
@@ -125,19 +195,16 @@ bool BeamSearch::init(LisaXmlFile& xmlInput){
 
 TIMETYP BeamSearch::guessObjective(){
   //should be sophisticated for objectoves other than C_MAX
-  if(problem == NULL) return 0.0;
   TIMETYP x_bound = 0;
   TIMETYP y_bound = 0;
   TIMETYP r = 0;
   for (int i = 0; i< problem->n;i++){
     for (int j = 0; j < problem->m;j++){
       r += (*(problem->time))[i+1][j+1];
-      
     }
     x_bound = MAX(r,x_bound);
     r=0;
   }
-  
   for (int j = 0; j< problem->m;j++){
     for (int i = 0; i < problem->n;i++){
       r += (*(problem->time))[i+1][j+1];
@@ -145,11 +212,28 @@ TIMETYP BeamSearch::guessObjective(){
     y_bound = MAX(r,y_bound);
     r=0;
   }
+  if(destObjective == SUM_CI){
+    return std::max<TIMETYP>((x_bound+y_bound)*problem->m,(x_bound+y_bound)*problem->n);
+  }
   return x_bound + y_bound;
 }
 
+TIMETYP BeamSearch::tie(int i, int j){
+  switch(tieBreak){
+  case FCFS:
+    return TIMETYP(i*problem->n + j);
+  case LPT:
+    return - (*(problem->time))[i][j];
+  case SPT:
+    return (*(problem->time))[i][j];
+  case RANDOM:
+    return TIMETYP(rand());
+  }
+  return 0.0;
+}
+
 bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
-  if(iord != att){ //next op comes from some order
+  if(mode == INSERT){ //next op comes from some order
     if(order == NULL)
       order = makeOrder(iord, n_ops, problem);
     if(step >= n_ops){
@@ -158,59 +242,67 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
     next.first = order->row(step)+1;
     next.second = order->col(step)+1;
     return true;
-  }else { //dynamic next
+  }
+  else { //dynamic next
     //attachment minimum head is first machine/job
-    TIMETYP best, head;
-    bool found_best = false;
+    TIMETYP best = std::numeric_limits<TIMETYP>::infinity(), head;
+    next.first = next.second = 1;
     for (int i=1; i<=parent->P->n; i++)
       for (int j=1; j<=parent->P->m; j++){
-        if(! ((*problem->sij)[i][j]) || parent->exists(i,j)) continue;
-        head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
-        if(found_best){
-          if(head < best){
-            next.first = i;
-            next.second = j;
-            best = head;
-          }
-        }else{
-          next.first = i;
-          next.second = j;
-          best = head;
-          found_best = true;
-        }
+	if(! ((*problem->sij)[i][j]) || parent->exists(i,j))
+	  continue;
+	head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
+	if(head < best){
+	  next.first = i; next.second = j;
+	  best = head;
+	}
+	else if(head == best && (tie(next.first,next.second) < tie(i,j))){ //break tie
+	  next.first = i; next.second = j;
+	}
       }
-    return found_best;
+    return true;
   }
   return false;
 }
+
+//#define BE_DISPATCHER
 
 void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, InsertionList& ins){
   ins.clear();
   OpRankPos pos;
   Operation insOp = op;
+#ifdef BE_DISPATCHER
+  //test against dispatcher
+  pos.first = parent.GetJOpred(SINK,op.second);
+  pos.second = parent.GetMOpred(op.first,SINK);
+  ins.push_back(OpInsertion(insOp,pos));
+  return;
+#endif
   TIMETYP head = std::max<TIMETYP>(parent.GetHead(op.first,SINK),parent.GetHead(SINK,op.second));
   switch(attach){
   case jobs:
     //find the machine numbers of all non-delay insertables
     pos.second = parent.GetMOpred(insOp.first,SINK);
-    for (int j=1; j<=parent.P->m; j++){
-      if (((*problem->sij)[insOp.first][j]) && !parent.exists(insOp.first,j) && (head >=  parent.GetHead(SINK,j))){
-        pos.first = parent.GetJOpred(SINK,j);
-        insOp.second = j;
-        ins.push_back(OpInsertion(insOp,pos));
+    for (int j=1; j<=parent.P->m; j++)
+      if (((*problem->sij)[insOp.first][j]) && 
+	  !parent.exists(insOp.first,j) && 
+	  (head >=  parent.GetHead(SINK,j))){
+	pos.first = parent.GetJOpred(SINK,j);
+	insOp.second = j;
+	ins.push_back(OpInsertion(insOp,pos));
       }
-    }
     break;
   case machines:
     //find the job numbers of all non-delay insertables
     pos.first = parent.GetJOpred(SINK,insOp.second);
-    for (int i=1; i<=parent.P->n; i++){
-      if (((*problem->sij)[i][insOp.second]) &&  !parent.exists(i,insOp.second) && (parent.GetHead(i,SINK) <=  head)){
-        pos.second = parent.GetMOpred(i,SINK);
-        insOp.first = i;
-        ins.push_back(OpInsertion(insOp,pos));
+    for (int i=1; i<=parent.P->n; i++)
+      if (((*problem->sij)[i][insOp.second]) &&  
+	  !parent.exists(i,insOp.second) && 
+	  (parent.GetHead(i,SINK) <=  head)){
+	pos.second = parent.GetMOpred(i,SINK);
+	insOp.first = i;
+	ins.push_back(OpInsertion(insOp,pos));
       }
-    }
     break;
   default:
     return;
@@ -222,7 +314,7 @@ void BeamSearch::getDescendentAppendings(B_Node& parent, const Operation& op, In
 }
 
 void BeamSearch::getDescendentInsertions(B_Node& parent , const Operation& op, InsertionList& ins){
-  if(iord == att){
+  if(mode == ATTACH){
     getDescendentAppendings(parent,op,ins);
     return;
   }
@@ -288,7 +380,7 @@ bool BeamSearch::run(){
 	n_ops++;
   B_Node *b = new B_Node(problem);   //the root of the tree = an empty schedule
   Operation next;  //next ob to be inserted
-  // OpInsertion opIns;   //next insertion to perform
+  OpInsertion opIns;   //next insertion to perform
   fathers->add(b);   //create the root of the search tree
   TIMETYP objective = 0; //progress display
   //insertion list

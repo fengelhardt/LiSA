@@ -30,10 +30,17 @@ TIMETYP B_Node::getCosts(int destObjective,  BeamSearch::CostFunc costFunc){
     SetValue(destObjective);
     if (costFunc == BeamSearch::CObjective)
       cost = GetValue();
-    else
-      cost = GetHead(lastAddedRow, lastAddedCol)+
-	GetTail(lastAddedRow, lastAddedCol) +
-	(*(P->time))[lastAddedRow][lastAddedCol];
+    else if (costFunc == BeamSearch::CLast)
+      cost = GetHead(lastAddedRow, lastAddedCol)+GetTail(lastAddedRow, lastAddedCol) +(*(P->time))[lastAddedRow][lastAddedCol];
+    else if (costFunc == BeamSearch::CLb_Sum_Ci){
+      cost = 0.0;
+      for (int i=1; i<=P->n; i++){
+	cost += GetHead(i,SINK);
+	for (int j=1; j<=P->m; j++)
+	  if(((*P->sij)[i][j]) &&  !exists(i,j))
+	    cost += (*(P->time))[i][j]; //sum up remaing op times
+      }
+    }
     costValid = true;
   }
   return cost;

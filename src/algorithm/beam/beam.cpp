@@ -69,7 +69,7 @@ int main(int argc, char *argv[]){
     exit(1);
   //set progress window height
   cout << "OBJECTIVE= "<< search.guessObjective() << endl;
-  if(search.iord == att && search.attach == BeamSearch::both){
+  if(search.mode == BeamSearch::ATTACH && search.attach == BeamSearch::both){
     //first run with machine order
     search.attach = BeamSearch::machines;
     search.step = 0;

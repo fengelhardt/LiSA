@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Search" type="constructive" call="beam" code="external" help_file="algorithm/beam.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Search (Einfügen)" type="constructive" call="beam" code="external" help_file="algorithm/beam.html">
   <heuristic>
     <problem>
       <alpha env="1"/>
       <beta/>
       <gamma objective="Lmax"/>
     </problem>
-<!--     <problem> -->
-<!--       <alpha env="1"/> -->
-<!--       <beta/> -->
-<!--       <gamma objective="Sum_Ci"/> -->
-<!--     </problem> -->
+      <problem>
+       <alpha env="1"/>
+       <beta/>
+       <gamma objective="Sum_Ci"/>
+      </problem>
     <problem>
       <alpha env="1"/>
       <beta/>
@@ -42,11 +42,11 @@
       <beta release_times="yes"/>
       <gamma objective="Lmax"/>
     </problem>
-<!--     <problem> -->
-<!--       <alpha env="1"/> -->
-<!--       <beta release_times="yes"/> -->
-<!--       <gamma objective="Sum_Ci"/> -->
-<!--     </problem> -->
+     <problem>
+       <alpha env="1"/>
+       <beta release_times="yes"/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
     <problem>
       <alpha env="1"/>
       <beta release_times="yes"/>
@@ -77,11 +77,11 @@
       <beta/>
       <gamma objective="Lmax"/>
     </problem>
-<!--     <problem> -->
-<!--       <alpha env="O"/> -->
-<!--       <beta/> -->
-<!--       <gamma objective="Sum_Ci"/> -->
-<!--     </problem> -->
+     <problem>
+       <alpha env="O"/>
+       <beta/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
     <problem>
       <alpha env="O"/>
       <beta/>
@@ -112,11 +112,11 @@
       <beta release_times="yes"/>
       <gamma objective="Lmax"/>
     </problem>
-<!--     <problem> -->
-<!--       <alpha env="O"/> -->
-<!--       <beta release_times="yes"/> -->
-<!--       <gamma objective="Sum_Ci"/> -->
-<!--     </problem> -->
+     <problem>
+       <alpha env="O"/>
+       <beta release_times="yes"/>
+       <gamma objective="Sum_Ci"/>
+     </problem>
     <problem>
       <alpha env="O"/>
       <beta release_times="yes"/>
@@ -182,7 +182,7 @@
       <beta release_times="yes"/>
       <gamma objective="Lmax"/>
     </problem>
-    <problem>
+      <problem>
       <alpha env="F"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_Ci"/>
@@ -211,6 +211,31 @@
       <alpha env="F"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="F"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
     </problem>
   </heuristic>
   <exact>
@@ -222,7 +247,7 @@
   </exact>
   <alg_controls>
     <integer name="K_BRANCHES" caption="Anzahl zu verfolgender Zweige" default="5"/>
-    <choice name="INS_ORDER" caption="Einfuegereihenfolge">
+    <choice name="INS_ORDER" caption="Einfügereihenfolge">
       <item name="MACHINEWISE"/>
       <item name="DIAGONAL"/>
       <item name="QUEEN_SWEEP"/>
@@ -235,5 +260,10 @@
       <item name="INSERT1"/>
       <item name="INSERT2"/>
     </choice>
+    <choice name="CRITERION" caption="Auswahlkriterium">
+      <item name="CLAST"/>
+      <item name="OBJECTIVE"/>
+    </choice>
+    <fixed name="MODE" value="INSERT"/>
   </alg_controls>
 </algorithm>

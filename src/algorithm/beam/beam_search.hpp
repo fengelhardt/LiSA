@@ -16,6 +16,7 @@ class BeamSearch {
 
 public:
   explicit BeamSearch();
+  explicit BeamSearch(const BeamSearch& other);
   
   typedef enum {
     insert1,
@@ -24,7 +25,8 @@ public:
 
   typedef enum {
     CObjective,
-    CLast
+    CLast,
+    CLb_Sum_Ci 
   }  CostFunc;
   
   typedef enum {
@@ -33,6 +35,17 @@ public:
     both
   } AttachmentRule;
 
+  typedef enum {
+    INSERT,
+    ATTACH 
+  } Mode; 
+
+  typedef enum {
+    FCFS,
+    RANDOM,
+    LPT,
+    SPT  } TieBreakMode;
+
   int problemtype;
   int beam_width;
   InsertionMethod insertionMethod;
@@ -40,6 +53,9 @@ public:
   AttachmentRule attach;
   CostFunc costFunc;
   int destObjective;
+  Mode mode;
+  TieBreakMode tieBreak;
+  
   
   bool init(LisaXmlFile& input);
   bool run();
@@ -56,9 +72,11 @@ public:
   TIMETYP guessObjective();
 
   int step, n_ops;
+  
 
 private:
   void clear();
+  TIMETYP tie(int i, int j);
   typedef std::pair<int,int> Operation;
   typedef std::pair<int,int> OpRankPos;
   typedef std::pair<Operation, OpRankPos> OpInsertion;
