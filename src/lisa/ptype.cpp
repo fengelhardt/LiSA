@@ -14,23 +14,6 @@ using namespace std;
 
 //**************************************************************************
 
-// small function to find certain string in stream:
-bool locate_string(istream& strm, string what)
-{
-  string S, what2; 
-  what2=what;
-  if (what2[1]=='/') what2[1]='\\'; 
-  do 
-    {
-      S=""; strm >> S;
-      if (S=="") return FALSE;
-    } 
-  while ((S!=what) && (S!=what2));
-  return TRUE;
-}
-
-//**************************************************************************
-
 Lisa_ProblemType::Lisa_ProblemType() 
 {
   reset();  
@@ -572,84 +555,104 @@ int Lisa_ProblemType::name(int tupelEntry, string identifier) const {
 //**************************************************************************
   
 void Lisa_ProblemType::write(ostream& strm) const{
-  if (vld) {
-    strm << "\n<PROBLEMTYPE>\n";
-    strm << "Lisa_ProblemType= { " << output_alpha() <<" / " << output_beta() << " / " << output_gamma() << " }\n";
-    strm << "</PROBLEMTYPE>\n ";
-  }
-  else cerr << "Lisa_ProblemType not valid\n";
+  if (vld){
+    strm << endl << "<PROBLEMTYPE>" << endl;
+    strm << "Lisa_ProblemType= { " << output_alpha() <<" / " << output_beta() << " / " << output_gamma() << " }" << endl;
+    strm << "</PROBLEMTYPE>" << endl;
+  } else cerr << "Lisa_ProblemType not valid." << endl;
 }
 
 //**************************************************************************
 
 // following function rewritten (TAU 15.3.99)
-void Lisa_ProblemType::read(istream& strm) 
-{
+void Lisa_ProblemType::read(istream& strm){
+  
   // assure existence of input stream:
-  if (strm==NULL) 
-    {
-      G_ExceptionList.lthrow("no valid stream in Lisa_ProblemType::read");
-      return;
-    }
+  if(strm==NULL){
+    G_ExceptionList.lthrow("No valid stream in Lisa_ProblemType::read().");
+    return;
+  }
   
   // locate begin of problem type entry:
-  string S;
-  // strm.seekg(0); // PROBLEMTYPE has always to be on top of the file
-  if (!locate_string(strm, "<PROBLEMTYPE>"))
-    {
-      G_ExceptionList.lthrow("no <PROBLEMTYPE>-entry found in input file",
-			     END_OF_FILE);
+  string S="";
+  strm >> S;
+  while(S != "<PROBLEMTYPE>"){
+    if(S == ""){
+      G_ExceptionList.lthrow("No '<PROBLEMTYPE>' entry found in input file.",END_OF_FILE);
       return;
     }
+    S = "";
+    strm >> S;
+  }
+    
+  //check for 'Lisa_ProblemType='
+  S="";
+  strm >> S;
+  if(S!="Lisa_ProblemType="){
+    G_ExceptionList.lthrow("'Lisa_ProblemType=' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    return;
+  }
   
-  if (!locate_string(strm, "{"))
-    {
-      G_ExceptionList.lthrow("{ expected in <PROBLEMTYPE>",INCONSISTENT_INPUT);
-      return;
-    }
+  // check delimiter
+  S = "";
+  strm >> S;
+  if(S!="{"){
+    G_ExceptionList.lthrow("'{' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    return;
+  }
   
-  // read the tuple:
-  S="";strm >> S; 
-  if(setalpha(S)) 
-    {
-      G_ExceptionList.lthrow("incorrect problemtype entry "+S,
-			     INCONSISTENT_INPUT);
-      return;
-    }
-  S="";strm >> S; 
-  if (S!="/")
-    {
-      G_ExceptionList.lthrow("/ expected in <PROBLEMTYPE>",INCONSISTENT_INPUT);
-      return;
-    }
+  // read alpha
+  S="";
+  strm >> S; 
+  if(setalpha(S)){
+    G_ExceptionList.lthrow("Incorrect alpha entry '"+S+"'.",INCONSISTENT_INPUT);
+    return;
+  }
+  
+  // check delimiter
+  S="";
+  strm >> S; 
+  if (S!="/"){
+    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    return;
+  }
+  
+  // read beta
   delbeta();
+  S="";
+  strm >> S;
+  while (S!="/" && S!=""){
+    if(setbeta(S))  G_ExceptionList.lthrow("Unknown beta restriction '"+S+"'. Ignoring it.",ANY_ERROR);
+    S="";
+    strm >> S;
+  }
 
-  S="";strm >> S;
-  while (S!="/" && S!="") 
-    {
-      if(setbeta(S))  
-	  G_ExceptionList.lthrow("ignoring restriction "+S,ANY_ERROR);
-      S=""; strm >> S;
-    }
-
-  if (S!="/")
-    {
-      G_ExceptionList.lthrow("/ expected in <PROBLEMTYPE>",INCONSISTENT_INPUT);
-      return;
-    }
-  S="";strm >> S;
-  if(setgamma(S)) 
-    {
-      G_ExceptionList.lthrow("incorrect objective "+S, INCONSISTENT_INPUT);
-      return;
-    }
-  S="";strm >> S;
-  if(S!="}")  
-    G_ExceptionList.lthrow("} expected in <PROBLEMTYPE>",INCONSISTENT_INPUT);
-
-  if (!locate_string(strm, "</PROBLEMTYPE>"))
-    G_ExceptionList.lthrow("</PROBLEMTYPE> expected", END_OF_FILE);
-  // we have to change this, the file entry could have been rubbish:
+  // check delimiter
+  if (S!="/"){
+    G_ExceptionList.lthrow("'/' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+    return;
+  }
+  
+  // read gamma
+  S="";
+  strm >> S;
+  if(setgamma(S)){
+    G_ExceptionList.lthrow("Incorrect beta entry '"+S+"'.", INCONSISTENT_INPUT);
+    return;
+  }
+  
+  S="";
+  strm >> S;
+  if(S!="}"){
+    G_ExceptionList.lthrow("'}' expected in <PROBLEMTYPE>, found '"+S+"'.",INCONSISTENT_INPUT);
+  }
+  
+  S="";
+  strm >> S;
+  if(S != "</PROBLEMTYPE>"){
+    G_ExceptionList.lthrow("'</PROBLEMTYPE>' expected, found '"+S+"'.", END_OF_FILE);
+  }
+  
   vld=TRUE;
 }
 

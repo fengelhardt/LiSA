@@ -920,7 +920,7 @@ int TC_problem_reduction(ClientData /* clientData */,Tcl_Interp *interp,
   sprintf(interp->result, "%d",0);
   
   ifstream fin(filename.c_str());
-  
+
   if (fin==NULL) {
     G_ExceptionList.lthrow("cannot open file: "+filename+"\n",END_OF_FILE);
     return TCL_OK;

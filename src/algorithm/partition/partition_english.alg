@@ -9,6 +9,8 @@ Help= algorithm/partition.html
 <EXACT>
 <PROBLEMTYPE> 
 Lisa_ProblemType= { O2 /  / Cmax }
+</PROBLEMTYPE>
+<PROBLEMTYPE>
 Lisa_ProblemType= { P2 /  / Cmax }
 </PROBLEMTYPE>
 </EXACT>

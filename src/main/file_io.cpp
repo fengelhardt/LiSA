@@ -27,7 +27,9 @@ extern class Lisa_XSchedule * G_XSchedule;
 
 //**************************************************************************
 
-int read(string dname) {
+int read(string dname){
+  
+  
   int oldm=G_Values.get_m();
   int oldn=G_Values.get_n();
   
@@ -50,16 +52,19 @@ int read(string dname) {
     if (S=="<PROBLEMTYPE>") fproblemtype=TRUE;
     if (S=="<VALUES>") fvalues=TRUE ;
   }
+
   
+  // reopen file, start over
+  fin.close();
+  ifstream in(dname.c_str());
+  if (in==NULL) {
+    G_ExceptionList.lthrow("Cannot reopen file '"+dname+"' for reading.",END_OF_FILE);
+    return 1;
+  }
+
   // read problemtype
-  if (fproblemtype) {
-    ifstream fin(dname.c_str());
-    if (fin==NULL) {
-      G_ExceptionList.lthrow("Cannot open file '"+dname+"' for reading.",END_OF_FILE);
-      return 1;
-    }
-    
-    fin >> G_ProblemType;
+  if (fproblemtype) { 
+    in >> G_ProblemType;
   } else {
     G_ExceptionList.lthrow("No problem defined in file '"+dname+"'.",END_OF_FILE);
     return 1;
@@ -67,13 +72,8 @@ int read(string dname) {
   
   // read problem instance (values)
   if (fvalues) {
-    ifstream fin(dname.c_str());
-    if (fin==NULL) {
-      G_ExceptionList.lthrow("Cannot open file '"+dname+"' for reading.",END_OF_FILE);
-      return 1;
-    }
+    in >> G_Values;
     
-    fin >> G_Values;
     if(oldm!=G_Values.get_m()||oldn!=G_Values.get_n()) new_mn(); 
     new_problemtype();
     if(oldm!=G_Values.get_m()||oldn!=G_Values.get_n()) new_mn();
@@ -83,27 +83,21 @@ int read(string dname) {
     return 0;
   }
   
-  /// read values
+  /// read schedule
   if (no_schedules) {
-    ifstream fin(dname.c_str());
-    if (fin==NULL) {
-      G_ExceptionList.lthrow("Cannot open file '"+dname+"' for reading.",END_OF_FILE);
-      return 1;
-    }
     
     Lisa_Schedule *mySchedule = 0;
     Lisa_ScheduleNode *myLisa_ScheduleNode;
     // clear old schedules in list
     while(!(G_ScheduleList->empty())){
-      Lisa_ScheduleNode dummynode;
-      dummynode=G_ScheduleList->pop();
+      Lisa_ScheduleNode dummynode=G_ScheduleList->pop();
       if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
     }
     
     // read new schedules
     for(int i=1;i<=no_schedules;i++) {
       mySchedule = new Lisa_Schedule(1,1);
-      fin >> (*mySchedule);
+      in >> (*mySchedule);
       myLisa_ScheduleNode= new Lisa_ScheduleNode(mySchedule);
       G_ScheduleList->append(*myLisa_ScheduleNode);
     }
@@ -114,8 +108,8 @@ int read(string dname) {
     G_XSchedule = new Lisa_XSchedule(G_Schedule);
     new_schedule();
   }
-  
-  fin.close();
+
+  in.close();
   return 0;
 }
 
