@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <stdlib.h>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_init.hpp"

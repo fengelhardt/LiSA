@@ -14,18 +14,10 @@
 #include "wo_sort.hpp"
 #include "wo_select.hpp"
 
-
-static int Jackson_Immediate_Selection(number, Head, Tail, m_or_j)	
-
-int  number,
-     Head[],
-     Tail[];
-char m_or_j;
-
 /* Loesung des Primal- oder Dualproblems fuer alle Operationen auf Maschine 
    'number' bzw. fuer alle Operationen von Job 'number';
 */
-
+static int Jackson_Immediate_Selection(int number,int Head[],int Tail[],char m_or_j)	
 {
   int           set_O[MaxOpProM_And_J+1], 
 		num_of_O, 
@@ -184,19 +176,12 @@ char m_or_j;
 }
 
 
-
-
-static boolean Select(number, m_or_j)	
-
-/* number ist entweder Maschinen- oder Jobnummer
-*/
-int number;
-char m_or_j;
-
 /* Prozedur zum Festlegen aller direkten Kanten auf Nummer
    (entweder Maschinen- oder Jobnummer)
 */
-
+/* number ist entweder Maschinen- oder Jobnummer
+*/
+static boolean Select(int number,char m_or_j)	
 {
 
   struct List  *help1, 

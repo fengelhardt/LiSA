@@ -17,7 +17,7 @@
 /* FUNCTION: Berechnet das Maximum von 2 Zahlen                              */
 /* ************************************************************************* */
 
-int Max();
+int Max(int a,int b);
 
 
 /* ************************************************************************* */
@@ -33,6 +33,6 @@ int Max();
 /*           der numerischen Darstellung benoetigen)                         */
 /* ************************************************************************* */
 
-int FindOpNr();
+int FindOpNr(int i,int j);
 
 #endif

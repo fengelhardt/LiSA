@@ -18,8 +18,7 @@
 /*           zugeordnet. Diese Prozedur wird nur fur Matchings benoetigt,    */
 /* ************************************************************************* */
 
-int FindOpNr(i,j)      int i,j;
-{
+int FindOpNr(int i,int j){
    int Op;
 
    Op = ( i * NumOfMachines ) - ( NumOfMachines - j );
@@ -36,7 +35,6 @@ int FindOpNr(i,j)      int i,j;
 /* FUNCTION: Berechnet das Maximum von 2 Zahlen                              */
 /* ************************************************************************* */
 
-int Max(a,b)        int a, b;
-{
+int Max(int a,int b){
   return( (a > b) ? a : b );
 }

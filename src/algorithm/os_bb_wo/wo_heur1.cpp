@@ -22,10 +22,7 @@
 
    Algorithmus: siehe WALTHER/NAEGLER: GRAPHEN-ALGORITHMEN-PROGRAMME, S.131
 */
-void WeightMatch(n, c, mate)    int n;
-				int c[MaxNumOfJobs+1][MaxNumOfMachines+1];
-				int mate[];
-{
+void WeightMatch(int n,int c[MaxNumOfJobs+1][MaxNumOfMachines+1],int mate[]){
    int     i, j, k, min, t, z, aim, 
 	   rowan[MaxNumOfJobs+1], 
 	   colan[MaxNumOfMachines+1],

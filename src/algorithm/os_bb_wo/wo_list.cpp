@@ -12,6 +12,7 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "wo_data.hpp"
 #include "wo_table.hpp"
 #include "wo_list.hpp"
@@ -26,7 +27,7 @@
 /*  FUNCTION: Op wird ans Ende von l gestellt, wenn Member(l,Op) == false    */
 /* ************************************************************************* */
 
-struct List *Insert(l,op)	struct List *l;  int op;
+struct List *Insert(struct List *l,int op)
 {
 
   register struct List *help;
@@ -68,7 +69,7 @@ struct List *Insert(l,op)	struct List *l;  int op;
 /*  FUNCTION: Op wird an den Anfang von l gestellt                           */
 /* ************************************************************************* */
 
-struct List *InsertBefore(l,op) 	struct List *l;  int op;
+struct List *InsertBefore(struct List *l,int op)
 {
 
  struct List *help;
@@ -93,8 +94,7 @@ struct List *InsertBefore(l,op) 	struct List *l;  int op;
 /*  FUNCTION: Op wird aus l geloescht                                        */
 /* ************************************************************************* */
 
-struct List *Delete(l,op)	struct List *l;  register int op;
-
+struct List *Delete(struct List *l,register int op)
 {
 
   register struct List *help, *cancel;
@@ -130,7 +130,7 @@ struct List *Delete(l,op)	struct List *l;  register int op;
 /*  FUNCTION: l wird geloescht                                               */
 /* ************************************************************************* */
 
-struct List *Makeempty(l)	register struct List *l;
+struct List *Makeempty(register struct List *l)
 {
 
   struct List *cancel;
@@ -153,7 +153,7 @@ struct List *Makeempty(l)	register struct List *l;
 /*  FUNCTION: Uberprueft, ob Op in l ist oder nicht                          */
 /* ************************************************************************* */
 
-boolean Member(l, op)	     struct List *l;  register int op;
+boolean Member(struct List *l,register int op)
 {
 
   register struct List *help;
