@@ -8,6 +8,9 @@ OBJECTS=\
 	../../../obj/except.o \
 	../../../obj/matrix.o \
 	../../../obj/pair.o \
+	../../../obj/order.o \
 	../../../obj/mo_jo.o \
 	../../../obj/schedule.o \
+	../../../obj/sp_sched.o \
+	../../../obj/os_sched.o \
 	../../../obj/auto_alg.o

@@ -8,6 +8,9 @@ CXXSOURCES=\
   ../../misc/except.cpp \
   ../../basics/matrix.cpp \
   ../../basics/pair.cpp \
+  ../../basics/order.cpp \
   ../../scheduling/mo_jo.cpp \
   ../../scheduling/schedule.cpp \
+  ../../scheduling/sp_sched.cpp \
+  ../../scheduling/os_sched.cpp \
 	auto_alg.cpp

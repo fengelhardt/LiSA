@@ -18,6 +18,7 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 #include "../../scheduling/schedule.hpp"
+#include "../../scheduling/os_sched.hpp"
 
 //**************************************************************************
 
@@ -298,6 +299,10 @@ int main(int argc, char *argv[]){
    generateValues(val,pt); 
    Lisa_Schedule sched(n,m);
    
+   //need those two to calculate objective
+   Lisa_OsProblem op(&val);
+   Lisa_OsSchedule os(&op);
+     
    //open output file, write generated problem + comments
    std::ofstream out_file(((std::string)argv[1]+"."+ztos(i+1)+".lsa").c_str());
    if(!out_file){
@@ -308,9 +313,9 @@ int main(int argc, char *argv[]){
    
    out_file 
    << "This is problem number " << i+1 << " created from the following initial "
-   << "values:" << std::endl << std::endl
-   << cp
+   << "values:" << std::endl
    << pt << std::endl
+   << cp << std::endl  
    << "Generated problem instance:" << std::endl
    << val << std::endl
    << "Now follows a list of schedules for this problem, each preceded by the" 
@@ -328,7 +333,14 @@ int main(int argc, char *argv[]){
     system((cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
     readAlgOutput(sched);
     
-    out_file << cps[j] << sched << std::endl;
+    os.read_LR(sched.LR);
+    os.SetValue(pt.get_property(OBJECTIVE));
+    
+    out_file << "************************************************************"
+             << "****************" << std::endl << std::endl
+             << "Objective of this schedule: "
+             << os.GetValue() << std::endl << std::endl
+             << cps[j] << sched  << std::endl ;
 
    }
    
