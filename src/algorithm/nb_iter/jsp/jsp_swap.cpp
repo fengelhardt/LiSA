@@ -81,8 +81,8 @@ int JSHOP_swap_Ngbh::prepare_move( int typ )
 
 int JSHOP_swap_Ngbh::do_move()
  {
-   short predJ1;
-   short predJ2;
+   int predJ1;
+   int predJ2;
    int help;
    *P[1]=*P[0];
    

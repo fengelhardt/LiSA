@@ -210,8 +210,8 @@ int OSHOP_cr_bl_shift_Ngbh::prepare_move( int typ )
 
 int OSHOP_cr_bl_shift_Ngbh::do_move()
  {
-   short predJ1;
-   short predM1;
+   int predJ1;
+   int predM1;
    *P[1]=*P[0];
    if (witch_swap==JO)
      if (pos1<pos2)      // shift right

@@ -39,8 +39,8 @@ class OSHOP_API_Ngbh: public Lisa_Neighborhood
 		/// it contains the underlying problem datas
 		Lisa_OsProblem *PP;
 	        int   witch_swap;  
-		short machine1, machine2;
-		short job1, job2;
+		int machine1, machine2;
+		int job1, job2;
 		/** the class contains 4 schedules:
 	            original schedule, work-schedule, 
 		    best neighbour schedule, best schedule   */

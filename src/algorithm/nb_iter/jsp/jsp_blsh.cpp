@@ -175,7 +175,7 @@ int JSHOP_cr_bl_shift_Ngbh::prepare_move( int typ )
 
 int JSHOP_cr_bl_shift_Ngbh::do_move()
  {
-   short predJ1;
+   int predJ1;
    *P[1]=*P[0];
    if (pos1<pos2)      // shift right
      {

@@ -64,7 +64,7 @@ int JSHOP_3_API_Ngbh::prepare_move( int typ )
 
 int JSHOP_3_API_Ngbh::do_move()
  {
-   short predM1;
+   int predM1;
    int i;
    *P[1]=*P[0];
 

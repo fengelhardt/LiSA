@@ -159,7 +159,7 @@ int JSHOP_API_Ngbh::prepare_move( int typ )
 
 int JSHOP_API_Ngbh::do_move()
  {
-   short predM1;
+   int predM1;
    int help;
    *P[1]=*P[0];
    predM1 = P[1]->GetMOpred(job1,machine1);

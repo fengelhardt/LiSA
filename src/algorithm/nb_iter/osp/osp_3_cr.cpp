@@ -171,8 +171,8 @@ int OSHOP_3_CR_Ngbh::prepare_move( int typ )
 
 int OSHOP_3_CR_Ngbh::do_move()
  {
-   short predJ1;
-   short predM1;
+   int predJ1;
+   int predM1;
    *P[1] = *P[0];
    *temp_schedule = *P[0];
    //swaps[1][4]=!OK; 

@@ -99,8 +99,8 @@ int OSHOP_3_API_Ngbh::prepare_move( int typ )
 
 int OSHOP_3_API_Ngbh::do_move()
  {
-   short predJ1;
-   short predM1;
+   int predJ1;
+   int predM1;
    int i;
    *P[1]=*P[0];
    if (witch_swap==JO)  

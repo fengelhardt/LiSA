@@ -115,8 +115,8 @@ int JSHOP_shift_Ngbh::prepare_move( int typ )
 
 int JSHOP_shift_Ngbh::do_move()
  {
-   short predJ1;
-   short predM1;
+   int predJ1;
+   int predM1;
    int i;
 
    // the following means, that in next time the re-move is set 

@@ -103,7 +103,7 @@ int JSHOP_trans_Ngbh::prepare_move( int typ )
 
 int JSHOP_trans_Ngbh::do_move()
  {
-   short predJ1;
+   int predJ1;
    int i;
    *P[1]=*P[0];
    
