@@ -1,7 +1,3 @@
-/**
- * @author  Marc Moerig
- * @version 2.3pre3
- */
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,8 +19,9 @@ using namespace std;
 //**************************************************************************
 
 /// a simple class for calculation heads
-/**
-  this class is used to calculate heads for the matching algorithm
+/** this class is used to calculate heads for the matching algorithm
+    @author  Marc Moerig
+    @version 2.3pre3
 */
 class My_Heads {
 private:
