@@ -16,6 +16,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "../../xml/LisaXmlFile.hpp"
+
 #include "../../main/global.hpp"
 #include "../../lisa/ctrlpara.hpp"
 #include "../../lisa/ptype.hpp"
@@ -47,45 +49,88 @@ int main(int argc, char *argv[])
 
     cout << "PID= " << getpid() << endl;
 
-    // Define the objects for the file communication 
-    Lisa_ProblemType * lpr = new Lisa_ProblemType;
-    Lisa_ControlParameters * sp = new Lisa_ControlParameters;
-    Lisa_Values * my_values=new Lisa_Values;
-    
     // The both parameter of the module call are the name of the
     // input file and the name of the output file:
     ifstream i_strm(argv[1]);
     ofstream o_strm(argv[2]);
-
-    // read problem description, the controlparameters and
-    // the problem instance:
-    i_strm >> (*lpr);
-    i_strm >> (*sp);
-    i_strm >> (*my_values);
+    if (!i_strm){
+      cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
+      exit(1);
+    }
+    if (!o_strm){
+      cout << "ERROR: cannot find output file " << argv[1] << "." << endl;
+      exit(1);
+    }
+    i_strm.close();
+    o_strm.close();
+    
+    //initialize class
+    LisaXmlFile::initialize();
+    //create Input handler
+    LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
+    //communication objects
+    Lisa_ProblemType Problem;
+    Lisa_ControlParameters Parameter;   
+    Lisa_Values Values;
+    
+    //parse xml file
+    xmlInput.read(argv[1]);
+    //determine document type
+    LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
+    
+    //check for successful parsing and valid document type
+    if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
+    //get Problem
+    if( !(xmlInput >> Problem))
+    {
+      cout << "ERROR: cannot read ProblemType , aborting program." << endl;
+      exit(1);
+    }
+    //get ControlParameters
+    if( !(xmlInput >> Parameter))
+    {
+      cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
+      exit(1);
+    }
+    //get Values
+    if( !(xmlInput >> Values))
+    {
+      cout << "ERROR: cannot read Values , aborting program." << endl;
+      exit(1);
+    }
+    // if something else went wrong
+    if (!G_ExceptionList.empty())
+    {
+      cout << "ERROR: cannot read input , aborting program." << endl;
+      exit(1);
+    }
     
 
     // Define the LiSA  schedule object for storing results
-    Lisa_Schedule * out_schedule = new Lisa_Schedule(my_values->get_n(),
-						     my_values->get_m());
-    out_schedule->make_LR();
+    Lisa_Schedule out_schedule(Values.get_n(),Values.get_m());
+    out_schedule.make_LR();
     
     // **************************************************************
     // *************** Insert your algorithm here: ******************
     // **************************************************************
     
-    int stages=MAX(my_values->get_n(),my_values->get_m());
+    int stages=MAX(Values.get_n(),Values.get_m());
     int i,j;
     
-    for (i=0; i <my_values->get_n(); i++)
-      for (j=0; j <my_values->get_m(); j++)
-	if ((*my_values->SIJ)[i][j])
-	  (*out_schedule->LR)[i][j]= ((i+j) % stages)+1;
+    for (i=0; i <Values.get_n(); i++)
+      for (j=0; j <Values.get_m(); j++)
+	if ((*Values.SIJ)[i][j])
+	  (*out_schedule.LR)[i][j]= ((i+j) % stages)+1;
 
     // The following lines demonstrate how to write into an extra LiSA window:
-    // cout << "WARNING: The Problemtype is:" << lpr->output_problem()<< endl;
-    // cout << "WARNING: The upper bound is:" << sp->get_double("UPPER_BOUND")<< endl;
-    // cout << "WARNING: P(1,2)=" << (*my_values->PT)[1][2]<< endl;
-    // cout << "WARNING: Name:" << sp->get_string("NAME")<< endl;
+     cout << "WARNING: The Problemtype is:" << Problem.output_problem()<< endl;
+     cout << "WARNING: The upper bound is:" << Parameter.get_double("UPPER_BOUND")<< endl;
+     cout << "WARNING: P(1,2)=" << (*Values.PT)[1][2]<< endl;
+     cout << "WARNING: Name:" << Parameter.get_string("NAME")<< endl;
 
     // ***************************************************************
     // ********************* End of Algorithm ************************ 
@@ -93,10 +138,12 @@ int main(int argc, char *argv[])
     
     // The object out_schedule contain the result of this algorithm,
     // which is written into the output file
-    o_strm << *out_schedule;
-    delete out_schedule;
-    delete my_values;
-    delete lpr;
+    //create xml output handler
+    LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
+    //pipe objects to this
+    xmlOutput << Problem << Values << Parameter << out_schedule;
+    //write content to a file
+    xmlOutput.write(argv[2]);
 }
 
 //**************************************************************************

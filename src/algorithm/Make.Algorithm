@@ -55,9 +55,9 @@ install:
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	mkdir -p $(ALGPATH)/language/english
-	cp $(PROGRAMNAME)_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME).alg
+	cp $(PROGRAMNAME)_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME).xml
 	mkdir -p $(ALGPATH)/language/german
-	cp $(PROGRAMNAME)_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME).alg
+	cp $(PROGRAMNAME)_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME).xml
 	mkdir -p $(DOCPATH)/lisa/english/algorithm
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
 	mkdir -p $(DOCPATH)/lisa/german/algorithm
@@ -67,7 +67,7 @@ install:
 
 uninstall:
 	rm -f $(BINPATH)/$(PROGRAMNAME)
-	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME).alg
+	rm -f $(ALGPATH)/language/*/$(PROGRAMNAME).xml
 	rm -f $(DOCPATH)/lisa/*/algorithm/$(PROGRAMNAME).html
 
 # ------------------------------------------------------------------------------
