@@ -13,7 +13,7 @@
 #define _shp_cr_api_h
 
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -39,7 +39,7 @@ class JSHOP_cr_API_Ngbh: public JSHOP_API_Ngbh
 		~JSHOP_cr_API_Ngbh();
 		/** propose a possible move,
 		    parameter is only RAND for random
-		    generation of neighbor;
+		    generation of neighbour;
 		    it propose an interchange of two adjacent operations (in 
 		    the job-order of a machine) on the Cmax-critical way;
 		    it returns OK or !OK   */

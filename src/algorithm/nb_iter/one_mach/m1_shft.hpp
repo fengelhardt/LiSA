@@ -3,7 +3,7 @@
 #define _m1_nb_sh_h
 
 #include "../../../scheduling/m1_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "m1_api.hpp"
 

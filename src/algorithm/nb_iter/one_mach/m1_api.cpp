@@ -178,7 +178,7 @@ int API_Neighbourhood::do_move()
 
 //**************************************************************************
 
-int API_Neighbourhood::anti_neighbor()
+int API_Neighbourhood::anti_neighbour()
  {
    return OK;
  }

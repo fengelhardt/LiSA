@@ -13,7 +13,7 @@
 #define _jsp_shft_h
 
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -40,7 +40,7 @@ class JSHOP_shift_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_shift_Ngbh(); 
 		/** propose a possible move,
 		    parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;
+		    generation of neighbour;
 		    it propose a shift of an arbitrary operation on an other 
 		    position on machine;
 		    it returns OK or !OK   */

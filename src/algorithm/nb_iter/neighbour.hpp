@@ -131,11 +131,11 @@ public:
       This method is only used in combination with the SA_anti algorithm.
       It returns OK if an anti neighbour was created otherwise !OK. 
       If no anti neighbours have been defined simply return !OK */
-  virtual int anti_neighbor() = 0;
+  virtual int anti_neighbour() = 0;
   
   /// do a proposed move
   /** This function has to put the last neighbour that was found in
-      prepare_move() or anti_neighbor() into WORK_SOLUTION. The tabu 
+      prepare_move() or anti_neighbour() into WORK_SOLUTION. The tabu 
       representation of ORIG_SOLUTION or the move back to ORIG_SOLUTION 
       has to be put into work_tabu so it can be put on the tabu list. It 
       returns OK if all that could be done otherwise !OK */ 

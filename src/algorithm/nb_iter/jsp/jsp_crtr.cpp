@@ -83,7 +83,7 @@ int JSHOP_cr_trans_Ngbh::prepare_move( int typ )
     
     if ( typ == RAND )
       {
-	// make a CR-TRANS neighbor swap
+	// make a CR-TRANS neighbour swap
 
 	// determs the number of cr. ways over each operation
 	if ( new_solution == TRUE )

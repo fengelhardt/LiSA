@@ -3,7 +3,7 @@
 #define _m1_nb_h
 
 #include "../../../scheduling/m1_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 
 /// single machine API neighbourhood
@@ -46,7 +46,7 @@ public:
 	virtual int   put_work_to_best_ngh();
 	int prepare_move(int param);
 	int do_move();
-  int anti_neighbor();
+  int anti_neighbour();
 	int   init_tabulist( unsigned int );
 	int   use_tabulist();
 	int   set_tabulist();

@@ -13,7 +13,7 @@
 #define _jsp_3_api_h
 
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -38,7 +38,7 @@ class JSHOP_3_API_Ngbh: public JSHOP_API_Ngbh
 		JSHOP_3_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
 		/** propose a possible move, 
 	            parameter is ENUM or RAND for enumerative or random
-		    generation of neighbor;
+		    generation of neighbour;
 		    it propose three interchanges of two adjacent operations 
 		    in the job-orders of three machines;
 	 	    it returns OK or !OK   */

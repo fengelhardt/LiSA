@@ -57,7 +57,7 @@ int JSHOP_cr_shift_mix_Ngbh::prepare_move( int typ )
 	k = lisa_random( 1, 100000, &seed );
 	if ( k <= 25000 )
 	  {
-	    // make an API neighbor swap
+	    // make an API neighbour swap
 	    // determs randomly a machine
 	    machine1 = lisa_random( 1, PP->m, &seed );
 	    // determs randomly a job and look if it have a predecessor

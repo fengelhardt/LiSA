@@ -58,7 +58,7 @@ Lisa_Iterator::Lisa_Iterator()
     abort_at_bound = -MAXNUMBER;
     abort_stuck = MAXNUMBER;
     max_stuck=MAXNUMBER;
-    anti_neighbor = FALSE;
+    anti_neighbour = FALSE;
   }
 
 //**************************************************************************
@@ -102,7 +102,7 @@ void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 
 		  break;
         case  SA_anti: 
 	          method = SA;
-		  anti_neighbor = TRUE;
+		  anti_neighbour = TRUE;
 	          factor0 = -0.01 / log( double( param1 ) / 100.0 );
 		  max_stuck = param2;
 		  search_type = RAND;
@@ -131,7 +131,7 @@ void Lisa_Iterator::init( int methodi, unsigned int param1,
 		  exit( 7 );
 		  break;
         case  TS: tabu_lenght=param1;
-                  number_neighbors = param2;
+                  number_neighbours = param2;
 		  search_type = param3;
 		  break;
 	case  SA: 
@@ -275,9 +275,9 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 			    }
 			  if (++stuck_since>=max_stuck)  
 			    {
-			      if ( anti_neighbor == TRUE )
+			      if ( anti_neighbour == TRUE )
 				{
-				  NB->anti_neighbor();
+				  NB->anti_neighbour();
 				  NB->set_objective( objective_type, 
 						     ORIG_SOLUTION );
 				}
@@ -339,7 +339,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
        // iteration loop for tabu search
        while( steps > 0 )
 	 {
-	   nn=number_neighbors;
+	   nn=number_neighbours;
 	   best_step = MAXNUMBER;
 	   NB->clean_tabu_param();
 	   while ((nn>0)&&(NB->prepare_move(search_type)==OK))

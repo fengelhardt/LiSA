@@ -2,7 +2,7 @@
 #ifndef _nb_fp_h
 #define _nb_fp_h
 
-#include "../../algorithm/nb_iter/neighbor.hpp"
+#include "../../algorithm/nb_iter/neighbour.hpp"
 #include "../../algorithm/nb_iter/tabu.hpp"
 #include "fp_set.hpp"
 
@@ -54,14 +54,14 @@ public:
   
   /// propose a possible move
   /** parameter is ENUM or RAND for enumerative or random generation of 
-      neighbor */
+      neighbour */
   int     prepare_move( int );
   
   /// do the proposed move 
   int     do_move();
     
-  /// create a anti-neighbor
-  int     anti_neighbor();
+  /// create a anti-neighbour
+  int     anti_neighbour();
 
   /// initialize the tabulist with specified length  
   int     init_tabulist( unsigned int );

@@ -3,7 +3,7 @@
 #define _oshp_api_h
 
 #include "../../../scheduling/os_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 
 /// open shop API neighbourhood.
@@ -51,7 +51,7 @@ public:
   virtual int   put_work_to_best_ngh();
   int prepare_move(int type);
   int   do_move();
-  int   anti_neighbor();
+  int   anti_neighbour();
   int   init_tabulist( unsigned int );
   int   use_tabulist();
   int   set_tabulist();

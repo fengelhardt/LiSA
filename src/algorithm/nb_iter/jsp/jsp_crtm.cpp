@@ -87,7 +87,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	rand = lisa_random( 1, 100000, &seed );
 	if ( rand <= 25000 )
 	  {
-	    // make an API neighbor swap
+	    // make an API neighbour swap
 	    
 	    // determs randomly a machine
 	    api = TRUE;
@@ -110,7 +110,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	  }
 	else
 	  {
-	    // make a CR-TRANS neighbor swap
+	    // make a CR-TRANS neighbour swap
 
 	    api = FALSE;
 	    // determs the number of cr. ways over each operation
@@ -274,7 +274,7 @@ int JSHOP_cr_trans_mix_Ngbh::prepare_move( int typ )
 	    if ( pos2 < PP->n )
 	      for (i=pos2+1; i<=PP->n; i++)
 		(*tabu_0)[i] = (*JOrd)[i-1];
-	  } // end of CR-TRANS neighbor swap
+	  } // end of CR-TRANS neighbour swap
 	
 	return OK;
           

@@ -4,7 +4,7 @@
 
 #include "../../../basics/order.hpp"
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -43,7 +43,7 @@ public:
   /// destructor
   ~JSHOP_3_CR_Ngbh();
 	/// propose a possible move,
-	/** parameter is ENUM or RAND for enumerative or random generation of neighbor
+	/** parameter is ENUM or RAND for enumerative or random generation of neighbour
         
       it proposes an interchange of two adjacent operations (in the job-order) 
       on the Cmax critical way, and additional, if possible and useful, an 

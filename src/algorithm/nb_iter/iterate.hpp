@@ -2,7 +2,7 @@
 #ifndef _iterate_h
 #define _iterate_h
 
-#include "neighbor.hpp"
+#include "neighbour.hpp"
 #include "../../main/global.hpp"
 #include "../../misc/except.hpp"
 
@@ -12,7 +12,7 @@ enum{NOMETHOD /** none  */ =0
     ,SA /** simulated annealing */
     ,TA /** treshold accepting */
     ,TS /** tabu search */
-    ,SA_anti /** simulated annealing with antineighbor */
+    ,SA_anti /** simulated annealing with antineighbour */
     };
 
 /// Problem independent neighbourhood iteration class.
@@ -24,7 +24,7 @@ enum{NOMETHOD /** none  */ =0
     - SA : simulated annealing
     - TA : treshold acception
     - TS : tabu search
-    - SA_anti : simulated annealing with antineighbor
+    - SA_anti : simulated annealing with antineighbour
     
     A start solution is given within the neighbourhood.
 
@@ -80,13 +80,13 @@ private:
   int search_type;
   
   /// number of neighbours to generate as given by init() methods
-  int number_neighbors;
+  int number_neighbours;
   
   /// length of tabu list as given by init() method
   int tabu_lenght;
   
   /// sa with anti neighbours ?
-  bool  anti_neighbor;
+  bool  anti_neighbour;
   
   void run_start();
   void run_stop();

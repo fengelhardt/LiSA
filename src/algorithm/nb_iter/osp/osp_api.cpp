@@ -290,7 +290,7 @@ int OSHOP_API_Ngbh::do_move()
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::anti_neighbor()
+int OSHOP_API_Ngbh::anti_neighbour()
  {
    return OK;
  }

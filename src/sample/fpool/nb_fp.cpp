@@ -111,7 +111,7 @@ int FP_Neighbourhood::do_move( )
 
 //**************************************************************************
 
-int FP_Neighbourhood::anti_neighbor()
+int FP_Neighbourhood::anti_neighbour()
  {
    return OK;
  }

@@ -3,7 +3,7 @@
 #define _travel_neighbour_h
 
 #include "../../basics/matrix.hpp"
-#include "../../algorithm/nb_iter/neighbor.hpp"
+#include "../../algorithm/nb_iter/neighbour.hpp"
 #include "../../algorithm/nb_iter/tabu.hpp"
 #include "travel_graph.hpp"
 
@@ -110,9 +110,9 @@ public:
   /// do the proposed move
   int do_move();
   
-  /// create a anti-neighbor 
+  /// create a anti-neighbour 
   /** This method basically does the same as prepare_move().*/
-  int inline anti_neighbor(){return !OK;}
+  int inline anti_neighbour(){return !OK;}
   
   /// create a tabu list with a specific length
   int inline init_tabulist(const unsigned int l_in){ return (tabulist = new Lisa_Tabu(l_in,length-1)) ? OK : !OK;}
@@ -163,7 +163,7 @@ public:
 
   /// propose a possible move to an anti neighbour
   // for this neighbourhood its just the neighbourhood from our base class
-  int inline anti_neighbor(){return Travel_RPI_Neighbourhood::prepare_move(RAND);}
+  int inline anti_neighbour(){return Travel_RPI_Neighbourhood::prepare_move(RAND);}
 
   /// copy WORK_SOLUTION to ORIG_SOLUTION
   // reset enumeration counter !

@@ -3,7 +3,7 @@
 #define _oshp_bl_shift_h
 
 #include "../../../scheduling/os_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "osp_api.hpp"
 

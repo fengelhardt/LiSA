@@ -13,7 +13,7 @@
 #define _jsp_swap_h
 
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -38,7 +38,7 @@ class JSHOP_swap_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_swap_Ngbh(); 
 		/** propose a possible move,
 		    parameter is only RAND for random
-		    generation of a neighbor;
+		    generation of a neighbour;
 		    it propose an interchange of two arbitrary not necessary 
    		    adjacent operations in the job-order of one machine;
 		    it returns OK or !OK   */

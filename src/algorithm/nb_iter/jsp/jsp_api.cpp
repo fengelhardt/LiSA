@@ -190,7 +190,7 @@ int JSHOP_API_Ngbh::do_move()
 
 //**************************************************************************
 
-int JSHOP_API_Ngbh::anti_neighbor()
+int JSHOP_API_Ngbh::anti_neighbour()
  {
    Lisa_Vector<int>     *cr_job;
    Lisa_Vector<int>     *cr_mach;

@@ -13,7 +13,7 @@
 #define _jsp_crtr_mix_h
 
 #include "../../../scheduling/js_sched.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 #include "jsp_api.hpp"
 
@@ -49,7 +49,7 @@ class JSHOP_cr_trans_mix_Ngbh: public JSHOP_API_Ngbh
                 ~JSHOP_cr_trans_mix_Ngbh(); 
 		/** propose a possible move,
 		    parameter is only RAND for random
-		    generation of neighbor;
+		    generation of neighbour;
 		    it propose a transpose of a partial sequence of operations
 		    in the job-order of one machine;
 		    it returns OK or !OK   */

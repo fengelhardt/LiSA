@@ -4,7 +4,7 @@
 
 #include "../../../scheduling/js_sched.hpp"
 #include "../../../basics/order.hpp"
-#include "../neighbor.hpp"
+#include "../neighbour.hpp"
 #include "../tabu.hpp"
 
 /// job shop API neighbourhood
@@ -55,7 +55,7 @@ public:
   virtual int   put_work_to_best_ngh();
   int   prepare_move(int);
   int   do_move();
-  int   anti_neighbor();
+  int   anti_neighbour();
   int   init_tabulist( unsigned int );
   int   use_tabulist();
   int   set_tabulist();
