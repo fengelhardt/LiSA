@@ -37,7 +37,7 @@ void Lisa_Graph::read(istream & strm){
                            Lisa_ExceptionList::ANY_ERROR);
     return;
   }
-  
+
   string S;
   int new_size;
   Lisa_Matrix<int>* adj_Matrix=0;
