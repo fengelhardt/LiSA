@@ -10,7 +10,7 @@
  */
 /**
     @author Andreas Winkler
-    @version 2.2a0
+    @version 2.3pre1
 */
 #include "nb_iter.hpp"
 #include<unistd.h>

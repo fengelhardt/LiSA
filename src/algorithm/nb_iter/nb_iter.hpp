@@ -20,7 +20,7 @@
     To call this program use: #nb_iter [input file] [output file]# 
     
     @author Andreas Winkler
-    @version 2.2a0
+    @version 2.3pre1
 */  
 
 #include "../../basics/matrix.hpp"

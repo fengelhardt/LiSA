@@ -37,7 +37,7 @@ const int SECOND_TO_FIRST=-1;
     problem objects with the aid of the reduction graphs.
     
     @author Martin Harborth 
-    @version 2.2a0
+    @version 2.3pre1
 */
 class Lisa_RedGraph
 { 

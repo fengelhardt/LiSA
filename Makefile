@@ -5,20 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-# The release level should be 0 for alpha, 1 for beta, and 2 for final/patch.
-# The release serial value is the number that follows the "a", "b", or "p" in
-# the patch level; for example, if the patch level is 1.0b2, RELEASE_SERIAL is
-# 2. It restarts at 1 whenever the release level is changed, except for the
-# final release which is 0 (the first patch will start at 1).
-
-MAJOR_VERSION=2
-MINOR_VERSION=2
-RELEASE_LEVEL=2
-RELEASE_LEVEL_LETTER=a
-RELEASE_SERIAL=0
-
-VERSION=$(MAJOR_VERSION).$(MINOR_VERSION)
-PATCH_LEVEL=$(VERSION)$(RELEASE_LEVEL_LETTER)$(RELEASE_SERIAL)
+VERSION=2.3pre1
 
 # ------------------------------------------------------------------------------
 
@@ -181,18 +168,12 @@ version:
 	@echo
 	@find $(SOURCEPATH) -name "*.[hc]pp" -type f \
 	| gawk '{print "\"" $$0 "\""}' \
-	| xargs -n 1 $(TOPPROGRAMPATH)/make_version $(PATCH_LEVEL)
+	| xargs -n 1 $(TOPPROGRAMPATH)/make_version $(VERSION)
 	@echo
 	@echo "creating $(SOURCEPATH)/general/version.hpp"
 	@rm -f $(SOURCEPATH)/general/version.hpp.temp
 	@cat $(SOURCEPATH)/general/version.hpp \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_MAJOR_VERSION " $(MAJOR_VERSION) \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_MINOR_VERSION " $(MINOR_VERSION) \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_RELEASE_LEVEL " $(RELEASE_LEVEL) \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_RELEASE_LEVEL_LETTER " "'$(RELEASE_LEVEL_LETTER)'" \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_RELEASE_SERIAL " $(RELEASE_SERIAL) \
 	| $(TOPPROGRAMPATH)/make_substitute "LISA_VERSION " '\"$(VERSION)\"' \
-	| $(TOPPROGRAMPATH)/make_substitute "LISA_PATCH_LEVEL " '\"$(PATCH_LEVEL)\"' \
 	> $(SOURCEPATH)/general/version.hpp.temp
 	@mv $(SOURCEPATH)/general/version.hpp.temp $(SOURCEPATH)/general/version.hpp
 	@echo

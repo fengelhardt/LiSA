@@ -20,7 +20,7 @@
     and set or read C++ variables
 
     @author Per Willenius
-    @version 2.2a0
+    @version 2.3pre1
 */ 
 
 //@{ 

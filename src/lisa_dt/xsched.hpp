@@ -17,7 +17,7 @@
     lisa_dt/problem.h basics/matrix.h  basics/pgraph.h
 
     @author Per Willenius 
-    @version 2.2a0
+    @version 2.3pre1
 */ 
 
 //@{

@@ -39,7 +39,7 @@ const char RULE_NAMES[NUMBER_RULES][5]= { "RAND","FCFS","EDD","LQUE","SPT",
     algorithm for semiactive schedules is only written as an LR!
 
     @author Thomas Tautenhahn
-    @version 2.2a0
+    @version 2.3pre1
     @see Lisa_List
     @see Lisa_GenericList */ 
 class Lisa_Dispatcher

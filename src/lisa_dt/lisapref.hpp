@@ -17,7 +17,7 @@
   uses: string
 
   @author Per Willenius
-  @version 2.2a0
+  @version 2.3pre1
   */ 
 
 //@{

@@ -57,7 +57,7 @@ const int STRING=3;
     glist and nodewith.
 
     @author Per Willenius and Thomas Tautenhahn 
-    @version 2.2a0
+    @version 2.3pre1
 */ 
   
 class Lisa_ControlParameters: public  Lisa_Object

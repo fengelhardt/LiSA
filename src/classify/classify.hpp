@@ -47,7 +47,7 @@ const int PATHMAX=500;
     @see Lisa_DataBase 
     @see Lisa_RedGraph
     @author Martin Harborth
-    @version 2.2a0
+    @version 2.3pre1
 */
 string Lisa_classify(Lisa_ProblemType*,string,string);  
 

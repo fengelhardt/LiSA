@@ -33,7 +33,7 @@
     Lisa_Vector<int>*, then the first Element of X is (*X)[0] and not 
     "*X[0]" or "X[0]"!
     @author Thomas Tautenhahn
-    @version 2.2a0
+    @version 2.3pre1
     @see Lisa_VectorOfLists
     @see Lisa_MatrixOfLists 
 */ 

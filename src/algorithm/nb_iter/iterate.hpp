@@ -87,7 +87,7 @@ const int SA_anti = 5;
     @see Lisa_Tabu
 
     @author Andreas Winkler
-    @version 2.2a0
+    @version 2.3pre1
 */
 class Lisa_Iterator {
 private: 

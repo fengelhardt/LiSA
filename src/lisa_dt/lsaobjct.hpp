@@ -30,7 +30,7 @@
     Include file LiSA/src/lisa_dt/lsaobjkt.h, it uses iostream, 
 
     @author Per Willenius 
-    @version 2.2a0
+    @version 2.3pre1
 */ 
 
 /** Lisa_GenericObject has only a virtual write-function and schould 

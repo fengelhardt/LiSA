@@ -24,7 +24,7 @@
     An analogous algorithm for job shop is under way. 
 
     @author Thomas Tautenhahn
-    @version 2.2a0
+    @version 2.3pre1
 */ 
 \\@{
   \\@Include: os_bb.h

@@ -32,7 +32,7 @@
     this problem.
 
     @author Thomas Tautenhahn
-    @version 2.2a0
+    @version 2.3pre1
     @see Lisa_GenericList
     @see Lisa_Problem
     @see Lisa_compare

@@ -29,7 +29,7 @@
     It is inherited from the class Lisa_Neighborhood.
 
     @author Andreas Winkler
-    @version 2.2a0
+    @version 2.3pre1
     @see Lisa_Neighborhood
     @see OSHOP_API_Ngbh
     @see OSHOP_cr_API_Ngbh

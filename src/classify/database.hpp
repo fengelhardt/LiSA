@@ -84,7 +84,7 @@ class Record
 
     @see Lisa_classify
     @author Martin Harborth
-    @version 2.2a0
+    @version 2.3pre1
 */  
 class Lisa_DataBase
 {

@@ -33,7 +33,7 @@
 	BEST_NGH_SOLUTION = 3;\\
 
     @author Andreas Winkler
-    @version 2.2a0
+    @version 2.3pre1
     @see Lisa_Neighborhood
 */
 class JSHOP_API_Ngbh: public Lisa_Neighborhood
