@@ -8,8 +8,8 @@
 #define _DATASTRUCT_H
 
 
-#define MaxNumOfMachines     50
-#define MaxNumOfJobs         50
+#define MaxNumOfMachines     30
+#define MaxNumOfJobs         30
 #define MaxOpProMachine      MaxNumOfJobs
 #define MaxNumOfOperations   MaxNumOfJobs * MaxNumOfMachines
 
