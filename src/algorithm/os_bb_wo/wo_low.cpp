@@ -35,13 +35,7 @@
 /* die Prozedur laeuft fuer die Op'en einer Maschine und fuer die Op'en
    eines Jobs: OpsOfJob bzw. OpsOnMachine werden in 'op_array' eingelesen;
 */  
-int Preemptive_Schedule(op_array, num, head)	
-
-int op_array[];  
-int num;  
-int head[];
-
-{
+int Preemptive_Schedule(int op_array[],int num,int head[]){
 
   int set_O[MaxOpProM_And_J+1],
       time, 

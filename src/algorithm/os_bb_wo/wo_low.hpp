@@ -27,7 +27,7 @@
 /* ************************************************************************* */
 
 
-int Preemptive_Schedule ();
+int Preemptive_Schedule (int op_array[],int num,int head[]);
 
 /* ************************************************************************* */
 /*                      Procedure   Compute_LowerBound()                     */
