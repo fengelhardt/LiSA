@@ -75,7 +75,7 @@ void TCValues::draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT,
     main_canvas->line(1,1,1,entryheight*n,"Grey");
     for(j=0;j<n;j++) {
       main_canvas->line(1,entryheight*(j+1),entrywidth*m,entryheight*(j+1),"Grey");  
-      canv_vertikal->text(25,entryheight*(j+0.5),(string) "J "+ ztos(j+1) ,"Black");
+      canv_vertikal->text(25,entryheight*(j+0.5),"J "+ ztos(j+1) ,"Black");
     }
     
     for(i=0;i<m;i++) {
@@ -193,7 +193,7 @@ void TCScheduleList::draw(Lisa_List<ScheduleNode> * myScheduleList) {
     main_canvas->line(1,entryheight*(j+1),entrywidth*no_columns,entryheight*(j+1),"Grey");
     //myLisa_Node=(*G_Schedule.ScheduleList)[j];
     myScheduleNode=myScheduleList->get();
-    canv_vertikal->text(25,entryheight*(j+0.5),(string) ztos((*myScheduleList->get().schedule_info)[0]) ,"Black");
+    canv_vertikal->text(25,entryheight*(j+0.5),ztos((*myScheduleList->get().schedule_info)[0]) ,"Black");
     myScheduleList->next();
   }
   for(i=0;i<LENGHT_OF_OBJECTIVE;i++) {
@@ -293,7 +293,7 @@ void TCSchedule::draw( Lisa_MO *myMO,
     main_canvas->line(1,1,1,entryheight*n,"Grey");
     for(j=0;j<n;j++) {
       main_canvas->line(1,entryheight*(j+1),entrywidth*m,entryheight*(j+1),"Grey");  
-      canv_vertikal->text(25,entryheight*(j+0.5),(string) "J "+ ztos(j+1) ,"Black");
+      canv_vertikal->text(25,entryheight*(j+0.5),"J "+ ztos(j+1) ,"Black");
     }
     
     for(i=0;i<m;i++) {
@@ -364,7 +364,7 @@ void TCCMatrix::draw(Lisa_Matrix<TIMETYP> *myC,
     main_canvas->line(1,1,1,entryheight*n,"Grey");
     for(j=0;j<n;j++) {
       main_canvas->line(1,entryheight*(j+1),entrywidth*m,entryheight*(j+1),"Grey");  
-      canv_vertikal->text(25,entryheight*(j+0.5),(string) "J "+ ztos(j+1) ,"Black");
+      canv_vertikal->text(25,entryheight*(j+0.5),"J "+ ztos(j+1) ,"Black");
     }
     
     for(i=0;i<m;i++) {

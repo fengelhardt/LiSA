@@ -160,8 +160,8 @@ public:
   inline Lisa_Vector<T>& operator[] (const unsigned i){ 
 #ifdef LISA_DEBUG
     if (i>=n){
-        G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
-				               ztos((int)n)+"-row matrix requested",
+        G_ExceptionList.lthrow("row "+ztos(i)+" of a "+
+				               ztos(n)+"-row matrix requested",
                                OUT_OF_RANGE);
         return row[0];
 	}
@@ -172,8 +172,8 @@ public:
   inline const Lisa_Vector<T>& operator[](const unsigned i)const{ 
 #ifdef LISA_DEBUG
     if (i>=n){
-	  G_ExceptionList.lthrow("row "+ztos((int)i)+" of a "+
-				             ztos((int)n)+"-row matrix requested",
+	  G_ExceptionList.lthrow("row "+ztos(i)+" of a "+
+				             ztos(n)+"-row matrix requested",
                              OUT_OF_RANGE);
 	  return row[0];
 	}
