@@ -206,7 +206,7 @@ proc show_mess_and_choice { title text action} {
     Window show .mess_and_choice
 #    set errormess(title) $Name(Error)
     wm title  .mess_and_choice $title
-.mess_and_choice.fra23.but25 config -command $action
+.mess_and_choice.fra23.but24 config -command $action
     .mess_and_choice.fra22.tex26 insert end $text
 
 }
@@ -249,10 +249,10 @@ proc vTclWindow.mess_and_choice {base} {
         -borderwidth 2 -height 75 -relief groove \
         -width 125 
     button $base.fra23.but24 \
-        -padx 11 -pady 4 -text $Name(Close) \
+        -padx 11 -pady 4 -text $Name(OK) \
 	-command {destroy .mess_and_choice}
    button $base.fra23.but25 \
-        -padx 11 -pady 4 -text $Name(OK) \
+        -padx 11 -pady 4 -text $Name(Cancel) \
 	-command {destroy .mess_and_choice}
     ###################
     # SETTING GEOMETRY
