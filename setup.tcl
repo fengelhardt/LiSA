@@ -2,6 +2,11 @@
 # the next line restarts using wish\
 exec wish "$0" "$@" 
 
+# LiSA setup program
+# Copyright Lars Dornheim 2002
+# E-Mail: eldeh@web.de
+# WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
+
 if {![info exists vTcl(sourcing)]} {
     switch $tcl_platform(platform) {
 	windows {
@@ -140,7 +145,6 @@ proc {vTcl:Toplevel:WidgetProc} {w args} {
 
         "ShowModal" {
             Window show $w
-#            raise $w
             grab $w
             tkwait window $w
             grab release $w
@@ -301,23 +305,23 @@ proc {doWinInstall} {} {
      regsub -all / $installDir \\ installDirDOSStyle
      set startScriptName $installDir/bin/lisa.bat
      set startScript [open $startScriptName w]
-     puts $startScript "rem LiSA start shell script
+     puts $startScript "@echo off
+
+
+rem LiSA start shell script
 rem Copyright Lars Dornheim 1998, 1999
 rem E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 rem WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 
-@echo off
-
-
 rem setting the LiSA home path
 
-set LISAHOME=\"$installDir\"
+set LISAHOME=$installDir
 
 
 rem setting the LiSA config path
 
-set LISACONFIG=\"%LISAHOME%/data\"
+set LISACONFIG=%LISAHOME%/data
 
 
 rem starting LiSA
@@ -492,7 +496,6 @@ proc vTclWindow.top64 {base {container 0}} {
 }
 
 Window show .
-#Window show .top33
 Window show .top64
 
 main $argc $argv

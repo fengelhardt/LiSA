@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------------
 
-VERSION=2.3pre0
+VERSION=2.3pre1
 
 # ------------------------------------------------------------------------------
 
@@ -142,6 +142,7 @@ dist-cygwin:
 	cp $(TOPPROGRAMPATH)/setup.tcl $(CYGWINPATH)/LiSA/setup.tcl
 	cp -r $(BINPATH) $(CYGWINPATH)/LiSA/bin
 	rm -f $(CYGWINPATH)/LiSA/bin/lisa
+	rm -f $(CYGWINPATH)/LiSA/bin/lisa.bat
 	cp -r $(DOCPATH) $(CYGWINPATH)/LiSA/doc
 	cp -r $(TOPPROGRAMPATH)/data $(CYGWINPATH)/LiSA
 	cp -r $(TOPPROGRAMPATH)/img $(CYGWINPATH)/LiSA
