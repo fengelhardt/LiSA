@@ -1,5 +1,7 @@
+../../../obj/ptype.o: ../../lisa/ptype.cpp ../../main/global.hpp ../../misc/except.hpp   ../../basics/list.hpp ../../lisa/lsaobjct.hpp ../../lisa/ptype.hpp   ../../lisa/filentry.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/ptype.o ../../lisa/ptype.cpp
 ../../../obj/ctrlpara.o: ../../lisa/ctrlpara.cpp ../../lisa/ctrlpara.hpp   ../../basics/list.hpp ../../main/global.hpp ../../lisa/lsaobjct.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/ctrlpara.o ../../lisa/ctrlpara.cpp
 ../../../obj/global.o: ../../main/global.cpp ../../main/global.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/global.o ../../main/global.cpp
 ../../../obj/list.o: ../../basics/list.cpp ../../basics/list.hpp ../../main/global.hpp   ../../lisa/lsaobjct.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/list.o ../../basics/list.cpp
+../../../obj/int2str.o: ../../misc/int2str.cpp ../../misc/int2str.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/int2str.o ../../misc/int2str.cpp
 ../../../obj/except.o: ../../misc/except.cpp ../../misc/except.hpp   ../../basics/list.hpp ../../main/global.hpp ../../lisa/lsaobjct.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/except.o ../../misc/except.cpp
-../../../obj/auto_alg.o: auto_alg.cpp ../../misc/except.hpp ../../basics/list.hpp   ../../main/global.hpp ../../lisa/lsaobjct.hpp ../../lisa/ctrlpara.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/auto_alg.o auto_alg.cpp
+../../../obj/auto_alg.o: auto_alg.cpp ../../misc/int2str.hpp ../../misc/except.hpp   ../../basics/list.hpp ../../main/global.hpp ../../lisa/lsaobjct.hpp   ../../lisa/ctrlpara.hpp ../../lisa/ptype.hpp ../../lisa/filentry.hpp; $(CXX) -c $(CXXFLAGS) -o ../../../obj/auto_alg.o auto_alg.cpp

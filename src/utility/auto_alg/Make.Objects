@@ -1,6 +1,8 @@
 OBJECTS=\
+	../../../obj/ptype.o \
 	../../../obj/ctrlpara.o \
 	../../../obj/global.o \
 	../../../obj/list.o \
+	../../../obj/int2str.o \
 	../../../obj/except.o \
 	../../../obj/auto_alg.o
