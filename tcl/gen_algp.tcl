@@ -321,7 +321,8 @@ proc {read_all_desc_files} { } {
     set lsa_status(list_of_external_alg) ""
     set descr_dir "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)"    
     set source_dir "$env(LISAHOME)/tcl/external"
-    file mkdir "$env(LISAHOME)/tcl/external"
+    cd $env(LISAHOME)/tcl
+    file mkdir external
     cd $descr_dir
     set filelist ""
     catch {set filelist [glob "*.alg" ] }
