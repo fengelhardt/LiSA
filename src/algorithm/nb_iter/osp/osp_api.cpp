@@ -369,7 +369,7 @@ void OSHOP_API_Ngbh::store_tabu_param()
 void OSHOP_API_Ngbh::clean_tabu_param()
   {
     int i;
-    for ( i=0; i<=3; i++ )
+    for ( i=0; i<4; i++ )
       tabu_param[0][i] = 0;
   }
 

@@ -222,7 +222,7 @@ int JSHOP_3_CR_Ngbh::set_tabulist()
 void JSHOP_3_CR_Ngbh::clean_tabu_param()
   {
     int i;
-    for ( i=0; i<=3; i++ )
+    for ( i=0; i<3; i++ )
       swaps[i][0] = swaps[i][1] = swaps[i][2] = swaps[i][3] = 0;
   }
 
