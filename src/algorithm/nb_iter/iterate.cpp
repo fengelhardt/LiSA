@@ -165,7 +165,7 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
     TIMETYP best_value, best_step, last_break_value;
     int     test, nn, non_move, max_non_move;
     long     steps_per_output_line = 1;
-    if ( steps >= 400 )
+    if ( steps >= PROGRESS_INDICATOR_STEPS )
       steps_per_output_line = long(steps/PROGRESS_INDICATOR_STEPS);
     
     // getting some memory <-- removed this -marc-
