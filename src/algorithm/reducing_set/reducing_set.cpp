@@ -142,10 +142,10 @@ void update(Lisa_Matrix<TIMETYP> & P,
   }
   
   for(int j=0;j<n;j++)  {
-       (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
+       (*MatchingMatrix)[j][m+j]=(((*rowsums)[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
   }
   for(int i=0;i<m;i++) {
-       (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
+       (*MatchingMatrix)[n+i][i]=(((*colsums)[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
   }
 }
 
@@ -203,8 +203,8 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
   MatchingInfo->y=(int)EdgesAndDelta;
   
   
-  for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
-  for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
+  for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j] = (((*rowsums)[j]==LB) ? 0 : ( (LB - (*rowsums)[j]) > 0 ));
+  for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i] = (((*colsums)[i]==LB) ? 0 : ( (LB - (*colsums)[i]) > 0 ));
 
   allMatchings->append(*MatchingInfo);
   //  delete EdgesAndDelta;
@@ -259,8 +259,8 @@ int main(int argc, char *argv[])
      (*MatchingMatrix)[j][i]=((*P_input)[j][i]>0);
      (*MatchingMatrix)[n+i][m+j]=((*P_input)[j][i]>0);
     }
-    for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j]=((rowsums[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
-    for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i]=((colsums[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
+    for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j]=(((*rowsums)[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
+    for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i]=(((*colsums)[i]==LB) ? 0 : ((LB - (*colsums)[i])>0));
 
 
     /*********************************************************

@@ -47,7 +47,7 @@ int JSHOP_cr_shift_Ngbh::prepare_move( int typ )
     // typ=ENUM : enumerativ
     // typ=RAND : randomly
     TIMETYP Cmax;
-    int i, j, k, succ, pred, pos, direction;
+    int i, j, k, succ, pred, pos=0, direction;
     int count, count_l, count_r, l_end, r_end;
 
     if ( typ == RAND )

@@ -214,7 +214,7 @@ void Lisa_Dispatcher::js_dispatch()
 
 void Lisa_Dispatcher::os_dispatch_active()
 {
-  int i,j, k,l;
+  int i=0,j=0, k,l;
   float maxprio;
   Lisa_Matrix<TIMETYP> * opstart=new Lisa_Matrix<TIMETYP>(n+1,m+1);
   
@@ -269,7 +269,7 @@ void Lisa_Dispatcher::os_dispatch_active()
 
 void Lisa_Dispatcher::os_dispatch()
 {
-  int i,j, k,l;
+  int i=0,j=0, k,l;
   float maxprio;
   
   // initialize schedule:

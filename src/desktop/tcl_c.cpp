@@ -159,7 +159,7 @@ int TC_open_schedule(ClientData /* clientData*/ ,
           dummynode=G_ScheduleList->pop();
           if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
 	}
-    Lisa_Schedule *mySchedule;
+    Lisa_Schedule *mySchedule=0;
     ScheduleNode *myScheduleNode;
     int i=0;
     for(i=1;i<=no_schedules;i++) {

@@ -184,7 +184,7 @@ void Lisa_JsSchedule::operator=(Lisa_JsSchedule &other)
 int Lisa_JsSchedule::insert( int i, int j, int woi )
 { 
   int h, xyz;  
-  TIMETYP oldmosucc, oldjosucc;
+  TIMETYP oldmosucc=0, oldjosucc=0;
   
   if (!ScheduleOK) 
     { 

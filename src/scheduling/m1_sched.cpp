@@ -248,7 +248,7 @@ bool Lisa_1Schedule::exists( int i )
 int Lisa_1Schedule::insert( int i, int woi )
   { 
     int h, xyz;  
-    TIMETYP oldjosucc;
+    TIMETYP oldjosucc=0;
     
 #ifdef LISA_DEBUG
     if (exists(i))

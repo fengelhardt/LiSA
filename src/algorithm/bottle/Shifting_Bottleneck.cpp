@@ -73,7 +73,7 @@ void Shifting_Bottleneck::shifting_bottleneck()
   int first=1;
   int machine=0;
   int count=0;
-  int size;
+  int size=0;
 
   //searches JsPro->m (number of machines) -  times 
   //for the next bottleneck machine 

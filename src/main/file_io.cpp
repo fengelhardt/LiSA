@@ -101,7 +101,7 @@ int read(string dname) {
       return 1;
     }
 
-     Lisa_Schedule *mySchedule;
+    Lisa_Schedule *mySchedule = 0;
     ScheduleNode *myScheduleNode;
     int i;
     //G_ScheduleList->clear();

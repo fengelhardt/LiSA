@@ -20,7 +20,7 @@ static void Compute_Head(int ActualOp)
   
   register struct List  *help;
   int op_array[MaxOpProMachine+1];
-  int i, max, num, news;
+  int i, max, num, news=0;
   max = 0;
   help = ConjArcs->pred[ActualOp]; 
   while (help != NIL) {

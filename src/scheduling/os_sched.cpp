@@ -90,7 +90,7 @@ void Lisa_OsSchedule::operator=(Lisa_OsSchedule &other)
 int Lisa_OsSchedule::insert(int i, int j, int woi, int woj)
     { 
       int h, xyz;  
-      TIMETYP oldmosucc, oldjosucc;
+      TIMETYP oldmosucc=0, oldjosucc=0;
 
       if (!ScheduleOK) { cerr << "\nSchedule not feasible --> nothig done \n";
 		     return(ERROR);

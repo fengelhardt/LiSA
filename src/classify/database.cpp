@@ -44,7 +44,7 @@ Lisa_DataBase::Lisa_DataBase(string name)
 int
 Lisa_DataBase::bib_entry(char *bibstr, int i)
 {  
-  int j, k, pn;
+  int j, k, pn=0;
   char *annote  = new char[ANNOTE];
   char *helpstr = new char[ANNOTE];
   

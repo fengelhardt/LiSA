@@ -160,7 +160,7 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
  Tcl_CreateCommand(interp, "TC_choose_sequence", TC_choose_sequence, (ClientData) 
 		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
  Tcl_CreateCommand(interp, "TC_sort_sl", TC_sort_sl, (ClientData) 
-		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
+           Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
  Tcl_CreateCommand(interp, "TC_startalg", TC_startalg, (ClientData) 
 		   Tk_MainWindow(interp),(Tcl_CmdDeleteProc *)NULL); 
  Tcl_CreateCommand(interp, "TC_startparam", TC_startparam, (ClientData) 

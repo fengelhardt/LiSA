@@ -9,7 +9,7 @@ Lisa_classify(Lisa_ProblemType *G_Problem,string home,string file)
 {
   int           i, j, comp, cplx, open=TRUE;
   string        db_path, output="";
-  Lisa_RedGraph *mygraph;
+  Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
 
   // sets the database path:
@@ -72,7 +72,7 @@ Lisa_full_ref(Lisa_ProblemType *G_Problem,string home,string file)
 {
   int           i, j, comp, cplx, open=TRUE, notice=-1;
   string        db_path, full_ref="";
-  Lisa_RedGraph *mygraph;
+  Lisa_RedGraph *mygraph=0;
   Lisa_DataBase *mybase;
 
   // sets the database path:

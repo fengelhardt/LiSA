@@ -920,7 +920,7 @@ void Lisa_Graph::read(istream & strm)
 
   string S;
   int number_of_knots;
-  Lisa_Matrix<int>* adj_Matrix;
+  Lisa_Matrix<int>* adj_Matrix=0;
   for (;;)
     {
       S=""; 

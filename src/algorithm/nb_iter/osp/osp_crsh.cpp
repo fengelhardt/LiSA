@@ -34,7 +34,7 @@ int OSHOP_cr_shift_Ngbh::prepare_move( int typ )
     // determs a possible move
     // typ=ENUM : enumerativ
     // typ=RAND : randomly
-    int pos_job1, pos_job2, pos_mach1, pos_mach2;
+    int pos_job1=0, pos_job2, pos_mach1=0, pos_mach2;
     int test, succ, i, j, numb;
     test = OK;
     TIMETYP Cmax;

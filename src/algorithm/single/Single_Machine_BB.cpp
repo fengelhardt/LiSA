@@ -170,7 +170,7 @@ bool SingleMachineBB::branching(int k)
 
 double SingleMachineBB::lb(int k)
 {
-  int job;
+  int job=0;
   double t1=0;
   double t2=0;
   int rest=n;
@@ -290,7 +290,7 @@ void SingleMachineBB::newSchedule()
 {
   // Lmax value of Schedule;
 
-  double job=(*Schedule)[0];
+  int job=(*Schedule)[0];
   double time=(*pLV->RD)[job]+(*pLV->PT)[job][0];
   double max=time-(*pLV->DD)[job];
   

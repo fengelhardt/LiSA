@@ -159,8 +159,8 @@ void Lisa_Iterator::iterate( Lisa_Neighborhood *NB, int objective_type,
 	exit( 7 );
       }
 
-    double  t, t_old, t_first, t_end, decr;
-    bool    accept;
+    double  t=0, t_old, t_first=0, t_end=0, decr=0;
+    bool    accept=0;
     long    stuck_since, total_stuck;
     TIMETYP best_value, best_step, last_break_value;
     int     test, nn, non_move, max_non_move;

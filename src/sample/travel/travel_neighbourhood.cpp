@@ -72,7 +72,7 @@ void inline Travel_RPI_Neighbourhood::put_to_tabu_vector(Lisa_Vector<int>* solut
   /// we have to make sure that all solution that are the same get the same 
   /// tabu representation
 
-  int zeropos;
+  int zeropos=0;
   
   /// find the 0 in our vector
   for(int i=0;i<length;i++){

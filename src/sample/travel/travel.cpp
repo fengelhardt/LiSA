@@ -284,7 +284,7 @@ int main(int argc, char *argv[]){
   i_strm.close();
 
   // create neighbourhood object
-  Travel_RPI_Neighbourhood* nbh;
+  Travel_RPI_Neighbourhood* nbh=0;
   if(NGBH=="API") nbh = new Travel_API_Neighbourhood(&tr1);
   else if(NGBH=="RPI") nbh = new Travel_RPI_Neighbourhood(&tr1);
 

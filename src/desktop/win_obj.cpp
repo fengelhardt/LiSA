@@ -58,8 +58,8 @@ TCValues::~TCValues() {
 void TCValues::draw(Lisa_Matrix<int> *myMO,Lisa_Matrix<TIMETYP> *myPT, 
 		    Lisa_Matrix<bool> *mySIJ, Lisa_Vector<TIMETYP> *myRD, 
 		    Lisa_Vector<TIMETYP> *myDD,  Lisa_Vector<double> * myWI) {
-  int i,j,m,n;
-  int width,height,position;
+  int i,j,m=0,n=0;
+  int width,height,position=0;
   string str;
   if (myMO!=NULL || myPT!=NULL || mySIJ!=NULL) { //Matrix zeichnen
     if (myMO!=NULL) {
@@ -270,7 +270,7 @@ void TCSchedule::draw( Lisa_MO *myMO,
 		       Lisa_Matrix<TIMETYP> *myCIJ,
 		       Lisa_Matrix<bool> *SIJ) {
 
-  int i,j,m,n;
+  int i,j,m=0,n=0;
   int width,height,position;
   string str;
   main_canvas->clear();

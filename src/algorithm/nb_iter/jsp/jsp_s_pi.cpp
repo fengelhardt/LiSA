@@ -35,7 +35,7 @@ int JSHOP_semi_API_Ngbh::prepare_move( int typ )
     // typ=RAND : randomly
     bool critical;
     TIMETYP Cmax;
-    int k, succ, pred, pos, direction;
+    int k, succ, pred, pos=0, direction;
     int count, count_l, count_r, l_end, r_end;
 
     critical = FALSE;

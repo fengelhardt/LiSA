@@ -289,7 +289,7 @@ int Lisa_ProblemType::setalpha(string al)
 
 int Lisa_ProblemType::setbeta(string be) 
 {
-  int tuplepos, meaning, i,j;
+  int tuplepos, meaning=0, i,j;
   
   // if there is a , or ; on the end of the string, then remove it
   if (be[be.length()-1]==',') 

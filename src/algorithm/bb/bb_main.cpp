@@ -25,8 +25,8 @@ using namespace std;
 
 int main(int argc, char *argv[]) 
  {
-   OS_BB * my_os_bb; 
-   JS_BB * my_js_bb;
+   OS_BB * my_os_bb=0; 
+   JS_BB * my_js_bb=0;
    Lisa_GenericBb * my_bb;
 
    // print a message that the programm started:
@@ -112,8 +112,8 @@ int main(int argc, char *argv[])
    // read problem instance and cast it into a Lisa_ShopProblem:
    Lisa_Values * my_werte=new Lisa_Values;
    i_strm >> (*my_werte);
-   Lisa_OsProblem * my_os_problem;
-   Lisa_JsProblem * my_js_problem;
+   Lisa_OsProblem * my_os_problem=0;
+   Lisa_JsProblem * my_js_problem=0;
    switch (problem_type)
       {
       case O: my_os_problem=new Lisa_OsProblem(my_werte);

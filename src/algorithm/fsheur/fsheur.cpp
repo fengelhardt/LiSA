@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
    // Insert your solution algorithm here:
    
    
-   int i,j,bestpos,inspos,k;
+   int i,j,bestpos=0,inspos,k;
    int n=my_values->get_n(),m=my_values->get_m();
    TIMETYP row_i,min,z;
    Lisa_Vector<TIMETYP> my_head(m+1);
@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
    // Insert your solution algorithm here:
    
   
-   int i,j,bestpos,inspos;
+   int i,j,bestpos=0,inspos;
    int n=my_values->get_n(),m=my_values->get_m();
    TIMETYP row_i,min;
    
