@@ -257,8 +257,8 @@ template class Lisa_Vector<string>;
 template class Lisa_Vector<pair>;
 
 
-template class Lisa_Matrix<void *>;
-template class Lisa_Vector<void *>;
+// template class Lisa_Matrix<void *>;
+// template class Lisa_Vector<void *>;
 
 template class Lisa_Matrix<long>;
 template class Lisa_Vector<long>;

@@ -94,7 +94,7 @@ int Lisa_ControlParameters::defined(const string name)
    return UNDEFINED;
  }
 
-void Lisa_ControlParameters::write(ostream & strm = cout) const
+void Lisa_ControlParameters::write(ostream & strm) const
  {
    //copy all contents: this is totally stupid, but reading a list would 
    //     change its internal bookmark and we are in a const method here

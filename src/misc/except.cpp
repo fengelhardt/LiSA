@@ -13,7 +13,7 @@
 Lisa_ExceptionList G_ExceptionList;
 string G_ExtraException="";
 
-void Lisa_ExceptionList::lthrow(const string msg, const int code=ANY_ERROR)
+void Lisa_ExceptionList::lthrow(const string msg, const int code)
   {
     string type_word="ERROR";
     Messages.push(msg);
@@ -25,7 +25,7 @@ void Lisa_ExceptionList::lthrow(const string msg, const int code=ANY_ERROR)
       cout << "\n" << type_word << ": " << msg << endl;
   }
 
-void Lisa_ExceptionList::lfthrow(const string msg, const int code=ANY_ERROR)
+void Lisa_ExceptionList::lfthrow(const string msg, const int code)
   {
     string type_word="ERROR";
     Messages.append(msg);

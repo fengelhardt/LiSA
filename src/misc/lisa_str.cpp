@@ -316,7 +316,7 @@ if (EraseLength>0)
 
 
 int string::find(const string& SearchString,
-                 int StartPosition=0) const
+                 int StartPosition) const
 
 {
 CheckPosition(StartPosition, true);
