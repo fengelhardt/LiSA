@@ -90,8 +90,13 @@ void Read_Data(char *FileName){
   NumOfMachines = Values.get_m();
   NumOfJobs = Values.get_n();
   
+  NumOfOperations = 0;
+  for(int i=0;i<NumOfJobs;i++)
+    for(int j=0;j<NumOfMachines;j++)
+      if((*Values.SIJ)[i][j]) NumOfOperations++;
+    
   if(NumOfMachines > MaxNumOfMachines || NumOfJobs > MaxNumOfMachines ||
-     NumOfMachines*NumOfJobs > MaxNumOfOperations){
+     NumOfOperations > MaxNumOfOperations){
     G_ExceptionList.lthrow((std::string) "Can not handle more than "+
                            ztos(MaxNumOfMachines)+" machines and "+
                            ztos(MaxNumOfJobs)+" jobs, you may want to "+
@@ -162,7 +167,7 @@ void Read_Data(char *FileName){
     }
   }
   
-  NumOfOperations = sum;
+  std::cout << (NumOfOperations == sum) << std::endl;
   MO = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines);
   JO = new Lisa_Matrix<int>(NumOfJobs,NumOfMachines); 
 }
