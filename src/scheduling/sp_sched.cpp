@@ -21,10 +21,17 @@ Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
   
   // look wether the input makes sense:
   n=Pin->get_n();
-  m=Pin->get_m(); 
-  if ((n==1) || (m==1)) 
-    G_ExceptionList.lthrow("shop problem should have size at least 2 x 2",
-                           WARNING);
+  m=Pin->get_m();
+
+// (iroess) 
+// following lines temporarly uncommented...
+// it has to be checked, if this exception makes any sense or not.
+// - until now, i haven't found any example caring about a machine 
+// or job number of 1! 
+// --------
+//  if ((n==1) || (m==1)) 
+//    G_ExceptionList.lthrow("shop problem should have size at least 2 x 2",
+//                           WARNING);
   if (!(n&&m)) 
     G_ExceptionList.lthrow("shop problem must have machines and jobs",
                            INCONSISTENT_INPUT);
