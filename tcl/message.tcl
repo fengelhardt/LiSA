@@ -61,6 +61,7 @@ proc showmessage {title text} {
     }
     set mess(title) $title
     Window show .message
+    .message.fra22.tex26 delete 1.0 end
     .message.fra22.tex26 insert end $text
 }
 
@@ -128,6 +129,7 @@ proc showerrormessage {text} {
 
     set errormess(title) $Name(Error)
     Window show .errormessage
+    .errormessage.fra22.tex26 delete 1.0 end
     .errormessage.fra22.tex26 insert end $text
 
 }
@@ -197,6 +199,7 @@ proc showdelaym { title text } {
     Window show .delaym
 #    set errormess(title) $Name(Error)
     wm title  .delaym $title
+    .delaym.fra22.tex26 delete 1.0 end
     .delaym.fra22.tex26 insert end $text
 
 }
@@ -207,6 +210,7 @@ proc show_mess_and_choice { title text action} {
 #    set errormess(title) $Name(Error)
     wm title  .mess_and_choice $title
 .mess_and_choice.fra23.but24 config -command $action
+    .mess_and_choice.fra22.tex26 delete 1.0 end
     .mess_and_choice.fra22.tex26 insert end $text
 
 }
