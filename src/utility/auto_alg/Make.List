@@ -9,4 +9,5 @@ CXXSOURCES=\
   ../../basics/matrix.cpp \
   ../../basics/pair.cpp \
   ../../scheduling/mo_jo.cpp \
+  ../../scheduling/schedule.cpp \
 	auto_alg.cpp

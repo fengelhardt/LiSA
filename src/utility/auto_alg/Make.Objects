@@ -9,4 +9,5 @@ OBJECTS=\
 	../../../obj/matrix.o \
 	../../../obj/pair.o \
 	../../../obj/mo_jo.o \
+	../../../obj/schedule.o \
 	../../../obj/auto_alg.o
