@@ -301,10 +301,9 @@ public:
     }
 
   // by iroess
-  const bool operator!=( Lisa_List<T> const & other) { return !(*this == other); }
+  bool operator!=( Lisa_List<T> const & other)const { return !(*this == other); }
 
-  const bool operator==( Lisa_List<T> const & other) 
-    {
+  bool operator==( Lisa_List<T> const & other)const {
       if (&other == this)
       return true;
       if (!(other.length()==length())) return false;
@@ -324,7 +323,7 @@ public:
     }
 
   // by iroess
-  const bool operator>( Lisa_List<T> const & other) { 
+  bool operator>( Lisa_List<T> const & other) const{ 
       if (&other == this)
       return false;
 
@@ -344,7 +343,7 @@ public:
 
 
   // by iroess
-  const bool operator<( Lisa_List<T> const & other) { 
+  bool operator<( Lisa_List<T> const & other) const{ 
       if (&other == this)
       return false;
 
