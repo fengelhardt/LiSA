@@ -1,291 +1,238 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <title>Hilfe zum Branch and Bound - Fenster</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <title>Hilfe zum Branch and Bound - Fenster</title>
 </head>
-<body bgcolor="#E3E3E3" background="../../../../img/lisa.gif">
-
+<body text="#000000" bgcolor="#e3e3e3" link="#0000ef" vlink="#59188e"
+ alink="#ff0000" background="../../../bitmaps/lisa.gif" nosave="">
 <h2>
-Der Algorithmus Beam Search <i><font size=+1>- O&nbsp; | |&nbsp; C</font><font size=+0>max</font><font size=+1>&nbsp;&nbsp;&nbsp;
-and&nbsp;&nbsp; F | |&nbsp; C</font><font size=+0>max</font></i></h2>
+Der Algorithmus Beam Search</h2>
 Beam Search ist ein heuristisches Verfahren, das im Gegensatz zu Branch
-&amp; Bound eine unvollst&auml;ndige Suche im L&ouml;sungsraum durchf&uuml;hrt.
-Deshalb wird nicht immer eine optimale L&ouml;sung gefunden. Die Qualit&auml;t
-der L&ouml;sung h&auml;ngt nat&uuml;rlich vom Problem, aber auch von den
-diversen <a href="#einstellungen">Einstellungen</a>, die der Nutzer vornimmt,
+&amp; Bound eine unvollst&auml;ndige Suche im L&ouml;sungsraum
+durchf&uuml;hrt.
+Deshalb wird nicht immer eine optimale L&ouml;sung gefunden. Die
+Qualit&auml;t
+der L&ouml;sung h&auml;ngt nat&uuml;rlich vom Problem, aber auch von
+den
+diversen <a href="#einstellungen">Einstellungen</a>, die der Nutzer
+vornimmt,
 ab.
-<h2>
-Verfahren:</h2>
-
+<h2>Verfahren:</h2>
 <ul>
-<li>
-Erzeugung einer <a href="#Einf">Einf&uuml;gereihenfolge</a> der Operationen</li>
-
-<li>
-f&uuml;r jede dieser Operationen :</li>
-
+</ul>
 <ol>
-<li>
-erzeuge neue partielle Pl&auml;ne, durch:</li>
-
-<ul>
-<li>
-f&uuml;ge Operation als Quelle in technologischer und organisatorischer
-Reihenfolge ein</li>
-
-<li>
-Operation wird Nachfolger einer bereits existierenden Operation in der
-technologischen Reihenfolge</li>
-
-<li>
-Operation wird Nachfolger einer bereits existierenden Operation in der
-organisatorischen Reihenfolge</li>
-</ul>
-
-<li>
-<a href="#Auswahlmethode">w&auml;hle</a> die <a href="#Auswahlkriterium">"besten"</a>
-Pl&auml;ne und wiederhole 1. mit n&auml;chster Operation</li>
+  <li>Erzeugung einer <a href="#Einf">Einf&uuml;gereihenfolge</a> der
+Operationen</li>
+  <li>Einf&uuml;gen der ersten Operation entsprechend dieser Reihenfolge</li>
+  <li>Auswahl der "besten Pl&auml;ne" (siehe <a href="#Anzahl">Anzahl</a>
+und <a href="#Auswahlmethode">welche</a>)<br>
+  </li>
+  <li>Erzeugung aller m&ouml;glichen zul&auml;ssigen (partiellen)
+Pl&auml;ne durch Einf&uuml;gen der n&auml;chsten Operation in die
+ausgew&auml;hlten Pl&auml;ne</li>
+  <li>Wiederhole 3., solange noch Operationen einzuf&uuml;gen sind</li>
+  <li>W&auml;hle Plan mit bestem Zielfunktinswert</li>
+  <li>ENDE<br>
+  </li>
 </ol>
+<ul>
+  <ol>
+  </ol>
 </ul>
-Die Auswahl der "besten" Pl&auml;ne erfolgt entsprechend der vom Nutzer
-gew&auml;hlten Einstellungen, wobei die Anzahl und das Kriterium f&uuml;r
-die Bewertung zu w&auml;hlen ist.
-<br>&nbsp;
-<h2>
-<a NAME="einstellungen"></a>Einstellungen:</h2>
-
+Der Nutzer hat die M&ouml;glichkeit vor dem Start des Algorithmus
+diverse Einstellungen vorzunehmen.<br>
+&nbsp;
+<h2><a name="einstellungen"></a>Einstellungen:</h2>
 <dl>
-<ul>
-<li>
-<a NAME="Anzahl"></a><b><i>Anzahl zu verfolgender Zweige:</i></b></li>
-
-<ul>Legt fest, wieviele der neu erzeugten Pl&auml;ne weiterbetrachtet werden,
-wobei die Auswahl der Pl&auml;ne sowohl von der Auswahlmethode, als auch
-vom Auswahlkriterium abh&auml;ngig ist.</ul>
-
-<li>
-<a NAME="Einf"></a><b><i>Einf&uuml;gereihenfolge:</i></b></li>
-
-<ul>Reihenfolge, in der Beam Search die Operationen einf&uuml;gt :
-<ul>
-<li>
-<b>LPT</b></li>
-</ul>
-
-<dd>
-geordnet nach monoton nichtsteigenden Bearbeitungszeiten</dd>
-
-<ul>
-<li>
-<b>RANDOM</b></li>
-</ul>
-
-<dd>
-in zuf&auml;lliger Reihenfolge</dd>
-
-<ul>
-<li>
-<b>DIAGONAL1</b></li>
-
-<br>Beispiel:
-<ul>&nbsp;
-<table BORDER CELLPADDING=2 COLS=6 WIDTH="100" NOSAVE >
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td NOSAVE><b><font color="#3333FF">13</font></b></td>
-
-<td NOSAVE><b><font color="#CC33CC">7</font></b></td>
-
-<td><b><font color="#FF0000">1</font></b></td>
-
-<td><b><font color="#009900">19</font></b></td>
-
-<td><b><font color="#3333FF">14</font></b></td>
-
-<td><b><font color="#CC33CC">8</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td NOSAVE><b><font color="#009900">20</font></b></td>
-
-<td><b><font color="#3333FF">15</font></b></td>
-
-<td><b><font color="#CC33CC">9</font></b></td>
-
-<td><b><font color="#FF0000">2</font></b></td>
-
-<td><b><font color="#009900">21</font></b></td>
-
-<td><b><font color="#3333FF">16</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td><b><font color="#FF0000">3</font></b></td>
-
-<td><b><font color="#009900">22</font></b></td>
-
-<td NOSAVE><b><font color="#3333FF">17</font></b></td>
-
-<td><b><font color="#CC33CC">10</font></b></td>
-
-<td><b><font color="#FF0000">4</font></b></td>
-
-<td><b><font color="#009900">23</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td><b><font color="#CC33CC">11</font></b></td>
-
-<td><b><font color="#FF0000">5</font></b></td>
-
-<td ALIGN=CENTER VALIGN=CENTER NOSAVE><b><font color="#009900">24</font></b></td>
-
-<td><b><font color="#3333FF">18</font></b></td>
-
-<td><b><font color="#CC33CC">12</font></b></td>
-
-<td><b><font color="#FF0000">6</font></b></td>
-</tr>
-</table>
-
-<br>&nbsp;</ul>
-
-<li>
-<b>DIAGONAL2</b></li>
-
-<br>so &auml;hnlich, aber mehr unabh&auml;ngige Operationen
-<br>Beispiel:
-<ul>&nbsp;
-<table BORDER CELLPADDING=2 COLS=6 WIDTH="100" NOSAVE >
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td NOSAVE><b><font color="#FF0000">1</font></b></td>
-
-<td NOSAVE><b><font color="#3333FF">5</font></b></td>
-
-<td><b><font color="#009900">9</font></b></td>
-
-<td><b><font color="#CC33CC">13</font></b></td>
-
-<td><b><font color="#FFCC00">17</font></b></td>
-
-<td><b><font color="#33CCFF">21</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td NOSAVE><b><font color="#33CCFF">22</font></b></td>
-
-<td><b><font color="#FF0000">2</font></b></td>
-
-<td><b><font color="#3333FF">6</font></b></td>
-
-<td><b><font color="#009900">10</font></b></td>
-
-<td><b><font color="#CC33CC">14</font></b></td>
-
-<td><b><font color="#FFCC00">18</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td><b><font color="#FFCC00">19</font></b></td>
-
-<td><b><font color="#33CCFF">23</font></b></td>
-
-<td NOSAVE><b><font color="#FF0000">3</font></b></td>
-
-<td><b><font color="#3333FF">7</font></b></td>
-
-<td><b><font color="#009900">11</font></b></td>
-
-<td><b><font color="#CC33CC">15</font></b></td>
-</tr>
-
-<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
-<td><b><font color="#CC33CC">16</font></b></td>
-
-<td><b><font color="#FFCC00">20</font></b></td>
-
-<td ALIGN=CENTER VALIGN=CENTER NOSAVE><b><font color="#33CCFF">24</font></b></td>
-
-<td><b><font color="#FF0000">4</font></b></td>
-
-<td><b><font color="#3333FF">8</font></b></td>
-
-<td><b><font color="#009900">12</font></b></td>
-</tr>
-</table>
-<b><font color="#33CCFF"></font></b>
-<br><b><font color="#33CCFF"></font></b>&nbsp;</ul>
-
-<li>
-<b>MACHINEWISE</b></li>
-
-<br>spaltenweise</ul>
-</ul>
-
-<li>
-<a NAME="Auswahlmethode"></a><b><i>Auswahlmethode:</i></b></li>
-
-<ul>Legt fest, welche Pl&auml;ne weiterverfolgt werden
-<ul>
-<li>
-<b>INSERT1</b></li>
-
-<br>W&auml;hle aus den neu erzeugten Pl&auml;nen diejenigen, die dem angegebenen
-Kriterium (<i>siehe Auswahlkriterium</i>) entsprechen.
-<li>
-<b>INSERT2</b></li>
-
-<br>Wie INSERT1, aber w&auml;hle f&uuml;r einen Ausgangsplan genau einen
-neuen Plan, der dem angegebenen Kriterium entspricht.</ul>
-</ul>
-
-<li>
-<a NAME="Auswahlkriterium"></a><b><i>Auswahlkriterium:</i></b></li>
-
-<ul>Legt fest, wie "gut" ein neu erzeugter Plan eingesch&auml;tzt wird.
-<ul>
-<li>
-<b>CMAX</b></li>
-
-<br>Kosten des l&auml;ngsten Pfades in dem neuen partiellen Plan
-<li>
-<b>CLAST</b></li>
-
-<br>Kosten des l&auml;ngsten Pfades durch die Operation, die als letzte
-eingef&uuml;gt wurde.</ul>
-</ul>
-</ul>
-
-<h2>
-Bemerkungen:</h2>
-Wie schon erw&auml;hnt ist das Verfahren lediglich eine Heuristik. So kann
-es vorkommen, dass ein partieller Plan, der zu einer optimalen L&ouml;sung
+  <ul>
+    <li> <a name="Anzahl"></a><b><i>Anzahl zu verfolgender Zweige:</i></b></li>
+    <ul>
+Legt fest, wie viele der neu erzeugten Pl&auml;ne nach jeder Iteration
+weiterbetrachtet werden.
+    </ul>
+    <li> <a name="Einf"></a><b><i>Einf&uuml;gereihenfolge:</i></b></li>
+    <ul>
+Reihenfolge, in der Beam Search die Operationen einf&uuml;gt :
+      <ul>
+        <li> <b>LPT</b></li>
+      </ul>
+      <ul>
+        <dd>geordnet nach monoton nichtsteigenden Bearbeitungszeiten</dd>
+      </ul>
+      <ul>
+        <li> <b>RANDOM</b></li>
+      </ul>
+      <ul>
+        <dd>in zuf&auml;lliger Reihenfolge</dd>
+      </ul>
+      <ul>
+        <li> <b>DIAGONAL1</b></li>
+        <br>
+Beispiel:
+        <ul>
+&nbsp;
+          <table border="1" cellpadding="2" cols="6" width="100"
+ nosave="">
+            <tbody>
+              <tr align="center" valign="CENTER" nosave="">
+                <td nosave=""><b><font color="#3333ff">13</font></b></td>
+                <td nosave=""><b><font color="#cc33cc">7</font></b></td>
+                <td><b><font color="#ff0000">1</font></b></td>
+                <td><b><font color="#009900">19</font></b></td>
+                <td><b><font color="#3333ff">14</font></b></td>
+                <td><b><font color="#cc33cc">8</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td nosave=""><b><font color="#009900">20</font></b></td>
+                <td><b><font color="#3333ff">15</font></b></td>
+                <td><b><font color="#cc33cc">9</font></b></td>
+                <td><b><font color="#ff0000">2</font></b></td>
+                <td><b><font color="#009900">21</font></b></td>
+                <td><b><font color="#3333ff">16</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td><b><font color="#ff0000">3</font></b></td>
+                <td><b><font color="#009900">22</font></b></td>
+                <td nosave=""><b><font color="#3333ff">17</font></b></td>
+                <td><b><font color="#cc33cc">10</font></b></td>
+                <td><b><font color="#ff0000">4</font></b></td>
+                <td><b><font color="#009900">23</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td><b><font color="#cc33cc">11</font></b></td>
+                <td><b><font color="#ff0000">5</font></b></td>
+                <td align="center" valign="CENTER" nosave=""><b><font
+ color="#009900">24</font></b></td>
+                <td><b><font color="#3333ff">18</font></b></td>
+                <td><b><font color="#cc33cc">12</font></b></td>
+                <td><b><font color="#ff0000">6</font></b></td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+&nbsp;
+        </ul>
+        <li> <b>DIAGONAL2</b></li>
+        <br>
+so &auml;hnlich, aber mehr unabh&auml;ngige Operationen <br>
+Beispiel:
+        <ul>
+&nbsp;
+          <table border="1" cellpadding="2" cols="6" width="100"
+ nosave="">
+            <tbody>
+              <tr align="center" valign="CENTER" nosave="">
+                <td nosave=""><b><font color="#ff0000">1</font></b></td>
+                <td nosave=""><b><font color="#3333ff">5</font></b></td>
+                <td><b><font color="#009900">9</font></b></td>
+                <td><b><font color="#cc33cc">13</font></b></td>
+                <td><b><font color="#ffcc00">17</font></b></td>
+                <td><b><font color="#33ccff">21</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td nosave=""><b><font color="#33ccff">22</font></b></td>
+                <td><b><font color="#ff0000">2</font></b></td>
+                <td><b><font color="#3333ff">6</font></b></td>
+                <td><b><font color="#009900">10</font></b></td>
+                <td><b><font color="#cc33cc">14</font></b></td>
+                <td><b><font color="#ffcc00">18</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td><b><font color="#ffcc00">19</font></b></td>
+                <td><b><font color="#33ccff">23</font></b></td>
+                <td nosave=""><b><font color="#ff0000">3</font></b></td>
+                <td><b><font color="#3333ff">7</font></b></td>
+                <td><b><font color="#009900">11</font></b></td>
+                <td><b><font color="#cc33cc">15</font></b></td>
+              </tr>
+              <tr align="center" valign="CENTER" nosave="">
+                <td><b><font color="#cc33cc">16</font></b></td>
+                <td><b><font color="#ffcc00">20</font></b></td>
+                <td align="center" valign="CENTER" nosave=""><b><font
+ color="#33ccff">24</font></b></td>
+                <td><b><font color="#ff0000">4</font></b></td>
+                <td><b><font color="#3333ff">8</font></b></td>
+                <td><b><font color="#009900">12</font></b></td>
+              </tr>
+            </tbody>
+          </table>
+          <b><font color="#33ccff"></font></b> <br>
+          <b><font color="#33ccff"></font></b>&nbsp;
+        </ul>
+        <li> <b>MACHINEWISE</b></li>
+        <br>
+spaltenweise
+      </ul>
+    </ul>
+    <li> <a name="Auswahlmethode"></a><b><i>Auswahlmethode:</i></b></li>
+    <ul>
+Nicht nur die Anzahl der zu betrachtenden Pl&auml;ne, sondern auch ihre
+Auswahl sind einstellbar. In jeder Iteration wird aus einer Generation
+(V&auml;ter) partieller Pl&auml;ne durch Einf&uuml;gen einer neuen
+Operation eine neue Generation (Kinder) erzeugt. Hier werden nun
+"Anzahl zu verfolgender Zweige" Kinder als neue V&auml;ter
+ausgew&auml;hlt :<br>
+      <br>
+      <ul>
+        <li> <b>INSERT1</b></li>
+W&auml;hle die "besten" Pl&auml;ne aus der Gesamtheit aller
+Kinder-Pl&auml;ne. <li><b>INSERT2</b></li>
+W&auml;hle f&uuml;r jeden Vater-Plan genau einen Kind-Plan, und zwar
+den besten aus.<br>
+        <br>
+      </ul>
+    </ul>
+    <li> <a name="Auswahlkriterium"></a><b><i>Auswahlkriterium:</i></b></li>
+    <ul>
+Nur bei <span style="font-style: italic;"><span
+ style="font-weight: bold;">C<sub>max</sub> </span></span>Problemen
+verf&uuml;gbar. Legt fest, wann ein plan als "gut" betrachtet wird,
+d.h. je geringer die Bewertung, desto besser der Plan.<br>
+      <br>
+      <ul>
+        <li> <b>CMAX</b></li>
+Zielfunktionswert <li><b>CLAST</b></li>
+Kosten des l&auml;ngsten Pfades durch die Operation, die als letzte
+eingef&uuml;gt wurde.
+      </ul>
+    </ul>
+  </ul>
+  <h2>Bemerkungen:</h2>
+Wie schon erw&auml;hnt ist das Verfahren lediglich eine Heuristik. So
+kann
+es vorkommen, dass ein partieller Plan, der zu einer optimalen
+L&ouml;sung
 f&uuml;hren w&uuml;rde verworfen wird. Dies kann auftreten, wenn seine
-Kosten h&ouml;her sind, als die der anderen Pl&auml;ne und die <a href="#Anzahl">Anzahl
-der zu verfolgenden Zweige</a> schon ausgesch&ouml;pft ist.
-<br>Insbesondere das <a href="#Auswahlkriterium">Auswahlkriterium</a> CLAST
-liefert keine monoton wachsenden Werte, spiegelt jedoch die Auswirkung
-des Einf&uuml;gens einer Operation in einem speziellen Plan besser wider,
-als die Kosten des l&auml;ngsten Weges im Gesamtplan (partiell).
-<br>&nbsp;
-<h2>
-Handhabung:</h2>
-Es wird empfohlen mehrere verschiedene <a href="#einstellungen">Einstellungen</a>
-auszuprobieren. Ist beispielsweise die L&ouml;sung offensichtlich nicht
+Kosten h&ouml;her sind, als die der anderen Pl&auml;ne und die <a
+ href="#Anzahl">Anzahl
+der zu verfolgenden Zweige</a>schon ausgesch&ouml;pft ist. <br>
+Beispielsweis liefert das <a href="#Auswahlkriterium">Auswahlkriterium</a>CLAST
+keine monoton wachsenden Werte, spiegelt jedoch die Auswirkung
+des Einf&uuml;gens einer Operation in einem speziellen Plan besser
+wider,
+als die Kosten des l&auml;ngsten Weges im Gesamtplan (partiell). <br>
+  <br>
+  <h2>Handhabung:</h2>
+Es wird empfohlen mehrere verschiedene <a href="#einstellungen">Einstellungen</a>auszuprobieren.
+Ist beispielsweise die L&ouml;sung offensichtlich nicht
 zufridenstellend, dann war evtl. die <a href="#Einf">Einf&uuml;reihenfolge
-</a>f&uuml;r
-dieses spezielle Problem ung&uuml;nstig gew&auml;hlt.
-<br>Ausserdem ist bei einer Erh&ouml;hung der <a href="#Anzahl">Anzahl
-zu verfolgender Zweige</a><i> </i>die Wahrscheinlichkeit einen besseren
+  </a>f&uuml;r
+dieses spezielle Problem ung&uuml;nstig gew&auml;hlt. <br>
+Ausserdem ist bei einer Erh&ouml;hung der <a href="#Anzahl">Anzahl
+zu verfolgender Zweige</a><i> </i>die Wahrscheinlichkeit einen
+besseren
 Plan zu finden h&ouml;her, die Laufzeit verschlechtert sich jedoch bei
-sehr grossen Werten imens. Bis auf <a href="#Auswahlkriterium">CLAST</a>
-haben die anderen Einstellungsm&ouml;glichkeiten keinen Einfluss auf die
-Laufzeit (CLAST berechnet Heads/Tails).</dl>
-<a href="../main.html">Inhaltsverzeichnis&nbsp;</a>
-<hr>
-<br>Autoren: <a href="mailto:tusch@cs.uni-magdeburg.de">Jan Tusch</a>&nbsp;
-und&nbsp; <a href="mailto:aherms@cs.uni-magdeburg.de">Andre Herms</a> 28.05.01
-<br>Quellen: "Constructive Heuristic Algorithms for the Open Shop Problem"
+sehr grossen Werten imens. <br>
+</dl>
+<a href="main.htm">Inhaltsverzeichnis&nbsp;</a>
+<hr><br>
+Autoren: <a href="mailto:tusch@cs.uni-magdeburg.de">Jan Tusch</a>&nbsp;
+und&nbsp; <a href="mailto:aherms@cs.uni-magdeburg.de">Andre Herms</a>
+08.09.2003
+<br>
+Quellen: "Constructive Heuristic Algorithms for the Open Shop Problem"
 by H. Br&auml;sel, T. Tautenhahn, F.Werner - 199228.05.01
 </body>
 </html>
