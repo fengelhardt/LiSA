@@ -13,6 +13,7 @@ TOPPROGRAMPATH=.
 BINPATH=$(TOPPROGRAMPATH)/bin
 DATAPATH=$(TOPPROGRAMPATH)/data
 DOCPATH=$(TOPPROGRAMPATH)/doc
+USERPATH=$(TOPPROGRAMPATH)/user
 DISTPATH=$(TOPPROGRAMPATH)/dist
 CYGWINPATH=$(TOPPROGRAMPATH)/win
 OBJPATH=$(TOPPROGRAMPATH)/obj
@@ -20,6 +21,7 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 NONGUI_MODULES=algorithm utility sample
 GUI_MODULES=main setup
 MODULES=$(GUI_MODULES) $(NONGUI_MODULES)
+RESEARCH_MODULES=algorithm/irred algorithm/partition algorithm/reducing_set sample/fpool sample/irregjs sample/travel
 
 # ------------------------------------------------------------------------------
 
@@ -68,6 +70,7 @@ about: logo
 help: logo
 	@echo "'make' ................. same as 'make all'"
 	@echo "'make about' ........... shows the about information"
+	@echo "'make user' ............ selects parts for user version"
 	@echo "'make all' ............. compiles and installs all"
 	@echo "'make nongui' .......... compiles and installs everything but the GUI"
 	@echo "'make help' ............ shows this help"
@@ -83,6 +86,26 @@ help: logo
 	@echo "'make depend' .......... creates the dependencies for the compiling"
 	@echo "'make version' ......... updates the version information in the source files"
 	@echo
+
+# ------------------------------------------------------------------------------
+
+user: logo
+	rm -fr $(USERPATH)
+	mkdir -p $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/INSTALL $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/LICENSE $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/README $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/Make.Config.in $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/Makefile $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/configure $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/configure.in $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/install.sh $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/make_substitute $(USERPATH)/LiSA
+	cp $(TOPPROGRAMPATH)/make_version $(USERPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/img $(USERPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/src $(USERPATH)/LiSA
+	cp -r $(TOPPROGRAMPATH)/tcl $(USERPATH)/LiSA
+	for MODULE in $(RESEARCH_MODULES); do rm -fr $(USERPATH)/LiSA/src/$${MODULE}; done
 
 # ------------------------------------------------------------------------------
 
