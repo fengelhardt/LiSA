@@ -934,17 +934,13 @@ int /*argc*/, const char *argv[]){
       
       // now read problemtupel
       for (int j=0;j<number_of_solv_probl;j++) {
-	      fin >> myProblemType;
-        
-        // cerr<<G_ProblemType.output_problem() << endl;
-        // cerr<<myProblemType.output_problem() << endl;
-        
+	      fin >> myProblemType;        
         
         // check if problemtypes match exactly
         if ( G_ProblemType.output_problem() == myProblemType.output_problem()){
           sprintf(interp->result, "%d",1);
           
-        // algo provides O, current problem is O2  
+        // reduction when algo provides O, current problem is O2 and the like   
         }else if(G_ProblemType.output_alpha().find(myProblemType.output_alpha()) != string::npos &&
                  G_ProblemType.output_beta()== myProblemType.output_beta() &&
                  G_ProblemType.output_gamma()== myProblemType.output_gamma()){
@@ -952,11 +948,7 @@ int /*argc*/, const char *argv[]){
             
         }else if(G_ProblemType.output_alpha()==myProblemType.output_alpha() && 
                  G_ProblemType.output_gamma()==myProblemType.output_gamma()){
-        
-          // the following looks like a minimal reduction, but to me it seems 
-          // totally bullshit ... shouldn't the G_ProblemType have the p_ij.. 
-          // attached ?
-          
+                 
           // see if there are unit processing times to handle
           if ((myProblemType.output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
               (G_ProblemType.output_beta() == myProblemType.output_beta()+"; p_ij=1")){
