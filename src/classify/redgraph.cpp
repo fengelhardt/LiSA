@@ -329,12 +329,12 @@ const Lisa_ReductionTree& Lisa_ReductionTree::operator=(const Lisa_ReductionTree
 bool Lisa_ReductionTree::visit(int gr,int s,int t)
 {
 		if (s==t)
-    return true;
+    return (TransformGraph[gr][s + t*NUMBER[gr]] != NULL);
   for(int k = 0; k<NUMBER[gr]; k++)
 				{
-						if( (s == k) ||
-										((TransformGraph[gr][s + k*NUMBER[gr]] != NULL) &&
-											visit(gr,k,t)))
+						if( (s != k) && 
+										(TransformGraph[gr][s + k*NUMBER[gr]] != NULL) &&
+										visit(gr,k,t))
 								return true;
 				}
 		return false;
@@ -358,14 +358,18 @@ Lisa_ReductionTree::Lisa_ReductionTree(int G, int source, int target)
 						valid = true;
 						return;
 				}
-		Lisa_RedGraph redG;
+		Lisa_RedGraph::initializeGraph();
 		//not reducible - tree is insane
-		if( (!redG.visit(G,source,target)) || 
-						(!visit(G,source,target)))
+		if(! Lisa_RedGraph::visit(G,source,target))
 				{
 						valid = false;
 						return;
 				}
+		// no transforms registered
+		if(! Lisa_ReductionTree::visit(G,source,target)){
+				valid = false;
+				return;
+		}
 		g = new Lisa_MatrixGraph(NUMBER[G]);
 		std::vector<int> node_list(1,source);
 		int node;
@@ -376,7 +380,7 @@ Lisa_ReductionTree::Lisa_ReductionTree(int G, int source, int target)
 						for(int i = 0; i < NUMBER[G]; i++)
 								{
 										if(  (Lisa_RedGraph::Graph[G][node + i*NUMBER[G]] == 1) && //is reducible
-															(redG.visit(G,i,target)) && //doesn't have dead end in reducibility
+															(Lisa_RedGraph::visit(G,i,target)) && //doesn't have dead end in reducibility
 															(TransformGraph[G][node + i*NUMBER[G]] != NULL) && //have transform
 															(visit(G,i,target) )) // no dead end in transform path
 												{

@@ -42,7 +42,8 @@ Identity_AtomicTransform::transform(int g ,int s,int t,
 											*
 											* +++++++++++++++++++++++++++++ 
 											*/
-										return true;
+										//return true;
+										return false; //true when implemented
 								}
 						//backwards transform
 						//check special cases of problem sizes
@@ -59,7 +60,8 @@ Identity_AtomicTransform::transform(int g ,int s,int t,
 							*
 							* +++++++++++++++++++++++++++++ 
 							*/
-						return true;
+						//return true;
+						return false; //true when implemented
 				}
 		if(g == JOB_NR && s == J_VAL) //process number of jobs
 				{
@@ -69,7 +71,8 @@ Identity_AtomicTransform::transform(int g ,int s,int t,
 							*
 							* +++++++++++++++++++++++++++++ 
 							*/
-						return false;
+						//return true;
+						return false; //true when implemented
 				}
 		return true;
 }
