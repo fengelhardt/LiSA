@@ -69,13 +69,8 @@ int main(int argc, char *argv[]) {
   //  G_ExceptionList.set_output_to_cerr();
 
   Pref.close();
-  char *l_home = getenv("LISAHOME");
-  char wd_str[256];
-  getcwd(wd_str,256);
-  //use working directory if not defined
-  std::string home(wd_str);
-  if(l_home)
-    home = std::string(l_home);
+  std::string home = getenv("LISAHOME");
+
   LisaXmlFile::initialize(home);
   LisaXmlFile* conf = new LisaXmlFile();
   if(!conf->read(argv[1]) || !(*conf >> G_Preferences))
