@@ -445,17 +445,17 @@ int osp_iter( ifstream& strm, ofstream& fplan_o )
 		  exit( 7 );
 		}
 	      break;
-	    case _3_API:
-	    /*  if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob)))
+	    case _3_API: /// broken -marc-
+	   /*   if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob)))
 	      	{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-	        } */
+	        } */ 
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
 		{  
 		  G_ExceptionList.lthrow("out of memory",2);
 		  exit( 7 );
-		}
+		} 
 	      break;
 	    case _3_CR:
 	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))

@@ -11,54 +11,6 @@ Help= algorithm/nb_iter.html
 
 <HEURISTIC>
 <PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / Cmax }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / Lmax }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumCi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumWiCi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumUi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumWiUi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumTi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O /  / SumWiTi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / Cmax }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / Lmax }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumCi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumWiCi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumUi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumWiUi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumTi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
-Lisa_ProblemType= { O / r_i / SumWiTi }
-</PROBLEMTYPE>
-<PROBLEMTYPE> 
 Lisa_ProblemType= { J /  / Cmax }
 </PROBLEMTYPE>
 <PROBLEMTYPE> 
@@ -157,7 +109,7 @@ Lisa_ProblemType= { F / r_i / SumWiTi }
 </HEURISTIC>
 
 <PARAMETERS>
-string NGBH ( API SHIFT CR_API BL_API CR_SHIFT BL_SHIFT 3_CR ) "Neighborhood"
+string NGBH ( SWAP TRANS CR_TRANS CR_TRANS_MIX SC_TRANS 3_API SC_API CR_SHIFT_MIX API SHIFT CR_API BL_API CR_SHIFT BL_SHIFT 3_CR ) "Neighborhood"
 string METHOD ( TabuSearch ThresholdAccepting IterativeImprovement SimulatedAnnealing ) "Search Method"
 string TYPE ( ENUM RAND ) "Create Neighbor"
 long STEPS 5000 "Created Solutions"
