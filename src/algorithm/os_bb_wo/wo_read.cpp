@@ -26,6 +26,7 @@
 #include "wo_table.hpp"
 #include "wo_read.hpp"
 #include "wo_list.hpp"
+#include "wo_heur.hpp"
 
 /* ************************************************************************ */
 /*                           Procedure  Read_Data()                         */
@@ -97,6 +98,46 @@ void Read_Data(char *FileName){
                            ztos(MaxNumOfJobs)+" jobs, you may want to "+
                            "recompile.",Lisa_ExceptionList::INCONSISTENT_INPUT);
     exit(1);
+  }
+  
+  //which heuristic ??
+  minmax_match = 1;
+  head_match = 0;
+  Heuristic_Schedule = &Heuristic_Schedule_MATCHING;
+  if(Parameter.defined("HEURISTIC") == Lisa_ControlParameters::STRING){
+    if(Parameter.get_string("HEURISTIC") == "MIN_MATCHING"){
+      Heuristic_Schedule = &Heuristic_Schedule_MATCHING;
+      minmax_match = 1;
+    }else if(Parameter.get_string("HEURISTIC") == "MAX_MATCHING"){
+      Heuristic_Schedule = &Heuristic_Schedule_MATCHING;
+      minmax_match = -1;
+    }else if(Parameter.get_string("HEURISTIC") == "MIN_BOTTLE_MATCHING"){
+      Heuristic_Schedule = &Heuristic_Schedule_BOTTLE_MATCHING;
+      minmax_match = 1;
+      head_match=0;
+    }else if(Parameter.get_string("HEURISTIC") == "MAX_BOTTLE_MATCHING"){
+      Heuristic_Schedule = &Heuristic_Schedule_BOTTLE_MATCHING;
+      minmax_match = -1;
+      head_match = 0;
+    }else if(Parameter.get_string("HEURISTIC") == "MIN_BOTTLE_MATCHING_VAR"){
+      Heuristic_Schedule = &Heuristic_Schedule_BOTTLE_MATCHING;
+      minmax_match = 1;
+      head_match = 1;
+    }else if(Parameter.get_string("HEURISTIC") == "MAX_BOTTLE_MATCHING_VAR"){
+      Heuristic_Schedule = &Heuristic_Schedule_BOTTLE_MATCHING;
+      minmax_match = -1;
+      head_match = 1;
+    }else if(Parameter.get_string("HEURISTIC") == "LB_PREC_RULE"){
+      //Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE;
+    }else if(Parameter.get_string("HEURISTIC") == "LB_PREC_RULE_VAR"){
+       //Heuristic_Schedule = &Heuristic_Schedule_LB_PREC_RULE_VAR;
+    }else{
+      G_ExceptionList.lthrow("Unknows value for HEURISTIC Parameter, using defaults.",
+                             Lisa_ExceptionList::WARNING);  
+    }
+  }else{
+    G_ExceptionList.lthrow("Could not find HEURISTIC Parameter, using defaults.",
+                           Lisa_ExceptionList::WARNING);
   }
   
   // write data into algorithm data structures
@@ -175,7 +216,7 @@ void Write_Solution(char * FileName){
         
     found = false;
     for(int i=0;i<NumOfJobs;i++){
-      for(int j=0;j<NumOfJobs;j++){
+      for(int j=0;j<NumOfMachines;j++){
         if(SIJ[i][j] && (*MJ)[i][j]==2){
           (*Schedule.LR)[i][j] = k;
           z[i] = s[j] = 1;

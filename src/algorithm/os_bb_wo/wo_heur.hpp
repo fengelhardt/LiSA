@@ -22,6 +22,13 @@
 /*            datiert. Die Loesung wird in der Datei output.dat gespeichert. */
 /* ************************************************************************* */
 
-void Heuristic_Schedule();
+void Heuristic_Schedule_MATCHING();
+
+void Heuristic_Schedule_BOTTLE_MATCHING();
+
+void Heuristic_Schedule_BOTTLE_MATCHING_VAR();
+
+void Heuristic_Schedule_LB_PREC_RULE();
+void Heuristic_Schedule_LB_PREC_RULE_VAR();
 
 #endif

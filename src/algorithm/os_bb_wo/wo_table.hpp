@@ -21,7 +21,11 @@ extern	int                      Head[MaxNumOfOperations+1],
 				 SearchTreeNodes,
                                  PathPos;
 extern	struct StackElement      *FirstOfStack;       
-extern	struct NodeType          *ActualNode, *SonNode; 
+extern	struct NodeType          *ActualNode, *SonNode;
+
+extern void (*Heuristic_Schedule) (void); 
+extern int minmax_match;
+extern int head_match;
 
 #endif
 

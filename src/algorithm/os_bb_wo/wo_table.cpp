@@ -19,4 +19,10 @@ int                      Head[MaxNumOfOperations+1],
                          SearchTreeNodes = 1,
                          PathPos = 1;
 struct StackElement      *FirstOfStack;       
-struct NodeType          *ActualNode, *SonNode; 
+struct NodeType          *ActualNode, *SonNode;
+
+void (*Heuristic_Schedule) (void);
+
+int minmax_match;
+int head_match;
+
