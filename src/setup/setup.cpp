@@ -4,18 +4,15 @@
 // WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 #include <iostream>
+#include <string.h>
 #include <unistd.h>
-#include <libgen.h>
 
 #include <tk.h>
 
 int main(int argc, char* argv[])
      {
 
-     char* TclFileName = "setup.tcl";
-
-     char* dir = dirname(argv[0]);
-     chdir(dir);
+     char* tclFileName = "setup.tcl";
 
      Tcl_Interp* interp = Tcl_CreateInterp();
 
@@ -31,9 +28,22 @@ int main(int argc, char* argv[])
           exit(1);
           }
 
-     if (Tcl_EvalFile(interp, TclFileName) != TCL_OK)
+     char* cmd = strcat(strdup("file dirname "), argv[0]);
+
+     if (Tcl_Eval(interp, cmd) == TCL_OK)
           {
-          cerr << "error in \"" << TclFileName << "\": " << interp->result << endl;
+          char* dir = interp->result;
+          chdir(dir);
+          }
+     else
+          {
+          cerr << "error while executing \"" << cmd << "\": " << interp->result << endl;
+          exit(1);
+          }
+
+     if (Tcl_EvalFile(interp, tclFileName) != TCL_OK)
+          {
+          cerr << "error in \"" << tclFileName << "\": " << interp->result << endl;
           exit(1);
           }
 
