@@ -148,7 +148,7 @@ void Lisa_Dispatcher::SetRule(string r)
 	rule=i;
 	return;
       }
-  G_ExceptionList.lthrow("unknown name of priority rule, assuming SPT");
+  G_ExceptionList.lthrow("Unknown priority rule "+r+" assuming SPT",Lisa_ExceptionList::WARNING);
 }
 
 //**************************************************************************

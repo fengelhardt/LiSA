@@ -14,7 +14,7 @@
     </problem>
   </exact>
   <alg_controls>
-    <fixed name="ACTIVE" value="TRUE"/>
+    <fixed name="SCHEDULE" value="ACTIVE"/>
     <choice name="RULE" caption="Prioritaetsregel">
       <item name="RAND"/>
       <item name="FCFS"/>

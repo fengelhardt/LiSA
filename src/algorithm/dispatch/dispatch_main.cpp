@@ -105,16 +105,34 @@ int main(int argc, char *argv[]){
    Lisa_Schedule out_schedule(my_values.get_n(),my_values.get_m());
    out_schedule.make_LR();
    
+   
+   
    Lisa_Dispatcher engine;
    engine.SetProblem(&lpr, &my_values, &out_schedule);
-   engine.SetRule(sp.get_string("RULE"));
    
-   if(sp.get_string("NONDELAY")=="TRUE"){
-     engine.dispatch_nondelay();
+   if(sp.defined("RULE") == Lisa_ControlParameters::STRING){
+     engine.SetRule(sp.get_string("RULE"));
    }else{
-    if (sp.get_string("ACTIVE")=="TRUE") engine.dispatch_active(); 
-    else engine.dispatch();
+     G_ExceptionList.lthrow("No RULE defined, using SPT",Lisa_ExceptionList::WARNING);
+     engine.SetRule("SPT");
    }
+   
+   if(sp.defined("SCHEDULE") == Lisa_ControlParameters::STRING){
+     if(sp.get_string("SCHEDULE") == "SEMIACTIVE"){
+       engine.dispatch();
+     }else if(sp.get_string("SCHEDULE") == "ACTIVE"){
+       engine.dispatch_active();
+     }else if(sp.get_string("SCHEDULE") == "NONDELAY"){
+       engine.dispatch_nondelay();
+     }else{
+       G_ExceptionList.lthrow("SCHEDULE type "+sp.get_string("SCHEDULE")+" unknown, dispatching ACTIVE",Lisa_ExceptionList::WARNING);
+       engine.dispatch_active();
+     }
+   }else{
+     G_ExceptionList.lthrow("No SCHEDULE type defined, dispatching ACTIVE",Lisa_ExceptionList::WARNING);
+     engine.dispatch_active();
+   }
+ 
    // The object out_schedule contain the result of this algorithm,
    // which is written into the output file
    // write results to output file:
