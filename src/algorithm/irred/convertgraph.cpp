@@ -145,7 +145,7 @@ Lisa_MatrixListGraph*  Lisa_ConvertGraph::get_disjkt(){
 void Lisa_ConvertGraph::plan2graph(Lisa_Matrix<int>* plan,
                                    Lisa_MatrixListGraph* plangraph){
                                      
-  Lisa_MatrixListGraphAlgorithms::clear(plangraph);
+  plangraph->clear();
 
   switch(curr_pt){
   case O_CMAX: 

@@ -12,14 +12,6 @@
  */
 class Lisa_MatrixListGraphAlgorithms{
 public:
-
-  /// Removes all ARC's and EDGES from the graph.
-  static inline void clear(Lisa_MatrixListGraph* graph){
-    const int vert = graph->get_vertices();
-    for (int i=1;i<=vert;i++){
-      graph->clear(i);
-    } 
-  }
    
   /// Replaces each ARC with an EDGE.
   static inline void build_semigraph(Lisa_MatrixListGraph* graph){
