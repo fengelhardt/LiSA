@@ -12,7 +12,7 @@
 #define _except_h 
 
 #include <string>
-#include <ostream>
+#include <fstream>
 
 #include "../basics/list.hpp"
 

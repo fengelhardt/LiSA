@@ -12,7 +12,7 @@
 #ifndef _fp_vector_h
 #define _fp_vector_h
 
-#include <ostream>
+#include <fstream>
 
 #include "../../basics/matrix.hpp"
 

@@ -13,7 +13,7 @@
 #ifndef _tabu_h
 #define _tabu_h
 
-#include <ostream>
+#include <fstream.h>
 
 #include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"

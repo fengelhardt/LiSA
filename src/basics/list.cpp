@@ -7,7 +7,7 @@
  *
  * 19.9.1998
  */
-#include <ostream>
+#include <fstream>
 #include <string>
 
 #include "list.hpp"

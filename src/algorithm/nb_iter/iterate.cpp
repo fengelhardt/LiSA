@@ -15,7 +15,7 @@
 #include <math.h>
 #include <signal.h>
          
-#include <ostream>
+#include <fstream>
 
 #include "../../main/global.hpp"
 #include "../../misc/int2str.hpp"

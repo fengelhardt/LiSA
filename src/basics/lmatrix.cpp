@@ -8,7 +8,7 @@
  * 11.05.01
  */
  
-#include <ostream>
+#include <fstream>
 #include <string>
 
 #include "pair.hpp"
