@@ -29,8 +29,7 @@ int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
 
-const char* algin = "auto_alg.in.xml";
-const char* algout = "auto_alg.out.xml";
+std::string algin,algout;
 
 //**************************************************************************
 
@@ -200,7 +199,7 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
                    Lisa_Values &val,Lisa_Schedule &sched){
 
-  std::ofstream out_file(algout);
+  std::ofstream out_file(algout.c_str());
   if(!out_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algout+
                            "' for writing.",Lisa_ExceptionList::FILE_NOT_FOUND);
@@ -208,7 +207,7 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
   }
   out_file.close();
   
-  std::ofstream in_file(algin);
+  std::ofstream in_file(algin.c_str());
   if(!in_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algin+
                            "' for writing.",Lisa_ExceptionList::FILE_NOT_FOUND);
@@ -228,7 +227,7 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
 //**************************************************************************
     
 void readAlgOutput(Lisa_Schedule &sched){
-  std::ifstream out_file(algout);
+  std::ifstream out_file(algout.c_str());
   if(!out_file){
     G_ExceptionList.lthrow((std::string)"Could not open '"+algout+
                            "' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
@@ -237,7 +236,7 @@ void readAlgOutput(Lisa_Schedule &sched){
   out_file.close();
   
  LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
- xmlInput.read(algout);
+ xmlInput.read(algout.c_str());
  
  //check for successful parsing and valid document type   
  LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
@@ -300,6 +299,9 @@ int main(int argc, char *argv[]){
  
  //initialize xml input stuff
  LisaXmlFile::initialize();
+ 
+ algin = (std::string) argv[1]+"in.xml";
+ algout = (std::string) argv[1]+"out.xml";
  
  //open input file
  std::ifstream in_file(argv[1]);
