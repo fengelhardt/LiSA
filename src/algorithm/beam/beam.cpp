@@ -25,17 +25,20 @@ using namespace std;
 
 enum InsertionOrder{lpt, rndm, line_by_line, diagonal};
 
-enum InsertionMethod {insert1,insert2};
+enum InsertionMethod{insert1,insert2};
 
-CostFunc costFunc = CLast;
-int myproblemtype = O;
-//Lisa_MO *myMO;
-TIMETYP objective;
+//**************************************************************************
 
 B_Node* beam_search(Lisa_Order *, int, Lisa_OsProblem *);
 
-int beam_width = 5;
-InsertionMethod insertionMethod = insert1; 
+//**************************************************************************
+
+int beam_width;
+InsertionMethod insertionMethod; 
+CostFunc costFunc;
+int myproblemtype;
+
+TIMETYP objective;
 
 //**************************************************************************
 
@@ -63,7 +66,7 @@ int main(int argc, char *argv[]){
   Lisa_ProblemType * lpr = new Lisa_ProblemType;
   i_strm >> (*lpr);
   
-  // we can handle open, flow and job shop 
+  // we can handle open and flow shop
   myproblemtype = lpr->get_property(M_ENV);
   if(! (myproblemtype == O || myproblemtype == F)){
     cout << "ERROR: Problemtype must be O or F. Aborting." << endl;
@@ -81,7 +84,7 @@ int main(int argc, char *argv[]){
       exit(1);
   }
   
-  // and cmax objectives
+  // ... and cmax objectives
   if(lpr->get_property(OBJECTIVE) != CMAX){
     cout << "ERROR: Objective function mus be Cmax. Aborting." << endl;
     exit(1);
@@ -103,17 +106,6 @@ int main(int argc, char *argv[]){
     cout << "ERROR: cannot read input file, aborting program." << endl;
     exit(1);
   }  
-
-    
-  // solve the problem and store results in a schedule object
-  Lisa_OsProblem *os_problem = new Lisa_OsProblem(my_werte);
-  
-  Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),my_werte->get_m());
-  out_schedule->make_LR();
-   
-  int l = my_werte->get_n() * my_werte->get_m();
-  
-  Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
   
   //which order was selected
   InsertionOrder iord = lpt;
@@ -125,25 +117,36 @@ int main(int argc, char *argv[]){
   }
   
   //which choice method was selected
+  insertionMethod = insert1; 
   if (sp->defined("INS_METHOD") && (sp->get_string("INS_METHOD")=="INSERT2") )
     insertionMethod = insert2;
 
   //which choice criterion was selected
+  costFunc = CLast;
   if (sp->defined("CRITERION") && (sp->get_string("CRITERION")=="CMAX") )
     costFunc = CMax;
   
   //which beamwidth was entered
+  beam_width = 5;
   if (sp->defined("K_BRANCHES")) {
     beam_width = sp->get_int("K_BRANCHES");
   }
   
-  //use system time for independent random numbers
-  //this is not reversable
+  //use system time for independent random numbers ... this is not reversable
   long seed = (long)time(NULL);
+  
+   // solve the problem and store results in a schedule object
+  Lisa_OsProblem *os_problem = new Lisa_OsProblem(my_werte);
+  
+  Lisa_Schedule * out_schedule = new Lisa_Schedule(my_werte->get_n(),my_werte->get_m());
+  out_schedule->make_LR();
+  
+  Lisa_Order *order = new Lisa_Order(os_problem->n,os_problem->m);
   
   TIMETYP x_bound = 0;
   TIMETYP y_bound = 0;
   TIMETYP r = 0;
+  
   for (int i = 0; i< os_problem->n;i++){
     for (int j = 0; j < os_problem->m;j++){
       r += (*(os_problem->time))[i+1][j+1]; 
@@ -180,7 +183,7 @@ int main(int argc, char *argv[]){
   }
   order->sort();
 
-  B_Node * res = beam_search(order, l, os_problem);
+  B_Node * res = beam_search(order, my_werte->get_n() * my_werte->get_m(), os_problem);
 
   res->write_LR(out_schedule->LR);
   
@@ -205,124 +208,131 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
   
   //the root of the tree = an empty schedule
   B_Node *b = new B_Node(problem);
+  
   //insert first operation and add to the list
   b->insert(lo->row(0)+1,lo->col(0)+1,SOURCE,SOURCE);
   fathers->add(b);
-
+  
   //inefficient - but have to use it
   Lisa_Matrix<int> *LR;
-
+  
   //iterate over all operations
   for(int op = 1;op < length; op++){
+    
     //make outpu to the progress window
-    cout << "OBJECTIVE= "<< objective; 
-    cout << " ready " << 100*op / length << "%" << endl;
+    cout << "OBJECTIVE= "<< objective << " ready " << 100*op / length << "%" << endl;
+    
     //the expanded schedule-list
     KList *children = new KList(beam_width); 
     
     //iterate over the at most k best from last iteration
     for(int i = 0; i< fathers->in_list; i++){
-
+      
       b = fathers->list[i];
       LR = new Lisa_Matrix<int>(b->problem->n,b->problem->m);
       b->write_LR(LR);
-
+      
       int posi,posj,cur_opi,cur_opj;
       //insert operation as SOURCE first = case 1
       posi = posj = SOURCE;
       //confusing index-stuff
       cur_opi = lo->row(op)+1;
       cur_opj = lo->col(op)+1;
-
+      
       //produce all possible insertions for the particular father node
       
       //this is for Open-Shop-Problems only
-      if(myproblemtype == O)
-	{
-	  B_Node *nb = new B_Node(b);
-	  nb->insert(cur_opi,cur_opj,SOURCE,SOURCE);
-	  if ((insertionMethod == insert2) && (fathers->full()))
-	    children->add(nb,i);	  
-	  else
-	    children->add(nb);
-	  
-	  //insert after all existing operations in the row of the new operation
-	  posj = b->GetMOsucc(cur_opi,posj);
-	  while (posj != SINK){
-	    nb = new B_Node(b);
-	    //maximum rank of a possible predecessor in the column
-	    int lr_posj_val = (*LR)[cur_opi - 1][posj - 1];
-	    int runner = SOURCE;
+      if(myproblemtype == O){
+        
+        
+        B_Node *nb = new B_Node(b);
+        nb->insert(cur_opi,cur_opj,SOURCE,SOURCE);
+        if ((insertionMethod == insert2) && (fathers->full()))
+          children->add(nb,i);	  
+        else
+          children->add(nb);
+        
+        //insert after all existing operations in the row of the new operation
+        posj = b->GetMOsucc(cur_opi,posj);
+        while (posj != SINK){
+          nb = new B_Node(b);
+          //maximum rank of a possible predecessor in the column
+          int lr_posj_val = (*LR)[cur_opi - 1][posj - 1];
+          int runner = SOURCE;
+          
+          //find the predecessor in the column, that has maximum rank
+          while( (b->GetJOsucc(runner,cur_opj) != SINK) && 
+            (lr_posj_val >= (*LR)[b->GetJOsucc(runner,cur_opj) -1 ][cur_opj - 1]))
+          runner = b->GetJOsucc(runner,cur_opj);
+          posi = runner;
+          
+          //insert new operation and add to the children-list
+          nb->insert(cur_opi,cur_opj,posi,posj);
+          if ((insertionMethod == insert2) && (fathers->full()))
+            children->add(nb,i);	  
+          else
+            children->add(nb);
+          posj = b->GetMOsucc(cur_opi,posj);
+        }
+        
+        //insert after all existing operations in the column of the new operation
+        posi = b->GetJOsucc(SOURCE, cur_opj);
+        while( posi != SINK) {
+          nb = new B_Node(b);
+          //maximum rank of a possible predecessor in the row
+          int lr_posi_val = (*LR)[posi - 1][cur_opj -1];
+          int runner = SOURCE;
+          
+          //find the predecessor in the row, that has maximum rank
+          //note that equatity is excluded, because it was considered above
+          while (( b->GetMOsucc(cur_opi, runner) != SINK) &&
+            (lr_posi_val > (*LR)[cur_opi -1][b->GetMOsucc(cur_opi, runner) - 1]))
+          runner = b->GetMOsucc(cur_opi, runner);
+          posj = runner;
+          
+          //insert new operation and add to the children-list
+          nb->insert(cur_opi, cur_opj, posi, posj);
+          if ((insertionMethod == insert2) && (fathers->full()))
+            children->add(nb,i);	  
+          else
+            children->add(nb);
+          posi = b->GetJOsucc(posi, cur_opj);
+        }
+        
+        
 
-	    //find the predecessor in the column, that has maximum rank
-	    while( (b->GetJOsucc(runner,cur_opj) != SINK) && 
-		   (lr_posj_val >= (*LR)[b->GetJOsucc(runner,cur_opj) -1 ][cur_opj - 1]))
-	      runner = b->GetJOsucc(runner,cur_opj);
-	    posi = runner;
-
-	    //insert new operation and add to the children-list
-	    nb->insert(cur_opi,cur_opj,posi,posj);
-	    if ((insertionMethod == insert2) && (fathers->full()))
-	      children->add(nb,i);	  
-	    else
-	      children->add(nb);
-	    posj = b->GetMOsucc(cur_opi,posj);
-	  }
-	  
-	  //insert after all existing operations in the column of the new operation
-	  posi = b->GetJOsucc(SOURCE, cur_opj);
-	  while( posi != SINK) {
-	    nb = new B_Node(b);
-	    //maximum rank of a possible predecessor in the row
-	    int lr_posi_val = (*LR)[posi - 1][cur_opj -1];
-	    int runner = SOURCE;
-
-	    //find the predecessor in the row, that has maximum rank
-	    //note that equatity is excluded, because it was considered above
-	    while (( b->GetMOsucc(cur_opi, runner) != SINK) &&
-		   (lr_posi_val > (*LR)[cur_opi -1][b->GetMOsucc(cur_opi, runner) - 1]))
-	      runner = b->GetMOsucc(cur_opi, runner);
-	    posj = runner;
-
-	    //insert new operation and add to the children-list
-	    nb->insert(cur_opi, cur_opj, posi, posj);
-	    if ((insertionMethod == insert2) && (fathers->full()))
-	      children->add(nb,i);	  
-	    else
-	      children->add(nb);
-	    posi = b->GetJOsucc(posi, cur_opj);
-	  }
-	}// thats all for open shop
-
-      //this is for Flow-Shop-Problems only
-      else 
-	{
-	  posj = SOURCE;
-	  //find the predecessor in Mashine order
-	  for(int j = cur_opj-1; j > 0 ;j--){
-	    if(b->exists(cur_opi,j)){
-	      posj = j;
-	      break;
-	    }
-	  }
-	  posi = SOURCE;
-	  B_Node *nb = new B_Node(b);
-	  //insert it as SOURCE in the Job-Order and add to list
-	  nb->insert(cur_opi,cur_opj,posi,posj);
-	  if ((insertionMethod == insert2) && (fathers->full()))
-	    children->add(nb,i);	  
-	  else
-	    children->add(nb);
-	  //insert after all existing operations in the column - no cycles possible
-	  while((posi = b->GetJOsucc(posi,cur_opj))!= SINK){
-	    nb = new B_Node(b);
-	    nb->insert(cur_opi,cur_opj,posi,posj);
-	    if ((insertionMethod == insert2) && (fathers->full()))
-	      children->add(nb,i);	  
-	    else
-	      children->add(nb);
-	  }
-	}// thats all for Flow-Shop
+      }else{// thats all for open shop ... next is for Flow-Shop-Problems only
+        
+        
+        posj = SOURCE;
+        //find the predecessor in machine order
+        for(int j = cur_opj-1; j > 0 ;j--){
+          if(b->exists(cur_opi,j)){
+            posj = j;
+            break;
+          }
+        }
+        posi = SOURCE;
+        B_Node *nb = new B_Node(b);
+        //insert it as SOURCE in the Job-Order and add to list
+        nb->insert(cur_opi,cur_opj,posi,posj);
+        if ((insertionMethod == insert2) && (fathers->full()))
+          children->add(nb,i);	  
+        else
+          children->add(nb);
+        //insert after all existing operations in the column - no cycles possible
+        while((posi = b->GetJOsucc(posi,cur_opj))!= SINK){
+          nb = new B_Node(b);
+          nb->insert(cur_opi,cur_opj,posi,posj);
+          if ((insertionMethod == insert2) && (fathers->full()))
+            children->add(nb,i);	  
+          else
+            children->add(nb);
+        }
+        
+        
+      }// thats all for Flow-Shop
+      
       delete LR;
       // now we have the k best children of the current father-node
     }
@@ -332,6 +342,7 @@ B_Node* beam_search(Lisa_Order *lo, int length, Lisa_OsProblem * problem){
     fathers = children;
   }
   b = fathers->list[0];
+  
   //find schedule with minimum C_MAX value
   for(int i = 1; i < fathers->in_list;i++)
     b= (fathers->list[i]->GetValue() < b->GetValue())?b = fathers->list[i]:b;

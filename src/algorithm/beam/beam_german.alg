@@ -20,7 +20,7 @@ Lisa_ProblemType= { O / / Cmax }
 </HEURISTIC>
 
 <PARAMETERS>
-long K_BRANCHES 2 "Anzahl zu verfolgender Zweige"
+long K_BRANCHES 5 "Anzahl zu verfolgender Zweige"
 string TREE_MODE ( INSERT1 INSERT2 ) "Auswahlrestriktion"
 string INS_ORDER ( RANDOM LPT LINE_BY_LINE DIAGONAL) "Einfuegereihenfolge"
 string CRITERION ( CMAX CLAST ) "Auswahlkriterium"
