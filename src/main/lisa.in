@@ -42,4 +42,3 @@ export LISACONFIG
 # starting LiSA
 
 exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.lsa"
-
