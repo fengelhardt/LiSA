@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Untere Schranken" type="constructive" call="lower_bounds" code="external" help_file="algorithm/sample.html">
+  <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+  </heuristic>
+  <exact>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </exact>
+  <alg_controls>
+   
+  </alg_controls>
+</algorithm>
