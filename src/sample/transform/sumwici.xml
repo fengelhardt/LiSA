@@ -6,17 +6,17 @@
     <beta/>
     <gamma objective="Sum_wiCi"/>
   </problem>
-  <values m="3" n="3">
+  <values m="4" n="3">
     <processing_times model="lisa_native">{ 
- {  38  25  48 } 
- {   9  65  23 } 
- {  25  59  82 } 
+ {  38  25  48 12 } 
+ {   9  65  23 11 } 
+ {  25  59  82 5 } 
 } 
 </processing_times>
     <operation_set model="lisa_native">{ 
- {   1   1   1 } 
- {   1   1   1 } 
- {   1   1   1 } 
+ {   1   1   1   1 } 
+ {   1   1   1   1 } 
+ {   1   1   1   1 } 
 } 
 </operation_set>
   </values>
