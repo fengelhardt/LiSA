@@ -992,66 +992,73 @@ bool Lisa_MatrixListGraph::valid(){
 
 void Lisa_MatrixListGraph::write(ostream & strm)const{
   
-  Lisa_Matrix<int>* out=new Lisa_Matrix<int>(n,n);
-  get_adjacency_matrix(out);
+  Lisa_Matrix<int>  out(n,n);
+  get_adjacency_matrix(&out);
 
   strm << endl << "<GRAPH>" << endl;
-  strm << "n= "<< n << endl;
-  strm << "ADJ= " << *out<< endl; 
+  strm << "vertices= "<< n << endl;
+  strm << "adjacency_matrix= " << out << endl; 
   strm << "</GRAPH>" <<endl;
 
-  delete out;
 }
 
 //**************************************************************************
 
 void Lisa_MatrixListGraph::read(istream & strm){
+  
   if(strm==NULL){
-    G_ExceptionList.lthrow("(in Lisa_MatrixListGraph::read) no valid stream",Lisa_ExceptionList::ANY_ERROR);
+    G_ExceptionList.lthrow("No valid stream in Lisa_MatrixListGraph::read().",
+                           Lisa_ExceptionList::ANY_ERROR);
     return;
   }
   
   string S;
-  int number_of_knots;
+  int new_size;
   Lisa_Matrix<int>* adj_Matrix=0;
   for (;;){
     S=""; 
-    strm >>S;
+    strm >> S;
     if (S==""){ 
-      G_ExceptionList.lthrow("Unexpected End of File in Lisa_MatrixListGraph.read",Lisa_ExceptionList::END_OF_FILE);
+      G_ExceptionList.lthrow((string) "Unexpected End of File in Lisa_MatrixListGraph::read(). "
+                             +" Could not find starttag <GRAPH>.",
+                             Lisa_ExceptionList::END_OF_FILE);
       return;
     } 
     if (S=="<GRAPH>") break;
   }
   
-  // Weiterlesen:
-  
-  for (;;)
-  {
-    S=""; 
-    strm >>S;  
-    if (S=="") 
-    {
-      G_ExceptionList.lthrow("Unexpected End of File in Lisa_MatrixListGraph.read",Lisa_ExceptionList::END_OF_FILE);
-      return;
-    }
-    
-    if (S=="</GRAPH>") break; 
-    // Weiterlesen:
-    
-    if (S=="n=") {  
-      strm >> number_of_knots; 
-      init(number_of_knots);
-      adj_Matrix=new Lisa_Matrix<int> (number_of_knots, number_of_knots);
-    } 
-    
-    if (S=="ADJ="){  
-      strm >> *adj_Matrix;
-      read_adjacency_matrix(adj_Matrix);
-      delete adj_Matrix;
-    }
+  S=""; 
+  strm >> S; 
+  if (S=="vertices=") {  
+    strm >> new_size; 
+    init(new_size);
+    adj_Matrix=new Lisa_Matrix<int>(new_size,new_size);
+  }else{
+    G_ExceptionList.lthrow("'vertices=' expected in <GRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;
   }
   
+  S=""; 
+  strm >> S; 
+  if (S=="adjacency_matrix="){  
+    strm >> *adj_Matrix;
+    read_adjacency_matrix(adj_Matrix);
+    delete adj_Matrix;
+  }else{
+    G_ExceptionList.lthrow("'adjacency_matrix=' expected in <GRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;
+  }
+  
+  S=""; 
+  strm >> S; 
+  if (S!="</GRAPH>"){
+    G_ExceptionList.lthrow("'</GRAPH>' expected in <GRAPH>, found '"+S+"'.",
+                           Lisa_ExceptionList::INCONSISTENT_INPUT);
+    return;  
+  } 
+
 }
 
 //**************************************************************************
