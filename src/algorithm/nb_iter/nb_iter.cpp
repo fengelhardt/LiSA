@@ -20,8 +20,7 @@
 #include "../../lisa/ctrlpara.hpp"
 #include "../../misc/except.hpp"
 
-#include "one_mach/m1_api.hpp"
-#include "one_mach/m1_shft.hpp"
+#include "single_neighbourhoods.hpp"
 
 #include "osp/osp_api.hpp"
 #include "osp/osp_3api.hpp"

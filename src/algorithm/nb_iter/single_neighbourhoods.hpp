@@ -1,10 +1,14 @@
 
-#ifndef _m1_nb_h
-#define _m1_nb_h
+#ifndef lisa_single_neighbourhoods_h
+#define lisa_single_neighbourhoods_h
 
-#include "../../../scheduling/m1_sched.hpp"
-#include "../neighbour.hpp"
-#include "../tabu.hpp"
+//**************************************************************************
+
+#include "../../scheduling/m1_sched.hpp"
+#include "neighbour.hpp"
+#include "tabu.hpp"
+
+//**************************************************************************
 
 /// single machine API neighbourhood
 /** This is the problem dependent API neighbourhood class for the single machine
@@ -57,5 +61,32 @@ public:
 	void  return_schedule( Lisa_1Schedule* );
 };
 
-#endif
+//**************************************************************************
 
+/// single machine SHIFT neighbourhood
+/** This is the problem dependent SHIFT neighbourhood class for the single 
+    machine problem, it swaps two arbitrary jobs on the machine.
+
+    @author Andreas Winkler
+    @version 2.3final
+    @see Lisa_Neighbourhood
+    @see API_Neighbourhood
+*/
+class shift_Neighbourhood: public API_Neighbourhood{
+private: 
+  /// private data needs documentation
+  int pos1, pos2, inc_dec;
+
+public:  
+  /// construct shift_Neighbourhood
+  /** with a start schedule and specified problem data  */
+  shift_Neighbourhood(Lisa_1Schedule*,Lisa_1Problem*);
+
+  int prepare_move(int );
+
+  int do_move();
+};
+
+//**************************************************************************
+
+#endif

@@ -17,8 +17,7 @@ CXXSOURCES=\
 	jsp/jsp_crsm.cpp \
 	jsp/jsp_blsh.cpp \
 	jsp/jsp_3_cr.cpp \
-	one_mach/m1_api.cpp \
-	one_mach/m1_shft.cpp \
+	single_neighbourhoods.cpp \
 	osp/osp_3api.cpp \
 	osp/osp_3_cr.cpp \
 	osp/osp_api.cpp \
