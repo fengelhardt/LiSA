@@ -51,11 +51,6 @@ proc vTclWindow.options {base} {
 	    set   options(LANGUAGE) "german"
 	    .options.cpd19.02 config -text $options(LANGUAGE)
 	}
-    $base.cpd19.02.03 add command \
-        -label german_u  -command { 
-	    set   options(LANGUAGE) "german_u"
-	    .options.cpd19.02 config -text $options(LANGUAGE)
-	}
     frame $base.cpd20 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 

@@ -70,9 +70,6 @@ install: bindir algdir docdir
 	cp $(SOURCEPATH)/algo/disp1_german.alg $(ALGPATH)/language/german/disp1.alg
 	cp $(SOURCEPATH)/algo/disp2_german.alg $(ALGPATH)/language/german/disp2.alg
 	cp $(SOURCEPATH)/algo/disp3_german.alg $(ALGPATH)/language/german/disp3.alg
-	cp $(SOURCEPATH)/algo/disp1_german_u.alg $(ALGPATH)/language/german_u/disp1.alg
-	cp $(SOURCEPATH)/algo/disp2_german_u.alg $(ALGPATH)/language/german_u/disp2.alg
-	cp $(SOURCEPATH)/algo/disp3_german_u.alg $(ALGPATH)/language/german_u/disp3.alg
 	cp -r $(SOURCEPATH)/doc/* $(DOCPATH)/lisa
 
 # ------------------------------------------------------------------------------
@@ -85,7 +82,6 @@ bindir:
 algdir:
 	@mkdir -p $(ALGPATH)/language/english
 	@mkdir -p $(ALGPATH)/language/german
-	@mkdir -p $(ALGPATH)/language/german_u
 
 # ------------------------------------------------------------------------------
 

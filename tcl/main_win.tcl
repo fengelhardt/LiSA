@@ -912,7 +912,6 @@ proc lisa_help { helpfile } {
     set html_viewer [TC_getvar "HTML_VIEWER"]
     showdelaym "$Name(Wait...)" "$html_viewer $Name(started)"
     set lang $env(LLANGUAGE)
-    if {$env(LLANGUAGE)=="german_u"} { set lang "german" }
     if {$system(os)=="win" } { 
         set start_node  "file:///" 
     } else {

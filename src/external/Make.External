@@ -55,7 +55,6 @@ install: bindir algdir docdir
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	cp $(PROGRAMNAME)_english.alg $(ALGPATH)/language/english/$(PROGRAMNAME).alg
 	cp $(PROGRAMNAME)_german.alg $(ALGPATH)/language/german/$(PROGRAMNAME).alg
-	cp $(PROGRAMNAME)_german_u.alg $(ALGPATH)/language/german_u/$(PROGRAMNAME).alg
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/external/$(PROGRAMNAME).html
 	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/external/$(PROGRAMNAME).html
     
@@ -69,7 +68,6 @@ bindir:
 algdir:
 	@mkdir -p $(ALGPATH)/language/english
 	@mkdir -p $(ALGPATH)/language/german
-	@mkdir -p $(ALGPATH)/language/german_u
 
 # ------------------------------------------------------------------------------
 
