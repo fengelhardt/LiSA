@@ -77,6 +77,22 @@ dnl##
 
 AC_CHECK_PROGS(CXX, $CCC g++ c++ CC cxx cc++)
 
+# checking for libxml2
+AC_CHECK_PROG(XML_CNF,xml2-config,yes,no)
+if test "$XML_CNF" = "no" ; then
+	AC_MSG_ERROR(xml2-config not found -> you have to install libxml2 properly)
+else
+	XML2_LFLAGS=`xml2-config --libs`
+	XML2_INCLUDES=`xml2-config --cflags`
+	AC_MSG_RESULT(------ xml2-config ----)
+ AC_MSG_RESULT(" " linker flags : $XML2_LFLAGS)
+	AC_MSG_RESULT(" " includes : $XML2_INCLUDES)
+	AC_MSG_RESULT(------------------------)
+fi
+
+#end of libxml section
+
+
 dnl##
 dnl## Checks for libraries or library functions.
 dnl##
@@ -378,6 +394,8 @@ AC_SUBST(XINCLUDES)
 AC_SUBST(XLIBSW)
 AC_SUBST(TK_INCL)
 AC_SUBST(TK_LIB)
+AC_SUBST(XML2_LFLAGS)
+AC_SUBST(XML2_INCLUDES)
 
 dnl##--------------------------------------------------------------------
 dnl##
