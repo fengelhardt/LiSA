@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_blpi.cpp ******************************
- * 
- * description:      job shop critical-block-API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             5.01.1999
- *
  */
+ 
 #include <stdlib.h>
 #include "jsp_blpi.hpp"
 

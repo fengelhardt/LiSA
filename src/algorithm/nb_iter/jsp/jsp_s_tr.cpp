@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_s_tr.cpp ******************************
- * 
- * description:      job shop semicritical-TRANSPOSE neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             02.10.2000
- *
  */
+ 
 #include <math.h>
 #include "jsp_s_tr.hpp"
 

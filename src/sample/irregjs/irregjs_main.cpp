@@ -1,13 +1,7 @@
-/*
- * ************** irj_main.cpp *******************************
- * 
- * part of neumann project
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * @author Thomas Tautenhahn
- *
- * 19.9.1998
-*/
+ */
 
 #include <stdlib.h>
 #include <iostream>

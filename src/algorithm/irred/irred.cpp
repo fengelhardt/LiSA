@@ -1,6 +1,6 @@
-/*
+/**
+ * @author  Marc Moerig
  * @version 2.3pre3
- * @author Marc Moerig
  */
 
 #include <stdlib.h>

@@ -1,4 +1,5 @@
 /**
+ * @author  Martin Harborth
  * @version 2.3pre3
  */
 #include <stdio.h>

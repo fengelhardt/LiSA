@@ -1,16 +1,7 @@
-
-// The name of the algorithm, the owner of this file
-// and the date of the last changing:
-/*
- * ************** sample.cpp *******************************
- * 
- * Sample how to implement an algorithm for LiSA
- *
- * @author LiSA
+/**
+ * @author  LiSA
  * @version 2.3pre3
- *
- * 30.04.2001
-*/
+ */
 
 // Include the header files for the used objects! Standard:
 // LisaProblemtype requires global.hpp.

@@ -1,22 +1,11 @@
-/*
- * ************** status.cpp *******************************
- * 
- * description:     spezific system values
- * 
- * @author           Per Willenius
- *
- * date:            16.09.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/
+ */
 
-
-
-// ************************ Local Includes ************************
 #include "status.hpp"
 
-
-// *********************** functions *************************
+//**************************************************************************
 
 Lisa_Status::Lisa_Status(){
    /// set random seed value in each start with the same values
@@ -27,5 +16,5 @@ Lisa_Status::Lisa_Status(){
   width=height=500;
 }
 
-
+//**************************************************************************
 

@@ -1,13 +1,8 @@
-/*
- * ************** partition.cpp *******************************
- * 
- * partition algorithm for LiSA
- *
- * @author unknown
+/**
+ * @author  unknown
  * @version 2.3pre3
- *
- * 30.04.2001
-*/
+ */
+ 
 #include <unistd.h>
 #include <fstream>
 #include <iostream>

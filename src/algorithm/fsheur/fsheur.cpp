@@ -1,12 +1,6 @@
-/*
- * ************** fsheur.cpp *******************************
- * 
- * A flow shop heuristic.
- *
- * @author Manuela Vogel
+/**
+ * @author  Manuela Vogel
  * @version 2.3pre3
- *
- * 11.09.2000
  */
 
 #include <stdlib.h>

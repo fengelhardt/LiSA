@@ -1,12 +1,7 @@
-/*
- * ************** pair.cpp *******************************
- * 
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 21.10.99
-*/
+ */
 
 #include "pair.hpp"
 

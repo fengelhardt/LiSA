@@ -1,13 +1,7 @@
-/*
- * ************** bb_env.cpp *******************************
- * 
- * basic class for branch and bound implementations
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 19.9.1998
-*/
+ */
 
 // replace the following line for a Windows version:
 #include <signal.h>

@@ -1,13 +1,7 @@
-/*
- * ************** bb_main.h *******************************
- * 
- * branch and bound external LiSA module
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * @author Thomas Tautenhahn
- *
- * 25.10.1999
-*/
+ */
 
 #include <stdlib.h>
 #include <unistd.h>

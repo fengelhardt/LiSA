@@ -1,13 +1,6 @@
-/*
- * ******************** jsp_swap.cpp ******************************
- * 
- * description:      job shop SWAP neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             19.09.2000
- *
  */
 
 #include "jsp_swap.hpp"

@@ -1,13 +1,8 @@
-/*
- * ************** pr.cpp *******************************
- * 
- * This are Priorityrules for Single-, Open-Shop
- *
- * @author Marco Kleber
+/**
+ * @author  Marco Kleber
  * @version 2.3pre3
- *
- * 21.05.2001
-*/
+ */
+
 #include <unistd.h>
 #include <fstream>
 #include <iostream>

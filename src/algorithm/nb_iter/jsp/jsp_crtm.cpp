@@ -1,13 +1,6 @@
-/*
- * ******************** jsp_crtm.cpp ******************************
- * 
- * description:      job shop critical-TRANSPOSE-mixed-API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             16.10.2000
- *
  */
 
 #include "jsp_crtm.hpp"

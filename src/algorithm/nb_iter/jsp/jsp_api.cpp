@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_api.cpp ******************************
- * 
- * description:      job shop API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             21.10.1998
- *
  */
+ 
 #include <stdlib.h>
 
 #include "jsp_api.hpp"

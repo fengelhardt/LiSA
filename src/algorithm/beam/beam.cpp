@@ -1,7 +1,8 @@
 /**
- * @author : jan tusch, andre herms
+ * @author  Jan Tusch, Andre Herms
  * @version 2.3pre3
  */ 
+ 
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>

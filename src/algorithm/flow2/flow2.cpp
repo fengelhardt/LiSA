@@ -1,11 +1,7 @@
-/*
- * ************** flow2.cpp *******************************
- *
- * @author Thomas Klemm
+/**
+ * @author  Thomas Klemm
  * @version 2.3pre3
- *
- * 13.07.2001
-*/
+ */
 
 #include <unistd.h>
 

@@ -1,14 +1,8 @@
-/*
- * ******************** osp_api.cpp ******************************
- * 
- * description:      open shop API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             21.10.1998
- *
  */
+ 
 #include <stdlib.h>
 
 #include "osp_api.hpp"

@@ -1,13 +1,7 @@
-/*
- * ************** sp_sched.cpp *******************************
- * 
- * schedule for a shop problem and inherit for special schedules
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 11.12.1998
-*/
+ */
 
 #include "../main/global.hpp"
 #include "../misc/except.hpp"

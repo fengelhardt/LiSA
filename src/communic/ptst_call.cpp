@@ -1,15 +1,7 @@
-/*
- * ******************* ptst_call.cpp ******************************
- * 
- * description:        functions which was called as tcl/tk command
- *                     parametertest of the neighborhood iteration
- *
- * @author              Andreas Winkler
- *
- * date:               14.4.1999
- *
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
-*/ 
+ */ 
 
 #include <string>
 #include <fstream>

@@ -1,16 +1,8 @@
-/*
- * ************** pgraph.cpp *******************************
- * description:   used graph classes
- *                Sequence Graph, Complete Sequence Graph
- *                and Comparability Graph.
- *
- * @author         Per Willenius
- *
- * date:          15.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
- *
-*/
+ */
+ 
 #include <stdio.h>
 
 #include "../lisa/lvalues.hpp"
@@ -20,7 +12,6 @@ using namespace std;
 
 extern class Lisa_Values G_Values;
 
-// *********************** functions *************************
 
 void ende(char * string);
 

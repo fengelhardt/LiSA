@@ -1,13 +1,6 @@
-/*
- * ******************** osp_crft.cpp ******************************
- * 
- * description:      open shop critical-SHIFT neighborhood
- * 
- * @author            Andreas Winkler
+/** 
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             21.10.1998
- *
  */
 
 #include "osp_crsh.hpp"

@@ -1,6 +1,8 @@
 /**
-  * @version 2.3pre3
-  */
+ * @author  Thomas Tautenhahn
+ * @version 2.3pre3
+ */
+ 
 #include <stdlib.h>
 
 #include <fstream>

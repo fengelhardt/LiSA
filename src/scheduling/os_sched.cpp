@@ -1,13 +1,7 @@
-/*
- * ************** os_sched.cpp *******************************************
- * 
- * inherit for a schedule for the open shop problem
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 11.12.1998
-*/
+ */
 
 #include "../main/global.hpp"
 #include "../basics/order.hpp"

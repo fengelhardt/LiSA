@@ -1,10 +1,8 @@
 /** 
-  * LiSA setup program
-  * Copyright Lars Dornheim 2002
-  * E-Mail: eldeh@web.de
-  * WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
-  * @version 2.3pre3
-  */
+ * @author  Lars Dornheim
+ * @version 2.3pre3
+ */
+ 
 #include <string.h>
 #include <unistd.h>
 

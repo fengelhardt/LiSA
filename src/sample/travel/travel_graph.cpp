@@ -1,5 +1,5 @@
-/*
- * @author Marc Mörig
+/**
+ * @author  Marc Mörig
  * @version 2.3pre3
  */
 

@@ -1,16 +1,7 @@
-/*
- * ******************* gen_ptst.cpp ******************************
- * 
- * description:        general parametertest program
- *
- * @author              Andreas Winkler
- *
- * date:               9.9.1999
- *
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
-*/ 
-
-// *********************** functions *************************
+ */ 
 
 #include <stdlib.h>
 #include "gen_ptst.hpp"

@@ -1,14 +1,8 @@
-/*
- * ******************** m1_nb.cpp ******************************
- * 
- * description:      single machine API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             20.10.1998
- *
  */
+ 
 #include <stdlib.h>
 
 #include "m1_api.hpp"

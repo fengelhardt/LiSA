@@ -1,13 +1,7 @@
-/*
- * ************** except.hpp ******************************************
- * 
- * special exception classes for use with LiSA 
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 15.12.1998
-*/
+ */
 
 #include "except.hpp"
 

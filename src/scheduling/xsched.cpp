@@ -1,18 +1,9 @@
-/*
- * ****************** xschedule.cpp *******************************
- * 
- * description:        Class Lisa_XSchedule
- *
- * @author              Per Willenius
- *
- * date:               17.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/
+ */
 
 #include "xsched.hpp"
-
-// *********************** functions *************************
 
 Lisa_XSchedule::Lisa_XSchedule(){
   CP=NULL;
@@ -168,7 +159,4 @@ Lisa_XSchedule::~Lisa_XSchedule(){
   if (CS) delete CS;
   if (IKL) delete IKL;
 }
-
-
-
 

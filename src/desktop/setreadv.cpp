@@ -1,14 +1,7 @@
-/*
- * ******************* setreadv.cpp ******************************
- * 
- * description:        functions to connect tcl and C++ varaibles
- *                     
- * @author              Per Willenius
- *
- * date:               7.9.1999
- *
+/**                   
+ * @author  Per Willenius
  * @version 2.3pre3
-*/ 
+ */ 
 
 #include <string>
 

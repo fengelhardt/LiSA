@@ -1,6 +1,8 @@
 /**
+ * @author  Jan Tusch, Andre Herms
  * @version 2.3pre3
  */
+ 
 #include "b_node.hpp"
 
 using namespace std;

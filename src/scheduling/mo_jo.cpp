@@ -1,12 +1,8 @@
-/*
- * ************** mo.cpp *******************************
- * 
- * Classes to represent MOs and JOs as successor list (in memory) and
- * as rank matrix (on file)
+/**
+ * @author  unknown
  * @version 2.3pre3
- *
- * 27.8.1998
-*/
+ */
+ 
 #include <string>
 
 #include "mo_jo.hpp"

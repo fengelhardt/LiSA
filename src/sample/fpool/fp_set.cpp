@@ -1,13 +1,6 @@
-/*
- * ******************** fp_set.cpp ******************************
- * 
- * description:  vector set for football pool problem
- * 
- * @author        Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * date:         17. 11. 1998
- *
  */
 
 #include "../../main/global.hpp"

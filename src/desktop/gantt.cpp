@@ -1,15 +1,6 @@
-/*
- * ******************** gantt.cpp *******************************
- * 
- * description:   draw Gantt Chart in main window
- *
- * @author         Ines Wasmund
- *
- * date:          08.03.1999
- *
- */
-
-/** @version 2.3pre3
+/**
+ * @author  Ines Wasmund
+ * @version 2.3pre3
  */ 
 
 #include "../scheduling/xsched.hpp"

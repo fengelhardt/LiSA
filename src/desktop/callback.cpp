@@ -1,14 +1,7 @@
-/*
- * ************** callback.cpp ******************************
- * 
- * description: to manage which functions are called, if anything has changed
- * 
- * 
- * @author Per Willenius
- *
- * date: 28.9.1999
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/
+ */
 
 #include "../desktop/c_tcl.hpp" 
 #include "../desktop/gantt.hpp"

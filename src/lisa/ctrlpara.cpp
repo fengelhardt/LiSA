@@ -1,16 +1,7 @@
-/*
- * ************************* ctrlpara.cpp ******************************
- * 
- * description:      contain Class Lisa_ControlParameters 
- *                   This class can be used to hold three types of variables
- *                   (string, int, double)
- *                   This makes it easy to communicate with external programs.
- *
- *
- * @author            Thomas Tautenhahn
- * date:             30.9.1998
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
-*/
+ */
 
 #include "ctrlpara.hpp"
 

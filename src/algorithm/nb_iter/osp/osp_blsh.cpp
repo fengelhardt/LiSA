@@ -1,14 +1,8 @@
-/*
- * ******************** osp_blsh.cpp ******************************
- * 
- * description:      open shop critical-block-SHIFT neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             11.01.1999
- *
  */
+ 
 #include <stdlib.h>
 
 #include "osp_blsh.hpp"

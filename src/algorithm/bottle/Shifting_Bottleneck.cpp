@@ -1,14 +1,7 @@
-/*
- * **************Bottleneck.cpp*******************************
- * 
- * Shifting_Bottleneck heuristic
- *
- * @author Christian Schulz
+/**
+ * @author  Christian Schulz
  * @version 2.3pre3
- *
- * 14.5.2001
- *
-*/
+ */
 
 #include <fstream>
 #include "../single/Single_Machine_BB.hpp"

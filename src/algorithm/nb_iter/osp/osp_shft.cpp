@@ -1,13 +1,6 @@
-/*
- * ******************** osp_shft.cpp ******************************
- * 
- * description:      open shop SHIFT neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             21.10.1998
- *
  */
 
 #include "osp_shft.hpp"

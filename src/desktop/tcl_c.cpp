@@ -1,14 +1,7 @@
-/*
- * ******************* tcl_c.cpp ******************************
- * 
- * description:        functions which was called as tcl/tk command
- *
- * @author              Per Willenius
- *
- * date:               16.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/ 
+ */ 
 
 #include <stdlib.h>
 #include <unistd.h>

@@ -1,13 +1,8 @@
-/*
- * ************** order.cpp *******************************
- * 
- * object for indirect sorting, mainly written for ordering matrix elements
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 12.2.1999
  */
+ 
 #include <iostream>
 
 #include "order.hpp"

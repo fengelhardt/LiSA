@@ -1,16 +1,7 @@
- /*
- * ****************** alg_call.cpp ******************************
- * 
- * description:      manage the calling of internal and external Algorithms
- *
- * @author            Per Willenius
- *
- * date:             19.10.1998
- */
- 
 /**
-  *  @version 2.3pre3
-  */ 
+ * @author  Per Willenius
+ * @version 2.3pre3
+ */ 
 
 #include <fstream>
 

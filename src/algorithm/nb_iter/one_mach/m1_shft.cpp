@@ -1,15 +1,8 @@
-/*
- * ******************** m1_nb_sh.cpp ******************************
- * 
- * description:      single machine SHIFT neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             20.10.1998
- *
  */
-// date: 13.04.98
+
 #include "m1_shft.hpp"
 
 using namespace std;

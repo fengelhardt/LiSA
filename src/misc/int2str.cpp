@@ -1,15 +1,7 @@
-/*
- * ************** int2str.cpp ******************************
- * 
- * description:      functions to convert from int to string 
- *
- * @author            Per Willenius
- *
- * date:             15.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
- *
-*/ 
+ */ 
 
 #include <stdio.h>
 

@@ -1,14 +1,7 @@
-/*
- * ************** tclvar.cpp ******************************
- * 
- * description:    class Lisa_TCLVar
- * 
- * @author          Per Willenius
- * 
- * date:           16.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/
+ */
 
 #include "tclvar.hpp"
 

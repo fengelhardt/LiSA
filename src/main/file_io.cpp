@@ -1,13 +1,7 @@
-/*
- * ************** file_io_.cpp ******************************
- * 
- * description: file read and file save
- * 
- * @author Per Willenius
- *
- * date: 28.9.1999
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/ 
+ */ 
 
 #include <fstream>
 #include <stdio.h>

@@ -1,13 +1,6 @@
-/*
- * ******************** m1_sched.cpp ******************************
- * 
- * description:      single machine problem and schedule class
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             10. 11.1998
- *
  */
  
 #include <stdlib.h>

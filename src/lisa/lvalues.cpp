@@ -1,13 +1,6 @@
-/*
- * ************** lvalues.cpp *******************************
- * 
- * description:    definition of class Lisa_Values
- *
- * @author          Per Willenius
- *
- * date:           27.9.1999
- *
- *  @version 2.3pre3
+/**
+ * @author  Per Willenius
+ * @version 2.3pre3
  */
 
 #include <stdio.h>

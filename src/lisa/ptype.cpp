@@ -1,15 +1,7 @@
-/*
- * ************** ptype.cpp *******************************
- * 
- * description:    definition of class Lisa_ProblemType 
- *                 
- *
- * @author          Per Willenius
- *
- * date:           27.9.1999
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/
+ */
 
 #include <stdio.h>
 

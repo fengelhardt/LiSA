@@ -1,10 +1,8 @@
-/*
- * ************** single.cpp *******************************
- * 
- * @author Christian Schulz
- *
- * 23.02.2000
-*/
+/**
+ * @author  Christian Schulz
+ * @version 2.3pre3
+ */
+ 
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

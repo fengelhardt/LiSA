@@ -1,6 +1,6 @@
-/*
+/**
+ * @author  Marc Mörig
  * @version 2.3pre3
- * @author Marc Mörig
  */
 
 #include "travel_neighbourhood.hpp"

@@ -1,15 +1,7 @@
- /*
- * ****************** win_obj.h ******************************
- * 
- * description:      objects to draw graphical objects and text
- *
- * @author            Per Willenius
- *
- * date:             17.9.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
- *
-*/ 
+ */ 
 
 #include <math.h>
 

@@ -1,14 +1,6 @@
-/*
- * ************** matching.cpp ******************************************
- * 
- * a matching algorithm for LiSA
- *
- * @author Marc Mörig
+/**
+ * @author  Marc Mörig
  * @version 2.3pre3
- *
- * started 11.06.00
- * last changes 05.11.01
- *  
  */
 
 #include "matching.hpp"

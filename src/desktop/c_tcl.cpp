@@ -1,14 +1,7 @@
-/*
- * ************** c_tcl.cpp ******************************
- * 
- * description: C++ functions to call tcl/tk routines
- *
- * @author       Per Willenius
- * date:        28.9.1999
- * patch        15.02.2000 by TAU
- * patch        02.07.2002 by eldeh
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
-*/ 
+ */ 
 
 #include <stdlib.h>
 #include <string>

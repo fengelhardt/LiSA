@@ -1,15 +1,7 @@
- /*
- * ****************** basicwin.cpp ******************************
- * 
- * description:      objects to draw graphical objects and text
- *
- * @author            Per Willenius
- *
- * date:             6.10.1998
- *
+/**
+ * @author  Per Willenius
  * @version 2.3pre3
- *
-*/ 
+ */ 
 
 #include <math.h>
 #include <string.h>

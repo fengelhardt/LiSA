@@ -1,12 +1,6 @@
-/*
- * ************** dispatch.cpp *******************************
- * 
- * priority rules for jobshop and openshop, can handle also F and 1
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 10.9.1999
  */
 
 #include <time.h>

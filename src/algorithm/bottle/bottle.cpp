@@ -1,11 +1,8 @@
-/*
- * ************** bottle.cpp *******************************
- * 
- * @author Christian Schulz
+/**
+ * @author  Christian Schulz
  * @version 2.3pre3
- *
- * 23.02.2000
-*/
+ */
+ 
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>

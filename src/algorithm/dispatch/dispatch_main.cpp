@@ -1,13 +1,7 @@
-/*
- * ************** dispatch_main.cpp *******************************
- * 
- * Dispatching rules
- *
- * @author Lars Dornheim
+/**
+ * @author  Lars Dornheim
  * @version 2.3pre3
- *
- * 13.8.2002
-*/
+ */
 
 #include <unistd.h>
 #include <fstream>

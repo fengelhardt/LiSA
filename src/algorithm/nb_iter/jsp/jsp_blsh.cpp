@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_blsh.cpp ******************************
- * 
- * description:      job shop critical-block-SHIFT neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             11.01.1999
- *
  */
+ 
 #include <stdlib.h>
 
 #include "jsp_blsh.hpp"

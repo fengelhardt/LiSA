@@ -1,5 +1,5 @@
-/*
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
  */
 

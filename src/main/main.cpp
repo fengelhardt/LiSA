@@ -1,7 +1,6 @@
-/*
- * @file
- * @version 2.3pre3
+/**
  * @author  Per Willenius
+ * @version 2.3pre3
  */
 
 #include <fstream>

@@ -1,13 +1,7 @@
-/*
- * 
- * @author iroess
+/**
+ * @author  Ivo Roessling
  * @version 2.3pre3
- *
- *
- * 30.04.2001
  */
-
-
 
 #include <stdlib.h>
 #include <stdio.h>

@@ -1,13 +1,7 @@
-/*
- * ************** js_sched.cpp *******************************
- * 
- * schedule for a job shop problem
- *
- * @author Thomas Tautenhahn
+/**
+ * @author  Thomas Tautenhahn
  * @version 2.3pre3
- *
- * 19.9.1998
-*/
+ */
 
 #include "../main/global.hpp"
 #include "../basics/order.hpp"

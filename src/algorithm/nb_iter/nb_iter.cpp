@@ -1,17 +1,8 @@
-/*
- * ******************** nb_iter.cpp ******************************
- * 
- * description:      the main program for iteration
- * 
- * @author            Andreas Winkler
- *
- * date:             5.01.1999
- *
- */
 /**
-    @author Andreas Winkler
-    @version 2.3pre3
-*/
+ * @author  Andreas Winkler
+ * @version 2.3pre3
+ */
+ 
 #include <stdlib.h>
 #include <unistd.h>
 

@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_crsm.cpp ******************************
- * 
- * description:      job shop critical-shift-mixed-API-neighborhood
- * 
- * @author            Andreas Winkler
+/** 
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             18.10.2000
- *
  */
+ 
 #include <stdlib.h>
 
 #include "jsp_crsm.hpp"

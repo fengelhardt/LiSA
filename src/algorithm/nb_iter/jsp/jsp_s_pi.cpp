@@ -1,14 +1,8 @@
-/*
- * ******************** jsp_s_pi.cpp ******************************
- * 
- * description:      job shop semicritical-API neighborhood
- * 
- * @author            Andreas Winkler
+/**
+ * @author  Andreas Winkler
  * @version 2.3pre3
- *
- * date:             17.10.2000
- *
  */
+ 
 #include <stdlib.h>
 #include "jsp_s_pi.hpp"
 
