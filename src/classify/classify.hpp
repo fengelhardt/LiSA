@@ -39,16 +39,16 @@ const int PATHMAX=500;
     also give the corresponding lists of maximall open and minimal open
     problems 
 
-    @param Lisa_ProblemType as input problem object
-    @param string LISA_HOME path
-    @param string relative path of the BibTeX data base file
+    @param G_Problem as input problem object
+    @param home LISA_HOME path
+    @param file relative path of the BibTeX data base file
     @return string classification result text
     @see Lisa_DataBase 
     @see Lisa_RedGraph
     @author Martin Harborth
     @version 2.3pre3
 */
-string Lisa_classify(Lisa_ProblemType*,string,string);  
+string Lisa_classify(Lisa_ProblemType* G_Problem,string home,string file);  
 
 /// output of complete reference list concerning current problem
 string Lisa_full_ref(Lisa_ProblemType*,string,string);  

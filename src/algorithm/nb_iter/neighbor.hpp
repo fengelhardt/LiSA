@@ -9,9 +9,6 @@
  *
  */
 
-
-
-
 #ifndef _nghbour_h
 #define _nghbour_h
 
@@ -203,41 +200,39 @@ public:
       Just a virtual destructor*/
   virtual ~Lisa_Neighborhood(){}
 };
-
-#endif
-
-   /** @name Problem Dependent Neighborhoods  */
-    //@{
-    /** @name Single-Machine Neighborhoods  */
-      //@{
-      //@Include: one_mach/m1_api.hpp
-      //@Include: one_mach/m1_shft.hpp
-    //@}
-    /** @name Open-Shop Neighborhoods  */
-    //@{
-      //@Include: osp/osp_api.hpp
-      //@Include: osp/osp_shft.hpp
-      //@Include: osp/osp_3api.hpp
-      //@Include: osp/osp_3_cr.hpp
-      //@Include: osp/osp_crpi.hpp
-      //@Include: osp/osp_crsh.hpp
-      //@Include: osp/osp_cr_r.hpp
-      //@Include: osp/osp_blpi.hpp
-      //@Include: osp/osp_blsh.hpp
-    //@}
-    /** @name Job-Shop Neighborhoods  */
-    //@{
-      //@Include: jsp/jsp_api.hpp
-      //@Include: jsp/jsp_shft.hpp
-      //@Include: jsp/jsp_3api.hpp
-      //@Include: jsp/jsp_3_cr.hpp
-      //@Include: jsp/jsp_crpi.hpp
-      //@Include: jsp/jsp_crsh.hpp
-      //@Include: jsp/jsp_blpi.hpp
-      //@Include: jsp/jsp_blsh.hpp
-    //@}
-  //@}
 //@}
 
+    
+/** @name Single-Machine Neighborhoods  */
+//@{
+  //@Include: one_mach/m1_api.hpp
+  //@Include: one_mach/m1_shft.hpp
+//@}
 
+/** @name Open-Shop Neighborhoods  */
+//@{
+  //@Include: osp/osp_api.hpp
+  //@Include: osp/osp_shft.hpp
+  //@Include: osp/osp_3api.hpp
+  //@Include: osp/osp_3_cr.hpp
+  //@Include: osp/osp_crpi.hpp
+  //@Include: osp/osp_crsh.hpp
+  //@Include: osp/osp_cr_r.hpp
+  //@Include: osp/osp_blpi.hpp
+  //@Include: osp/osp_blsh.hpp
+//@}
+
+/** @name Job-Shop Neighborhoods  */
+//@{
+  //@Include: jsp/jsp_api.hpp
+  //@Include: jsp/jsp_shft.hpp
+  //@Include: jsp/jsp_3api.hpp
+  //@Include: jsp/jsp_3_cr.hpp
+  //@Include: jsp/jsp_crpi.hpp
+  //@Include: jsp/jsp_crsh.hpp
+  //@Include: jsp/jsp_blpi.hpp
+  //@Include: jsp/jsp_blsh.hpp
+//@}
+
+#endif
 

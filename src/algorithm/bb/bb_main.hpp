@@ -26,9 +26,9 @@
     @author Thomas Tautenhahn
     @version 2.3pre3
 */ 
-\\@{
-  \\@Include: os_bb.h
-\\@}
+//@{
+  //@Include: os_bb.h
+//@}
 
 #endif
 

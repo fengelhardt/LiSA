@@ -53,11 +53,11 @@ public:
   /** Comparison of two problems concerning the complexity status.  This 
       function takes two problems as input and returns the relation between 
       these problems with respect to polynomial reducibility. 
-      @param Lisa_Problem first input problem object
-      @param Lisa_Problem second input problem object
+      @param t1 first input problem object
+      @param t2 second input problem object
       @return IDENT, FIRST_TO_SECOND, SECOND_TO_FIRST, NOT_CMP
   */
-  int compare(Lisa_ProblemType*,Lisa_ProblemType*);  
+  int compare(Lisa_ProblemType* t1,Lisa_ProblemType* t2);  
 };
 
 #endif
