@@ -18,16 +18,12 @@
 /*  INPUT : -/-                                                             */
 /*                                                                          */
 /*  FUNCTION: Initialisierung globaler Variablen;                           */
-/*            Initialisierung der Datei "output.dat"                        */
+/*                                                                          */
 /* ************************************************************************ */
 
-void Initialize (char output_file[]){
+void Initialize(){
 
   int i;
-  FILE *fp;
-
-  fp = fopen(output_file,"w");
-  fclose(fp);
 
   UpperBound = MaxInt;
   FirstOfStack = NIL;

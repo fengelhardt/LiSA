@@ -18,7 +18,7 @@
 /*            Initialisierung der Datei "output.dat"                         */
 /* ************************************************************************* */
 
-void Initialize (char output_file[]);
+void Initialize();
 
 
 #endif
