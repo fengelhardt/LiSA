@@ -1,2 +1,18 @@
 OBJECTS=\
-	../../../obj/
+	../../../obj/list.o \
+	../../../obj/lmatrix.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/sp_sched.o \
+	../../../obj/append.o \
+	../../../obj/irregjs.o \
+	../../../obj/insert.o \
+	../../../obj/irregjs_main.o

@@ -4,10 +4,10 @@ CXXSOURCES=\
 	travel_neighbourhood.cpp \
 	../../algorithm/nb_iter/iterate.cpp \
 	../../algorithm/nb_iter/tabu.cpp \
-	../../basics/global.cpp \
-	../../basics/matrix.cpp \
-	../../basics/except.cpp \
-	../../basics/lisa_str.cpp \
 	../../basics/list.cpp \
+	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
-	../../lisa_dt/ctrlpara.cpp
+	../../lisa/ctrlpara.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/lisa_str.cpp

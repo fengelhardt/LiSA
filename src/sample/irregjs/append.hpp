@@ -12,7 +12,7 @@
 #ifndef _append_h
 #define _append_h
 
-#include "../../lisa_dt/schedule/js_sched.hpp"
+#include "../../scheduling/js_sched.hpp"
 #include "../../basics/order.hpp"
 
 void ECT_reverse(Lisa_JsSchedule *);

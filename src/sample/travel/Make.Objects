@@ -1,2 +1,13 @@
 OBJECTS=\
-	../../../obj/
+	../../../obj/travel.o \
+	../../../obj/travel_graph.o \
+	../../../obj/travel_neighbourhood.o \
+	../../../obj/iterate.o \
+	../../../obj/tabu.o \
+	../../../obj/list.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/lisa_str.o

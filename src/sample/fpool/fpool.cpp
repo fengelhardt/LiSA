@@ -3,8 +3,8 @@
 #include "fp_vect.hpp"
 #include "nb_fp.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/ctrlpara.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/ctrlpara.hpp"
 
 
 int main(int argc, char *argv[])

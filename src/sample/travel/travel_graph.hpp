@@ -12,10 +12,10 @@
 
 #include <time.h>
 #include <iostream.h>
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/lsaobjct.hpp"
+#include "../../misc/except.hpp"
+#include "../../lisa/lsaobjct.hpp"
 
 #ifndef _travel_graph_h
 #define _travel_graph_h

@@ -16,7 +16,7 @@
 #include <ostream.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 
 bool abort_algorithm;
 

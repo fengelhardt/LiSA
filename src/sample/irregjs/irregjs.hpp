@@ -12,8 +12,8 @@
 #define _irredjs_h 
 
 #include <iostream.h>
-#include "../../basics/except.hpp"
-#include "../../lisa_dt/schedule/js_sched.hpp"
+#include "../../misc/except.hpp"
+#include "../../scheduling/js_sched.hpp"
 
 class NM_JsProblem: public Lisa_JsProblem
    {

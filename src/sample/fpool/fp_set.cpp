@@ -10,7 +10,7 @@
  */
 
 #include "fp_set.hpp"
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 
 fp_set::fp_set(int ni, int sigmai)
   {

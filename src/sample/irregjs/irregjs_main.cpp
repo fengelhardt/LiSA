@@ -14,7 +14,7 @@
 #include"irregjs.hpp"
 #include"insert.hpp"
 #include"append.hpp"
-#include"../../lisa_dt/ptype.hpp"
+#include"../../lisa/ptype.hpp"
 
 int main(int argc, char *argv[]) 
  {

@@ -1,15 +1,15 @@
 CXXSOURCES=\
-	main.cpp \
-        fp_set.cpp \
+	fpool.cpp \
+     fp_set.cpp \
 	fp_vect.cpp \
 	nb_fp.cpp \
-	../../basics/global.cpp \
-	../../basics/except.cpp \
-	../../basics/lisa_str.cpp \
 	../../algorithm/nb_iter/iterate.cpp \
-        ../../algorithm/nb_iter/tabu.cpp \
 	../../basics/matrix.cpp \
-	../../lisa_dt/ctrlpara.cpp \
+	../../lisa/ctrlpara.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/lisa_str.cpp \
+     ../../algorithm/nb_iter/tabu.cpp
 
 DOCSOURCES=\
      fp_set.cpp

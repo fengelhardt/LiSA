@@ -17,7 +17,7 @@
 #define _tabu_h
 
 #include <ostream.h>
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 #include "../../basics/matrix.hpp"
 
 /** @name Tabu List    

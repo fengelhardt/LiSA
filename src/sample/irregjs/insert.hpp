@@ -12,7 +12,7 @@
 #ifndef _insert_h
 #define _insert_h
 
-#include "../../lisa_dt/schedule/js_sched.hpp"
+#include "../../scheduling/js_sched.hpp"
 #include "../../basics/order.hpp"
 
 void rattle_js( Lisa_JsSchedule * sched);

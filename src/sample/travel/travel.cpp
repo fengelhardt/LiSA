@@ -14,7 +14,7 @@
 #include "travel_graph.hpp"
 #include "travel_neighbourhood.hpp"
 #include "../../algorithm/nb_iter/iterate.hpp"
-#include "../../lisa_dt/ctrlpara.hpp"
+#include "../../lisa/ctrlpara.hpp"
 
 /** @name An example for using LiSA's neighbourhood algorithms
     

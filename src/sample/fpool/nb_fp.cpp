@@ -10,7 +10,7 @@
  */
 
 #include "nb_fp.hpp"
-#include "../../basics/global.hpp"
+#include "../../main/global.hpp"
 
 fp_nb::fp_nb(int ni, int sigmai)
  {
