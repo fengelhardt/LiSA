@@ -1,5 +1,5 @@
 <GENERAL>
-Name= Reducing Operation-Set
+Name= Reducing Operation-Set (Research)
 Type= constructive
 Call= reducing_set
 Code= external
