@@ -13,7 +13,7 @@
 class Lisa_Graph : public Lisa_FileEntry{
 public:
   /// flags indicating various possible connections between a pair of vertice
-  enum{CRA=-1 /// backwards ARC ;)
+  enum {CRA=-1 /// backwards ARC ;)
        ,NONE
        ,ARC
        ,EDGE};
