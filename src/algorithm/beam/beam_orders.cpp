@@ -4,9 +4,9 @@
 #define MOD(a,b) (((a)%(b))+(b))%(b)
 
 // this is not working due to the wierd sorting of Lisa_Order (what is a bug in my eyes)
-// it should now -marc-
-static const double DOUBLE_INF = std::numeric_limits<double>::infinity();
-//static const double DOUBLE_INF = 10000000.;
+// infinity() may not exist ... -marc-
+static const double DOUBLE_INF = std::max<double>(std::numeric_limits<double>::infinity(),MAXOBJECTIVE);
+
 
 Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem){
   if(iord == ect)
