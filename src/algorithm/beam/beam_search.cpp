@@ -242,25 +242,30 @@ bool BeamSearch::getNextOp(B_Node* parent, BeamSearch::Operation& next){
     next.first = order->row(step)+1;
     next.second = order->col(step)+1;
     return true;
-  }
-  else { //dynamic next
+  }else{ //dynamic next
     //attachment minimum head is first machine/job
-    TIMETYP best = std::numeric_limits<TIMETYP>::infinity(), head;
-    next.first = next.second = 1;
+    TIMETYP best,head;
+    bool found_best = false;
     for (int i=1; i<=parent->P->n; i++)
       for (int j=1; j<=parent->P->m; j++){
-	if(! ((*problem->sij)[i][j]) || parent->exists(i,j))
-	  continue;
-	head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
-	if(head < best){
-	  next.first = i; next.second = j;
-	  best = head;
-	}
-	else if(head == best && (tie(next.first,next.second) > tie(i,j))){ //break tie
-	  next.first = i; next.second = j;
-	}
+        
+        if(! ((*problem->sij)[i][j]) || parent->exists(i,j)) continue;
+        
+        head = std::max<TIMETYP>(parent->GetHead(i,SINK),parent->GetHead(SINK,j));
+        if(found_best){
+          if(head < best){
+            next.first = i; next.second = j;
+            best = head;
+          }else if(head == best && (tie(next.first,next.second) > tie(i,j))){ //break tie
+            next.first = i; next.second = j;
+          }
+        }else{
+         next.first = i; next.second = j;
+         best = head;
+         found_best = true;
+        }
       }
-    return true;
+      return true;
   }
   return false;
 }
