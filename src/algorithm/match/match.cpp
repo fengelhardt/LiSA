@@ -158,7 +158,7 @@ int main(int argc, char *argv[]){
 
    /// problem type applicable ?
   bool accept=true;
-  if(lpr.output_beta() != "" ) accept = false;
+  if(lpr.output_beta() != "" && lpr.output_beta() != "p_ij=1" && lpr.output_beta() != "p_ij=p") accept = false;
   if(lpr.get_property(OBJECTIVE) != CMAX && lpr.get_property(OBJECTIVE) != SUM_CI) accept = false; 
   if(lpr.get_property(M_ENV)!=O) accept = false;
   if(!accept){
