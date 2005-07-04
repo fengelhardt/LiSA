@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <fstream>
 #include <iostream>
+#include <utility>
 
 #include "../../xml/LisaXmlFile.hpp"
 
@@ -197,27 +198,38 @@ int main(int argc, char *argv[]){
   }
   
   
-  if (Regel=="MS")
-  { 
-    Lisa_Vector<double> D=(*my_werte.DD),MS(n);
-    double t=0;int a,lr=1;
+  if (Regel=="MS"){ //fixed by marc
+    Lisa_Vector<double> duedate(*my_werte.DD);
+    Lisa_Vector<double> slack(n);
     
-    do{
-      MS.fill(0);
-      for (int i=0;i<n;i++) 
-      {MS[i]=D[i]-(*my_werte.PT)[i][0]-t;
-        if(MS[i]<0) 
-        {if(D[i]!=-1) MS[i]=0;
-        else MS[i]=-1;}
+    double t=0;
+    for(int lr=1;lr<=n;lr++){
+      
+      //compute slack
+      for(int i=0;i<n;i++){
+        slack[i] = std::max<double>(duedate[i]-(*my_werte.PT)[i][0]-t,0);
       }
       
-      a=maxV(MS);
+      //find minimal slack
+      int a;
+      for(int i=0;i<n;i++){
+        if(duedate[i] >= 0){
+          a = i;
+          break;
+        }
+      }
+      
+      for(int i=0;i<n;i++){
+        if(duedate[i] >= 0 && slack[i] < slack[a]){
+          a = i;
+        }
+      }
+      
+      //schedule a
       (*out_schedule.LR)[a][0]=lr;
-      t=t+(*my_werte.PT)[a][0];
-      D[a]=-1;
-      lr++;
+      t = t + (*my_werte.PT)[a][0];
+      duedate[a] = -1;
     }
-    while (lr<n+1);
   }
   
   if (Regel=="ERD")
