@@ -210,6 +210,7 @@ int main(int argc, char *argv[]){
         {if(D[i]!=-1) MS[i]=0;
         else MS[i]=-1;}
       }
+      
       a=maxV(MS);
       (*out_schedule.LR)[a][0]=lr;
       t=t+(*my_werte.PT)[a][0];
