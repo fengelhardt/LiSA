@@ -160,7 +160,7 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
 
  mainWindow = Tk_MainWindow(interp);
 
- G_Preferences.init(interp);
+ G_Preferences.init();
  string file = G_Preferences.LISA_HOME+"/tcl/tclinit.tcl";
  // starts the tclinit.tcl file:
  retcode = Tcl_EvalFile( interp,(char*) file.c_str() );

@@ -3,7 +3,7 @@
 #define _lisapref_h 
 
 #include <string>
-#include <tk.h>
+
 
 #include "../lisa/filentry.hpp"
 #include "../lisa/ctrlpara.hpp"
@@ -71,7 +71,7 @@ public:
   inline void read(std::istream& strm = std::cin) { strm >> contents;}
   
   /// get the LISA_HOME name after starting tcl/tk
-  void init(Tcl_Interp *interp);
+  void init();
   
   /// constructor
   Lisa_Preferences();
