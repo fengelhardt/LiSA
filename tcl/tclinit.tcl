@@ -104,7 +104,7 @@ source $env(LISAHOME)/tcl/options.tcl
 
 ##########################
 # create algorithm communication dir
-cd $env(LISACONFIG)
+cd [TC_getvar LISACONFIG]
 file mkdir proc
 
 ############################

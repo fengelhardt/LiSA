@@ -332,7 +332,7 @@ set mylast ""
 	#write end
 	#set height [expr $height+32]
 	puts $output_file_id "
-    set $algo_name\_ptst\(FILE) \"\$env\(LISACONFIG)\/proc\/ptst\_out.lsa\"
+    set $algo_name\_ptst\(FILE) \"[TC_getvar LISACONFIG]\/proc\/ptst\_out.lsa\"
 "
 if { $only_string=="no" } { 
     set height [expr $height+32]
@@ -350,7 +350,7 @@ if { $only_string=="no" } {
 	          \[tk_getSaveFile  -defaultextension .lsa \
 			           -filetypes \$mw(filetypes) \
 				   -initialfile \$$algo_name\_ptst\(FILE) \
-				   -initialdir \"\$env\(LISACONFIG)\/proc\" \
+				   -initialdir \"[TC_getvar LISACONFIG]\/proc\" \
 			           -title \$Name(out_file)\];
                    .$algo_name\_ptst.fileframe.01 xview 300\}
     pack \$base.fileframe \

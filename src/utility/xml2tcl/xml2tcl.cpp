@@ -376,7 +376,7 @@ void writeTcl_ParaTest(std::string algo_name,
 						out << endl;
 						entry++;
 				}
-		out << "   set " << algo_name << "_ptst(FILE) \"$env(LISACONFIG)/proc/" << algo_name << "_ptst_" << "tab.lsa" << "\"" << endl;
+		out << "   set " << algo_name << "_ptst(FILE) \"[TC_getvar LISACONFIG]/proc/" << algo_name << "_ptst_" << "tab.lsa" << "\"" << endl;
 		out << endl;
 		//not only stings ...
 		if( !(Alg.Integer_Controls.empty()) && !(Alg.Real_Controls.empty()))
@@ -385,7 +385,7 @@ void writeTcl_ParaTest(std::string algo_name,
 						out << "   frame $base.fileframe -borderwidth 3 -height 32 -relief groove -width 125" << endl;
 						out << "   entry $base.fileframe.01 -textvar " << algo_name << "_ptst(FILE)" << endl;
 						out << "   $base.fileframe.01 xview 300" << endl;
-						out << "   button $base.fileframe.02 -padx 11 -pady 4 -text $Name(out_file) -command {nbptst_set." << algo_name << " \"FILE\" [tk_getSaveFile -defaultextension .lsa -filetypes $mw(filetypes) -initialfile $" << algo_name << "_ptst(FILE) -initialdir \"$env(LISACONFIG)/proc\" -title $Name(out_file)];" << endl
+						out << "   button $base.fileframe.02 -padx 11 -pady 4 -text $Name(out_file) -command {nbptst_set." << algo_name << " \"FILE\" [tk_getSaveFile -defaultextension .lsa -filetypes $mw(filetypes) -initialfile $" << algo_name << "_ptst(FILE) -initialdir \"[TC_getvar LISACONFIG]/proc\" -title $Name(out_file)];" << endl
 										<< "     ." << algo_name << "_ptst.fileframe.01 xview 300}" << endl;
 						out << "   pack $base.fileframe -in ." << algo_name << "_ptst -anchor center -expand 1 -fill both -side top" << endl;
 						out << "   place $base.fileframe.02 -x 3 -y 3 -width -279 -height 28 -anchor nw -bordermode ignore" << endl;
