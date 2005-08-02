@@ -3,6 +3,7 @@
 #define _gantt_h 
 
 #include "win_obj.hpp"
+#include "../main/lisapref.hpp"
 
 /// holding operation data
 struct O_Data{
@@ -99,8 +100,7 @@ public:
   
   /// draws a Gantt-Chart   
   void draw(Lisa_Matrix<bool> *CP, Lisa_Values *G_Values,
-            Lisa_Schedule *G_Schedule, bool orientation, 
-            int color_type, Lisa_Vector<int> *active_path);
+            Lisa_Schedule *G_Schedule, Lisa_Preferences& lpref);
   
   /// gives information about an operation
   operation_data* get_data(double x_coordinate, double y_coordinate, 

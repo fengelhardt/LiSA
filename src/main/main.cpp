@@ -71,37 +71,29 @@ bool init_G_Preferences(char * configfile){
     return false;
   }
   
-  if(!(G_Preferences.contents.defined("LISAHOME")==Lisa_ControlParameters::STRING)){
-    char* lh = getenv("LISAHOME");
+  if(!(G_Preferences.contents.defined(Lisa_Pref::LISAHOME)==Lisa_ControlParameters::STRING)){
+    char* lh = getenv(Lisa_Pref::LISAHOME);
     if(lh == 0){
-      cerr << "LISAHOME neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
+      cerr << Lisa_Pref::LISAHOME << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
       return false;
     }else{
-      G_Preferences.contents.add_key("LISAHOME",lh); 
+      G_Preferences.contents.add_key(Lisa_Pref::LISAHOME,lh); 
     }
   }
   
-  /*string out = "LISAHOME="+G_Preferences.get_string("LISAHOME");
-  if(putenv((char *) out.c_str())==-1){
-    cerr << "Could not set environment variable '"+out+"'.";
-    return false;
-  }*/
-  
-  if(!(G_Preferences.contents.defined("LISACONFIG")==Lisa_ControlParameters::STRING)){
-    char* lc = getenv("LISACONFIG");
+  if(!(G_Preferences.contents.defined(Lisa_Pref::LISACONFIG)==Lisa_ControlParameters::STRING)){
+    char* lc = getenv(Lisa_Pref::LISACONFIG);
     if(lc == 0){
-      cerr << "LISACONFIG neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
+      cerr << Lisa_Pref::LISACONFIG << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
       return false; 
     }else{
-      G_Preferences.contents.add_key("LISACONFIG",lc);
+      G_Preferences.contents.add_key(Lisa_Pref::LISACONFIG,lc);
     }
   }
   
-  /*out = "LISACONFIG="+G_Preferences.get_string("LISACONFIG");
-  if(putenv((char *) out.c_str())==-1){
-    cerr << "Could not set environment variable '"+out+"'.";
-    return false;
-  }*/
+  if(!(G_Preferences.contents.defined(Lisa_Pref::GANTT_ORIENT)==Lisa_ControlParameters::LONG)){
+    G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
+  }
   
   //cout << G_Preferences;
   
@@ -130,7 +122,7 @@ int main(int argc, char *argv[]) {
   
   if(!init_G_Preferences(argv[1])) return 1;
 
-  G_Classify = Lisa_Classify::make_instance(G_Preferences.get_string("LISAHOME")+"/data/classify/classify.bib");
+  G_Classify = Lisa_Classify::make_instance(G_Preferences.get_string(Lisa_Pref::LISAHOME)+"/data/classify/classify.bib");
   if(G_Classify == 0){
     cerr << "Could not create classify object. Exiting" << endl;
     return 1;

@@ -761,7 +761,7 @@ return TCL_OK;
     TCGantt myTCGantt(interp,MW_MAINCANV, MW_HORICANV,MW_VERTCANV);
     myTCGantt.zoom=G_Status.zoom;
     myTCGantt.set_wh((int) G_Status.width,(int) G_Status.height);
-    myTCGantt.mark(column-1,row-1,&G_Values,G_Schedule,G_Preferences.gantt_orient);
+    myTCGantt.mark(column-1,row-1,&G_Values,G_Schedule,G_Preferences.get_long(Lisa_Pref::GANTT_ORIENT));
   }
   Tcl_Eval(interp, "man_oper_update");
   return TCL_OK; 
@@ -856,13 +856,13 @@ int TC_startalg(ClientData /* clientData */,
   algo_call=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"ALGO_CALL",TCL_GLOBAL_ONLY);
   code=Tcl_GetVar2(interp,(char*) name_of_algo.c_str(),"CODE",TCL_GLOBAL_ONLY);
   if (code=="external") {
-    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_IN_FILE,
-																			G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_OUT_FILE,
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_IN_FILE,
+																			G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_OUT_FILE,
 																			G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
   } else {
     G_ExceptionList.lthrow( (string) "wrong code:" + code + "in description file external or internal expected (assume external)" ,Lisa_ExceptionList::SYNTAX_ERROR);
-    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_IN_FILE,
-																			G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_IN_FILE,
+    start_ext_algo(interp,name_of_algo,algo_call, G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_IN_FILE,
+																			G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_IN_FILE,
 																			G_Preferences,G_ProblemType,myctrlpara,*G_Schedule,G_Values);
   } 
 
@@ -973,7 +973,7 @@ int TC_exclude(ClientData /* clientData */, Tcl_Interp */*interp*/,
 /// save Lisa_Preferences in default.lsa
 int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) 
 {
-  string str=G_Preferences.get_string("LISACONFIG")+"/" + DEFAULT_SETTINGS_FILE;
+  string str=G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/" + DEFAULT_SETTINGS_FILE;
   
   LisaXmlFile out(LisaXmlFile::PREFERENCES);
   out << G_Preferences;

@@ -341,9 +341,14 @@ TCGantt::TCGantt(Tcl_Interp *interp,string canv,string horizontal_canvas,
 void TCGantt::draw(Lisa_Matrix<bool> *CP,
 		   Lisa_Values *G_Values,
 		   Lisa_Schedule *G_Schedule,
-		   bool orientation, int color_type, 
-		   Lisa_Vector<int> *active_path) 
+		   //bool orientation, int color_type, 
+		   //Lisa_Vector<int> *active_path)
+           Lisa_Preferences& lpref)
 {
+  long orientation = lpref.get_long(Lisa_Pref::GANTT_ORIENT);
+  long color_type = lpref.gantt_col_type;
+  Lisa_Vector<int>* active_path = lpref.gantt_colors;
+  
   int i1, i2, color; char *text_color;
 
  

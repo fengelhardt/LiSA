@@ -245,10 +245,7 @@ void show_output() {
 	  TCGantt myTCGantt(interp,MW_MAINCANV, MW_HORICANV,MW_VERTCANV);
 	  myTCGantt.zoom=G_Status.zoom;
 	  myTCGantt.set_wh((int) G_Status.width,(int) G_Status.height);
-	  myTCGantt.draw(G_XSchedule->CP,&G_Values,G_Schedule,
-			 G_Preferences.gantt_orient,
-			 G_Preferences.gantt_col_type,
-			 G_Preferences.gantt_colors);
+	  myTCGantt.draw(G_XSchedule->CP,&G_Values,G_Schedule,G_Preferences);
 	}
       }
       else if(mw_output=="Sequence Graph") {

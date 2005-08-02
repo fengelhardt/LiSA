@@ -7,7 +7,30 @@
 #include "lisapref.hpp"
 
 using namespace std;
+  
+//**************************************************************************
+  
+const char* Lisa_Pref::WIDTH = "WIDTH";
+const char* Lisa_Pref::HEIGHT ="HEIGHT";  
+const char* Lisa_Pref::LISAHOME = "LISAHOME";
+const char* Lisa_Pref::LISACONFIG = "LISACONFIG";
+const char* Lisa_Pref::LANGUAGE = "LANGUAGE";
+const char* Lisa_Pref::HTML_VIEWER = "HTML_VIEWER";
+const char* Lisa_Pref::GANTT_ORIENT = "GANTT_ORIENT";
+const char* Lisa_Pref::GANTT_COL_TYPE = "GANTT_COL_TYPE";
+const char* Lisa_Pref::GANTT_RED = "GANTT_RED";
+const char* Lisa_Pref::GANTT_GREEN = "GANTT_GREEN";
+const char* Lisa_Pref::GANTT_BLUE = "GANTT_BLUE";
+const char* Lisa_Pref::GANTT_BROWN = "GANTT_BROWN";
+const char* Lisa_Pref::GANTT_YELLOW = "GANTT_YELLOW";
 
+const long Lisa_Pref::GANTT_JOB=0;
+const long Lisa_Pref::GANTT_MACHINE=1;
+
+const long Lisa_Pref::GANTT_NORMAL=0;
+const long Lisa_Pref::GANTT_CP=1;
+const long Lisa_Pref::GANTT_COLOR=2;
+  
 //**************************************************************************
 
 Lisa_Preferences::Lisa_Preferences() {
@@ -17,37 +40,9 @@ Lisa_Preferences::Lisa_Preferences() {
 
 void Lisa_Preferences::init(){
 
-  /*if(Tcl_GetVar2(interp,"env","LISAHOME",0) != 0){
-    LISA_HOME = Tcl_GetVar2(interp,"env","LISAHOME",0);
-  }else{
-    G_ExceptionList.lthrow("Enviroment variable 'LISAHOME' not set.",
-                           Lisa_ExceptionList::ANY_ERROR);
-  }*/
+
   
-  /*char* lh = getenv("LISAHOME");
-  if(lh == 0){
-    G_ExceptionList.lthrow("Enviroment variable 'LISAHOME' not set.",
-                           Lisa_ExceptionList::ANY_ERROR);
-  }else{
-    LISA_HOME = lh;
-  }*/
-  
-  /*if(Tcl_GetVar2(interp,"env","LISACONFIG",0) != 0){
-    CONFIG_HOME = Tcl_GetVar2(interp,"env","LISACONFIG",0);
-  }else{
-    G_ExceptionList.lthrow("Enviroment variable 'LISACONFIG' not set.",
-                           Lisa_ExceptionList::ANY_ERROR);
-  }*/
-  
-  /*char* lc = getenv("LISACONFIG");
-  if(lc == 0){
-    G_ExceptionList.lthrow("Enviroment variable 'LISACONFIG' not set.",
-                           Lisa_ExceptionList::ANY_ERROR); 
-  }else{
-    CONFIG_HOME = lc;
-  }*/
-  
-  gantt_orient = GANTT_MACHINE;
+  //gantt_orient = GANTT_MACHINE;
   gantt_col_type= GANTT_NORMAL;
   gantt_colors = new Lisa_Vector<int>(5);
   gantt_colors->fill(0);

@@ -174,14 +174,14 @@ int TC_getvar(ClientData /* clientData */,
   
   string name=argv[1],str="NOT_DEFINED",str2="",str3="",str4="";
   
-  if(name=="LANGUAGE") {
-    str= G_Preferences.get_string("LANGUAGE");
-  }else if (name=="HTML_VIEWER") {
-    str= G_Preferences.get_string("HTML_VIEWER");
-  }else if(name=="LISAHOME"){
-    str = G_Preferences.get_string("LISAHOME");
-  }else if(name=="LISACONFIG"){
-    str = G_Preferences.get_string("LISACONFIG");
+  if(name==Lisa_Pref::LANGUAGE) {
+    str= G_Preferences.get_string(Lisa_Pref::LANGUAGE);
+  }else if (name==Lisa_Pref::HTML_VIEWER) {
+    str= G_Preferences.get_string(Lisa_Pref::HTML_VIEWER);
+  }else if(name==Lisa_Pref::LISAHOME){
+    str = G_Preferences.get_string(Lisa_Pref::LISAHOME);
+  }else if(name==Lisa_Pref::LISACONFIG){
+    str = G_Preferences.get_string(Lisa_Pref::LISACONFIG);
   }else if (name=="problemtype") {
     str=G_ProblemType.output_problem();
     if (str!="no valid Problem"&&G_Values.get_m()!=0&&G_Values.get_n()!=0) {
@@ -365,10 +365,10 @@ int TC_getvar(ClientData /* clientData */,
      normalx=xpos/mw_width()*100.;
      normaly=100.-ypos/mw_height()*100.;
    }
-   mydata=myTCGantt.get_data(normalx,normaly,&G_Values,G_Schedule, G_Preferences.gantt_orient);
+   mydata=myTCGantt.get_data(normalx,normaly,&G_Values,G_Schedule,G_Preferences.get_long(Lisa_Pref::GANTT_ORIENT));
    
    str=ztos(mydata->job);
-   myTCGantt.mark(mydata->machine,mydata->job,&G_Values,G_Schedule,G_Preferences.gantt_orient);
+   myTCGantt.mark(mydata->machine,mydata->job,&G_Values,G_Schedule,G_Preferences.get_long(Lisa_Pref::GANTT_ORIENT));
  }else if (name=="machine_from_gantt") {
     sscanf(argv[2],"%f",&xpos);
     sscanf(argv[3],"%f",&ypos);
@@ -388,7 +388,7 @@ int TC_getvar(ClientData /* clientData */,
       normaly=100.-ypos/mw_height()*100.;
     }
     
-    mydata=myTCGantt.get_data(normalx,normaly,&G_Values,G_Schedule, G_Preferences.gantt_orient);
+    mydata=myTCGantt.get_data(normalx,normaly,&G_Values,G_Schedule, G_Preferences.get_long(Lisa_Pref::GANTT_ORIENT));
     str=ztos(mydata->machine);
   }else if (name=="no_solutions") {
     str=ztos(G_ScheduleList->length());
@@ -638,8 +638,8 @@ else if (name=="SIJ") {
   else if (name=="gantt") {
     str=Tcl_GetVar2(interp,"gantt","orientation",TCL_GLOBAL_ONLY);
     if (str=="machine")
-      G_Preferences.gantt_orient=GANTT_MACHINE;
-    else G_Preferences.gantt_orient=GANTT_JOB;
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
+    else G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_JOB);
     str=Tcl_GetVar2(interp,"gantt","special",TCL_GLOBAL_ONLY);
     if (str=="critical_path") 
       G_Preferences.gantt_col_type=GANTT_CP;
@@ -664,11 +664,11 @@ else if (name=="SIJ") {
   else if (name=="options") {
     str2=argv[2];
      str3=argv[3];
-     if ( str2=="LANGUAGE" ) {
-       G_Preferences.contents.add_key("LANGUAGE",str3);
+     if ( str2==Lisa_Pref::LANGUAGE) {
+       G_Preferences.contents.add_key(Lisa_Pref::LANGUAGE,str3);
      }
-    if ( str2=="HTML_VIEWER" ) {
-      G_Preferences.contents.add_key("HTML_VIEWER",str3);
+    if ( str2==Lisa_Pref::HTML_VIEWER ) {
+      G_Preferences.contents.add_key(Lisa_Pref::HTML_VIEWER,str3);
     }
   } 
   else cerr << "in TC_setvar: Variable " <<name <<" unknown\n";

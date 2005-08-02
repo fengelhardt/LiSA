@@ -306,6 +306,7 @@ const TIMETYP MAXOBJECTIVE= (TIMETYP) 10000000L;
 /// highest possible number
 const long MAXNUMBER= 1000000L; 
 
+
 /// Length of the progress indicator for external algorithms. 
 /** The algorithm should output a line starting with "OBJECTIVE=" exactly so
     many times in equal time intervals to fill one indicator window. */

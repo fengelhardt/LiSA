@@ -49,7 +49,7 @@ int TC_startparam(ClientData, //cliet data
   Tcl_Eval(interp,"puts e:$bb(NO_OF_ENTRYS)");
   //cout << n << " entrys in controlparameters" << endl;
 
-  str = G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_IN_FILE;
+  str = G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_IN_FILE;
   
 		//XML
 		//ofstream fout(str.c_str());
@@ -203,8 +203,8 @@ int TC_startparam(ClientData, //cliet data
 												}
 								}
     }
-  myctrlpara.add_key( "CONFIG_HOME", G_Preferences.get_string("LISACONFIG") );
-  myctrlpara.add_key( "LISA_HOME", G_Preferences.get_string("LISAHOME") );
+  myctrlpara.add_key( "CONFIG_HOME", G_Preferences.get_string(Lisa_Pref::LISACONFIG) );
+  myctrlpara.add_key( "LISA_HOME", G_Preferences.get_string(Lisa_Pref::LISAHOME) );
   string_var=Tcl_GetVar2(interp,(char*) (name_of_algo+"_ptst").c_str(),"FILE",TCL_GLOBAL_ONLY);
   myctrlpara.add_key( "FILE", string_var );
 		
@@ -217,8 +217,8 @@ int TC_startparam(ClientData, //cliet data
   start_paratest(interp,
 																	name_of_algo,
 																	algo_call, 
-																	G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_IN_FILE,
-																	G_Preferences.get_string("LISACONFIG")+"/proc/" + DEFAULT_OUT_FILE,
+																	G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_IN_FILE,
+																	G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/proc/" + DEFAULT_OUT_FILE,
 																	G_Preferences,
 																	G_ProblemType,
 																	myctrlpara,
@@ -263,7 +263,7 @@ int start_paratest(Tcl_Interp *interp,
 		// call the external program
 		// TCL/TK does this for us
 				
-		str="set lsa_status(fid) [open \"| "+G_Preferences.get_string("LISAHOME")+"/bin/" + 
+		str="set lsa_status(fid) [open \"| "+G_Preferences.get_string(Lisa_Pref::LISAHOME)+"/bin/" + 
 				algo_call + " " + output_file + " " + result_file+ "\" \"r\" ]";
 		Tcl_Eval(interp,(char*) str.c_str());
 				
@@ -277,7 +277,7 @@ int start_paratest(Tcl_Interp *interp,
 		Tcl_Eval(interp,(char*) str.c_str());
 		str2=Tcl_GetVar2(interp,"lsa_status","pid",TCL_GLOBAL_ONLY);
 		if (str2=="-1") {
-				G_ExceptionList.lthrow("no file: "+G_Preferences.get_string("LISAHOME")+"/bin/"+algo_call+ " in LiSA path",Lisa_ExceptionList::END_OF_FILE);
+				G_ExceptionList.lthrow("no file: "+G_Preferences.get_string(Lisa_Pref::LISAHOME)+"/bin/"+algo_call+ " in LiSA path",Lisa_ExceptionList::END_OF_FILE);
 				return !OK;
 		}
 				

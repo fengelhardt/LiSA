@@ -8,6 +8,7 @@ CXXSOURCES=\
 	../../lisa/lvalues.cpp \
 	../../lisa/ptype.cpp \
 	../../main/global.cpp \
+        ../../main/lisapref.cpp \
 	../../misc/except.cpp \
 	../../misc/int2str.cpp \
 	../../scheduling/js_sched.cpp \

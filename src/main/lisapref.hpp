@@ -9,12 +9,20 @@
 #include "../lisa/ctrlpara.hpp"
 #include "../basics/matrix.hpp"
 
-/// gantt chart job or machine oriented ?
-/** @see Lisa_Preferences::gantt_orient */
-enum{GANTT_JOB=0,GANTT_MACHINE};
+class Lisa_Pref{
+public:
+  const static char *WIDTH,*HEIGHT,*LISAHOME,*LISACONFIG,*LANGUAGE,*HTML_VIEWER,
+                    *GANTT_ORIENT,*GANTT_COL_TYPE,
+                    *GANTT_RED,*GANTT_GREEN,*GANTT_BLUE,*GANTT_BROWN,*GANTT_YELLOW;
+                   
+  const static long int GANTT_JOB,GANTT_MACHINE,GANTT_NORMAL,GANTT_CP,GANTT_COLOR;
 
-/// three ways to color gantt chart
-/** @see Lisa_Preferences::gantt_col_type */
+};
+
+//***************************************************************************
+
+//const long GANTT_JOB=0;
+//const long GANTT_MACHINE=1;
 enum{GANTT_NORMAL=0,GANTT_CP,GANTT_COLOR};
 
 /// indexes into Lisa_Preferences::gantt_colors
@@ -36,7 +44,7 @@ public:
   //std::string CONFIG_HOME;
   
   /// orientation of the gantt chart
-  bool gantt_orient;
+  //bool gantt_orient;
   
   /// how to draw gantt chart ?
   /** 
@@ -60,7 +68,7 @@ public:
   /// access internal Lisa_ControlParameters
   /** these are just wrappers for the methods with the same name
       in Lisa_ControlParameters */
-  inline long get_int(std::string bezeichner) {return contents.get_long(bezeichner);}
+  inline long get_long(std::string bezeichner) {return contents.get_long(bezeichner);}
   inline std::string get_string(std::string bezeichner) {return contents.get_string(bezeichner);}
   inline double get_double(std::string bezeichner) {return contents.get_double(bezeichner);}
   

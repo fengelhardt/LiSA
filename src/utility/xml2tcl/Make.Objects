@@ -8,6 +8,7 @@ OBJECTS=\
 	../../../obj/lvalues.o \
 	../../../obj/ptype.o \
 	../../../obj/global.o \
+	../../../obj/lisapref.o \
 	../../../obj/except.o \
 	../../../obj/int2str.o \
 	../../../obj/js_sched.o \
