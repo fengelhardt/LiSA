@@ -174,10 +174,14 @@ int TC_getvar(ClientData /* clientData */,
   
   string name=argv[1],str="NOT_DEFINED",str2="",str3="",str4="";
   
-  if (name=="LANGUAGE") {
+  if(name=="LANGUAGE") {
     str= G_Preferences.get_string("LANGUAGE");
   }else if (name=="HTML_VIEWER") {
     str= G_Preferences.get_string("HTML_VIEWER");
+  }else if(name=="LISAHOME"){
+    str = G_Preferences.get_string("LISAHOME");
+  }else if(name=="LISACONFIG"){
+    str = G_Preferences.get_string("LISACONFIG");
   }else if (name=="problemtype") {
     str=G_ProblemType.output_problem();
     if (str!="no valid Problem"&&G_Values.get_m()!=0&&G_Values.get_n()!=0) {

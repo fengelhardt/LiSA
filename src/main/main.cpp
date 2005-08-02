@@ -57,6 +57,59 @@ Tcl_Interp *interp;
 
 //**************************************************************************
 
+bool init_G_Preferences(char * configfile){
+  ifstream pref(configfile);
+  if (! pref){
+    cerr << "Could not open config file: '" << configfile << "'. Exiting." << endl;
+    return false;
+  }
+  pref.close();
+  
+  LisaXmlFile conf;
+  if(!conf.read(configfile) || !(conf >> G_Preferences)){
+    cerr << "Could not read config file: '" << configfile << "'. Exiting." << endl;
+    return false;
+  }
+  
+  if(!(G_Preferences.contents.defined("LISAHOME")==Lisa_ControlParameters::STRING)){
+    char* lh = getenv("LISAHOME");
+    if(lh == 0){
+      cerr << "LISAHOME neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
+      return false;
+    }else{
+      G_Preferences.contents.add_key("LISAHOME",lh); 
+    }
+  }
+  
+  /*string out = "LISAHOME="+G_Preferences.get_string("LISAHOME");
+  if(putenv((char *) out.c_str())==-1){
+    cerr << "Could not set environment variable '"+out+"'.";
+    return false;
+  }*/
+  
+  if(!(G_Preferences.contents.defined("LISACONFIG")==Lisa_ControlParameters::STRING)){
+    char* lc = getenv("LISACONFIG");
+    if(lc == 0){
+      cerr << "LISACONFIG neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
+      return false; 
+    }else{
+      G_Preferences.contents.add_key("LISACONFIG",lc);
+    }
+  }
+  
+  /*out = "LISACONFIG="+G_Preferences.get_string("LISACONFIG");
+  if(putenv((char *) out.c_str())==-1){
+    cerr << "Could not set environment variable '"+out+"'.";
+    return false;
+  }*/
+  
+  cout << G_Preferences;
+  
+  return true;
+}
+
+//**************************************************************************
+
 /// LiSA's main routine, the fun begins here ;)
 int main(int argc, char *argv[]) {
 
@@ -69,27 +122,14 @@ int main(int argc, char *argv[]) {
       return -1;
   }
   
-  ifstream Pref(argv[1]);
-  if (! Pref){
-    cerr << "Could not open config file: '" << argv[1] << "'. Exiting." << endl;
-    return -1;
-  }
-    
   //  G_ExceptionList.set_output_to_cerr();
 
-  Pref.close();
-		char *dtd_env = getenv("LISA_DTD_PATH");
-  std::string dtd_path = (dtd_env)? dtd_env : "";
-
+  char *dtd_env = getenv("LISA_DTD_PATH");
+  std::string dtd_path = (dtd_env) ? dtd_env : "";
   LisaXmlFile::initialize(dtd_path);
-  LisaXmlFile* conf = new LisaXmlFile();
-  if(!conf->read(argv[1]) || !(*conf >> G_Preferences))
-  {
-    cerr << "Could not open config file: '" << argv[1] << "'. Exiting." << endl;
-    return -1;
-  }
-  delete conf;
   
+  if(!init_G_Preferences(argv[1])) exit(1);
+
   G_Classify = Lisa_Classify::make_instance(std::string(getenv("LISAHOME"))+"/data/classify/classify.bib");
   if(G_Classify == 0){
     G_ExceptionList.lthrow("Could not create classify object.",Lisa_ExceptionList::ANY_ERROR);

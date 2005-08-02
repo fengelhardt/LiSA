@@ -30,10 +30,10 @@ public:
   Lisa_ControlParameters contents;
   
   /// the LISA_HOME path
-  std::string LISA_HOME;
+  //std::string LISA_HOME;
   
   /// the home-path of the user
-  std::string CONFIG_HOME;
+  //std::string CONFIG_HOME;
   
   /// orientation of the gantt chart
   bool gantt_orient;

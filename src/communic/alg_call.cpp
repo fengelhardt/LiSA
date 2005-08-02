@@ -50,7 +50,7 @@ int start_ext_algo(Tcl_Interp *interp,
   // call the external program
   // TCL/TK does this for us
   
-  str="set lsa_status(fid) [open \"| "+G_Preferences.LISA_HOME+"/bin/" + 
+  str="set lsa_status(fid) [open \"| "+G_Preferences.get_string("LISAHOME")+"/bin/" + 
     algo_call + " " + output_file + " " + result_file+ "\" \"r\" ]";
 
   Tcl_Eval(interp,(char*) str.c_str());
@@ -65,7 +65,7 @@ int start_ext_algo(Tcl_Interp *interp,
   Tcl_Eval(interp,(char*) str.c_str());
   str2=Tcl_GetVar2(interp,"lsa_status","pid",TCL_GLOBAL_ONLY);
   if (str2=="-1") {
-    G_ExceptionList.lthrow("no file: "+G_Preferences.LISA_HOME+"/bin/"+algo_call+ " in LiSA path",
+    G_ExceptionList.lthrow("no file: "+G_Preferences.get_string("LISAHOME")+"/bin/"+algo_call+ " in LiSA path",
                            Lisa_ExceptionList::END_OF_FILE);
     return !OK;
   }
