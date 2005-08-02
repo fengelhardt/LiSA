@@ -128,11 +128,12 @@ int main(int argc, char *argv[]) {
   std::string dtd_path = (dtd_env) ? dtd_env : "";
   LisaXmlFile::initialize(dtd_path);
   
-  if(!init_G_Preferences(argv[1])) exit(1);
+  if(!init_G_Preferences(argv[1])) return 1;
 
   G_Classify = Lisa_Classify::make_instance(G_Preferences.get_string("LISAHOME")+"/data/classify/classify.bib");
   if(G_Classify == 0){
-    G_ExceptionList.lthrow("Could not create classify object.",Lisa_ExceptionList::ANY_ERROR);
+    cerr << "Could not create classify object. Exiting" << endl;
+    return 1;
   }
   
   G_Schedule= new Lisa_Schedule(1,1);
@@ -143,25 +144,17 @@ int main(int argc, char *argv[]) {
   G_ScheduleList = new Lisa_List<Lisa_ScheduleNode>;
   G_ScheduleList->append(*myLisa_ScheduleNode);
   delete myLisa_ScheduleNode;
-  while(!(G_ScheduleList->empty())) 
-	{
-          Lisa_ScheduleNode dummynode;
-          dummynode=G_ScheduleList->pop();
-          if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
-	}
+  while(!(G_ScheduleList->empty())){
+    Lisa_ScheduleNode dummynode;
+    dummynode=G_ScheduleList->pop();
+    if (dummynode.actual_schedule!=G_Schedule) delete dummynode.actual_schedule;
+  }
   
   G_Values.make_DD(); 
   G_Values.make_PT();
   G_Values.make_RD(); 
   G_Values.make_SIJ(); 
   G_Values.make_WI(); 
-  if (G_Preferences.contents.defined("STARTFILE") ==Lisa_ControlParameters::STRING) {
-    if (read(G_Preferences.get_string("STARTFILE"))==0) {
-      new_mn();
-      G_Values.PT_to_SIJ();
-    }
-    else cerr << "No Startfile: '" << G_Preferences.get_string("STARTFILE") << "' found." << cerr;
-  }
   
   Tk_myMain( argc, argv );
   
