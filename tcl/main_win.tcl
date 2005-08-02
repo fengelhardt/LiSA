@@ -6,7 +6,7 @@
 ######## Generate Icon: ####################
 
 #proc make_lisa_icon { iconfile } {
-#    if {$iconfile==""} { set iconfile "$env(LISAHOME)/img/llogo_s.gif" }
+#    if {$iconfile==""} { set iconfile "[TC_getvar LISAHOME]/img/llogo_s.gif" }
 #    set ac(xpm.ApaControl) [image create photo -file $iconfile]
 #   
 #    set icon ".__Icon"
@@ -227,7 +227,7 @@ proc vTclWindow.lisa {base} {
         -borderwidth 2  -height 50 -width 125 
     frame $base.frame_for_all_canvas.fra28.fra35 \
         -borderwidth 2 -height 40 -width 46 
-    set  zoomsymbol [image create bitmap -file "$env(LISAHOME)/img/lens.xbm"]
+    set  zoomsymbol [image create bitmap -file "[TC_getvar LISAHOME]/img/lens.xbm"]
     button $base.frame_for_all_canvas.fra28.fra35.cb \
 	-command {mw_zoom}  -height 30 -width 30 -relief raised \
 	-image $zoomsymbol -padx 60 -state disabled
@@ -408,7 +408,7 @@ proc vTclWindow.lisa {base} {
 	}
     }
     
-    set mw(LiSAsymbol) [image create photo -file "$env(LISAHOME)/img/llogo_xl.gif"]
+    set mw(LiSAsymbol) [image create photo -file "[TC_getvar LISAHOME]/img/llogo_xl.gif"]
     mw_add_logo
 
     bind $base <Destroy> {TC_exit }
@@ -562,7 +562,7 @@ proc problem_exist { } {
     foreach algname $lsa_status(list_of_external_alg) {
 	if { [TC_problem_reduction \
 		  exact \
-		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.xml"]==1 } {
+		  "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.exakt_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	    .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
@@ -582,7 +582,7 @@ proc problem_exist { } {
     foreach algname $lsa_status(list_of_external_alg) {
 	if { [TC_problem_reduction \
 		  heuristic \
-		  "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)/$algname.xml"]==1 } {
+		  "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.heur_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	     .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
@@ -819,7 +819,7 @@ proc lisa_about { } {
     Window show .write_text
     wm title .write_text $Name(About)
     .write_text.mmenf.tex23  delete 1.0 end
-    set myfile [open  $env(LISAHOME)/doc/lisa/$env(LLANGUAGE)/about.txt "r"]
+    set myfile [open  [TC_getvar LISAHOME]/doc/lisa/[TC_getvar LANGUAGE]/about.txt "r"]
     .write_text.mmenf.tex23  insert end [read $myfile]
     .write_text.mmenf.tex23 configure -state disabled
     .write_text.mmenf.tex23 configure -takefocus 0
@@ -907,13 +907,13 @@ proc lisa_help { helpfile } {
     global system
     set html_viewer [TC_getvar "HTML_VIEWER"]
     showdelaym "$Name(Wait...)" "$html_viewer $Name(started)"
-    set lang $env(LLANGUAGE)
+    set lang [TC_getvar LANGUAGE]
     if {$system(os)=="win" } { 
         set start_node  "file:///" 
     } else {
         set start_node ""
     }
-	exec $html_viewer $start_node$env(LISAHOME)/doc/lisa/$lang/$helpfile &
+	exec $html_viewer $start_node[TC_getvar LISAHOME]/doc/lisa/$lang/$helpfile &
 }
 
 proc close_all_open_windows { } {

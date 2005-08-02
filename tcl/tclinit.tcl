@@ -4,7 +4,6 @@
 #
 
 
-
 #################################
 # USER DEFINED PROCEDURES
 #
@@ -42,7 +41,6 @@ global vTcl
     }
 }
 
-set env(LLANGUAGE) [TC_getvar LANGUAGE]
 set glob(OLD_LISAHOME) ""
 set glob(OLD_LANGUAGE) ""
 #initialize variable ptupel_name and ptupel_number:
@@ -83,23 +81,23 @@ for {set j 0} {$j<=[expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_numb
 }
 
 
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/main.tcl
-source $env(LISAHOME)/tcl/main_win.tcl
-source $env(LISAHOME)/tcl/dia_prob.tcl
-source $env(LISAHOME)/tcl/schedule.tcl
-source $env(LISAHOME)/tcl/values.tcl
-source $env(LISAHOME)/tcl/dialog.tcl
-source $env(LISAHOME)/tcl/dia_clas.tcl
-source $env(LISAHOME)/tcl/message.tcl
-source $env(LISAHOME)/tcl/dia_gant.tcl
-source $env(LISAHOME)/tcl/default.tcl
-source $env(LISAHOME)/tcl/print.tcl
-source $env(LISAHOME)/tcl/man_oper.tcl
-source $env(LISAHOME)/tcl/seqlist.tcl
-source $env(LISAHOME)/tcl/gen_algp.tcl
-source $env(LISAHOME)/tcl/gen_ptst.tcl
-source $env(LISAHOME)/tcl/mng_ealg.tcl
-source $env(LISAHOME)/tcl/options.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/main.tcl
+source [TC_getvar LISAHOME]/tcl/main_win.tcl
+source [TC_getvar LISAHOME]/tcl/dia_prob.tcl
+source [TC_getvar LISAHOME]/tcl/schedule.tcl
+source [TC_getvar LISAHOME]/tcl/values.tcl
+source [TC_getvar LISAHOME]/tcl/dialog.tcl
+source [TC_getvar LISAHOME]/tcl/dia_clas.tcl
+source [TC_getvar LISAHOME]/tcl/message.tcl
+source [TC_getvar LISAHOME]/tcl/dia_gant.tcl
+source [TC_getvar LISAHOME]/tcl/default.tcl
+source [TC_getvar LISAHOME]/tcl/print.tcl
+source [TC_getvar LISAHOME]/tcl/man_oper.tcl
+source [TC_getvar LISAHOME]/tcl/seqlist.tcl
+source [TC_getvar LISAHOME]/tcl/gen_algp.tcl
+source [TC_getvar LISAHOME]/tcl/gen_ptst.tcl
+source [TC_getvar LISAHOME]/tcl/mng_ealg.tcl
+source [TC_getvar LISAHOME]/tcl/options.tcl
 
 
 ##########################
@@ -110,22 +108,22 @@ file mkdir proc
 ############################
 # open icon window
 #  if {$system(os)=="unix"} {
-#      make_lisa_icon "$env(LISAHOME)/img/llogo_s.gif"
+#      make_lisa_icon "[TC_getvar LISAHOME]/img/llogo_s.gif"
 #  }
 
 ##########################
 # insert additional tcl-files for external algorithms
 #read_all_desc_files_xml
-#source  $env(LISAHOME)/tcl/external/ext_alg.tcl
-#if { $glob(OLD_LISAHOME) != $env(LISAHOME) || $glob(OLD_LANGUAGE) != $env(LLANGUAGE) } {
-    cd $env(LISAHOME)/tcl
+#source  [TC_getvar LISAHOME]/tcl/external/ext_alg.tcl
+#if { $glob(OLD_LISAHOME) != [TC_getvar LISAHOME] || $glob(OLD_LANGUAGE) != [TC_getvar LANGUAGE] } {
+    cd [TC_getvar LISAHOME]/tcl
     file mkdir external
-    cd $env(LISAHOME)/tcl/external
+    cd [TC_getvar LISAHOME]/tcl/external
     file delete ext_alg.tcl
     read_all_desc_files_xml
-    source  $env(LISAHOME)/tcl/external/ext_alg.tcl
+    source  [TC_getvar LISAHOME]/tcl/external/ext_alg.tcl
 #} 
-cd $env(LISAHOME)/data
+cd [TC_getvar LISAHOME]/data
 
 ############################
 # open main window

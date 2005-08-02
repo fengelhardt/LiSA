@@ -103,7 +103,7 @@ bool init_G_Preferences(char * configfile){
     return false;
   }*/
   
-  cout << G_Preferences;
+  //cout << G_Preferences;
   
   return true;
 }
@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
   
   if(!init_G_Preferences(argv[1])) exit(1);
 
-  G_Classify = Lisa_Classify::make_instance(std::string(getenv("LISAHOME"))+"/data/classify/classify.bib");
+  G_Classify = Lisa_Classify::make_instance(G_Preferences.get_string("LISAHOME")+"/data/classify/classify.bib");
   if(G_Classify == 0){
     G_ExceptionList.lthrow("Could not create classify object.",Lisa_ExceptionList::ANY_ERROR);
   }

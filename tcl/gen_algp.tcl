@@ -49,7 +49,7 @@ proc {genparawin} {description_file output_file algo_name} {
 	    }
 
 	    if { $mytkfile!="" } {
-		file copy -force $env(LISAHOME)/tcl/tksource/$mytkfile  $output_file
+		file copy -force [TC_getvar LISAHOME]/tcl/tksource/$mytkfile  $output_file
 		return
 	    }
 	    set line_in_file [gets $description_file_id]
@@ -318,10 +318,10 @@ proc {read_all_desc_files_xml} { } {
     global env
     global lsa_status
     set lsa_status(list_of_external_alg) ""
-    set descr_dir "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)"    
-    set source_dir "$env(LISAHOME)/tcl/external"
-				set bin_dir "$env(LISAHOME)/bin"
-    cd $env(LISAHOME)/tcl
+    set descr_dir "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]"    
+    set source_dir "[TC_getvar LISAHOME]/tcl/external"
+				set bin_dir "[TC_getvar LISAHOME]/bin"
+    cd [TC_getvar LISAHOME]/tcl
     file mkdir external
     cd $descr_dir
     set filelist ""
@@ -349,15 +349,15 @@ proc {read_all_desc_files_xml} { } {
 				foreach filename $filelist {
 								set filename [file rootname $filename]
 								catch {exec $bin_dir/xml2tcl -s -N $filename $descr_dir/$filename.xml $source_dir/$filename.tcl}
-								puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$filename.tcl\""
+								puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/external/$filename.tcl\""
 								set ptst_filename "$filename\_ptst"
 								catch {exec $bin_dir/xml2tcl -P -s -N $filename $descr_dir/$filename.xml $source_dir/$ptst_filename.tcl}
-								puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$ptst_filename.tcl\""
+								puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/external/$ptst_filename.tcl\""
     }
-    puts $ext_alg "set lsa_status(OLD_LISAHOME) $env(LISAHOME)"
-    puts $ext_alg "set lsa_status(OLD_LANGUAGE) $env(LLANGUAGE)"
-				puts $ext_alg "set glob(OLD_LISAHOME) $env(LISAHOME)"
-    puts $ext_alg "set glob(OLD_LANGUAGE) $env(LLANGUAGE)"
+    puts $ext_alg "set lsa_status(OLD_LISAHOME) [TC_getvar LISAHOME]"
+    puts $ext_alg "set lsa_status(OLD_LANGUAGE) [TC_getvar LANGUAGE]"
+				puts $ext_alg "set glob(OLD_LISAHOME) [TC_getvar LISAHOME]"
+    puts $ext_alg "set glob(OLD_LANGUAGE) [TC_getvar LANGUAGE]"
     close $ext_alg
 }
 
@@ -365,9 +365,9 @@ proc {read_all_desc_files} { } {
     global env
     global lsa_status
     set lsa_status(list_of_external_alg) ""
-    set descr_dir "$env(LISAHOME)/data/alg_desc/language/$env(LLANGUAGE)"    
-    set source_dir "$env(LISAHOME)/tcl/external"
-    cd $env(LISAHOME)/tcl
+    set descr_dir "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]"    
+    set source_dir "[TC_getvar LISAHOME]/tcl/external"
+    cd [TC_getvar LISAHOME]/tcl
     file mkdir external
     cd $descr_dir
     set filelist ""
@@ -392,14 +392,14 @@ proc {read_all_desc_files} { } {
     foreach filename $filelist {
 	set filename [string trimright $filename ".alg"]
 	genparawin "$descr_dir/$filename.alg" "$source_dir/$filename.tcl" $filename
-	puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$filename.tcl\""
+	puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/external/$filename.tcl\""
 	set ptst_filename "$filename\_ptst"
 	
  	genparatestwin "$descr_dir/$filename.alg" "$source_dir/$ptst_filename.tcl" $filename
- 	puts $ext_alg "source \"\$env(LISAHOME)/tcl/external/$ptst_filename.tcl\""
+ 	puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/external/$ptst_filename.tcl\""
     }
-    puts $ext_alg "set lsa_status(OLD_LISAHOME) $env(LISAHOME)"
-    puts $ext_alg "set lsa_status(OLD_LANGUAGE) $env(LLANGUAGE)"
+    puts $ext_alg "set lsa_status(OLD_LISAHOME) [TC_getvar LISAHOME]"
+    puts $ext_alg "set lsa_status(OLD_LANGUAGE) [TC_getvar LANGUAGE]"
     close $ext_alg
 }
 

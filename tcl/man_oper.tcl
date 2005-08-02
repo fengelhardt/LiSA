@@ -22,19 +22,19 @@ proc vTclWindow.man_oper {base} {
     wm deiconify $base
     wm transient $base .lisa
     wm title $base "Operation ([expr $schedule(row)+1],[expr $schedule(column)+1])"
-    set  symbol_lleft [ image create bitmap -file "$env(LISAHOME)/img/lleft.xbm"]
-    set  symbol_bbuttom [ image create bitmap -file "$env(LISAHOME)/img/bbuttom.xbm"]
-    set  symbol_ttop [ image create bitmap -file "$env(LISAHOME)/img/ttop.xbm"]
-    set  symbol_rright [ image create bitmap -file "$env(LISAHOME)/img/rright.xbm"]
-    set  symbol_left [ image create bitmap -file "$env(LISAHOME)/img/left.xbm"]
-    set  symbol_buttom [ image create bitmap -file "$env(LISAHOME)/img/buttom.xbm"]
-    set  symbol_top [ image create bitmap -file "$env(LISAHOME)/img/top.xbm"]
-    set  symbol_right [ image create bitmap -file "$env(LISAHOME)/img/right.xbm"]
-    set  symbol_reset [ image create bitmap -file "$env(LISAHOME)/img/reset.xbm"]
-    set  symbol_ar_left [ image create bitmap -file "$env(LISAHOME)/img/ar_left.xbm"]
-    set  symbol_ar_down [ image create bitmap -file "$env(LISAHOME)/img/ar_down.xbm"]
-    set  symbol_ar_up [ image create bitmap -file "$env(LISAHOME)/img/ar_up.xbm"]
-    set  symbol_ar_right [ image create bitmap -file "$env(LISAHOME)/img/ar_right.xbm"]
+    set  symbol_lleft [ image create bitmap -file "[TC_getvar LISAHOME]/img/lleft.xbm"]
+    set  symbol_bbuttom [ image create bitmap -file "[TC_getvar LISAHOME]/img/bbuttom.xbm"]
+    set  symbol_ttop [ image create bitmap -file "[TC_getvar LISAHOME]/img/ttop.xbm"]
+    set  symbol_rright [ image create bitmap -file "[TC_getvar LISAHOME]/img/rright.xbm"]
+    set  symbol_left [ image create bitmap -file "[TC_getvar LISAHOME]/img/left.xbm"]
+    set  symbol_buttom [ image create bitmap -file "[TC_getvar LISAHOME]/img/buttom.xbm"]
+    set  symbol_top [ image create bitmap -file "[TC_getvar LISAHOME]/img/top.xbm"]
+    set  symbol_right [ image create bitmap -file "[TC_getvar LISAHOME]/img/right.xbm"]
+    set  symbol_reset [ image create bitmap -file "[TC_getvar LISAHOME]/img/reset.xbm"]
+    set  symbol_ar_left [ image create bitmap -file "[TC_getvar LISAHOME]/img/ar_left.xbm"]
+    set  symbol_ar_down [ image create bitmap -file "[TC_getvar LISAHOME]/img/ar_down.xbm"]
+    set  symbol_ar_up [ image create bitmap -file "[TC_getvar LISAHOME]/img/ar_up.xbm"]
+    set  symbol_ar_right [ image create bitmap -file "[TC_getvar LISAHOME]/img/ar_right.xbm"]
     
     button $base.but19 \
         -padx 11 -pady 4 -image $symbol_bbuttom \

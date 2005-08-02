@@ -114,13 +114,13 @@ proc apply_options { } {
     global Name
     TC_setvar options LANGUAGE $options(LANGUAGE)
     TC_setvar options HTML_VIEWER $options(HTML_VIEWER)
-    source $env(LISAHOME)/tcl/language/$options(LANGUAGE)/messages.tcl
+    source [TC_getvar LISAHOME]/tcl/language/$options(LANGUAGE)/messages.tcl
     show_mess_and_choice "$Name(restart)" "$Name(restart_now)" TC_exit
     TC_save_options
 #    bind .lisa <Destroy> { }
 #    close_all_open_windows
 #    destroy .lisa
-#    source  $env(LISAHOME)/tcl/tclinit.tcl
+#    source  [TC_getvar LISAHOME]/tcl/tclinit.tcl
 #    Window show .lisa
 #    bind .lisa <Destroy> {TC_exit } 
 #    TC_new_problem

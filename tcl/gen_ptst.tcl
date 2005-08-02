@@ -49,7 +49,7 @@ proc {genparatestwin} {description_file output_file algo_name} {
 	    } 
 
 	    if { $mytkfile!="" } {
-		file copy -force $env(LISAHOME)/tcl/tksource/$mytkfile  $output_file
+		file copy -force [TC_getvar LISAHOME]/tcl/tksource/$mytkfile  $output_file
 		return
 	    }
 	    set line_in_file [gets $description_file_id]

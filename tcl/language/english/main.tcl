@@ -291,9 +291,9 @@ set Name(TRANSPORTATION_DELAYS,TK) "job independent"
 set Name(TRANSPORTATION_DELAYS,TIK) "arbitrary"
 # set Name(TRANSPORTATION_DELAYS,TIKL) "General TD for Open Shop"
 
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/classify.tcl
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/gantt.tcl
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/messages.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/classify.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/gantt.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/messages.tcl
 }
 
 name_set

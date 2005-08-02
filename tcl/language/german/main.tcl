@@ -295,9 +295,9 @@ set Name(TRANSPORTATION_DELAYS,TIK) "beliebig"
 # set Name(TRANSPORTATION_DELAYS,TIKL) "Allgemeine TV f. Open-Shop"
 
 
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/classify.tcl
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/gantt.tcl
-source $env(LISAHOME)/tcl/language/$env(LLANGUAGE)/messages.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/classify.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/gantt.tcl
+source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/messages.tcl
 }
 
 name_set
