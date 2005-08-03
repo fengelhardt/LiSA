@@ -20,7 +20,7 @@ using namespace std;
 
 //**************************************************************************
 
-extern class Lisa_Preferences G_Preferences;
+extern class Lisa_ControlParameters G_Preferences;
 extern Tcl_Interp *interp;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_ProblemType G_ProblemType;
@@ -160,7 +160,6 @@ int Tcl_myAppInit( int /*argc*/, char ** /*argv[]*/, Tcl_Interp *interp ) {
 
  mainWindow = Tk_MainWindow(interp);
 
- G_Preferences.init();
  string file = G_Preferences.get_string(Lisa_Pref::LISAHOME)+"/tcl/tclinit.tcl";
  // starts the tclinit.tcl file:
  retcode = Tcl_EvalFile( interp,(char*) file.c_str() );

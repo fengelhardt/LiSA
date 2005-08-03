@@ -137,7 +137,7 @@ double TCGantt::scaling(TIMETYP final_value, int step_number)
 
 //**************************************************************************
 
-int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_Preferences& lpref)
+int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_ControlParameters& lpref)
 {
   int color=11;
   
@@ -340,7 +340,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
 		   Lisa_Schedule *G_Schedule,
 		   //bool orientation, int color_type, 
 		   //Lisa_Vector<int> *active_path)
-           Lisa_Preferences& lpref)
+           Lisa_ControlParameters& lpref)
 {
 
   

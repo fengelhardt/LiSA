@@ -18,7 +18,7 @@ using namespace std;
 extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
-extern class Lisa_Preferences G_Preferences;
+extern class Lisa_ControlParameters G_Preferences;
 
 //**************************************************************************
 
@@ -235,7 +235,7 @@ int start_paratest(Tcl_Interp *interp,
 																			string algo_call, 
 																			string output_file, 
 																			string result_file,
-																			Lisa_Preferences & G_Preferences,
+																			Lisa_ControlParameters& G_Preferences,
 																			Lisa_ProblemType & G_ProblemType,
 																			Lisa_ControlParameters & parameter,
 																			Lisa_Schedule & G_Schedule, 

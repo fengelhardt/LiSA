@@ -42,7 +42,7 @@ extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_XSchedule *G_XSchedule;
-extern class Lisa_Preferences G_Preferences;
+extern class Lisa_ControlParameters G_Preferences;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
@@ -970,7 +970,7 @@ int TC_exclude(ClientData /* clientData */, Tcl_Interp */*interp*/,
 
 //**************************************************************************
 
-/// save Lisa_Preferences in default.lsa
+/// save G_Preferences in default.lsa
 int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) 
 {
   string str=G_Preferences.get_string(Lisa_Pref::LISACONFIG)+"/" + DEFAULT_SETTINGS_FILE;

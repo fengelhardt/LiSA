@@ -20,7 +20,6 @@
 #include "../lisa/lvalues.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/ctrlpara.hpp"
-#include "../main/lisapref.hpp"
 #include "../scheduling/schedule.hpp"
 #include "../main/global.hpp"
 
@@ -494,11 +493,6 @@ void LisaXmlFile::write(const Lisa_ScheduleNode& S)
     write(*(S.actual_schedule));
 }
 
-void LisaXmlFile::write(const Lisa_Preferences& P)
-{
-  write(P.contents);
-}
-
 void LisaXmlFile::write(const Lisa_ControlParameters& Cp)
 {
   xmlNodePtr l_parent;
@@ -828,10 +822,6 @@ bool LisaXmlFile::read(Lisa_ScheduleNode& S)
       return false;
     }
   return true;
-}
-bool LisaXmlFile::read(Lisa_Preferences& P)
-{
-  return read(P.contents);
 }
 
 bool LisaXmlFile::read(Lisa_ControlParameters& Cp)

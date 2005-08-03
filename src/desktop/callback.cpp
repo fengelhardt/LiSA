@@ -25,7 +25,7 @@ extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_Status G_Status;
 extern class Lisa_XSchedule *G_XSchedule;
 extern class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
-extern class Lisa_Preferences G_Preferences;
+extern class Lisa_ControlParameters G_Preferences;
 extern class Lisa_Canvas *G_MWCanvas;
 extern Tcl_Interp *interp;
 extern class Lisa_TCLVar G_TclVar;

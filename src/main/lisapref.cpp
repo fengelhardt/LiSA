@@ -1,13 +1,15 @@
 /**
- * @author  Per Willenius
+ * @author Mathias Plauschin
  * @version 2.3final
  */
 
-#include <stdlib.h>
 #include "lisapref.hpp"
 
-using namespace std;
-  
+#include "../xml/LisaXmlFile.hpp"
+
+#include <fstream>
+#include <iostream>
+
 //**************************************************************************
   
 const char* Lisa_Pref::WIDTH = "WIDTH";
@@ -33,19 +35,55 @@ const long Lisa_Pref::GANTT_COLOR=2;
   
 //**************************************************************************
 
-Lisa_Preferences::Lisa_Preferences() {
-}
-
-//**************************************************************************
-
-void Lisa_Preferences::init(){
-
-
+bool init_G_Preferences(char * configfile,Lisa_ControlParameters& G_Preferences){
   
-  //gantt_orient = GANTT_MACHINE;
-  //gantt_col_type= GANTT_NORMAL;
-  //gantt_colors = new Lisa_Vector<int>(5);
-  //gantt_colors->fill(0);
+  std::ifstream pref(configfile);
+  if (! pref){
+    std::cerr << "Could not open config file: '" << configfile << "'. Exiting." << std::endl;
+    return false;
+  }
+  pref.close();
+  
+  LisaXmlFile conf;
+  if(!conf.read(configfile) ){ 
+    std::cerr << "Could not read config file: '" << configfile << "'. Exiting." << std::endl;
+    return false;
+  }
+  if(!(conf >> G_Preferences)){
+      std::cerr << "Could not read config file1: '" << configfile << "'. Exiting." << std::endl;
+    return false;
+  }
+  
+  if(!(G_Preferences.defined(Lisa_Pref::LISAHOME)==Lisa_ControlParameters::STRING)){
+    char* lh = getenv(Lisa_Pref::LISAHOME);
+    if(lh == 0){
+      std::cerr << Lisa_Pref::LISAHOME << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << std::endl;
+      return false;
+    }else{
+      G_Preferences.add_key(Lisa_Pref::LISAHOME,lh); 
+    }
+  }
+  
+  if(!(G_Preferences.defined(Lisa_Pref::LISACONFIG)==Lisa_ControlParameters::STRING)){
+    char* lc = getenv(Lisa_Pref::LISACONFIG);
+    if(lc == 0){
+      std::cerr << Lisa_Pref::LISACONFIG << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << std::endl;
+      return false; 
+    }else{
+      G_Preferences.add_key(Lisa_Pref::LISACONFIG,lc);
+    }
+  }
+  
+  G_Preferences.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
+  G_Preferences.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
+  G_Preferences.add_key(Lisa_Pref::GANTT_RED,(long)0);
+  G_Preferences.add_key(Lisa_Pref::GANTT_GREEN,(long)0);
+  G_Preferences.add_key(Lisa_Pref::GANTT_BLUE,(long)0);
+  G_Preferences.add_key(Lisa_Pref::GANTT_BROWN,(long)0);
+  G_Preferences.add_key(Lisa_Pref::GANTT_YELLOW,(long)0);
+  //cout << G_Preferences;
+  
+  return true;
 }
 
 //**************************************************************************

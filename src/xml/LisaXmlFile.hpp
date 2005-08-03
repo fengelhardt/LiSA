@@ -14,7 +14,6 @@ class Lisa_Values;
 class Lisa_Schedule;
 class Lisa_ScheduleNode;
 class Lisa_ControlParameters;
-class Lisa_Preferences;
 class Lisa_Graph;
 
 #ifndef LISA_XML_IMPL
@@ -153,17 +152,6 @@ class LisaXmlFile {
   /// Read a document from a file.
   bool read (std::string filename);
 		
-  /** @param Pref reference to a preferences object
-  */
-  /// Submit preferences object's data to the internal document tree.
-  LisaXmlFile& operator<<(const Lisa_Preferences& Pref);
-		
-  /** @param Pref reference to a preferences object
-  */
-  /// Retrieve preferences from the internal document tree.
-  LisaXmlFile& operator>>(Lisa_Preferences& Pref);
-		
-
   /** The default is LiSA's native coding.
       @param newCoding Alternative coding identifier
   */
@@ -353,12 +341,6 @@ class LisaXmlFile {
 
   /// find and obtain data from the internal document tree
   bool read(Lisa_ScheduleNode&);
-		
-  /// add entry to the internal document tree
-  void write(const Lisa_Preferences&);
-
-  /// find and obtain data from the internal document tree
-  bool read(Lisa_Preferences&);
 		
   /// add entry to the internal document tree
   void write(const Lisa_Graph&);

@@ -242,7 +242,7 @@ int TC_exclude(ClientData /* clientData */, Tcl_Interp *interp,
 
 //**************************************************************************
 
-/// save Lisa_Preferences in default.lsa
+/// save G_Preferences in default.lsa
 int TC_save_options(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **);
 
 //**************************************************************************

@@ -23,7 +23,6 @@ using namespace std;
 #include "../lisa/lvalues.hpp"
 #include "../lisa/ptype.hpp"
 #include "../lisa/ctrlpara.hpp"
-#include "../main/lisapref.hpp"
 #include "../scheduling/schedule.hpp"
 #include "../main/global.hpp"
 
@@ -234,59 +233,6 @@ bool LisaXmlFile::read(string filename)
 		return true;
 }
 
-LisaXmlFile& LisaXmlFile::operator<<(const Lisa_Preferences& Prefs)
-{
-		if(!valid) 
-				{
-						raiseError(WRITE_ENTRY_TO_INVALID);
-						return *this;
-				}
-		if(type == IMPLICIT) type = PREFERENCES;
-		//bad document type -> invalidate object
-		if(type != PREFERENCES)
-				{
-						valid = false;
-						raiseError(WRITE_DOC_OBJ_MISSMATCH,"controls");
-						return *this;
-				}
-		// since this is a standalone entry replacement deletes document
-		if(Doc)
-				xmlFreeDoc(Doc);
-		
-		Doc = xmlNewDoc((const xmlChar* ) "1.0");
-		Hook = xmlNewDocRawNode(Doc,
-																										NULL,
-																										(const xmlChar* ) DOC_TYPE_NAMES[type].c_str(),
-																										NULL);
-		
-		xmlDocSetRootElement(Doc, Hook);
-		write(Prefs);
-		return *this;
-}
-
-LisaXmlFile& LisaXmlFile::operator >> (Lisa_Preferences& Prefs)
-{
-		if(!valid)
-				{
-						raiseError(READ_ENTRY_FROM_INVALID);
-						return *this;
-				}
-		if(type != PREFERENCES)
-				{
-						valid = false; //is that neccessary ????
-						raiseError(READ_DOC_OBJ_MISSMATCH,DOC_TYPE_NAMES[type]);
-						return *this;
-				}
-		if(Doc == NULL)
-				{
-						raiseError(NO_DATA_FOR_READ);
-						return *this;
-				}
-		Hook = xmlDocGetRootElement(Doc);
-		valid = read(Prefs);
-		return *this;
-}
-
 LisaXmlFile& LisaXmlFile::operator<<(const Lisa_ProblemType& P)
 {
 		if(!valid) 
@@ -473,92 +419,95 @@ LisaXmlFile& LisaXmlFile::operator>>(Lisa_Values& V)
 }
 
 
-LisaXmlFile& LisaXmlFile::operator<<(const Lisa_ControlParameters& CP)
-{
-		if(!valid) 
-				{
-						raiseError(WRITE_ENTRY_TO_INVALID);
-						return *this;
-				}
-		if(type == IMPLICIT) type = INSTANCE;
-		//bad document type -> invalidate object
-		if(type != INSTANCE && type != SOLUTION)
-				{
-						valid = false;
-						raiseError(WRITE_DOC_OBJ_MISSMATCH,"controls");
-						return *this;
-				}
-		// since this is not a standalone entry, replacement maintains document
-		if(Doc == NULL)
-				{
-						Doc = xmlNewDoc((const xmlChar* ) "1.0");
-						Hook = xmlNewDocRawNode(Doc,
-																														NULL,
-																														(const xmlChar* ) DOC_TYPE_NAMES[type].c_str(),
-																														NULL);
-						xmlDocSetRootElement(Doc, Hook);
-				}
-		else 	//replace evtl. existing entry
-				{
-						
-						Hook = xmlDocGetRootElement(Doc);
-						xmlNodePtr cur = Hook->children;
-						while(cur != NULL)
-								{
-										if(xmlStrcmp(cur->name, (const xmlChar *) "controls") == 0)
-												{
-														cur = cur->next;
-														xmlUnlinkNode(cur);
-														xmlFreeNode(cur);
-												}
-										else
-												cur = cur->next;
-								}
-				}				
-		write(CP);
-		return *this;
+LisaXmlFile& LisaXmlFile::operator<<(const Lisa_ControlParameters& CP){
+  
+  if(!valid){
+    raiseError(WRITE_ENTRY_TO_INVALID);
+    return *this;
+  }
+    
+  if(type == INSTANCE || type == SOLUTION){
+    // since this is not a standalone entry, replacement maintains document
+    if(Doc == NULL){
+      Doc = xmlNewDoc((const xmlChar* ) "1.0");
+      Hook = xmlNewDocRawNode(Doc,
+      NULL,
+      (const xmlChar* ) DOC_TYPE_NAMES[type].c_str(),
+      NULL);
+      xmlDocSetRootElement(Doc, Hook);
+    }else{ 	//replace evtl. existing entry
+      
+      Hook = xmlDocGetRootElement(Doc);
+      xmlNodePtr cur = Hook->children;
+      while(cur != NULL){
+        if(xmlStrcmp(cur->name, (const xmlChar *) "controls") == 0){
+          cur = cur->next;
+          xmlUnlinkNode(cur);
+          xmlFreeNode(cur);
+        }else{
+          cur = cur->next;
+        }
+      }
+    }
+  }else if(type == PREFERENCES){
+    // since this is a standalone entry replacement deletes document
+    if(Doc) xmlFreeDoc(Doc);
+    
+    Doc = xmlNewDoc((const xmlChar* ) "1.0");
+    Hook = xmlNewDocRawNode(Doc,
+    NULL,
+    (const xmlChar* ) DOC_TYPE_NAMES[type].c_str(),
+    NULL);
+    
+    xmlDocSetRootElement(Doc, Hook);
+  }else{
+    valid = false;
+    raiseError(WRITE_DOC_OBJ_MISSMATCH,"controls");
+    return *this;    
+  }	
+  
+  write(CP);
+  return *this;
 }
 		
 		
-LisaXmlFile& LisaXmlFile::operator>>(Lisa_ControlParameters& CP)
-{
-		if(!valid)
-				{
-						raiseError(READ_ENTRY_FROM_INVALID);
-						return *this;
-				}
-		if(type != INSTANCE && type != SOLUTION)
-				{
-						valid = false; //is that neccessary ????
-						raiseError(READ_DOC_OBJ_MISSMATCH,"controls");
-						return *this;
-				}
-		if(Doc == NULL)
-				{
-						raiseError(NO_DATA_FOR_READ);
-						return *this;
-				}
-
-		xmlNodePtr Root = xmlDocGetRootElement(Doc);
-		xmlNodePtr cur = Root->children;
-		//read the first problem to be found
-		while(cur != NULL)
-				{
-						if(xmlStrcmp(cur->name, (const xmlChar *) "controls") == 0)
-								break;
-						cur = cur->next;
-				}
-		
-		if(cur == NULL)
-				{
-						valid = false;
-						return *this;
-				}
-		
-		Hook = cur;
-
-		valid = read(CP);
-		return *this;
+LisaXmlFile& LisaXmlFile::operator>>(Lisa_ControlParameters& CP){
+  
+  if(!valid){
+    raiseError(READ_ENTRY_FROM_INVALID);
+    return *this;
+  }
+  
+  if(Doc == NULL){
+    raiseError(NO_DATA_FOR_READ);
+    return *this;
+  }
+  
+  if(type == INSTANCE || type == SOLUTION){
+    xmlNodePtr Root = xmlDocGetRootElement(Doc);
+    xmlNodePtr cur = Root->children;
+    //read the first problem to be found
+    while(cur != NULL){
+      if(xmlStrcmp(cur->name, (const xmlChar *) "controls") == 0)
+        break;
+      cur = cur->next;
+    }
+    
+    if(cur == NULL){
+      valid = false;
+      return *this;
+    }
+    Hook = cur;
+  }else if(type == PREFERENCES){
+    Hook = xmlDocGetRootElement(Doc);
+  }else{
+    valid = false; //is that neccessary ????
+    raiseError(READ_DOC_OBJ_MISSMATCH,"controls");
+    return *this;
+  }
+  
+  valid = read(CP);
+  return *this;
 }
 
 

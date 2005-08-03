@@ -31,7 +31,7 @@ extern class Lisa_ProblemType G_ProblemType;
 extern class Lisa_Values G_Values;
 extern class Lisa_Schedule *G_Schedule;
 extern class Lisa_XSchedule *G_XSchedule;
-extern class Lisa_Preferences G_Preferences;
+extern class Lisa_ControlParameters G_Preferences;
 extern class Lisa_TCLVar G_TclVar;
 extern class Lisa_Canvas *G_MWCanvas;
 extern class Lisa_Status G_Status;
@@ -637,33 +637,33 @@ else if (name=="SIJ") {
   else if (name=="gantt") {
     str=Tcl_GetVar2(interp,"gantt","orientation",TCL_GLOBAL_ONLY);
     if (str=="machine")
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
-    else G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_JOB);
+      G_Preferences.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
+    else G_Preferences.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_JOB);
     str=Tcl_GetVar2(interp,"gantt","special",TCL_GLOBAL_ONLY);
     
     if (str=="critical_path"){
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_CP);
+      G_Preferences.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_CP);
     }else if (str=="colors"){ // only other value than GANTT_CP necessary
       
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_COLOR); 
+      G_Preferences.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_COLOR); 
       
       long val = atoi(Tcl_GetVar2(interp,"gantt","red",0));
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_RED,val);
+      G_Preferences.add_key(Lisa_Pref::GANTT_RED,val);
       
       val = atoi(Tcl_GetVar2(interp,"gantt","green",0));
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_GREEN,val);
+      G_Preferences.add_key(Lisa_Pref::GANTT_GREEN,val);
   
       val = atoi(Tcl_GetVar2(interp,"gantt","blue",0));
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_BLUE,val);         
+      G_Preferences.add_key(Lisa_Pref::GANTT_BLUE,val);         
 
       val = atoi(Tcl_GetVar2(interp,"gantt","brown",0));
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_BROWN,val);         
+      G_Preferences.add_key(Lisa_Pref::GANTT_BROWN,val);         
 
       val = atoi(Tcl_GetVar2(interp,"gantt","yellow",0));
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_YELLOW,val);         
+      G_Preferences.add_key(Lisa_Pref::GANTT_YELLOW,val);         
                 
     }else{ 
-      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
+      G_Preferences.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
     }
     show_output();
   }
@@ -671,10 +671,10 @@ else if (name=="SIJ") {
     str2=argv[2];
      str3=argv[3];
      if ( str2==Lisa_Pref::LANGUAGE) {
-       G_Preferences.contents.add_key(Lisa_Pref::LANGUAGE,str3);
+       G_Preferences.add_key(Lisa_Pref::LANGUAGE,str3);
      }
     if ( str2==Lisa_Pref::HTML_VIEWER ) {
-      G_Preferences.contents.add_key(Lisa_Pref::HTML_VIEWER,str3);
+      G_Preferences.add_key(Lisa_Pref::HTML_VIEWER,str3);
     }
   } 
   else cerr << "in TC_setvar: Variable " <<name <<" unknown\n";

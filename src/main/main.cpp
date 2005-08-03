@@ -3,8 +3,6 @@
  * @version 2.3final
  */
 
-#include <fstream>
-
 #include "../xml/LisaXmlFile.hpp"
 
 #include "../lisa/ptype.hpp"
@@ -41,7 +39,7 @@ class Lisa_XSchedule * G_XSchedule;
 class Lisa_List<Lisa_ScheduleNode> *G_ScheduleList;
 
 ///global data, preferences, read from default.lsa file
-class Lisa_Preferences G_Preferences;
+class Lisa_ControlParameters G_Preferences;
 
 ///global data, various stuff
 class Lisa_Status G_Status;
@@ -54,54 +52,6 @@ class Lisa_Classify *G_Classify=0;
 
 /// pointer to the tcl interpreter running our main window
 Tcl_Interp *interp;  
-
-//**************************************************************************
-
-bool init_G_Preferences(char * configfile){
-  ifstream pref(configfile);
-  if (! pref){
-    cerr << "Could not open config file: '" << configfile << "'. Exiting." << endl;
-    return false;
-  }
-  pref.close();
-  
-  LisaXmlFile conf;
-  if(!conf.read(configfile) || !(conf >> G_Preferences)){
-    cerr << "Could not read config file: '" << configfile << "'. Exiting." << endl;
-    return false;
-  }
-  
-  if(!(G_Preferences.contents.defined(Lisa_Pref::LISAHOME)==Lisa_ControlParameters::STRING)){
-    char* lh = getenv(Lisa_Pref::LISAHOME);
-    if(lh == 0){
-      cerr << Lisa_Pref::LISAHOME << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
-      return false;
-    }else{
-      G_Preferences.contents.add_key(Lisa_Pref::LISAHOME,lh); 
-    }
-  }
-  
-  if(!(G_Preferences.contents.defined(Lisa_Pref::LISACONFIG)==Lisa_ControlParameters::STRING)){
-    char* lc = getenv(Lisa_Pref::LISACONFIG);
-    if(lc == 0){
-      cerr << Lisa_Pref::LISACONFIG << " neither defined in '" << configfile << "' nor as environment variable. Exiting." << endl;
-      return false; 
-    }else{
-      G_Preferences.contents.add_key(Lisa_Pref::LISACONFIG,lc);
-    }
-  }
-  
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_RED,(long)0);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_GREEN,(long)0);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_BLUE,(long)0);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_BROWN,(long)0);
-  G_Preferences.contents.add_key(Lisa_Pref::GANTT_YELLOW,(long)0);
-  //cout << G_Preferences;
-  
-  return true;
-}
 
 //**************************************************************************
 
@@ -123,7 +73,7 @@ int main(int argc, char *argv[]) {
   std::string dtd_path = (dtd_env) ? dtd_env : "";
   LisaXmlFile::initialize(dtd_path);
   
-  if(!init_G_Preferences(argv[1])) return 1;
+  if(!init_G_Preferences(argv[1],G_Preferences)) return 1;
 
   G_Classify = Lisa_Classify::make_instance(G_Preferences.get_string(Lisa_Pref::LISAHOME)+"/data/classify/classify.bib");
   if(G_Classify == 0){

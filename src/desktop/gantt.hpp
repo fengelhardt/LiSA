@@ -4,6 +4,7 @@
 
 #include "win_obj.hpp"
 #include "../main/lisapref.hpp"
+#include "../lisa/ctrlpara.hpp"
 
 /// holding operation data
 struct O_Data{
@@ -66,7 +67,7 @@ private:
   double scaling(TIMETYP final_value, int step_number);
   
   /// finds the color for a box of the ganttchart out
-  int box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_Preferences& lpref);
+  int box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_ControlParameters& lpref);
   
   /// draws the x-scaling
   void x_scaling();
@@ -99,7 +100,7 @@ public:
   
   /// draws a Gantt-Chart   
   void draw(Lisa_Matrix<bool> *CP, Lisa_Values *G_Values,
-            Lisa_Schedule *G_Schedule, Lisa_Preferences& lpref);
+            Lisa_Schedule *G_Schedule, Lisa_ControlParameters& lpref);
   
   /// gives information about an operation
   operation_data* get_data(double x_coordinate, double y_coordinate, 
