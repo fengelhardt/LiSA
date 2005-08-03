@@ -82,6 +82,7 @@ for {set j 0} {$j<=[expr $ptupel_number(alpha)+$ptupel_number(beta)+$ptupel_numb
 
 
 source [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/main.tcl
+source [TC_getvar LISAHOME]/tcl/validation.tcl
 source [TC_getvar LISAHOME]/tcl/main_win.tcl
 source [TC_getvar LISAHOME]/tcl/dia_prob.tcl
 source [TC_getvar LISAHOME]/tcl/schedule.tcl

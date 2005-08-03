@@ -6,21 +6,22 @@
 #################################
 # GLOBAL VARIABLES
 #
+
 global selectedButton; 
 global widget; 
 global gantt;
 
-set  gantt(red) 0
-set  gantt(green) 0
-set  gantt(blue) 0
-set  gantt(brown) 0
-set  gantt(yellow) 0
+set gantt(red) 0
+set gantt(green) 0
+set gantt(blue) 0
+set gantt(brown) 0
+set gantt(yellow) 0
 set gantt(orientation) machine
 
 proc vTclWindow.gantt {base} {
     global Name;
     global gantt;
-    global system
+    global system;
 
     if {$base == ""} {
         set base .gantt
@@ -193,24 +194,26 @@ proc vTclWindow.gantt {base} {
     frame $base.fra20.fra54.fra54.017 \
          -borderwidth 2 -height 75 -relief groove \
         -width 125 
+    
     entry $base.fra20.fra54.fra54.017.ent17 \
-	-width 8 -textvar gantt(red)
+	     -width 8 -textvar gantt(red) \
+         -validate all -vcmd {validInteger %W %v %V %P gantt(red) 0 } 
     entry $base.fra20.fra54.fra54.017.ent18 \
-         \
-         \
-         -width 8 -textvar gantt(green)
+         -width 8 -textvar gantt(green) \
+         -validate all -vcmd {validInteger %W %v %V %P gantt(green) 0 } 
+         
     entry $base.fra20.fra54.fra54.017.ent19 \
-         \
-         \
-         -width 8 -textvar gantt(blue)
+         -width 8 -textvar gantt(blue) \
+         -validate all -vcmd {validInteger %W %v %V %P gantt(blue) 0 }
+         
     entry $base.fra20.fra54.fra54.017.ent20 \
-         \
-         \
-         -width 8 -textvar gantt(brown)
+         -width 8 -textvar gantt(brown) \
+         -validate all -vcmd {validInteger %W %v %V %P gantt(brown) 0 }
+         
     entry $base.fra20.fra54.fra54.017.ent23 \
-         \
-         \
-         -width 8 -textvar gantt(yellow)
+         -width 8 -textvar gantt(yellow) \
+         -validate all -vcmd {validInteger %W %v %V %P gantt(yellow) 0 }
+         
     frame $base.fra20.fra54.fra55 \
          -borderwidth 2 -height 75 -width 10 
     ###################
