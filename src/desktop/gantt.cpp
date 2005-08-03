@@ -19,8 +19,8 @@ using namespace std;
 
 //**************************************************************************
 
-const bool MACHINE=1;
-const bool JOB=0;
+//const bool MACHINE=1;
+//const bool JOB=0;
 const int BEGIN=0;
 const int MIDDLE=1;
 const int END=2;
@@ -35,7 +35,7 @@ void TCGantt::init(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule,
   
   number_y_values = G_Values->get_m();
   number_x_values = G_Values->get_n();
-  if (orientation == JOB)
+  if (orientation == Lisa_Pref::GANTT_JOB)
     {
       int tmp=number_x_values;
       number_x_values=number_y_values;number_y_values=tmp;
@@ -47,7 +47,7 @@ void TCGantt::init(Lisa_Values *G_Values, Lisa_Schedule *G_Schedule,
       x_max_value=0;
       for(i2=0;i2<number_x_values;i2++)
 	{
-	  if (orientation == MACHINE)
+	  if (orientation == Lisa_Pref::GANTT_MACHINE)
 	    {
 	      if ( (*G_Schedule->CIJ)[i2][i1]>x_max_value)
 		x_max_value = (*G_Schedule->CIJ)[i2][i1];
@@ -137,35 +137,32 @@ double TCGantt::scaling(TIMETYP final_value, int step_number)
 
 //**************************************************************************
 
-int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, bool orientation, 
-		       int color_type, Lisa_Vector<int> *active_path)
+int TCGantt::box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_Preferences& lpref)
 {
-  int color, i1;
-  int special_color[5]={17,16,13,20,14};    //red, green, blue, brown, yellow
+  int color=11;
   
-  if (color_type==GANTT_NORMAL)
-    if (orientation == MACHINE)
+  if (lpref.get_long(Lisa_Pref::GANTT_COL_TYPE)==Lisa_Pref::GANTT_NORMAL){
+    if (lpref.get_long(Lisa_Pref::GANTT_ORIENT) == Lisa_Pref::GANTT_MACHINE){
       color=i;
-    else
+    }else{ // Lisa_Pref::GANTT_JOB
       color=j;
-  else
-    if (color_type==GANTT_CP)
-      {
-	if ( (*CP)[i][j]) 
-	  color=17;                               // red
-	else 
-	  color=15;                                // grey
-      }
-    else
-      {
-	color=11;
-	if(orientation==JOB)
-	  i=j;
-	for(i1=0;i1<5;i1++)
-	  if (i+1 == (*active_path)[i1])
-	    color=special_color[i1];
-      }
-  return(color);
+    }
+  }else if(lpref.get_long(Lisa_Pref::GANTT_COL_TYPE)==Lisa_Pref::GANTT_CP){
+      if((*CP)[i][j]) color=17; // red
+      else color=15;  // grey
+  }else{ // Lisa_Pref::GANTT_COLOR
+    color=11;
+    if(lpref.get_long(Lisa_Pref::GANTT_ORIENT)==Lisa_Pref::GANTT_JOB) i=j;
+	
+    if(lpref.get_long(Lisa_Pref::GANTT_RED)==i+1) color = 17;
+    else if(lpref.get_long(Lisa_Pref::GANTT_GREEN)==i+1) color = 16;
+    else if(lpref.get_long(Lisa_Pref::GANTT_BLUE)==i+1) color = 13;
+    else if(lpref.get_long(Lisa_Pref::GANTT_BROWN)==i+1) color = 20;
+    else if(lpref.get_long(Lisa_Pref::GANTT_YELLOW)==i+1) color = 14;
+
+  }
+  
+  return color;
 }
 
 //**************************************************************************
@@ -202,7 +199,7 @@ void TCGantt::y_scaling(bool orientation)
   
   for (i1=y_interval-1;i1<number_y_values;i1+=y_interval)
     {
-      if(orientation == MACHINE)
+      if(orientation == Lisa_Pref::GANTT_MACHINE)
 	canv_vertikal->text_rel(50,(*y_geometry)[i1][MIDDLE],
 				(string) "M "+ ztos(i1+1),"black");
       else
@@ -345,9 +342,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
 		   //Lisa_Vector<int> *active_path)
            Lisa_Preferences& lpref)
 {
-  long orientation = lpref.get_long(Lisa_Pref::GANTT_ORIENT);
-  long color_type = lpref.gantt_col_type;
-  Lisa_Vector<int>* active_path = lpref.gantt_colors;
+
   
   int i1, i2, color; char *text_color;
 
@@ -367,7 +362,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
   
   /* Initialisation */
   
-  init(G_Values, G_Schedule, orientation);
+  init(G_Values, G_Schedule, lpref.get_long(Lisa_Pref::GANTT_ORIENT));
   
   
   /* Draw the Gantt-Chart */
@@ -380,7 +375,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
   
   /* Y-scaling */
   
-  y_scaling(orientation);
+  y_scaling(lpref.get_long(Lisa_Pref::GANTT_ORIENT));
   
   
   /* horizontal lines */
@@ -394,13 +389,13 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
     for (i2=0;i2<G_Values->get_m();i2++)
       if ((*G_Values->SIJ)[i1][i2])
 	{
-	  color=box_color(i1, i2, CP, orientation, color_type, active_path);
+	  color=box_color(i1, i2, CP, lpref);
 	  if (color%23==1 || color%23==4 || color%23==6 || color%23==8 
 	      || color%23==11 || color%23==20)
 	    text_color="white"; 
 	  else
 	    text_color="black"; 
-	  if (orientation == MACHINE)
+	  if (lpref.get_long(Lisa_Pref::GANTT_ORIENT) == Lisa_Pref::GANTT_MACHINE)
 	    draw_box((*G_Schedule->CIJ)[i1][i2], (*G_Values->PT)[i1][i2],
 		     i1, i2, color, text_color);
 	  else
@@ -411,7 +406,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
 
   /* Draw duedates and releasedates */
 
-  if(orientation == JOB)
+  if(lpref.get_long(Lisa_Pref::GANTT_ORIENT) == Lisa_Pref::GANTT_JOB)
     {
       if((G_Values->DD)!=NULL)
 	draw_DD((G_Values->DD));
@@ -472,7 +467,7 @@ operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
 	{
 	  flag=1;
 	  for (j=0;j<number_x_values && flag==1 ;j++)
-	    if (orientation == MACHINE)
+	    if (orientation == Lisa_Pref::GANTT_MACHINE)
 	      {
 		flag = check_x_value(G_Values, G_Schedule, j, y_value, time);
 	      }
@@ -488,7 +483,7 @@ operation_data* TCGantt::get_data(double x_coordinate, double y_coordinate,
   if(time>=0 && x_value>=0 && y_value>=0)
     {
       my_data.time=time;
-      if (orientation == MACHINE)
+      if (orientation == Lisa_Pref::GANTT_MACHINE)
 	{
 	  my_data.job=x_value;
 	  my_data.machine=y_value;
@@ -526,7 +521,7 @@ void TCGantt::mark(int machine,int job,Lisa_Values *G_Values,
   /* Initialisation */
   
   init(G_Values, G_Schedule, orientation);
-  if (orientation == MACHINE)
+  if (orientation == Lisa_Pref::GANTT_MACHINE)
     {
       if (machine>=0 && machine<number_y_values)
 	y_value=machine;

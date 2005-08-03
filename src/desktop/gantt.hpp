@@ -66,8 +66,7 @@ private:
   double scaling(TIMETYP final_value, int step_number);
   
   /// finds the color for a box of the ganttchart out
-  int box_color(int i, int j, Lisa_Matrix<bool> *CP, bool orientation, 
-                int color_type, Lisa_Vector<int> *active_path);
+  int box_color(int i, int j, Lisa_Matrix<bool> *CP, Lisa_Preferences& lpref);
   
   /// draws the x-scaling
   void x_scaling();

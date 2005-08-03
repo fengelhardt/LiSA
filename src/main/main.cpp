@@ -91,10 +91,13 @@ bool init_G_Preferences(char * configfile){
     }
   }
   
-  if(!(G_Preferences.contents.defined(Lisa_Pref::GANTT_ORIENT)==Lisa_ControlParameters::LONG)){
-    G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
-  }
-  
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_RED,(long)0);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_GREEN,(long)0);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_BLUE,(long)0);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_BROWN,(long)0);
+  G_Preferences.contents.add_key(Lisa_Pref::GANTT_YELLOW,(long)0);
   //cout << G_Preferences;
   
   return true;

@@ -462,7 +462,6 @@ int TC_getvar(ClientData /* clientData */,
 int TC_setvar(ClientData /* clientData */,
 	      Tcl_Interp *interp,
 	      int /*argc*/, TCL_HACK_CHAR *argv[])  {
-  int int_value=1;
   int width=0,height=0;
   int row=0, column=0;
   float value=0;
@@ -641,24 +640,31 @@ else if (name=="SIJ") {
       G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_MACHINE);
     else G_Preferences.contents.add_key(Lisa_Pref::GANTT_ORIENT,Lisa_Pref::GANTT_JOB);
     str=Tcl_GetVar2(interp,"gantt","special",TCL_GLOBAL_ONLY);
-    if (str=="critical_path") 
-      G_Preferences.gantt_col_type=GANTT_CP;
-    else if (str=="colors") // only other value than GANTT_CP necessary
-      {
-	G_Preferences.gantt_col_type=GANTT_COLOR; 
-	sscanf(Tcl_GetVar2(interp,"gantt","red",0),"%d",&int_value);
-	(*G_Preferences.gantt_colors)[GANTT_RED]=int_value;
-	sscanf(Tcl_GetVar2(interp,"gantt","green",0),"%d",&int_value);
-	(*G_Preferences.gantt_colors)[GANTT_GREEN]=int_value;
-	sscanf(Tcl_GetVar2(interp,"gantt","blue",0),"%d",&int_value);
-	(*G_Preferences.gantt_colors)[GANTT_BLUE]=int_value;
-	sscanf(Tcl_GetVar2(interp,"gantt","brown",0),"%d",&int_value);
-	(*G_Preferences.gantt_colors)[GANTT_BROWN]=int_value;
-	sscanf(Tcl_GetVar2(interp,"gantt","yellow",0),"%d",&int_value);
-	(*G_Preferences.gantt_colors)[GANTT_YELLOW]=int_value;
-      }
-    else 
-      G_Preferences.gantt_col_type=GANTT_NORMAL;
+    
+    if (str=="critical_path"){
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_CP);
+    }else if (str=="colors"){ // only other value than GANTT_CP necessary
+      
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_COLOR); 
+      
+      long val = atoi(Tcl_GetVar2(interp,"gantt","red",0));
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_RED,val);
+      
+      val = atoi(Tcl_GetVar2(interp,"gantt","green",0));
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_GREEN,val);
+  
+      val = atoi(Tcl_GetVar2(interp,"gantt","blue",0));
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_BLUE,val);         
+
+      val = atoi(Tcl_GetVar2(interp,"gantt","brown",0));
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_BROWN,val);         
+
+      val = atoi(Tcl_GetVar2(interp,"gantt","yellow",0));
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_YELLOW,val);         
+                
+    }else{ 
+      G_Preferences.contents.add_key(Lisa_Pref::GANTT_COL_TYPE,Lisa_Pref::GANTT_NORMAL);
+    }
     show_output();
   }
   else if (name=="options") {

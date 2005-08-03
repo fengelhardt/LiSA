@@ -43,9 +43,9 @@ void Lisa_Preferences::init(){
 
   
   //gantt_orient = GANTT_MACHINE;
-  gantt_col_type= GANTT_NORMAL;
-  gantt_colors = new Lisa_Vector<int>(5);
-  gantt_colors->fill(0);
+  //gantt_col_type= GANTT_NORMAL;
+  //gantt_colors = new Lisa_Vector<int>(5);
+  //gantt_colors->fill(0);
 }
 
 //**************************************************************************

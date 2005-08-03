@@ -57,12 +57,12 @@ public:
     - if gantt_col_type is GANTT_COLOR 5 selected machines (or jobs) are in the 
     color which are defined in gannt_colors 
   */
-  int gantt_col_type;
+  //int gantt_col_type;
   
   /// color definitions for 5 selected machines (or jobs)
   /** contains at position i the machine (or job) to be colored
       with special color i */
-  Lisa_Vector<int> *gantt_colors;
+  //Lisa_Vector<int> *gantt_colors;
   
   //@{
   /// access internal Lisa_ControlParameters
