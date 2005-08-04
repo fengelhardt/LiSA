@@ -197,22 +197,22 @@ proc vTclWindow.gantt {base} {
     
     entry $base.fra20.fra54.fra54.017.ent17 \
 	     -width 8 -textvar gantt(red) \
-         -validate all -vcmd {validInteger %W %v %V %P gantt(red) 0 } 
+         -validate all -vcmd {validIntegerMin %W %v %V %P gantt(red) 0 } 
     entry $base.fra20.fra54.fra54.017.ent18 \
          -width 8 -textvar gantt(green) \
-         -validate all -vcmd {validInteger %W %v %V %P gantt(green) 0 } 
+         -validate all -vcmd {validIntegerMin %W %v %V %P gantt(green) 0 } 
          
     entry $base.fra20.fra54.fra54.017.ent19 \
          -width 8 -textvar gantt(blue) \
-         -validate all -vcmd {validInteger %W %v %V %P gantt(blue) 0 }
+         -validate all -vcmd {validIntegerMin %W %v %V %P gantt(blue) 0 }
          
     entry $base.fra20.fra54.fra54.017.ent20 \
          -width 8 -textvar gantt(brown) \
-         -validate all -vcmd {validInteger %W %v %V %P gantt(brown) 0 }
+         -validate all -vcmd {validIntegerMin %W %v %V %P gantt(brown) 0 }
          
     entry $base.fra20.fra54.fra54.017.ent23 \
          -width 8 -textvar gantt(yellow) \
-         -validate all -vcmd {validInteger %W %v %V %P gantt(yellow) 0 }
+         -validate all -vcmd {validIntegerMin %W %v %V %P gantt(yellow) 0 }
          
     frame $base.fra20.fra54.fra55 \
          -borderwidth 2 -height 75 -width 10 

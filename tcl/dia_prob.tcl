@@ -176,11 +176,11 @@ proc vTclWindow.dprob {base} {
     label $base.topframe.lab73 \
         -borderwidth 1 -text "$Name(Anzmasch)   " 
     entry $base.topframe.ent73 -width 6 -textvar glob(machines) \
-         -validate all -vcmd {validInteger %W %v %V %P glob(machines) 1 } 
+         -validate all -vcmd {validIntegerMin %W %v %V %P glob(machines) 1 } 
     label $base.topframe.lab74 \
         -borderwidth 1 -text "$Name(Anzauftr)" 
     entry $base.topframe.ent74 -width 6 -textvar glob(jobs) \
-        -validate all -vcmd {validInteger %W %v %V %P glob(jobs) 1 }
+        -validate all -vcmd {validIntegerMin %W %v %V %P glob(jobs) 1 }
     frame $base.fra75 \
         -borderwidth 2 
     button $base.fra75.but74 \
