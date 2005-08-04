@@ -96,7 +96,6 @@ source [TC_getvar LISAHOME]/tcl/print.tcl
 source [TC_getvar LISAHOME]/tcl/man_oper.tcl
 source [TC_getvar LISAHOME]/tcl/seqlist.tcl
 source [TC_getvar LISAHOME]/tcl/gen_algp.tcl
-source [TC_getvar LISAHOME]/tcl/gen_ptst.tcl
 source [TC_getvar LISAHOME]/tcl/mng_ealg.tcl
 source [TC_getvar LISAHOME]/tcl/options.tcl
 
