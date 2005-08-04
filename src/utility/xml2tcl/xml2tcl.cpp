@@ -78,7 +78,7 @@ void writeTcl_AlgWindow(std::string algo_name,
 								}
 						else
 								out << "   set " << algo_name << "(" << Alg.Integer_Controls[i].name << ") " <<  Alg.Integer_Controls[i].default_value << endl;
-						out << "   entry $base.f" <<  Alg.Integer_Controls[i].name << ".02 -textvariable " << algo_name << "(" <<  Alg.Integer_Controls[i].name << ")" << endl;
+						out << "   entry $base.f" <<  Alg.Integer_Controls[i].name << ".02 -textvariable " << algo_name << "(" <<  Alg.Integer_Controls[i].name << ")" << " -validate all -vcmd {validInteger %W %v %V %P " <<  algo_name << "(" << Alg.Integer_Controls[i].name << ")" << " }" << endl;
 						out << "   bind $base.f" <<  Alg.Integer_Controls[i].name << ".02 <Return> {" << endl;
 						out << "     set " <<  algo_name << "(" << Alg.Integer_Controls[i].name << ") [float_value $" << algo_name << "(" <<  Alg.Integer_Controls[i].name << ")]" << endl;
 						out << "   }" << endl;
@@ -106,7 +106,7 @@ void writeTcl_AlgWindow(std::string algo_name,
 								}
 						else
 								out << "   set " << algo_name << "(" << Alg.Real_Controls[i].name << ") " <<  Alg.Real_Controls[i].default_value << endl;
-						out << "   entry $base.f" <<  Alg.Real_Controls[i].name << ".02 -textvariable " << algo_name << "(" <<  Alg.Real_Controls[i].name << ")" << endl;
+						out << "   entry $base.f" <<  Alg.Real_Controls[i].name << ".02 -textvariable " << algo_name << "(" <<  Alg.Real_Controls[i].name << ")" << " -validate all -vcmd {validReal %W %v %V %P " <<  algo_name << "(" << Alg.Real_Controls[i].name << ")" << " }" << endl;
 						out << "   bind $base.f" <<  Alg.Real_Controls[i].name << ".02 <Return> {" << endl;
 						out << "     set " <<  algo_name << "(" << Alg.Real_Controls[i].name << ") [float_value $" << algo_name << "(" <<  Alg.Real_Controls[i].name << ")]" << endl;
 						out << "   }" << endl;
@@ -247,9 +247,9 @@ void writeTcl_ParaTest(std::string algo_name,
 						out << "   set " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_max) " << Alg.Integer_Controls[i].default_value << endl;
 						out << "   set " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_incr) " << "2" << endl;
 						//comment skipped
-						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".05 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_init)" << endl;
-						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".06 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_max)" << endl;
-						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".07 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_incr)" << endl;
+						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".05 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_init)" << " -validate all -vcmd {validInteger %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_init)" << " }" << endl;
+						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".06 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_max)" << " -validate all -vcmd {validInteger %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_max)" << " }"<< endl;
+						out << "   entry $base.f" << Alg.Integer_Controls[i].name << ".07 -textvariable " << algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_incr)" << " -validate all -vcmd {validInteger %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Integer_Controls[i].name << "_incr)" << " }"<< endl;
 						out << "   menubutton $base.f" << Alg.Integer_Controls[i].name << ".08 -indicatoron 1 -menu $base.f" << Alg.Integer_Controls[i].name << ".08.m -padx 5 -pady 4 -relief raised -text $Name(fixed)" << endl;
 						out << "   menu $base.f" << Alg.Integer_Controls[i].name << ".08.m -cursor {} -tearoff 0" << endl;
 						out << "   $base.f" << Alg.Integer_Controls[i].name << ".08.m add command -label $Name(variable) -command {nbptst_set." << algo_name << " \"" <<  Alg.Integer_Controls[i].name << "_var\" \"variable\"; set " << algo_name << "_ptst(" << entry << ",VAR_OR_FIX) $" << algo_name << "_ptst(" <<  Alg.Integer_Controls[i].name << "_var)}" << endl;
@@ -308,9 +308,9 @@ void writeTcl_ParaTest(std::string algo_name,
 						out << "   set " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_max) " << Alg.Real_Controls[i].default_value << endl;
 						out << "   set " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_incr) " << "2" << endl;
 						//comment skipped
-						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".05 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_init)" << endl;
-						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".06 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_max)" << endl;
-						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".07 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_incr)" << endl;
+						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".05 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_init)" << " -validate all -vcmd {validReal %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_init)" << " }" << endl;
+						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".06 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_max)" << " -validate all -vcmd {validReal %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_max)" << " }" << endl;
+						out << "   entry $base.f" << Alg.Real_Controls[i].name << ".07 -textvariable " << algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_incr)" << " -validate all -vcmd {validReal %W %v %V %P " <<  algo_name << "_ptst(" << Alg.Real_Controls[i].name << "_incr)" << " }" << endl;
 						out << "   menubutton $base.f" << Alg.Real_Controls[i].name << ".08 -indicatoron 1 -menu $base.f" << Alg.Real_Controls[i].name << ".08.m -padx 5 -pady 4 -relief raised -text $Name(fixed)" << endl;
 						out << "   menu $base.f" << Alg.Real_Controls[i].name << ".08.m -cursor {} -tearoff 0" << endl;
 						out << "   $base.f" << Alg.Real_Controls[i].name << ".08.m add command -label $Name(variable) -command {nbptst_set." << algo_name << " \"" <<  Alg.Real_Controls[i].name << "_var\" \"variable\"; set " << algo_name << "_ptst(" << entry << ",VAR_OR_FIX) $" << algo_name << "_ptst(" <<  Alg.Real_Controls[i].name << "_var)}" << endl;
