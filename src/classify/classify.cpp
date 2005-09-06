@@ -263,12 +263,16 @@ int Lisa_Classify::parse_problem(const std::string& problem, Lisa_ProblemType *c
 const unsigned int size = problem.size();
   unsigned int error = 0;
   
-  char *const alpha  = new char[size];
+  char *const alpha1  = new char[size];
   char *const beta   = new char[size];
   char *const gamma  = new char[size];
   char *const substr = new char[size];
   char *const hlpstr = new char[size];
 	
+  //work using alpha pointer
+  //but keep alpha1 for cleanup later
+  char* alpha = alpha1;
+  
   // split problem into alpha beta and gamma component
   strncpy(alpha,problem.c_str(),size); 
   *(strchr(alpha,'|'))='\0';
@@ -339,14 +343,14 @@ const unsigned int size = problem.size();
 	pt->set_property(M_ENV,R);
       else
         error = 1;
-      strcpy(alpha,alpha+1);
+      alpha++;
     }
   if ((*alpha=='\0') || (*alpha==';'))
     {
       pt->set_property(M_NUMBER,M_ARB);
       if (*alpha==';')
 	{      
-	  strcpy(alpha,alpha+1);
+	  alpha++;
 	  if (strcmp(alpha,"R1")==0)
 	    {
 	      pt->set_property(M_ENV,F_SR);
@@ -370,13 +374,13 @@ const unsigned int size = problem.size();
     {
       sscanf(alpha,"%1u",&pt->m_no);
       pt->set_property(M_NUMBER,M_VAL);
-      strcpy(alpha,alpha+1);
+      alpha++;
     }
   else 
    error = 1;
   if (*alpha==';')
     {
-      strcpy(alpha,alpha+1);
+      alpha++;
       if (strcmp(alpha,"R1")==0)
 	pt->set_property(M_ENV,F_SR);
       else if (strcmp(alpha,"S1")==0)
@@ -519,7 +523,7 @@ error = 1;
   else
     error = 1;
   
-  delete[] alpha; 
+  delete[] alpha1; 
   delete[] beta;  
   delete[] gamma;
   delete[] substr;
