@@ -260,7 +260,7 @@ void Lisa_Classify::parse_annote(Lisa_ClassifyRecord *const record){
 //**************************************************************************
 
 int Lisa_Classify::parse_problem(const std::string& problem, Lisa_ProblemType *const pt){
-const unsigned int size = problem.size();
+  const unsigned int size = problem.size();
   unsigned int error = 0;
   
   char *const alpha1  = new char[size];
@@ -281,254 +281,206 @@ const unsigned int size = problem.size();
   *(strchr(beta,'|'))='\0';
   
   strncpy(gamma,strrchr(problem.c_str(),'|')+1,size);
-
+  
   // alpha entry ---------------------------------------------------
   
-  if (strstr(alpha,"MPT"))
-     {
-       if (*alpha=='M')
-	 pt->set_property(M_ENV,MPT);
-       else if (*alpha=='O')
-	 pt->set_property(M_ENV,OMPT);
-       else if (*alpha=='F')
-	 pt->set_property(M_ENV,FMPT);
-       else if (*alpha=='J')
-	 pt->set_property(M_ENV,JMPT);
-       else if (*alpha=='X')
-	 pt->set_property(M_ENV,XMPT);
-       else if (*alpha=='G')
-	 pt->set_property(M_ENV,GMPT);
-       if (*alpha=='M')
-	 strcpy(alpha,alpha+3);
-       else
-	 strcpy(alpha,alpha+4);
-     }
-   else if (strstr(alpha,"MPM"))
-     {
-       if (*alpha=='O')
-	 pt->set_property(M_ENV,OMPM);
-       else if (*alpha=='F')
-	 pt->set_property(M_ENV,FMPM);
-       else if (*alpha=='J')
-	 pt->set_property(M_ENV,JMPM);
-       else if (*alpha=='X')
-	 pt->set_property(M_ENV,XMPM);
-       else if (*alpha=='G')
-	 pt->set_property(M_ENV,GMPM);
-       else if (*alpha=='Q')
-	 pt->set_property(M_ENV,QMPM);
-       else if (*alpha=='P')
-	 pt->set_property(M_ENV,PMPM);
-       strcpy(alpha,alpha+4);
-     }
-  else 
-    {
-      if (*alpha=='1') 
-	pt->set_property(M_ENV,ONE);
-      else if (*alpha=='O')
-	pt->set_property(M_ENV,O);
-      else if (*alpha=='F')
-	pt->set_property(M_ENV,F);
-      else if (*alpha=='J')
-	pt->set_property(M_ENV,J);
-      else if (*alpha=='X')
-	pt->set_property(M_ENV,X);
-      else if (*alpha=='G')
-	pt->set_property(M_ENV,G);
-      else if (*alpha=='P')
-	pt->set_property(M_ENV,P);
-      else if (*alpha=='Q')
-	pt->set_property(M_ENV,Q);
-      else if (*alpha=='R')
-	pt->set_property(M_ENV,R);
-      else
-        error = 1;
-      alpha++;
+  if (strstr(alpha,"MPT")){
+         
+         if (*alpha=='M') pt->set_property(M_ENV,MPT);
+    else if (*alpha=='O') pt->set_property(M_ENV,OMPT);
+    else if (*alpha=='F') pt->set_property(M_ENV,FMPT);
+    else if (*alpha=='J') pt->set_property(M_ENV,JMPT);
+    else if (*alpha=='X') pt->set_property(M_ENV,XMPT);
+    else if (*alpha=='G') pt->set_property(M_ENV,GMPT);
+    
+    if (*alpha=='M') alpha+=3;
+    else alpha+=4;
+    
+  }else if (strstr(alpha,"MPM")){
+    
+         if (*alpha=='O') pt->set_property(M_ENV,OMPM);
+    else if (*alpha=='F') pt->set_property(M_ENV,FMPM);
+    else if (*alpha=='J') pt->set_property(M_ENV,JMPM);
+    else if (*alpha=='X') pt->set_property(M_ENV,XMPM);
+    else if (*alpha=='G') pt->set_property(M_ENV,GMPM);
+    else if (*alpha=='Q') pt->set_property(M_ENV,QMPM);
+    else if (*alpha=='P') pt->set_property(M_ENV,PMPM);
+   
+    alpha+=4;
+    
+  }else{
+    
+         if (*alpha=='1') pt->set_property(M_ENV,ONE);
+    else if (*alpha=='O') pt->set_property(M_ENV,O);
+    else if (*alpha=='F') pt->set_property(M_ENV,F);
+    else if (*alpha=='J') pt->set_property(M_ENV,J);
+    else if (*alpha=='X') pt->set_property(M_ENV,X);
+    else if (*alpha=='G') pt->set_property(M_ENV,G);
+    else if (*alpha=='P') pt->set_property(M_ENV,P);
+    else if (*alpha=='Q') pt->set_property(M_ENV,Q);
+    else if (*alpha=='R') pt->set_property(M_ENV,R);
+    else{
+      error = 1;
+      goto error_occured;
     }
-  if ((*alpha=='\0') || (*alpha==';'))
-    {
-      pt->set_property(M_NUMBER,M_ARB);
-      if (*alpha==';')
-	{      
-	  alpha++;
-	  if (strcmp(alpha,"R1")==0)
-	    {
+    
+    alpha++;
+    
+  }
+  
+  if ((*alpha=='\0') || (*alpha==';')){
+    
+    pt->set_property(M_NUMBER,M_ARB);
+    if (*alpha==';'){
+      
+      alpha++;
+      
+      if (strcmp(alpha,"R1")==0){
 	      pt->set_property(M_ENV,F_SR);
-	      strcpy(alpha,alpha+2);
-	    }
-	  else if (strcmp(alpha,"S1")==0)
-	    {
+	      alpha+=2;
+	    }else if (strcmp(alpha,"S1")==0){
 	      pt->set_property(M_ENV,P_CS);
-	      strcpy(alpha,alpha+2);
-	    }
-	  else 
-	   error = 1;
-	}
-    }   
-  else if (*alpha=='m')
-    {
-      pt->set_property(M_NUMBER,M_FIX);
-      strcpy(alpha,alpha+1);
+	      alpha+=2;
+	    }else{ 
+        error = 1;
+        goto error_occured;
+      }
     }
-  else if ((*alpha >= '2') && (*alpha <= '9'))
-    {
-      sscanf(alpha,"%1u",&pt->m_no);
-      pt->set_property(M_NUMBER,M_VAL);
-      alpha++;
+  
+  }else if (*alpha=='m'){
+    pt->set_property(M_NUMBER,M_FIX);
+    alpha++;
+  }else if ((*alpha >= '2') && (*alpha <= '9')){
+    sscanf(alpha,"%1u",&pt->m_no);
+    pt->set_property(M_NUMBER,M_VAL);
+    alpha++;
+  }else{
+    error = 1;
+    goto error_occured;
+  }
+  
+  if (*alpha==';'){
+    
+    alpha++;
+    
+         if (strcmp(alpha,"R1")==0) pt->set_property(M_ENV,F_SR);
+    else if (strcmp(alpha,"S1")==0) pt->set_property(M_ENV,P_CS);
+    else{
+      error = 1;
+      goto error_occured;
     }
-  else 
-   error = 1;
-  if (*alpha==';')
-    {
-      alpha++;
-      if (strcmp(alpha,"R1")==0)
-	pt->set_property(M_ENV,F_SR);
-      else if (strcmp(alpha,"S1")==0)
-	pt->set_property(M_ENV,P_CS);
-      else 
-	error = 1;
-    } 
-  else if (*alpha!='\0')
-   error = 1;
+  
+  }else if (*alpha!='\0'){
+    error = 1;
+    goto error_occured;
+  }
   
   // beta entry ------------------------------------------------
-
-  while (*beta!='\0')
-    {
-      if ((strchr(beta,';')))
-	{
-	  strncpy(substr,strchr(beta,';')+1,size);
-	  *(strchr(beta,';'))='\0';
-	}
-      else 
-	strcpy(substr,strchr(beta,'\0'));
-      if (strcmp(beta,"pmtn")==0)
-	pt->set_property(PMTN,true);
-      else if (strcmp(beta,"intree")==0)
-	pt->set_property(PRECEDENCE,INTREE);
-      else if (strcmp(beta,"outtree")==0)
-	pt->set_property(PRECEDENCE,OUTTREE);
-      else if (strcmp(beta,"tree")==0)
-	pt->set_property(PRECEDENCE,TREE);
-      else if (strcmp(beta,"sp-graph")==0)
-	pt->set_property(PRECEDENCE,SP_GRAPH);
-      else if (strcmp(beta,"chains")==0)
-	pt->set_property(PRECEDENCE,CHAINS);
-      else if (strcmp(beta,"prec")==0)
-	pt->set_property(PRECEDENCE,PREC);
-      else if (strchr(beta,'('))
-	{
-	  strncpy(hlpstr,strchr(beta,'('),size);
-	  *(strchr(beta,'('))='\0';
-	  if (strcmp(beta,"intree")==0)
-	    pt->set_property(PRECEDENCE,INTREE);
-	  else if (strcmp(beta,"outtree")==0)
-	    pt->set_property(PRECEDENCE,OUTTREE);
-	  else if (strcmp(beta,"tree")==0)
-	    pt->set_property(PRECEDENCE,TREE);
-	  else if (strcmp(beta,"sp-graph")==0)
-	    pt->set_property(PRECEDENCE,SP_GRAPH);
-	  else if (strcmp(beta,"chains")==0)
-	    pt->set_property(PRECEDENCE,CHAINS);
-	  else if (strcmp(beta,"prec")==0)
-	    pt->set_property(PRECEDENCE,PREC);
-	  else
-	    error = 1;
-	  if (strcmp(hlpstr,"(1)")==0)
-	    pt->set_property(TIME_LAGS,UNIT_TL);
-	  else if (strcmp(hlpstr,"(l)")==0)
-	    pt->set_property(TIME_LAGS,CONST_TL);
-	  else if (strcmp(hlpstr,"(l_{ij})")==0)
-	    pt->set_property(TIME_LAGS,GENERAL_TL);
-	  else
-	   error = 1;    
-	}
-      else if (strcmp(beta,"r_i")==0)
-	pt->set_property(RI,true);
-      else if (strcmp(beta,"d_i")==0)
-	pt->set_property(DI,true);	  
-      else if (strcmp(beta,"p_{ij}=1")==0 || strcmp(beta,"p_i=1")==0) // handle pij = pi as the same
-	pt->set_property(PIJ,PIJ_1);  
-      else if (strcmp(beta,"p_{ij}=p")==0 || strcmp(beta,"p_i=p")==0) // handle pij=pi as the same
-	pt->set_property(PIJ,PIJ_P);  
-      else if (strcmp(beta,"s-batch")==0)
-	pt->set_property(BATCH,S_BATCH);
-      else if (strcmp(beta,"p-batch")==0)
-	pt->set_property(BATCH,P_BATCH);
-      else if (strcmp(beta,"b<n")==0)
-	pt->set_property(BOUNDED_BATCH,true);
-      else if (strncmp(beta,"n=",2)==0)
-	{
-	  if (*(beta+2)=='k')
-	    pt->set_property(JOB_NR,J_FIX);
-	  else if ((*(beta+2) >= '2') && (*(beta+2) <= '9'))
-	    {
-	      sscanf(beta+2,"%1u",&pt->n_no);
-	      pt->set_property(JOB_NR,J_VAL);
-	    }
-	}
-      else if (strcmp(beta,"no-wait")==0)
-	pt->set_property(NO_WAIT,true);
-      else if (strcmp(beta,"size_i")==0)
-	pt->set_property(SIZE,true);
-      else if (strcmp(beta,"t_{ik}=T")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TIK_T);
-      else if (strcmp(beta,"t_{ikl}=T")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TIKL_T);
-      else if (strcmp(beta,"t_i\\in\\{T_1,T_2\\}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TI_IN);
-      else if (strcmp(beta,"t_{kl}=t_{lk}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TKL_TLK);
-      else if (strcmp(beta,"t_i")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TI);
-      else if (strcmp(beta,"t_k")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TK);
-      else if (strcmp(beta,"t_{kl}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TKL);
-      else if (strcmp(beta,"t_{ikl}=t_{ilk}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TIKL_TILK);
-      else if (strcmp(beta,"t_{ik}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TIK);
-      else if (strcmp(beta,"t_{ikl}")==0)
-	pt->set_property(TRANSPORTATION_DELAYS,TIKL);
-      else if (strcmp(beta,"s_i")==0)
-	pt->set_property(SERVER_FLAGS,SI);        
-      else if (strcmp(beta,"s_i=1")==0)
-	pt->set_property(SERVER_FLAGS,SI_1);      
-  else if (strcmp(beta,"s_i=s")==0)
-	pt->set_property(SERVER_FLAGS,SI_S);    
-      else
-error = 1;
-      strcpy(beta,substr);
+  
+  while (*beta!='\0'){
+    
+    if ((strchr(beta,';'))){
+      strncpy(substr,strchr(beta,';')+1,size);
+      *(strchr(beta,';'))='\0';
+    }else{ 
+      strcpy(substr,strchr(beta,'\0'));
     }
-
-// gamma entry --------------------------------------------------
- 
-  if (strcmp(gamma,"C_{\\max}")==0)
-    pt->set_property(OBJECTIVE,CMAX);
-  else if (strcmp(gamma,"L_{\\max}")==0)
-    pt->set_property(OBJECTIVE,LMAX);
-  else if (strcmp(gamma,"\\sum{C_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_CI);
-  else if (strcmp(gamma,"\\sum{w_iC_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_WICI);
-  else if (strcmp(gamma,"\\sum{U_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_UI);
-  else if (strcmp(gamma,"\\sum{w_iU_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_WIUI);
-  else if (strcmp(gamma,"\\sum{T_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_TI);
-  else if (strcmp(gamma,"\\sum{w_iT_i}")==0)
-    pt->set_property(OBJECTIVE,SUM_WITI);
-  else
+    
+         if (strcmp(beta,"pmtn")==0) pt->set_property(PMTN,true);
+    else if (strcmp(beta,"intree")==0) pt->set_property(PRECEDENCE,INTREE);
+    else if (strcmp(beta,"outtree")==0) pt->set_property(PRECEDENCE,OUTTREE);
+    else if (strcmp(beta,"tree")==0) pt->set_property(PRECEDENCE,TREE);
+    else if (strcmp(beta,"sp-graph")==0) pt->set_property(PRECEDENCE,SP_GRAPH);
+    else if (strcmp(beta,"chains")==0) pt->set_property(PRECEDENCE,CHAINS);
+    else if (strcmp(beta,"prec")==0) pt->set_property(PRECEDENCE,PREC);
+    else if (strchr(beta,'(')){
+      
+      strncpy(hlpstr,strchr(beta,'('),size);
+      *(strchr(beta,'('))='\0';
+      
+      if (strcmp(beta,"intree")==0) pt->set_property(PRECEDENCE,INTREE);
+      else if (strcmp(beta,"outtree")==0) pt->set_property(PRECEDENCE,OUTTREE);
+      else if (strcmp(beta,"tree")==0) pt->set_property(PRECEDENCE,TREE);
+      else if (strcmp(beta,"sp-graph")==0) pt->set_property(PRECEDENCE,SP_GRAPH);
+      else if (strcmp(beta,"chains")==0) pt->set_property(PRECEDENCE,CHAINS);
+      else if (strcmp(beta,"prec")==0) pt->set_property(PRECEDENCE,PREC);
+      else{
+        error = 1;
+        goto error_occured;
+      }
+      
+           if (strcmp(hlpstr,"(1)")==0) pt->set_property(TIME_LAGS,UNIT_TL);
+      else if (strcmp(hlpstr,"(l)")==0) pt->set_property(TIME_LAGS,CONST_TL);
+      else if (strcmp(hlpstr,"(l_{ij})")==0) pt->set_property(TIME_LAGS,GENERAL_TL);
+      else{
+        error = 1;
+        goto error_occured;
+      }
+    
+    }else if (strcmp(beta,"r_i")==0) pt->set_property(RI,true);
+    else if (strcmp(beta,"d_i")==0) pt->set_property(DI,true);
+	  
+    // handle pij = pi as the same
+    else if (strcmp(beta,"p_{ij}=1")==0 || strcmp(beta,"p_i=1")==0) pt->set_property(PIJ,PIJ_1);  
+    else if (strcmp(beta,"p_{ij}=p")==0 || strcmp(beta,"p_i=p")==0) pt->set_property(PIJ,PIJ_P);
+    
+    else if (strcmp(beta,"s-batch")==0) pt->set_property(BATCH,S_BATCH);
+    else if (strcmp(beta,"p-batch")==0) pt->set_property(BATCH,P_BATCH);
+    else if (strcmp(beta,"b<n")==0) pt->set_property(BOUNDED_BATCH,true);
+    else if (strncmp(beta,"n=",2)==0){
+      
+      if (*(beta+2)=='k') pt->set_property(JOB_NR,J_FIX);
+      else if ((*(beta+2) >= '2') && (*(beta+2) <= '9')){
+       sscanf(beta+2,"%1u",&pt->n_no);
+       pt->set_property(JOB_NR,J_VAL);
+      }
+      
+    }else if (strcmp(beta,"no-wait")==0) pt->set_property(NO_WAIT,true);
+    else if (strcmp(beta,"size_i")==0) pt->set_property(SIZE,true);
+    else if (strcmp(beta,"t_{ik}=T")==0) pt->set_property(TRANSPORTATION_DELAYS,TIK_T);
+    else if (strcmp(beta,"t_{ikl}=T")==0) pt->set_property(TRANSPORTATION_DELAYS,TIKL_T);
+    else if (strcmp(beta,"t_i\\in\\{T_1,T_2\\}")==0) pt->set_property(TRANSPORTATION_DELAYS,TI_IN);
+    else if (strcmp(beta,"t_{kl}=t_{lk}")==0) pt->set_property(TRANSPORTATION_DELAYS,TKL_TLK);
+    else if (strcmp(beta,"t_i")==0) pt->set_property(TRANSPORTATION_DELAYS,TI);
+    else if (strcmp(beta,"t_k")==0) pt->set_property(TRANSPORTATION_DELAYS,TK);
+    else if (strcmp(beta,"t_{kl}")==0) pt->set_property(TRANSPORTATION_DELAYS,TKL);
+    else if (strcmp(beta,"t_{ikl}=t_{ilk}")==0) pt->set_property(TRANSPORTATION_DELAYS,TIKL_TILK);
+    else if (strcmp(beta,"t_{ik}")==0) pt->set_property(TRANSPORTATION_DELAYS,TIK);
+    else if (strcmp(beta,"t_{ikl}")==0) pt->set_property(TRANSPORTATION_DELAYS,TIKL);
+    else if (strcmp(beta,"s_i")==0) pt->set_property(SERVER_FLAGS,SI);        
+    else if (strcmp(beta,"s_i=1")==0) pt->set_property(SERVER_FLAGS,SI_1);      
+    else if (strcmp(beta,"s_i=s")==0) pt->set_property(SERVER_FLAGS,SI_S);    
+    else{
+      error = 1;
+      goto error_occured;
+    }
+    
+    strcpy(beta,substr);
+  }
+  
+  // gamma entry --------------------------------------------------
+  
+       if (strcmp(gamma,"C_{\\max}")==0) pt->set_property(OBJECTIVE,CMAX);
+  else if (strcmp(gamma,"L_{\\max}")==0) pt->set_property(OBJECTIVE,LMAX);
+  else if (strcmp(gamma,"\\sum{C_i}")==0) pt->set_property(OBJECTIVE,SUM_CI);
+  else if (strcmp(gamma,"\\sum{w_iC_i}")==0) pt->set_property(OBJECTIVE,SUM_WICI);
+  else if (strcmp(gamma,"\\sum{U_i}")==0) pt->set_property(OBJECTIVE,SUM_UI);
+  else if (strcmp(gamma,"\\sum{w_iU_i}")==0) pt->set_property(OBJECTIVE,SUM_WIUI);
+  else if (strcmp(gamma,"\\sum{T_i}")==0) pt->set_property(OBJECTIVE,SUM_TI);
+  else if (strcmp(gamma,"\\sum{w_iT_i}")==0) pt->set_property(OBJECTIVE,SUM_WITI);
+  else{
     error = 1;
+    goto error_occured;
+  }
+  
+  error_occured:
   
   delete[] alpha1; 
   delete[] beta;  
   delete[] gamma;
   delete[] substr;
   delete[] hlpstr;
-
+  
   return !error;
 }
 
