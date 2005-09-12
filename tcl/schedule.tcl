@@ -21,9 +21,15 @@ proc vTclWindow.schedulewin {base} {
         -background #A500A500A500 
    # wm focusmodel $base passive
      if {$system(screen)=="big"} {
-	 wm geometry $base 420x420
+	set xPos [expr {([winfo screenwidth .]-420)/2}]
+   	set yPos [expr {([winfo screenheight .]-420)/2}]
+	wm geometry $base 420x420+$xPos+$yPos
+#	 wm geometry $base 420x420
      } else {
-	 wm geometry $base 360x320
+	set xPos [expr {([winfo screenwidth .]-360)/2}]
+    	set yPos [expr {([winfo screenheight .]-320)/2}]
+   	wm geometry $base 360x320+$xPos+$yPos
+#	 wm geometry $base 360x320
      }
 
     wm minsize $base 1 1

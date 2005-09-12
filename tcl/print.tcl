@@ -14,7 +14,10 @@ proc vTclWindow.printoptions {base} {
     toplevel $base -class Toplevel \
          
     wm focusmodel $base passive
-    wm geometry $base 497x364
+    set xPos [expr {([winfo screenwidth .]-497)/2}]
+    set yPos [expr {([winfo screenheight .]-364)/2}]
+    wm geometry $base 497x364+$xPos+$yPos
+#    wm geometry $base 497x364
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0

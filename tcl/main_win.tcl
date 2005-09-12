@@ -63,9 +63,15 @@ proc vTclWindow.lisa {base} {
 # define appearance of the LiSA main window:
     toplevel $base -class Toplevel
     if {$system(screen)=="big"} {
-	wm geometry $base 735x620+107+70
+	set xPos [expr {([winfo screenwidth .]-735)/2}]
+	set yPos [expr {([winfo screenheight .]-620)/2}]
+	wm geometry $base 735x620+$xPos+$yPos
+#	wm geometry $base 735x620+107+70
     } else { 
-	wm geometry $base 620x500+50+10
+	set xPos [expr {([winfo screenwidth .]-620)/2}]
+   	set yPos [expr {([winfo screenheight .]-500)/2}]
+	wm geometry $base 620x500+$xPos+$yPos
+#	wm geometry $base 620x500+50+10
     }
     wm maxsize $base 1267 977
 
@@ -852,9 +858,15 @@ proc vTclWindow.write_text {base} {
     wm focusmodel $base passive
 
     if {$system(screen)=="big"} {
-	wm geometry $base 640x480
+	set xPos [expr {([winfo screenwidth .]-640)/2}]
+   	set yPos [expr {([winfo screenheight .]-480)/2}]
+	wm geometry $base 640x480+$xPos+$yPos
+#	wm geometry $base 640x480
     } else {
-	wm geometry $base 320x200
+	set xPos [expr {([winfo screenwidth .]-320)/2}]
+   	set yPos [expr {([winfo screenheight .]-200)/2}]
+ 	wm geometry $base 320x200+$xPos+$yPos
+#	wm geometry $base 320x200
     }
     wm minsize $base 1 1
     wm overrideredirect $base 0
@@ -876,7 +888,7 @@ proc vTclWindow.write_text {base} {
         -width 125 
     text $base.mmenf.tex23 \
         -wrap word \
-        -yscrollcommand {.write_text.scr21 set} 
+	-yscrollcommand {.write_text.scr21 set} 
     ###################
     # SETTING GEOMETRY
     ###################

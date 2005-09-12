@@ -19,10 +19,16 @@ proc vTclWindow.erzpt {base} {
     toplevel $base -class Toplevel 
     wm focusmodel $base passive
     if {$system(screen)=="big"} {
-	wm geometry $base 352x209
+	set xPos [expr {([winfo screenwidth .]-352)/2}]
+	set yPos [expr {([winfo screenheight .]-209)/2}]
+	wm geometry $base 352x209+$xPos+$yPos
+	#wm geometry $base 352x209
 	wm maxsize $base 1265 994
     } else {
-	wm geometry $base 220x150
+	set xPos [expr {([winfo screenwidth .]-220)/2}]
+	set yPos [expr {([winfo screenheight .]-150)/2}]
+	wm geometry $base 220x150+$xPos+$yPos
+	#wm geometry $base 220x150
     }
    set w [winfo reqwidth $base]
     set h [winfo reqheight $base]
@@ -140,9 +146,15 @@ proc vTclWindow.gen_sij {base} {
     toplevel $base -class Toplevel 
     wm focusmodel $base passive
     if {$system(screen)=="big"} {
-	wm geometry $base 352x109
+	set xPos [expr {([winfo screenwidth .]-352)/2}]
+	set yPos [expr {([winfo screenheight .]-109)/2}]
+	wm geometry $base 352x109+$xPos+$yPos
+	#wm geometry $base 352x109
     } else {
-	wm geometry $base 220x100
+	set xPos [expr {([winfo screenwidth .]-220)/2}]
+	set yPos [expr {([winfo screenheight .]-100)/2}]
+	wm geometry $base 220x100+$xPos+$yPos
+	#wm geometry $base 220x100
     }
 
     wm overrideredirect $base 0
@@ -216,9 +228,15 @@ proc vTclWindow.gen_const_pij {base} {
     toplevel $base -class Toplevel 
     wm focusmodel $base passive
     if {$system(screen)=="big"} {
-	wm geometry $base 352x109
+	set xPos [expr {([winfo screenwidth .]-352)/2}]
+	set yPos [expr {([winfo screenheight .]-109)/2}]
+	wm geometry $base 352x109+$xPos+$yPos
+	#wm geometry $base 352x109
     } else {
-	wm geometry $base 220x100
+	set xPos [expr {([winfo screenwidth .]-220)/2}]
+	set yPos [expr {([winfo screenheight .]-100)/2}]
+	wm geometry $base 220x100+$xPos+$yPos
+	#wm geometry $base 220x100
     }
 
     wm overrideredirect $base 0
@@ -284,10 +302,16 @@ proc vTclWindow.erzspal {base} {
     toplevel $base -class Toplevel
     wm focusmodel $base passive
     if {$system(screen)=="big"} {
-	wm geometry $base 352x209
+	set xPos [expr {([winfo screenwidth .]-352)/2}]
+	set yPos [expr {([winfo screenheight .]-209)/2}]
+	wm geometry $base 352x209+$xPos+$yPos
+	#wm geometry $base 352x209
 	wm maxsize $base 1267 977
     } else {
-	wm geometry $base 250x150
+	set xPos [expr {([winfo screenwidth .]-250)/2}]
+	set yPos [expr {([winfo screenheight .]-150)/2}]
+	wm geometry $base 250x150+$xPos+$yPos
+	#wm geometry $base 250x150
     }
 
     wm minsize $base 1 1

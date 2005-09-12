@@ -16,7 +16,10 @@ proc vTclWindow.man_oper {base} {
     ###################
     toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 270x420+100+100
+    set xPos [expr {([winfo screenwidth .]-270)/2}]
+    set yPos [expr {([winfo screenheight .]-420)/2}]
+    wm geometry $base 270x420+$xPos+$yPos
+#    wm geometry $base 270x420+100+100
     wm overrideredirect $base 0
     wm resizable $base 0 0
     wm deiconify $base

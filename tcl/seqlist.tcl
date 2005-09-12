@@ -23,10 +23,16 @@ proc vTclWindow.seqlist {base} {
         -background #A500A500A500 
    # wm focusmodel $base passive
      if {$system(screen)=="big"} {
-	 wm geometry $base 529x490
+	 set xPos [expr {([winfo screenwidth .]-529)/2}]
+ 	 set yPos [expr {([winfo screenheight .]-490)/2}]
+	 wm geometry $base 529x490+$xPos+$yPos
+#	 wm geometry $base 529x490
 	 wm maxsize $base 1267 977
      } else {
-	 wm geometry $base 400x400
+	set xPos [expr {([winfo screenwidth .]-400)/2}]
+   	set yPos [expr {([winfo screenheight .]-400)/2}]
+ 	wm geometry $base 400x400+$xPos+$yPos
+#	 wm geometry $base 400x400
      }
 
     wm minsize $base 1 1

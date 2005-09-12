@@ -35,10 +35,16 @@ proc vTclWindow.textaus {base} {
 #     wm maxsize $base 1009 738
 
     if {$system(screen)=="big"} {
-	wm geometry $base  531x350+164+202
+	set xPos [expr {([winfo screenwidth .]-531)/2}]
+	set yPos [expr {([winfo screenheight .]-350)/2}]
+	wm geometry $base 531x350+$xPos+$yPos
+	#wm geometry $base  531x350+164+202
 	wm maxsize $base 1267 977
     } else {
-	wm geometry $base 400x300
+	set xPos [expr {([winfo screenwidth .]-400)/2}]
+	set yPos [expr {([winfo screenheight .]-300)/2}]
+	wm geometry $base 400x300+$xPos+$yPos
+	#wm geometry $base 400x300
     }
     wm minsize $base 1 1
     wm overrideredirect $base 0

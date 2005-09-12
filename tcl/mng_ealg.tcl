@@ -21,7 +21,10 @@ proc vTclWindow.ext_alg_graph {base} {
     toplevel $base -class Toplevel 
     wm focusmodel $base passive
 
-    wm geometry $base 410x240+40+40
+    set xPos [expr {([winfo screenwidth .]-410)/2}]
+    set yPos [expr {([winfo screenheight .]-240)/2}]
+    wm geometry $base 410x240+$xPos+$yPos
+#    wm geometry $base 410x240+40+40
     # This must be changed to obey PROGRESS_INDICATOR_STEPS !!!
     wm resizable $base 0 0
     wm deiconify $base
@@ -164,7 +167,10 @@ proc vTclWindow.alg_stop {base} {
     toplevel $base -class Toplevel \
         -background #D5A5D5A5F000 -cursor xterm 
     wm focusmodel $base passive
-    wm geometry $base 441x180
+    set xPos [expr {([winfo screenwidth .]-441)/2}]
+    set yPos [expr {([winfo screenheight .]-180)/2}]
+    wm geometry $base 441x180+$xPos+$yPos
+#    wm geometry $base 441x180
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0

@@ -12,7 +12,10 @@ proc vTclWindow.message {base} {
     toplevel $base -class Toplevel \
         -cursor xterm 
     wm focusmodel $base passive
-    wm geometry $base 400x150
+    set xPos [expr {([winfo screenwidth .]-400)/2}]
+    set yPos [expr {([winfo screenheight .]-150)/2}]
+    wm geometry $base 400x150+$xPos+$yPos
+    #wm geometry $base 400x150
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0
@@ -79,7 +82,10 @@ proc vTclWindow.errormessage {base} {
     toplevel $base -class Toplevel \
         -cursor xterm 
     wm focusmodel $base passive
-    wm geometry $base 400x150
+    set xPos [expr {([winfo screenwidth .]-400)/2}]
+    set yPos [expr {([winfo screenheight .]-150)/2}]
+    wm geometry $base 400x150+$xPos+$yPos
+    #wm geometry $base 400x150
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0
@@ -148,7 +154,10 @@ proc vTclWindow.delaym {base} {
     toplevel $base -class Toplevel \
         -cursor xterm 
     wm focusmodel $base passive
-    wm geometry $base 400x150
+    set xPos [expr {([winfo screenwidth .]-400)/2}]
+    set yPos [expr {([winfo screenheight .]-150)/2}]
+    wm geometry $base 400x150+$xPos+$yPos
+#    wm geometry $base 400x150
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0
@@ -232,7 +241,10 @@ proc vTclWindow.mess_and_choice {base} {
     toplevel $base -class Toplevel \
         -cursor xterm 
     wm focusmodel $base passive
-    wm geometry $base 400x150
+    set xPos [expr {([winfo screenwidth .]-400)/2}]
+    set yPos [expr {([winfo screenheight .]-150)/2}]
+    wm geometry $base 400x150+$xPos+$yPos
+    #wm geometry $base 400x150
     wm maxsize $base 1265 994
     wm minsize $base 1 1
     wm overrideredirect $base 0

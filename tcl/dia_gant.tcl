@@ -38,9 +38,15 @@ proc vTclWindow.gantt {base} {
     wm geometry $base 601x435
  
     if {$system(screen)=="big"} {
-	wm geometry $base 601x435
+	set xPos [expr {([winfo screenwidth .]-601)/2}]
+	set yPos [expr {([winfo screenheight .]-435)/2}]
+	wm geometry $base 601x435+$xPos+$yPos
+	#wm geometry $base 601x435
     } else {
-	wm geometry $base 401x415
+	set xPos [expr {([winfo screenwidth .]-401)/2}]
+	set yPos [expr {([winfo screenheight .]-415)/2}]
+	wm geometry $base 401x415+$xPos+$yPos
+	#wm geometry $base 401x415
     }
     wm overrideredirect $base 0
     wm resizable $base 1 1

@@ -41,10 +41,16 @@ proc vTclWindow.dprob {base} {
 	wm maxsize $base 1009 738
 	set w 550
 	set h 178
-	wm geometry $base $w\x$h
+	set xPos [expr {([winfo screenwidth .]-$w)/2}]
+	set yPos [expr {([winfo screenheight .]-$h)/2}]
+	wm geometry $base $w\x$h+$xPos+$yPos
+	#wm geometry $base $w\x$h
 	wm maxsize $base 1009 738
     } else {
-	wm geometry $base 440x132
+	set xPos [expr {([winfo screenwidth .]-440)/2}]
+	set yPos [expr {([winfo screenheight .]-132)/2}]
+	wm geometry $base 440x132+$xPos+$yPos
+	#wm geometry $base 440x132
     }
     wm overrideredirect $base 0
     wm resizable $base 1 1

@@ -21,7 +21,10 @@ proc vTclWindow.options {base} {
     ###################
     toplevel $base -class Toplevel
     wm focusmodel $base passive
-    wm geometry $base 420x142+182+491
+    set xPos [expr {([winfo screenwidth .]-420)/2}]
+    set yPos [expr {([winfo screenheight .]-142)/2}]
+    wm geometry $base 420x142+$xPos+$yPos
+#    wm geometry $base 420x142+182+491
     wm maxsize $base 665 994
     wm minsize $base 280 1
     wm overrideredirect $base 0
