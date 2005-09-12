@@ -53,7 +53,12 @@ void writeTcl_AlgWindow(std::string algo_name,
 		out << "   wm focusmodel $base passive" << endl;
 		out << "   set w [expr [winfo reqwidth $base]+120]" << endl;
 		out << "   set h [expr [winfo reqheight $base]+30]" << endl;
-		out << "   wm geometry $base $w\\x$h" << endl;
+		// Neue Code
+		out << "   set xPos [expr {([winfo screenwidth .]-$w)/2}]" << endl;
+		out << "   set yPos [expr {([winfo screenheight .]-$h)/2}]" << endl;
+		out << "   wm geometry $base $w\\x$h+$xPos+$yPos" << endl;
+		// Ende
+		//out << "   wm geometry $base $w\\x$h" << endl;
 		out << "   wm overrideredirect $base 0" << endl;
 		out << "   wm resizable $base 1 1" << endl;
 		out << "   wm deiconify $base" << endl;
@@ -169,7 +174,12 @@ void writeTcl_AlgWindow(std::string algo_name,
 						entry ++;
 				}
 		out << endl;
-		out << "   wm geometry $base 450x" << height << endl;
+		//Neuer Code
+		out << "   set xPos [expr {([winfo screenwidth .]-450)/2}]" << endl;
+		out << "   set yPos [expr {([winfo screenheight .]-" << height << ")/2}]" << endl;
+		out << "   wm geometry $base 450x" << height << "+$xPos+$yPos" << endl;
+		//Ende
+		//out << "   wm geometry $base 450x" << height << endl;
 		out << "   set " << algo_name << "(NO_OF_ENTRYS) " << entry-1 << endl;
 		out << "   set ext_algo(objective) 0" << endl;
 		out << "   set ext_algo(running) 1" << endl;
@@ -211,7 +221,12 @@ void writeTcl_ParaTest(std::string algo_name,
 		out << "   wm focusmodel $base passive" << endl;
 		out << "   set w [expr [winfo reqwidth $base]+120]" << endl;
 		out << "   set h [expr [winfo reqheight $base]+30]" << endl;
-		out << "   wm geometry $base $w\\x$h" << endl;
+		// Neue Code
+		out << "   set xPos [expr {([winfo screenwidth .]-$w)/2}]" << endl;
+		out << "   set yPos [expr {([winfo screenheight .]-$h)/2}]" << endl;
+		out << "   wm geometry $base $w\\x$h+$xPos+$yPos" << endl;
+		// Ende
+		//out << "   wm geometry $base $w\\x$h" << endl;
 		out << "   wm overrideredirect $base 0" << endl;
 		out << "   wm resizable $base 1 1" << endl;
 		out << "   wm deiconify $base" << endl;
@@ -405,7 +420,12 @@ void writeTcl_ParaTest(std::string algo_name,
 		out << "   pack $base.lastframe.02 -in ." << algo_name << "_ptst.lastframe -anchor center -expand 0 -fill none -ipadx 5 -ipady 4 -padx 20 -pady 20 -side left" << endl;
 		out << "   pack $base.lastframe.03 -in ." << algo_name << "_ptst.lastframe -anchor center -expand 0 -fill none -ipadx 5 -ipady 4 -padx 20 -pady 20 -side left" << endl;
 		out << endl;
-		out << "   wm geometry $base 705x" << height << endl;
+		// Neue Code
+		out << "   set xPos [expr {([winfo screenwidth .]-705)/2}]" << endl;
+		out << "   set yPos [expr {([winfo screenheight .]-" << height << ")/2}]" << endl;
+		out << "   wm geometry $base 705x" << height << "+$xPos+$yPos" << endl;
+		// Ende
+		//out << "   wm geometry $base 705x" << height << endl;
 		out << "   bind ." << algo_name << "_ptst <Visibility> {  }" << endl;
 		out << "   set " << algo_name << "_ptst(NO_OF_ENTRYS) " << (entry - 1) << endl;
 		out << "   set ext_algo(objective) 0" << endl;
