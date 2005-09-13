@@ -154,8 +154,10 @@ int TC_genpt(ClientData /* clientData */,
   int temp, u,m,n;
   m=G_Values.get_m(); n=G_Values.get_n();
 
-  sscanf(argv[1],"%f",&min);
-  sscanf(argv[2],"%f",&max);
+  min = atof(argv[1]);
+  max = atof(argv[2]);
+  //sscanf(argv[1],"%f",&min);
+  //sscanf(argv[2],"%f",&max);
   if (min==max) {
     for (j=0; j<n; j++) {
       for (i=0; i<m; i++) {
