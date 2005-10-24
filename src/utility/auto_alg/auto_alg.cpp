@@ -390,7 +390,13 @@ int main(int argc, char *argv[]){
     std::cout << std::endl;
     old_objective = os.GetValue();
     
-
+    std::cout << "AUTO_ALG:";
+    os.SetValue(CMAX);
+    std::cout << " CMAX " << os.GetValue();
+    os.SetValue(SUM_CI);
+    std::cout << " SUM_CI " << os.GetValue();
+    std::cout << std::endl;
+    
    }
    
    //open output file, write generated problem + comments
