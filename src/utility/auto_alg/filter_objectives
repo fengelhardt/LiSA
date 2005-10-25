@@ -1,0 +1,16 @@
+#! /usr/bin/perl
+
+print "\nobjectives CMAX SUM_CI\n";
+
+
+while ($l = <>) {
+  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*CMAX ([\d\.]+) .*SUM_CI ([\d\.]+)/) {
+    if($2 == 1){
+      print "\n";
+    }
+    print "$3\t$4\t"; 
+  }
+}
+
+print "\n";
+
