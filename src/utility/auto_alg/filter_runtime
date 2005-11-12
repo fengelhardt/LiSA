@@ -1,7 +1,6 @@
 #! /usr/bin/perl
 
-print "\nruntime for all algorithms\n";
-
+print "runtime for all algorithms";
 
 while ($l = <>) {
   if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*time ([\d\.]+)/) {

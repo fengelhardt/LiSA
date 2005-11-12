@@ -1,7 +1,7 @@
 #! /usr/bin/perl
 
-print "max\tpreempt\tavrg\talgorithms";
-
+print "first algorithm is assumed to be bounds, no objective will be reported";
+print "\nmax\tpreempt\tavrg\talgorithms";
 
 while ($l = <>) {
   if ($l =~ /max method\) : ([\d\.]+) \(preempt\) : ([\d\.]+) \(avrg\) : ([\d\.]+)/) {
