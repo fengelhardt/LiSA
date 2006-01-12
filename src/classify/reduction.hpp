@@ -65,6 +65,8 @@ class Lisa_AtomicTransform {
   virtual bool transform(int g ,int s,int t,
 			 TransformObjects& to,
 			 TransformDir dir)  = 0;
+
+  virtual ~Lisa_AtomicTransform(){}
 		
 };
 
@@ -254,7 +256,7 @@ class Lisa_ReductionTree : public Lisa_GenericObject {
 			  Lisa_AtomicTransform::TransformObjects& to) const;
 		
   /// Destructor
-  ~Lisa_ReductionTree();
+  virtual ~Lisa_ReductionTree();
   
   /** Determine sanity of the reduction graph
    *  The tree is sane if reductions and transforms were found at construction time

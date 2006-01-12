@@ -208,7 +208,8 @@ void Write_Solution(char * FileName){
   Schedule.make_LR();
   bool feasible  = Schedule.MO_JO_to_LR(Schedule.LR,Values.SIJ,MO,JO);
   
-  delete MO,JO;
+  delete MO;
+  delete JO;
     
   std::ofstream o_strm(FileName);
   if (!o_strm){

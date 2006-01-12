@@ -1006,7 +1006,7 @@ int TC_stop_extalg(ClientData,	Tcl_Interp *, int , TCL_HACK_CHAR **) {
 string str;
 str ="dir";
 string str2= " ";
-execl(str.c_str(),str2.c_str());
+ execl(str.c_str(),str2.c_str(),(char*) NULL);
 //  cenum(&G_Values);
   return TCL_OK; 
 }

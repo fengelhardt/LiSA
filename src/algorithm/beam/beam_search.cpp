@@ -429,7 +429,7 @@ bool BeamSearch::run(){
   b = fathers->list[0];
   //find best schedule
   for(int i = 1; i < fathers->in_list;i++){
-    b= (fathers->list[i]->GetValue() < b->GetValue())?b = fathers->list[i]:b;
+    b= (fathers->list[i]->GetValue() < b->GetValue())?fathers->list[i]:b;
   }
   value = b->GetValue();
   b->write_LR(result->LR);

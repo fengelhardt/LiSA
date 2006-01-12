@@ -10,8 +10,7 @@
 # setting the LiSA home path
 
 LISAHOME="@PROGRAMPATH@"
-export LISAHOME
-
+LISA_DTD_PATH="${LISAHOME}/data"
 
 # checking the LiSA configuration
 
@@ -29,11 +28,11 @@ if test ! -f "${LISACONFIG}/default.xml"; then
      cp "${LISAHOME}/data/default.xml" "${LISACONFIG}"
      fi
 
-
 # setting the LiSA config path
 
 export LISACONFIG
-export LISA_DTD_PATH="${LISAHOME}/data"
+export LISAHOME
+export LISA_DTD_PATH
 
 # starting LiSA
 

@@ -353,6 +353,8 @@ class LisaXmlFile {
 
   /// find and obtain data from the internal document tree
   bool read(Lisa_ControlParameters&);
+
+  friend class Lisa_ControlParameters;
 		
 }; // end class
 

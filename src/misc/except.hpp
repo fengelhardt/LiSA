@@ -4,16 +4,18 @@
 
 #include <string>
 #include <fstream>
+
 #include <list>
 #include <iterator>
+//#include <deque>
 
 /// handle error code and message together
-struct Lisa_ExceptionNode{
+typedef struct {
   /// error message string
   std::string message;
   /// exception code
   int code;  
-};
+} Lisa_ExceptionNode;
   
   
 /// class for storing error messages and error codes
@@ -36,10 +38,11 @@ private:
   bool output_to_cout;
     
   /// list with error messages
-  std::list<Lisa_ExceptionNode> Messages;
+  typedef std::list<Lisa_ExceptionNode> message_list_type;
+  message_list_type Messages;
 
   /// look for first occurance of exception with code
-  std::list<Lisa_ExceptionNode>::iterator search_first(const int code);
+  message_list_type::iterator search_first(const int code);
   
 public:
 

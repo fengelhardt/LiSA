@@ -13,8 +13,8 @@
 //   @version 2.3final
 /* ************************************************************************* */
 
-#ifndef _LIST_H
-#define _LIST_H
+#ifndef _JB_LIST_H
+#define _JB_LIST_H
 
 #include "jb_dtstr.hpp"
 

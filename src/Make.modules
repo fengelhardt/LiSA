@@ -1,0 +1,38 @@
+general: all
+
+# ------------------------------------------------------------------------------
+
+all:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) all; cd ..; done
+
+# ------------------------------------------------------------------------------
+
+compile:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) compile; cd ..; done
+
+# ------------------------------------------------------------------------------
+
+install:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) install; cd ..; done
+
+# ------------------------------------------------------------------------------
+
+uninstall:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) uninstall; cd ..; done
+	rm -fr $(DOCPATH)/lisa/*/$(MODULENAME)
+
+# ------------------------------------------------------------------------------
+
+distclean:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) distclean; cd ..; done
+
+# ------------------------------------------------------------------------------
+
+clean:
+	rm -fr $(OBJPATH)
+
+# ------------------------------------------------------------------------------
+
+depend:
+	@for MODULE in $(MODULES); do cd $${MODULE}; $(MAKE) depend; cd ..; done
+

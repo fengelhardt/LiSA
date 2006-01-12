@@ -22,6 +22,9 @@ class Lisa_Graph;
  */
 /// Abstract base class for IO data handler.
 class Lisa_DataHandler {
+
+public:
+  virtual ~Lisa_DataHandler(){}
   
  protected:
   

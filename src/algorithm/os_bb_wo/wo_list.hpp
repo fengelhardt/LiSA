@@ -10,8 +10,8 @@
 /*                                  des Backtrackings                        */
 /* ************************************************************************* */
 
-#ifndef _LIST_H
-#define _LIST_H
+#ifndef _WO_LIST_H
+#define _WO_LIST_H
 
 #include "wo_data.hpp"
 
