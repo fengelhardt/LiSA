@@ -132,7 +132,9 @@ public:
   void pushstart(int i, int j, TIMETYP v);
   /// force operation to be completed at MAXTIME-x 
   /** Warning: this may push other operations before their release date! */
-  void pushstop(int i, int j, TIMETYP v);        
+  void pushstop(int i, int j, TIMETYP v);
+
+  virtual void clear();
 };
 
 #endif

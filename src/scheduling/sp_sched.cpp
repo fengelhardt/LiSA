@@ -452,3 +452,21 @@ void Lisa_ShpSchedule::pushstop(int i, int j, TIMETYP v)
 
 //**************************************************************************
 
+void Lisa_ShpSchedule::clear(){
+  MOsucc->fill(0);
+  MOpred->fill(0);
+  JOsucc->fill(0);
+  JOpred->fill(0);
+  head->fill(0);
+  if(tail)
+    tail->fill(0);
+  for (int i=0; i<=(P->n); i++)
+    for (int j=0; j<=(P->m); j++)
+      { 
+	(*MOsucc)[i][j]=(*JOsucc)[i][j]=SINK;
+	(*MOpred)[i][j]=(*JOpred)[i][j]=SOURCE;
+	(*head)[i][j]=(*P->ri)[i];
+      }
+  value=(TIMETYP) 0;
+  ScheduleOK=true;
+}
