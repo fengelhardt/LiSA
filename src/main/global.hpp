@@ -2,8 +2,10 @@
 #ifndef _global_h 
 #define _global_h 
 
+#ifdef DEBUG
 /// debug parameter ... comment for the final version
 #define LISA_DEBUG
+#endif
 
 /// maximal memory
 #define MAX_MEMORY 10000
