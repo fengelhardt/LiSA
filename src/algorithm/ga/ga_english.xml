@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="GenAlg" type="iterative" call="ga" code="external" help_file="algorithm/ga.html">
+  <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <integer name="POP_SIZE" caption="Population size" default="50"/>
+    <integer name="NUM_GEN"  caption="Number of generations" default="50"/>
+    <real    name="M_PROB"   caption="Mutation probablility" default="0.1"/>
+    <real    name="S_PROB"   caption="Selection probablility" default="0.3"/>
+    <integer name="SEED"  caption="Random seed" default="1234567890"/>
+    <integer name="IMPR_STEPS"  caption="Local improvement steps" default="10"/>
+    <choice name="L_IMPR" caption="Local improvement">
+      <item name="CR_TST"/>
+      <item name="API"/>
+      <item name="SHIFT"/>
+      <item name="PI"/>
+      <item name="CR_API"/>
+      <item name="BL_API"/>
+      <item name="CR_SHIFT"/>
+      <item name="BL_SHIFT"/>
+      <item name="3_CR"/>
+      <item name="(disabled)"/>
+    </choice>
+  </alg_controls>
+</algorithm>

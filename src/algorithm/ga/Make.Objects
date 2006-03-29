@@ -1,0 +1,30 @@
+OBJECTS=\
+	../../../obj/ga_setup.o \
+	../../../obj/lo_ind.o \
+	../../../obj/lr_ind.o \
+	../../../obj/ga_main.o \
+	../../../obj/jobshop_neighbourhoods.o \
+	../../../obj/openshop_neighbourhoods.o \
+	../../../obj/single_neighbourhoods.o \
+	../../../obj/iterate.o \
+	../../../obj/tabu.o \
+	../../../obj/nb_iter.o \
+	../../../obj/matrix.o \
+	../../../obj/order.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/int2str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/os_sched.o \
+	../../../obj/m1_sched.o \
+	../../../obj/schedule.o \
+	../../../obj/sp_sched.o \
+	../../../obj/LisaXmlFile.o \
+	../../../obj/lisa_xml.o \
+	../../../obj/Lisa_NativeDataHandler.o \
+	../../../obj/Lisa_IO_Factory.o
