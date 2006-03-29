@@ -1,4 +1,5 @@
 OBJECTS=\
+	../../../obj/main.o \
 	../../../obj/nb_iter.o \
 	../../../obj/iterate.o \
 	../../../obj/tabu.o \

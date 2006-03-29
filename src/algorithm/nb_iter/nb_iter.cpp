@@ -2,143 +2,13 @@
  * @author  Andreas Winkler
  * @version 2.3final
  */ 
-#include <stdlib.h>
-#include <unistd.h>
 
-#include <fstream>
-#include <time.h>
-
-#include "../../xml/LisaXmlFile.hpp"
-
-#include "../../basics/matrix.hpp"
-#include "../../scheduling/m1_sched.hpp"
-#include "../../scheduling/os_sched.hpp"
-#include "../../scheduling/js_sched.hpp"
-#include "../../scheduling/schedule.hpp"
-#include "../../lisa/ptype.hpp"
-#include "../../lisa/lvalues.hpp"
-#include "../../lisa/ctrlpara.hpp"
-#include "../../misc/except.hpp"
-
-#include "single_neighbourhoods.hpp"
-#include "openshop_neighbourhoods.hpp"
-#include "jobshop_neighbourhoods.hpp"
-
-#include "iterate.hpp"
-
+#include "nb_iter.hpp"
 using namespace std;
 
 //**************************************************************************
 
-const int MAXINT  = 214748000;
-const int MAXLONG = 214748000;
-
-// definition of parameters for the file-controlling
-// following parameters are possible:
-  int    NGBH,       /* NGBH = M1_API, M1_SHIFT, OSP_API, OSP_SHIFT,
-		         OSP_3_API, OSP_CR_API, OSP_BL_API, OSP_CR_SHIFT, 
-			 OSP_BL_SHIFT, OSP_CR_TST, OSP_3_CR, JSP_API, JSP_SWAP,
-			 JSP_SHIFT, JSP_TRANS, JSP_CR_TRANS, JSP_CR_TRANS_MIX,                          
-       JSP_SC_TRANS, JSP_3_API, JSP_CR_API, JSP_SC_API, 
-                         JSP_BL_API, JSP_CR_SHIFT, JSP_CR_SHIFT_MIX, 
-			 JSP_BL_SHIFT, JSP_3_CR */
-         METHOD,     // METHOD = II, SA, TA, TS, SA_anti
-         PROB,       // PROB = int-Value in [ 0, 100 ]
-         MAX_STUCK,  // MAX_STUCK = int-Value
-         TABULENGTH, // TABULENGTH = int-Value
-         NUMB_NGHB,  // NUMB_NGHB = int-Value
-         NUMB_PROBLEMS, // NUMB_PROBLEMS = int-Value
-         NUMB_PLANS, // NUMB_PROBLEMS = int-Value
-         TYPE,	     // TYPER = ENUM, RAND
-         OBJ_TYPE,   // OBJ_TYPE = CMAX, LMAX, SUM_CI, SUM_WICI, SUM_UI,
-		     // SUM_WIUI, SUM_TI, SUM_WITI
-	 NUMB_STUCKS,// NUMB_STUCKS = int value
-	 PROB_TYPE,
-         ii, jj;
-  long   STEPS;      // STEPS = long-Value
-  std::string NGBH_St,    //  M1_API, M1_SHIFT, OSP_API, OSP_SHIFT, OSP_3_API, 
-                     //  OSP_CR_API, OSP_BL_API, OSP_CR_SHIFT, OSP_BL_SHIFT, 
-		     //	 OSP_CR_TST, OSP_3_CR, JSP_API, JSP_SHIFT, JSP_3_API,
-		     //  JSP_CR_API, JSP_BL_API, JSP_CR_SHIFT, JSP_BL_SHIFT,
-		     //  JSP_3_CR
-         METHOD_St,
-         TYPE_St,    //  ENUM, RAND
-         OBJ_TYPE_St;//  CMAX, LMAX, SUM_CI, SUM_WICI, SUM_UI,
-		     //  SUM_WIUI, SUM_TI, SUM_WITI
-  TIMETYP ABORT_BOUND; // ABORT_BOUND = TIMETYP value
-
-  //const int API        =  1;
-  //const int SHIFT      =  2;
-  const int API          = 11;
-  const int SHIFT        = 12;
-  const int _3_API       = 13;
-  const int CR_API       = 14;
-  const int BL_API       = 15;
-  const int CR_SHIFT     = 16;
-  const int BL_SHIFT     = 17;
-  const int CR_TST       = 18;
-  const int _3_CR        = 19;
-  //const int SWAP         = 20;
-  const int TRANS        = 21;
-  const int CR_TRANS     = 22;
-  const int SC_TRANS     = 23;
-  const int SC_API       = 24;
-  const int CR_SHIFT_MIX = 25;
-  const int CR_TRANS_MIX = 26;
-  const int PI           = 27;
-  //const int API       = 21;
-  //const int SHIFT     = 22;
-  //const int 3_API     = 23;
-  //const int CR_API    = 24;
-  //const int BL_API    = 25;
-  //const int CR_SHIFT  = 26;
-  //const int BL_SHIFT  = 27;
-  //const int 3_CR      = 28;
-  const int SingleMachine = 1;
-  const int OSP           = 2;
-  const int JSP           = 3;
-
-  int art_of_problem;
-  int n;  // number of jobs
-  int i, j, k;
-  int count, succ;
-
-  Lisa_1Problem            *m1_Prob;
-  Lisa_1Schedule 	         *m1_Plan;
-  Lisa_OsProblem           *os_Prob;
-  Lisa_OsSchedule          *os_Plan;
-  Lisa_JsProblem           *js_Prob;
-  Lisa_JsSchedule          *js_Plan;
-  Lisa_Neighbourhood       *ngbh;
-  API_Neighbourhood        *m1_api;
-  shift_Neighbourhood      *m1_shift;
-  PI_Neighbourhood         *m1_pi;
-  OSHOP_PI_Ngbh            *os_pi;
-  OSHOP_API_Ngbh           *os_api;
-  OSHOP_shift_Ngbh         *os_shift;
-  OSHOP_3_API_Ngbh         *os_api_3;
-  OSHOP_3_CR_Ngbh          *os_cr_3;
-  OSHOP_cr_API_Ngbh        *os_cr_api;
-  OSHOP_cr_bl_API_Ngbh     *os_bl_api;
-  OSHOP_cr_shift_Ngbh      *os_cr_shift;
-  OSHOP_cr_bl_shift_Ngbh   *os_bl_shift;
-  OSHOP_cr_TST_Ngbh        *os_cr_tst;
-  JSHOP_API_Ngbh           *js_api;
-  JSHOP_PI_Ngbh            *js_pi;
-  JSHOP_shift_Ngbh         *js_shift;
-  JSHOP_trans_Ngbh         *js_trans;
-  JSHOP_cr_trans_Ngbh      *js_cr_trans;
-  JSHOP_cr_trans_mix_Ngbh  *js_cr_trans_mix;
-  JSHOP_semi_trans_Ngbh    *js_sc_trans;
-  JSHOP_3_API_Ngbh         *js_api_3;
-  JSHOP_cr_API_Ngbh        *js_cr_api;
-  JSHOP_semi_API_Ngbh      *js_sc_api;
-  JSHOP_cr_bl_API_Ngbh     *js_bl_api;
-  JSHOP_cr_shift_Ngbh      *js_cr_shift;
-  JSHOP_cr_shift_mix_Ngbh  *js_cr_shift_mix;
-  JSHOP_cr_bl_shift_Ngbh   *js_bl_shift;
-  JSHOP_3_CR_Ngbh          *js_cr_3;
-  Lisa_Iterator	           *it;
+  //put all the defs etc. in a struct to make it usable from outside
 
 //**************************************************************************
 
@@ -153,7 +23,7 @@ const int MAXLONG = 214748000;
      - open shop problems
      - job shop problems
    then the main procedure   */
-int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
+int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
       if ( !( m1_Prob = new Lisa_1Problem( &Values ) ) )
 	{
@@ -329,7 +199,7 @@ int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lis
 
 //**************************************************************************
 
-int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
+int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
       if ( !( os_Prob = new Lisa_OsProblem(&Values) ) )
 	{
@@ -562,7 +432,7 @@ int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
 
 //**************************************************************************
 
-int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
+int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
 {
       if ( !(Values.MO))
 	{
@@ -873,82 +743,10 @@ int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_Lis
   return OK;
 } // end of jsp_iter()
 
-//**************************************************************************
 
-int main(int argc, char *argv[])
- {
-   G_ExceptionList.set_output_to_cout();
-
-   // now we read the file:
-
-   // print a message that the programm started:
-   cout << "This is the LiSA-Neighbourhood-Search Module Version 05.01.1999" << endl;
-  if (argc != 3) 
-    {
-      cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
-      exit(7);
-    }
- 
- cout << "PID= " << getpid() << endl;  
- 
- ifstream i_strm(argv[1]);
- ofstream o_strm(argv[2]);
- if (!i_strm)
- {
-   cout << "ERROR: cannot find input file " << argv[1] << "." << endl;
-   exit(1);
- }
- if (!o_strm)
- {
-   cout << "ERROR: cannot find output file " << argv[1] << "." << endl;
-   exit(1);
- }
- i_strm.close();
- o_strm.close();
- 
- LisaXmlFile::initialize();
- LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
- 
- Lisa_ProblemType Problem;
- Lisa_ControlParameters Parameter;   
- Lisa_Values Values;
- Lisa_List<Lisa_ScheduleNode> Starters;
- Lisa_List<Lisa_ScheduleNode> Results;
- 
- xmlInput.read(argv[1]);
- LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
- 
- if (!xmlInput || type != LisaXmlFile::SOLUTION)
- {
-   cout << "ERROR: cannot read input , aborting program." << endl;
-   exit(1);
- }
- if( !(xmlInput >> Problem))
- {
-   cout << "ERROR: cannot read ProblemType , aborting program." << endl;
-   exit(1);
- }
- if( !(xmlInput >> Parameter))
- {
-   cout << "ERROR: cannot read ControlParameters , aborting program." << endl;
-   exit(1);
- }
- if( !(xmlInput >> Values))
- {
-   cout << "ERROR: cannot read Values , aborting program." << endl;
-   exit(1);
- }
- if( !(xmlInput >> Starters))
- {
-   cout << "ERROR: cannot read starting schedule , aborting program." << endl;
-   exit(1);
- }
- if (!G_ExceptionList.empty())
- {
-   cout << "ERROR: cannot read input , aborting program." << endl;
-   exit(1);
- }
-			
+bool NB_Iteration::configure(Lisa_ProblemType& Problem,
+			     Lisa_ControlParameters& Parameter,
+			     Lisa_Values& Values){
   // start-values
   NGBH = 0;
   METHOD = 0;
@@ -971,13 +769,13 @@ int main(int argc, char *argv[])
   if (!(Parameter.defined("NGBH")))
     { 
       G_ExceptionList.lthrow("you must define a neighbourhood in the input file");
-      exit(7);
+      return false;//exit(7);
     }
   NGBH_St = Parameter.get_string( "NGBH" );
   if (!(Parameter.defined("METHOD")))
     { 
       G_ExceptionList.lthrow("you must define a method in the input file");
-      exit(7);
+      return false;//exit(7);
     }
   METHOD_St = Parameter.get_string( "METHOD" );
   if ( Parameter.defined("PROB") )
@@ -985,28 +783,28 @@ int main(int argc, char *argv[])
   if ( PROB < 0 )
     {
       G_ExceptionList.lthrow("PROB must be nonnegative");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("MAX_STUCK") )
     MAX_STUCK = Parameter.get_long( "MAX_STUCK" );
   if ( MAX_STUCK < 1 )
     {
       G_ExceptionList.lthrow("MAX_STUCK must be positive");
-      exit(7);
+      return false;//exit(7);
     } 
   if ( Parameter.defined("TABULENGTH") )
     TABULENGTH = Parameter.get_long( "TABULENGTH" );
   if ( TABULENGTH < 1 )
     {
       G_ExceptionList.lthrow("TABULENGTH must be positive");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("NUMB_NGHB") )
     NUMB_NGHB = Parameter.get_long( "NUMB_NGHB" );
   if ( NUMB_NGHB < 1 )
     {
       G_ExceptionList.lthrow("NUMB_NGHB must be positive");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("TYPE") )
     TYPE_St = Parameter.get_string( "TYPE" );
@@ -1017,7 +815,7 @@ int main(int argc, char *argv[])
   if ( STEPS < 1 )
     {
       G_ExceptionList.lthrow("STEPS must be positive");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("NUMB_PROBLEMS") )
     { 
@@ -1026,7 +824,7 @@ int main(int argc, char *argv[])
   if ( NUMB_PROBLEMS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_PROBLEMS must be positive");
-      exit(7);
+      return false;//exit(7);
     }
     if ( Parameter.defined("NUMB_PLANS") )
     { 
@@ -1035,14 +833,14 @@ int main(int argc, char *argv[])
   if ( NUMB_PLANS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_PLANS must be positive");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("NUMB_STUCKS") )
     NUMB_STUCKS = Parameter.get_long( "NUMB_STUCKS" );
   if ( NUMB_STUCKS < 1 )
     {
       G_ExceptionList.lthrow("NUMB_STUCKS must be positive");
-      exit(7);
+      return false;//exit(7);
     }
   if ( Parameter.defined("ABORT_BOUND") )
     ABORT_BOUND = Parameter.get_double( "ABORT_BOUND" );
@@ -1069,7 +867,7 @@ int main(int argc, char *argv[])
   else if ( NGBH_St     == "PI"               ) NGBH = PI;
   else{
     G_ExceptionList.lthrow("Neighbourhood "+NGBH_St+" unknown.");
-    exit(7);
+    return false;//exit(7);
   }
   
   if      ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
@@ -1079,48 +877,25 @@ int main(int argc, char *argv[])
   else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
   else{
     G_ExceptionList.lthrow("Method "+METHOD_St+" unknown.");
-    exit(7);
+    return false;//exit(7);
   }
   
   if      ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
   else if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
   else{
     G_ExceptionList.lthrow("TYPE "+TYPE_St+" unknown.");
-    exit(7);
+    return false;//exit(7);
   }
-
-
+#ifndef NB_ITER_SHUT_UP
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
   if ( (METHOD==SA) || (METHOD==TA) || (METHOD==SA_anti) )
     cout<<"parameters: "<< STEPS <<" STEPS "<< PROB <<" PROB "<< MAX_STUCK <<" MAX_STUCK";
   if ( METHOD == TS )
     cout<<"parameters: "<<STEPS<<" STEPS "<<TABULENGTH<<" TABULENGTH "<<NUMB_NGHB<<" NUMB_NGHB";
+#endif
+  return true;
+}
 
-  // ####  SINGLE-MACHINE   ####
-  if ( PROB_TYPE == ONE )
-    one_mach_iter(Values, Starters, Results);
-  // ####  END OF SINGLE-MACHINE  ####
-
-  // ####  OPEN-SHOP  ####
-  if ( PROB_TYPE == O )
-    osp_iter(Values, Starters, Results);
-  // ####  END OF OPEN-SHOP  ####
-
-  // ####  JOB-SHOP ####
-  if ( (PROB_TYPE==J) || (PROB_TYPE==F) )
-    jsp_iter(Values, Starters, Results);
-  // ####  END OF JOB-SHOP  ####
-
-  
-  //output solution ....
-  
-  LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-  xmlOutput << Problem << Values << Parameter << Results;
-  xmlOutput.write(argv[2]);
-
-  return OK;
- }
 
 //**************************************************************************
-

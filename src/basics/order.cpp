@@ -43,7 +43,7 @@ Lisa_Order::~Lisa_Order()
 
 /* up to now key is copied, perhaps better write an access function for 
    matrix or vector */
-void Lisa_Order::read(Lisa_Matrix<int> * ma)
+void Lisa_Order::read(const Lisa_Matrix<int> * ma)
   {
     int h,k;
     
@@ -56,7 +56,7 @@ void Lisa_Order::read(Lisa_Matrix<int> * ma)
 
 //**************************************************************************  
   
-void Lisa_Order::read(Lisa_Matrix<double> * ma)
+void Lisa_Order::read(const Lisa_Matrix<double> * ma)
   {
     int h,k;
     
@@ -69,7 +69,7 @@ void Lisa_Order::read(Lisa_Matrix<double> * ma)
 
 //**************************************************************************  
  
-void Lisa_Order::read(Lisa_Matrix<float> * ma)
+void Lisa_Order::read(const Lisa_Matrix<float> * ma)
   {
     int h,k;
     
@@ -82,7 +82,7 @@ void Lisa_Order::read(Lisa_Matrix<float> * ma)
 
 //**************************************************************************  
 
-void Lisa_Order::read(Lisa_Vector<int> * ve)
+void Lisa_Order::read(const Lisa_Vector<int> * ve)
   {
     int h;
     
@@ -94,7 +94,7 @@ void Lisa_Order::read(Lisa_Vector<int> * ve)
 
 //**************************************************************************  
 
-void Lisa_Order::read(Lisa_Vector<float> * ve)
+void Lisa_Order::read(const Lisa_Vector<float> * ve)
   {
     int h;
     

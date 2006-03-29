@@ -12,7 +12,7 @@ OBJPATH=$(TOPPROGRAMPATH)/obj
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
-CXXFLAGS=$(CXXINCL) -Wall -g
+CXXFLAGS=$(CXXINCL) $(COMPILE_FLAGS) -Wall -g
 LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)

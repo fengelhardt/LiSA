@@ -24,7 +24,7 @@ OBJPATH=$(TOPPROGRAMPATH)/obj
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(INCL)
-CXXFLAGS=$(CXXINCL) -Wall 
+CXXFLAGS=$(CXXINCL) $(COMPILE_FLAGS) -Wall 
 LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)

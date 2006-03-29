@@ -26,7 +26,7 @@ SOURCEPATH=$(TOPPROGRAMPATH)/src
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(TCLTKINCL) $(XINCL) $(INCL)
-CXXFLAGS=$(CXXINCL) -Wall
+CXXFLAGS=$(CXXINCL) $(COMPILE_FLAGS) -Wall
 LDFLAGS=$(TCLTKLIBS) $(XLIBS) $(STANDARDLIBS) $(LIBS) -Wall
 
 DEPENDCXX=$(CXX)

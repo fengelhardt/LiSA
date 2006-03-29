@@ -1,4 +1,5 @@
 CXXSOURCES=\
+	main.cpp \
 	nb_iter.cpp \
 	iterate.cpp \
 	tabu.cpp \

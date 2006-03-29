@@ -47,13 +47,13 @@ public:
   
   /// set all orders according to a given LR
   /** warning: this does not test input for validity */ 
-  int     read_LR(Lisa_Matrix<int> * lr);
+  int     read_LR(const Lisa_Matrix<int> * lr);
   
   /// fills itself according to given C_ij
-  int read_Cij(Lisa_Matrix<TIMETYP> * cij);   
+  int read_Cij(const Lisa_Matrix<TIMETYP> * cij);   
 
   /// assignment operator
-  void operator=(Lisa_OsSchedule& other);
+  void operator=(const Lisa_OsSchedule& other);
 
   /// destructor     
   ~Lisa_OsSchedule();

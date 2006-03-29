@@ -62,7 +62,7 @@ Lisa_OsSchedule::~Lisa_OsSchedule()
 
 //**************************************************************************
  
-void Lisa_OsSchedule::operator=(Lisa_OsSchedule &other)
+void Lisa_OsSchedule::operator=(const Lisa_OsSchedule &other)
      { 
        if (other.P != P)
          {
@@ -215,7 +215,7 @@ void Lisa_OsSchedule::exclude(int i, int j)
 
 //**************************************************************************
 
-int Lisa_OsSchedule::read_LR(Lisa_Matrix<int> * lr)
+int Lisa_OsSchedule::read_LR(const Lisa_Matrix<int> * lr)
  {
    int i, j, r;
    for (i=1; i<=P->n; i++)
@@ -232,7 +232,7 @@ int Lisa_OsSchedule::read_LR(Lisa_Matrix<int> * lr)
 
 //**************************************************************************
 
-int Lisa_OsSchedule::read_Cij(Lisa_Matrix<TIMETYP> * cij)
+int Lisa_OsSchedule::read_Cij(const Lisa_Matrix<TIMETYP> * cij)
  {
    int i,j,k;
    Lisa_Order * order = new Lisa_Order(P->n, P->m);

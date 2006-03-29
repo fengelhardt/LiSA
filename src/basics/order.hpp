@@ -44,15 +44,15 @@ public:
   
   //@{    
   /// let order read the keys as a matrix
-  void read(Lisa_Matrix<int>* keys);
-  void read(Lisa_Matrix<float>* keys);
-  void read(Lisa_Matrix<double>* keys);     
+  void read(const Lisa_Matrix<int>* keys);
+  void read(const Lisa_Matrix<float>* keys);
+  void read(const Lisa_Matrix<double>* keys);     
   //@}
   
   //@{
   /// give the keys on form of a vector
-  void read(Lisa_Vector<int>*);    
-  void read(Lisa_Vector<float>*);
+  void read(const Lisa_Vector<int>*);    
+  void read(const Lisa_Vector<float>*);
   void inline read(const Lisa_Vector<double> *const ve){ (*key)=(*ve); }
   //@}
   
