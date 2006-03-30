@@ -3,7 +3,7 @@
 #include <functional>
 
 #include "../nb_iter/nb_iter.hpp"
-
+#include <cstdio>
 
 #define MK_OP(i,j,n) ((i)*(n)+(j))
 #define GET_I_OP(o,n) ((o)/(n))
@@ -14,6 +14,33 @@ Lisa_OsSchedule   *LR_Individuum::S          = NULL;
 Lisa_Order        *LR_Individuum::Order      = NULL;
 Lisa_Matrix<int> *LR_Individuum::Cross_Mask = NULL;
 int                LR_Individuum::Objective  = CMAX;
+
+#ifdef WIN32
+#define NULL_DEVICE "C:\\temp\\redirct.txt"
+#else
+#define NULL_DEVICE "/dev/null"
+#endif
+
+struct STDOUT_BLOCK {
+
+  STDOUT_BLOCK(){
+    
+    redir.open(NULL_DEVICE);
+    strm_buffer = std::cout.rdbuf();
+    
+    std::cout.rdbuf (redir.rdbuf());
+  }
+  
+  ~STDOUT_BLOCK(){
+    
+    std::cout.rdbuf (strm_buffer);
+  }
+  
+  std::ofstream redir;
+  std::streambuf* strm_buffer;
+
+};
+
 
 void LR_Individuum::init(const Lisa_OsProblem& Problem, int o){
   if(P) delete P;
@@ -69,7 +96,7 @@ struct rank_sort : public std::less<SeqOp> {
 
 //crossover_constructor
 LR_Individuum::LR_Individuum(const LR_Individuum& i1, 
-			     const LR_Individuum& i2){
+			     const LR_Individuum& i2) {
   //std::cout << "Crossing over " << std::endl;
   //std::cout << *i1.c << " X " << *Cross_Mask << " X " << *i2.c << std::endl;
   c = new LR(*i1.c);
@@ -88,21 +115,25 @@ LR_Individuum::LR_Individuum(const LR_Individuum& i1,
   std::sort(SeqOps.begin(),SeqOps.end(), rank_sort());
   //we have to fix the ranks here
   //std::cout << "working on " << *c << std::endl;
-  for(unsigned  p=0; p < SeqOps.size(); p++){
+  for(std::vector<SeqOp>::iterator it = SeqOps.begin(); it != SeqOps.end(); ++it){
     bool conflict = false;
     for(int i = 0; !conflict && (i < P->n); i++){ //check column
-      conflict |= (i!=SeqOps[p].first.first && ((*c)[i][SeqOps[p].first.second] == SeqOps[p].second));
+      conflict |= (i!=(*it).first.first && ((*c)[i][(*it).first.second] == (*it).second));
     }
     for(int j = 0; !conflict && (j < P->m); j++){ //check column
-      conflict |= (j!=SeqOps[p].first.second && ((*c)[SeqOps[p].first.first][j] == SeqOps[p].second));
+      conflict |= (j!=(*it).first.second && ((*c)[(*it).first.first][j] == (*it).second));
     }
     if(conflict){//add one to all ranks from origanal schedule
       for(int i = 0; i < P->n; i++)
 	for(int j = 0; j < P->m; j++)
-	  if(!(*Cross_Mask)[i][j])
+	  if( (!((*Cross_Mask)[i][j])) && //other plan
+	      (((*c)[i][j] > (*it).second) ||  //higher rank
+	       (((*c)[i][j] == (*it).second) && (i==(*it).first.first) && (j==(*it).first.second)))) //equal rank and dependent
 	    (*c)[i][j]++;
     }
   }
+  latinize();
+  //std::cout << "CORSSOVER-RESULT:" << *c << std::endl;
 }
 
 
@@ -138,8 +169,34 @@ void LR_Individuum::mutate_swap(){
   f_valid = false;
 }
 
+//private function to make a valid latin rectangle
+void LR_Individuum::latinize(){
+  Order->read(c);
+  Order->sort();
+  S->clear();
+  int i,j;
+  for(int h = 0; h < P->n*P->m; h++)
+    {
+      i = 1 + Order->row(h); j = 1+ Order->col(h);
+      if((*P->sij)[i][j])
+	S->insert(i,j,S->GetJOpred(SINK,j),S->GetMOpred(i,SINK));
+    }
+  S->write_LR(c);
+}
+
 void LR_Individuum::mutate_rotate(){
-  //not implemented
+  //determine maximum rank
+  int i,j,b = 0;
+  for(i = 0; i < P->n; i++)
+    for(j = 0; j < P->m; j++)
+      b = std::max<int>(b,(*c)[i][j]);
+  b = (*GA_Setup::random)(1,b);
+  do {
+    i = (*GA_Setup::random)(P->n);
+    j = (*GA_Setup::random)(P->m);
+  }while(!(*P->sij)[i][j]);
+  (*c)[i][j] = b;
+  latinize();
 }
 
 
@@ -153,7 +210,10 @@ void LR_Individuum::improve(GA_Setup& s){
   Lisa_ScheduleNode node(&sched);
   Starters.append(node);
   Starters.reset();
-  s.improver.osp_iter(s.Values,Starters,Results);
+  {
+    STDOUT_BLOCK b;//make nb_iter shut up
+    s.improver.osp_iter(s.Values,Starters,Results);
+  }
   Results.reset();
   *c = *(Results.get().actual_schedule->LR);
   f_valid = false;

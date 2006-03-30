@@ -2,7 +2,7 @@
 #define _LISA_GA__H_
 
 #include "./ga_setup.hpp"
-#include "./lo_ind.hpp"
+//#include "./lo_ind.hpp"
 #include "./lr_ind.hpp"
 
 template <class Ind>
@@ -17,14 +17,24 @@ public:
   //algorithm completed ?
   bool done(){ return (setup.n_gen  - gen) <= 0;}
 
+  void print_progress(){
+    const int MAX_CLAIMS = 400;
+    const int mm = setup.n_gen/MAX_CLAIMS;
+    if(mm<2 || !(gen%mm)){
+      std::cout << "steps= " << setup.n_gen-gen;
+      std::cout << " OBJECTIVE= " << getBest().getFitness();
+      std::cout << " best= " << getBest().getFitness();
+      std::cout << " ready " << 100*gen /setup.n_gen  << "%" << std::endl;
+    }
+  }
+
   //start the GA
   void run(){
     Ind::init(*setup.problem, setup.Problem.get_property(OBJECTIVE));
     init_pop();
-    if(setup.apply_LocalImpr) improve_pop();
     eval_pop();
     while(!done()){
-      //std::copy(population.begin(),population.end(), std::ostream_iterator<Individuum>(cout, "\n"));
+      print_progress();
       select_pop();
       alter_pop();
       eval_pop();
@@ -62,14 +72,10 @@ private:
     population = PopType(setup.pop_size);
     for_each(population.begin(), population.end(), mem_fun_ref(&Ind::initialize));
     intermediates.clear();
-    
-    //std::copy(population.begin(),population.end(), std::ostream_iterator<Ind>(std::cout, "\n"));
-  }
-
-  //improve population
-  void improve_pop(){
-    for(typename PopType::iterator it = population.begin(); it != population.end(); ++it)
-      it->improve(setup);
+    if(setup.apply_LocalImpr) 
+      //the following does not work, don't know why (stl bug/design issue, I guess)
+      //for_each(population.begin(), population.end(), std::bind2nd(mem_fun(&Ind::improve),setup));
+      for(typename PopType::iterator it = population.begin(); it != population.end(); ++it) it->improve(setup);
   }
   
   //select 
@@ -93,6 +99,11 @@ private:
 	p2.mutate();
 	intermediates.push_back(p1);
 	intermediates.push_back(p2);
+      }
+      
+      if(setup.apply_LocalImpr){
+	(intermediates.rbegin()  )->improve(setup);
+	(intermediates.rbegin()+1)->improve(setup);
       }
       
       intermediates.push_back(population[i1]);

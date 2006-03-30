@@ -45,26 +45,12 @@ private:
 };
 
 
-enum GA_MODE {
-  IM_POP, //intermediate population (standard form)
-  IM_POP_PARTIAL, //parially copy population
-  STEADY_STATE //replace <parial> worst induviduals
-};
-
-enum SELECT_MODE {
-  ROULLETE_WHEEL,
-  TOURNAMENT_2_4
-};
 
 struct selection_params {
-  GA_MODE ga_mode;
-  SELECT_MODE sel_mode;
-  
-  int partial;
   double p_mutate;
   double p_combine;
 
-  static const double p_op_crossing = 0.3;
+  double p_op_crossing;
 
   selection_params();
   

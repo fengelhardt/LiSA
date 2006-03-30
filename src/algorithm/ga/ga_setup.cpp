@@ -1,12 +1,9 @@
 #include "./ga_setup.hpp"
 
 selection_params::selection_params(){
-  ga_mode = IM_POP;
-  sel_mode = TOURNAMENT_2_4;
-  
-  partial = 2;
-  p_mutate = 0.35;
-  p_combine = 0.45;
+  p_mutate = 0.25;
+  p_combine = 0.35;
+  p_op_crossing = 0.15;
 }
 
 
@@ -94,12 +91,19 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   else {
     sel_params.p_mutate = Parameter.get_double("M_PROB");
   }
-  if (!Parameter.defined("S_PROB")) {
-    std::cout << "WARNING: \"S_PROB\" undefined. Using default " << sel_params.p_combine  << std::endl;
+  if (!Parameter.defined("C_PROB")) {
+    std::cout << "WARNING: \"C_PROB\" undefined. Using default " << sel_params.p_combine  << std::endl;
     //return false;
   }
   else {
-    sel_params.p_combine = Parameter.get_double("M_PROB");
+    sel_params.p_combine = Parameter.get_double("C_PROB");
+  }
+  if (!Parameter.defined("X_PROB")) {
+    std::cout << "WARNING: \"X_PROB\" undefined. Using default " << sel_params.p_op_crossing  << std::endl;
+    //return false;
+  }
+  else {
+    sel_params.p_op_crossing = Parameter.get_double("X_PROB");
   }
   if (!Parameter.defined("SEED")) {
     std::cout << "WARNING: \"SEED\" undefined. Using default " << SEED  << std::endl;

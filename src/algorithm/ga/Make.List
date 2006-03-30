@@ -1,6 +1,5 @@
 ALG_SOURCES=\
 	ga_setup.cpp \
-	lo_ind.cpp \
 	lr_ind.cpp \
 	ga_main.cpp
 

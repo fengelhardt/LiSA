@@ -1,6 +1,5 @@
 OBJECTS=\
 	../../../obj/ga_setup.o \
-	../../../obj/lo_ind.o \
 	../../../obj/lr_ind.o \
 	../../../obj/ga_main.o \
 	../../../obj/jobshop_neighbourhoods.o \

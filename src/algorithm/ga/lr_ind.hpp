@@ -86,6 +86,9 @@ private :
   friend std::ostream& operator<<(std::ostream& out, const LR_Individuum&);
   mutable TIMETYP fitness;
   mutable bool f_valid;
+
+  void latinize();
+
 };
 
 std::ostream& operator<<(std::ostream& out, const LR_Individuum&);
