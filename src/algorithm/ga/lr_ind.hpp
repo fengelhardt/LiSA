@@ -54,7 +54,7 @@ public:
   {
     setCrossMask(setup.sel_params.p_op_crossing);
     result = LR_Individuum(i1,i2);
-    result = LR_Individuum(i2,i1);;
+    ++result = LR_Individuum(i2,i1);;
   }
 
   //mutation
