@@ -1,0 +1,21 @@
+OBJECTS=\
+	../../../obj/single.o \
+	../../../obj/Single_Machine_BB.o \
+	../../../obj/graph.o \
+	../../../obj/matrix.o \
+	../../../obj/pair.o \
+	../../../obj/ctrlpara.o \
+	../../../obj/lvalues.o \
+	../../../obj/ptype.o \
+	../../../obj/global.o \
+	../../../obj/except.o \
+	../../../obj/int2str.o \
+	../../../obj/js_sched.o \
+	../../../obj/mo_jo.o \
+	../../../obj/schedule.o \
+	../../../obj/sp_sched.o \
+	../../../obj/order.o \
+	../../../obj/LisaXmlFile.o \
+	../../../obj/lisa_xml.o \
+	../../../obj/Lisa_NativeDataHandler.o \
+	../../../obj/Lisa_IO_Factory.o
