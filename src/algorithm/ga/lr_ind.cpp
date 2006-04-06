@@ -139,7 +139,7 @@ LR_Individuum::LR_Individuum(const LR_Individuum& i1,
 
 void LR_Individuum::mutate(){
   //std::cout << "mutating " << *c << std::endl;
-  mutate_swap();
+  mutate_rotate();
   //std::cout << "mutating result is " << *c << std::endl;
 }
 
@@ -186,16 +186,19 @@ void LR_Individuum::latinize(){
 
 void LR_Individuum::mutate_rotate(){
   //determine maximum rank
-  int i,j,b = 0;
-  for(i = 0; i < P->n; i++)
-    for(j = 0; j < P->m; j++)
-      b = std::max<int>(b,(*c)[i][j]);
+  int k,l,b = 0;
+  do {//maybe endless if there is no op in s_ij
+    k = (*GA_Setup::random)(P->n);
+    l = (*GA_Setup::random)(P->m);
+  }while(!(*P->sij)[k][l]);
+
+  for(int i = 0; i < P->n; i++)
+    b = std::max<int>(b,(*c)[i][l]);
+  for(int j = 0; j < P->m; j++)
+    b = std::max<int>(b,(*c)[k][j]);
   b = (*GA_Setup::random)(1,b);
-  do {
-    i = (*GA_Setup::random)(P->n);
-    j = (*GA_Setup::random)(P->m);
-  }while(!(*P->sij)[i][j]);
-  (*c)[i][j] = b;
+  
+  (*c)[k][l] = b;
   latinize();
 }
 
