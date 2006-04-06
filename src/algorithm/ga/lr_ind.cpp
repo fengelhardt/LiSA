@@ -191,7 +191,7 @@ void LR_Individuum::mutate_rotate(){
     k = (*GA_Setup::random)(P->n);
     l = (*GA_Setup::random)(P->m);
   }while(!(*P->sij)[k][l]);
-
+  
   for(int i = 0; i < P->n; i++)
     b = std::max<int>(b,(*c)[i][l]);
   for(int j = 0; j < P->m; j++)
