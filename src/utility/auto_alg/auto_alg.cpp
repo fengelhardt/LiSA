@@ -21,6 +21,11 @@
 #include "../../scheduling/os_sched.hpp"
 #include "../../xml/LisaXmlFile.hpp"
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <signal.h>
+
 //**************************************************************************
 
 int m=10,n=10;
@@ -30,6 +35,12 @@ int numberproblems=1;
 int numberalgorithms=1;
 
 std::string algin,algout;
+
+//**************************************************************************
+
+bool child_terminated=false;
+
+void child_terminates(int i){ child_terminated=true; }
 
 //**************************************************************************
 
@@ -141,6 +152,12 @@ void checkAlgo(Lisa_ControlParameters &cp){
     G_ExceptionList.lthrow((std::string)"No EXECUTABLE parameter defined."
                            ,Lisa_ExceptionList::INCONSISTENT_INPUT);
     exit(-1);
+  }
+  
+  if(cp.defined("TIMELIMIT")!=Lisa_ControlParameters::LONG){
+    cp.add_key("TIMELIMIT",(long) 0);
+    G_ExceptionList.lthrow((std::string)"No TIMELIMIT parameter defined for algorithm '"+
+                            executable +"', using default '0'.",Lisa_ExceptionList::WARNING);
   }
   
 /*add some useful !!! testing if executable exists here -marc-  
@@ -298,11 +315,44 @@ std::string str_alg(const int i){
   
 //**************************************************************************
 
+void system_limit(std::string executable,int limit){
+  
+  pid_t cpid;
+  int status;
+  
+  child_terminated = false;
+  
+  switch(cpid = fork()){
+   case -1:
+     G_ExceptionList.lthrow("Could not fork.",Lisa_ExceptionList::ANY_ERROR);
+     exit(-1);
+   case 0: // child process
+     execl(executable.c_str(),executable.c_str(),algin.c_str(),algout.c_str(),0);
+     G_ExceptionList.lthrow("Could not exec.",Lisa_ExceptionList::ANY_ERROR);
+     exit(-1);
+   default: // parent process
+     if(limit > 0){ 
+       while(limit > 0 && !child_terminated){
+         sleep(1);
+         limit--;
+       }
+       kill(cpid,SIGINT);
+     }
+     wait(&status);
+  }
+  
+}
+
+//**************************************************************************
+
 int main(int argc, char *argv[]){
  time_t all_start = time(0);
  
  //make sure we report any errors
  G_ExceptionList.set_output_to_cout();
+ 
+ //we want to be informed about terminating childs
+ signal(SIGCHLD, &child_terminates);
  
  if(argc < 2){
   G_ExceptionList.lthrow((std::string)"Usage: "+argv[0]+
@@ -345,12 +395,12 @@ int main(int argc, char *argv[]){
    in_file >> cps[i];
    if(!G_ExceptionList.empty()) exit(-1);
    checkAlgo(cps[i]);
+   do{}while(G_ExceptionList.lcatch(Lisa_ExceptionList::WARNING) != "No error of this kind in list.");
  }
- 
+
  // were done reading
  in_file.close();
- 
-  
+   
  for(int i=0;i<numberproblems;i++){
    
    //save current seeds to pt so problem can be reconstructed
@@ -376,7 +426,9 @@ int main(int argc, char *argv[]){
     
     writeAlgInput(pt,cps[j],val,sched);
     time_t start = time(0);
-    system(("./"+cps[j].get_string("EXECUTABLE")+" "+algin+" "+algout).c_str());
+    
+    system_limit(cps[j].get_string("EXECUTABLE") ,cps[j].get_long("TIMELIMIT"));
+    
     time_t end = time(0);
     readAlgOutput(sched);
     SchedList.append(Lisa_ScheduleNode(&sched));
@@ -429,7 +481,6 @@ int main(int argc, char *argv[]){
    << "-->";
    
    out_file1.close();
-   
    
  }
 
