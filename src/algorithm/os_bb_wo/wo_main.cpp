@@ -44,7 +44,7 @@ void run_start(){
 }
 
 void run_stop(){
-   signal(SIGINT, SIG_DFL);
+   signal(SIGINT, SIG_IGN);
 }
 
 /* ************************************************************************* */

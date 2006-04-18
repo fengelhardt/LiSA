@@ -42,7 +42,7 @@ void Lisa_Iterator::run_start()
 
 void Lisa_Iterator::run_stop()
  {
-   signal(SIGINT, SIG_DFL);
+   signal(SIGINT, SIG_IGN);
  }
 
 //**************************************************************************

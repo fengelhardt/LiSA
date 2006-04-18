@@ -56,7 +56,7 @@ void Lisa_GenericBb::run_start()
 
 void Lisa_GenericBb::run_stop()
  {
-   signal(SIGINT, SIG_DFL);
+   signal(SIGINT, SIG_IGN);
  }  
 
 //**************************************************************************
