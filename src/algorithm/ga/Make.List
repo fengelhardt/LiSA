@@ -11,9 +11,13 @@ NB_ITER_SOURCES=\
 	../nb_iter/tabu.cpp \
 	../nb_iter/nb_iter.cpp
 
+DISPATCH_SOURCES=\
+	../dispatch/dispatcher.cpp
+
 CXXSOURCES=\
 	$(ALG_SOURCES)\
 	$(NB_ITER_SOURCES)\
+	$(DISPATCH_SOURCES)\
 	../../basics/matrix.cpp \
 	../../basics/order.cpp \
 	../../basics/pair.cpp \

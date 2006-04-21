@@ -11,11 +11,16 @@ class GA {
 public:
   
   GA_Setup setup;
+  bool * canceled;
   
   bool readSetup(LisaXmlFile& input){ return setup.init(input);}
 
+  GA(){
+    canceled = NULL;
+  }
+  
   //algorithm completed ?
-  bool done(){ return (setup.n_gen  - gen) <= 0;}
+  bool done(){ return (canceled && *canceled) || ((setup.n_gen  - gen) <= 0);}
 
   void print_progress(){
     const int MAX_CLAIMS = 400;
@@ -24,6 +29,7 @@ public:
       std::cout << "steps= " << setup.n_gen-gen;
       std::cout << " OBJECTIVE= " << getBest().getFitness();
       std::cout << " best= " << getBest().getFitness();
+      std::cout << " worst= " << getWorst().getFitness();
       std::cout << " ready " << 100*gen /setup.n_gen  << "%" << std::endl;
     }
   }
@@ -46,11 +52,11 @@ public:
   }
 
   const Ind& getBest(){
-    return *best;
+    return best;
   }
 
   const Ind& getWorst(){
-    return *worst;
+    return worst;
   }
   
 private:
@@ -59,8 +65,8 @@ private:
   PopType population;
   PopType intermediates;
   
-  typename PopType::iterator best;
-  typename PopType::iterator worst;
+  Ind best;
+  Ind worst;
 
   TIMETYP sum_abs;
 
@@ -70,18 +76,19 @@ private:
   void init_pop(){
     gen = 0;
     population = PopType(setup.pop_size);
-    for_each(population.begin(), population.end(), mem_fun_ref(&Ind::initialize));
+    for(typename PopType::iterator it = population.begin(); it != population.end(); ++it)
+      it->initialize(setup);
     intermediates.clear();
-    if(setup.apply_LocalImpr) 
-      //the following does not work, don't know why (stl bug/design issue, I guess)
-      //for_each(population.begin(), population.end(), std::bind2nd(mem_fun(&Ind::improve),setup));
-      for(typename PopType::iterator it = population.begin(); it != population.end(); ++it) it->improve(setup);
   }
   
   //select 
   void select_pop(){
     while(signed(intermediates.size()) < signed(setup.pop_size - 1)){
-      int i1 = (*GA_Setup::random)(setup.pop_size), i2 =  (*GA_Setup::random)(setup.pop_size);
+      int i1, i2;
+      do {
+	i1 = (*GA_Setup::random)(setup.pop_size);
+	i2 =  (*GA_Setup::random)(setup.pop_size);
+      } while(i1!=i2);
       
       Ind p1 = population[i1];
       Ind p2 = population[i2];
@@ -119,7 +126,7 @@ private:
     
     //replace the current generation by its descendents
     void alter_pop(){
-      intermediates.push_back(*best); //elitist
+      intermediates.push_back(best); //elitist
       population=intermediates;
       intermediates.clear();
       gen++;
@@ -127,13 +134,17 @@ private:
 
   //evaluate the population
   void eval_pop(){
-    worst = best = population.begin();
+    typename PopType::iterator b_it = population.begin(), w_it = population.begin();
     sum_abs = 0;
     for(typename PopType::iterator it = population.begin(); it != population.end(); ++it){
-      if((*best  > *it)) best = it;
-      if((*worst < *it)) worst = it;
+      if((b_it->getFitness()  > it->getFitness())) b_it = it;
+      if((w_it->getFitness() < it->getFitness()))  w_it = it;
       sum_abs += it->getFitness();
     }
+    if(b_it == population.end()) return;
+    best = *b_it;
+    worst = *w_it;
+
   }
   
 

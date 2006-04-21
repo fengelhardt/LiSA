@@ -9,6 +9,11 @@
 
 using namespace std;
 
+
+/// some strings to describe the dispatching rules
+const char* const Lisa_Dispatcher::RULE_NAMES[NUMBER_RULES] = { "RAND","FCFS","EDD","LQUE","SPT",
+								"WSPT","ECT","WI","LPT"};
+
 //**************************************************************************
 // helper methods: 
 
@@ -97,22 +102,22 @@ Lisa_Dispatcher::Lisa_Dispatcher()
 
 Lisa_Dispatcher::~Lisa_Dispatcher()
 {
-  delete problem;
-  delete schedule;
-  delete jstart;
-  delete mstart; 
+  if(problem  != NULL) delete problem;
+  if(schedule != NULL) delete schedule;
+  if(jstart   != NULL) delete jstart;
+  if(mstart   != NULL) delete mstart; 
 }
 
 //**************************************************************************
 
-bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT, 
-                                 Lisa_Values* LValues, Lisa_Schedule* s)
+bool Lisa_Dispatcher::SetProblem(const Lisa_ProblemType* PT, 
+                                 const Lisa_Values* LValues, Lisa_Schedule* s)
 {
   LSchedule=s;
   if (!LSchedule->LR) LSchedule->make_LR();
   
-  delete problem;
-  delete schedule;
+  if(problem) delete problem;
+  problem = NULL;
   n=LValues->get_n();  m=LValues->get_m();
   switch (PT->get_property(M_ENV))
     { 
@@ -131,7 +136,8 @@ bool Lisa_Dispatcher::SetProblem(Lisa_ProblemType* PT,
     default: G_ExceptionList.lthrow("wrong problemtype for Lisa_Dispatcher");
       return false;
     }
-  delete mstart; delete jstart;
+  if(mstart) delete mstart; 
+  if(jstart) delete jstart;
   jstart = new Lisa_Vector<TIMETYP>(problem->n+1);
   mstart = new Lisa_Vector<TIMETYP>(problem->m+1);
   return true;
@@ -167,7 +173,7 @@ void Lisa_Dispatcher::js_dispatch_nondelay()
     (*nextm)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][SOURCE];
      
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
   
@@ -210,6 +216,7 @@ void Lisa_Dispatcher::js_dispatch_nondelay()
             }
 	}
     } while(i!=SINK);
+  delete nextm;
 }
 
 //**************************************************************************
@@ -224,7 +231,7 @@ void Lisa_Dispatcher::js_dispatch_active()
   mstart->fill(0);
 
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
  
@@ -269,6 +276,7 @@ void Lisa_Dispatcher::js_dispatch_active()
           (*nextMachine)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][j];
 	}
     } while(choosenJob!=SINK);
+  delete nextMachine;
 }
 
 //**************************************************************************
@@ -290,7 +298,7 @@ void Lisa_Dispatcher::js_dispatch()
       (*nextm)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][SOURCE];
   
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_JsSchedule((Lisa_JsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
  
@@ -320,6 +328,7 @@ void Lisa_Dispatcher::js_dispatch()
           (*nextm)[i]=(*((Lisa_JsProblem*)problem)->MOsucc)[i][j];
 	}
     } while(i!=SINK);
+  delete nextm;
 }
 
 //**************************************************************************
@@ -338,7 +347,7 @@ void Lisa_Dispatcher::os_dispatch_nondelay()
       (*opstart)[i][j]= (*problem->sij)[i][j] ? (*problem->ri)[i]: MAXTIME;
   
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
   
@@ -387,7 +396,7 @@ void Lisa_Dispatcher::os_dispatch_active()
   float maxprio;
   
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
 
@@ -430,7 +439,7 @@ void Lisa_Dispatcher::os_dispatch()
   float maxprio;
   
   // initialize schedule:
-  delete schedule;
+  if(schedule) delete schedule;
   schedule=new Lisa_OsSchedule((Lisa_OsProblem*)problem);
   if (rule==LQUE) schedule->ComputeHeadsTails(true,true);
 

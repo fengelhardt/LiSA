@@ -3,7 +3,6 @@
 selection_params::selection_params(){
   p_mutate = 0.25;
   p_combine = 0.35;
-  p_op_crossing = 0.15;
 }
 
 
@@ -11,19 +10,43 @@ selection_params::selection_params(){
 long GA_Setup::SEED = 1234567890;
 LisaRandGenerator* GA_Setup::random = new LisaRandGenerator(&GA_Setup::SEED);
 
+GA_Initializer::GA_Initializer(const GA_Setup* setup): Lisa_Dispatcher() {
+  target_schedule = new Lisa_Schedule(setup->Values.get_n(),setup->Values.get_m());
+  target_schedule->make_LR();
+  SetProblem(&setup->Problem,&setup->Values,target_schedule);
+  SetRule("RAND");
+}
+
+GA_Initializer::~GA_Initializer(){
+  delete target_schedule;
+}
+
+void GA_Initializer::getPlan(Lisa_Matrix<int>& p, GA_INIT_MODE m){
+  if(m==INIT_DISP_ACTIVE){
+    dispatch_active();
+    p = *target_schedule->LR;
+    return;
+  }
+  dispatch_nondelay();
+  p = *target_schedule->LR;
+}
+
 GA_Setup::GA_Setup(){
   problem = NULL;
   schedule = NULL;
+  initializer = NULL;
   apply_LocalImpr = false;
+  mode = INIT_DISP_NON_DELAY;
   clear();
 }
 
 void GA_Setup::clear(){
   if(problem) delete problem; 
   if(schedule) delete schedule; 
-  
+  if(initializer) delete initializer; 
   problem = NULL;
   schedule = NULL;
+  initializer = NULL;
 }
 
 
@@ -98,19 +121,21 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   else {
     sel_params.p_combine = Parameter.get_double("C_PROB");
   }
-  if (!Parameter.defined("X_PROB")) {
-    std::cout << "WARNING: \"X_PROB\" undefined. Using default " << sel_params.p_op_crossing  << std::endl;
-    //return false;
-  }
-  else {
-    sel_params.p_op_crossing = Parameter.get_double("X_PROB");
-  }
   if (!Parameter.defined("SEED")) {
     std::cout << "WARNING: \"SEED\" undefined. Using default " << SEED  << std::endl;
     //return false;
   }
   else {
     SEED = Parameter.get_long("SEED");
+  }
+  if (!Parameter.defined("INIT")) {
+    std::cout << "WARNING: \"INIT\" undefined. Using default " << mode  << std::endl;
+  }
+  else {
+    if(Parameter.get_string("INIT") == "RANDOM_ORDER") mode = INIT_RANDOM;
+    else if(Parameter.get_string("INIT") == "ACTIVE_DISPATCH") mode = INIT_DISP_ACTIVE;
+    else if(Parameter.get_string("INIT") == "NON_DELAY_DISPATCH") mode = INIT_DISP_NON_DELAY;
+    else std::cout << "WARNING: \"INIT\" method unknown. Using default " << mode  << std::endl;
   }
 
   std::string impr_id = "off";
@@ -178,6 +203,9 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   problem = new Lisa_OsProblem(&Values);
   schedule = new Lisa_OsSchedule(problem);
   schedule->SetValue(Problem.get_property(OBJECTIVE));
-  std::cout  << RANDOM_BOUND << std::endl;
+  //std::cout  << RANDOM_BOUND << std::endl;
+
+  initializer = new GA_Initializer(this);
+
   return true;
 }

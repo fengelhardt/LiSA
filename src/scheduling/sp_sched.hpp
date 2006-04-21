@@ -45,7 +45,7 @@ public:
   int n,m;
   /// constructor
   /** needs a given instance of Lisa_Values to construct */
-  Lisa_ShpProblem(Lisa_Values * Pin);
+  Lisa_ShpProblem(const Lisa_Values * Pin);
   /// destructor
   ~Lisa_ShpProblem();
 };
@@ -95,7 +95,7 @@ public:
   /// destructor
   virtual ~Lisa_ShpSchedule() {}			  
   /// pointer to the problem instance
-  Lisa_ShpProblem * P;
+  const Lisa_ShpProblem * P;
   /// exclude operation from schedule 
   virtual void exclude(int i,int j) = 0;
   /// test whether operation belongs to schedule

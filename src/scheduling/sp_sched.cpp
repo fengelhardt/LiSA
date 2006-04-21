@@ -12,7 +12,7 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_ShpProblem::Lisa_ShpProblem(Lisa_Values * Pin)
+Lisa_ShpProblem::Lisa_ShpProblem(const Lisa_Values * Pin)
 {
   int i,j;
   

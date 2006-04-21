@@ -12,6 +12,7 @@
 //#include "../../basics/pair.hpp"
 
 #include "../nb_iter/nb_iter.hpp"
+#include "../dispatch/dispatcher.hpp"
 
 static const int RANDOM_BOUND = (1 << (sizeof(int)*8 -2)) -1 ;
 
@@ -44,13 +45,29 @@ private:
   long* seed;
 };
 
+struct GA_Setup;
+
+enum GA_INIT_MODE {
+  INIT_RANDOM,
+  INIT_DISP_ACTIVE,
+  INIT_DISP_NON_DELAY
+};
+
+class GA_Initializer : public Lisa_Dispatcher {
+public:
+
+  GA_Initializer(const GA_Setup*);
+
+  void getPlan(Lisa_Matrix<int>& p, GA_INIT_MODE m);
+  Lisa_Schedule* target_schedule;
+
+  ~GA_Initializer();
+};
 
 
 struct selection_params {
   double p_mutate;
   double p_combine;
-
-  double p_op_crossing;
 
   selection_params();
   
@@ -62,7 +79,10 @@ struct GA_Setup {
   bool apply_LocalImpr;
 
   NB_Iteration improver;
+  GA_Initializer *initializer;
 
+  GA_INIT_MODE mode;
+  
   int pop_size;
   int n_gen;
 
@@ -79,7 +99,9 @@ struct GA_Setup {
   Lisa_OsSchedule *schedule;
 
   GA_Setup();
-  ~GA_Setup(){clear();}
+  ~GA_Setup(){
+    clear();
+  }
   
   bool init(LisaXmlFile& input);
 

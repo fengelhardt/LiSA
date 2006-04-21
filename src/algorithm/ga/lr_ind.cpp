@@ -54,7 +54,8 @@ void LR_Individuum::init(const Lisa_OsProblem& Problem, int o){
   Objective = o;
 }
 
-void LR_Individuum::setCrossMask(double prob){
+void LR_Individuum::setCrossMask(){
+  double prob = (*GA_Setup::random)(); // is ~(0,1)
   for(int i = 0; i < P->n; i++)
     for(int j = 0; j < P->m; j++)
       (*Cross_Mask)[i][j] = GA_Setup::random->yes_no(prob);
@@ -63,13 +64,16 @@ void LR_Individuum::setCrossMask(double prob){
 
 
 LR_Individuum::LR_Individuum(){
-  c = new LR(P->n, P->m);
+  if(P)
+    c = new LR(P->n, P->m);
+  else
+    c = NULL;
   fitness = -1;
   f_valid = false;
 }
 
 LR_Individuum::~LR_Individuum(){
-  delete c;
+  if(c) delete c;
   f_valid = false;
 }
 
@@ -182,6 +186,7 @@ void LR_Individuum::latinize(){
 	S->insert(i,j,S->GetJOpred(SINK,j),S->GetMOpred(i,SINK));
     }
   S->write_LR(c);
+  f_valid = false;
 }
 
 void LR_Individuum::mutate_rotate(){
@@ -200,6 +205,7 @@ void LR_Individuum::mutate_rotate(){
   
   (*c)[k][l] = b;
   latinize();
+  f_valid = false;
 }
 
 
@@ -241,22 +247,30 @@ LR_Individuum& LR_Individuum::operator=(LR_Individuum& i){
   return *this;
 }
 
-void LR_Individuum::initialize(){
+void LR_Individuum::initialize(GA_Setup& setup){
+  
   //randomly initialize plan
-  S->clear();
-  const int M = std::max<int>(P->n,P->m);
-  int i,j,h;
-  for(i = 0; i < P->n; i++)
-    for(j = 0; j < P->m; j++)
-      Order->read_one_key(i,j,(*GA_Setup::random)(1,M*M));
-  Order->sort();
-  for(h = 0; h < P->n*P->m; h++)
-    {
-      i = 1+ Order->row(h); j = 1+ Order->col(h);
-      if((*P->sij)[i][j])
-	S->insert(i,j,S->GetJOpred(SINK,j),S->GetMOpred(i,SINK));
-    }
-  S->write_LR(c);
+  if(setup.mode == INIT_RANDOM){
+    S->clear();
+    const int M = std::max<int>(P->n,P->m);
+    int i,j,h;
+    for(i = 0; i < P->n; i++)
+      for(j = 0; j < P->m; j++)
+	Order->read_one_key(i,j,(*GA_Setup::random)(1,M*M));
+    Order->sort();
+    for(h = 0; h < P->n*P->m; h++)
+      {
+	i = 1+ Order->row(h); j = 1+ Order->col(h);
+	if((*P->sij)[i][j])
+	  S->insert(i,j,S->GetJOpred(SINK,j),S->GetMOpred(i,SINK));
+      }
+    S->write_LR(c);
+  }
+  else {
+    setup.initializer->getPlan(*c,setup.mode);
+    if(setup.apply_LocalImpr) 
+      improve(setup);
+  }
   f_valid = false;
 }
 

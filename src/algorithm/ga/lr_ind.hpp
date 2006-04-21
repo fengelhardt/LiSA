@@ -35,15 +35,20 @@ public:
   bool operator >= (const LR_Individuum& i) const {return !(*this < i); }
   bool operator <= (const LR_Individuum& i) const {return !(*this > i); }
 
-  //bool operator == (const LR_Individuum& i){return (c == i.c); }
+  bool operator == (const LR_Individuum& i){
+    if(c && i.c)
+      return (*c == *(i.c)); 
+    return false;
+  }
  
   
-  void initialize();
+  void initialize(GA_Setup&);
   void makePlan(Lisa_OsSchedule& plan) const{
+    plan.clear();
     plan.read_LR(c);
   }
 
-  static void setCrossMask(double prob);
+  static void setCrossMask();
   //crossover
   template <typename OutputIterator>
   static void combine(const LR_Individuum& i1, 
@@ -52,9 +57,9 @@ public:
 		      OutputIterator result)
 	
   {
-    setCrossMask(setup.sel_params.p_op_crossing);
-    result = LR_Individuum(i1,i2);
-    ++result = LR_Individuum(i2,i1);;
+    setCrossMask();
+    *result = LR_Individuum(i1,i2);++result;
+    *result = LR_Individuum(i2,i1);++result;
   }
 
   //mutation
@@ -73,7 +78,7 @@ public:
     if(f_valid) return;
     S->clear();
     makePlan(*S);
-    S->SetValue(Objective);
+    S->SetValue(LR_Individuum::Objective);
     fitness = S->GetValue();
     f_valid = true;
   }

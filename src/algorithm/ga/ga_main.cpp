@@ -2,6 +2,9 @@
 #include <unistd.h>
 #include <time.h>
 
+#include <signal.h>
+
+
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -12,6 +15,12 @@
 #include "../../scheduling/schedule.hpp"
 
 using namespace std;
+
+static bool cancel_flag = false;
+
+void interupted(int){
+  cancel_flag = true;
+}
 
 int main(int argc, char *argv[]){
   
@@ -64,10 +73,15 @@ int main(int argc, char *argv[]){
   
   GA_Type ga;
   if(!ga.readSetup(xmlInput)) exit(1);
+  ga.canceled = &cancel_flag;
+  signal(SIGINT, &interupted);
   ga.run();
+  signal(SIGINT, SIG_IGN);
+
   Lisa_Schedule result(ga.setup.Values.get_n(),ga.setup.Values.get_m());
   result.make_LR();
   ga.getBest().makePlan(*ga.setup.schedule);
+
   ga.setup.schedule->write_LR(result.LR);
   LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
   xmlOutput << ga.setup.Problem << ga.setup.Values << ga.setup.Parameter << result;

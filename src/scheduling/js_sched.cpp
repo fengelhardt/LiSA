@@ -12,7 +12,7 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_JsProblem::Lisa_JsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
+Lisa_JsProblem::Lisa_JsProblem(const Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
    {
      int i, j;
      if ( !(MOsucc = new Lisa_Matrix<int>( n+1, m+1 )) )
@@ -86,7 +86,7 @@ Lisa_JsProblem::~Lisa_JsProblem()
 //**************************************************************************
 
 // returns an empty feasible schedule to *Pin with MIJ=emptyset 
-Lisa_JsSchedule::Lisa_JsSchedule(Lisa_JsProblem* Pin)
+Lisa_JsSchedule::Lisa_JsSchedule(const Lisa_JsProblem* Pin)
      { 
        int  i,j;
        ComputeTails = false;

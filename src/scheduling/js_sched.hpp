@@ -18,7 +18,7 @@ public:
   /// machine orders as predecessor lists
   Lisa_Matrix<int> * MOpred;	      
   /// construct Lisa_JsProblem with a specified Lisa_Values
-  Lisa_JsProblem( Lisa_Values *Pin );
+  Lisa_JsProblem( const Lisa_Values *Pin );
   ///destructor
   ~Lisa_JsProblem();
 };
@@ -32,9 +32,9 @@ public:
 class Lisa_JsSchedule  : public Lisa_ShpSchedule{ 
 public:
   /// pointer to corresponding problem instance
-  Lisa_JsProblem * JSP;
+  const Lisa_JsProblem * JSP;
   /// construct Lisa_JsSchedule with the specified problem
-  Lisa_JsSchedule(Lisa_JsProblem *); 
+  Lisa_JsSchedule(const Lisa_JsProblem *); 
   /// compute heads and tails for empty schedule
   void  InitHeadsTails();
   /// insert(i,j,k) inserts (i,j) after (k,j)

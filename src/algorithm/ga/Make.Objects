@@ -8,6 +8,7 @@ OBJECTS=\
 	../../../obj/iterate.o \
 	../../../obj/tabu.o \
 	../../../obj/nb_iter.o \
+	../../../obj/dispatcher.o \
 	../../../obj/matrix.o \
 	../../../obj/order.o \
 	../../../obj/pair.o \

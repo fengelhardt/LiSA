@@ -8,21 +8,6 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
 
-//******************************************************************************
-
-/// which priority rules are implemented + how many are implemented
-enum{RAND=0,FCFS,EDD,LQUE,SPT,WSPT,ECT,WI,LPT
-    ,NUMBER_RULES /// number of rules
-    };
-
-//******************************************************************************
-
-/// some strings to describe the dispatching rules
-const char RULE_NAMES[NUMBER_RULES][5]= { "RAND","FCFS","EDD","LQUE","SPT",
-					  "WSPT","ECT","WI","LPT"};
-
-//******************************************************************************
-
 /// Priority dispatching rules for different problem types.
 /** The output of the algorithm for semiactive schedules is only written as a 
     LR!
@@ -32,6 +17,25 @@ const char RULE_NAMES[NUMBER_RULES][5]= { "RAND","FCFS","EDD","LQUE","SPT",
     @see Lisa_List
  */ 
 class Lisa_Dispatcher{ 	
+
+public:
+  
+  //******************************************************************************
+  // put this here to avoid name clashes
+  
+/// which priority rules are implemented + how many are implemented
+  enum{RAND=0,FCFS,EDD,LQUE,SPT,WSPT,ECT,WI,LPT
+       ,NUMBER_RULES /// number of rules
+  };
+  
+  //******************************************************************************
+  
+    /// some strings to describe the dispatching rules
+    static const char* const RULE_NAMES[NUMBER_RULES];// = { "RAND","FCFS","EDD","LQUE","SPT","WSPT","ECT","WI","LPT"};
+  
+  //******************************************************************************
+  
+  
 private:
   /// by which rule are we dispatching ? 
   int rule;
@@ -87,7 +91,7 @@ public:
   ~Lisa_Dispatcher();
   
   /// setting up problem and target schedule (needed to run the algorithm)
-  bool SetProblem(Lisa_ProblemType* pt, Lisa_Values* val, Lisa_Schedule* sched);
+  bool SetProblem(const Lisa_ProblemType* pt, const Lisa_Values* val, Lisa_Schedule* sched);
   /// chooses the priority rule (default SPT)
   void SetRule(std::string rule);
   

@@ -12,14 +12,14 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_OsProblem::Lisa_OsProblem(Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
+Lisa_OsProblem::Lisa_OsProblem(const Lisa_Values * Pin) : Lisa_ShpProblem( Pin ) 
   {
   }
 
 //**************************************************************************
 
 // returns an empty feasible schedule to *Pin with MIJ=emptyset 
-Lisa_OsSchedule::Lisa_OsSchedule(Lisa_OsProblem* Pin)
+Lisa_OsSchedule::Lisa_OsSchedule(const Lisa_OsProblem* Pin)
      { int  i,j;
        
        ComputeTails=false;

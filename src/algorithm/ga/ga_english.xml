@@ -16,9 +16,13 @@
   <alg_controls>
     <integer name="POP_SIZE" caption="Population size" default="50"/>
     <integer name="NUM_GEN"  caption="Number of generations" default="50"/>
+    <choice name="INIT" caption="Population Initialization">
+      <item name="RANDOM_ORDER"/>
+      <item name="ACTIVE_DISPATCH"/>
+      <item name="NON_DELAY_DISPATCH"/>
+    </choice>
     <real    name="M_PROB"   caption="Mutation probablility" default="0.25"/>
     <real    name="C_PROB"   caption="Crossover probablility" default="0.35"/>
-    <real    name="X_PROB"   caption="Crossover selection probablility" default="0.15"/>
     <integer name="SEED"  caption="Random seed" default="1234567890"/>
     <integer name="IMPR_STEPS"  caption="Local improvement steps" default="10"/>
     <choice name="L_IMPR" caption="Local improvement">

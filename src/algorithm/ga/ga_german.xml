@@ -16,9 +16,13 @@
   <alg_controls>
     <integer name="POP_SIZE" caption="Populationsgröße" default="50"/>
     <integer name="NUM_GEN"  caption="Anzahl Generationen" default="50"/>
+    <choice name="INIT" caption="Erzeugung der Anfangspopulation">
+      <item name="RANDOM_ORDER"/>
+      <item name="ACTIVE_DISPATCH"/>
+      <item name="NON_DELAY_DISPATCH"/>
+    </choice>
     <real    name="M_PROB"   caption="Mutationswahrscheinlichkeit" default="0.25"/>
     <real    name="C_PROB"   caption="Rekombinationswahrscheinlichkeit" default="0.35"/>
-    <real    name="X_PROB"   caption="Rekomb.-Auswahlwahrscheinlichkeit" default="0.15"/>
     <integer name="SEED"     caption="Zufalls-Seed" default="1234567890"/>
     <integer name="IMPR_STEPS"  caption="Anzahl lokaler Suchschritte" default="10"/>
     <choice name="L_IMPR" caption="Lokale Suche">

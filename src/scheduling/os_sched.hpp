@@ -17,7 +17,7 @@
 class Lisa_OsProblem : public Lisa_ShpProblem{ 
 public:
   /// construct Lisa_OsProblem with a specified Lisa_Values
-  Lisa_OsProblem( Lisa_Values *Pin );
+  Lisa_OsProblem( const Lisa_Values *Pin );
 };
 
 //**************************************************************************
@@ -32,10 +32,10 @@ class Lisa_OsSchedule  : public Lisa_ShpSchedule{
 public:
 
   /// pointer to corresponding problem instance 
-  Lisa_OsProblem* OSP;
+  const Lisa_OsProblem* OSP;
   
   /// construct empty schedule for given problem instance
-  Lisa_OsSchedule(Lisa_OsProblem* other);
+  Lisa_OsSchedule(const Lisa_OsProblem* other);
     
   /// insert(i,j,woi,woj) inserts (i,j) after (woi,j) and (i,woj)
   /** respectively, return value is OK, PERFEKT (if no other operation is 
