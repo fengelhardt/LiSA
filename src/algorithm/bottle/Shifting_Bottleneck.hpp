@@ -24,7 +24,7 @@ private:
   /// running mode for single machine problem
   bool single_machine_mode;
   /// our problem
-  Lisa_JsProblem* JsPro;
+  const Lisa_JsProblem* JsPro;
   /// our schedule
   Lisa_JsSchedule* JsSch;
   /// stores the machines, for which the schedule is determined

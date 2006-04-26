@@ -13,7 +13,7 @@ void ECT_reverse(Lisa_JsSchedule * sched)
 {
   int i, bestjob, j;
   TIMETYP lst, start;
-  Lisa_JsProblem *P=sched->JSP;
+  const Lisa_JsProblem *P=sched->JSP;
   Lisa_Vector<int> * next_op=new Lisa_Vector<int>(P->n);
   Lisa_Vector<TIMETYP> * m_free=new Lisa_Vector<TIMETYP>(P->m);
  

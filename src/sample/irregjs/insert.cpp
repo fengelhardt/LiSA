@@ -175,7 +175,7 @@ void rattle_js( Lisa_JsSchedule * sched)
 {
   TIMETYP delay;
   int last_machine, i,job,n;
-  Lisa_JsProblem *P=sched->JSP;  
+  const Lisa_JsProblem *P=sched->JSP;  
   Lisa_JsSchedule * sched2= new Lisa_JsSchedule(P);
   n=sched->P->n;
   

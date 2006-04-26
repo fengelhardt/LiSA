@@ -34,7 +34,7 @@ private:
   Lisa_JsSchedule * sched;
   Lisa_JsSchedule * sched2;
   int zfn;
-  Lisa_JsProblem * P;
+  const Lisa_JsProblem * P;
   Lisa_Order * order;
 //@}
 };
