@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include <signal.h>
 
 #include <iostream>         
 #include <fstream>
@@ -20,152 +19,127 @@ using namespace std;
 
 //**************************************************************************
 
-bool abort_algorithm;
+Lisa_Iterator::Lisa_Iterator(){
+  time_t zeit;
+  zeit = time(0);
+  seed = long( zeit );
+  cout<<"\nseed = "<<zeit<<"\n";
+  method = NOMETHOD;
+  abort_algorithm = false;
+  abort_at_bound = -MAXNUMBER;
+  abort_stuck = MAXNUMBER;
+  max_stuck=MAXNUMBER;
+  anti_neighbour = false;
+}
 
 //**************************************************************************
 
-void set_abort(int i) 
- {  
-   abort_algorithm=true;
-   cout << "\nSignal " << i << " received, writing results \n";
- }
-
-//**************************************************************************
-
-// WARNING! The following two functions have to be replaced for Windows!
-void Lisa_Iterator::run_start()
- {
-   signal(SIGINT, &set_abort);
- }
-
-//**************************************************************************
-
-void Lisa_Iterator::run_stop()
- {
-   signal(SIGINT, SIG_IGN);
- }
-
-//**************************************************************************
-
-Lisa_Iterator::Lisa_Iterator()
-  {
-    time_t zeit;
-    //seed = 12345671L;
-    zeit = time(0);
-    seed = long( zeit );
-    cout<<"\nseed = "<<zeit<<"\n";
-    method = NOMETHOD;
-    abort_algorithm = false;
-    abort_at_bound = -MAXNUMBER;
-    abort_stuck = MAXNUMBER;
-    max_stuck=MAXNUMBER;
-    anti_neighbour = false;
-  }
-
-//**************************************************************************
-
-void Lisa_Iterator::init( int methodi, unsigned int param1 )
-  {
-    method = methodi;
-    switch ( method )
-      {
-        case  II: if ( !((int(param1)==ENUM) || (int(param1)==RAND)) )
-		    {
-		      G_ExceptionList.lthrow("wrong parameter in init( II, "+ztos(int(param1))); 
-		      exit( 7 );
-		    }
-	          search_type = param1;
-		  break;
-	case  SA: 
-        case  SA_anti:
-	case  TA: 
-        case  TS: G_ExceptionList.lthrow("wrong call function init( int, int, int )");
-		  exit( 7 );
-		  break;
-        default:  G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
-                  exit( 7 );
+void Lisa_Iterator::init( int methodi, unsigned int param1 ){
+  abort_algorithm = false;
+  method = methodi;
+  switch ( method ){
+    case  II:
+      if ( !((int(param1)==ENUM) || (int(param1)==RAND)) ){
+        G_ExceptionList.lthrow("wrong parameter in init( II, "+ztos(int(param1))); 
+        exit( 7 );
       }
+      search_type = param1;
+      break;
+    case  SA: 
+    case  SA_anti:
+    case  TA: 
+    case  TS:
+      G_ExceptionList.lthrow("wrong call function init( int, int, int )");
+      exit( 7 );
+    default:
+      G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
+      exit( 7 );
   }
+}
 
 //**************************************************************************
 
-void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 )
-  {
-    method = methodi;
-    switch ( method )
-      {
-        case  II: G_ExceptionList.lthrow("wrong call of function init( II, int )");
-		  exit( 7 );
-		  break;
-        case  SA: factor0 = -0.01 / log( double( param1 ) / 100.0 );
-		  max_stuck = param2;
-		  search_type = RAND;
-		  break;
-        case  SA_anti: 
-	          method = SA;
-		  anti_neighbour = true;
-	          factor0 = -0.01 / log( double( param1 ) / 100.0 );
-		  max_stuck = param2;
-		  search_type = RAND;
-		  break;
-	case  TA: factor0 = double( param1 ) / 1000.0;
-		  max_stuck = param2;
-		  search_type = RAND;
-		  break;
-        case  TS: G_ExceptionList.lthrow("wrong call function init( int, int, int )");
-		  exit( 7 );
-		  break;
-        default:  G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
-                  exit( 7 );
-      }
-  }
+void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 ){
+  
+  abort_algorithm = false;
+  method = methodi;
+  switch(method){
+    case  II:
+      G_ExceptionList.lthrow("wrong call of function init( II, int )");
+      exit( 7 );
+      break;
+    case  SA:
+      factor0 = -0.01 / log( double( param1 ) / 100.0 );
+      max_stuck = param2;
+      search_type = RAND;
+      break;
+    case  SA_anti: 
+      method = SA;
+      anti_neighbour = true;
+      factor0 = -0.01 / log( double( param1 ) / 100.0 );
+      max_stuck = param2;
+      search_type = RAND;
+      break;
+    case TA:
+      factor0 = double( param1 ) / 1000.0;
+      max_stuck = param2;
+      search_type = RAND;
+      break;
+    case  TS:
+      G_ExceptionList.lthrow("wrong call function init( int, int, int )");
+      exit( 7 );
+      break;
+    default:
+      G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
+      exit( 7 );
+    }
+}
 
 //**************************************************************************
 
 void Lisa_Iterator::init( int methodi, unsigned int param1, 
-			  unsigned int param2, unsigned int param3 )
-  {
-    method = methodi;
-    switch ( method )
-      {
-	case  II: G_ExceptionList.lthrow("wrong call of function init( II, int )");
-		  exit( 7 );
-		  break;
-        case  TS: tabu_lenght=param1;
-                  number_neighbours = param2;
-		  search_type = param3;
-		  break;
-	case  SA: 
-        case  SA_anti:
- 	case  TA: G_ExceptionList.lthrow("wrong call function init( int, int, int )");
-		  exit( 7 );
-		  break;
-        default:  G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
-                  exit( 7 );
-      }
+			                    unsigned int param2, unsigned int param3 ){
+ abort_algorithm = false; 
+ method = methodi;
+ switch ( method ){
+	case  II:
+    G_ExceptionList.lthrow("wrong call of function init( II, int )");
+		exit( 7 );
+		break;
+  case TS:
+    tabu_lenght=param1;
+    number_neighbours = param2;
+		search_type = param3;
+		break;
+	case SA: 
+  case  SA_anti:
+ 	case  TA:
+    G_ExceptionList.lthrow("wrong call function init( int, int, int )");
+		exit( 7 );
+		break;
+  default:
+    G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
+    exit( 7 );
   }
+}
 
 //**************************************************************************
 
-void Lisa_Iterator::set_abort_at_stuck( int abort )
-  {
-    abort_stuck = abort;
-  }
+void Lisa_Iterator::set_abort_at_stuck( int abort ){
+  abort_stuck = abort;
+}
 
 //**************************************************************************
 
-void Lisa_Iterator::set_abort_at_bound( TIMETYP abort )
-  {
-    abort_at_bound = abort;
-  }
+void Lisa_Iterator::set_abort_at_bound( TIMETYP abort ){
+  abort_at_bound = abort;
+}
 
 //**************************************************************************
 
 void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type, 
-			     long steps )
-  {
-  
-    if ( steps < 0 )
+			                       long steps ){
+  if ( steps < 0 )
       {
 	G_ExceptionList.lthrow("wrong parameter in iterate( "+ztos(int(steps))+" )");
 	exit( 7 );
@@ -224,7 +198,8 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 		 break;
         case TS: NB->init_tabulist( tabu_lenght );
       }
-    run_start();
+    
+      
 
     if ( method != TS )
       // iteration loop for SA, II and TA:
@@ -417,7 +392,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 	     steps = 0;
 	 } // while( steps...
       } // else ...
-    run_stop();
+   
   }
 
 //**************************************************************************

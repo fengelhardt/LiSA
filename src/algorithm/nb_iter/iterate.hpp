@@ -88,8 +88,8 @@ private:
   /// sa with anti neighbours ?
   bool  anti_neighbour;
   
-  void run_start();
-  void run_stop();
+  ///stop algorithm ?
+  bool abort_algorithm;
 
 public: 
   
@@ -157,6 +157,8 @@ public:
       solutions to be generated. A start solution is given within the
       neighbourhood. */
   void  iterate( Lisa_Neighbourhood*, int objective_type, long steps);
+  
+  void inline abort(){abort_algorithm=true;};
 };
 
 #endif
