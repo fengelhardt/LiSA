@@ -139,176 +139,178 @@ void Lisa_Iterator::set_abort_at_bound( TIMETYP abort ){
 
 void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type, 
 			                       long steps ){
-  if ( steps < 0 )
-      {
-	G_ExceptionList.lthrow("wrong parameter in iterate( "+ztos(int(steps))+" )");
-	exit( 7 );
-      }
-    if ( method == NOMETHOD )
-      {
-	G_ExceptionList.lthrow("no method specified in iterate( int )");
-	exit( 7 );
-      }
+  if( steps < 0 ){
+	  G_ExceptionList.lthrow("wrong parameter in iterate( "+ztos(int(steps))+" )");
+	  exit( 7 );
+  }
+  
+  if( method == NOMETHOD ){
+	  G_ExceptionList.lthrow("no method specified in iterate( int )");
+	  exit( 7 );
+  }
 
-    double  t=0, t_old, t_first=0, t_end=0, decr=0;
-    bool    accept=0;
-    long    stuck_since, total_stuck;
-    TIMETYP best_value, best_step, last_break_value;
-    int     test, nn, non_move, max_non_move;
-    long     steps_per_output_line = 1;
-    if ( steps >= PROGRESS_INDICATOR_STEPS )
-      steps_per_output_line = long(steps/PROGRESS_INDICATOR_STEPS);
+  double  t=0, t_old, t_first=0, t_end=0, decr=0;
+  bool    accept=0;
+  long    stuck_since, total_stuck;
+  TIMETYP best_value, best_step, last_break_value;
+  int     test, nn, non_move, max_non_move;
+  long     steps_per_output_line = 1;
+  
+  if ( steps >= PROGRESS_INDICATOR_STEPS )
+    steps_per_output_line = long(steps/PROGRESS_INDICATOR_STEPS);
     
-    // getting some memory <-- removed this -marc-
+  // getting some memory <-- removed this -marc-
 
-    NB->put_orig_to_best();
+  NB->put_orig_to_best();
 
+  if ( (objective_type==IRREG1) || (objective_type==IRREG2) ) exit(7);
 
+  NB->set_objective_type( objective_type );
+  NB->set_objective( objective_type,ORIG_SOLUTION );
+  best_value = NB->get_objective_value( ORIG_SOLUTION );
+  last_break_value = best_value;
+  best_step = MAXNUMBER;
+  stuck_since = total_stuck = 0;
+  max_non_move = steps/10;
+  non_move = max_non_move;
 
-    if ( (objective_type==IRREG1) || (objective_type==IRREG2) )
-      exit(7);
-
-    NB->set_objective_type( objective_type );
-    NB->set_objective( objective_type,ORIG_SOLUTION );
-    best_value = NB->get_objective_value( ORIG_SOLUTION );
-    last_break_value = best_value;
-    best_step = MAXNUMBER;
-    stuck_since = total_stuck = 0;
-    max_non_move = steps/10;
-    non_move = max_non_move;
-
-    // preparing parmeters:
-    switch ( method )
-      {
-        case II: NB->init_tabulist( 1 );
-	         break;
-	case SA: t = double ( NB->get_objective_value(ORIG_SOLUTION) )
-		      * factor0;
-	         t_end = double ( NB->get_objective_value(ORIG_SOLUTION) )
-		   * (-0.001 / log( exp( -3 * log( 10. )) ) );
-		 decr = 1 / exp( log(t/t_end) / steps );
-		 t_old = t;
-		 t_first = t;
-		 break;
-	case TA: t = double ( NB->get_objective_value(ORIG_SOLUTION) ) 
-		      * factor0;
-		 decr = t / steps;
-		 t_old = t;
-		 t_first = t;
-		 break;
-        case TS: NB->init_tabulist( tabu_lenght );
-      }
+  // preparing parmeters:
+  switch ( method ){
+    case II:
+      NB->init_tabulist( 1 );
+	    break;
+	  case SA:
+      t = double ( NB->get_objective_value(ORIG_SOLUTION) ) * factor0;
+	    t_end = double ( NB->get_objective_value(ORIG_SOLUTION) )
+		                   * (-0.001 / log( exp( -3 * log( 10. )) ) );
+		  
+      decr = 1 / exp( log(t/t_end) / steps );
+		  t_old = t;
+		  t_first = t;
+		  break;
+	  case TA:
+      t = double ( NB->get_objective_value(ORIG_SOLUTION) ) * factor0;
+		  decr = t / steps;
+		  t_old = t;
+		  t_first = t;
+		  break;
+    case TS: NB->init_tabulist( tabu_lenght );
+  }
     
       
 
-    if ( method != TS )
-      // iteration loop for SA, II and TA:
-      for (  ; steps; steps-- )
-	{
-	  switch ( method )
-	    {
-	     case SA: t = t * decr;
-	              break;
-	     case TA: t = t - decr;
+  if ( method != TS ) // iteration loop for SA, II and TA:
+    for (  ; steps; steps-- ){
+	  
+      switch ( method ){
+	      case SA:
+          t = t * decr;
+	        break;
+	      case TA:
+          t = t - decr;
 	    }
- 	  test = NB->prepare_move(search_type);
-	  NB->set_objective( objective_type, ORIG_SOLUTION );
-	  if (!(steps%steps_per_output_line))
-	    cout << "steps= " << steps << " OBJECTIVE= " 
-	  	 << NB->get_objective_value(ORIG_SOLUTION) 
-	  	 << " best= " << best_value << endl;
-	  if (test==OK)
-	   {
-	    if ( NB->do_move() == OK )
-	     {
-	      NB->set_objective( objective_type, WORK_SOLUTION );
-	      // deceide whether to accept new solution:
-              switch ( method )
-		{
-		 case II: accept = ( NB->get_objective_value(WORK_SOLUTION)
-			           < NB->get_objective_value(ORIG_SOLUTION) );
-		          if (accept)
-                             stuck_since=0;
-                          else
-			    if ( ++ stuck_since > abort_stuck )
-                              {
-                                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
-                                                       Lisa_ExceptionList::WARNING);
-                                abort_algorithm = true;
-                              }
-  			  break;
-		 case SA: accept = ( NB->get_objective_value(WORK_SOLUTION)
-				   < NB->get_objective_value(ORIG_SOLUTION) );
-			  if ( !accept )
-			    {
-			      accept = ( lisa_random( 0, 1000000, &seed ) <
-			  1000000*exp(-(NB->get_objective_value(WORK_SOLUTION)
-				- NB->get_objective_value(ORIG_SOLUTION))/t));
-			    }
-			  if (++total_stuck>=abort_stuck)
-			    {
-			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
-                                   Lisa_ExceptionList::WARNING);
-			      abort_algorithm = true;
-			    }
-			  if (++stuck_since>=max_stuck)  
-			    {
-			      if ( anti_neighbour == true )
-				{
-				  NB->anti_neighbour();
-				  NB->set_objective( objective_type, 
-						     ORIG_SOLUTION );
-				}
-			      last_break_value = 
-				2*NB->get_objective_value(ORIG_SOLUTION);
-			      stuck_since = 0;
-			      t = t_first;
-			      //t = t_old;
-			      if ( steps > 5 )
-				decr = 1/exp( log(t/t_end) / steps );
-			    }
-			  break;
-		 case TA: accept = ( NB->get_objective_value(WORK_SOLUTION)
-			       - NB->get_objective_value(ORIG_SOLUTION) < t );
-			  if (++total_stuck>=abort_stuck)
-			    {
-			      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
-			      abort_algorithm = true;
-			    }
-			  if (++stuck_since>=max_stuck)  
-			    {
-			      last_break_value = 
-				NB->get_objective_value(ORIG_SOLUTION);
-			      stuck_since = 0;
-			      t = t_first;
-			      //t = t_old;
-			      decr = t / steps;
-			    }
- 		} // switch ( method )
-	      if ( accept )
-		{
-		 NB->accept_solution();
-		 if (( NB->get_objective_value(WORK_SOLUTION) < best_value ))
-		   {
-		     total_stuck = 0;
-		     best_value = NB->get_objective_value(ORIG_SOLUTION);
-		     NB->put_orig_to_best();
-		     if ( best_value <= abort_at_bound )
-		       {
-			 G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
-			 abort_algorithm = true;
+ 	  
+      test = NB->prepare_move(search_type);
+	    NB->set_objective( objective_type, ORIG_SOLUTION );
+	  
+      if(!(steps%steps_per_output_line))
+	      cout << "steps= " << steps << " OBJECTIVE= " 
+	  	       << NB->get_objective_value(ORIG_SOLUTION) 
+	  	       << " best= " << best_value << endl;
+	  
+      if (test==OK){
+	      if ( NB->do_move() == OK ){
+	      
+          NB->set_objective( objective_type, WORK_SOLUTION );
+	        
+          // deceide whether to accept new solution:
+          switch(method){
+		        
+            case II:
+              accept = (   NB->get_objective_value(WORK_SOLUTION)
+			                   < NB->get_objective_value(ORIG_SOLUTION) );
+		          
+              if(accept) stuck_since=0;
+              else if( ++stuck_since > abort_stuck ){
+                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
+                                       Lisa_ExceptionList::WARNING);
+                abort_algorithm = true;
+              }
+  			      break;
+              
+		        case SA:
+              accept = (   NB->get_objective_value(WORK_SOLUTION)
+				                 < NB->get_objective_value(ORIG_SOLUTION) );
+			        
+              if( !accept ){
+			          accept = ( lisa_random( 0, 1000000, &seed ) <
+			                     1000000*exp(-(NB->get_objective_value(WORK_SOLUTION) - NB->get_objective_value(ORIG_SOLUTION))/t));
+			        }
+          
+			        if (++total_stuck>=abort_stuck){
+			          G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
+                                       Lisa_ExceptionList::WARNING);
+			          abort_algorithm = true;
+			        }
+              
+			        if (++stuck_since>=max_stuck){
+               
+               if ( anti_neighbour == true ){
+				         NB->anti_neighbour();
+				         NB->set_objective( objective_type,ORIG_SOLUTION );
+				       }
+               
+			         last_break_value = 2*NB->get_objective_value(ORIG_SOLUTION);
+			         stuck_since = 0;
+			         t = t_first;
+			         //t = t_old;
+			      
+               if ( steps > 5 ) decr = 1/exp( log(t/t_end) / steps );
+			       }
+			       break;
+             
+		       case TA:
+             accept = (   NB->get_objective_value(WORK_SOLUTION)
+			                  - NB->get_objective_value(ORIG_SOLUTION) < t );
+			       
+             if (++total_stuck>=abort_stuck){
+			         G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
+			         abort_algorithm = true;
+			       }
+             
+			       if(++stuck_since>=max_stuck){ 
+               last_break_value = NB->get_objective_value(ORIG_SOLUTION);
+			         stuck_since = 0;
+			         t = t_first;
+			         //t = t_old;
+			         decr = t / steps;
+			       }
+         } // switch ( method )
+         
+         
+	       if ( accept ){
+		       NB->accept_solution();
+		 
+           if (( NB->get_objective_value(WORK_SOLUTION) < best_value )){
+		         total_stuck = 0;
+		         best_value = NB->get_objective_value(ORIG_SOLUTION);
+		         NB->put_orig_to_best();
+		          
+             if ( best_value <= abort_at_bound ){
+			         G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
+			         abort_algorithm = true;
+		         }
 		       }
-		   }
-		 if (( NB->get_objective_value(WORK_SOLUTION) 
-		         < last_break_value ))
-		   {
-		     t_old = t;
-		     stuck_since = 0;
-		     last_break_value = NB->get_objective_value(ORIG_SOLUTION);
-		   }
-		}
-	     } // if do_move ...
-	  } // if prepare_move ...
+		 
+           if (( NB->get_objective_value(WORK_SOLUTION) < last_break_value )){
+		         t_old = t;
+		         stuck_since = 0;
+		         last_break_value = NB->get_objective_value(ORIG_SOLUTION);
+		       }
+		     }
+	     } // if do_move == OK 
+	  } // if test == OK
+    
 	 if ( (test==NO_NGHBOURS) || (abort_algorithm) )
 	   steps = 1;
 	} // for ...
