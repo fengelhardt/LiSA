@@ -148,6 +148,7 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>
 	  cout << "\nstart objective_value: " << m1_Plan->GetValue() << "\n";
 	  it->iterate( ngbh, OBJ_TYPE, STEPS );
 	  delete it;
+    it = 0;
 	  
 	  switch( NGBH ){
 	    case API:
@@ -357,6 +358,7 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	  cout << "\nstart objective_value: " << os_Plan->GetValue() << "\n";
 	  it->iterate( ngbh, OBJ_TYPE, STEPS );
 	  delete it;
+    it = 0;
 	  
 	  switch ( NGBH )
 	    {
@@ -648,6 +650,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	  cout << "\nstart objective_value: " << js_Plan->GetValue() << "\n";
 	  it->iterate( ngbh, OBJ_TYPE, STEPS );
 	  delete it;
+    it = 0;
 	 
 	  switch ( NGBH )
 	    {
@@ -762,6 +765,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   NUMB_STUCKS = MAXINT;
   ABORT_BOUND = -MAXLONG;
 
+  it = 0;
 
   OBJ_TYPE = Problem.get_property(OBJECTIVE);
   PROB_TYPE = Problem.get_property(M_ENV);

@@ -141,7 +141,7 @@ struct NB_Iteration {
     return -1;
   }
 
-  void inline abort(){ it->abort(); }  
+  void inline abort(){ if(it) it->abort(); }  
 };
 
 #endif
