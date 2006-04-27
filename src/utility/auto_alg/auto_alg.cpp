@@ -328,7 +328,8 @@ void system_limit(std::string executable,int limit){
      exit(-1);
    case 0: // child process
      execl(executable.c_str(),executable.c_str(),algin.c_str(),algout.c_str(),0);
-     G_ExceptionList.lthrow("Could not exec.",Lisa_ExceptionList::ANY_ERROR);
+     G_ExceptionList.lthrow("Could not exec '"+executable+" "+algin+" "+algout+"'.",
+                            Lisa_ExceptionList::ANY_ERROR);
      exit(-1);
    default: // parent process
      if(limit > 0){ 
