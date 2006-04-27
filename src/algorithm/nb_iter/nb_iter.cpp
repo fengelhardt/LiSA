@@ -23,10 +23,12 @@ using namespace std;
      - open shop problems
      - job shop problems
    then the main procedure   */
-int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
-{
-      if ( !( m1_Prob = new Lisa_1Problem( &Values ) ) )
-	{
+int NB_Iteration::one_mach_iter(Lisa_Values& Values,
+                                Lisa_List<Lisa_ScheduleNode>& Starters,
+                                Lisa_List<Lisa_ScheduleNode>& Results){
+                                  
+  Lisa_1Problem *m1_Prob = new Lisa_1Problem( &Values );   
+  if (!m1_Prob){
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
@@ -50,11 +52,12 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>
 	      exit(7);
 	    }
 	    
-	  if ( !( m1_Plan = new Lisa_1Schedule( m1_Prob ) ) )
-	    {
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
+	  
+    Lisa_1Schedule *m1_Plan = new Lisa_1Schedule( m1_Prob );
+    if (!m1_Plan){
+	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	    exit( 7 );
+	  }
 
 	  m1_Plan->ComputeHeadsTails( 1, 1 );
 	  // transfering the datas:
@@ -98,32 +101,29 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>
 	  cout << "Ci: " << *m1_Plan->Ci << "\n";
 	  // end of transfering
 	  
+    API_Neighbourhood  *m1_api;
 	  switch( NGBH ){
 	    case API:
-	      if (!(ngbh = m1_api = new API_Neighbourhood(m1_Plan,m1_Prob))){
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+	      m1_api = new API_Neighbourhood(m1_Plan,m1_Prob);
 	      break;
 	    case SHIFT:
-	      if(!(ngbh=m1_shift=new shift_Neighbourhood(m1_Plan,m1_Prob))){
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+	      m1_api=new shift_Neighbourhood(m1_Plan,m1_Prob);
 	      break;
 	    case PI:
-        if(!(ngbh=m1_pi=new PI_Neighbourhood(m1_Plan,m1_Prob))){
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+        m1_api=new PI_Neighbourhood(m1_Plan,m1_Prob);
         break;
       default: 
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
 	    }
+
+      if(!m1_api){
+        G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+        exit( 7 );
+      }
+      
 	  
-	  if ( !( it = new Lisa_Iterator() ) )
-	    {
+	    if( !( it = new Lisa_Iterator() ) ){
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	      exit( 7 );
 	    }
@@ -146,26 +146,14 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>
 	    it->set_abort_at_bound( ABORT_BOUND );
 	  m1_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << m1_Plan->GetValue() << "\n";
-	  it->iterate( ngbh, OBJ_TYPE, STEPS );
+	  it->iterate( m1_api, OBJ_TYPE, STEPS );
 	  delete it;
     it = 0;
 	  
-	  switch( NGBH ){
-	    case API:
-	      m1_api->return_schedule( m1_Plan );
-	      delete m1_api;
-	      break;
-	    case SHIFT:
-	      m1_shift->return_schedule( m1_Plan );
-	      delete m1_shift;
-	      break;
-	    case PI:
-        m1_pi->return_schedule( m1_Plan );
-	      delete m1_pi;
-	      break;       
-      }
-	    
-	    
+	  m1_api->return_schedule( m1_Plan );
+	  delete m1_api;
+
+	      
 	  // append schedule to solutions
 	  m1_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nbest objective_value: " << m1_Plan->GetValue() << "\n";
@@ -200,10 +188,12 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>
 
 //**************************************************************************
 
-int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
-{
-      if ( !( os_Prob = new Lisa_OsProblem(&Values) ) )
-	{
+int NB_Iteration::osp_iter(Lisa_Values& Values,
+                           Lisa_List<Lisa_ScheduleNode>& Starters,
+                           Lisa_List<Lisa_ScheduleNode>& Results){
+    
+  Lisa_OsProblem *os_Prob = new Lisa_OsProblem(&Values);
+  if(!os_Prob ){
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
@@ -215,12 +205,13 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 						if(!Starters.next()) //stop next loop
 								jj = NUMB_PLANS;
                               
-	  if ( !( os_Plan = new Lisa_OsSchedule( os_Prob ) ) )
-	    {
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-	  os_Plan->ComputeHeadsTails( 1, 1 );
+	  
+   Lisa_OsSchedule *os_Plan = new Lisa_OsSchedule( os_Prob );
+   if (!os_Plan){
+	   G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	   exit( 7 );
+	 }
+	 os_Plan->ComputeHeadsTails( 1, 1 );
 
 	  if ( os_Prob->n != starter->get_n() )
 	    {
@@ -257,87 +248,53 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	  delete LROrder;
 
 	  // End of the schedule-construction
+    OSHOP_API_Ngbh *os_api;
 	  switch ( NGBH ){
       case PI:
-        if(!(ngbh = os_pi = new OSHOP_PI_Ngbh( os_Plan, os_Prob ))){  
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+        os_api = new OSHOP_PI_Ngbh( os_Plan, os_Prob );
 	      break;
 	    case API:   
-	      if(!(ngbh = os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob ))){  
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+	      os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob );
 	      break;
       case SHIFT: 
-	      if(!(ngbh = os_shift = new OSHOP_shift_Ngbh(os_Plan,os_Prob))){  
-          G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-          exit( 7 );
-        }
+	      os_api = new OSHOP_shift_Ngbh(os_Plan,os_Prob);
 	      break;
    /* case _3_API: /// broken ... doku says it only works with tabu search ... marc
-	      if(!(ngbh = os_api_3 = new OSHOP_3_API_Ngbh(os_Plan,os_Prob))){  
-		      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		      exit( 7 );
-	      }
+	      os_api = new OSHOP_3_API_Ngbh(os_Plan,os_Prob);
 	      break; */
 	    case _3_CR:
-	      if(!(ngbh = os_cr_3 = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case CR_API:
-	      if(!(ngbh=os_cr_api = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob);
 	      break; 
 	    case BL_API:
-	      if(!(ngbh=os_bl_api=new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api=new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob);
 	      break;   
 	    case CR_SHIFT:
-	      if(!(ngbh = os_cr_shift 
-		   = new OSHOP_cr_shift_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api = new OSHOP_cr_shift_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case BL_SHIFT:
-	      if(!(ngbh = os_bl_shift 
-		   = new OSHOP_cr_bl_shift_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api= new OSHOP_cr_bl_shift_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case CR_TST:
-	      if(!(ngbh=os_cr_tst = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      os_api = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob);
 	      break;
 	    default: 
-	      //G_ExceptionList.lthrow("wrong Neighbourhood specified in ITERATE");
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
-
 	      exit(7);
 	    }
 	  
-	  if ( !( it = new Lisa_Iterator() ) )
-	    {  
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
+     if(!os_api){  
+		   G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+		   exit( 7 );
+		 }
+      
+	   if ( !( it = new Lisa_Iterator() ) ){  
+	     G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	     exit( 7 );
+	   }
+      
 	  switch ( METHOD )
 	    {
 	    case II: it->init( II, TYPE ); break;
@@ -356,53 +313,12 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	    it->set_abort_at_bound( ABORT_BOUND );
 	  os_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << os_Plan->GetValue() << "\n";
-	  it->iterate( ngbh, OBJ_TYPE, STEPS );
+	  it->iterate( os_api, OBJ_TYPE, STEPS );
 	  delete it;
     it = 0;
-	  
-	  switch ( NGBH )
-	    {
-	    case PI:
-        os_pi->return_schedule( os_Plan );
-        delete os_pi;
-        break;
-      case API:   
-	      os_api->return_schedule( os_Plan );
-	      delete os_api;
-	      break;
-	    case SHIFT:
-	      os_shift->return_schedule( os_Plan );
-	      delete os_shift;
-	      break;
-	    case _3_API:
-	      os_cr_3->return_schedule( os_Plan );
-	      delete os_cr_3;
-	      break;
-	    case _3_CR:
-	      os_cr_3->return_schedule( os_Plan );
-	      delete os_cr_3;
-	      break;
-	    case CR_API:
-	      os_cr_api->return_schedule( os_Plan );
-	      delete os_cr_api;
-	      break; 
-	    case BL_API:
-	      os_bl_api->return_schedule( os_Plan );
-	      delete os_bl_api;
-	      break; 
-	    case CR_SHIFT:
-	      os_cr_shift->return_schedule( os_Plan );
-	      delete os_cr_shift;
-	      break;
-	    case BL_SHIFT:
-	      os_bl_shift->return_schedule( os_Plan );
-	      delete os_bl_shift;
-	      break;
-	    case CR_TST:
-	      os_cr_tst->return_schedule( os_Plan );
-	      delete os_cr_tst;
-	      break; 
-	    }
+	    
+	  os_api->return_schedule( os_Plan );
+	  delete os_api;
 
 	  // return the schedule in a file
 	  os_Plan->SetValue( CMAX );
@@ -434,16 +350,16 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 
 //**************************************************************************
 
-int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results)
-{
-      if ( !(Values.MO))
-	{
+int NB_Iteration::jsp_iter(Lisa_Values& Values,
+                           Lisa_List<Lisa_ScheduleNode>& Starters,
+                           Lisa_List<Lisa_ScheduleNode>& Results){
+  if ( !(Values.MO)){
 	  G_ExceptionList.lthrow("you must define a MO for a job-shop-problem !");
 	  exit( 7 );
 	}
 
-      if ( !( js_Prob = new Lisa_JsProblem(&Values) ) )
-	{  
+  Lisa_JsProblem *js_Prob = new Lisa_JsProblem(&Values);
+  if (!js_Prob){  
 	  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	  exit( 7 );
 	}
@@ -454,12 +370,12 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 						starter = Starters.get().actual_schedule;
 						if(!Starters.next()) //stop next loop
 								jj = NUMB_PLANS;
-						
-	  if ( !( js_Plan = new Lisa_JsSchedule( js_Prob ) ) )
-	    {  
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
+            
+		Lisa_JsSchedule *js_Plan = new Lisa_JsSchedule( js_Prob );
+	  if (!js_Plan){  
+	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	    exit( 7 );
+	  }
 	  js_Plan->ComputeHeadsTails( 1, 1 );
 	  
 	  if ( js_Prob->n != starter->get_n() )
@@ -507,124 +423,63 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	  delete LROrder;
 	  // end of schedule-construction
 
-	  switch ( NGBH )
-	    {
+    JSHOP_API_Ngbh   *js_api;
+	  switch ( NGBH ){
 	    case API:   
-	      if(!(ngbh = js_api = new JSHOP_API_Ngbh( js_Plan, js_Prob )))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_API_Ngbh( js_Plan, js_Prob );
 	      break;
 	    case PI:   
-	      if(!(ngbh = js_pi = new JSHOP_PI_Ngbh( js_Plan, js_Prob )))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_PI_Ngbh( js_Plan, js_Prob );
 	      break;
 	    case SHIFT: 
-	      if(!(ngbh= js_shift = new JSHOP_shift_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		} 
+	      js_api = new JSHOP_shift_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case TRANS: 
-	      if(!(ngbh= js_trans = new JSHOP_trans_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_trans_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case CR_TRANS: 
-	      if(!(ngbh= js_cr_trans 
-		   = new JSHOP_cr_trans_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_trans_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case CR_TRANS_MIX: 
-	      if(!(ngbh= js_cr_trans_mix 
-		   = new JSHOP_cr_trans_mix_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_trans_mix_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case SC_TRANS: 
-	      if(!(ngbh= js_sc_trans 
-		   = new JSHOP_semi_trans_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api= new JSHOP_semi_trans_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case _3_API:
-	      if(!(ngbh= js_api_3 = new JSHOP_3_API_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_3_API_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case _3_CR:
-	      if(!(ngbh= js_cr_3 = new JSHOP_3_CR_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_3_CR_Ngbh(js_Plan,js_Prob);
 	      break;	      
 	    case CR_API:
-	      if(!(ngbh=js_cr_api = new JSHOP_cr_API_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_API_Ngbh(js_Plan,js_Prob);
 	      break; 
 	    case SC_API:
-	      if(!(ngbh=js_sc_api = new JSHOP_semi_API_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_semi_API_Ngbh(js_Plan,js_Prob);
 	      break; 
 	    case BL_API:
-	      if(!(ngbh=js_bl_api=new JSHOP_cr_bl_API_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api=new JSHOP_cr_bl_API_Ngbh(js_Plan,js_Prob);
 	      break; 
 	    case CR_SHIFT:
-	      if(!(ngbh = js_cr_shift 
-		   = new JSHOP_cr_shift_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_shift_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case CR_SHIFT_MIX:
-	      if(!(ngbh = js_cr_shift_mix
-		   = new JSHOP_cr_shift_mix_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_shift_mix_Ngbh(js_Plan,js_Prob);
 	      break;
 	    case BL_SHIFT:
-	      if(!(ngbh = js_bl_shift 
-		   = new JSHOP_cr_bl_shift_Ngbh(js_Plan,js_Prob)))
-		{  
-		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-		  exit( 7 );
-		}
+	      js_api = new JSHOP_cr_bl_shift_Ngbh(js_Plan,js_Prob);
 	      break;
 	    default: 
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
-	    }
-	  
+	  }
+
+    if(!js_api){  
+		  G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+		  exit( 7 );
+		}
+      
 	  if ( !( it = new Lisa_Iterator() ) )
 	    {  
 	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
@@ -648,73 +503,12 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 	    it->set_abort_at_bound( ABORT_BOUND );
 	  js_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << js_Plan->GetValue() << "\n";
-	  it->iterate( ngbh, OBJ_TYPE, STEPS );
+	  it->iterate( js_api, OBJ_TYPE, STEPS );
 	  delete it;
     it = 0;
 	 
-	  switch ( NGBH )
-	    {
-	    case API:
-	      js_api->return_schedule( js_Plan );
-	      delete js_api;
-	      break;
-	    case PI:
-	      js_pi->return_schedule( js_Plan );
-	      delete js_pi;
-	      break;
-	    case SHIFT:
-	      js_shift->return_schedule( js_Plan );
-	      delete js_shift;
-	      break;
-	    case TRANS:
-	      js_trans->return_schedule( js_Plan );
-	      delete js_trans;
-	      break;
-	    case CR_TRANS:
-	      js_cr_trans->return_schedule( js_Plan );
-	      delete js_cr_trans;
-	      break;
-	    case CR_TRANS_MIX:
-	      js_cr_trans_mix->return_schedule( js_Plan );
-	      delete js_cr_trans_mix;
-	      break;
-	    case SC_TRANS:
-	      js_sc_trans->return_schedule( js_Plan );
-	      delete js_sc_trans;
-	      break;
-	    case _3_API:
-	      js_api_3->return_schedule( js_Plan );
-	      delete js_api_3;
-	      break;
-	    case _3_CR:
-	      js_cr_3->return_schedule( js_Plan );
-	      delete js_cr_3;
-	      break;      
-	    case CR_API:
-	      js_cr_api->return_schedule( js_Plan );
-	      delete js_cr_api;
-	      break;
-	    case SC_API:
-	      js_sc_api->return_schedule( js_Plan );
-	      delete js_sc_api;
-	      break;
-	    case BL_API:
-	      js_bl_api->return_schedule( js_Plan );
-	      delete js_bl_api;
-	      break;
-	    case CR_SHIFT:
-	      js_cr_shift->return_schedule( js_Plan );
-	      delete js_cr_shift;
-	      break;
-	    case CR_SHIFT_MIX:
-	      js_cr_shift_mix->return_schedule( js_Plan );
-	      delete js_cr_shift_mix;
-	      break;
-	    case BL_SHIFT:
-	      js_bl_shift->return_schedule( js_Plan );
-	      delete js_bl_shift;
-	      break;
-	    }
+	  js_api->return_schedule( js_Plan );
+	  delete js_api;
 
 	  // return the schedule in the file
 	  js_Plan->SetValue( OBJ_TYPE );
@@ -748,8 +542,8 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Sta
 
 
 bool NB_Iteration::configure(Lisa_ProblemType& Problem,
-			     Lisa_ControlParameters& Parameter,
-			     Lisa_Values& Values){
+			                       Lisa_ControlParameters& Parameter,
+			                       Lisa_Values& Values){
   // start-values
   NGBH = 0;
   METHOD = 0;

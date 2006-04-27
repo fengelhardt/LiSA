@@ -84,42 +84,6 @@ struct NB_Iteration {
   int i, j, k;
   int count, succ;
 
-  Lisa_1Problem            *m1_Prob;
-  Lisa_1Schedule           *m1_Plan;
-  Lisa_OsProblem           *os_Prob;
-  Lisa_OsSchedule          *os_Plan;
-  Lisa_JsProblem           *js_Prob;
-  Lisa_JsSchedule          *js_Plan;
-  Lisa_Neighbourhood       *ngbh;
-  API_Neighbourhood        *m1_api;
-  shift_Neighbourhood      *m1_shift;
-  PI_Neighbourhood         *m1_pi;
-  OSHOP_PI_Ngbh            *os_pi;
-  OSHOP_API_Ngbh           *os_api;
-  OSHOP_shift_Ngbh         *os_shift;
-  OSHOP_3_API_Ngbh         *os_api_3;
-  OSHOP_3_CR_Ngbh          *os_cr_3;
-  OSHOP_cr_API_Ngbh        *os_cr_api;
-  OSHOP_cr_bl_API_Ngbh     *os_bl_api;
-  OSHOP_cr_shift_Ngbh      *os_cr_shift;
-  OSHOP_cr_bl_shift_Ngbh   *os_bl_shift;
-  OSHOP_cr_TST_Ngbh        *os_cr_tst;
-  JSHOP_API_Ngbh           *js_api;
-  JSHOP_PI_Ngbh            *js_pi;
-  JSHOP_shift_Ngbh         *js_shift;
-  JSHOP_trans_Ngbh         *js_trans;
-  JSHOP_cr_trans_Ngbh      *js_cr_trans;
-  JSHOP_cr_trans_mix_Ngbh  *js_cr_trans_mix;
-  JSHOP_semi_trans_Ngbh    *js_sc_trans;
-  JSHOP_3_API_Ngbh         *js_api_3;
-  JSHOP_cr_API_Ngbh        *js_cr_api;
-  JSHOP_semi_API_Ngbh      *js_sc_api;
-  JSHOP_cr_bl_API_Ngbh     *js_bl_api;
-  JSHOP_cr_shift_Ngbh      *js_cr_shift;
-  JSHOP_cr_shift_mix_Ngbh  *js_cr_shift_mix;
-  JSHOP_cr_bl_shift_Ngbh   *js_bl_shift;
-  JSHOP_3_CR_Ngbh          *js_cr_3;
-  
   Lisa_Iterator	           *it;
 
   //methods
@@ -128,11 +92,21 @@ struct NB_Iteration {
                  Lisa_ControlParameters& Parameter,
 		             Lisa_Values& Values);
 
-  int one_mach_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results);
-  int osp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results);
-  int jsp_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results);
+  int one_mach_iter(Lisa_Values& Values,
+                    Lisa_List<Lisa_ScheduleNode>& Starters,
+                    Lisa_List<Lisa_ScheduleNode>& Results);
+                    
+  int osp_iter(Lisa_Values& Values,
+               Lisa_List<Lisa_ScheduleNode>& Starters,
+               Lisa_List<Lisa_ScheduleNode>& Results);
+               
+  int jsp_iter(Lisa_Values& Values,
+               Lisa_List<Lisa_ScheduleNode>& Starters,
+               Lisa_List<Lisa_ScheduleNode>& Results);
 
-  int nb_iter(Lisa_Values& Values,Lisa_List<Lisa_ScheduleNode>& Starters,Lisa_List<Lisa_ScheduleNode>& Results){
+  int nb_iter(Lisa_Values& Values,
+              Lisa_List<Lisa_ScheduleNode>& Starters,
+              Lisa_List<Lisa_ScheduleNode>& Results){
 
     if ( PROB_TYPE == ONE ) return one_mach_iter(Values, Starters, Results);
     if ( PROB_TYPE == O ) return osp_iter(Values, Starters, Results);
