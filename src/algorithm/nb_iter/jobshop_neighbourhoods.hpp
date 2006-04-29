@@ -42,7 +42,7 @@ public:
   /// the class contains 4 schedules:
   Lisa_JsSchedule  *P [4];
   
-  /// construct OSHOP_API_Ngbh
+  /// construct JSHOP_API_Ngbh
   /** with a start schedule and specified problem datas   */
   JSHOP_API_Ngbh( Lisa_JsSchedule*, Lisa_JsProblem* );
   /// destructor
