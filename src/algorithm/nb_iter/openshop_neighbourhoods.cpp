@@ -4,11 +4,13 @@
  */
  
 #include <cstdlib>
+#include <cmath>
+#include <iostream>
 #include "openshop_neighbourhoods.hpp"
 
 //**************************************************************************
 
-OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi ){
+OSHOP_Ngbh::OSHOP_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi ){
   machine1 = 1;
   witch_swap = JO;
   job1 = 0;
@@ -42,7 +44,7 @@ OSHOP_API_Ngbh::OSHOP_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi ){
 
 //**************************************************************************
 
-OSHOP_API_Ngbh::~OSHOP_API_Ngbh(){
+OSHOP_Ngbh::~OSHOP_Ngbh(){
     if( P[0] ) delete P[0];
     if( P[1] ) delete P[1];
     if( P[2] ) delete P[2];
@@ -52,251 +54,50 @@ OSHOP_API_Ngbh::~OSHOP_API_Ngbh(){
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::copy_schedule( int a , int b ){
+int OSHOP_Ngbh::copy_schedule( int a , int b ){
   *P[b]=*P[a];
   return OK;
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::accept_solution(){
+int OSHOP_Ngbh::accept_solution(){
   return copy_schedule( WORK_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
   
-int OSHOP_API_Ngbh::accept_best_ngh(){
+int OSHOP_Ngbh::accept_best_ngh(){
   return copy_schedule( BEST_NGH_SOLUTION, ORIG_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::put_orig_to_best(){
+int OSHOP_Ngbh::put_orig_to_best(){
   return copy_schedule( ORIG_SOLUTION, BEST_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::put_work_to_best_ngh(){
+int OSHOP_Ngbh::put_work_to_best_ngh(){
   return copy_schedule( WORK_SOLUTION, BEST_NGH_SOLUTION );
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::prepare_move( int typ ){
-  
-  // determs a possible move
-  // typ=ENUM : enumerativ
-  // typ=RAND : randomly
-  int test = OK;
-
-  if ( typ == RAND ){
-    // determs randomly if swap in JO oder MO
-    witch_swap = lisa_random( 1, 2, &seed );
-    if ( witch_swap == JO ){
-      
-      // determs randomly a machine:
-      machine1 = lisa_random( 1, PP->m, &seed );
-      
-      // determs randomly a job and look, if it has a predecessor
-      do{
-	    
-        do{
-          job2 = lisa_random( 1, PP->n, &seed );
-        }while ( (*PP->sij)[job2][machine1] == 0 );
-	       
-        job1 = P[0]->GetJOpred( job2, machine1 );
-	    
-      }while (( job1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
-	     
-       // is this move setting to be tabu ? :
-	     tabu_param[0][0] = JO;
-	     tabu_param[0][1] = machine1;
-	     tabu_param[0][2] = job1;
-	     tabu_param[0][3] = job2;
-       
-       // here could standing precedence constraints
-      return OK;
-    
-    }else{
-	    
-      //determs randomly a job:
-      job1 = lisa_random( 1, PP->n, &seed );
-      // determs randomly a machine and look, if it have a predecessor
-      do{
-	    
-        do{
-          machine2 = lisa_random( 1, PP->m, &seed );
-        }while ( (*PP->sij)[job1][machine2] == 0 );
-	      
-        machine1 = P[0]->GetMOpred( job1, machine2 );
-      
-      }while (( machine1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
-	     
-      // is this move setting to be tabu ? :
-	    tabu_param[0][0] = MO;
-	    tabu_param[0][1] = job1;
-	    tabu_param[0][2] = machine1;
-	    tabu_param[0][3] = machine2;
-      
-      // here could stay precedence constraints
-     return OK;
-    
-    }
-      
-  }else if ( typ == ENUM ){
-
-    int return_OK = !OK;
-    
-    while ( return_OK == !OK ){
-      
-      test = OK;
-      if (witch_swap == JO){ // swap in JO
-        job1 = P[0]->GetJOsucc( job1, machine1 );
-	      job2 = P[0]->GetJOsucc( job1, machine1 );
-	      
-        if (( job1 == 0 ) || ( job2 == 0 )){
-          machine1++;
-          
-          if ( machine1 == PP->m+1 ){
-            
-            witch_swap = MO;
-            job1 = 1;
-            machine1 = 0;
-            
-            //return !OK;
-            test = !OK;
-          }
-		  
-          if ( test==OK ){
-            job1 = P[0]->GetJOsucc( 0, machine1 );
-            job2 = P[0]->GetJOsucc( job1, machine1 );
-          }
-        }
-	      
-        if ( test==OK ){
-		   
-          //return !OK;
-          if (( (*PP->sij)[job1][machine1]==0 ) || ( (*PP->sij)[job2][machine1]==0 )) continue;
-		   
-          // is this move setting to be tabu ? :
-          tabu_param[0][0] = JO;
-          tabu_param[0][1] = machine1;
-          tabu_param[0][2] = job1;
-          tabu_param[0][3] = job2;
-          
-          //return !OK;
-          if ( use_tabulist() != OK ) continue;
-		   
-          return_OK = OK;
-        }
-      }else if (witch_swap == MO){ // swap in MO 
-	     
-        machine1 = P[0]->GetMOsucc( job1, machine1 );
-        machine2 = P[0]->GetMOsucc( job1, machine1 );
-        
-        if (( machine1 == 0 ) || ( machine2 == 0 )){
-          
-          job1++;
-          
-          if ( job1 == PP->n+1 ){
-            witch_swap = JO;
-            job1 = 0;
-            machine1 = 1;
-            //return NO_NGHBOURS;
-            test = !OK;
-          }
-          
-          if ( test==OK ){
-            machine1 = P[0]->GetMOsucc( job1, 0 );
-            machine2 = P[0]->GetMOsucc( job1, machine1 );
-          }
-        }
-	      
-        //return !OK;
-        if (( (*PP->sij)[job1][machine1]==0 ) || ( (*PP->sij)[job1][machine2]==0 )) continue;
-	      
-        // is this move setting to be tabu ? :
-	      tabu_param[0][0] = MO;
-	      tabu_param[0][1] = job1;
-	      tabu_param[0][2] = machine1;
-	      tabu_param[0][3] = machine2;
-	      
-        //return !OK;   
-        if ( use_tabulist() != OK ) continue;
-	      
-        return_OK = OK;
-      }
-
-    }
-    
-    return OK;
-
-  }
-
-  G_ExceptionList.lthrow("wrong parameter in prepare_move("+ztos(typ)+")");
-  return !OK;
-
-}
-
-//**************************************************************************
-
-int OSHOP_API_Ngbh::do_move(){
-
-  int predJ1,predM1;
-  
-  *P[1]=*P[0];
-  
-  if (witch_swap==JO){ // swap in JO
-    predM1 = P[1]->GetMOpred(job1,machine1);
-    P[1]->exclude( job1, machine1 );
-    
-    if ( P[1]->insert(job1,machine1,job2,predM1) == CYCLE ){
-	    //printf("\nnot OK by insert Job1");
-	    return !OK;
-    }
-    
-    // the following swap means, that in next time the re-move is set 
-    // to be tabu
-    const int help = tabu_param[0][2];
-    tabu_param[0][2] = tabu_param[0][3];
-    tabu_param[0][3] = help;
-    return OK;
-  }else if (witch_swap==MO){   // swap in MO
-    predJ1 = P[1]->GetJOpred(job1,machine1);
-    P[1]->exclude( job1, machine1 );
-    
-    if ( P[1]->insert(job1,machine1,predJ1,machine2) == CYCLE ){
-	    //printf("\nnot OK by insert machine1");
-	    return !OK;
-    }
-    
-    // the following swap means, that in next time the re-move is set 
-    // to be tabu
-    const int help = tabu_param[0][2];
-    tabu_param[0][2] = tabu_param[0][3];
-    tabu_param[0][3] = help;
-    return OK;
-  }
-
-  return !OK;
-}
-
-//**************************************************************************
-
-int OSHOP_API_Ngbh::anti_neighbour(){
+int OSHOP_Ngbh::anti_neighbour(){
   return OK;
 }
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::set_objective_type( int o ){
+void OSHOP_Ngbh::set_objective_type( int o ){
   objective_type = o;
 }
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::set_objective( int z, int a){
+void OSHOP_Ngbh::set_objective( int z, int a){
 #ifdef LISA_DEBUG
   if ((a<0) || (a>=4)){
     G_ExceptionList.lthrow("wrong plan in set_objective_type("+ztos(a)+")");
@@ -308,7 +109,7 @@ void OSHOP_API_Ngbh::set_objective( int z, int a){
 
 //**************************************************************************
 
-TIMETYP OSHOP_API_Ngbh::get_objective_value( int a){
+TIMETYP OSHOP_Ngbh::get_objective_value( int a){
 #ifdef LISA_DEBUG
   if ((a<0) || (a>=4)){
     G_ExceptionList.lthrow("wrong plan in get_objective_type("+ztos(a)+")");
@@ -321,7 +122,7 @@ TIMETYP OSHOP_API_Ngbh::get_objective_value( int a){
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::init_tabulist( unsigned int length ){
+int OSHOP_Ngbh::init_tabulist( unsigned int length ){
   if( tabulist ) delete tabulist;
   if( !(tabulist = new Lisa_Tabu( length )) ){
     G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
@@ -332,14 +133,14 @@ int OSHOP_API_Ngbh::init_tabulist( unsigned int length ){
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::use_tabulist(){
+int OSHOP_Ngbh::use_tabulist(){
   return tabulist->use(tabu_param[0][0],tabu_param[0][1],
                        tabu_param[0][2],tabu_param[0][3]);
 }
 
 //**************************************************************************
 
-int OSHOP_API_Ngbh::set_tabulist(){
+int OSHOP_Ngbh::set_tabulist(){
   tabulist->set(tabu_param[1][0],tabu_param[1][1],
 		            tabu_param[1][2],tabu_param[1][3]);
   return OK;
@@ -347,19 +148,19 @@ int OSHOP_API_Ngbh::set_tabulist(){
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::store_tabu_param(){
+void OSHOP_Ngbh::store_tabu_param(){
   for (int i=0; i<=3; i++ ) tabu_param[1][i] = tabu_param[0][i];
 }
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::clean_tabu_param(){
+void OSHOP_Ngbh::clean_tabu_param(){
   for (int i=0; i<4; i++ ) tabu_param[0][i] = 0;
 }
 
 //**************************************************************************
 
-void OSHOP_API_Ngbh::return_schedule( Lisa_OsSchedule *Plan ){
+void OSHOP_Ngbh::return_schedule( Lisa_OsSchedule *Plan ){
   *Plan = *(P[BEST_SOLUTION]);
 }
 
@@ -367,8 +168,162 @@ void OSHOP_API_Ngbh::return_schedule( Lisa_OsSchedule *Plan ){
 //**************************************************************************
 //**************************************************************************
 
+OSHOP_kAPI_Ngbh::OSHOP_kAPI_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi, int kk )
+                                    : OSHOP_Ngbh( Plan, PPi ),k(kk > 0 ? kk : 1){
+  prepSol = new Lisa_OsSchedule(PPi);
+  if(!prepSol){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 ); 
+  }
+  tempSol = new Lisa_OsSchedule(PPi);
+  if(!tempSol){
+    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+    exit( 7 ); 
+  }
+}
+
+//**************************************************************************
+
+OSHOP_kAPI_Ngbh::~OSHOP_kAPI_Ngbh(){
+  delete prepSol;
+  delete tempSol;
+}
+
+//**************************************************************************
+
+void OSHOP_kAPI_Ngbh::put_to_tabu_vector(Lisa_OsSchedule *one,
+                                         Lisa_OsSchedule *two){
+  const int n = one->P->n;
+  const int m = one->P->m;
+  
+  Lisa_Matrix<int>  LRone(n,m);
+  Lisa_Matrix<int>  LRtwo(n,m);
+  
+  one->write_LR(&LRone);
+  two->write_LR(&LRtwo);
+  
+  for(int i=0;i<4;i++) tabu_param[0][i] = 0;
+  int k = 0;
+  
+  //save first four positions where rank has been lowered or increased by 1
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      LRone[i][j] = LRtwo[i][j] - LRone[i][j];
+      if(LRone[i][j] == 1 || LRone[i][j] == -1){
+        tabu_param[0][k] = LRone[i][j]*(i*m + j);
+        k++;
+        if(k == 4) return;
+      }
+    }
+  }
+
+}
+
+//**************************************************************************
+
+int OSHOP_kAPI_Ngbh::prepare_move( int typ ){
+  
+  if( typ != RAND ){
+    G_ExceptionList.lthrow("Wrong parameter 'typ = "+ztos(typ)+
+                           "'in prepare_move(int typ). Only RAND supported.");
+    return !OK;  
+  }
+  
+  //copy current solution so it can be modified
+  *prepSol = *P[0];
+  *tempSol = *P[0];
+  
+  //fix 1 <= l <= k, then do l API steps
+  int l = lisa_random( 1, k, &seed );
+  
+  for(int i=0;i<l;){
+    
+    bool valid_swap = false;
+    
+    //do the swap in a machine order or job order ?
+    witch_swap = lisa_random( 1, 2, &seed ) == 1 ? MO : JO; 
+    
+    if(witch_swap == JO){
+    
+      //fix a machine (machine1) on which to swap
+      machine1 = lisa_random( 1, PP->m, &seed );
+      
+      //fix a job (job2) and its predecessor job1
+      //this is an endless loop if machine1 has only one job
+      do{
+        
+        do{
+          job2 = lisa_random( 1, PP->n, &seed );
+        }while ( (*PP->sij)[job2][machine1] == 0 );
+        job1 = tempSol->GetJOpred( job2, machine1 );
+   
+      }while (( job1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
+      
+      //try to swap
+      machine2 = tempSol->GetMOpred(job1,machine1);
+      tempSol->exclude( job1, machine1 );
+      
+      if(tempSol->insert(job1,machine1,job2,machine2) != CYCLE )
+        valid_swap = true;
+      
+    }else{
+      
+      // fix a job (job1) on which to swap
+      job1 = lisa_random( 1, PP->n, &seed );
+    
+      //fix a machine (machine2) and its predecessor machine1
+      //this is an endless loop if job1 has only one machine
+      do{
+   
+        do{
+          machine2 = lisa_random( 1, PP->m, &seed );
+        }while ( (*PP->sij)[job1][machine2] == 0 );
+     
+        machine1 = tempSol->GetMOpred(job1,machine2);
+    
+      }while (( machine1 == 0 ) || ( (*PP->sij)[job1][machine1]==0 ));
+      
+      //try to swap
+      job2 = tempSol->GetJOpred(job1,machine1);
+      tempSol->exclude( job1, machine1 );
+    
+      if(tempSol->insert(job1,machine1,job2,machine2) != CYCLE)
+	      valid_swap = true;
+        
+    }
+    
+    if(valid_swap){
+      *prepSol = *tempSol;
+      i++;
+      //prepSol->write(std::cout);
+    }else{
+      *tempSol = *prepSol;
+    }
+  }
+  
+  put_to_tabu_vector(P[0],prepSol);
+  
+  return OK;
+}
+
+//**************************************************************************
+
+int OSHOP_kAPI_Ngbh::do_move(){
+  
+  *P[1] = *prepSol;
+  
+  //invert "increase" and decrease" in tabu vector
+  for(int i=0;i<4;i++) tabu_param[0][i] = -tabu_param[0][i];
+  
+  return OK;
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
 OSHOP_3_API_Ngbh::OSHOP_3_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
   }
 
@@ -534,7 +489,7 @@ int OSHOP_3_API_Ngbh::set_tabulist()
 //**************************************************************************
 
 OSHOP_3_CR_Ngbh::OSHOP_3_CR_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     // make a order for randomly choice the operations
     if ( !(ROrd = new Lisa_Order(PP->n, PP->m)) )
@@ -851,7 +806,7 @@ void OSHOP_3_CR_Ngbh::clean_tabu_param()
 //**************************************************************************
 
 OSHOP_cr_bl_API_Ngbh::OSHOP_cr_bl_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     if ( !(cr_list_j = new int[PP->n*PP->m+1]) )
       {
@@ -1078,7 +1033,7 @@ int OSHOP_cr_bl_API_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_cr_bl_shift_Ngbh::OSHOP_cr_bl_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     cr_list_j = new Lisa_Vector<int>(PP->n*PP->m+1);
     cr_list_m = new Lisa_Vector<int>(PP->n*PP->m+1);
@@ -1353,7 +1308,7 @@ int OSHOP_cr_bl_shift_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_cr_TST_Ngbh::OSHOP_cr_TST_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     // create a randomly order of the operatins
     if ( !(ROrd = new Lisa_Order(PP->n, PP->m)) )
@@ -1514,7 +1469,7 @@ int OSHOP_cr_TST_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_cr_API_Ngbh::OSHOP_cr_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     if ( !(cr_list_j = new int[PP->n*PP->m]) )
       {
@@ -1660,7 +1615,7 @@ int OSHOP_cr_API_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_cr_shift_Ngbh::OSHOP_cr_shift_Ngbh(Lisa_OsSchedule *Plan,Lisa_OsProblem *PPi)
-                                    : OSHOP_API_Ngbh( Plan, PPi )
+                                    : OSHOP_Ngbh( Plan, PPi )
   {
     cr_list_j = new Lisa_Vector<int>(PP->n*PP->m);
     cr_list_m = new Lisa_Vector<int>(PP->n*PP->m);
@@ -1820,7 +1775,7 @@ int OSHOP_cr_shift_Ngbh::do_move()
 //**************************************************************************
 
 OSHOP_shift_Ngbh::OSHOP_shift_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
-                                  :OSHOP_API_Ngbh( Plan, PPi ){
+                                  :OSHOP_Ngbh( Plan, PPi ){
   witch_swap = JO;
   job1 = 1; job2 = 1;
   machine1 = 1; machine2 = 0;
@@ -2037,7 +1992,7 @@ int OSHOP_shift_Ngbh::do_move(){
 //**************************************************************************
 
 OSHOP_PI_Ngbh::OSHOP_PI_Ngbh(Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi):
-                            OSHOP_API_Ngbh( Plan, PPi ),
+                            OSHOP_Ngbh( Plan, PPi ),
                             order(std::max(PP->n,PP->m)+1){
   witch_swap = JO;
   job1 = job2 = 1;

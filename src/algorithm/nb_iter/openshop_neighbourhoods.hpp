@@ -20,7 +20,7 @@
     @version 2.3final
     @see Lisa_Neighbourhood
 */
-class OSHOP_API_Ngbh: public Lisa_Neighbourhood{
+class OSHOP_Ngbh: public Lisa_Neighbourhood{
 protected:
   /// tabu list
   Lisa_Tabu *tabulist;
@@ -41,11 +41,11 @@ public:
   int job1, job2;
   /// the class contains 4 schedules:
   Lisa_OsSchedule  *P [4];
-  /// construct OSHOP_API_Ngbh
+  /// construct OSHOP_Ngbh
   /** with a start schedule and specified problem datas   */
-  OSHOP_API_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
+  OSHOP_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
   /// destructor
-  ~OSHOP_API_Ngbh();
+  ~OSHOP_Ngbh();
   
   void  set_objective_type(int objective);
   void  set_objective(int objective,int schedule);
@@ -54,8 +54,8 @@ public:
   virtual int   accept_best_ngh();
   virtual int   put_orig_to_best();
   virtual int   put_work_to_best_ngh();
-  int prepare_move(int type);
-  int   do_move();
+  int prepare_move(int type) =0;
+  int   do_move() = 0;
   int   anti_neighbour();
   int   init_tabulist( unsigned int );
   int   use_tabulist();
@@ -69,6 +69,35 @@ public:
 
 //**************************************************************************
 
+/// Open-Shop kAPI Neighbourhood.
+/** This is a problem dependent k-API neighbourhood class for the open shop 
+    problem. To find a new neighbour an 1 <= l <= k is randomly fixed and l API
+    steps are done.
+    
+    @author Marc Moerig
+    @version 2.3final
+    @see Lisa_Neighbourhood
+    @see OSHOP_Ngbh
+*/
+
+class OSHOP_kAPI_Ngbh: public OSHOP_Ngbh{
+private:
+ int k;
+ Lisa_OsSchedule *prepSol,*tempSol;
+public:	
+  /// construct OSHOP_kAPI_Ngbh
+  /** with a start schedule and specified problem datas  */
+	OSHOP_kAPI_Ngbh(Lisa_OsSchedule*,Lisa_OsProblem*,int k);
+  ~OSHOP_kAPI_Ngbh();
+  
+  void put_to_tabu_vector(Lisa_OsSchedule *one,Lisa_OsSchedule *two);
+  
+	int   prepare_move(int);
+	int   do_move();
+};
+
+//**************************************************************************
+
 /// Open-Shop 3-time-API Neighbourhood.
 /** This is a problem dependent API neighbourhood class for the open shop 
     problem where we take a swap of adjacent operations on 3 different machines
@@ -76,14 +105,14 @@ public:
     
     It works only with tabusearch method !
     
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_3_API_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_3_API_Ngbh: public OSHOP_Ngbh{
 private:
   /// for the 3 proposed swaps
   /** for JO-swap:
@@ -112,14 +141,14 @@ public:
     critical way and additional we swap also the direct predecence 
     and the direct sucsessive operations on the critical way.
     
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_3_CR_Ngbh: public OSHOP_API_Ngbh{       
+class OSHOP_3_CR_Ngbh: public OSHOP_Ngbh{       
   private:
     //@{
     /// private data, needs documentation
@@ -159,14 +188,14 @@ class OSHOP_3_CR_Ngbh: public OSHOP_API_Ngbh{
 /** This is a problem dependent API neighbourhood class for the 
     open shop problem, where we take a swap only for a critical block  
     end operation.
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_cr_bl_API_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_cr_bl_API_Ngbh: public OSHOP_Ngbh{
   private:
     /// set of critical operations
     int   *cr_list_j;
@@ -194,14 +223,14 @@ class OSHOP_cr_bl_API_Ngbh: public OSHOP_API_Ngbh{
 /** This is the problem dependent SHIFT neighbourhood class for the 
     open shop problem, where we take a swap only for a critical block 
     operation.
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_cr_bl_shift_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_cr_bl_shift_Ngbh: public OSHOP_Ngbh{
   private:
     /// set of critical operations
 		Lisa_Vector<int> *cr_list_j, *cr_list_m, *direction; 
@@ -234,10 +263,10 @@ class OSHOP_cr_bl_shift_Ngbh: public OSHOP_API_Ngbh{
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
     @see OSHOP_cr_API_Ngbh
 */
-class OSHOP_cr_TST_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_cr_TST_Ngbh: public OSHOP_Ngbh{
   private:
     /// private data, needs documentation
     Lisa_Order *ROrd;
@@ -261,14 +290,14 @@ class OSHOP_cr_TST_Ngbh: public OSHOP_API_Ngbh{
 /// open shop critical-API neighbourhood
 /** This is a problem dependent API neighbourhood class for the 
     open shop problem, where we take a swap only for a critical operation.
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_cr_API_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_cr_API_Ngbh: public OSHOP_Ngbh{
   private:
     /// set of critical operations
     int   *cr_list_j;
@@ -277,7 +306,7 @@ class OSHOP_cr_API_Ngbh: public OSHOP_API_Ngbh{
 		/// number of critical operations
     int   count;     
 	public:	
-		/// construct OSHOP_API_Ngbh
+		/// construct OSHOP_Ngbh
     /** with a start schedule and specified problem datas   */
 		OSHOP_cr_API_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
 		/// destructor
@@ -293,14 +322,14 @@ class OSHOP_cr_API_Ngbh: public OSHOP_API_Ngbh{
 /// open shop critical-SHIFT neighbourhood
 /** This is a problem dependent SHIFT neighbourhood class for the 
     open shop problem where we take a swap only for critical operations.
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
 */
-class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_cr_shift_Ngbh: public OSHOP_Ngbh{
   
     /// set of critical operations
 		Lisa_Vector<int> *cr_list_j, *cr_list_m;
@@ -309,7 +338,7 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
     /// number of critical operations
 		int   count;
 	public:	
-		/// construct OSHOP_API_Ngbh
+		/// construct OSHOP_Ngbh
     /** with a start schedule and specified problem datas   */
 		OSHOP_cr_shift_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
     /// destructor
@@ -326,19 +355,19 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_API_Ngbh{
     problem, these neighbourhood shifts an arbitrary operation on one machine
     or one job.
     
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
  */
-class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_shift_Ngbh: public OSHOP_Ngbh{
   private:
     /// private data needs documentation
 		Lisa_Vector<int> *JOrd, *MOrd, *JOpos, *MOpos;
 	public:	
-		/// construct OSHOP_API_Ngbh 
+		/// construct OSHOP_Ngbh 
     /** with a start schedule and specified problem datas   */
 		OSHOP_shift_Ngbh( Lisa_OsSchedule*, Lisa_OsProblem* );
     /// destructor
@@ -357,14 +386,14 @@ class OSHOP_shift_Ngbh: public OSHOP_API_Ngbh{
     The operations to swap are determined randomly, enumeration is not
     supported.
     
-    It is inherited from the class OSHOP_API_Ngbh.
+    It is inherited from the class OSHOP_Ngbh.
 
     @author Marc Moerig
     @version 2.3final
     @see Lisa_Neighbourhood
-    @see OSHOP_API_Ngbh
+    @see OSHOP_Ngbh
  */
-class OSHOP_PI_Ngbh: public OSHOP_API_Ngbh{
+class OSHOP_PI_Ngbh: public OSHOP_Ngbh{
   private:
     // positions in job or machine order to swap
     int pos1,pos2;

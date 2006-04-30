@@ -248,44 +248,47 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 	  delete LROrder;
 
 	  // End of the schedule-construction
-    OSHOP_API_Ngbh *os_api;
+    OSHOP_Ngbh *os_ngbh;
 	  switch ( NGBH ){
       case PI:
-        os_api = new OSHOP_PI_Ngbh( os_Plan, os_Prob );
+        os_ngbh = new OSHOP_PI_Ngbh( os_Plan, os_Prob );
 	      break;
 	    case API:   
-	      os_api = new OSHOP_API_Ngbh( os_Plan, os_Prob );
+	      os_ngbh = new OSHOP_kAPI_Ngbh( os_Plan, os_Prob,1);
+	      break;
+	    case k_API:   
+	      os_ngbh = new OSHOP_kAPI_Ngbh( os_Plan, os_Prob,k);
 	      break;
       case SHIFT: 
-	      os_api = new OSHOP_shift_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_shift_Ngbh(os_Plan,os_Prob);
 	      break;
    /* case _3_API: /// broken ... doku says it only works with tabu search ... marc
-	      os_api = new OSHOP_3_API_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_3_API_Ngbh(os_Plan,os_Prob);
 	      break; */
 	    case _3_CR:
-	      os_api = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_3_CR_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case CR_API:
-	      os_api = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_cr_API_Ngbh(os_Plan,os_Prob);
 	      break; 
 	    case BL_API:
-	      os_api=new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_cr_bl_API_Ngbh(os_Plan,os_Prob);
 	      break;   
 	    case CR_SHIFT:
-	      os_api = new OSHOP_cr_shift_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_cr_shift_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case BL_SHIFT:
-	      os_api= new OSHOP_cr_bl_shift_Ngbh(os_Plan,os_Prob);
+	      os_ngbh= new OSHOP_cr_bl_shift_Ngbh(os_Plan,os_Prob);
 	      break;
 	    case CR_TST:
-	      os_api = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob);
+	      os_ngbh = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob);
 	      break;
 	    default: 
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
 	    }
 	  
-     if(!os_api){  
+     if(!os_ngbh){  
 		   G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		   exit( 7 );
 		 }
@@ -313,12 +316,12 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 	    it->set_abort_at_bound( ABORT_BOUND );
 	  os_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << os_Plan->GetValue() << "\n";
-	  it->iterate( os_api, OBJ_TYPE, STEPS );
+	  it->iterate( os_ngbh, OBJ_TYPE, STEPS );
 	  delete it;
     it = 0;
 	    
-	  os_api->return_schedule( os_Plan );
-	  delete os_api;
+	  os_ngbh->return_schedule( os_Plan );
+	  delete os_ngbh;
 
 	  // return the schedule in a file
 	  os_Plan->SetValue( CMAX );
@@ -558,96 +561,84 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   NUMB_PLANS = 1;
   NUMB_STUCKS = MAXINT;
   ABORT_BOUND = -MAXLONG;
-
+  k = 1;
+  
   it = 0;
 
   OBJ_TYPE = Problem.get_property(OBJECTIVE);
   PROB_TYPE = Problem.get_property(M_ENV);
 
-  if (!(Parameter.defined("NGBH")))
-    { 
-      G_ExceptionList.lthrow("you must define a neighbourhood in the input file");
-      return false;//exit(7);
-    }
+  if (!(Parameter.defined("NGBH"))){ 
+    G_ExceptionList.lthrow("you must define a neighbourhood in the input file");
+    return false;//exit(7);
+  }
   NGBH_St = Parameter.get_string( "NGBH" );
-  if (!(Parameter.defined("METHOD")))
-    { 
-      G_ExceptionList.lthrow("you must define a method in the input file");
-      return false;//exit(7);
-    }
+  
+  if (!(Parameter.defined("METHOD"))){ 
+    G_ExceptionList.lthrow("you must define a method in the input file");
+    return false;//exit(7);
+  }
   METHOD_St = Parameter.get_string( "METHOD" );
-  if ( Parameter.defined("PROB") )
-    PROB = Parameter.get_long( "PROB" );
-  if ( PROB < 0 )
-    {
+  
+  if ( Parameter.defined("PROB") ) PROB = Parameter.get_long( "PROB" );
+  if ( PROB < 0 ){
       G_ExceptionList.lthrow("PROB must be nonnegative");
       return false;//exit(7);
-    }
-  if ( Parameter.defined("MAX_STUCK") )
-    MAX_STUCK = Parameter.get_long( "MAX_STUCK" );
-  if ( MAX_STUCK < 1 )
-    {
-      G_ExceptionList.lthrow("MAX_STUCK must be positive");
-      return false;//exit(7);
-    } 
-  if ( Parameter.defined("TABULENGTH") )
-    TABULENGTH = Parameter.get_long( "TABULENGTH" );
-  if ( TABULENGTH < 1 )
-    {
-      G_ExceptionList.lthrow("TABULENGTH must be positive");
-      return false;//exit(7);
-    }
-  if ( Parameter.defined("NUMB_NGHB") )
-    NUMB_NGHB = Parameter.get_long( "NUMB_NGHB" );
-  if ( NUMB_NGHB < 1 )
-    {
-      G_ExceptionList.lthrow("NUMB_NGHB must be positive");
-      return false;//exit(7);
-    }
-  if ( Parameter.defined("TYPE") )
-    TYPE_St = Parameter.get_string( "TYPE" );
-  //  if ( Parameter.defined("OBJ_TYPE") )
-  //  OBJ_TYPE_St = Parameter.get_string( "OBJ_TYPE" );
-  if ( Parameter.defined("STEPS") )
-    STEPS = Parameter.get_long( "STEPS" );
-  if ( STEPS < 1 )
-    {
-      G_ExceptionList.lthrow("STEPS must be positive");
-      return false;//exit(7);
-    }
-  if ( Parameter.defined("NUMB_PROBLEMS") )
-    { 
-      NUMB_PROBLEMS = Parameter.get_long( "NUMB_PROBLEMS" );
-    }
-  if ( NUMB_PROBLEMS < 1 )
-    {
-      G_ExceptionList.lthrow("NUMB_PROBLEMS must be positive");
-      return false;//exit(7);
-    }
-    if ( Parameter.defined("NUMB_PLANS") )
-    { 
-      NUMB_PLANS = Parameter.get_long( "NUMB_PLANS" );
-    }
-  if ( NUMB_PLANS < 1 )
-    {
-      G_ExceptionList.lthrow("NUMB_PLANS must be positive");
-      return false;//exit(7);
-    }
-  if ( Parameter.defined("NUMB_STUCKS") )
-    NUMB_STUCKS = Parameter.get_long( "NUMB_STUCKS" );
-  if ( NUMB_STUCKS < 1 )
-    {
-      G_ExceptionList.lthrow("NUMB_STUCKS must be positive");
-      return false;//exit(7);
-    }
-  if ( Parameter.defined("ABORT_BOUND") )
-    ABORT_BOUND = Parameter.get_double( "ABORT_BOUND" );
+  }
+  
+  if ( Parameter.defined("MAX_STUCK") ) MAX_STUCK = Parameter.get_long( "MAX_STUCK" );
+  if ( MAX_STUCK < 1 ){
+    G_ExceptionList.lthrow("MAX_STUCK must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("TABULENGTH") ) TABULENGTH = Parameter.get_long( "TABULENGTH" );
+  if ( TABULENGTH < 1 ){
+    G_ExceptionList.lthrow("TABULENGTH must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("NUMB_NGHB") ) NUMB_NGHB = Parameter.get_long( "NUMB_NGHB" );
+  if ( NUMB_NGHB < 1 ) {
+    G_ExceptionList.lthrow("NUMB_NGHB must be positive");
+    return false;//exit(7);
+  }
+    
+  if ( Parameter.defined("TYPE") ) TYPE_St = Parameter.get_string( "TYPE" );
 
+  if ( Parameter.defined("STEPS") ) STEPS = Parameter.get_long( "STEPS" );
+  if ( STEPS < 1 ){
+    G_ExceptionList.lthrow("STEPS must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("NUMB_PROBLEMS") ) NUMB_PROBLEMS = Parameter.get_long( "NUMB_PROBLEMS" );  
+  if ( NUMB_PROBLEMS < 1 ){
+    G_ExceptionList.lthrow("NUMB_PROBLEMS must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("NUMB_PLANS") ) NUMB_PLANS = Parameter.get_long( "NUMB_PLANS" );  
+  if ( NUMB_PLANS < 1 ){
+    G_ExceptionList.lthrow("NUMB_PLANS must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("NUMB_STUCKS") ) NUMB_STUCKS = Parameter.get_long( "NUMB_STUCKS" );
+  if ( NUMB_STUCKS < 1 ){
+    G_ExceptionList.lthrow("NUMB_STUCKS must be positive");
+    return false;//exit(7);
+  }
+  
+  if ( Parameter.defined("ABORT_BOUND") ) ABORT_BOUND = Parameter.get_double( "ABORT_BOUND" );
+
+  if ( Parameter.defined("k") ) k = Parameter.get_long( "k" ); 
+  
   //set flags for algorithms
   cout << "Neighborhood : \"" << NGBH_St << "\"" << endl;
     
        if ( NGBH_St     == "API"              ) NGBH = API;
-  //else if ( NGBH_St     == "SWAP"             ) NGBH = SWAP;
+  else if ( NGBH_St     == "k_API"            ) NGBH = k_API;
   else if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
   else if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
   else if ( NGBH_St     == "CR_TRANS_MIX"     ) NGBH = CR_TRANS_MIX;
@@ -684,14 +675,14 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
     G_ExceptionList.lthrow("TYPE "+TYPE_St+" unknown.");
     return false;//exit(7);
   }
-#ifndef NB_ITER_SHUT_UP
+
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
   if ( (METHOD==SA) || (METHOD==TA) || (METHOD==SA_anti) )
     cout<<"parameters: "<< STEPS <<" STEPS "<< PROB <<" PROB "<< MAX_STUCK <<" MAX_STUCK";
   if ( METHOD == TS )
     cout<<"parameters: "<<STEPS<<" STEPS "<<TABULENGTH<<" TABULENGTH "<<NUMB_NGHB<<" NUMB_NGHB";
-#endif
+
   return true;
 }
 

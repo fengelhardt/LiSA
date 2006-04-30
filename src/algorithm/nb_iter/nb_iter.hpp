@@ -66,7 +66,7 @@ struct NB_Iteration {
   static const int BL_SHIFT     = 17;
   static const int CR_TST       = 18;
   static const int _3_CR        = 19;
-
+  static const int k_API        = 20;
   static const int TRANS        = 21;
   static const int CR_TRANS     = 22;
   static const int SC_TRANS     = 23;
@@ -81,7 +81,8 @@ struct NB_Iteration {
 
   int art_of_problem;
   int n;  // number of jobs
-  int i, j, k;
+  int k; // k for k_API or k_REINSERTION
+  int i, j;
   int count, succ;
 
   Lisa_Iterator	           *it;
