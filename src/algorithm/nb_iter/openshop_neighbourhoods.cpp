@@ -6,6 +6,11 @@
 #include <cstdlib>
 #include <cmath>
 #include <iostream>
+#include <list>
+#include <utility>
+
+using namespace std;
+
 #include "openshop_neighbourhoods.hpp"
 
 //**************************************************************************
@@ -235,7 +240,6 @@ int OSHOP_kAPI_Ngbh::prepare_move( int typ ){
   
   //fix 1 <= l <= k, then do l API steps
   int l = lisa_random( 1, k, &seed );
-  
   for(int i=0;i<l;){
     
     bool valid_swap = false;
@@ -295,7 +299,7 @@ int OSHOP_kAPI_Ngbh::prepare_move( int typ ){
     if(valid_swap){
       *prepSol = *tempSol;
       i++;
-      //prepSol->write(std::cout);
+      //prepSol->write(cout);
     }else{
       *tempSol = *prepSol;
     }
@@ -314,14 +318,84 @@ int OSHOP_kAPI_Ngbh::do_move(){
   
   //invert "increase" and decrease" in tabu vector
   for(int i=0;i<4;i++) tabu_param[0][i] = -tabu_param[0][i];
-  
+
   return OK;
 }
 
 //**************************************************************************
 //**************************************************************************
 //**************************************************************************
+	
+OSHOP_kREINSERTION_Ngbh::OSHOP_kREINSERTION_Ngbh(Lisa_OsSchedule* s,
+                                                 Lisa_OsProblem* p,int k):
+                                                 OSHOP_kAPI_Ngbh(s,p,k){}
 
+int OSHOP_kREINSERTION_Ngbh::prepare_move(int typ){
+
+  if( typ != RAND ){
+    G_ExceptionList.lthrow("Wrong parameter 'typ = "+ztos(typ)+
+                           "'in prepare_move(int typ). Only RAND supported.");
+    return !OK;  
+  }
+  
+  //copy current solution so it can be modified
+  *prepSol = *P[0];
+  *tempSol = *P[0];
+  
+  //fix 1 <= l <= k, then do l REINSERTION steps
+  int l = lisa_random( 1, k, &seed );
+  for(int i=0;i<l;){ 
+    bool valid_swap = false;
+    
+    //find a random machine and job (machine1 and job1)
+    do{
+      job1 = lisa_random( 1, PP->n, &seed );
+      machine1 = lisa_random( 1, PP->m, &seed );
+    }while((*PP->sij)[job1][machine1] == 0);
+    
+    //remove this operation from schedule
+    tempSol->exclude( job1, machine1 );
+    
+    //create a list of possible insertion positions
+    pair<int,int> pos;
+    list<pair<int,int> > poss;
+    pos.first = SOURCE;
+    do{
+      pos.second = SOURCE;
+      do{
+        poss.push_back(pos);
+        pos.second=tempSol->GetMOsucc(job1,pos.second);  
+      }while(pos.second != SINK);
+      pos.first=tempSol->GetJOsucc(pos.first,machine1);
+    }while(pos.first != SINK);
+    
+    //select one insertion randomly
+    int select = lisa_random(1,poss.size(),&seed);
+    for(int ii=1;ii<select;ii++) poss.pop_front();
+    pos = poss.front();
+    
+    //try to reinsert operation
+    if(tempSol->insert(job1,machine1,pos.first,pos.second) != CYCLE)
+	    valid_swap = true;
+
+    if(valid_swap){
+      *prepSol = *tempSol;
+      i++;
+      //prepSol->write(cout);
+    }else{
+      *tempSol = *prepSol;
+    }
+  }
+
+  put_to_tabu_vector(P[0],prepSol);
+
+  return OK;
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+	  
 OSHOP_3_API_Ngbh::OSHOP_3_API_Ngbh( Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi )
                                     : OSHOP_Ngbh( Plan, PPi )
   {
@@ -1993,7 +2067,7 @@ int OSHOP_shift_Ngbh::do_move(){
 
 OSHOP_PI_Ngbh::OSHOP_PI_Ngbh(Lisa_OsSchedule *Plan, Lisa_OsProblem *PPi):
                             OSHOP_Ngbh( Plan, PPi ),
-                            order(std::max(PP->n,PP->m)+1){
+                            order(max(PP->n,PP->m)+1){
   witch_swap = JO;
   job1 = job2 = 1;
   pos1=pos2=0;
@@ -2046,7 +2120,7 @@ int OSHOP_PI_Ngbh::prepare_move( int typ ){
     }while(pos1==pos2);
     
     //wlog pos1 < pos2
-    if(pos1 > pos2) std::swap(pos1,pos2);
+    if(pos1 > pos2) swap(pos1,pos2);
     
     job1 = order[pos1-1];    
     job2 = order[pos2-1];
@@ -2093,7 +2167,7 @@ int OSHOP_PI_Ngbh::prepare_move( int typ ){
     }while(pos1==pos2);
     
     //wlog pos1 < pos2
-    if(pos1 > pos2) std::swap(pos1,pos2);
+    if(pos1 > pos2) swap(pos1,pos2);
     
     machine1 = order[pos1-1];    
     machine2 = order[pos2-1];

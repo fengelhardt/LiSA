@@ -57,23 +57,24 @@ struct NB_Iteration {
 		                     //  SUM_WIUI, SUM_TI, SUM_WITI
   TIMETYP ABORT_BOUND;   // ABORT_BOUND = TIMETYP value
 
-  static const int API          = 11;
-  static const int SHIFT        = 12;
-  static const int _3_API       = 13;
-  static const int CR_API       = 14;
-  static const int BL_API       = 15;
-  static const int CR_SHIFT     = 16;
-  static const int BL_SHIFT     = 17;
-  static const int CR_TST       = 18;
-  static const int _3_CR        = 19;
-  static const int k_API        = 20;
-  static const int TRANS        = 21;
-  static const int CR_TRANS     = 22;
-  static const int SC_TRANS     = 23;
-  static const int SC_API       = 24;
-  static const int CR_SHIFT_MIX = 25;
-  static const int CR_TRANS_MIX = 26;
-  static const int PI           = 27;
+  static const int API           = 11;
+  static const int SHIFT         = 12;
+  static const int _3_API        = 13;
+  static const int CR_API        = 14;
+  static const int BL_API        = 15;
+  static const int CR_SHIFT      = 16;
+  static const int BL_SHIFT      = 17;
+  static const int CR_TST        = 18;
+  static const int _3_CR         = 19;
+  static const int k_API         = 20;
+  static const int TRANS         = 21;
+  static const int CR_TRANS      = 22;
+  static const int SC_TRANS      = 23;
+  static const int SC_API        = 24;
+  static const int CR_SHIFT_MIX  = 25;
+  static const int CR_TRANS_MIX  = 26;
+  static const int PI            = 27;
+  static const int k_REINSERTION = 28;
 
   static const int SingleMachine = 1;
   static const int OSP           = 2;

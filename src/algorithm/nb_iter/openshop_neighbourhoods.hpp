@@ -81,7 +81,7 @@ public:
 */
 
 class OSHOP_kAPI_Ngbh: public OSHOP_Ngbh{
-private:
+protected:
  int k;
  Lisa_OsSchedule *prepSol,*tempSol;
 public:	
@@ -94,6 +94,30 @@ public:
   
 	int   prepare_move(int);
 	int   do_move();
+};
+
+//**************************************************************************
+
+/// Open-Shop kREINSERTION Neighbourhood.
+/** This is a problem dependent k-REINSERTION neighbourhood class for the 
+    open shop problem. To find a new neighbour an 1 <= l <= k is randomly
+    fixed . Then l times an operation is excluded from the schedule and
+    randomly reinserted.
+    
+    @author Marc Moerig
+    @version 2.3final
+    @see Lisa_Neighbourhood
+    @see OSHOP_Ngbh
+*/
+
+class OSHOP_kREINSERTION_Ngbh: public OSHOP_kAPI_Ngbh{
+
+public:	
+  /// construct OSHOP_kREINSERTION_Ngbh
+  /** with a start schedule and specified problem datas  */
+	OSHOP_kREINSERTION_Ngbh(Lisa_OsSchedule*,Lisa_OsProblem*,int k);
+
+	int   prepare_move(int);
 };
 
 //**************************************************************************

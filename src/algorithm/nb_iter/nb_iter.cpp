@@ -283,6 +283,9 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 	    case CR_TST:
 	      os_ngbh = new OSHOP_cr_TST_Ngbh(os_Plan,os_Prob);
 	      break;
+	    case k_REINSERTION:
+	      os_ngbh = new OSHOP_kREINSERTION_Ngbh(os_Plan,os_Prob,k);
+	      break;        
 	    default: 
 	      G_ExceptionList.lthrow("The specified Neighbourhood does not exist");
 	      exit(7);
@@ -654,6 +657,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   else if ( NGBH_St     == "BL_SHIFT"         ) NGBH = BL_SHIFT;
   else if ( NGBH_St     == "CR_TST"           ) NGBH = CR_TST;
   else if ( NGBH_St     == "PI"               ) NGBH = PI;
+  else if ( NGBH_St     == "k_REINSERTION"    ) NGBH = k_REINSERTION;
   else{
     G_ExceptionList.lthrow("Neighbourhood "+NGBH_St+" unknown.");
     return false;//exit(7);
