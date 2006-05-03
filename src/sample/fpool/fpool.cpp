@@ -58,13 +58,12 @@ int main(int argc, char *argv[])
   for (i=0; i<runs; i++)
     {
       FP_Neighbourhood* nb=new FP_Neighbourhood(n,sigma);
-      Lisa_Iterator * it=new Lisa_Iterator();
+      Lisa_Iterator * it=new Lisa_Iterator(SA,prob0,raisestuck);
+      // Lisa_Iterator * it=new Lisa_Iterator(TS,40,30);
       cout << "\nstarting run " << i+1;
       nb->solution->random2(&seed);
       it->set_abort_at_bound(0);
-      it->set_abort_at_stuck(2*raisestuck);
-      it->init(SA,prob0,raisestuck);
-      //it->init(TS, 40, 30);      
+      it->set_abort_at_stuck(2*raisestuck);    
       it->iterate(nb, 1, steps);
       if (nb->best_solution->get_slack()<=5 )
 	o_strm << *(nb->best_solution);

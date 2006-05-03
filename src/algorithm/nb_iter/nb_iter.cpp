@@ -122,28 +122,33 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
         exit( 7 );
       }
       
-	  
-	    if( !( it = new Lisa_Iterator() ) ){
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-
-	  switch ( METHOD )
-	    {
-	    case II: it->init( II, TYPE ); break;
-	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
-	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
-	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: /*if (NUMB_NGHB < m1_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);*/
-	             it->init( TS, TABULENGTH, NUMB_NGHB, TYPE ); break;
+	  switch ( METHOD ){
+	    case II:
+        it = new Lisa_Iterator( II, TYPE );
+        break;
+	    case SA:
+        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        break;
+	    case SA_anti:
+        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
+        break;
+	    case TA:
+        it =  new Lisa_Iterator( TA, PROB, MAX_STUCK );
+        break;
+	    case TS:
+	      it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+        break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
-	    }
-	  if ( NUMB_STUCKS != MAXINT )
-	    it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG )
-	    it->set_abort_at_bound( ABORT_BOUND );
+	  }
+    
+    if(!it){
+	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	    exit( 7 );
+	  }
+    
+	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
+	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
 	  m1_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << m1_Plan->GetValue() << "\n";
 	  it->iterate( m1_api, OBJ_TYPE, STEPS );
@@ -295,29 +300,36 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 		   G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 		   exit( 7 );
 		 }
-      
-	   if ( !( it = new Lisa_Iterator() ) ){  
-	     G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	     exit( 7 );
-	   }
-      
-	  switch ( METHOD )
-	    {
-	    case II: it->init( II, TYPE ); break;
-	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
-	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
-	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: /* if (NUMB_NGHB < os_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
-                  */   it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
+
+	  switch ( METHOD ){
+	    case II:
+        it = new Lisa_Iterator( II, TYPE );
+        break;
+	    case SA:
+        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        break;
+	    case SA_anti:
+        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
+        break;
+	    case TA:
+        it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
+        break;
+	    case TS:
+        it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+        break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
-	    }
-	  if ( NUMB_STUCKS != MAXINT )
-	    it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG )
-	    it->set_abort_at_bound( ABORT_BOUND );
-	  os_Plan->SetValue( OBJ_TYPE );
+	  }
+    
+    if(!it){
+    	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	    exit( 7 );
+    }
+      
+	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
+	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
+	  
+    os_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << os_Plan->GetValue() << "\n";
 	  it->iterate( os_ngbh, OBJ_TYPE, STEPS );
 	  delete it;
@@ -486,27 +498,34 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 		  exit( 7 );
 		}
       
-	  if ( !( it = new Lisa_Iterator() ) )
-	    {  
-	      G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
-	      exit( 7 );
-	    }
-	  switch ( METHOD )
-	    {
-	    case II: it->init( II, TYPE ); break;
-	    case SA: it->init( SA, PROB, MAX_STUCK ); break;
-	    case SA_anti: it->init( SA_anti, PROB, MAX_STUCK ); break;
-	    case TA: it->init( TA, PROB, MAX_STUCK ); break;
-	    case TS: /* if (NUMB_NGHB < js_Prob->n)
-	               G_ExceptionList.lthrow("Number of neighbours should be greater",Lisa_ExceptionList::WARNING);
-                  */   it->init( TS, TABULENGTH, NUMB_NGHB, TYPE );break;
+	  switch ( METHOD ){
+	    case II:
+        it = new Lisa_Iterator( II, TYPE );
+        break;
+	    case SA:
+        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        break;
+	    case SA_anti:
+        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
+        break;
+	    case TA:
+        it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
+        break;
+	    case TS:
+        it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+        break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
-	    }
-	  if ( NUMB_STUCKS != MAXINT )
-	    it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG )
-	    it->set_abort_at_bound( ABORT_BOUND );
+	  }
+         
+	  if(it){  
+	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
+	    exit( 7 );
+	  }
+    
+	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
+	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
+    
 	  js_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << js_Plan->GetValue() << "\n";
 	  it->iterate( js_api, OBJ_TYPE, STEPS );

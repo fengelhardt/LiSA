@@ -181,20 +181,22 @@ int main(int argc, char *argv[]){
   else if(NGBH=="RPI") nbh = new Travel_RPI_Neighbourhood(&tr1);
 
   // create iteration object 
-  Lisa_Iterator it;
+  Lisa_Iterator* it;
+  
+  // init algottihm type and parameters 
+  if(METHOD==II) it = new Lisa_Iterator(METHOD,NGBH_TYPE);
+  else if(METHOD==SA||METHOD==SA_anti||METHOD==TA) it = new Lisa_Iterator(METHOD,PROB,MAX_STUCK);
+  else if(METHOD==TS) it = new Lisa_Iterator(METHOD,TABU_LENGTH,NUMB_NGB,NGBH_TYPE);
   
   // init aborts
-  it.set_abort_at_stuck(NUMB_STUCKS);
-  it.set_abort_at_bound(ABORT_BOUND);
-
-  // init algottihm type and parameters 
-  if(METHOD==II) it.init(METHOD,NGBH_TYPE);
-  else if(METHOD==SA||METHOD==SA_anti||METHOD==TA) it.init(METHOD,PROB,MAX_STUCK);
-  else if(METHOD==TS) it.init(METHOD,TABU_LENGTH,NUMB_NGB,NGBH_TYPE);
+  it->set_abort_at_stuck(NUMB_STUCKS);
+  it->set_abort_at_bound(ABORT_BOUND);
   
   //go for it ;)
-  it.iterate(nbh,1,STEPS);
+  it->iterate(nbh,1,STEPS);
 
+  delete it;
+  
   // put our best result back into our problem object
   nbh->write_best();
   

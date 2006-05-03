@@ -19,22 +19,25 @@ using namespace std;
 
 //**************************************************************************
 
-Lisa_Iterator::Lisa_Iterator(){
+Lisa_Iter::Lisa_Iter(){
+  abort_algorithm = false;
+  abort_at_bound = -MAXNUMBER;
+  abort_stuck = MAXNUMBER;
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1 ){
   time_t zeit;
   zeit = time(0);
   seed = long( zeit );
   cout<<"\nseed = "<<zeit<<"\n";
   method = NOMETHOD;
-  abort_algorithm = false;
-  abort_at_bound = -MAXNUMBER;
-  abort_stuck = MAXNUMBER;
+
   max_stuck=MAXNUMBER;
   anti_neighbour = false;
-}
-
-//**************************************************************************
-
-void Lisa_Iterator::init( int methodi, unsigned int param1 ){
   abort_algorithm = false;
   method = methodi;
   switch ( method ){
@@ -59,8 +62,15 @@ void Lisa_Iterator::init( int methodi, unsigned int param1 ){
 
 //**************************************************************************
 
-void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 ){
-  
+Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int param2 ){
+  time_t zeit;
+  zeit = time(0);
+  seed = long( zeit );
+  cout<<"\nseed = "<<zeit<<"\n";
+  method = NOMETHOD;
+
+  max_stuck=MAXNUMBER;
+  anti_neighbour = false;
   abort_algorithm = false;
   method = methodi;
   switch(method){
@@ -97,8 +107,16 @@ void Lisa_Iterator::init( int methodi, unsigned int param1, unsigned int param2 
 
 //**************************************************************************
 
-void Lisa_Iterator::init( int methodi, unsigned int param1, 
-unsigned int param2, unsigned int param3 ){
+Lisa_Iterator::Lisa_Iterator(int methodi, unsigned int param1, 
+                             unsigned int param2, unsigned int param3 ){
+  time_t zeit;
+  zeit = time(0);
+  seed = long( zeit );
+  cout<<"\nseed = "<<zeit<<"\n";
+  method = NOMETHOD;
+
+  max_stuck=MAXNUMBER;
+  anti_neighbour = false;
   abort_algorithm = false; 
   method = methodi;
   switch ( method ){
@@ -121,18 +139,6 @@ unsigned int param2, unsigned int param3 ){
       G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
       exit( 7 );
   }
-}
-
-//**************************************************************************
-
-void Lisa_Iterator::set_abort_at_stuck( int abort ){
-  abort_stuck = abort;
-}
-
-//**************************************************************************
-
-void Lisa_Iterator::set_abort_at_bound( TIMETYP abort ){
-  abort_at_bound = abort;
 }
 
 //**************************************************************************
@@ -197,9 +203,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
     case TS:
       NB->init_tabulist( tabu_lenght );
   }
-  
-  
-  
+
   if ( method != TS ){ 
     for (  ; steps; steps-- ){// iteration loop for SA, II and TA:
       
@@ -265,7 +269,6 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
                 last_break_value = 2*NB->get_objective_value(ORIG_SOLUTION);
                 stuck_since = 0;
                 t = t_first;
-                //t = t_old;
               
                 if ( steps > 5 ) decr = 1/exp( log(t/t_end) / steps );
               }
@@ -405,5 +408,28 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
   
 }
 
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_SimulatedAnnealing::Lisa_SimulatedAnnealing(const double Tstarti,
+                                                 const double Tendi,
+                                                 const COOLING_SCHEME csi,
+                                                 const double cpi,
+                                                 const long epochlengthi):
+                                                 Tstart(Tstarti),
+                                                 Tend(Tendi),
+                                                 cs(csi),
+                                                 cp(cpi),
+                                                 epochlength(epochlengthi){}
+
+//**************************************************************************
+
+void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh, 
+                                      int objective_type,
+                                      long steps){
+
+} 
+  
 //**************************************************************************
 

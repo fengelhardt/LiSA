@@ -86,7 +86,7 @@ struct NB_Iteration {
   int i, j;
   int count, succ;
 
-  Lisa_Iterator	           *it;
+  Lisa_Iter           *it;
 
   //methods
 
