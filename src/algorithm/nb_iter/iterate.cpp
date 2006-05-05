@@ -586,10 +586,10 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
 
     //write some progress
     if (!(steps%steps_per_output)){
-    cout << "OBJECTIVE= " << ngbh->get_objective_value(ORIG_SOLUTION)
+    cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << ngbh->get_objective_value(ORIG_SOLUTION)
          << "  best= " << best_objective 
          << "  ready= " << setw(3) << (int)  (100. * steps / maxsteps) 
-         << "%  temp= " << setprecision(5) << T
+         << "%  temp= " << setprecision(4) << T
           << endl;
     }
 
