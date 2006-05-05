@@ -105,7 +105,7 @@ void Lisa_Classify::parse_bibentry(const std::string& entry){
   }
   
   // remove line break - "not a line break" markers
-  unsigned int pos = copy.find(std::string("\\\\"),0);
+  size_t pos = copy.find(std::string("\\\\"),0);
   while(pos != std::string::npos){
     copy.erase(pos,2);
     pos = copy.find(std::string("\\\\"),pos);
@@ -208,8 +208,8 @@ void Lisa_Classify::parse_annote(Lisa_ClassifyRecord *const record){
     
     if(level == 0 && c == ','){
 
-      const unsigned int pos1 = problem.find('$',0);
-      const unsigned int pos2 = problem.find('$',pos1+1);
+      const size_t pos1 = problem.find('$',0);
+      const size_t pos2 = problem.find('$',pos1+1);
       
       if(pos2 == std::string::npos){
         G_ExceptionList.lthrow("Parse erros in entry "
