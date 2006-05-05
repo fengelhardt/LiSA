@@ -40,6 +40,10 @@ protected:
   Lisa_Iter();
   
 public:
+  
+  ///destructor
+  virtual ~Lisa_Iter(){}
+  
   /// start the algorithm
   /** Run the initialized metaheuristic with given neighbourhood and 
       objective function. The third parameter is the maximal number of 
