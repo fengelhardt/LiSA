@@ -7,7 +7,8 @@
 #include <time.h>
 #include <math.h>
 
-#include <iostream>         
+#include <iostream>
+#include <iomanip>
 #include <fstream>
 
 #include "../../main/global.hpp"
@@ -23,6 +24,10 @@ Lisa_Iter::Lisa_Iter(){
   abort_algorithm = false;
   abort_at_bound = -MAXNUMBER;
   abort_stuck = MAXNUMBER;
+  
+  time_t zeit = time(0);
+  seed = long( zeit );
+  cout<<"\nseed = "<<zeit<<"\n";
 }
 
 //**************************************************************************
@@ -30,10 +35,7 @@ Lisa_Iter::Lisa_Iter(){
 //**************************************************************************
 
 Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1 ){
-  time_t zeit;
-  zeit = time(0);
-  seed = long( zeit );
-  cout<<"\nseed = "<<zeit<<"\n";
+
   method = NOMETHOD;
 
   max_stuck=MAXNUMBER;
@@ -63,10 +65,7 @@ Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1 ){
 //**************************************************************************
 
 Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int param2 ){
-  time_t zeit;
-  zeit = time(0);
-  seed = long( zeit );
-  cout<<"\nseed = "<<zeit<<"\n";
+
   method = NOMETHOD;
 
   max_stuck=MAXNUMBER;
@@ -109,10 +108,7 @@ Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int par
 
 Lisa_Iterator::Lisa_Iterator(int methodi, unsigned int param1, 
                              unsigned int param2, unsigned int param3 ){
-  time_t zeit;
-  zeit = time(0);
-  seed = long( zeit );
-  cout<<"\nseed = "<<zeit<<"\n";
+
   method = NOMETHOD;
 
   max_stuck=MAXNUMBER;
@@ -412,23 +408,193 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
 //**************************************************************************
 //**************************************************************************
 
-Lisa_SimulatedAnnealing::Lisa_SimulatedAnnealing(const double Tstarti,
-                                                 const double Tendi,
-                                                 const COOLING_SCHEME csi,
-                                                 const double cpi,
-                                                 const long epochlengthi):
-                                                 Tstart(Tstarti),
-                                                 Tend(Tendi),
-                                                 cs(csi),
-                                                 cp(cpi),
-                                                 epochlength(epochlengthi){}
+Lisa_SimulatedAnnealing::Lisa_SimulatedAnnealing(Lisa_ControlParameters* CP){
+
+  if(CP->defined("TSTART") == Lisa_ControlParameters::DOUBLE){
+    Tstart = CP->get_double("TSTART");
+  }else{
+    G_ExceptionList.lthrow("'TSTART' undefined, using default.",Lisa_ExceptionList::WARNING);
+    Tstart = 20;
+  }
+  
+  if(CP->defined("TEND") == Lisa_ControlParameters::DOUBLE){
+    Tend = CP->get_double("TEND");
+  }else{
+    G_ExceptionList.lthrow("'TEND' undefined, using default.",Lisa_ExceptionList::WARNING);
+    Tend = 0.9;
+  }
+  
+  if(Tstart <= Tend) Tstart = 2*Tend; 
+  cout << "TSTART= " << Tstart << endl;
+  cout << "TEND= " << Tend << endl;
+  
+  if(CP->defined("COOLSCHEME") == Lisa_ControlParameters::STRING){
+    if(CP->get_string("COOLSCHEME") == "LUNDYANDMEES") cs = LUNDYANDMEES;
+    else if(CP->get_string("COOLSCHEME") == "GEOMETRIC") cs = GEOMETRIC;
+    else if(CP->get_string("COOLSCHEME") == "LINEAR") cs = LINEAR;
+    else{
+      G_ExceptionList.lthrow("'COOLSCHEME' undefined, using default.",Lisa_ExceptionList::WARNING);
+      cs = LUNDYANDMEES;
+    }
+  }else{
+    G_ExceptionList.lthrow("'TEND' undefined, using default.",Lisa_ExceptionList::WARNING);
+    cs = LUNDYANDMEES;
+  }
+  
+  if(CP->defined("COOLPARAM") == Lisa_ControlParameters::DOUBLE){
+    cp = CP->get_double("COOLPARAM");
+  }else{
+    G_ExceptionList.lthrow("'COOLPARAM' undefined, using default.",Lisa_ExceptionList::WARNING);
+    cp = 0.0005;
+  }
+  
+  switch(cs){
+    case GEOMETRIC:
+      if(cp > 1) cp = 1;
+      if(cp < 0) cp = 0;
+      cout << "COOLSCHEME= GEOMETRIC" << endl;
+      break;
+    case LUNDYANDMEES:
+      if(cp < 0) cp = 0;
+      cout << "COOLSCHEME= LUNDYANDMEES" << endl;
+      break;
+    case LINEAR:
+      if(cp < 0) cp = 0;
+      cout << "COOLSCHEME= LINEAR" << endl;
+      break;
+  }
+  
+  cout << "COOLPARAM= " << cp << endl;
+  
+  if(CP->defined("EPOCH") == Lisa_ControlParameters::LONG){
+    epochlength = CP->get_long("EPOCH");
+  }else{
+    G_ExceptionList.lthrow("'EPOCH' undefined, using default.",Lisa_ExceptionList::WARNING);
+    epochlength = 100;
+  }
+  cout << "EPOCH= " << epochlength << endl;
+  
+  if(CP->defined("NUMB_NGHB") == Lisa_ControlParameters::LONG){
+    numberneighbours = CP->get_long("NUMB_NGHB");
+  }else{
+    G_ExceptionList.lthrow("'NUMB_NGHB' undefined, using default.",Lisa_ExceptionList::WARNING);
+    numberneighbours = 1;
+  }
+  cout << "NUMB_NGBH= " << numberneighbours << endl;
+  
+}
 
 //**************************************************************************
 
 void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh, 
                                       int objective_type,
-                                      long steps){
+                                      long maxsteps){
+  ngbh->put_orig_to_best();
+  ngbh->set_objective_type(objective_type);
+  ngbh->set_objective(objective_type,ORIG_SOLUTION);
+  TIMETYP best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
+  
+  //initialize progress meter
+  cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
+  
+  long steps = 0;
+  long stuck = 0;
+  long steps_per_output = (long) ((double) maxsteps / (double) PROGRESS_INDICATOR_STEPS);
+  double T = Tstart;
+  
+  while(true){
+    
+    //do we need to abort ?
+    if(steps > maxsteps) return;
+    if(stuck > abort_stuck){
+      G_ExceptionList.lthrow("Iteration stuck for too long and abortet. You might want to set other parameters.",
+                             Lisa_ExceptionList::WARNING);
+      return; 
+    }
+    if(best_objective <= abort_at_bound){
+      G_ExceptionList.lthrow("Iteration aborted early because objective reached given lower bound. You might want to set other parameters.",
+                             Lisa_ExceptionList::WARNING);
+      return;
+    }
+    if(abort_algorithm){
+      return;
+    }
+    
+    //do we need to restart cooling ?
+    if(T < Tend) T = Tstart;
+    
+    
+    //generate some neighbours
+    for(int i=0;i<numberneighbours;){
+      
+      TIMETYP best_nb_objective = 0;
+      
+      int test = ngbh->prepare_move(RAND);
+      ngbh->set_objective(objective_type,ORIG_SOLUTION);
+      
+      if(test == NO_NGHBOURS){
+        G_ExceptionList.lthrow("Iteration aborted because Neighbourhood did return NO_NGHBOURS.",
+                               Lisa_ExceptionList::WARNING);
+        return;      
+      }else if(test == OK){
+        if(ngbh->do_move() == OK){
+          
+          ngbh->set_objective(objective_type,WORK_SOLUTION);
+          if(i==0 || best_nb_objective > ngbh->get_objective_value(WORK_SOLUTION)){
+            ngbh->put_work_to_best_ngh();
+            best_nb_objective = ngbh->get_objective_value(BEST_NGH_SOLUTION);
+          }
+          
+          i++;
+        }
+      }
+    }
+        
+    
+    TIMETYP improvement = ngbh->get_objective_value(ORIG_SOLUTION)
+                        - ngbh->get_objective_value(BEST_NGH_SOLUTION);
+        
+    bool accept = (improvement > 0);
+    if(!accept) accept = ( lisa_random(0,1000000,&seed ) < 1000000*exp(improvement/T));
+        
+    if(accept){
+      ngbh->accept_best_ngh();
+            
+      if(ngbh->get_objective_value(ORIG_SOLUTION) < best_objective){
+        stuck = 0;
+        best_objective = ngbh->get_objective_value(ORIG_SOLUTION);
+        ngbh->put_orig_to_best(); 
+      }
+    }
+    
+    steps++;
+        
+    //reduce temperature
+    if(!(steps%epochlength)){
+      switch(cs){
+        case GEOMETRIC:
+          T = cp*T;
+          break;
+        case LUNDYANDMEES:
+          T = T/(1+cp*T);
+          break;
+       case LINEAR:
+          T = T - cp*Tend;
+          break;
+      }
+    }
 
+    //write some progress
+    if (!(steps%steps_per_output)){
+    cout << "OBJECTIVE= " << ngbh->get_objective_value(ORIG_SOLUTION)
+         << "  best= " << best_objective 
+         << "  ready= " << setw(3) << (int)  (100. * steps / maxsteps) 
+         << "%  temp= " << setprecision(5) << T
+          << endl;
+    }
+
+    stuck++;
+  }
 } 
   
 //**************************************************************************

@@ -5,6 +5,7 @@
 #include "neighbour.hpp"
 #include "../../main/global.hpp"
 #include "../../misc/except.hpp"
+#include "../../lisa/ctrlpara.hpp"
 
 //*****************************************************************************
 
@@ -15,6 +16,7 @@ enum{NOMETHOD /** none  */ =0
     ,TA /** treshold accepting */
     ,TS /** tabu search */
     ,SA_anti /** simulated annealing with antineighbour */
+    ,SA_new /** new implementation of simulated annealing */
     };
 
 //*****************************************************************************
@@ -181,13 +183,13 @@ public:
   //how to reduce temperature
   /** GEOMETRIC:    T = cp*T             ( 0 < cp < 1 )
       LUNDYANDMEES: T = T/(1+cp*T)       ( 0 < cp )
-      LINEAR:       T = T - cp*Tfinal    ( 0 < cp ) */
+      LINEAR:       T = T - cp*Tend    ( 0 < cp ) */
   enum COOLING_SCHEME {GEOMETRIC,LUNDYANDMEES,LINEAR};
   
 
 private:
-  //the current,start and end temperature
-  double T,Tstart,Tend;
+  //the start and end temperature
+  double Tstart,Tend;
   
   //the cooling scheme to apply
   COOLING_SCHEME cs;
@@ -198,12 +200,12 @@ private:
   //how many steps before reducing temperature
   long epochlength;
   
+  //how many neighbours to generate in each step
+  int numberneighbours;
 public:
-  Lisa_SimulatedAnnealing(const double Tstarti, const double Tendi,
-                          const COOLING_SCHEME csi, const double cpi,
-                          const long epochlengthi);
+  Lisa_SimulatedAnnealing(Lisa_ControlParameters* CP);
 
-  void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long steps);  
+  void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);  
 };
 
 //*****************************************************************************

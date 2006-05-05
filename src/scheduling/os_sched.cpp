@@ -74,13 +74,14 @@ void Lisa_OsSchedule::operator=(const Lisa_OsSchedule &other)
        (*MOpred)=*other.MOpred;
        (*JOpred)=*other.JOpred;
        (*head)=*other.head;
-       if (other.tail)
-         {
+       if (other.tail){
            if (!tail)
              tail =new Lisa_Matrix<TIMETYP>(P->n+1,P->m+1);
            (*tail)=*other.tail;
-         }        
-       else if (tail) delete tail;
+       }else if(tail){
+         delete tail;
+         tail = 0;
+       }
        ScheduleOK=other.ScheduleOK;
        ComputeTails=other.ComputeTails;
        ComputeHeads=other.ComputeHeads;

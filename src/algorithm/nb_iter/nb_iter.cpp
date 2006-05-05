@@ -132,6 +132,8 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
 	    case SA_anti:
         it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
         break;
+      case SA_new:
+        it = new Lisa_SimulatedAnnealing(CP);
 	    case TA:
         it =  new Lisa_Iterator( TA, PROB, MAX_STUCK );
         break;
@@ -310,6 +312,9 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
         break;
 	    case SA_anti:
         it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
+        break;
+      case SA_new:
+        it = new Lisa_SimulatedAnnealing(CP);
         break;
 	    case TA:
         it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
@@ -508,6 +513,9 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 	    case SA_anti:
         it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
         break;
+      case SA_new:
+        it = new Lisa_SimulatedAnnealing(CP);
+        break;
 	    case TA:
         it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
         break;
@@ -569,6 +577,8 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 bool NB_Iteration::configure(Lisa_ProblemType& Problem,
 			                       Lisa_ControlParameters& Parameter,
 			                       Lisa_Values& Values){
+  CP = &Parameter;
+                               
   // start-values
   NGBH = 0;
   METHOD = 0;
@@ -591,13 +601,13 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   PROB_TYPE = Problem.get_property(M_ENV);
 
   if (!(Parameter.defined("NGBH"))){ 
-    G_ExceptionList.lthrow("you must define a neighbourhood in the input file");
+    G_ExceptionList.lthrow("you must define NGBH in the input file");
     return false;//exit(7);
   }
   NGBH_St = Parameter.get_string( "NGBH" );
   
   if (!(Parameter.defined("METHOD"))){ 
-    G_ExceptionList.lthrow("you must define a method in the input file");
+    G_ExceptionList.lthrow("you must define METHOD in the input file");
     return false;//exit(7);
   }
   METHOD_St = Parameter.get_string( "METHOD" );
@@ -687,6 +697,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   else if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
   else if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
   else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
+  else if ( METHOD_St   == "SimulatedAnnealingNew"  ) METHOD   = SA_new;
   else{
     G_ExceptionList.lthrow("Method "+METHOD_St+" unknown.");
     return false;//exit(7);
@@ -699,6 +710,9 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
     return false;//exit(7);
   }
 
+  if( NGBH == k_API || NGBH == k_REINSERTION)
+    cout << endl << "k: " << k;
+  
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
   if ( (METHOD==SA) || (METHOD==TA) || (METHOD==SA_anti) )

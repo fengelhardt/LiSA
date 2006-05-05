@@ -87,7 +87,8 @@ struct NB_Iteration {
   int count, succ;
 
   Lisa_Iter           *it;
-
+  Lisa_ControlParameters *CP;
+  
   //methods
 
   bool configure(Lisa_ProblemType& Problem,
