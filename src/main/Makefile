@@ -68,6 +68,7 @@ install:
 	mkdir -p $(DATAPATH)
 	cp $(SOURCEPATH)/main/default.xml $(DATAPATH)
 	cp $(SOURCEPATH)/xml/LiSA.dtd $(DATAPATH)
+	cp $(SOURCEPATH)/xml/LiSA.dtd $(BINPATH)
 	mkdir -p $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bib $(DATAPATH)/classify
 	cp $(SOURCEPATH)/classify/classify.bst $(DATAPATH)/classify
