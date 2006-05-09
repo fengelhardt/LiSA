@@ -579,7 +579,7 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
           T = T/(1+cp*T);
           break;
        case LINEAR:
-          T = T - cp*Tend;
+          T = T - cp*Tstart;
           break;
       }
     }

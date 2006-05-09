@@ -187,7 +187,7 @@ public:
   //how to reduce temperature
   /** GEOMETRIC:    T = cp*T             ( 0 < cp < 1 )
       LUNDYANDMEES: T = T/(1+cp*T)       ( 0 < cp )
-      LINEAR:       T = T - cp*Tend    ( 0 < cp ) */
+      LINEAR:       T = T - cp*Tstart    ( 0 < cp ) */
   enum COOLING_SCHEME {GEOMETRIC,LUNDYANDMEES,LINEAR};
   
 
