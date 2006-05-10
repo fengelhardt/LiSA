@@ -22,14 +22,14 @@ bool abort_algorithm;
 //**************************************************************************
 
 void set_abort(int i) 
-    {  
+    {   
       abort_algorithm=true;
       cout << "\nSignal " << i << " received, writing results." << endl;
     } 
 
 //**************************************************************************
       
-Lisa_GenericBb::Lisa_GenericBb() 
+Lisa_GenericBeamACO::Lisa_GenericBeamACO() 
     {
       output_bound=MAXNUMBER;
       steps=steps_ok=0;
@@ -40,7 +40,7 @@ Lisa_GenericBb::Lisa_GenericBb()
 
 //**************************************************************************
 
-void Lisa_GenericBb::count_steps()
+void Lisa_GenericBeamACO::count_steps()
  {
    steps++;
    if ((steps % 10000) == 1000)
@@ -50,7 +50,7 @@ void Lisa_GenericBb::count_steps()
 //**************************************************************************
 
 // WARNING! The following two functions have to be replaced for Windows!
-void Lisa_GenericBb::run_start()
+void Lisa_GenericBeamACO::run_start()
  {
    signal(SIGINT, &set_abort);
    upper_bound=given_upper_bound;
@@ -59,7 +59,7 @@ void Lisa_GenericBb::run_start()
 
 //**************************************************************************
 
-void Lisa_GenericBb::run_stop()
+void Lisa_GenericBeamACO::run_stop()
  {
    signal(SIGINT, SIG_DFL);
  }  

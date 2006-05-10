@@ -6,49 +6,34 @@
     <beta/>
     <gamma objective="Sum_Ci"/>
   </problem>
-  <values m="8" n="8">
+  <values m="6" n="3">
     <processing_times model="lisa_native">{ 
- {  38  65  82   9  25  25  48  23 } 
- {   5  10  53   9  57  88  48  59 } 
- {  10  86  19  36  68  87  19  17 } 
- {  75  39  61  49  36   8  41   1 } 
- {  18  51  28  19  41  92  19  96 } 
- {  67  58  51  76  63  46  32  43 } 
- {  63  72  34   3  67   3  86  10 } 
- {  61   4  93  76   9  16  28  18 } 
+ {  36  57  38  86  82   9 } 
+ {  39  19  92  19  19  10 } 
+ {  58  61  72  86  51  34 } 
 } 
 </processing_times>
     <operation_set model="lisa_native">{ 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
- {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1 } 
 } 
 </operation_set>
   </values>
   <controls>
-    <parameter type="integer" name="BEAM_WIDTH" value="10"/>
-    <parameter type="integer" name="STEPS" value="10"/>
+    <parameter type="integer" name="BEAM_WIDTH" value="100"/>
+    <parameter type="integer" name="STEPS" value="50"/>
     <parameter type="real" name="LOWER_BOUND" value="0"/>
-    <parameter type="real" name="UPPER_BOUND" value="3876"/>
+    <parameter type="real" name="UPPER_BOUND" value="1e+06"/>
     <parameter type="real" name="CONVERGENCE_FACTOR" value="0.9"/>
     <parameter type="real" name="EVAPORATION_RATE" value="0.7"/>
-    <parameter type="string" name="EXTENSION_STRATEGY" value="MED"/>
+    <parameter type="string" name="EXTENSION_STRATEGY" value="LDS"/>
   </controls>
-  <schedule m="8" n="8" semiactive="yes">
+  <schedule m="6" n="3" semiactive="yes">
     <plan model="lisa_native">{ 
- {  13  14  12   2   3   6  11   8 } 
- {   1   2  13   3  10  11  12   9 } 
- {   2  10   1   7   9   8   3   6 } 
- {  11   4   5   9   8   3   7   1 } 
- {   5   7   2   4   6   9   1  10 } 
- {  10  12   8  11  13   5   9   7 } 
- {   6   5   9   1  11   2  10   3 } 
- {  12   1  10   8   2   4   6   5 } 
+ {   2   1   6   3   5   4 } 
+ {   3   5   1   6   4   2 } 
+ {   4   2   3   1   6   7 } 
 } 
 </plan>
   </schedule>

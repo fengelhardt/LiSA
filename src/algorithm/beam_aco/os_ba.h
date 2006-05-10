@@ -50,7 +50,7 @@ public:
 
 	long Hash;
 
-/// Index dieses Planes in der Menge allSchedules
+	/// Index dieses Planes in der Menge allSchedules
 	int	indexInAllSchedules;
 
 
@@ -73,15 +73,16 @@ public:
 			int n=Schedule->OSP->n;
 			int m=Schedule->OSP->m;
 
-			Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(n,m);
-			Schedule->write_LR(retLR);
+			Lisa_Matrix<int> * LR=new Lisa_Matrix<int>(n,m);
+			Schedule->write_LR(LR);
 			Hash=0;
 			for (int i=1;i<=n;i++) {
 				for (int j=1;j<=m;j++) {
-					Hash+=(*retLR)[i-1][j-1]*(Hash+3)*7+551*i+456*j;
+					Hash+=(*LR)[i-1][j-1]*(Hash+3)*7+551*i+456*j;
 					Hash=Hash&234252478;
 				}
 			}
+				delete LR;
 		}
 		return Hash;
 	}
@@ -101,7 +102,7 @@ public:
 	}
 
 	bool operator>(const ScheduleValuePair &other ) const {
-			if (sortbyValue)
+		if (sortbyValue)
 			return (Value> other.Value);
 		else
 			return Hash > other.Hash;
@@ -154,96 +155,96 @@ public:
 
 };
 
-
-class OS_BA: public Lisa_GenericBb{
+ 
+class OS_BA: public Lisa_GenericBeamACO{
 private:
 
 
-/// Wendet lokale Suche an, zurückgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
-bool  apply_local_seach(Lisa_OsSchedule * schedule);
+	/// Wendet lokale Suche an, zurückgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
+	bool  apply_local_seach(Lisa_OsSchedule * schedule);
 
 
-/// ACO Parameter:
+	/// ACO Parameter:
 
-/// Trial Parameter: t_ij bezeichnet die Wahrscheinlichkeit, dass Operation i von Operation j ausgeführt wird.
-double ** TIJ;
+	/// Trial Parameter: t_ij bezeichnet die Wahrscheinlichkeit, dass Operation i von Operation j ausgeführt wird.
+	double ** TIJ;
 
-/// Liefert den Zugriff auf TIJ mit Lisa-Operationen.
-double get_tij(int i1,int j1, int i2, int j2) {
-int i=P->m*i1+j1;
-int j=P->m*i2+j2;
-return TIJ[i][j];
-}
+	/// Liefert den Zugriff auf TIJ mit Lisa-Operationen.
+	double get_tij(int i1,int j1, int i2, int j2) {
+		int i=P->m*i1+j1;
+		int j=P->m*i2+j2;
+		return TIJ[i][j];
+	}
 
-/// Fester Parameter für die Updates der pheromone Werte.
-double evaporationRate; // p el [0,1];
+	/// Fester Parameter für die Updates der pheromone Werte.
+	//double evaporationRate; // p el [0,1];
 
-/// Aktualisiert die Pheromone Werte entspreched der besten bislang gefundenen Lösung.
-void applyPheromoneUpdate(Lisa_OsSchedule *);
+	/// Aktualisiert die Pheromone Werte entspreched der besten bislang gefundenen Lösung.
+	void applyPheromoneUpdate(Lisa_OsSchedule *);
 
-/// cf=0 bei Start des Algo, cf=1 bei Konvergenz (verwendet TIJ)
-double computeConvergenceFactor();
+	/// cf=0 bei Start des Algo, cf=1 bei Konvergenz (verwendet TIJ)
+	double computeConvergenceFactor();
 
-/// Setzt alle Einträge der TIJ auf 0.5
-void resetPheromoneValues();
+	/// Setzt alle Einträge der TIJ auf 0.5
+	void resetPheromoneValues();
 
-/// Zählt alle benutzen Pläne (debug only zur Vermeidung von zu vielen new ohne delete
-int numberOfUsedSchedules;
-/// Anzahl der verfügbaren Pläne (debug only zur Vermeidung von zu vielen new ohne delete
-int maxNumberOfSchedules;
-/// Feste Liste von Plänen zur Vermeidung von Speicherproblemen. In den
-/// Algorithmen werden stets Verweise auf diese Pläne benutzt.
-Lisa_OsSchedule ** allSchedules;
+	/// Zählt alle benutzen Pläne (debug only zur Vermeidung von zu vielen new ohne delete
+	int numberOfUsedSchedules;
+	/// Anzahl der verfügbaren Pläne (debug only zur Vermeidung von zu vielen new ohne delete
+	int maxNumberOfSchedules;
+	/// Feste Liste von Plänen zur Vermeidung von Speicherproblemen. In den
+	/// Algorithmen werden stets Verweise auf diese Pläne benutzt.
+	Lisa_OsSchedule ** allSchedules;
 
-/// Leeres Schedule zur Simulation von clear()
-Lisa_OsSchedule * cleanSchedule;
+	/// Leeres Schedule zur Simulation von clear()
+	// Lisa_OsSchedule * cleanSchedule;
 
-/// Löscht den Zugriff auf alle Pläne.
-void clear_schedule_list();
+	/// Löscht den Zugriff auf alle Pläne.
+	void clear_schedule_list();
 
-/// Zeiger auf nächsten freien Speicherplatz in allSchedules.
-int * nextFreeSchedule;
+	/// Zeiger auf nächsten freien Speicherplatz in allSchedules.
+	int * nextFreeSchedule;
 
-/// Zeiger auf vorherigen freien Speicherplatz in allSchedules.
-int * lastFreeSchedule;
+	/// Zeiger auf vorherigen freien Speicherplatz in allSchedules.
+	int * lastFreeSchedule;
 
-/// Zeiger auf nächsten Schedule in allSchedules.
-int * nextSchedule;
+	/// Zeiger auf nächsten Schedule in allSchedules.
+	int * nextSchedule;
 
-/// Liefert den nächsten freien Plan.
-int get_new_schedule();
+	/// Liefert den nächsten freien Plan.
+	int get_new_schedule();
 
-/// Löscht den Plan mit der angegebenen id.
-void delete_schedule(int schedule_id);
+	/// Löscht den Plan mit der angegebenen id.
+	void delete_schedule(int schedule_id);
 
-/// Beam Width
-int k_bw;
+	/// Beam Width
+	int k_bw;
 
-/// Max. number of extensions.
-int k_ext;
+	/// Max. number of extensions.
+	int k_ext;
 
 	/// TODO: Array von Plänen, die immer wieder verwendet werden, erzeugen. Diese Pläne werden bei der
 	/// Initialisierung erzeugt und dann immer wieder verwendet. 
-	Lisa_OsSchedule *bestSchedule;
-	
+	//Lisa_OsSchedule *bestSchedule;
+
 	///Bewertungsfunktion für partielle Lösungen (zunächst nur Zielfunktionswert, später ACO-Parameter).
 	double rating(Lisa_OsSchedule* schedule);
-	
+
 	///Einzelschritt bei der Beam-Suche: jedes Element des Beam wird erweitert.
 	void beam_step();
-	
+
 	/// Zur Initialisierung und Weiterbenutzung der Zufallsfunktion.
 	long seed;
 	//void beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<Lisa_OsSchedule*> *sList);
-// Anfügen von einer Operation, max k_ext oft.
-void beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList);
+	// Anfügen von einer Operation, max k_ext oft.
+	void beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList);
 
 	int currentStep;
 	int lastStep;
-	
+
 	/// Enthält die Menge der aktuellen Teillösungen.
-//	Lisa_List<Lisa_OsSchedule*> *Beam;
-Lisa_List<ScheduleValuePair> *Beam;
+	//	Lisa_List<Lisa_OsSchedule*> *Beam;
+	Lisa_List<ScheduleValuePair> *Beam;
 
 	int maxBeamWidth;
 	int maxExtensions;
@@ -262,37 +263,32 @@ Lisa_List<ScheduleValuePair> *Beam;
 	Lisa_OsProblem * P;
 	/// the second schedule used as a backup copy:
 	Lisa_OsSchedule * Schedule;  
-	
-		/// startet einen beam search Durchlauf
+
+	/// startet einen beam search Durchlauf
 	void run_beam_search();
 
 public:  
-  // Parameter
-	/*
-	 <integer name="BEAM_WIDTH" caption="Beamweite" default="100"/>
-    <real name="LOWER_BOUND" caption="Untere Schranke" default="0"/>
-    <real name="UPPER_BOUND" caption="Obere Schranke" default="1e+06"/>
-    <choice name="EXTENSION_STRATEGIE" caption="Bestimmung der Beam Extensions">
-      <item name="MED"/>
-      <item name="LDS"/>
-    </choice>
-    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="50"/>
-    <real name="CONVERGENCE_FACTOR" caption="Konvergenzfaktor fuer Neustart" default="0.9"/>
-    <real name="EVAPORATION_RATE" caption="evaporationRate" default="0.7" />
-*/
-	int para_BEAM_WIDTH;
-	double para_LOWER_BOUND;
-	double para_UPPER_BOUND;
-	int para_EXTENSION_STRATEGY;
-	int para_STEPS;
-	double para_CONVERGENCE_FACTOR;
-	double para_EVAPORATION_RATE;
+
 	/// constructor
 	OS_BA();
-	/// exclude reverse schedules (only for O||C_max)
-	void inline set_exclude_reverse(bool i) { exclude_reverse=i; }  
-	/// start of the recursion
-	void run(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Matrix<int>*> *results);
+	
+	// Parameter:
+	
+	/// Beamweite
+	int para_BEAM_WIDTH;
+	///Untere Schranke
+	double para_LOWER_BOUND;
+	/// Obere Schranke
+	double para_UPPER_BOUND;
+	///Bestimmung der Beam Extensions (1==MED, 2==LDS)
+	int para_EXTENSION_STRATEGY;
+	/// Anzahl Durchlaeufe
+	int para_STEPS;
+	///Konvergenzfaktor fuer Neustart
+	double para_CONVERGENCE_FACTOR;
+	/// evaporationRate
+	double para_EVAPORATION_RATE;
+	
 	/// startet aco beam search
 	void run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Matrix<int>*> *results);
 };           

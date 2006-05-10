@@ -21,164 +21,61 @@ using namespace std;
 // Zur Nutzung von pgraph
 class Lisa_Values G_Values;
 
-/// Ein Schedule mit einer zugeh√∂rigen Bewertungsfunktion.
-/*
-class ScheduleValuePair : public Lisa_Object {
-
-public:
-
-ScheduleValuePair() {
-Schedule=NULL;
-Value=0;
-Hash=-1;
-sortbyValue=true;
-indexInAllSchedules=0;
-}
-
-ScheduleValuePair(Lisa_OsSchedule * currentSchedule,double rating, int scheduleIndex) {
-Schedule=currentSchedule;
-Value=rating;
-Hash=-1;
-sortbyValue=true;
-indexInAllSchedules=scheduleIndex;
-} 
-Lisa_OsSchedule *Schedule;
-
-double Value;
-
-long Hash;
-
-/// Index dieses Planes in der Menge allSchedules
-int	indexInAllSchedules;
-
-
-/// True, wenn Value bei dem Operator < verwendet werden soll (sonst Hash). Das hat Einfluss auf die 
-/// Sortierfunktion.
-bool sortbyValue;
-
-
-/// Zum L√∂schen des Schedules per Hand
-void delete_schedule() {
-if (Schedule!=NULL) {
-delete Schedule;
-Schedule=NULL;
-}
-}
-
-/// Erzeugt aus dem Schedule einen eindeutigen Hashwert.
-long get_hash() {
-if (Hash==-1) {
-int n=Schedule->OSP->n;
-int m=Schedule->OSP->m;
-
-Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(n,m);
-Schedule->write_LR(retLR);
-Hash=0;
-for (int i=1;i<=n;i++) {
-for (int j=1;j<=m;j++) {
-Hash+=(*retLR)[i-1][j-1]*(Hash+3)*7+551*i+456*j;
-Hash=Hash&234252478;
-}
-}
-}
-return Hash;
-}
-
-bool operator<(const ScheduleValuePair &other ) const {
-if (sortbyValue)
-return (Value< other.Value);
-else
-return Hash < other.Hash;
-}
-
-bool operator<=(const ScheduleValuePair &other ) const {
-if (sortbyValue)
-return (Value<= other.Value);
-else
-return Hash <= other.Hash;
-}
-
-bool operator>(const ScheduleValuePair &other ) const {
-if (sortbyValue)
-return (Value> other.Value);
-else
-return Hash > other.Hash;
-}
-
-bool operator>=(const ScheduleValuePair &other ) const {
-if (sortbyValue)
-return (Value>= other.Value);
-else
-return Hash >= other.Hash;
-}
-
-
-bool operator==(ScheduleValuePair const & other)const {
-return (&other==this);
-}
-
-bool operator!=(ScheduleValuePair const & other)const {
-return (&other!=this);
-}
-
-
-
-
-void write(std::ostream & strm) const {
-strm << "ScheduleValuePair" << std::endl;
-}
-
-
-void read(std::istream& strm) 
-{
-
-}
-
-};*/
-
 template class Lisa_List<ScheduleValuePair>;
-
 
 
 //**************************************************************************
 
 ///Bewertungsfunktion.
 double OS_BA::rating(Lisa_OsSchedule* schedule) {
-
+	/*
 	double lowerBound=0;
 	double pCount=0;
 	double maxP=0;
 	int noOperations=0;
 	for (int i=1;i<=schedule->P->n;i++) {
-		double ci=0;
-		for (int j=1;j<=schedule->P->m;j++) {
-			if (!schedule->exists(i,j)) {
-				double pij=(*(P->time))[i][j];
-				noOperations++;
-				ci+=pij;
-				pCount+=pij;
-				if (maxP<pij)
-					maxP=pij;
-			}
-		}
-		lowerBound+=ci;
+	double ci=0;
+	for (int j=1;j<=schedule->P->m;j++) {
+	if (!schedule->exists(i,j)) {
+	double pij=(*(P->time))[i][j];
+	noOperations++;
+	ci+=pij;
+	pCount+=pij;
+	if (maxP<pij)
+	maxP=pij;
 	}
-
-
-	schedule->SetValue(SUM_CI);
-
-	/*
-	if (noOperations>P->n*P->m/2.0)
-	return schedule->GetValue()-lowerBound;
-	else
-	return schedule->GetValue();
+	}
+	lowerBound+=ci;
+	}
 	*/
 
-	//return (schedule->GetValue()-lowerBound);
-	//return schedule->GetValue()+((double)lisa_random(0,100,&seed))/100.0;
+
+	schedule->SetValue(zfn_type);
 	return schedule->GetValue();
 
-	// Zielfunktion soll erst gegen Ende der 
+
+	//should be sophisticated for objectoves other than C_MAX
+	/*
+	TIMETYP x_bound = 0;
+	TIMETYP y_bound = 0;
+	TIMETYP r = 0;
+	for (int i = 0; i< schedule->P->n;i++){
+	for (int j = 0; j < schedule->P->m;j++){
+	r += (*(schedule->P->time))[i+1][j+1];
+	}
+	x_bound = MAX(r,x_bound);
+	r=0;
+	}
+	for (int j = 0; j< schedule->P->m;j++){
+	for (int i = 0; i < schedule->P->n;i++){
+	r += (*(schedule->P->time))[i+1][j+1];
+	}
+	y_bound = MAX(r,y_bound);
+	r=0;
+	}
+
+	return std::max<TIMETYP>((x_bound+y_bound)*schedule->P->m,(x_bound+y_bound)*schedule->P->n);
+	*/
 }
 
 
@@ -189,67 +86,50 @@ OS_BA::OS_BA()
 	maxExtensions=10;
 	currentBeamWidth=0;
 	currentExtensions=0;
-	bestSchedule=NULL;
-	
-		/*
-	 <integer name="BEAM_WIDTH" caption="Beamweite" default="100"/>
-    <real name="LOWER_BOUND" caption="Untere Schranke" default="0"/>
-    <real name="UPPER_BOUND" caption="Obere Schranke" default="1e+06"/>
-    <choice name="EXTENSION_STRATEGIE" caption="Bestimmung der Beam Extensions">
-      <item name="MED"/>
-      <item name="LDS"/>
-    </choice>
-    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="50"/>
-    <real name="CONVERGENCE_FACTOR" caption="Konvergenzfaktor fuer Neustart" default="0.9"/>
-    <real name="EVAPORATION_RATE" caption="evaporationRate" default="0.7" />
-*/
+	//	bestSchedule=NULL;
+
 	para_BEAM_WIDTH=100;
 	para_LOWER_BOUND=0;
 	para_UPPER_BOUND=1e+06;
 	para_EXTENSION_STRATEGY=1;
 	para_STEPS=50;
-	para_CONVERGENCE_FACTOR=0.9;
-	para_EVAPORATION_RATE=0.7;
+	para_CONVERGENCE_FACTOR=0.98;
+	para_EVAPORATION_RATE=0.3;
 } 
 
 
 void OS_BA::clear_schedule_list() {
-
-	int maxNoOfSchedules=(k_bw+1)*(k_ext+1);
-	for (int i=0;i<maxNoOfSchedules;i++) {
+	// int maxNoOfSchedules=(k_bw+1)*(k_ext+1);
+	for (int i=0;i<maxNumberOfSchedules;i++) {
 		nextFreeSchedule[i]=i+1;
 		lastFreeSchedule[i]=i-1;
 		nextSchedule[i]=-1; // noch kein freier Plan verfügbar.
 	}
+	nextFreeSchedule[maxNumberOfSchedules-1]=0;
+	lastFreeSchedule[0]=maxNumberOfSchedules-1;
 
 }
 
+
 int OS_BA::get_new_schedule() {
-
 	int retVal=nextFreeSchedule[0];
-
 	if (retVal==0) {
 		cout << "Error: Max Number of available Schedules reached" << endl;
-
 	}
 	numberOfUsedSchedules++;
 	if (retVal>0) {
-	 // Lisa_OsSchedule * newSchedule=allSchedules[retVal];
-		//*newSchedule=*cleanSchedule; // (oder folgendes)
 		allSchedules[retVal]->clear();
-		//*(allSchedules[retVal])=*cleanSchedule;
 		int next=nextFreeSchedule[retVal];
 		nextFreeSchedule[0]=nextFreeSchedule[retVal];
 		if (next>0) 
 			lastFreeSchedule[next]=0;
 	}
-	//cout << "new Schedules: no=" << numberOfUsedSchedules << " of " << maxNumberOfSchedules << endl;
-
 	return retVal;
 }
 
 
 /// Der Plan mit der angegebenen id wird wieder zur Neubenutzung freigegeben.
+/// Delete wird dabei nicht ausgeführt.
 void OS_BA::delete_schedule(int schedule_id) {
 	int nextFree=nextFreeSchedule[0]; 
 	nextFreeSchedule[0]=schedule_id;
@@ -257,7 +137,6 @@ void OS_BA::delete_schedule(int schedule_id) {
 	lastFreeSchedule[nextFree]=schedule_id;
 	lastFreeSchedule[schedule_id]=0;
 	numberOfUsedSchedules--;
-	//cout << "del Schedules: no=" << numberOfUsedSchedules << " of " << maxNumberOfSchedules << endl;
 }
 
 
@@ -334,31 +213,26 @@ void  OS_BA::applyPheromoneUpdate(Lisa_OsSchedule * schedule) {
 
 
 // ******************************* ab hier neu *************************
-void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Matrix<int>*> * results) 
-{ 
-
-	my_list=results;
+void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Matrix<int>*> * results)  { 	
+run_start();
+my_list=results;
 	zfn_type=zfn;
 	P=Pi;
 
 	/// Beam Weite:
 	//k_bw=MAX(10,(Pi->n)*(Pi->m)/10);
-	
 	k_bw= para_BEAM_WIDTH;
 
-	
 
 	/// Max. number of extensions.
 	//k_ext=(Pi->n+1)*(Pi->m+1)/2;
 	k_ext=(Pi->n+1)*(Pi->m+1);
 
-	cout << "k_bw=" << k_bw << endl;
-
 	/// Initialisierung der Zufallsfunktion.
 	seed=123456L; 
 
 	/// Initialisierung der Pheromon-Werte
-	evaporationRate=0.2;
+	//evaporationRate=0.2;
 
 	int maxNoElements=(Pi->n+1)*(P->m+1);
 	TIJ=new double*[maxNoElements];
@@ -368,102 +242,156 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 
 	resetPheromoneValues();
 
-	int maxNoOfSchedules=(k_bw+1)*(k_ext+1);
-	maxNumberOfSchedules=maxNoOfSchedules;
+	maxNumberOfSchedules=(k_bw+1)*(k_ext+1);
+
+	cout << "Allocate Memory for " << maxNumberOfSchedules << " Schedules" << endl;
 	numberOfUsedSchedules=0;
-	allSchedules=new Lisa_OsSchedule*[maxNoOfSchedules];
-cleanSchedule=new Lisa_OsSchedule(Pi);
-	
+	allSchedules=new Lisa_OsSchedule*[maxNumberOfSchedules];
+	//cleanSchedule=new Lisa_OsSchedule(Pi);
+
 	/// Zeiger auf nächsten freien Speicherplatz in allSchedules.
-	nextFreeSchedule=new int[maxNoOfSchedules];
+	nextFreeSchedule=new int[maxNumberOfSchedules];
 
 	/// Zeiger auf nächsten Schedule in allSchedules.
-	nextSchedule=new int[maxNoOfSchedules];
+	nextSchedule=new int[maxNumberOfSchedules];
 
-	lastFreeSchedule=new int[maxNoOfSchedules];
+	lastFreeSchedule=new int[maxNumberOfSchedules];
 
-	bestSchedule=new Lisa_OsSchedule(Pi);
-	for (int i=0;i<maxNoOfSchedules;i++) {
+	// bestSchedule=new Lisa_OsSchedule(Pi);
+	for (int i=0;i<maxNumberOfSchedules;i++) {
 		allSchedules[i]=new Lisa_OsSchedule(Pi);
 		allSchedules[i]->ComputeHeadsTails(true, true);
 		nextFreeSchedule[i]=i+1;
 		lastFreeSchedule[i]=i-1;
 		nextSchedule[i]=-1; // noch kein freier Plan verfügbar.
 	}
-	nextFreeSchedule[maxNoOfSchedules-1]=0;
-	lastFreeSchedule[0]=maxNoOfSchedules-1;
+	nextFreeSchedule[maxNumberOfSchedules-1]=0;
+	lastFreeSchedule[0]=maxNumberOfSchedules-1;
 
+	cout << "Memory for " << maxNumberOfSchedules << " Schedules Allocated " << endl;
 
 	lastStep=(P->n)*(P->m);	
-	
-	// Ende der Initialisierung
-	
-	Lisa_OsSchedule* currentBestSchedule=new Lisa_OsSchedule(Pi);
 
+	// Ende der Initialisierung
+
+// Bester Plan
+// in Paper als S_bs bezeichnet
+	Lisa_OsSchedule* bestSchedule=new Lisa_OsSchedule(Pi);
+	bool bestScheduleIsEmpty=true; 
 	double bestSumCi=-1;
-	
+
 	cout << "ConvergenceFactor=" << computeConvergenceFactor() << endl;
 
-  for (int i=1; i<=para_STEPS;i++) {
-	//	for (int i=1; i<2;i++) {
-	  cout << "********* step "<< i << " ****** OBJECTIVE " << bestSumCi << "********" << endl;
-		run_beam_search();
-		Beam->reset(); 
-		if (Beam->length()>0) 
-		 do {
-		 		bool needApply=false;
-		  Lisa_OsSchedule* currentSchedule=Beam->get().Schedule;
-		  currentSchedule->SetValue(SUM_CI);
-		  // Nötig: Test, ob bestSchedule wirklich alle Elemente enthält.
-		  int operationCount=0;	for (int i=1;i<=P->n;i++) for (int j=1;j<=P->m;j++) {if (currentSchedule->exists(i,j)) operationCount++; }
-			// ende Anzahl der Operationen zählen:
-			if (operationCount==P->n*P->m) {
-			  //cout << "currentValue=";
-				while (apply_local_seach(currentSchedule)) {
-					//cout << " : "<< currentSchedule->GetValue() << " ";
-				}
-				//cout << currentSchedule->GetValue() << endl;
+// Bester Plan seit dem letzten Reset der Pheromone Values
+// im Paper als s_rb bezeichnet
+	Lisa_OsSchedule* bestTempSchedule=new Lisa_OsSchedule(Pi);
+	bool bestTempScheduleIsEmpty=true; 
 
-				if (bestSumCi<0) {
-					bestSumCi=currentSchedule->GetValue();
-					needApply=true;	
-				}
-				if (bestSumCi>currentSchedule->GetValue()) {
-					bestSumCi=currentSchedule->GetValue();
-					needApply=true;	
-				}
-				cout << "OBJECTIVE= " << bestSumCi << endl;
-				if (needApply) {
-				cout << "OBJECTIVE= " << bestSumCi << endl;
-				  //cout << "new " << bestSumCi << endl;
-					*currentBestSchedule=*currentSchedule;
+bool bs_update=false;
+
+	for (int i=1; i<=para_STEPS;i++) {
+		//	for (int i=1; i<2;i++) {
+		cout << "********* step "<< i << " ****** OBJECTIVE " << bestSumCi << "********" << endl;
+		run_beam_search();
+		if(abort_algorithm)
+		  break;
+		Beam->reset(); 
+		Lisa_OsSchedule* bestScheduleInBeam=NULL;
+		double bestObjectiveInBeam=-1; 
+
+		if (Beam->length()>0) 
+			do {
+				Lisa_OsSchedule* currentSchedule=Beam->get().Schedule;
+				currentSchedule->SetValue(zfn_type);
+				// Nötig: Test, ob bestSchedule wirklich alle Elemente enthält.
+				int operationCount=0;	for (int i=1;i<=P->n;i++) for (int j=1;j<=P->m;j++) {if (currentSchedule->exists(i,j)) operationCount++; }
+				// ende Anzahl der Operationen zählen:
+				if (operationCount==P->n*P->m) {
+					while (apply_local_seach(currentSchedule)) {
+						//cout << " : "<< currentSchedule->GetValue() << " ";
+					}
 					
-					applyPheromoneUpdate(currentSchedule);
-					double cf=computeConvergenceFactor();
-					cout << "ConvergenceFactor=" << cf << endl;
-					if (cf>	para_CONVERGENCE_FACTOR)  {//0.7 ist zu klein 
-					  	cout << "resetPheromoneValues()" << endl;
-  					resetPheromoneValues();						
+					if(bestScheduleInBeam==NULL) {
+					  bestScheduleInBeam=currentSchedule;
+						bestObjectiveInBeam=bestScheduleInBeam->GetValue();
+					} else {
+					  if (bestObjectiveInBeam>currentSchedule->GetValue()) {
+						  bestScheduleInBeam=currentSchedule;
+							bestObjectiveInBeam=currentSchedule->GetValue();
 						}
-	      }	
-			} 
-		} while(Beam->next());
-		cout << "OBJECTIVE= " << bestSumCi << endl;
-	delete Beam;
- }
+					}
+			  }
+			}  while(Beam->next());
+					
+					
+					if (bestScheduleIsEmpty) {
+						cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
+						bestSumCi=bestObjectiveInBeam;
+						*bestSchedule=*bestScheduleInBeam;
+						bestScheduleIsEmpty=false;
+					} else {
+						if(bestSumCi>bestObjectiveInBeam) {
+						  cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
+						  bestSumCi=bestObjectiveInBeam;
+						  *bestSchedule=*bestScheduleInBeam;
+						}
+					}
+					
+		     if (bestTempScheduleIsEmpty) {
+						*bestTempSchedule=*bestScheduleInBeam;
+						bestTempScheduleIsEmpty=false;
+				bestTempSchedule->SetValue(zfn_type);
+						cout << "new bestTempSchedule: objective="<< bestTempSchedule->GetValue() << endl;
+					} else {
+						if(bestTempSchedule->GetValue()>bestObjectiveInBeam) {
+						cout << "new bestTempSchedule: objective=" << bestObjectiveInBeam << endl;
+						  *bestTempSchedule=*bestScheduleInBeam;
+							
+						}
+					}
+
+        if (bs_update) 
+			    applyPheromoneUpdate(bestTempSchedule);
+	      else
+			    applyPheromoneUpdate(bestSchedule);
+
+        double cf=computeConvergenceFactor();	
+				cout << "ConvergenceFactor=" << cf << endl;
+				if (cf>	para_CONVERGENCE_FACTOR)  {
+						cout << "cf>	para_CONVERGENCE_FACTOR bs_update="<< bs_update << endl;
+				  if (bs_update) {
+						cout << "resetPheromoneValues()" << endl;
+  					resetPheromoneValues();			
+					  bestTempScheduleIsEmpty=true;
+						bs_update=false;
+					} else {
+					  bs_update=true;
+					}
+					}
+
+			cout << "OBJECTIVE= " << bestSumCi << endl;
+			if(abort_algorithm)
+				break;
+		}
 
 
 	// Schreiben der Resultate:
 	// es wird nur ein Ergebnis zurückgeliefert.
-	if (currentBestSchedule!=NULL) {
+	if (bestSchedule!=NULL) {
 		Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(P->n,P->m);
-		currentBestSchedule->write_LR(retLR);
+		bestSchedule->write_LR(retLR);
 		cout << "Return: " << * retLR << endl;
-		currentBestSchedule->SetValue(SUM_CI);
-		//cout << "Return Objective= " << currentBestSchedule->GetValue();
+		bestSchedule->SetValue(zfn_type);
 		results->append(retLR);
 	}
-}
+
+	delete Beam;
+	delete[] TIJ;
+
+	delete	nextFreeSchedule;
+	delete nextSchedule;
+	delete lastFreeSchedule;
+} 
 
 
 void OS_BA::run_beam_search() {
@@ -490,13 +418,15 @@ void OS_BA::run_beam_search() {
 
 /// Erweiterung des Beams.
 void OS_BA::beam_step() {
+	if(abort_algorithm)
+			return;
 	currentStep++;
-//	cout << "OS_BA::beam_step currentStep=" << currentStep << endl;
+	//	cout << "OS_BA::beam_step currentStep=" << currentStep << endl;
 	Lisa_List<int>  *sList=new Lisa_List<int>();
 	Beam->reset();
 	if (Beam->length()==0) {
-	cout << "ERROR in OS_BA::beam_step(): Beam is empty" << endl;
-return;
+		cout << "ERROR in OS_BA::beam_step(): Beam is empty" << endl;
+		return;
 	}
 	do {
 		beam_append(Beam->get().Schedule,sList);
@@ -511,8 +441,8 @@ return;
 		do {
 			int scheduleIndex=sList->get();
 			Lisa_OsSchedule*currentSchedule=allSchedules[scheduleIndex];		
-			ScheduleValuePair * newPair=new ScheduleValuePair(currentSchedule, rating(currentSchedule),scheduleIndex);
-			extensions->append(*newPair);
+			ScheduleValuePair newPair(currentSchedule, rating(currentSchedule),scheduleIndex);
+			extensions->append(newPair);
 		} while(sList->next());
 
 		if (extensions->length()>0) {
@@ -560,59 +490,32 @@ return;
 				extensionsAsNormals->reset();
 				int count=0;
 
-				*bestSchedule=*(extensionsAsNormals->get().Schedule);
-
-				// debug only: Anzahl der Operationen zählen:
-				int operationCount=0;	
-				for (int i=1;i<=P->n;i++) 
-					for (int j=1;j<=P->m;j++) {
-						if (bestSchedule->exists(i,j))
-							operationCount++;
+				do{
+					count++;
+					if(count<k_bw) {
+						Beam->append(extensionsAsNormals->get());
 					}
-
-					//if (currentStep!=operationCount)
-					//bestSchedule->SetValue(SUM_CI);
-					//int objective=(int)(bestSchedule->GetValue());
-					//if (operationCount==30 && objective==1164)
-					//	cout << " opDiff=" << currentStep- operationCount << endl;
-					// ende debug only
-
-
-					// cout << "OBJECTIVE= " << bestSchedule->GetValue() << "  " << (int)(((double)currentStep/lastStep)*100)<< "%"<< endl;
-					do{
-						count++;
-						if(count<k_bw) {
-							Beam->append(extensionsAsNormals->get());
-			}
-						else {
-							ScheduleValuePair svp=extensionsAsNormals->get();
-							delete_schedule(svp.indexInAllSchedules);
-						}
-					} 
-					while(extensionsAsNormals->next());
+					else {
+						ScheduleValuePair svp=extensionsAsNormals->get();
+						delete_schedule(svp.indexInAllSchedules);
+					}
+				} 
+				while(extensionsAsNormals->next());
 			}
 
-			delete extensions;
 			delete extensionsAsNormals;
-
-			//	if (currentStep<=1) 
-			//	beam_step();
-
-
-	//cout << " currentStep=" << currentStep << "  lastStep=" << lastStep << endl;
-
-//			if (currentStep<=lastStep) 
-//				beam_step();
-
 		}
+
 	} else {
-	cout << "ERROR: sList is empty" << endl; 
+		cout << "ERROR: sList is empty" << endl; 
+		      abort_algorithm=true;
+				return;
 	}
-		delete sList;
-	
-	// cout << " currentStep=" << currentStep << "  lastStep=" << lastStep << endl;
-			if (currentStep<lastStep) 
-				beam_step();
+	delete extensions;
+	delete sList;
+
+	if (currentStep<lastStep) 
+		beam_step();
 
 }
 
@@ -621,31 +524,32 @@ return;
 /// sList erweitern
 void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 
-if (solutionPart==NULL) {
-cout << "ERROR in OS_BA::beam_append: solutionPart==NULL" << endl;
-return;
-} 
-
-int k_ext_temp=10;
-	if( para_EXTENSION_STRATEGY==1) {
-	//Straegie MED	
-	k_ext_temp=MAX(4,(P->n*P->m-currentStep)/2);
-	if (k_ext_temp>k_ext)
-		k_ext_temp=k_ext;
-		} else {
-	// stategie LDS:
-	k_ext_temp=MAX(1,(P->n*P->m)-currentStep);
-	if (currentStep>(P->n*P->m)/20)
-	k_ext_temp=2;
-	}
+	if (solutionPart==NULL) {
+		cout << "ERROR in OS_BA::beam_append: solutionPart==NULL" << endl;
+		return;
+	} 
 	
+	int k_ext_temp=10;
+	if( para_EXTENSION_STRATEGY==1) {
+		//Straegie MED	
+		k_ext_temp=MAX(4,(P->n*P->m-currentStep)/2);
+		if (k_ext_temp>k_ext)
+			k_ext_temp=k_ext;
+	} else {
+		// stategie LDS:
+		k_ext_temp=MAX(1,(P->n*P->m)-currentStep);
+		if (currentStep>(P->n*P->m)/20)
+			k_ext_temp=2;
+	}
+
 	Lisa_Matrix<int> * LR=new Lisa_Matrix<int>(P->n,P->m);
 	solutionPart->write_LR(LR);
 
 	int *predi=new int[2*solutionPart->P->n];
 	int *predj=new int[2*solutionPart->P->m];
 
-// direkte Vorgänger der Einfügeposition bestimmen.
+	// direkte Vorgänger der Einfügeposition bestimmen. Diese Bestimmung ist notwendig, da
+	// Operationen stets angefügt werden.
 	for (int j=1;j<=solutionPart->P->m;j++) {
 		int woi=0;
 		int maxVal=0;
@@ -673,12 +577,9 @@ int k_ext_temp=10;
 
 	double* EarliestStartingTimesI=new double[P->n];
 	double* EarliestStartingTimesJ=new double[P->m];
-	double* MinTIJ_I=new double[P->n];
-	double* MinTIJ_J=new double[P->m];
 
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		double maxi=0;
-		double min_tij=-1;
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			double tes=solutionPart->GetHead(i,j);
 			if (tes>0)
@@ -687,7 +588,6 @@ int k_ext_temp=10;
 				maxi=tes;
 		}
 		EarliestStartingTimesI[i-1]=maxi;
-		MinTIJ_I[i-1]=min_tij;
 	}
 	for (int j=1;j<=solutionPart->P->m;j++) {
 		double maxj=0;
@@ -700,7 +600,8 @@ int k_ext_temp=10;
 		}
 		EarliestStartingTimesJ[j-1]=maxj;
 	}
-	double sum_n_oi=0;
+
+	double sum_n_oi=0; // Zur Normalisierung der Einträge 
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) { 
@@ -710,259 +611,112 @@ int k_ext_temp=10;
 	}
 
 	// Pheromone Parameter
-	double alpha=2;
+	double alpha=2; // Resultiert in tijMIn*tijMIn.
 	double sum_min_tij=0;
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) { 
 				double tijMIn=0.5;
 				for (int k=1;k<=solutionPart->P->n;k++) {
-				  if (!solutionPart->exists(k,j) && k!=i) {
-				  	tijMIn=MIN(tijMIn, get_tij(i-1,j-1,k-1,j-1));
-				}
+					if (!solutionPart->exists(k,j) && k!=i) {
+						tijMIn=MIN(tijMIn, get_tij(i-1,j-1,k-1,j-1));
+					}
 				}
 				for (int l=1;l<=solutionPart->P->m;l++) {
-				if (!solutionPart->exists(i,l) && j!=j) {
-				  	tijMIn=MIN(tijMIn, get_tij(i-1,j-1,i-1,l-1));
-				}
+					if (!solutionPart->exists(i,l) && j!=j) {
+						tijMIn=MIN(tijMIn, get_tij(i-1,j-1,i-1,l-1));
+					}
 				}
 				sum_min_tij+=tijMIn*tijMIn*1/(MAX(EarliestStartingTimesI[i-1],EarliestStartingTimesJ[j-1])+1)/sum_n_oi;
 			}
 		}
 	}
 
-
-/*
-	// es wird ein Faktor berechnet, der für die Konvergenzfaktoren garantiert, dass nicht zu viele Teilpläne
-	// erzeugt werden
-	for (int i=1;i<=solutionPart->P->n;i++) {
-		for (int j=1;j<=solutionPart->P->m;j++) {
-			// Es kommen nur zwei Vorgängeroperationen in Frage:
-			// o(i,predj[j]) und o(predi[i],j)
-			// 0: nicht, 0.5 weiss nicht, 1 ja
-			double p1=0;
-			if (predj[j-1]>0) {
-				p1=get_tij(i-1,j-1,i-1,predj[j-1]-1)-0.5;
-			}
-			double p2=0;
-			if (predi[i-1]>0){
-				p2=get_tij(i-1,j-1,predi[i-1],j-1)-0.5;
-			}
-			double p=p1*p2*2.0+1; // p=0, oij wird hier eingefügt, p=1 oij wird später eingefügt
-		}
-	}
-	*/
-
 	// T_ec earliest completion time:
-
-	// CIJ bestimmen:
 	int newScheduleCount=1; // Zählt alle neu hinzugefügten Pläne
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) {
 				long rand=lisa_random(1,10000,&seed);			
 				double tijMIn=0.5;
-				
 				for (int k=1;k<=solutionPart->P->n;k++) {
-				if (!solutionPart->exists(k,j) && k!=i) {
-				  	tijMIn=MIN(tijMIn, get_tij(i-1,j-1,k-1,j-1));
-				}
+					if (!solutionPart->exists(k,j) && k!=i) {
+						tijMIn=MIN(tijMIn, get_tij(i-1,j-1,k-1,j-1));
+					}
 				}
 				for (int l=1;l<=solutionPart->P->m;l++) {
-				if (!solutionPart->exists(i,l) && j!=j) {
-				  	tijMIn=MIN(tijMIn, get_tij(i-1,j-1,i-1,l-1));
-				}
+					if (!solutionPart->exists(i,l) && j!=j) {
+						tijMIn=MIN(tijMIn, get_tij(i-1,j-1,i-1,l-1));
+					}
 				}
 				
-				/*
-				if (predi[i-1]>0)
-					tijMIn=MIN(tijMIn, get_tij(i-1,j-1,predi[i-1]-1,j-1));
-				if (predj[j-1]>0)
-					tijMIn=MIN(tijMIn, get_tij(i-1,j-1,i-1, predj[j-1]-1));
-					*/
-					
-				// alpha=2:
-				//double p=tijMIn*tijMIn*1/(MAX(EarliestStartingTimesI[i-1],EarliestStartingTimesJ[j-1])+1)/sum_n_oi;
-				// erst mal ohne tij-einfluss:
 				double p=tijMIn*tijMIn*(1.0/(MAX(EarliestStartingTimesI[i-1],EarliestStartingTimesJ[j-1])+1.0)/sum_n_oi)/sum_min_tij;
-
 				double pTest=p*10000;
-				
-				// cout << "xax tijMIn=" << tijMIn << " pTest*k_ext_temp=" << pTest*k_ext_temp << "rand=" << rand << " newScheduleCount=" << newScheduleCount << endl;
-				
-				//if (pTest*k_ext >= rand && newScheduleCount<= k_ext) {
 				if ( (pTest*k_ext_temp >= rand && newScheduleCount<= k_ext_temp) || 
-				  (solutionPart->P->m*solutionPart->P->n-currentStep<=k_ext_temp)) {
-					newScheduleCount++;
-					int newScheduleIndex=get_new_schedule();
-					if(newScheduleIndex==0) // Schedule-Speicher ist voll
-						return;
-					Lisa_OsSchedule * newShedule=allSchedules[newScheduleIndex];
-					*newShedule=*solutionPart;
-					newShedule->insert(i,j, predj[j-1], predi[i-1]);
-					//newShedule->insert(i,j, SOURCE, SOURCE);
-					sList->append(newScheduleIndex);
-				}		
+					(solutionPart->P->m*solutionPart->P->n-currentStep<=k_ext_temp)) {
+						newScheduleCount++;
+						int newScheduleIndex=get_new_schedule();
+						if(newScheduleIndex==0) // Schedule-Speicher ist voll
+							return;
+						Lisa_OsSchedule * newShedule=allSchedules[newScheduleIndex];
+						*newShedule=*solutionPart;
+						if (newShedule->insert(i,j, predj[j-1], predi[i-1])!=-1)
+   						sList->append(newScheduleIndex);
+						else
+						  {
+							cout << "ERROR CYCLE in beam_append" << endl;
+							delete_schedule(newScheduleIndex);
+							}
+					}		
 			}
 		}
 	}
 
+if (	newScheduleCount==1) {
+// auf jeden Fall eine Erweiterung hinzufügen:
+for (int i=1;i<=solutionPart->P->n;i++) {
+		for (int j=1;j<=solutionPart->P->m;j++) {
+			if (!solutionPart->exists(i,j)) {
+						int newScheduleIndex=get_new_schedule();
+						if(newScheduleIndex==0) // Schedule-Speicher ist voll
+							return;
+						Lisa_OsSchedule * newShedule=allSchedules[newScheduleIndex];
+						*newShedule=*solutionPart;
+						if (newShedule->insert(i,j, predj[j-1], predi[i-1])!=-1) {
+   						sList->append(newScheduleIndex);
+							i=P->n+1;
+							j=P->m+1;
+							break;
+							}
+						else
+						  {
+							cout << "ERROR CYCLE in beam_append" << endl;
+							delete_schedule(newScheduleIndex);
+							}
+			
+			
+			}
+			}
+			}
+
+
+} 	
+	
 	delete[]EarliestStartingTimesI;
 	delete[]EarliestStartingTimesJ;
-	delete[]MinTIJ_I;
-	delete[]MinTIJ_J;
 
 	delete LR;
 	delete[] predi;
 	delete[] predj;
-	
+
 }
-
-
-
-// ******************************* ab hier alt *************************
-
-//**************************************************************************
-
-
-/*
-void OS_BA::run_beam_search(Lisa_OsProblem * Pi, int zfn, 
-Lisa_List<Lisa_Matrix<int>*> * results)
-{ 
-// copy parameters:
-my_list=results;
-zfn_type=zfn;
-P=Pi;
-
-// set up insertion order:
-int i, j; 
-// long seed=123456L;
-order = new Lisa_Order(P->n, P->m);
-for (i=0; i<P->n ; i++ ) 
-for (j=0; j<P->m ; j++ )
-switch (ins_order_type)
-{
-case LPT_ORDER: 
-order->read_one_key(i, j, - (*(P->time))[i+1][j+1]);
-break;
-default:  
-order->read_one_key(i, j, lisa_random(1,1000,&seed));
-}
-order->sort();
-// put non-existing operations to the end:
-number_ops=0;
-for (i=0; i<P->n ; i++ ) 
-for (j=0; j<P->m ; j++ )
-if ((*(P->sij))[i+1][j+1])
-{
-order->read_one_key(i, j, 0);
-number_ops++;
-}
-else 
-order->read_one_key(i, j, 1);
-order->sort();     
-
-
-// start algorithm:
-Schedule =new Lisa_OsSchedule(P);
-run_start();
-Schedule->insert(order->row(0)+1, order->col(0)+1, SOURCE, SOURCE); 
-sub_run(1);
-run_stop();
-delete Schedule;
-delete order;
-}
-*/
-
-// Rekursion
-
-/*
-void OS_BA::sub_run(int op_nr)
-{
-Lisa_OsSchedule *Schedule2;
-Lisa_Matrix<int> * erg;
-
-int posi, posj, i, j;
-
-// get backup copy of Schedule:
-Schedule2 = new Lisa_OsSchedule(P);
-
-// Hier Beamweite und MAX-Extensions einfügen
-// wird hier erst einmal hart gesetzt:
-
-int myExtension=0;
-// find positions: 
-
-// TODO: über (i,j) iterieren, posi=posj=SINK festlassen
-
-i=order->row(op_nr)+1; 
-j=order->col(op_nr)+1;
-// Wird nun am Ende angefügt?
-// posi=SOURCE;   
-posi=SINK;   
-do 
-{
-// posj=SOURCE;
-posj=SINK;
-do 
-{
-//myExtension++;
-if (myExtension<=maxExtensions) 
-{
-(*Schedule2)=(*Schedule);
-count_steps();
-if (Schedule->insert(i,j,posi,posj)>0)
-{
-steps_ok++;
-Schedule->SetValue(zfn_type);
-if ((Schedule->GetValue() < upper_bound) || 
-((Schedule->GetValue() == upper_bound) && 
-(my_list->length()<output_bound)))
-{ 
-if (op_nr+1 < number_ops) 
-{ 
-// Hier Aufruf der Rekursion
-if (!abort_algorithm) sub_run(op_nr+1);
-}
-else 
-{     // Aha, bis zum Ende durchgerechnet                  
-if (upper_bound>Schedule->GetValue())
-{
-upper_bound=Schedule->GetValue();
-my_list->clear();
-} 
-
-erg = new Lisa_Matrix<int>(P->n, P->m);
-Schedule->write_LR(erg);
-my_list->append(erg);
-if ((Schedule->GetValue()<=given_lower_bound) &&
-(my_list->length()>=output_bound))
-abort_algorithm=true;
-
-}   // if schedule complete
-}       // if value <= upper_bound       
-}           // if insertion ok
-(*Schedule)=(*Schedule2);
-posj=Schedule->GetMOsucc(i,posj);      
-} // Ende Test auf Extensions
-}
-while (posj!=SINK);
-posi=Schedule->GetJOsucc(posi,j);
-} 
-while (posi!=SINK);     
-delete Schedule2;
-}*/
-
-
 
 
 /// Wendet lokale Suche an, zurückgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
 bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 
-
-
 	bool retVal=false;
-	schedule->SetValue(SUM_CI);
+	schedule->SetValue(zfn_type);
 	double objective=schedule->GetValue();
 	Lisa_OsSchedule * tempSchedule=new Lisa_OsSchedule(P);
 	//tempSchedule->ComputeHeads=false;
@@ -972,7 +726,6 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 	schedule->write_LR(LR);
 
 	// Als Quelle einfügen
-	/*
 	for (int i=1;i<=P->n;i++) {
 		for (int j=1;j<=P->m;j++) {
 			if (schedule->exists(i,j)) { 
@@ -982,7 +735,7 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 						cout << "Error 1" << endl;
 					tempSchedule->exclude(i,j);
 					tempSchedule->insert(i,j,SOURCE,SOURCE);
-					tempSchedule->SetValue(SUM_CI);
+					tempSchedule->SetValue(zfn_type);
 					if (tempSchedule->GetValue()<objective) {
 						objective=tempSchedule->GetValue();					
 						if (bestTempSchedule==NULL)
@@ -993,7 +746,6 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 			}
 		}
 	}
-	*/
 
 	// Als Senke einfügen
 	int *predi=new int[2*P->n];
@@ -1027,18 +779,17 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 	}	 
 
 
-
 	for (int i=1;i<=P->n;i++) {
 		for (int j=1;j<=P->m;j++) {
 			if (schedule->exists(i,j)) { 
-				*tempSchedule=*schedule;				
+				if (predj[j-1]>0 && predi[i-1]>0 && j != predi[i-1] && i!= predj[j-1]) {
+							*tempSchedule=*schedule;				
 				if (!tempSchedule->exists(i,j))
 					cout << "Error 1" << endl;
 				tempSchedule->exclude(i,j);
 
-				if (predj[j-1]>0 && predi[i-1]>0 && j != predi[i-1] && i!= predj[j-1]) {
 					tempSchedule->insert(i,j, predj[j-1], predi[i-1]);
-					tempSchedule->SetValue(SUM_CI);
+					tempSchedule->SetValue(zfn_type);
 					if (tempSchedule->GetValue()<objective) {
 						objective=tempSchedule->GetValue();
 						if (bestTempSchedule==NULL)
@@ -1050,15 +801,67 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 		}
 	}
 
+	for (int i=1;i<=P->n;i++) {
+		for (int j=1;j<=P->m;j++) {
+			if (schedule->exists(i,j)) { 	
+				
+				int jopred=tempSchedule->GetJOpred(i,j);
+				int mopred=tempSchedule->GetMOpred(i,j);
+				if (jopred>0) {
+				*tempSchedule=*schedule;			
+					int joprepred=tempSchedule->GetJOpred(jopred,j);
+					if (joprepred>0) {
+						tempSchedule->exclude(i,j);
+						int test=tempSchedule->insert(i,j, joprepred, mopred);
+						if (test!=ERROR && test!=CYCLE) {
+						tempSchedule->SetValue(zfn_type);
+						if (tempSchedule->GetValue()<objective) {
+							objective=tempSchedule->GetValue();
+							if (bestTempSchedule==NULL)
+								bestTempSchedule=new Lisa_OsSchedule(P);
+							*bestTempSchedule=*tempSchedule;
+						}
+						}
+					}
+				}
+				
+
+				
+				if (mopred>0) {
+				  *tempSchedule=*schedule;			
+					int moprepred=tempSchedule->GetMOpred(i,mopred);
+					if (moprepred>0) {
+						tempSchedule->exclude(i,j);
+						int test=tempSchedule->insert(i,j, jopred, moprepred);
+							if (test!=ERROR && test!=CYCLE) {
+						tempSchedule->SetValue(zfn_type);
+						if (tempSchedule->GetValue()<objective) {
+							objective=tempSchedule->GetValue();
+							if (bestTempSchedule==NULL)
+								bestTempSchedule=new Lisa_OsSchedule(P);
+							*bestTempSchedule=*tempSchedule;
+						}
+							}
+					}
+				}
+
+
+
+			}
+		}
+	}
+
 
 	if (bestTempSchedule!=NULL) {
 		*schedule=*bestTempSchedule;
-		schedule->SetValue(SUM_CI);
+		schedule->SetValue(zfn_type);
 		retVal=true;
 	}
 
 	delete LR;
 	delete tempSchedule;
+	delete[] predi;
+	delete[] predj;
 	if (bestTempSchedule!=NULL)
 		delete bestTempSchedule;
 	return retVal;
