@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE solution PUBLIC "" "LiSA.dtd">
+<solution xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
+  <problem>
+    <alpha env="O"/>
+    <beta/>
+    <gamma objective="Sum_Ci"/>
+  </problem>
+  <values m="8" n="8">
+    <processing_times model="lisa_native">{ 
+ {  38  65  82   9  25  25  48  23 } 
+ {   5  10  53   9  57  88  48  59 } 
+ {  10  86  19  36  68  87  19  17 } 
+ {  75  39  61  49  36   8  41   1 } 
+ {  18  51  28  19  41  92  19  96 } 
+ {  67  58  51  76  63  46  32  43 } 
+ {  63  72  34   3  67   3  86  10 } 
+ {  61   4  93  76   9  16  28  18 } 
+} 
+</processing_times>
+    <operation_set model="lisa_native">{ 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+ {   1   1   1   1   1   1   1   1 } 
+} 
+</operation_set>
+  </values>
+  <controls>
+    <parameter type="integer" name="BEAM_WIDTH" value="10"/>
+    <parameter type="integer" name="STEPS" value="10"/>
+    <parameter type="real" name="LOWER_BOUND" value="0"/>
+    <parameter type="real" name="UPPER_BOUND" value="3876"/>
+    <parameter type="real" name="CONVERGENCE_FACTOR" value="0.9"/>
+    <parameter type="real" name="EVAPORATION_RATE" value="0.7"/>
+    <parameter type="string" name="EXTENSION_STRATEGY" value="MED"/>
+  </controls>
+  <schedule m="8" n="8" semiactive="yes">
+    <plan model="lisa_native">{ 
+ {  13  14  12   2   3   6  11   8 } 
+ {   1   2  13   3  10  11  12   9 } 
+ {   2  10   1   7   9   8   3   6 } 
+ {  11   4   5   9   8   3   7   1 } 
+ {   5   7   2   4   6   9   1  10 } 
+ {  10  12   8  11  13   5   9   7 } 
+ {   6   5   9   1  11   2  10   3 } 
+ {  12   1  10   8   2   4   6   5 } 
+} 
+</plan>
+  </schedule>
+</solution>
