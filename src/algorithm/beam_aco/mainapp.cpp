@@ -23,7 +23,7 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
  
-#include "os_ba.h"
+#include "os_ba.hpp"
 //#include "js_bb.hpp"
 
 using namespace std;

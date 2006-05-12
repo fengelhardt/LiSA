@@ -13,7 +13,7 @@
 #include "../../main/global.hpp"
 #include "../../basics/order.hpp"
 
-#include "os_ba.h"
+#include "os_ba.hpp"
 
 
 using namespace std;
@@ -21,7 +21,7 @@ using namespace std;
 // Zur Nutzung von pgraph
 class Lisa_Values G_Values;
 
-/// Ein Schedule mit einer zugehörigen Bewertungsfunktion.
+/// Ein Schedule mit einer zugehoerigen Bewertungsfunktion.
 class ScheduleValuePair : public Lisa_Object {
 
 public:
@@ -51,7 +51,7 @@ public:
 	bool sortbyValue;
 
 
-	/// Zum Löschen des Schedules per Hand
+	/// Zum Loeschen des Schedules per Hand
 	void delete_schedule() {
 		if (Schedule!=NULL) {
 			delete Schedule;
@@ -180,19 +180,19 @@ void OS_BA::run_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Matrix<
 	currentStep=0;
 	lastStep=(P->n)*(P->m);
 
-	// Der Beam enthält alle aktuellen temporären Pläne
+	// Der Beam enthaelt alle aktuellen temporaeren Plaene
 	Beam=new Lisa_List<Lisa_OsSchedule*>();
 
 	// StartPlan
 	Lisa_OsSchedule *rootSchedule=new Lisa_OsSchedule(P);
 	Beam->append(rootSchedule);
-	// Beam enthält den leeren Plan
+	// Beam enthaet den leeren Plan
 
 	// Start der iterativen Beam-Suche:
 	beam_step();
 
 	// Schreiben der Resultate:
-	// es wird nur ein Ergebnis zurückgeliefert.
+	// es wird nur ein Ergebnis zurueckgeliefert.
 	if (bestSchedule!=NULL) {
 		Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(P->n,P->m);
 		bestSchedule->write_LR(retLR);
@@ -219,7 +219,7 @@ void OS_BA::beam_step() {
 
 	}	while(Beam->next());
 
-	// nach aufsteigenden Zielfunktionswert sortierte Pläne
+	// nach aufsteigenden Zielfunktionswert sortierte Plaene
 	Lisa_List< ScheduleValuePair> *extensions=new Lisa_List<ScheduleValuePair>;
 
 	sList->reset();
@@ -232,7 +232,7 @@ void OS_BA::beam_step() {
 
 		if (extensions->length()>0) {
 
-			// Vorher doppelte Einträge entfernen:
+			// Vorher doppelte Eintraege entfernen:
 			extensions->reset();
 			do{
 				extensions->get().sortbyValue=false;
@@ -240,7 +240,7 @@ void OS_BA::beam_step() {
 			} 
 			while(extensions->next());
 
-			// um doppelte Einträge bereinige extensions:
+			// um doppelte Eintraege bereinige extensions:
 			Lisa_List< ScheduleValuePair> *extensionsAsNormals=new Lisa_List<ScheduleValuePair>;
 
 			extensions->sort();
@@ -254,11 +254,11 @@ void OS_BA::beam_step() {
 				} 
 			} 
 			while(extensions->next());
-			// extensionsAsNormals ist nun korrekt befüllt
+			// extensionsAsNormals ist nun korrekt befuellt
 
 			if (extensionsAsNormals->length()>0) {
 
-				// Beam aufräumen
+				// Beam aufraeumen
 				if (Beam->length()>0) {
 				Beam->reset();
 				do {
@@ -280,7 +280,7 @@ void OS_BA::beam_step() {
 				} 
 				while(extensionsAsNormals->next()&&count<noOfExtensions);
 
-				// Nur zum Aufräumen:
+				// Nur zum Aufraeumen:
 				
 				count=0;
 				do{
@@ -311,7 +311,7 @@ void OS_BA::beam_step() {
 /// sList erweitern
 void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<Lisa_OsSchedule*> *sList) {
 	int Bext=5; // max no of extensions (wird noch nicht verwendet).
-			// LR wird leider benötigt um Operation anzuhängen.
+			// LR wird leider benoetigt um Operation anzuhaengen.
 			
 			
 //				Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(P->n,P->m);
@@ -373,7 +373,7 @@ cout << endl;
 				//
 				// newShedule->append exisitert leider nicht, deshalb werden hier
 				// die passenden woi und woj bestimmt
-				// muss später auf jeden Fall optimiert werden
+				// muss spaeter auf jeden Fall optimiert werden
 
 		
 				
@@ -495,17 +495,17 @@ void OS_BA::sub_run(int op_nr)
 	// get backup copy of Schedule:
 	Schedule2 = new Lisa_OsSchedule(P);
 
-	// Hier Beamweite und MAX-Extensions einfügen
+	// Hier Beamweite und MAX-Extensions einfuegen
 	// wird hier erst einmal hart gesetzt:
 
 	int myExtension=0;
 	// find positions: 
 
-	// TODO: über (i,j) iterieren, posi=posj=SINK festlassen
+	// TODO: ueber (i,j) iterieren, posi=posj=SINK festlassen
 
 	i=order->row(op_nr)+1; 
 	j=order->col(op_nr)+1;
-	// Wird nun am Ende angefügt?
+	// Wird nun am Ende angefuegt?
 	// posi=SOURCE;   
 	posi=SINK;   
 	do 
