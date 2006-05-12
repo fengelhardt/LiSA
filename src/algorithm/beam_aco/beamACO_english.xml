@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Ant Colony" type="constructive" call="beamaco" code="external" help_file="algorithm/beamaco.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Ant Colony" type="constructive" call="beamACO" code="external" help_file="algorithm/beamACO.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
@@ -14,15 +14,15 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="BEAM_WIDTH" caption="Beamweite" default="100"/>
-    <real name="LOWER_BOUND" caption="Untere Schranke" default="0"/>
-    <real name="UPPER_BOUND" caption="Obere Schranke" default="1e+06"/>
-    <choice name="EXTENSION_STRATEGY" caption="Bestimmung der Beam Extensions">
+    <integer name="BEAM_WIDTH" caption="beam width" default="100"/>
+    <real name="LOWER_BOUND" caption="lower bound" default="0"/>
+    <real name="UPPER_BOUND" caption="upper bound" default="1e+06"/>
+    <choice name="EXTENSION_STRATEGY" caption="extension strategy">
       <item name="MED"/>
       <item name="LDS"/>
     </choice>
-    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="50"/>
-    <real name="CONVERGENCE_FACTOR" caption="Konvergenzfaktor fuer Neustart" default="0.9"/>
-    <real name="EVAPORATION_RATE" caption="evaporationRate" default="0.7" />
+    <integer name="STEPS" caption="steps" default="50"/>
+    <real name="CONVERGENCE_FACTOR" caption="convergence factor for restart" default="0.9"/>
+    <real name="EVAPORATION_RATE" caption="evaporation rate" default="0.7" />
   </alg_controls>
 </algorithm>
