@@ -12,7 +12,7 @@
 #define _os_ba_h
 
 #include "../../scheduling/os_sched.hpp"
-#include "ba_env.h"
+#include "ba_env.hpp"
 
 #include <iostream>
 
