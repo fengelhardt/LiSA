@@ -291,7 +291,7 @@ bool bs_update=false;
 
 	for (int i=1; i<=para_STEPS;i++) {
 		//	for (int i=1; i<2;i++) {
-		cout << "********* step "<< i << " ****** OBJECTIVE " << bestSumCi << "********" << endl;
+		cout << "OBJECTIVE= " << bestSumCi << "  step=" <<  i << endl;
 		run_beam_search();
 		if(abort_algorithm)
 		  break;

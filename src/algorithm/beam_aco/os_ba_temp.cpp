@@ -273,7 +273,7 @@ void OS_BA::beam_step() {
 				int count=0;
 
 				bestSchedule=extensionsAsNormals->get().Schedule;
-				cout << "OBJECTIVE:" << bestSchedule->GetValue() << endl;
+				cout << "OBJECTIVE= " << bestSchedule->GetValue() << endl;
 				do{
 					count++;
 					Beam->append(extensionsAsNormals->get().Schedule);
