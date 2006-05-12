@@ -1,5 +1,5 @@
 OBJECTS=\
-	../../../obj/ba_mainapp.o \
+	../../../obj/mainapp.o \
 	../../../obj/os_ba.o \
 	../../../obj/ba_env.o \
 	../../../obj/matrix.o \
