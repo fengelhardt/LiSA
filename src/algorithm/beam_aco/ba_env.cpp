@@ -61,7 +61,7 @@ void Lisa_GenericBeamACO::run_start()
 
 void Lisa_GenericBeamACO::run_stop()
  {
-   signal(SIGINT, SIG_DFL);
+   signal(SIGINT, SIG_IGN);
  }  
 
 //**************************************************************************
