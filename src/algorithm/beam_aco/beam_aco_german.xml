@@ -14,7 +14,7 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="BEAM_WIDTH" caption="Beamweite" default="50"/>
+    <integer name="BEAM_WIDTH" caption="Beamweite" default="32"/>
     <choice name="EXTENSION_STRATEGY" caption="Bestimmung der Beam Extensions">
       <item name="MED"/>
       <item name="LDS"/>
@@ -29,12 +29,11 @@
       <item name="NONE"/>
       <item name="ACTIVE"/>
      </choice>
-    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="450"/>
+    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="500"/>
     <real name="CONVERGENCE_FACTOR" caption="Konvergenzfaktor fuer Neustart" default="0.98"/>
     <real name="EVAPORATION_RATE" caption="evaporationRate" default="0.3"/>
     <real name="WEIGHT_EST" caption="Einfluss der Earliest Completion Time" default="1"/>
   <real name="WEIGHT_TIJ" caption="Einfluss der Pheromone Werte" default="1"/>
   <real name="WEIGHT_RAND" caption="Einfluss des Zufalls" default="1"/>
-
   </alg_controls>
 </algorithm>

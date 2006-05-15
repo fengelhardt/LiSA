@@ -7,7 +7,7 @@
 
 # LiSA part: beamACO
 
-PROGRAMNAME=beamACO
+PROGRAMNAME=beam_aco
 
 # ------------------------------------------------------------------------------
 

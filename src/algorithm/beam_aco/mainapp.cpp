@@ -23,28 +23,20 @@
 #include "../../lisa/ptype.hpp"
 #include "../../lisa/lvalues.hpp"
  
-#include "os_ba.hpp"
+#include "os_ba.h"
 //#include "js_bb.hpp"
 
 using namespace std;
 
 //**************************************************************************
 
-int main(int argc, char *argv[])  
-//int ba_main(int argc, char *argv[]) 
-{
+int main(int argc, char *argv[]) {  
+//int ba_main(int argc, char *argv[])  {
 
-// test only
-
-
-// ende test only
-
-	//	 exsssit(1);
 	OS_BA * my_os_ba=0; 
-	//Lisa_GenericBb * my_ba;
 
 	// print a message that the programm started:
-	std::cout << "This is the LiSA-BEAM ACO Module Version 0.1" << std::endl;
+	std::cout << "This is the LiSA-BEAM ACO Module Version 0.16" << std::endl;
 	G_ExceptionList.set_output_to_cout();   
 
 	// open files and assure existence:
@@ -157,8 +149,10 @@ int main(int argc, char *argv[])
 	{
 		if (sp.get_string("EXTENSION_STRATEGY")=="MED") 
 			my_os_ba->para_EXTENSION_STRATEGY=1;
-		else
+			if (sp.get_string("EXTENSION_STRATEGY")=="LDS") 
 			my_os_ba->para_EXTENSION_STRATEGY=2;
+			if (sp.get_string("EXTENSION_STRATEGY")=="FIXED") 
+			my_os_ba->para_EXTENSION_STRATEGY=3;
 	}
 
 	if (sp.defined("STEPS")==Lisa_ControlParameters::LONG)
@@ -167,7 +161,31 @@ int main(int argc, char *argv[])
 		my_os_ba->para_CONVERGENCE_FACTOR=sp.get_double("CONVERGENCE_FACTOR");
 	if (sp.defined("CONVERGENCE_FACTOR")==Lisa_ControlParameters::DOUBLE)
 		my_os_ba->para_CONVERGENCE_FACTOR=sp.get_double("CONVERGENCE_FACTOR");
-
+	if (sp.defined("FIXED_KEXT")==Lisa_ControlParameters::LONG)
+		my_os_ba->para_FIXED_KEXT=sp.get_long("FIXED_KEXT");
+		if (sp.defined("APPEND_STRATEGY")==Lisa_ControlParameters::STRING)
+	{
+		if (sp.get_string("APPEND_STRATEGY")=="ORIGINAL") 
+			my_os_ba->para_APPEND_STRATEGY=1;
+			if (sp.get_string("APPEND_STRATEGY")=="SORTED") 
+			my_os_ba->para_APPEND_STRATEGY=2;
+			}
+			
+				if (sp.defined("PRE_SELECTION")==Lisa_ControlParameters::STRING)
+	{
+		if (sp.get_string("PRE_SELECTION")=="NONE") 
+			my_os_ba->para_PRE_SELECT=0;
+			if (sp.get_string("PRE_SELECTION")=="ACTIVE") 
+			my_os_ba->para_PRE_SELECT=1;
+			}
+			
+if (sp.defined("WEIGHT_EST")==Lisa_ControlParameters::DOUBLE)
+		my_os_ba->para_WEIGHT_EST=sp.get_double("WEIGHT_EST");
+	if (sp.defined("WEIGHT_TIJ")==Lisa_ControlParameters::DOUBLE)
+		my_os_ba->para_WEIGHT_TIJ=sp.get_double("WEIGHT_TIJ");
+	if (sp.defined("WEIGHT_RAND")==Lisa_ControlParameters::DOUBLE)
+		my_os_ba->para_WEIGHT_RAND=sp.get_double("WEIGHT_RAND");
+	
 
 	// handle problem instance and cast it into a Lisa_ShopProblem:
 	Lisa_OsProblem * my_os_problem=0;

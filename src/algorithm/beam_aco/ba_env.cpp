@@ -11,7 +11,7 @@
 //#include "stdafx.h"
 // replace the following line for a Windows version:
 #include <signal.h>
-#include "ba_env.hpp"
+#include "ba_env.h"
 
 using namespace std;
 
@@ -61,7 +61,7 @@ void Lisa_GenericBeamACO::run_start()
 
 void Lisa_GenericBeamACO::run_stop()
  {
-   signal(SIGINT, SIG_IGN);
+   signal(SIGINT, SIG_DFL);
  }  
 
 //**************************************************************************

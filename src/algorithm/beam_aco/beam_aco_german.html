@@ -1,0 +1,54 @@
+<HTML>
+<HEAD> <TITLE>Hilfe zum Beam ACO - Eingabefenster</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
+<H2> Beam ACO Algorithmus </H2>
+
+<P>
+<H2>So kommen Sie hierher:</H2> 
+Stellen Sie sicher, da&szlig; ein 
+<A HREF="../problem.html"> Problemtyp </A> und alle 
+<A HREF="../values.html"> Problemparameter </A> 
+definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
+<I> Algorithmen|N&auml;herungsverfahren|beamACO</I> und
+dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>.
+<P>
+<H2>Einstellungen:</H2>
+<DL>
+<DT>Beamweite:<DD>
+ooooo
+<DT>Bestimmung der Beam Extensions:<DD>
+MED: Anzahl der freien Oreationen /2,  LDS: Zu Beginn wie MED, ab der zweiten H&auml;fte auf 2 festgelegt,
+FIXED: Feste Anzahl
+<DT>Anzahl der Beam-Extensions:<DD>
+Hier werden die maximal pro Erweiterungsschritt einzuf&uuml;genden Operationen angegeben. Dieser Wert wird nur ber&uuml;cksichtigt, wenn die Bestimmung der Beam Extension auf FIXED gesetzt wurde.
+<DT>Strategie der Auswahl der Extensions:<DD>
+ORIGINAL entspricht der in der Literatur beschriebenen Methode. Bei SORTED werden die einzuf&uuml;genden Operationen gewichtet und entsprechend dieses Wertes sortiert.
+<DT>Vorauswahl der Erweiterungen:<DD>
+Wird hier ACTIVE gew&auml;hlt, dann werden nur aktive Pl&auml;ne ber&uuml;cksichtigt.
+<DT>STEPS:<DD>
+Anzahl der Einzelschritte. Da die Ameisen nacheinander gestartet werden, entspricht diese Zahl auch die Anzahl der Ameisen der Gesamtpopulation.
+<DT>Konvergenzfaktor fuer Neustart:<DD>
+Gibt eine untere Schranke f&uuml;r der Konvergenzfaktor an, ab dem eine Neuberechung der Pheromonewerte angeregt wird.
+<DT>evaporationRate:<DD>
+Bezeichnet den Einflu&szlig; den ein neuer bester Plan zur Berechnung der Pheromonewerte hat. Dieser Wert sollte zwischen 0 und 1 liegen.
+<DT>Einfluss der Earliest Completion Time:<DD>
+Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
+<DT>Einfluss der Pheromone Werte:<DD>
+Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
+<DT>Einfluss des Zufalls:<DD>
+Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
+   Zielfunktionswert.
+</DL>
+<P>
+<HR>
+<A HREF="../main.html"> Inhaltsverzeichnis </A>
+<HR>
+29.10.99 TAU
+</BODY>
+</HTML>
+
+
+
+
+
