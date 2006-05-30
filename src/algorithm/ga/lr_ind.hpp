@@ -43,6 +43,7 @@ public:
  
   
   void initialize(GA_Setup&);
+  void initialize(const Lisa_ScheduleNode&);
   void makePlan(Lisa_OsSchedule& plan) const{
     plan.clear();
     plan.read_LR(c);
@@ -69,19 +70,16 @@ public:
 
   void improve(GA_Setup&);
 
+  void forgetFitness(){
+    f_valid = false;
+  }
+
   TIMETYP getFitness() const{
     if(!f_valid) eval();
     return fitness;
   }
   
-  void eval() const{
-    if(f_valid) return;
-    S->clear();
-    makePlan(*S);
-    S->SetValue(LR_Individuum::Objective);
-    fitness = S->GetValue();
-    f_valid = true;
-  }
+  void eval() const;
   
   typedef Lisa_Matrix<int>  LR;
   typedef LR Chromosome;
@@ -93,7 +91,7 @@ private :
   mutable bool f_valid;
 
   void latinize();
-
+  
 };
 
 std::ostream& operator<<(std::ostream& out, const LR_Individuum&);

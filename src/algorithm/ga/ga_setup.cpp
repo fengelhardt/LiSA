@@ -47,6 +47,7 @@ void GA_Setup::clear(){
   problem = NULL;
   schedule = NULL;
   initializer = NULL;
+  objective = 0;
 }
 
 
@@ -128,6 +129,16 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   else {
     SEED = Parameter.get_long("SEED");
   }
+  objective = Problem.get_property(OBJECTIVE);
+  if (!Parameter.defined("FITNESS")) {
+    std::cout << "WARNING: \"FITNESS\" undefined. Using default " << "OBJETIVE"  << std::endl;
+  }
+  else {
+    if(Parameter.get_string("FITNESS") == "SUM_Ci2") objective = SUM_CI_2;
+    else if(Parameter.get_string("FITNESS") == "OBJECTIVE") ;
+    else std::cout << "WARNING: \"FITNESS\" method unknown. Using default " << "OBJECTIVE"  << std::endl;
+  }
+  
   if (!Parameter.defined("INIT")) {
     std::cout << "WARNING: \"INIT\" undefined. Using default " << mode  << std::endl;
   }
@@ -198,6 +209,7 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
     improver.METHOD   = II;
     
   }
+  
   apply_LocalImpr = (impr_id == "off")?false:true;
   //inittialize other memebers
   problem = new Lisa_OsProblem(&Values);

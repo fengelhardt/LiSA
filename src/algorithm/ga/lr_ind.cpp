@@ -132,7 +132,7 @@ LR_Individuum::LR_Individuum(const LR_Individuum& i1,
 	for(int j = 0; j < P->m; j++)
 	  if( (!((*Cross_Mask)[i][j])) && //other plan
 	      (((*c)[i][j] > (*it).second) ||  //higher rank
-	       (((*c)[i][j] == (*it).second) && (i==(*it).first.first) && (j==(*it).first.second)))) //equal rank and dependent
+	       (((*c)[i][j] == (*it).second) && ((i==(*it).first.first) || (j==(*it).first.second))))) //equal rank and dependent
 	    (*c)[i][j]++;
     }
   }
@@ -189,6 +189,7 @@ void LR_Individuum::latinize(){
   f_valid = false;
 }
 
+
 void LR_Individuum::mutate_rotate(){
   //determine maximum rank
   int k,l,b = 0;
@@ -202,8 +203,16 @@ void LR_Individuum::mutate_rotate(){
   for(int j = 0; j < P->m; j++)
     b = std::max<int>(b,(*c)[k][j]);
   b = (*GA_Setup::random)(1,b);
-  
   (*c)[k][l] = b;
+
+  for(int i = 0; i < P->n; i++)
+    for(int j = 0; j < P->m; j++){
+      if(i==k && j==l) continue;
+      if( ((*c)[i][j] > b) ||  //higher rank
+	  (((*c)[i][j] == b) && ((i==k) || (j==l)))) //equal rank and dependent
+	(*c)[i][j]++;
+    }
+  
   latinize();
   f_valid = false;
 }
@@ -240,11 +249,16 @@ LR_Individuum& LR_Individuum::operator=(const LR_Individuum& i){
 
 
 LR_Individuum& LR_Individuum::operator=(LR_Individuum& i){
-  delete c;
+  if(c) delete c;
   c = new LR(*i.c);
   fitness = i.fitness;
   f_valid = i.f_valid;
   return *this;
+}
+
+void LR_Individuum::initialize(const Lisa_ScheduleNode& s){
+  *c = *s.actual_schedule->LR;
+  f_valid = false;
 }
 
 void LR_Individuum::initialize(GA_Setup& setup){
@@ -274,6 +288,26 @@ void LR_Individuum::initialize(GA_Setup& setup){
   f_valid = false;
 }
 
+  
+void LR_Individuum::eval() const{
+  if(f_valid) return;
+  S->clear();
+  makePlan(*S);
+  if(LR_Individuum::Objective != SUM_CI_2){
+    S->SetValue(LR_Individuum::Objective);
+    fitness = S->GetValue();
+  }
+  else { //calculate fitness 
+    TIMETYP cj = 0,ci = 0;
+    S->ComputeHeadsTails (true, false);
+    for (int i=1;i<=P->n; i++ )
+      ci += S->GetHead(i,S->GetMOpred(i,SINK));
+    for (int j=1;j<=P->m; j++ )
+      cj += S->GetHead(S->GetJOpred(SINK,j),j);
+    fitness = std::max(ci,cj);
+  }
+  f_valid = true;
+}
 
 std::ostream& operator<<(std::ostream& out, const LR_Individuum& i){
   return out << *i.c << "F = " << i.fitness << std::flush;

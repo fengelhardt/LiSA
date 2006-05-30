@@ -16,6 +16,8 @@
 
 static const int RANDOM_BOUND = (1 << (sizeof(int)*8 -2)) -1 ;
 
+static const int SUM_CI_2 = SUM_CI + 0xfdec;
+
 struct LisaRandGenerator : public std::unary_function<int,int> {
 
   LisaRandGenerator(long* ext_seed){ seed = ext_seed; }
@@ -85,6 +87,7 @@ struct GA_Setup {
   
   int pop_size;
   int n_gen;
+  int objective;
 
   selection_params sel_params;
 

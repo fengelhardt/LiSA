@@ -77,9 +77,12 @@ int main(int argc, char *argv[]){
   signal(SIGINT, &interupted);
   ga.run();
   signal(SIGINT, SIG_IGN);
-
+  
   Lisa_Schedule result(ga.setup.Values.get_n(),ga.setup.Values.get_m());
   result.make_LR();
+  
+  LR_Individuum::Objective = ga.setup.Problem.get_property(OBJECTIVE);
+  ga.eval_pop(true);
   ga.getBest().makePlan(*ga.setup.schedule);
 
   ga.setup.schedule->write_LR(result.LR);
