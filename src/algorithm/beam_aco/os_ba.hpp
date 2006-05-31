@@ -97,7 +97,7 @@ public:
 
 	/// Erzeugt aus dem Schedule einen eindeutigen Hashwert.
 	/// Der Hashwert wird dabei nur einmal ermittelt. D.h. werden 
-	/// weitere Operationen angefügt, dann ändert sich der Hashwert nicht.
+	/// weitere Operationen angefuegt, dann �ndert sich der Hashwert nicht.
 	long get_hash() {
 		if (Hash==-1) {
 			Hash=get_hash(Schedule);
@@ -177,18 +177,18 @@ public:
 class OS_BA: public Lisa_GenericBeamACO{
 private:
 
-	/// Enthält alle Pläne, deren Nachbarschaft vollständig untersucht wurde. Wenn 
+	/// Enthaelt alle Plaene, deren Nachbarschaft vollstaendig untersucht wurde. Wenn 
 	/// tabuList[Hasch(Schedulule)]==true ist braucht die Nachbarschaft von Schedulule nicht weiter 
 	/// untersucht zu werden.
 	bool *tabuList;
 
-	/// Wendet lokale Suche an, zurückgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
+	/// Wendet lokale Suche an, zurueckgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
 	bool  apply_local_seach(Lisa_OsSchedule * schedule);
 
 
 	/// ACO Parameter:
 
-	/// Trial Parameter: t_ij bezeichnet die Wahrscheinlichkeit, dass Operation i von Operation j ausgeführt wird.
+	/// Trial Parameter: t_ij bezeichnet die Wahrscheinlichkeit, dass Operation i von Operation j ausgefuehrt wird.
 	double ** TIJ;
 
 	/// Liefert den Zugriff auf TIJ mit Lisa-Operationen.
@@ -198,45 +198,45 @@ private:
 		return TIJ[i][j];
 	}
 
-	/// Fester Parameter für die Updates der pheromone Werte.
+	/// Fester Parameter fuer die Updates der pheromone Werte.
 	//double evaporationRate; // p el [0,1];
 
-	/// Aktualisiert die Pheromone Werte entspreched der besten bislang gefundenen Lösung.
+	/// Aktualisiert die Pheromone Werte entspreched der besten bislang gefundenen Loesung.
 	void applyPheromoneUpdate(Lisa_OsSchedule *);
 
 	/// cf=0 bei Start des Algo, cf=1 bei Konvergenz (verwendet TIJ)
 	double computeConvergenceFactor();
 
-	/// Setzt alle Einträge der TIJ auf 0.5
+	/// Setzt alle Eintraege der TIJ auf 0.5
 	void resetPheromoneValues();
 
-	/// Zählt alle benutzen Pläne (debug only zur Vermeidung von zu vielen new ohne delete
+	/// Zaehlt alle benutzen Plaene (debug only zur Vermeidung von zu vielen new ohne delete
 	int numberOfUsedSchedules;
-	/// Anzahl der verfügbaren Pläne (debug only zur Vermeidung von zu vielen new ohne delete
+	/// Anzahl der verfuegbaren Plaene (debug only zur Vermeidung von zu vielen new ohne delete
 	int maxNumberOfSchedules;
-	/// Feste Liste von Plänen zur Vermeidung von Speicherproblemen. In den
-	/// Algorithmen werden stets Verweise auf diese Pläne benutzt.
+	/// Feste Liste von Plaenen zur Vermeidung von Speicherproblemen. In den
+	/// Algorithmen werden stets Verweise auf diese Plaene benutzt.
 	Lisa_OsSchedule ** allSchedules;
 
 	/// Leeres Schedule zur Simulation von clear()
 	// Lisa_OsSchedule * cleanSchedule;
 
-	/// Löscht den Zugriff auf alle Pläne.
+	/// Loescht den Zugriff auf alle Plaene.
 	void clear_schedule_list();
 
-	/// Zeiger auf nächsten freien Speicherplatz in allSchedules.
+	/// Zeiger auf naechsten freien Speicherplatz in allSchedules.
 	int * nextFreeSchedule;
 
 	/// Zeiger auf vorherigen freien Speicherplatz in allSchedules.
 	int * lastFreeSchedule;
 
-	/// Zeiger auf nächsten Schedule in allSchedules.
+	/// Zeiger auf naechsten Schedule in allSchedules.
 	int * nextSchedule;
 
-	/// Liefert den nächsten freien Plan.
+	/// Liefert den naechsten freien Plan.
 	int get_new_schedule();
 
-	/// Löscht den Plan mit der angegebenen id.
+	/// Loescht den Plan mit der angegebenen id.
 	void delete_schedule(int schedule_id);
 
 	/// Beam Width
@@ -245,11 +245,11 @@ private:
 	/// Max. number of extensions.
 	int k_ext;
 
-	/// TODO: Array von Plänen, die immer wieder verwendet werden, erzeugen. Diese Pläne werden bei der
+	/// TODO: Array von Plaenen, die immer wieder verwendet werden, erzeugen. Diese Plaene werden bei der
 	/// Initialisierung erzeugt und dann immer wieder verwendet. 
 	//Lisa_OsSchedule *bestSchedule;
 
-	///Bewertungsfunktion für partielle Lösungen (zunächst nur Zielfunktionswert, später ACO-Parameter).
+	///Bewertungsfunktion fuer partielle Loesungen (zunaechst nur Zielfunktionswert, spaeter ACO-Parameter).
 	double rating(Lisa_OsSchedule* schedule);
 
 	///Einzelschritt bei der Beam-Suche: jedes Element des Beam wird erweitert.
@@ -258,21 +258,21 @@ private:
 	/// Zur Initialisierung und Weiterbenutzung der Zufallsfunktion.
 	long seed;
 	
-	/// Anfügen von einer Operation, maximal k_ext oft.
+	/// Anfuegen von einer Operation, maximal k_ext oft.
 	void beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList);
 
-/// Anfügen von einer Operation, max k_ext oft. (Hier wird die Bedeutung der Einzelbwertungen gewichtet 
+/// Anfuegen von einer Operation, max k_ext oft. (Hier wird die Bedeutung der Einzelbwertungen gewichtet 
 	/// und vorher sortiert).
 	void beam_append_sorted(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList);
 
-	/// Das benötigte LR wird bur einmal allokiert und dann ständig benutzt, um
-	/// Zit für das new und die Speicherfreigabe zu sparen.
+	/// Das benoetigte LR wird bur einmal allokiert und dann staendig benutzt, um
+	/// Zit fuer das new und die Speicherfreigabe zu sparen.
 	Lisa_Matrix<int> * tempLR;
 
 	int currentStep;
 	int lastStep;
 
-	/// Enthält die Menge der aktuellen Teillösungen.
+	/// Enthaelt die Menge der aktuellen Teilloesungen.
 	//	Lisa_List<Lisa_OsSchedule*> *Beam;
 	Lisa_List<ScheduleValuePair> *Beam;
 
@@ -282,7 +282,7 @@ private:
 	int currentBeamWidth;
 	int currentExtensions;
 
-	/// startet eine vollständige Beam-Suche mit den
+	/// startet eine vollstaendige Beam-Suche mit den
 	void run_beam_search_step();
 
 	/// do we exclude reversed schedules ?
@@ -312,7 +312,7 @@ public:
 	double para_UPPER_BOUND;
 	///Bestimmung der Beam Extensions (1==MED, 2==LDS, 3==FIXED)
 	int para_EXTENSION_STRATEGY;
-	///Bewerung der einzufügenden Operationen bei Append (1==Original, 2==SORTED)
+	///Bewerung der einzufaegenden Operationen bei Append (1==Original, 2==SORTED)
 	int para_APPEND_STRATEGY;
 	/// Anzahl Durchlaeufe
 	int para_STEPS;
@@ -323,12 +323,12 @@ public:
 	/// Anzahl der Beam-Extensions bei  para_EXTENSION_STRATEGY==FIXED.
 	int para_FIXED_KEXT;
 	/// Beeinflusst, welchen Einfluss, die Earliest Starting time auf den
-	/// Einfügemechnaismus hat.
+	/// Einfuegemechnaismus hat.
 		double para_WEIGHT_EST;
 	/// Beeinflusst, welchen Einfluss, die Pheromone Werte auf den
-	/// Einfügemechnaismus haben.
+	/// Einfuegemechnaismus haben.
 	double para_WEIGHT_TIJ;
-	///  Beeinflusst, welchen Einfluss, der Zufall auf den Einfügemechnaismus hat.
+	///  Beeinflusst, welchen Einfluss, der Zufall auf den Einfuegemechnaismus hat.
 double para_WEIGHT_RAND;
 /// Gibt an welcher pre-Selection Typ angewendet werden soll (0-keins, 1 - active)
 long para_PRE_SELECT; 

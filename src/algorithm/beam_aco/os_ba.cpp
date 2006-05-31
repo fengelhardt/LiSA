@@ -127,7 +127,7 @@ void OS_BA::clear_schedule_list() {
 	for (int i=0;i<maxNumberOfSchedules;i++) {
 		nextFreeSchedule[i]=i+1;
 		lastFreeSchedule[i]=i-1;
-		nextSchedule[i]=-1; // noch kein freier Plan verfügbar.
+		nextSchedule[i]=-1; // noch kein freier Plan verfuegbar.
 	}
 	nextFreeSchedule[maxNumberOfSchedules-1]=0;
 	lastFreeSchedule[0]=maxNumberOfSchedules-1;
@@ -153,7 +153,7 @@ int OS_BA::get_new_schedule() {
 
 
 /// Der Plan mit der angegebenen id wird wieder zur Neubenutzung freigegeben.
-/// Delete wird dabei nicht ausgeführt.
+/// Delete wird dabei nicht ausgefuehrt.
 void OS_BA::delete_schedule(int schedule_id) {
 	int nextFree=nextFreeSchedule[0]; 
 	nextFreeSchedule[0]=schedule_id;
@@ -274,10 +274,10 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 	allSchedules=new Lisa_OsSchedule*[maxNumberOfSchedules];
 	//cleanSchedule=new Lisa_OsSchedule(Pi);
 
-	/// Zeiger auf nächsten freien Speicherplatz in allSchedules.
+	/// Zeiger auf naechsten freien Speicherplatz in allSchedules.
 	nextFreeSchedule=new int[maxNumberOfSchedules];
 
-	/// Zeiger auf nächsten Schedule in allSchedules.
+	/// Zeiger auf naechsten Schedule in allSchedules.
 	nextSchedule=new int[maxNumberOfSchedules];
 
 	lastFreeSchedule=new int[maxNumberOfSchedules];
@@ -288,7 +288,7 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 		allSchedules[i]->ComputeHeadsTails(true, true);
 		nextFreeSchedule[i]=i+1;
 		lastFreeSchedule[i]=i-1;
-		nextSchedule[i]=-1; // noch kein freier Plan verfügbar.
+		nextSchedule[i]=-1; // noch kein freier Plan verfuegbar.
 	}
 	nextFreeSchedule[maxNumberOfSchedules-1]=0;
 	lastFreeSchedule[0]=maxNumberOfSchedules-1;
@@ -328,9 +328,9 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 			do {
 				Lisa_OsSchedule* currentSchedule=Beam->get().Schedule;
 				currentSchedule->SetValue(zfn_type);
-				// Nötig: Test, ob bestSchedule wirklich alle Elemente enthält.
+				// Noetig: Test, ob bestSchedule wirklich alle Elemente enthaelt.
 				int operationCount=0;	for (int i=1;i<=P->n;i++) for (int j=1;j<=P->m;j++) {if (currentSchedule->exists(i,j)) operationCount++; }
-				// ende Anzahl der Operationen zählen:
+				// ende Anzahl der Operationen zaehlen:
 				if (operationCount==P->n*P->m) {
 					/*
 					// debug only:
@@ -413,7 +413,7 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 
 
 	// Schreiben der Resultate:
-	// es wird nur ein Ergebnis zurückgeliefert.
+	// es wird nur ein Ergebnis zurueckgeliefert.
 	if (bestSchedule!=NULL) {
 		Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(P->n,P->m);
 		bestSchedule->write_LR(retLR);
@@ -435,7 +435,7 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 void OS_BA::run_beam_search() {
 	currentStep=0;
 	clear_schedule_list();
-	// Der Beam enthält alle aktuellen temporären Pläne
+	// Der Beam enthaelt alle aktuellen temporaeren Plaene
 	//Beam=new Lisa_List<Lisa_OsSchedule*>();
 	Beam=new Lisa_List<ScheduleValuePair>();
 
@@ -445,7 +445,7 @@ void OS_BA::run_beam_search() {
 	Lisa_OsSchedule *rootSchedule=allSchedules[rootScheduleIndex];
 	ScheduleValuePair newSPair(rootSchedule, -1,rootScheduleIndex);
 	Beam->append(newSPair);
-	// Beam enthält den leeren Plan
+	// Beam enthaelt den leeren Plan
 
 	// Start der iterativen Beam-Suche:
 	beam_step();
@@ -473,7 +473,7 @@ void OS_BA::beam_step() {
 		  beam_append_sorted(Beam->get().Schedule,sList);
 	}	while(Beam->next());
 
-	// nach aufsteigenden Zielfunktionswert sortierte Pläne
+	// nach aufsteigenden Zielfunktionswert sortierte Plaene
 	// TODO: Bessere Bewertungsfunktion
 	Lisa_List< ScheduleValuePair> *extensions=new Lisa_List<ScheduleValuePair>;
 
@@ -487,7 +487,7 @@ void OS_BA::beam_step() {
 		} while(sList->next());
 
 		if (extensions->length()>0) {
-			// Vorher doppelte Einträge entfernen:
+			// Vorher doppelte Eintraege entfernen:
 			extensions->reset();
 			do{
 				extensions->get().sortbyValue=false;
@@ -495,7 +495,7 @@ void OS_BA::beam_step() {
 			} 
 			while(extensions->next());
 
-			// um doppelte Einträge bereinige extensions:
+			// um doppelte Eintraege bereinige extensions:
 			Lisa_List< ScheduleValuePair> *extensionsAsNormals=new Lisa_List<ScheduleValuePair>;
 
 			extensions->sort();
@@ -513,11 +513,11 @@ void OS_BA::beam_step() {
 			} 
 			while(extensions->next());
 
-			// extensionsAsNormals ist nun korrekt befüllt
+			// extensionsAsNormals ist nun korrekt befuellt
 
 			if (extensionsAsNormals->length()>0) {
 
-				// Beam aufräumen
+				// Beam aufraeumen
 				if (Beam->length()>0) {
 					Beam->reset();
 					do {
@@ -570,7 +570,7 @@ void OS_BA::beam_append_sorted(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sL
 		return;
 	} 
 
-double max_value_in_order=100000; // Pläne deren Wichtung größer als max_value_in_order ist werden nicht berücksichtigt.
+double max_value_in_order=100000; // Plaene deren Wichtung groeszer als max_value_in_order ist werden nicht beruecksichtigt.
 
 	Lisa_Order * order = new Lisa_Order(P->n, P->m);
 
@@ -599,8 +599,8 @@ double max_value_in_order=100000; // Pläne deren Wichtung größer als max_valu
 	int *predi=new int[2*solutionPart->P->n];
 	int *predj=new int[2*solutionPart->P->m];
 
-	// direkte Vorgänger der Einfügeposition bestimmen. Diese Bestimmung ist notwendig, da
-	// Operationen stets angefügt werden.
+	// direkte Vorgaenger der Einfuegeposition bestimmen. Diese Bestimmung ist notwendig, da
+	// Operationen stets angefuegt werden.
 	for (int j=1;j<=solutionPart->P->m;j++) {
 		int woi=0;
 		int maxVal=0;
@@ -724,13 +724,13 @@ double max_value_in_order=100000; // Pläne deren Wichtung größer als max_valu
 
 	double diffTij=tijGlobalMax-tijGlobalMin;
 
-long elementsToInsert=0; // Anzahl der einzufügenden Operationen
+long elementsToInsert=0; // Anzahl der einzufuegenden Operationen
 // debug only
 long debugFreeOperations=0;
 
 
 	// T_ec earliest completion time:
-	int newScheduleCount=1; // Zählt alle neu hinzugefügten Pläne
+	int newScheduleCount=1; // Zaehlt alle neu hinzugefuegten Plaene
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) {
@@ -739,7 +739,7 @@ long debugFreeOperations=0;
 				double rand=((double)lisa_random(1,100000,&seed))/100000.0;			
 				rand*=rand;
 				rand*=rand;
-				rand*=rand; // Zufallseinfluss nur in seltenen Fällen
+				rand*=rand; // Zufallseinfluss nur in seltenen Faellen
 
 				// Pheromonewertanteil
 				double tijMin=1.5;
@@ -767,7 +767,7 @@ long debugFreeOperations=0;
 					order->read_one_key(i-1,j-1,p);
 					elementsToInsert++;
 				}	
-				if (para_PRE_SELECT==1) { // Nur Pläne mit minimalen earliest Due date sind zugelassen
+				if (para_PRE_SELECT==1) { // Nur Plaene mit minimalen earliest Due date sind zugelassen
 					if (MAX(EarliestStartingTimesI[i-1],EarliestStartingTimesJ[j-1])> minEarliestStartingTime+0.001)
 						order->read_one_key(i-1,j-1,max_value_in_order+1);
 					else {
@@ -852,8 +852,8 @@ void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 	int *predi=new int[2*solutionPart->P->n];
 	int *predj=new int[2*solutionPart->P->m];
 
-	// direkte Vorgänger der Einfügeposition bestimmen. Diese Bestimmung ist notwendig, da
-	// Operationen stets angefügt werden.
+	// direkte Vorgaenger der Einfuegeposition bestimmen. Diese Bestimmung ist notwendig, da
+	// Operationen stets angefuegt werden.
 	for (int j=1;j<=solutionPart->P->m;j++) {
 		int woi=0;
 		int maxVal=0;
@@ -905,7 +905,7 @@ void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 		EarliestStartingTimesJ[j-1]=maxj;
 	}
 
-	double sum_n_oi=0; // Zur Normalisierung der Einträge 
+	double sum_n_oi=0; // Zur Normalisierung der Eintraege 
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) { 
@@ -937,7 +937,7 @@ void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 	}
 
 	// T_ec earliest completion time:
-	int newScheduleCount=1; // Zählt alle neu hinzugefügten Pläne
+	int newScheduleCount=1; // Zaehlt alle neu hinzugefuegten Plaene
 	for (int i=1;i<=solutionPart->P->n;i++) {
 		for (int j=1;j<=solutionPart->P->m;j++) {
 			if (!solutionPart->exists(i,j)) {
@@ -977,7 +977,7 @@ void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 	}
 
 	if (	newScheduleCount==1) {
-		// auf jeden Fall eine Erweiterung hinzufügen:
+		// auf jeden Fall eine Erweiterung hinzufuegen:
 		for (int i=1;i<=solutionPart->P->n;i++) {
 			for (int j=1;j<=solutionPart->P->m;j++) {
 				if (!solutionPart->exists(i,j)) {
@@ -1016,7 +1016,7 @@ void OS_BA::beam_append(Lisa_OsSchedule * solutionPart,Lisa_List<int> *sList) {
 }
 
 
-/// Wendet lokale Suche an. Zurückgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
+/// Wendet lokale Suche an. Zurueckgeliefert wird genau dann true wenn der Plan verbessert werden konnte. 
 bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 	//return false;
 	long hash=ScheduleValuePair::get_hash(schedule);
@@ -1039,7 +1039,7 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 
 	//cout << *LR << endl;
 
-	// Als Quelle einfügen
+	// Als Quelle einfuegen
 	for (int i=1;i<=P->n;i++) {
 		for (int j=1;j<=P->m;j++) {
 			if (schedule->exists(i,j)) { 
@@ -1061,7 +1061,7 @@ bool  OS_BA::apply_local_seach(Lisa_OsSchedule * schedule) {
 		}
 	}
 
-	// Als Senke einfügen
+	// Als Senke einfuegen
 	int *predi=new int[2*P->n];
 	int *predj=new int[2*P->m];
 
