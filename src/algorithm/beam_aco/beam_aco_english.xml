@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Ant Colony" type="constructive" call="beam_aco" code="external" help_file="algorithm/beamaco.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Ant Colony" type="constructive" call="beam_aco" code="external" help_file="algorithm/beam_aco.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
