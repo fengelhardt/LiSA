@@ -29,8 +29,8 @@ LANGS=english german
 # ------------------------------------------------------------------------------
 
 CXXINCL=$(INCL)
-CXXFLAGS=$(CXXINCL) $(COMPILE_FLAGS) -Wall -g
-LDFLAGS=$(STANDARDLIBS) $(LIBS) -Wall
+CXXFLAGS=$(CXXINCL) $(COMPILE_FLAGS) -Wall
+LDFLAGS=$(STANDARDLIBS) $(LIBS)
 
 DEPENDCXX=$(CXX)
 DEPENDCXXFLAGS=$(CXXINCL) -Wall 

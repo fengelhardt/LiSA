@@ -12,7 +12,7 @@
 Lisa_OsProblem    *LR_Individuum::P          = NULL;
 Lisa_OsSchedule   *LR_Individuum::S          = NULL;
 Lisa_Order        *LR_Individuum::Order      = NULL;
-Lisa_Matrix<int> *LR_Individuum::Cross_Mask = NULL;
+Lisa_Matrix<int>  *LR_Individuum::Cross_Mask = NULL;
 int                LR_Individuum::Objective  = CMAX;
 
 #ifdef WIN32
