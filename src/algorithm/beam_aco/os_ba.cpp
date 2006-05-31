@@ -316,7 +316,7 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 
 	for (int i=1; i<=para_STEPS;i++) {
 		//	for (int i=1; i<2;i++) {
-		cout << "********* step "<< i << " ****** OBJECTIVE " << bestSumCi << "********" << endl;
+		cout << "OBJECTIVE= " << bestSumCi << " ready= " << (int) (i*100./para_STEPS) << "%" << endl;
 		run_beam_search();
 		if(abort_algorithm)
 			break;
@@ -361,15 +361,15 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 				}
 			}  while(Beam->next());
 
-		cout<< "bestObjectiveInBeam=" << bestObjectiveInBeam << endl;
+		//cout<< "bestObjectiveInBeam=" << bestObjectiveInBeam << endl;
 		if (bestScheduleIsEmpty) {
-			cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
+			//cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
 			bestSumCi=bestObjectiveInBeam;
 			*bestSchedule=*bestScheduleInBeam;
 			bestScheduleIsEmpty=false;
 		} else {
 			if(bestSumCi>bestObjectiveInBeam) {
-				cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
+				//cout << "new bestSchedule: objective="<< bestObjectiveInBeam << endl;
 				bestSumCi=bestObjectiveInBeam;
 				*bestSchedule=*bestScheduleInBeam;
 			}
@@ -379,10 +379,10 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 			*bestTempSchedule=*bestScheduleInBeam;
 			bestTempScheduleIsEmpty=false;
 			bestTempSchedule->SetValue(zfn_type);
-			cout << "new bestTempSchedule: objective="<< bestTempSchedule->GetValue() << endl;
+			//cout << "new bestTempSchedule: objective="<< bestTempSchedule->GetValue() << endl;
 		} else {
 			if(bestTempSchedule->GetValue()>bestObjectiveInBeam) {
-				cout << "new bestTempSchedule: objective=" << bestObjectiveInBeam << endl;
+				//cout << "new bestTempSchedule: objective=" << bestObjectiveInBeam << endl;
 				*bestTempSchedule=*bestScheduleInBeam;
 
 			}
@@ -394,11 +394,11 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 			applyPheromoneUpdate(bestSchedule);
 
 		double cf=computeConvergenceFactor();	
-		cout << "ConvergenceFactor=" << cf << endl;
+		//cout << "ConvergenceFactor=" << cf << endl;
 		if (cf>	para_CONVERGENCE_FACTOR)  {
-			cout << "cf>	para_CONVERGENCE_FACTOR bs_update="<< bs_update << endl;
+			//cout << "cf>	para_CONVERGENCE_FACTOR bs_update="<< bs_update << endl;
 			if (bs_update) {
-				cout << "resetPheromoneValues()" << endl;
+				//cout << "resetPheromoneValues()" << endl;
 				resetPheromoneValues();			
 				bestTempScheduleIsEmpty=true;
 				bs_update=false;
@@ -407,7 +407,6 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 			}
 		}
 
-		cout << "OBJECTIVE= " << bestSumCi << endl;
 		if(abort_algorithm)
 			break;
 	}
@@ -418,7 +417,7 @@ void OS_BA::run_aco_beam_search(Lisa_OsProblem * Pi, int zfn, Lisa_List<Lisa_Mat
 	if (bestSchedule!=NULL) {
 		Lisa_Matrix<int> * retLR=new Lisa_Matrix<int>(P->n,P->m);
 		bestSchedule->write_LR(retLR);
-		cout << "Return: " << * retLR << endl;
+		//cout << "Return: " << * retLR << endl;
 		bestSchedule->SetValue(zfn_type);
 		results->append(retLR);
 	}
