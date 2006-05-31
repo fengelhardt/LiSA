@@ -1,5 +1,5 @@
 CXXSOURCES=\
-	mainapp.cpp \
+	beam_aco.cpp \
 	os_ba.cpp \
 	ba_env.cpp \
 	../../basics/matrix.cpp \

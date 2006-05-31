@@ -11,7 +11,7 @@
 //#include "stdafx.h"
 // replace the following line for a Windows version:
 #include <signal.h>
-#include "ba_env.h"
+#include "ba_env.hpp"
 
 using namespace std;
 
