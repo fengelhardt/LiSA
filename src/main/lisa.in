@@ -36,4 +36,5 @@ export LISA_DTD_PATH
 
 # starting LiSA
 
+cd "${LISAHOME}/bin"
 exec "${LISAHOME}/bin/main" "${LISACONFIG}/default.xml"
