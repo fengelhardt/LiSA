@@ -275,9 +275,9 @@ if test ! -d \"\${LISACONFIG}\"; then
      rm -fr \"\${LISACONFIG}\"
      mkdir \"\${LISACONFIG}\"
      fi
-if test ! -f \"\${LISACONFIG}/default.lsa\"; then
-     rm -fr \"\${LISACONFIG}/default.lsa\"
-     cp \"\${LISAHOME}/data/default.lsa\" \"\${LISACONFIG}\"
+if test ! -f \"\${LISACONFIG}/default.xml\"; then
+     rm -fr \"\${LISACONFIG}/default.xml\"
+     cp \"\${LISAHOME}/data/default.xml\" \"\${LISACONFIG}\"
      fi
 
 
@@ -288,7 +288,8 @@ export LISACONFIG
 
 # starting LiSA
 
-exec \"\${LISAHOME}/bin/main\" \"\${LISACONFIG}/default.lsa\""
+cd \"\${LISAHOME}/bin\"
+exec \"\${LISAHOME}/bin/main\" \"\${LISACONFIG}/default.xml\""
      close $startScript
      file attributes $startScriptName -permissions 0755
 }
@@ -321,7 +322,8 @@ set LISACONFIG=%LISAHOME%/data
 
 rem starting LiSA
 
-call \"$installDirDOSStyle\\bin\\main.exe\" \"%LISACONFIG%/default.lsa\""
+cd \"$installDirDOSStyle\\bin\"
+call \"$installDirDOSStyle\\bin\\main.exe\" \"%LISACONFIG%/default.xml\""
      close $startScript
 }
 ###########################################################

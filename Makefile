@@ -175,6 +175,9 @@ dist-cygwin:
 	cp /bin/cygwin1.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/tcl[0-9]*.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/tk[0-9]*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygxml2*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygz.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygiconv*.dll $(CYGWINPATH)/LiSA/bin
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tcl* -maxdepth 0`
 	cp -r /usr/share/tcl*/tclIndex $(CYGWINPATH)/LiSA/share/tcl*
 	cp -r /usr/share/tcl*/*.tcl $(CYGWINPATH)/LiSA/share/tcl*
@@ -183,7 +186,7 @@ dist-cygwin:
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
 	printf > $(CYGWINPATH)/LiSA/setup.bat '@echo off\r\n\r\ncd bin\r\nsetup.exe\r\ncd ..\r\n'
 	find $(CYGWINPATH) -name CVS | xargs rm -fr
-	cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
+#cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
 
 # ------------------------------------------------------------------------------
 
