@@ -185,6 +185,7 @@ dist-cygwin:
 	cp -r /usr/share/tk*/tclIndex $(CYGWINPATH)/LiSA/share/tk*
 	cp -r /usr/share/tk*/*.tcl $(CYGWINPATH)/LiSA/share/tk*
 	printf > $(CYGWINPATH)/LiSA/setup.bat '@echo off\r\n\r\ncd bin\r\nsetup.exe\r\ncd ..\r\n'
+	chmod 755 $(CYGWINPATH)/LiSA/setup.bat
 	find $(CYGWINPATH) -name CVS | xargs rm -fr
 #cd $(CYGWINPATH); zip -9r lisa-$(VERSION)-win-bin.zip LiSA
 
