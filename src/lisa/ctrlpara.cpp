@@ -51,6 +51,30 @@ void Lisa_ControlParameters::add_key(const string name, string value)
 
 //**************************************************************************
 
+void Lisa_ControlParameters::remove_key(const std::string name)
+ {
+   if (IntKeyList.search_first(name)) 
+     {
+       IntList[IntKeyList.get_index()];
+       IntKeyList.exclude();
+       IntList.exclude();
+     } 
+   if (DoubleKeyList.search_first(name)) 
+     {
+       DoubleList[DoubleKeyList.get_index()];
+       DoubleKeyList.exclude();
+       DoubleList.exclude();
+     }
+   if (StringKeyList.search_first(name)) 
+     {
+       StringList[StringKeyList.get_index()];
+       StringKeyList.exclude();
+       StringList.exclude();
+     }   
+ }
+
+//**************************************************************************
+
 long Lisa_ControlParameters::get_long(const string name)
  {
   if (!IntKeyList.search_first(name)) 

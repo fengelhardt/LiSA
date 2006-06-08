@@ -56,6 +56,9 @@ enum{UNDEFINED /** unknown type */ =0
     /// add a new string-entry with name and value
     void add_key(const std::string name, std::string value);
 
+    ///remove an entry with name
+    void remove_key(const std::string name);
+    
     /// test how keyword is defined (INT, DOUBLE, STRING or UNDEFINED)
     int defined(const std::string name);
     
