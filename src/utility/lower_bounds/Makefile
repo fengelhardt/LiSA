@@ -16,6 +16,6 @@ TOPPROGRAMPATH=../../..
 
 # ------------------------------------------------------------------------------
 
-include ../Make.Algorithm
+include ../Make.Utility
 
 
