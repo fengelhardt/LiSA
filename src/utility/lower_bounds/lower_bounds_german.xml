@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Untere Schranken" type="constructive" call="lower_bounds" code="external" help_file="algorithm/sample.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Untere Schranken" type="constructive" call="lower_bounds" code="external" help_file="algorithm/lower_bounds.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
