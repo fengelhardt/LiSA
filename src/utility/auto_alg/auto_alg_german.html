@@ -15,15 +15,15 @@
   binary Verzeichnis (z.B. <code>~/LiSA/bin</code>) und rufen
   <code>auto_alg</code> mit der Eingabedatei als Parameter auf. Diese Datei
   wird dann abgearbeitet und f&uuml;r jede erzeuge Instanz wird eine
-  Ausgabedatei mit dem Namen <code>[inputfilename].[number].lsa</code> erzeugt.
+  Ausgabedatei mit dem Namen <code>[inputfilename].[number].xml</code> erzeugt.
   Diese enth&auml;lt die erzeugte Probleminstanz sowie alle erzeugten
   L&ouml;sungen.<br>
   <br>
   Bitte beachten sie das der erste aufzurufende Algorithmus konstruktiv sein
   muss, da keine bereits bestehende L&ouml;sung &uuml;bergeben werden kann.
-  Alle weiteren Algorithmen erhalten die L&ouml;sung des vergehenden
-  Algorithmus als Eingabe und k&ouml;nnen daher konstruktiv oder iterativ
-  sein.<br>
+  F&uuml;r alle weiteren Algorithmen k&ouml;nnen L&ouml;sungen der vergehenden
+  Algorithmen als Eingabe verwendet werden und diese k&ouml;nnen daher
+  konstruktiv oder iterativ sein.<br>
   <br>
   Die erzeugten Ausgabedateien k&ouml;nnen mit LiSA ge&ouml;ffnet werden. Sie
   enthalten nicht nur den Problemtyp, die erzeugte Instanz und alle berechneten
@@ -34,42 +34,83 @@
   Standardausgabe.
    
   <H2>Eine Eingabedatei</H2>
-  <code>
-  &lt;PROBLEMTYPE&gt;<br>
-  &nbsp;Lisa_ProblemType= { O /  / Cmax }<br>
-  &lt;/PROBLEMTYPE&gt;<br>
-  <br>
-  &lt;CONTROLPARAMETERS&gt;<br>
-  &nbsp;long M 10<br>
-  &nbsp;long N 10<br>
-  &nbsp;long MINPT 1<br>
-  &nbsp;long MAXPT 20<br>
-  &nbsp;long TIMESEED 89327548<br>
-  &nbsp;long MACHSEED 23485327<br>
-  &nbsp;long NUMBERPROBLEMS 2<br>
-  &nbsp;long NUMBERALGORITHMS 2<br>
-  &lt;/CONTROLPARAMETERS&gt;<br>
-  <br>
-  &lt;CONTROLPARAMETERS&gt;<br>
-  &nbsp;string EXECUTABLE dispatch<br>
-  &nbsp;string ACTIVE TRUE<br>
-  &nbsp;string RULE SPT<br>
-  &lt;/CONTROLPARAMETERS&gt;<br>
-  <br>
-  &lt;CONTROLPARAMETERS&gt;<br>
-  &nbsp;string EXECUTABLE nb_iter<br>
-  &nbsp;long STEPS 5000<br>
-  &nbsp;long NUMB_STUCKS 10000<br>
-  &nbsp;long PROB 12<br>
-  &nbsp;long MAX_STUCK 30<br>
-  &nbsp;long TABULENGTH 40<br>
-  &nbsp;long NUMB_NGHB 40<br>
-  &nbsp;double ABORT_BOUND 0<br>
-  &nbsp;string NGBH CR_SHIFT<br>
-  &nbsp;string METHOD SimulatedAnnealing<br>
-  &nbsp;string TYPE RAND<br>
-  &lt;/CONTROLPARAMETERS&gt;<br>
   </code>
+&lt;PROBLEMTYPE&gt;<br>
+&nbsp;&nbsp;Lisa_ProblemType= { O / / SumCi }<br>
+&lt;/PROBLEMTYPE&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;long MINPT 1<br>
+&nbsp;&nbsp;long MAXPT 20<br>
+&nbsp;&nbsp;long M 10<br>
+&nbsp;&nbsp;long N 10<br>
+&nbsp;&nbsp;long NUMBERPROBLEMS 10<br>
+&nbsp;&nbsp;long NUMBERALGORITHMS 8<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE lower_bounds<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE dispatch<br>
+&nbsp;&nbsp;string SCHEDULE NONDELAY<br>
+&nbsp;&nbsp;string RULE FCFS<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE dispatch<br>
+&nbsp;&nbsp;string SCHEDULE NONDELAY<br>
+&nbsp;&nbsp;string RULE RAND<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE dispatch<br>
+&nbsp;&nbsp;string SCHEDULE NONDELAY<br>
+&nbsp;&nbsp;string RULE SPT<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE dispatch<br>
+&nbsp;&nbsp;string SCHEDULE NONDELAY<br>
+&nbsp;&nbsp;string RULE LPT<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE best_of<br>
+&nbsp;&nbsp;string AUTOALG_START_FROM {2,3,4,5}<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;long   AUTOALG_TIMELIMIT 3<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE nb_iter<br>
+&nbsp;&nbsp;string AUTOALG_START_FROM {6}<br>
+&nbsp;&nbsp;long   STEPS       50000<br>
+&nbsp;&nbsp;long   NUMB_STUCKS 100000<br>
+&nbsp;&nbsp;long   PROB        12<br>
+&nbsp;&nbsp;long   MAX_STUCK   30<br>
+&nbsp;&nbsp;long   TABULENGTH  40<br>
+&nbsp;&nbsp;long   NUMB_NGHB   40<br>
+&nbsp;&nbsp;double ABORT_BOUND 0<br>
+&nbsp;&nbsp;string NGBH        CR_SHIFT<br>
+&nbsp;&nbsp;string METHOD      SimulatedAnnealing<br>
+&nbsp;&nbsp;string TYPE        RAND<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+<br>
+&lt;CONTROLPARAMETERS&gt;<br>
+&nbsp;&nbsp;string AUTOALG_EXECUTABLE ga<br>
+&nbsp;&nbsp;string AUTOALG_START_FROM {2,3,4,5}<br>
+&nbsp;&nbsp;long POP_SIZE 20<br>
+&nbsp;&nbsp;long NUM_GEN 100<br>
+&nbsp;&nbsp;string INIT RANDOM_ORDER<br>
+&nbsp;&nbsp;string FITNESS OBJECTIVE<br>
+&nbsp;&nbsp;double M_PROB 0.25<br>
+&nbsp;&nbsp;double C_PROB 0.35<br>
+&nbsp;&nbsp;long SEED 1234567890<br>
+&nbsp;&nbsp;long IMPR_STEPS 10<br>
+&nbsp;&nbsp;string L_IMPR SCHIFT<br>
+&lt;/CONTROLPARAMETERS&gt;<br>
+</code>
   <br>
   Der erste Eintrag enth&auml;lt den gew&uuml;nschten
   <code>&lt;PROBLEMTYPE&gt;</code>. Dann folgt ein
@@ -77,10 +118,11 @@
   <code>auto_alg</code>. Anschliessend folgen weitere
   <code>&lt;CONTROLPARAMETERS&gt;</code> Eintr&auml;ge f&uuml;r die 
   aufzurufenden Algorithmen. Diese enthalten zus&auml;tzlich zu den Parametern
-  f&uuml;r die Algorithmen einen <code>EXECUTABLE</code> Eintrag mit dem Namen
-  des aufzurufenden Algorithmus.
+  f&uuml;r die Algorithmen einen <code>AUTOALG_EXECUTABLE</code> Eintrag mit dem Namen
+  des aufzurufenden Algorithmus. Sie können weiterhin <code>AUTOALG_START_FROM</code> und
+  <code>AUTOALG_TIMELIMIT</code> Parameter enthalten.
   
-  <H2>Parameter</H2>
+  <H2>Parameter f&uuml;r <code>auto_alg</code></H2>
   <dl>
   <dt>M,N</dt>
   <dd>Anzahl der Maschinen und Auftr&auml;ge in den zu erzeugenden
@@ -96,6 +138,25 @@
   <dd>Wie viele Algorithmen sollen aufgerufen werden ? Diese Zahl muss mit der
       Anzahl der folgenden <code>&lt;CONTROLPARAMETERS&gt;</code> Eintr&auml;ge
       &uuml;bereinstimmen.</dd>
+  </dl>
+  
+  <H2>Zus&auml;tzliche Parameter zu den Algorithmen</H2>
+  <dl>
+  <dt>AUTOALG_EXECUTABLE</dt>
+  <dd>Notwendig! Die ausf&uuml;hrbare Datei, die den Algorithmus enth&auml;lt.</dd>
+  <dt>AUTOALG_TIMELIMIT</dt>
+  <dd>Zeitlimit f&uuml;r den Algorithmus. Dieser wird mit <code>SIGINT</code>
+      unterbrochen, wenn das Zeitlimit abgelaufen ist. Dies ist reale Zeit,
+      keine Prozesszeit. Der Standartwert ist <code>0</code>, dies entspricht
+      keinem Limit. Dieser Parameter sollte nur f&uuml;r Algorithmen genutzt
+      werden, die eine Ausgabe erzeugen, wenn sie mit <code>SIGINT</code>
+      abgebrochen werden.</dd>
+  <dt>AUTOALG_START_FROM</dt>
+  <dd>Gibt an, welche Ausgaben als Eingabe genutzt werden. Der Syntax ist
+      <code>string AUTOALG_START_FROM {2,3}</code>, ohne Leerzeichen im 
+      <code>{2,3}</code> Teil. Die &Uuml;bergebenen Zahlen müssen kleiner als
+      die Nummer des aktuellen Algorithmus sein. Der Standardwert f&uuml;r einen 
+      Algorithmus mit Nummer <code>i</code> ist <code>{i-1}.</code></dd>
   </dl>
   
   <HR>
