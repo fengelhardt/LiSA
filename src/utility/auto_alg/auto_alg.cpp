@@ -9,8 +9,11 @@
 #include <ctime>
 
 #include <string>
+#include <list>
+#include <iterator>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include "../../misc/int2str.hpp"
 #include "../../misc/except.hpp"
@@ -41,6 +44,7 @@ std::string algin,algout;
 bool child_terminated=false;
 
 void child_terminates(int i){ child_terminated=true; }
+
 
 //**************************************************************************
 
@@ -141,36 +145,114 @@ void checkProblemType(Lisa_ProblemType &pt){
 
 //**************************************************************************
 
-//check if controlparameters contain an algorithm and if the executable exists
-//exit otherwise
-void checkAlgo(Lisa_ControlParameters &cp){
+//struct to hold parameters for one algorithm
+struct algParameters{
+  Lisa_ControlParameters cp;
   std::string executable;
+  long timelimit;
+  std::list<int> startfrom;
 
-  if(cp.defined("EXECUTABLE")==Lisa_ControlParameters::STRING){
-    executable = cp.get_string("EXECUTABLE");
-  }else{
-    G_ExceptionList.lthrow((std::string)"No EXECUTABLE parameter defined."
-                           ,Lisa_ExceptionList::INCONSISTENT_INPUT);
-    exit(-1);
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  
+  // get numbers from sf string, syntax has to be
+  // {2,4,5,6} _without_ spaces
+  void parseStartFrom(const std::string& sf,const int i){
+    startfrom.clear();
+    
+    std::stringstream strm(sf);
+    
+    char c= ' ';
+    int j = 0;
+    strm >> c;
+    if(c != '{'){
+      G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
+                             ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+      exit(-1);
+    }      
+    
+    do{
+      
+      strm >> j;
+      if(!strm.fail()) startfrom.push_back(j-1);
+      else{
+        G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
+                               ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+        exit(-1); 
+      }
+      
+      strm >> c;
+      if(c != '}' && c != ','){
+        G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
+                               ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+        exit(-1);
+      }  
+      
+    }while(c != '}' && !strm.eof());
+    
+    if(strm.eof()){
+      G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
+                             ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+      exit(-1);    
+    }else{
+      strm >> c;
+      if(!strm.fail()){
+        G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
+                               ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+        exit(-1);
+      }
+    }
+      
   }
   
-  if(cp.defined("TIMELIMIT")!=Lisa_ControlParameters::LONG){
-    cp.add_key("TIMELIMIT",(long) 0);
-    G_ExceptionList.lthrow((std::string)"No TIMELIMIT parameter defined for algorithm '"+
-                            executable +"', using default '0'.",Lisa_ExceptionList::WARNING);
-  }
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  //check if controlparameters contain an algorithm and if the executable exists
+  //exit otherwise
+  void checkAlgo(const int i){
   
-/*add some useful !!! testing if executable exists here -marc-  
-  std::ifstream testfile(executable.c_str());
-  if(testfile){
-    testfile.close();
-  }else{
-    G_ExceptionList.lthrow((std::string)"Executable '"+
-                           executable+"' doesn't seem to exist.",
-                           Lisa_ExceptionList::INCONSISTENT_INPUT);
-    exit(-1); 
-  } */
-}
+    if(cp.defined("AUTOALG_EXECUTABLE")==Lisa_ControlParameters::STRING){
+      executable = cp.get_string("AUTOALG_EXECUTABLE");
+      cp.remove_key("AUTOALG_EXECUTABLE");
+    }else{
+      G_ExceptionList.lthrow((std::string)"No AUTOALG_EXECUTABLE parameter defined for algorithm "+ztos(i+1)+"."
+                             ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+      exit(-1);
+    }
+    
+    if(cp.defined("AUTOALG_TIMELIMIT")==Lisa_ControlParameters::LONG){
+      timelimit = cp.get_long("AUTOALG_TIMELIMIT");
+      cp.remove_key("AUTOALG_TIMELIMIT");
+    }else{
+      G_ExceptionList.lthrow((std::string)"No AUTOALG_TIMELIMIT parameter defined for algorithm "+ztos(i+1)+" '"+
+                             executable +"', using default '0'.",Lisa_ExceptionList::WARNING);
+      timelimit = 0;
+    }
+  
+    if(cp.defined("AUTOALG_START_FROM")==Lisa_ControlParameters::STRING){
+      std::string sf = cp.get_string("AUTOALG_START_FROM");
+      cp.remove_key("AUTOALG_START_FROM");
+      if(i>0) parseStartFrom(sf,i);
+    }else if(i>0){
+      G_ExceptionList.lthrow((std::string)"No AUTOALG_START_FROM parameter defined for algorithm "+ztos(i+1)+" '"+
+                             executable +"', using default '{"+ztos(i)+"}'.",Lisa_ExceptionList::WARNING);
+      startfrom.push_back(i-1);
+    }
+    
+  /*add some useful !!! testing if executable exists here -marc-  
+    std::ifstream testfile(executable.c_str());
+    if(testfile){
+      testfile.close();
+    }else{
+      G_ExceptionList.lthrow((std::string)"Executable '"+
+                             executable+"' doesn't seem to exist.",
+                             Lisa_ExceptionList::INCONSISTENT_INPUT);
+      exit(-1); 
+    } */
+  }
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+};
 
 //**************************************************************************
 
@@ -214,7 +296,7 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 
 //create an input file, clean output file
 void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
-                   Lisa_Values &val,Lisa_Schedule &sched){
+                   Lisa_Values &val,Lisa_List<Lisa_ScheduleNode> &sched){
 
   std::ofstream out_file(algout.c_str());
   if(!out_file){
@@ -233,11 +315,11 @@ void writeAlgInput(Lisa_ProblemType &pt,Lisa_ControlParameters &cp,
   in_file.close();
   
   LisaXmlFile::DOC_TYPE type = LisaXmlFile::INSTANCE;
-  if(sched.valid) type = LisaXmlFile::SOLUTION;
+  if(!sched.empty()) type = LisaXmlFile::SOLUTION;
   
   LisaXmlFile xmlOutput(type);
   xmlOutput << pt << val << cp;
-  if(sched.valid) xmlOutput << sched;
+  if(!sched.empty()) xmlOutput << sched;
   xmlOutput.write(algin);
 }
 
@@ -391,11 +473,11 @@ int main(int argc, char *argv[]){
  do{}while(G_ExceptionList.lcatch(Lisa_ExceptionList::WARNING) != "No error of this kind in list.");
  
  // read parameters for algorithms to call
- Lisa_ControlParameters* cps = new Lisa_ControlParameters[numberalgorithms];
+ algParameters* aps = new algParameters[numberalgorithms];
  for(int i=0;i<numberalgorithms;i++){
-   in_file >> cps[i];
+   in_file >> aps[i].cp;
    if(!G_ExceptionList.empty()) exit(-1);
-   checkAlgo(cps[i]);
+   aps[i].checkAlgo(i);
    do{}while(G_ExceptionList.lcatch(Lisa_ExceptionList::WARNING) != "No error of this kind in list.");
  }
 
@@ -411,7 +493,7 @@ int main(int argc, char *argv[]){
    // generate instance 
    Lisa_Values val;
    generateValues(val,pt); 
-   Lisa_Schedule sched(n,m);
+   Lisa_Schedule sched(n,m); // result from one algorithm
    
    //need those two to calculate objective
    Lisa_OsProblem op(&val);
@@ -420,36 +502,43 @@ int main(int argc, char *argv[]){
    // run all the algorithms .. first one should be constructive, the others 
    // can be iterative to improve the solution or contructive to create a new
    // solution ...
-   TIMETYP old_objective = MAXTIME;
-   Lisa_List<Lisa_ScheduleNode> SchedList;
+   Lisa_List<Lisa_ScheduleNode> OutSchedList; //"global", one result per algorithm
+   Lisa_List<Lisa_ScheduleNode> InSchedList; //"local", all inputs forone algorithm
    
    for(int j=0;j<numberalgorithms;j++){
     
-    writeAlgInput(pt,cps[j],val,sched);
+    //pick input schedules
+    InSchedList.clear();
+    std::list<int>::iterator it;
+    for(it=aps[j].startfrom.begin();it!=aps[j].startfrom.end();it++){
+      OutSchedList.locate(*it);
+      
+      Lisa_Schedule* lsch = OutSchedList.get().actual_schedule;
+      if(lsch->valid) InSchedList.append(Lisa_ScheduleNode(lsch)); 
+    }
+    
+    writeAlgInput(pt,aps[j].cp,val,InSchedList);
     time_t start = time(0);
     
-    system_limit(cps[j].get_string("EXECUTABLE") ,cps[j].get_long("TIMELIMIT"));
+    system_limit(aps[j].executable,aps[j].timelimit);
     
     time_t end = time(0);
     readAlgOutput(sched);
-    SchedList.append(Lisa_ScheduleNode(&sched));
+    OutSchedList.append(Lisa_ScheduleNode(&sched));
     
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
               << str_alg(j+1) << " time " << end-start << " sek objective " 
-              << os.GetValue();
-    if(old_objective > os.GetValue()) std::cout << " +";
-    std::cout << std::endl;
-    old_objective = os.GetValue();
+              << os.GetValue() << std::endl;
+
     
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
               << str_alg(j+1);
     os.SetValue(CMAX);
     std::cout << " CMAX " << os.GetValue();
     os.SetValue(SUM_CI);
-    std::cout << " SUM_CI " << os.GetValue();
-    std::cout << std::endl;
+    std::cout << " SUM_CI " << os.GetValue() << std::endl;
     
    }
    
@@ -464,7 +553,7 @@ int main(int argc, char *argv[]){
    out_file.close();
    
    LisaXmlFile xmlOutput(LisaXmlFile::SOLUTION);
-   xmlOutput << pt << val << SchedList;
+   xmlOutput << pt << val << OutSchedList;
    xmlOutput.write(out_file_name);
    
    std::ofstream out_file1(out_file_name.c_str(),std::ios::out|std::ios::app);
@@ -485,7 +574,7 @@ int main(int argc, char *argv[]){
    
  }
 
- delete[] cps;
+ delete[] aps;
  time_t all_end = time(0);
  std::cout << "AUTO_ALG: overall time " << all_end-all_start << " sek" << std::endl;
  return 0;
