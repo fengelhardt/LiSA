@@ -173,8 +173,14 @@ struct algParameters{
     do{
       
       strm >> j;
-      if(!strm.fail()) startfrom.push_back(j-1);
-      else{
+      if(!strm.fail()){
+        if(j-1>=i || j-1 < 0){
+          G_ExceptionList.lthrow((std::string)"Can not use output from algorithm "+ztos(j)+" as input for algorithm "+ztos(i+1)+" ."
+                                 ,Lisa_ExceptionList::INCONSISTENT_INPUT);
+          exit(-1);
+        }
+        startfrom.push_back(j-1);
+      }else{
         G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
                                ,Lisa_ExceptionList::INCONSISTENT_INPUT);
         exit(-1); 
