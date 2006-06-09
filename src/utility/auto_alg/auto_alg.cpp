@@ -174,12 +174,12 @@ struct algParameters{
       
       strm >> j;
       if(!strm.fail()){
-        if(j-1>=i || j-1 < 0){
+        if(j-1>=i || j-1 < -1){
           G_ExceptionList.lthrow((std::string)"Can not use output from algorithm "+ztos(j)+" as input for algorithm "+ztos(i+1)+" ."
                                  ,Lisa_ExceptionList::INCONSISTENT_INPUT);
           exit(-1);
         }
-        startfrom.push_back(j-1);
+        if(j-1 > 0) startfrom.push_back(j-1);
       }else{
         G_ExceptionList.lthrow((std::string)"Could not parse AUTOALG_START_FROM parameter '"+sf+"' for algorithm "+ztos(i+1)+" ."
                                ,Lisa_ExceptionList::INCONSISTENT_INPUT);
@@ -237,11 +237,11 @@ struct algParameters{
     if(cp.defined("AUTOALG_START_FROM")==Lisa_ControlParameters::STRING){
       std::string sf = cp.get_string("AUTOALG_START_FROM");
       cp.remove_key("AUTOALG_START_FROM");
-      if(i>0) parseStartFrom(sf,i);
-    }else if(i>0){
+      parseStartFrom(sf,i);
+    }else{
       G_ExceptionList.lthrow((std::string)"No AUTOALG_START_FROM parameter defined for algorithm "+ztos(i+1)+" '"+
                              executable +"', using default '{"+ztos(i)+"}'.",Lisa_ExceptionList::WARNING);
-      startfrom.push_back(i-1);
+      if(i>0) startfrom.push_back(i-1);
     }
     
   /*add some useful !!! testing if executable exists here -marc-  
