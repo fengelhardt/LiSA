@@ -73,7 +73,7 @@ public:
       //std::cout << "Worst = " << worst - population.begin() << " value = " << worst->getFitness() << std::endl;
     }
     //std::cout << "---------- DONE -----------" << std::endl;
-    std::copy(population.begin(),population.end(), std::ostream_iterator<Ind>(std::cout, "\n"));
+    //std::copy(population.begin(),population.end(), std::ostream_iterator<Ind>(std::cout, "\n"));
   }
 
   const Ind& getBest(){
