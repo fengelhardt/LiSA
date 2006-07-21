@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+</head>
+<body>
+<h1>Genetischer Algortihmus</h1>
+<br>
+Dieser Algorithmus implementiert ein heuristisches Suchverfahren bei
+dem eine Population von L&ouml;sungskandidaten iterativ derart
+ver&auml;ndert wird, sodass ausgehend von der initialen Population eine
+stetige Verbesserung des Funktionswertes (Fitness) der besten
+vorhandenen L&ouml;sung erreicht wird. Erreicht wird dies durch ein
+Rekombinations-und Selektionsverfahren, dass in [?] n&auml;her
+beschrieben ist.<br>
+Im folgenden werden die einzelnen zur Verf&uuml;gung stehenden
+Parameter n&auml;her beschrieben.<br>
+<br>
+<br>
+<ul style="font-weight: bold;">
+  <li>POP_SIZE</li>
+</ul>
+<div style="margin-left: 40px;">Gibt die Gr&ouml;&szlig;e der zu
+verwaltenden Population an.<br>
+</div>
+<ul style="font-weight: bold;">
+  <li>NUM_GEN</li>
+</ul>
+<div style="margin-left: 40px;">Gibt die Anzahl der Generationen an,
+die erzeugt werden soll.<br>
+</div>
+<ul style="font-weight: bold;">
+  <li>INIT</li>
+</ul>
+<div style="margin-left: 40px;">Gibt die Methode an, mit der die
+Anfangspopulation erzeugt wird.<br>
+Die m&ouml;glichen Werte sind:<br>
+<ul>
+  <ul>
+    <li>RANDOM_ORDER : zuf&auml;llige L&ouml;sungen<br>
+    </li>
+    <li>ACTIVE_DISPATCH : Anwendung der <a href="dispatch.html">Reihungsregeln</a>
+mit Parametern (<span style="font-style: italic;">ACTIVE,RAND</span>)<br>
+    </li>
+    <li>NON_DELAY_DISPATCH : Anwendung der <a href="dispatch.html">Reihungsregeln</a>
+mit Parametern (<span style="font-style: italic;">NON_DELAY,RAND</span>)</li>
+  </ul>
+</ul>
+</div>
+<ul style="font-weight: bold;">
+  <li>M_PROB</li>
+</ul>
+<div style="margin-left: 40px;">Gibt die Wahrscheinlichkeit an, mit der
+eine L&ouml;sung der Mutation unterworfen wird.<br>
+</div>
+<ul style="font-weight: bold;">
+  <li>C_PROB</li>
+</ul>
+<div style="margin-left: 40px;">Gibt die Wahrscheinlichkeit an, mit der
+zwei zuf&auml;llig gew&auml;hlte L&ouml;sungen der Rekombination (<span
+ style="font-weight: bold;">C</span>rossing Over) unterworfen werden.</div>
+<ul style="font-weight: bold;">
+  <li>SEED</li>
+</ul>
+<div style="text-align: left; margin-left: 40px;">Initialisierung der
+ZufallsgeneratorsL_IMPR<br>
+</div>
+<ul style="font-weight: bold;">
+  <li>L_IMPR</li>
+</ul>
+<div style="margin-left: 40px;">Auswahl einer Startegie zur lokalen
+Verbesserung mit Hilfe von <a href="nb_iter.html">Nachbarschaftssuchverfahren</a>
+der Einzell&ouml;sungen.&nbsp; Zum deaktivieren mu&szlig; "(disabled)"
+eingestellt werden.<br>
+</div>
+<ul style="font-weight: bold;">
+  <li>IMPR_STEPS</li>
+</ul>
+<div style="margin-left: 40px;">Anzahl der Wiederholung der Iterativen
+Verbesserungsstrategie.<br>
+</div>
+<br>
+</body>
+</html>
