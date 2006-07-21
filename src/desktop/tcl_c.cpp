@@ -894,7 +894,6 @@ TCL_HACK_CHAR *argv[]){
   unsigned num_of_solv_probl = Solved.size();
   for (unsigned j=0;j<num_of_solv_probl;j++)
   {
-    
     // check if problemtypes match exactly
     if(G_ProblemType.output_alpha()==Solved[j].output_alpha() && 
        G_ProblemType.output_beta()==Solved[j].output_beta() && 

@@ -7,6 +7,31 @@
       <beta/>
       <gamma objective="*"/>
     </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes"/>
+      <gamma objective="*"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta due_dates="yes"/>
+      <gamma objective="*"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta release_times="yes" due_dates="yes"/>
+      <gamma objective="*"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="*"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="uniform"/>
+      <gamma objective="*"/>
+    </problem>
   </heuristic>
   <alg_controls>
     <integer name="POP_SIZE" caption="Population size" default="50"/>
@@ -16,10 +41,10 @@
       <item name="ACTIVE_DISPATCH"/>
       <item name="NON_DELAY_DISPATCH"/>
     </choice>
-    <choice name="FITNESS" caption="Fitness">
-      <item name="SUM_Ci2"/>
-      <item name="OBJECTIVE"/>
-    </choice>
+<!--     <choice name="FITNESS" caption="Fitness"> -->
+<!--       <item name="SUM_Ci2"/> -->
+<!--       <item name="OBJECTIVE"/> -->
+<!--     </choice> -->
     <real    name="M_PROB"   caption="Mutation probablility" default="0.25"/>
     <real    name="C_PROB"   caption="Crossover probablility" default="0.35"/>
     <integer name="SEED"  caption="Random seed" default="1234567890"/>

@@ -291,13 +291,11 @@ void LR_Individuum::initialize(GA_Setup& setup){
   
 void LR_Individuum::eval() const{
   if(f_valid) return;
+  f_valid = true;
   S->clear();
   makePlan(*S);
-  if(LR_Individuum::Objective != SUM_CI_2){
-    S->SetValue(LR_Individuum::Objective);
-    fitness = S->GetValue();
-  }
-  else { //calculate fitness 
+  /*
+  if(LR_Individuum::Objective == SUM_CI_2){
     TIMETYP cj = 0,ci = 0;
     S->ComputeHeadsTails (true, false);
     for (int i=1;i<=P->n; i++ )
@@ -306,7 +304,9 @@ void LR_Individuum::eval() const{
       cj += S->GetHead(S->GetJOpred(SINK,j),j);
     fitness = std::max(ci,cj);
   }
-  f_valid = true;
+  */
+  S->SetValue(LR_Individuum::Objective);
+  fitness = S->GetValue();
 }
 
 std::ostream& operator<<(std::ostream& out, const LR_Individuum& i){
