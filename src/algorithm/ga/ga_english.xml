@@ -5,12 +5,7 @@
     <problem>
       <alpha env="O"/>
       <beta/>
-      <gamma objective="Sum_Ci"/>
-    </problem>
-    <problem>
-      <alpha env="O"/>
-      <beta/>
-      <gamma objective="Cmax"/>
+      <gamma objective="*"/>
     </problem>
   </heuristic>
   <alg_controls>

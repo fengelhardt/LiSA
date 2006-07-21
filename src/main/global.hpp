@@ -81,7 +81,7 @@ const int NUMBER[TUPEL_INDEX]={
   4,  // TIME_LAGS
   11,  // TRANSPORTATION_DELAYS
   4,  // SERVER_FLAGS
-  11,  // OBJECTIVE
+  12,  // OBJECTIVE
   1,  // M_NO
   1   // NO_NO
 };
@@ -232,6 +232,8 @@ const int IRREG1=9;
 /** as used by Neumann/Schwindt */
 const int IRREG2=10;     
 
+/** arbitrary objective function for ease of alg description */
+const int ANY_OBJECTIVE=NUMBER[OBJECTIVE]-1;
 
 /// correspondings strings
 const char name_of_tupelindex[TUPEL_INDEX][MAX_STRING] = {
@@ -294,7 +296,7 @@ const char name_of_tupelentry[TUPEL_INDEX][MAX_NUMBER][MAX_STRING] = {
   // SERVER_FLAGS
 {  "EMPTY",  "SI",  "SI_1",  "SI_S",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // OBJECTIVE
-{  "", "CMAX", "LMAX", "SUM_CI",  "SUM_WICI",  "SUM_UI",  "SUM_WIUI",  "SUM_TI",  "SUM_WITI",  "IRREG1",  "IRREG2",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
+{  "", "CMAX", "LMAX", "SUM_CI",  "SUM_WICI",  "SUM_UI",  "SUM_WIUI",  "SUM_TI",  "SUM_WITI",  "IRREG1",  "IRREG2",  "*",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // M_NO
 {  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "",  "" }, 
   // NO_NO

@@ -158,6 +158,7 @@ void LisaXmlFile::init_maps()
   MAP_PAIRS(OBJECTIVE,SUM_WITI,"objective","Sum_wiTi");
   MAP_PAIRS(OBJECTIVE,IRREG1,"objective","irreg_1");
   MAP_PAIRS(OBJECTIVE,IRREG2,"objective","irreg_2");
+  MAP_PAIRS(OBJECTIVE,ANY_OBJECTIVE,"objective","*");
 }
 
 

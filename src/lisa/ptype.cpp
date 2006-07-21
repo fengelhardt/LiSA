@@ -526,8 +526,8 @@ string Lisa_ProblemType::name(int tupelEntry, int identifier)const{
     }
     return("FEHLER in SERVER_FLAGS");
     
-    case OBJECTIVE:
-    switch(identifier){
+  case OBJECTIVE:
+    switch(identifier)      {
       case EMPTY: return "";
       case CMAX: return "Cmax";
       case LMAX: return "Lmax";

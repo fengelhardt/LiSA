@@ -896,40 +896,42 @@ TCL_HACK_CHAR *argv[]){
   {
     
     // check if problemtypes match exactly
-    if ( G_ProblemType.output_problem() == Solved[j].output_problem())
-    {
-      sprintf(interp->result, "%d",1);
-      return TCL_OK;
-      // reduction when algo provides O, current problem is O2 and the like   
-    }
-    else if(G_ProblemType.output_alpha().find(Solved[j].output_alpha()) != string::npos &&
-      G_ProblemType.output_beta()== Solved[j].output_beta() &&
-    G_ProblemType.output_gamma()== Solved[j].output_gamma())
-    {
-      sprintf(interp->result, "%d",1);
-      return TCL_OK;
-    }
-    else if(G_ProblemType.output_alpha()==Solved[j].output_alpha() && 
-      G_ProblemType.output_gamma()==Solved[j].output_gamma())
+    if(G_ProblemType.output_alpha()==Solved[j].output_alpha() && 
+       G_ProblemType.output_beta()==Solved[j].output_beta() && 
+       ( Solved[j].get_property(OBJECTIVE) == ANY_OBJECTIVE || G_ProblemType.output_gamma()==Solved[j].output_gamma()))
       {
-        
+	sprintf(interp->result, "%d",1);
+	return TCL_OK;
+	// reduction when algo provides O, current problem is O2 and the like   
+      }
+    else if(G_ProblemType.output_alpha().find(Solved[j].output_alpha()) != string::npos &&
+	    G_ProblemType.output_beta()== Solved[j].output_beta() &&
+	    ( Solved[j].get_property(OBJECTIVE) == ANY_OBJECTIVE || G_ProblemType.output_gamma()==Solved[j].output_gamma()))
+      {
+	sprintf(interp->result, "%d",1);
+	return TCL_OK;
+      }
+    else if(G_ProblemType.output_alpha()==Solved[j].output_alpha() &&
+	    ( Solved[j].get_property(OBJECTIVE) == ANY_OBJECTIVE || G_ProblemType.output_gamma()==Solved[j].output_gamma()))
+      {
+	
         // see if there are unit processing times to handle
         if ((Solved[j].output_beta()+"p_ij=1" == G_ProblemType.output_beta()) ||
-          (G_ProblemType.output_beta() == Solved[j].output_beta()+"; p_ij=1"))
+	    (G_ProblemType.output_beta() == Solved[j].output_beta()+"; p_ij=1"))
           {
             sprintf(interp->result, "%d",1);
             return TCL_OK;
           }
           
-          // see if there are constant processing times to handle : p_ij=p
-          if (( Solved[j].output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
+	// see if there are constant processing times to handle : p_ij=p
+	if (( Solved[j].output_beta()+ "p_ij=p" == G_ProblemType.output_beta()) ||
             (G_ProblemType.output_beta() == Solved[j].output_beta()+"; p_ij=p")  )
-            {
+	  {
               sprintf(interp->result, "%d",1);
               return TCL_OK;
-            }              
+	  }              
       }
-      
+    
   }  
   return TCL_OK; 
 }
