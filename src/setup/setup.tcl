@@ -13,9 +13,10 @@ if {![info exists vTcl(sourcing)]} {
 	default {
 	    option add *Scrollbar.width 10
 	}
-    }
+   }
     
 }
+
 #############################################################################
 # Visual Tcl v1.51 Project
 #
@@ -62,20 +63,20 @@ if {![info exists vTcl(sourcing)]} {
 proc {vTcl:DefineAlias} {target alias widgetProc top_or_alias cmdalias} {
     global widget
 
-    set widget($alias) $target
-    set widget(rev,$target) $alias
+   set widget($alias) $target
+   set widget(rev,$target) $alias
 
-    if {$cmdalias} {
-        interp alias {} $alias {} $widgetProc $target
-    }
+   if {$cmdalias} {
+       interp alias {} $alias {} $widgetProc $target
+   }
 
-    if {$top_or_alias != ""} {
-        set widget($top_or_alias,$alias) $target
+  if {$top_or_alias != ""} {
+       set widget($top_or_alias,$alias) $target
 
-        if {$cmdalias} {
-            interp alias {} $top_or_alias.$alias {} $widgetProc $target
-        }
-    }
+       if {$cmdalias} {
+           interp alias {} $top_or_alias.$alias {} $widgetProc $target
+       }
+   }
 }
 
 proc {vTcl:DoCmdOption} {target cmd} {
@@ -233,7 +234,7 @@ proc {doInstall} {} {
           }
           windows {
                doWinInstall
-               showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa.bat\"."
+               #showModalMessage "Installation finished successfully.\n\nYou can start LiSA with \"lisa.bat\"."
                exit
           }
           default {
@@ -340,8 +341,17 @@ proc {showModalMessage} {text} {
 ## Procedure:  main
 
 proc {main} {argc argv} {
-wm protocol .top64 WM_DELETE_WINDOW {exit}
-tkwait window .top64
+#dialogs should be removed only for windows installation
+global tcl_platform
+switch $tcl_platform(platform) {
+	windows {
+		doInstall
+	}
+	default {
+		wm protocol .top64 WM_DELETE_WINDOW {exit}
+		tkwait window .top64
+	}
+}
 }
 
 proc init {argc argv} {
@@ -491,7 +501,16 @@ proc vTclWindow.top64 {base {container 0}} {
     vTcl:FireEvent $base <<Ready>>
 }
 
-Window show .
-Window show .top64
+
+#dialogs should be removed only for windows installation
+global tcl_platform
+switch $tcl_platform(platform) {
+	windows {
+	}
+	default {
+		Window show .
+		Window show .top64
+	}
+}
 
 main $argc $argv
