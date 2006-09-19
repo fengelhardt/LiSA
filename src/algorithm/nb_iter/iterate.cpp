@@ -437,7 +437,7 @@ Lisa_SimulatedAnnealing::Lisa_SimulatedAnnealing(Lisa_ControlParameters* CP){
       cs = LUNDYANDMEES;
     }
   }else{
-    G_ExceptionList.lthrow("'TEND' undefined, using default.",Lisa_ExceptionList::WARNING);
+    G_ExceptionList.lthrow("'COOLSCHEME' undefined, using default.",Lisa_ExceptionList::WARNING);
     cs = LUNDYANDMEES;
   }
   

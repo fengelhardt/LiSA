@@ -526,7 +526,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 	      exit(7);
 	  }
          
-	  if(it){  
+	  if(!it){  
 	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	    exit( 7 );
 	  }
@@ -711,7 +711,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   }
 
   if( NGBH == k_API || NGBH == k_REINSERTION)
-    cout << endl << "k: " << k;
+    cout << endl << "k: " << k << endl;
   
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
