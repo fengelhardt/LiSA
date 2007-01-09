@@ -452,13 +452,24 @@ int main(int argc, char *argv[]){
  //initialize xml input stuff
  LisaXmlFile::initialize();
  
- algin = (std::string) argv[1]+"in.xml";
- algout = (std::string) argv[1]+"out.xml";
+ for(int i=1;i<argc;i++){
+	 algin +=(std::string)argv[i];
+	 algout +=(std::string)argv[i];
+	 if(i<argc-1){
+		 algin +=" ";
+		 algout +=" ";
+	 }
+ }
+ std::string strAutoAlgFilename;
+ 
+ strAutoAlgFilename += algin;
+ algin += "in.xml";
+ algout += "out.xml";
  
  //open input file
- std::ifstream in_file(argv[1]);
+ std::ifstream in_file(strAutoAlgFilename.c_str());
  if(! in_file){
-   G_ExceptionList.lthrow((std::string)"Could not open '"+argv[1]+
+   G_ExceptionList.lthrow((std::string)"Could not open '"+strAutoAlgFilename+
                           "' for reading.",Lisa_ExceptionList::FILE_NOT_FOUND);
    exit(-1);   
  }
@@ -549,7 +560,7 @@ int main(int argc, char *argv[]){
    }
    
    //open output file, write generated problem + comments
-   std::string out_file_name = (std::string)argv[1]+"."+str_prob(i+1)+".xml";
+   std::string out_file_name = strAutoAlgFilename+"."+str_prob(i+1)+".xml";
    std::ofstream out_file(out_file_name.c_str());
    if(!out_file){
      G_ExceptionList.lthrow("Could not open '"+out_file_name+"' for writing.",
