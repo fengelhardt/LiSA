@@ -1,14 +1,10 @@
 installation of the binary distribtution:
 -----------------------------------------
 
-- extract lisa-XXX-win-bin.zip to its final place
+- please make sure that your LiSA toplevel directory path is in the old dos style format, otherwise LiSA won't be able to start properly
 
-- start setup.bat on Windows in the LiSA toplevel dir
-
-- start LiSA with the lisa.bat start script in LiSA's home directory
-
-- if that does not work please edit lisa.bat and change the path names to 
-  the old dos style (we are working on this)
+- start LiSA with the lisa.bat start script in LiSA's home directory or with the desktop 
+shortcut or the start menu entry if created by the installation
 
 
 
@@ -21,7 +17,7 @@ installation of the source distribtution (UNIX like environments):
 
 - cd LiSA
 
-- ./configure
+- ./configure --enable-release (or --enable-debug for switching on error checking)
 
 - edit Make.Config if configure is unable to find some of the includes or 
   libraries
@@ -30,8 +26,6 @@ installation of the source distribtution (UNIX like environments):
   edit Make.Config to add compiler flags like -O3 -march=pentium4, you may 
   also try to use another compiler, intels icc works fine for me, and really
   gives great results
-  edit global.hpp and comment #define LISA_DEBUG this will switch off alot
-  of error cecking and results in a great speed improvement
   
 - make
 
