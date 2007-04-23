@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Simulated Annealing" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+  <heuristic>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Lmax"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiCi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ui"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiUi"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="1"/>
+      <beta release_times="yes"/>
+      <gamma objective="Sum_wiTi"/>
+    </problem>
+  </heuristic>
+  <alg_controls>
+    <real name="TSTART" caption="Starttemperatur" default="20"/>
+    <real name="TEND" caption="Endtemperatur" default="0.9"/>
+    <choice name="COOLSCHEME" caption="Abkuehlungsschema">
+      <item name="LINEAR"/>
+      <item name="GEOMETRIC"/>
+      <item name="LUNDYANDMEES"/>
+    </choice>
+    <real name="COOLPARAM" caption="Abkuehlungsparameter" default="0.0005"/>
+    <integer name="EPOCH" caption="Epochenlaenge" default="100"/>
+    <integer name="NUMB_NGHB" caption="Anzahl der erzeugten Nachbarn in einem Schritt" default="1"/>
+    <integer name="STEPS" caption="Anzahl Schritte" default="50000"/>
+    <integer name="NUMB_STUCKS" caption="Stillstaende nach denen Abgebrochen wird" default="100000"/>
+    <real name="ABORT_BOUND" caption="Zielfunktionswert bei dem Abgebrochen wird" default="0"/>
+    <choice name="NGBH" caption="Nachbarschaft">
+      <item name="API"/>
+      <item name="SHIFT"/>
+      <item name="PI"/>
+    </choice>
+    <fixed name="METHOD" value="SimulatedAnnealingNew"/>
+    <choice name="TYPE" caption="Erzeuge Nachbarn">
+      <item name="ENUM"/>
+      <item name="RAND"/>
+    </choice>
+  </alg_controls>
+</algorithm>

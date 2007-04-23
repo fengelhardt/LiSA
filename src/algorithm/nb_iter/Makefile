@@ -62,14 +62,9 @@ install:
 	mkdir -p $(BINPATH)
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	mkdir -p $(ALGPATH)/language/english
-	cp $(PROGRAMNAME)1_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)1.xml
-	cp $(PROGRAMNAME)2_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)2.xml
-	cp $(PROGRAMNAME)3_english.xml $(ALGPATH)/language/english/$(PROGRAMNAME)3.xml
-	cp nb_iter_SAnew*_english.xml $(ALGPATH)/language/english/
+	cp $(PROGRAMNAME)*english.xml $(ALGPATH)/language/english/
 	mkdir -p $(ALGPATH)/language/german
-	cp $(PROGRAMNAME)1_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)1.xml
-	cp $(PROGRAMNAME)2_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)2.xml
-	cp $(PROGRAMNAME)3_german.xml $(ALGPATH)/language/german/$(PROGRAMNAME)3.xml
+	cp $(PROGRAMNAME)*german.xml $(ALGPATH)/language/german/
 	mkdir -p $(DOCPATH)/lisa/english/algorithm
 	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
 	mkdir -p $(DOCPATH)/lisa/german/algorithm
