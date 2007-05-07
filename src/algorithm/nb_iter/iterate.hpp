@@ -15,7 +15,6 @@ enum{NOMETHOD /** none  */ =0
     ,SA /** simulated annealing */
     ,TA /** treshold accepting */
     ,TS /** tabu search */
-    ,SA_anti /** simulated annealing with antineighbour */
     ,SA_new /** new implementation of simulated annealing */
     };
 
@@ -138,10 +137,9 @@ public:
       anti neighbours. 
 
       init( SA, prob0, max_stuck); 
-      init( SA_anti, prob0, max_stuck); 
       init( TA, threshold, max_stuck); 
       
-      @param method SA,SA_anti or TA
+      @param method SA or TA
       @param prob0 Probability for accepting a neighbour with 1% worse 
              objective value in the first step. / Start threshold for accepting
              a neighbour with with a worse objective value.

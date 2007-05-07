@@ -43,18 +43,7 @@ Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int par
   abort_algorithm = false;
   method = methodi;
   switch(method){
-    case  II:
-      G_ExceptionList.lthrow("wrong call of function init( II, int )");
-      exit( 7 );
-      break;
     case  SA:
-      factor0 = -0.01 / log( double( param1 ) / 100.0 );
-      max_stuck = param2;
-      search_type = RAND;
-      break;
-    case  SA_anti: 
-      method = SA;
-      anti_neighbour = true;
       factor0 = -0.01 / log( double( param1 ) / 100.0 );
       max_stuck = param2;
       search_type = RAND;
@@ -86,21 +75,13 @@ Lisa_Iterator::Lisa_Iterator(int methodi, unsigned int param1,
   abort_algorithm = false; 
   method = methodi;
   switch ( method ){
-    case  II:
-      G_ExceptionList.lthrow("wrong call of function init( II, int )");
-      exit( 7 );
-      break;
     case TS:
       tabu_lenght=param1;
       number_neighbours = param2;
       search_type = param3;
       break;
     case SA: 
-    case  SA_anti:
     case  TA:
-      G_ExceptionList.lthrow("wrong call function init( int, int, int )");
-      exit( 7 );
-      break;
     default:
       G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
       exit( 7 );

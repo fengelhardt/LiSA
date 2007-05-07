@@ -129,9 +129,7 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
         break;
-	    case SA_anti:
-        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
-        break;
+
       case SA_new:
         it = new Lisa_SimulatedAnnealing(CP);
 	    case TA:
@@ -310,9 +308,7 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
         break;
-	    case SA_anti:
-        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
-        break;
+
       case SA_new:
         it = new Lisa_SimulatedAnnealing(CP);
         break;
@@ -510,9 +506,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
         break;
-	    case SA_anti:
-        it = new Lisa_Iterator( SA_anti, PROB, MAX_STUCK );
-        break;
+
       case SA_new:
         it = new Lisa_SimulatedAnnealing(CP);
         break;
@@ -694,7 +688,6 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   
   if      ( METHOD_St   == "IterativeImprovement"       ) METHOD   = II;
   else if ( METHOD_St   == "SimulatedAnnealing"       ) METHOD   = SA;
-  else if ( METHOD_St   == "SA_anti"  ) METHOD   = SA_anti;
   else if ( METHOD_St   == "ThresholdAccepting"       ) METHOD   = TA;
   else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
   else if ( METHOD_St   == "SimulatedAnnealingNew"  ) METHOD   = SA_new;
@@ -715,7 +708,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   
   if ( METHOD == II )
     cout<<"parameters: "<< STEPS <<" STEPS ";
-  if ( (METHOD==SA) || (METHOD==TA) || (METHOD==SA_anti) )
+  if ( (METHOD==SA) || (METHOD==TA) )
     cout<<"parameters: "<< STEPS <<" STEPS "<< PROB <<" PROB "<< MAX_STUCK <<" MAX_STUCK";
   if ( METHOD == TS )
     cout<<"parameters: "<<STEPS<<" STEPS "<<TABULENGTH<<" TABULENGTH "<<NUMB_NGHB<<" NUMB_NGHB";
