@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Neighbourhood Search" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Iterative Improvement" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Cmax"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Lmax"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_Ci"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_wiCi"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_Ui"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_wiUi"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_Ti"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta/>
       <gamma objective="Sum_wiTi"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Cmax"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Lmax"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_Ci"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_wiCi"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_Ui"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_wiUi"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_Ti"/>
     </problem>
     <problem>
-      <alpha env="1"/>
+      <alpha env="O"/>
       <beta release_times="yes"/>
       <gamma objective="Sum_wiTi"/>
     </problem>
@@ -86,25 +86,21 @@
   <alg_controls>
     <integer name="STEPS" caption="Created Solutions" default="5000"/>
     <integer name="NUMB_STUCKS" caption="Stuck Since (Abort Criterion)" default="10000"/>
-    <integer name="PROB" caption="Start Parameter (Only for SA / TA)" default="12"/>
-    <integer name="MAX_STUCK" caption="Increase After (Only for SA / TA)" default="30"/>
-    <integer name="TABULENGTH" caption="Tabu List Length (Only for TS)" default="40"/>
-    <integer name="NUMB_NGHB" caption="Number of Neighbours (Only for TS)" default="40"/>
     <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
+    <integer name="k" caption="k for k_API or k_REINSERTION" default="1"/>
     <choice name="NGBH" caption="Neighbourhood">
-      <item name="API"/>
+      <item name="CR_TST"/>
+      <item name="k_API"/>
       <item name="SHIFT"/>
       <item name="PI"/>
+      <item name="CR_API"/>
+      <item name="BL_API"/>
+      <item name="CR_SHIFT"/>
+      <item name="BL_SHIFT"/>
+      <item name="3_CR"/>
+      <item name="k_REINSERTION"/>
     </choice>
-    <choice name="METHOD" caption="Search Method">
-      <item name="TabuSearch"/>
-      <item name="ThresholdAccepting"/>
-      <!-- <item name="IterativeImprovement"/> -->
-      <item name="SimulatedAnnealing"/>
-    </choice>
-    <choice name="TYPE" caption="Create Neighbour">
-      <item name="ENUM"/>
-      <item name="RAND"/>
-    </choice>
+    <fixed name="METHOD" value="IterativeImprovement"/>
+    <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>

@@ -107,7 +107,7 @@
     <choice name="METHOD" caption="Suchmethode">
       <item name="TabuSearch"/>
       <item name="ThresholdAccepting"/>
-      <item name="IterativeImprovement"/>
+      <!-- <item name="IterativeImprovement"/> -->
       <item name="SimulatedAnnealing"/>
     </choice>
     <fixed name="TYPE" value="RAND"/>

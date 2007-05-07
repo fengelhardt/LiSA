@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Nachbarschaftssuche" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Iterative Improvement" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="J"/>
@@ -166,10 +166,6 @@
   <alg_controls>
     <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
     <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="10000"/>
-    <integer name="PROB" caption="Anfangswahrscheinlichkeit (nur fuer SA / TA)" default="12"/>
-    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl (nur fuer SA / TA)" default="30"/>
-    <integer name="TABULENGTH" caption="Tabulistenlaenge (nur fuer TS)" default="40"/>
-    <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn (nur fuer TS)" default="40"/>
     <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
     <choice name="NGBH" caption="Nachbarschaft">
       <item name="TRANS"/>
@@ -188,12 +184,7 @@
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
     </choice>
-    <choice name="METHOD" caption="Suchmethode">
-      <item name="TabuSearch"/>
-      <item name="ThresholdAccepting"/>
-      <!-- <item name="IterativeImprovement"/> -->
-      <item name="SimulatedAnnealing"/>
-    </choice>
+    <fixed name="METHOD" value="IterativeImprovement"/>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>
