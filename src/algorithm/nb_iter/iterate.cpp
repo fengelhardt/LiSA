@@ -494,12 +494,11 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
   ngbh->set_objective(objective_type,ORIG_SOLUTION);
   TIMETYP best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
   
-  //initialize progress meter
-  cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
-  
   long steps = 0;
   long stuck = 0;
 
+  //initialize progress meter
+  cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
   long steps_per_output = 1;
   if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output = maxsteps/PROGRESS_INDICATOR_STEPS;
 
@@ -622,9 +621,6 @@ Lisa_IterativeImprovement::Lisa_IterativeImprovement(Lisa_ControlParameters* CP)
 void
 Lisa_IterativeImprovement::iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps){
 
-  
-  long steps_per_output_line = 1;
-  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = maxsteps/PROGRESS_INDICATOR_STEPS;
 
   ngbh->put_orig_to_best();
   ngbh->init_tabulist( 1 );
@@ -633,6 +629,11 @@ Lisa_IterativeImprovement::iterate(Lisa_Neighbourhood *ngbh, int objective_type,
   TIMETYP best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
   
   long stuck_since = 0;
+
+  //initialize progress meter
+  cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
+  long steps_per_output_line = 1;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = maxsteps/PROGRESS_INDICATOR_STEPS;
 
 
   for (int steps=0;steps<maxsteps;steps++){
@@ -678,7 +679,7 @@ Lisa_IterativeImprovement::iterate(Lisa_Neighbourhood *ngbh, int objective_type,
     if(!(steps%steps_per_output_line)){
       cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << best_objective
            << "  ready= " << setw(3) << (int)  (100. * steps / maxsteps) 
-           << endl;
+           << "%" << endl;
     }
   }
 
