@@ -133,18 +133,6 @@ private:
   
 public: 
   
-  /// init function for iterative improvement II
-  /** Please note that the Neighbourhood you intend to use has to support the 
-      type of generation you intend to use.
-      
-      - init( II, type ); 
-      
-      @param method II
-      @param type ENUM or RAND for enumerative or random generation of 
-      Neighbours.
-   */
-  Lisa_Iterator(int method, unsigned int type);
-  
   /// init function for SA, SA_anti and TA 
   /** Please note that if you intend to use SA_anit your neighbourhood should support
       anti neighbours. 

@@ -34,36 +34,6 @@ Lisa_Iter::Lisa_Iter(){
 //**************************************************************************
 //**************************************************************************
 
-Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1 ){
-
-  method = NOMETHOD;
-
-  max_stuck=MAXNUMBER;
-  anti_neighbour = false;
-  abort_algorithm = false;
-  method = methodi;
-  switch ( method ){
-    case  II:
-      if ( !((int(param1)==ENUM) || (int(param1)==RAND)) ){
-        G_ExceptionList.lthrow("wrong parameter in init( II, "+ztos(int(param1))); 
-        exit( 7 );
-      }
-      search_type = param1;
-      break;
-    case  SA: 
-    case  SA_anti:
-    case  TA: 
-    case  TS:
-      G_ExceptionList.lthrow("wrong call function init( int, int, int )");
-      exit( 7 );
-    default:
-      G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
-      exit( 7 );
-  }
-}
-
-//**************************************************************************
-
 Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int param2 ){
 
   method = NOMETHOD;
@@ -178,9 +148,6 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
   
   // preparing parmeters:
   switch ( method ){
-    case II:
-      NB->init_tabulist( 1 );
-      break;
     case SA:
       t = double ( NB->get_objective_value(ORIG_SOLUTION) ) * factor0;
       t_end = double ( NB->get_objective_value(ORIG_SOLUTION) )
@@ -227,18 +194,6 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
           
           // deceide whether to accept new solution:
           switch(method){
-            
-            case II:
-              accept = (   NB->get_objective_value(WORK_SOLUTION)
-                         < NB->get_objective_value(ORIG_SOLUTION) );
-            
-              if(accept) stuck_since=0;
-              else if( ++stuck_since > abort_stuck ){
-                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
-                                       Lisa_ExceptionList::WARNING);
-                abort_algorithm = true;
-              }
-              break;
             
             case SA:
               accept = (   NB->get_objective_value(WORK_SOLUTION)
