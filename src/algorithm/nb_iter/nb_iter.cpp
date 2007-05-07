@@ -97,8 +97,8 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
 
 	  m1_Plan->write_sequ();
 	  m1_Plan->get_Ci(1);
-	  cout << "Sq: " << *m1_Plan->sequ << "\n";
-	  cout << "Ci: " << *m1_Plan->Ci << "\n";
+	  //cout << "Sq: " << *m1_Plan->sequ << "\n";
+	  //cout << "Ci: " << *m1_Plan->Ci << "\n";
 	  // end of transfering
 	  
     API_Neighbourhood  *m1_api;
@@ -182,7 +182,7 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
         
       Results.append(Lisa_ScheduleNode(result));
       
-      cout << "Sq: " << *m1_Plan->sequ << "\n";
+      //cout << "Sq: " << *m1_Plan->sequ << "\n";
       
 	  //might be dangerous
       delete result;
