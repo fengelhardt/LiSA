@@ -190,8 +190,8 @@ public:
       LINEAR:       T = T - cp*Tstart    ( 0 < cp ) */
   enum COOLING_SCHEME {GEOMETRIC,LUNDYANDMEES,LINEAR};
   
-
 private:
+
   //the start and end temperature
   double Tstart,Tend;
   
@@ -210,6 +210,19 @@ public:
   Lisa_SimulatedAnnealing(Lisa_ControlParameters* CP);
 
   void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);  
+};
+
+//*****************************************************************************
+
+class Lisa_IterativeImprovement:public Lisa_Iter{
+private:
+
+  ///enumerate neightbours or generate them randomly ?
+  int gen_nb;
+public:
+  Lisa_IterativeImprovement(Lisa_ControlParameters* CP);
+    
+  void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);
 };
 
 //*****************************************************************************

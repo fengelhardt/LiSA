@@ -499,7 +499,10 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
   
   long steps = 0;
   long stuck = 0;
-  long steps_per_output = (long) ((double) maxsteps / (double) PROGRESS_INDICATOR_STEPS);
+
+  long steps_per_output = 1;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output = maxsteps/PROGRESS_INDICATOR_STEPS;
+
   double T = Tstart;
   
   while(true){
@@ -596,6 +599,90 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
     stuck++;
   }
 } 
+  
+//************************************************************************** 
+//**************************************************************************  
+//**************************************************************************
+
+Lisa_IterativeImprovement::Lisa_IterativeImprovement(Lisa_ControlParameters* CP){
+  
+  gen_nb = RAND;
+  if(CP->defined("TYPE") == Lisa_ControlParameters::STRING){
+         if(CP->get_string("TYPE") == "ENUM") gen_nb = ENUM;
+    else if(CP->get_string("TYPE") == "RAND") gen_nb = RAND;
+    else G_ExceptionList.lthrow("'TYPE' undefined, using default.",Lisa_ExceptionList::WARNING);  
+  }else  G_ExceptionList.lthrow("'TYPE' undefined, using default.",Lisa_ExceptionList::WARNING);
+  
+       if(gen_nb == RAND) cout << "TYPE= RAND" << endl;
+  else if(gen_nb == ENUM) cout << "TYPE= ENUM" << endl;
+}
+  
+//**************************************************************************
+    
+void
+Lisa_IterativeImprovement::iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps){
+
+  
+  long steps_per_output_line = 1;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = maxsteps/PROGRESS_INDICATOR_STEPS;
+
+  ngbh->put_orig_to_best();
+  ngbh->init_tabulist( 1 );
+  ngbh->set_objective_type( objective_type );
+  ngbh->set_objective( objective_type,ORIG_SOLUTION );
+  TIMETYP best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
+  
+  long stuck_since = 0;
+
+
+  for (int steps=0;steps<maxsteps;steps++){
+    
+    //do we need to abort
+    if( stuck_since > abort_stuck ){
+      G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters",
+                              Lisa_ExceptionList::WARNING);
+      return;
+    }
+    if( best_objective <= abort_at_bound ){
+      G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",
+                              Lisa_ExceptionList::WARNING);
+      return;
+    }
+    if(abort_algorithm) return; 
+
+    
+    int test = ngbh->prepare_move(gen_nb);
+    ngbh->set_objective( objective_type, ORIG_SOLUTION );
+
+    
+    if (test==OK){
+      if ( ngbh->do_move() == OK ){
+        
+        ngbh->set_objective( objective_type, WORK_SOLUTION );
+        TIMETYP new_objective = ngbh->get_objective_value(WORK_SOLUTION);
+
+        if ( new_objective < best_objective ){
+          ngbh->accept_solution();
+          ngbh->put_orig_to_best();
+          best_objective = new_objective;
+          stuck_since = 0;          
+        }else{
+          stuck_since++;  
+        }
+        
+      } 
+    }else if(test==NO_NGHBOURS){
+      abort_algorithm = true;
+    }
+    
+    if(!(steps%steps_per_output_line)){
+      cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << best_objective
+           << "  ready= " << setw(3) << (int)  (100. * steps / maxsteps) 
+           << endl;
+    }
+  }
+
+}
   
 //**************************************************************************
 

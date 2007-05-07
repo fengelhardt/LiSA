@@ -124,7 +124,7 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
       
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_Iterator( II, TYPE );
+        it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
@@ -305,7 +305,7 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_Iterator( II, TYPE );
+        it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
@@ -505,7 +505,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
       
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_Iterator( II, TYPE );
+        it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
         it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
