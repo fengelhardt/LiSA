@@ -103,9 +103,6 @@
       <item name="PI"/>
     </choice>
     <fixed name="METHOD" value="SimulatedAnnealingNew"/>
-    <choice name="TYPE" caption="Erzeuge Nachbarn">
-      <item name="ENUM"/>
-      <item name="RAND"/>
-    </choice>
+    <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>
