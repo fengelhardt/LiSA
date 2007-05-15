@@ -64,12 +64,11 @@ int main(int argc, char *argv[]){
 
     if(method_in=="II") METHOD = II;
     else if(method_in=="SA") METHOD = SA;
-    else if(method_in=="SA_anti") METHOD = SA_anti;
     else if(method_in=="TS") METHOD = TS ;
     else if(method_in=="TA") METHOD = TA;
     else {
       std::cout << method_in << " is not a valid algorithm." << std::endl;
-      std::cout << "Must be II,SA,SA_anti,TS or TA." << std::endl;
+      std::cout << "Must be II,SA,TS or TA." << std::endl;
       exit(7);
     }
   }
@@ -122,16 +121,16 @@ int main(int argc, char *argv[]){
       if(ngbh_type_in == "ENUM") NGBH_TYPE = ENUM;
       else if(ngbh_type_in == "RAND") NGBH_TYPE = RAND;
       else{
-	std::cout << ngbh_type_in << " is no valid neighbourhood type." << std::endl;
-	std::cout << "Must be ENUM or RAND." << std::endl;
-	exit(7);
+	      std::cout << ngbh_type_in << " is no valid neighbourhood type." << std::endl;
+	      std::cout << "Must be ENUM or RAND." << std::endl;
+	      exit(7);
       }
     }
 
   }
     
   // start probability and number of stucks after which to increase temperature/threshold
-  if(METHOD==SA||METHOD==SA_anti||METHOD==TA){
+  if(METHOD==SA||METHOD==TA){
     
     if(!param.defined("PROB")){
       G_ExceptionList.lthrow("You must define a start probability (PROB) for SA, SA_anti and TA in the input file.");
@@ -181,11 +180,11 @@ int main(int argc, char *argv[]){
   else if(NGBH=="RPI") nbh = new Travel_RPI_Neighbourhood(&tr1);
 
   // create iteration object 
-  Lisa_Iterator* it;
+  Lisa_Iter* it=0;
   
   // init algottihm type and parameters 
-  if(METHOD==II) it = new Lisa_Iterator(METHOD,NGBH_TYPE);
-  else if(METHOD==SA||METHOD==SA_anti||METHOD==TA) it = new Lisa_Iterator(METHOD,PROB,MAX_STUCK);
+  if(METHOD==II) it = new Lisa_IterativeImprovement(&param);
+  else if(METHOD==SA||METHOD==TA) it = new Lisa_Iterator(METHOD,PROB,MAX_STUCK);
   else if(METHOD==TS) it = new Lisa_Iterator(METHOD,TABU_LENGTH,NUMB_NGB,NGBH_TYPE);
   
   // init aborts
