@@ -189,7 +189,7 @@
       <item name="3_CR"/>
     </choice>
     <choice name="METHOD" caption="Suchmethode">
-      <item name="TabuSearch"/>
+      <!-- <item name="TabuSearch"/> -->
       <item name="ThresholdAccepting"/>
       <!-- <item name="IterativeImprovement"/> -->
       <item name="SimulatedAnnealing"/>

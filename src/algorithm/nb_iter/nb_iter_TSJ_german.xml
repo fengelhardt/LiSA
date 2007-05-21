@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Neighbourhood Search" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Tabusuche" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="J"/>
@@ -164,14 +164,11 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="STEPS" caption="Created Solutions" default="5000"/>
-    <integer name="NUMB_STUCKS" caption="Stuck Since (Abort Criterion)" default="10000"/>
-    <integer name="PROB" caption="Start Parameter (Only for SA / TA)" default="12"/>
-    <integer name="MAX_STUCK" caption="Increase After (Only for SA / TA)" default="30"/>
-    <integer name="TABULENGTH" caption="Tabu List Length (Only for TS)" default="40"/>
-    <integer name="NUMB_NGHB" caption="Number of Neighbours (Only for TS)" default="40"/>
-    <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
-    <choice name="NGBH" caption="Neighbourhood">
+    <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
+    <integer name="TABULENGTH" caption="Tabulistenlaenge" default="40"/>
+    <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn" default="40"/>
+    <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
+    <choice name="NGBH" caption="Nachbarschaft">
       <item name="TRANS"/>
       <item name="CR_TRANS"/>
       <item name="CR_TRANS_MIX"/>
@@ -188,12 +185,7 @@
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
     </choice>
-    <choice name="METHOD" caption="Search Method">
-      <!-- <item name="TabuSearch"/> -->
-      <item name="ThresholdAccepting"/>
-      <!-- <item name="IterativeImprovement"/> -->
-      <item name="SimulatedAnnealing"/>
-    </choice>
+    <fixed name="METHOD" value="TabuSearch"/>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>

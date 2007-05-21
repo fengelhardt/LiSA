@@ -147,23 +147,29 @@ public:
              temperature or treshold, respectively. */
   Lisa_Iterator(int method, unsigned int prob0, unsigned int max_stuck);
   
-  ///init function for tabu search TS
-  /** Please note that the neighbourhood you intend to use has to support the 
-      type of generation you intend to use.
-     
-      init( TS, lenght, nn, type ); 
-      
-      @param method TS
-      @param length The length of your tabu list.
-      @param nn number of random neighbours to generate in each step or ENUM 
-                for full enumeration. 
-      @param type ENUM or RAND for enumerative or random generation of 
-             neighbours.
-   */
-  Lisa_Iterator(int method, unsigned int length, unsigned int nn, unsigned int type);
 
   void  iterate( Lisa_Neighbourhood*, int objective_type, long steps);
  
+};
+
+//*****************************************************************************
+
+class Lisa_TabuSearch:public Lisa_Iter{
+private:
+
+  ///enumerate neightbours or generate them randomly ?
+  int gen_nb;
+  
+  ///number if neighbours to generate in each step
+  int number_of_neighbours;
+  
+  ///length of tabulist
+  int tl_length;
+  
+public:
+  Lisa_TabuSearch(Lisa_ControlParameters* CP);
+    
+  void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);
 };
 
 //*****************************************************************************

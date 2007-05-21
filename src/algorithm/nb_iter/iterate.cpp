@@ -65,31 +65,6 @@ Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int par
 
 //**************************************************************************
 
-Lisa_Iterator::Lisa_Iterator(int methodi, unsigned int param1, 
-                             unsigned int param2, unsigned int param3 ){
-
-  method = NOMETHOD;
-
-  max_stuck=MAXNUMBER;
-  anti_neighbour = false;
-  abort_algorithm = false; 
-  method = methodi;
-  switch ( method ){
-    case TS:
-      tabu_lenght=param1;
-      number_neighbours = param2;
-      search_type = param3;
-      break;
-    case SA: 
-    case  TA:
-    default:
-      G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
-      exit( 7 );
-  }
-}
-
-//**************************************************************************
-
 void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type, 
                              long steps ){
   if( steps < 0 ){
@@ -106,7 +81,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
   bool    accept=0;
   long    stuck_since, total_stuck;
   TIMETYP best_value, best_step, last_break_value;
-  int     test, nn, non_move, max_non_move;
+  int     test, non_move, max_non_move;
   long     steps_per_output_line = 1;
   
   if ( steps >= PROGRESS_INDICATOR_STEPS )
@@ -144,8 +119,10 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
       t_old = t;
       t_first = t;
       break;
-    case TS:
-      NB->init_tabulist( tabu_lenght );
+
+    default:
+      cout << "error" << std::endl;
+      exit(1);
   }
 
   if ( method != TS ){ 
@@ -250,94 +227,161 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
       
       if ( (test==NO_NGHBOURS) || (abort_algorithm) ) steps = 1;
     } // for ...
-  } else {
+  }
+  
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_TabuSearch::Lisa_TabuSearch(Lisa_ControlParameters* CP){
+  
+  gen_nb = RAND;
+  if(CP->defined("TYPE") == Lisa_ControlParameters::STRING){
+         if(CP->get_string("TYPE") == "ENUM") gen_nb = ENUM;
+    else if(CP->get_string("TYPE") == "RAND") gen_nb = RAND;
+    else G_ExceptionList.lthrow("'TYPE' undefined, using default.",Lisa_ExceptionList::WARNING);  
+  }else  G_ExceptionList.lthrow("'TYPE' undefined, using default.",Lisa_ExceptionList::WARNING);
+  
+       if(gen_nb == RAND) cout << "TYPE= RAND" << endl;
+  else if(gen_nb == ENUM) cout << "TYPE= ENUM" << endl;
+  
+  
+  number_of_neighbours = 40;
+  if(CP->defined("NUMB_NGHB") == Lisa_ControlParameters::LONG){
+    number_of_neighbours = CP->get_long("NUMB_NGHB");
+  }else G_ExceptionList.lthrow("'NUMB_NGHB' undefined, using default.",Lisa_ExceptionList::WARNING);
+  
+  cout << "NUMB_NGHB= " << number_of_neighbours << endl;
+  
+  
+  tl_length = 40;
+  if(CP->defined("TABULENGTH") == Lisa_ControlParameters::LONG){
+    tl_length = CP->get_long("TABULENGTH");
+  }else G_ExceptionList.lthrow("'TABULENGTH' undefined, using default.",Lisa_ExceptionList::WARNING); 
+  
+  cout << "TABULENGTH= " << tl_length << endl;
+  
+}
+
+//**************************************************************************
     
-    // iteration loop for tabu search
-    while( steps > 0 ){
+void
+Lisa_TabuSearch::iterate(Lisa_Neighbourhood *ngbh,
+                         int objective_type, long maxsteps){
+
+  ngbh->put_orig_to_best();
+  ngbh->init_tabulist(tl_length);
+  ngbh->set_objective_type( objective_type );
+  ngbh->set_objective( objective_type,ORIG_SOLUTION );
+  TIMETYP best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
+
+  //initialize progress meter
+  cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
+  long steps_per_output_line = 1;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = (int) ceil((double)maxsteps/PROGRESS_INDICATOR_STEPS);
+
+  long max_non_move = maxsteps/10;
+  long non_move= max_non_move;
+
+  long steps = maxsteps;
+  
+  // iteration loop for tabu search
+  while( steps > 0 ){
+   
+    int nn=number_of_neighbours;
+    TIMETYP best_step = MAXTIME;
+    ngbh->clean_tabu_param();
+    
+    while( (nn>0) && (ngbh->prepare_move(gen_nb)==OK)){
       
-      nn=number_neighbours;
-      best_step = MAXNUMBER;
-      NB->clean_tabu_param();
+      ngbh->set_objective( objective_type, ORIG_SOLUTION );
       
-      while ((nn>0)&&(NB->prepare_move(search_type)==OK)){
+      if ( ngbh->use_tabulist() == OK ){
+        nn--;
         
-        NB->set_objective( objective_type, ORIG_SOLUTION );
+        if( ngbh->do_move() == OK ){
+          
+          steps--;
+          
+          //write some progress
+          if (!(steps%steps_per_output_line)){
+             cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << ngbh->get_objective_value(ORIG_SOLUTION)
+                  << "  best= " << best_objective 
+                  << "  ready= " << setw(3) << 100 - (int)  (100. * steps / maxsteps) 
+                  << "%" << endl;
+          }
         
-        if ( NB->use_tabulist() == OK ){
-          nn--;
-          if ( NB->do_move() == OK ){
-            
+          non_move = max_non_move;
+          ngbh->set_objective( objective_type, WORK_SOLUTION );
+          
+          if (ngbh->get_objective_value( WORK_SOLUTION ) < best_step ){
+            ngbh->put_work_to_best_ngh();
+            ngbh->store_tabu_param();
+            best_step=ngbh->get_objective_value( WORK_SOLUTION );
+          }
+          
+        }else{
+          
+          non_move--;
+          
+          if ( non_move == 0 ){
+            non_move = max_non_move;
             steps--;
             
-            if (!(steps%steps_per_output_line)){
-              cout << "steps= " << steps << " OBJECTIVE= " 
-                   << NB->get_objective_value( ORIG_SOLUTION )
-                   << " best= " << best_value << endl;
-            }
-            
-            non_move = max_non_move;
-            NB->set_objective( objective_type, WORK_SOLUTION );
-            
-            if ( NB->get_objective_value( WORK_SOLUTION ) < best_step ){
-              NB->put_work_to_best_ngh();
-              NB->store_tabu_param();
-              best_step=NB->get_objective_value( WORK_SOLUTION );
-            }
-          }else{
-            
-            non_move--;
-            
-            if ( non_move == 0 ){
-              non_move = max_non_move;
-              steps--;
-              
-              if (!(steps%steps_per_output_line)){
-                cout << "steps= " << steps << " OBJECTIVE= " 
-                     << NB->get_objective_value( ORIG_SOLUTION )
-                     << " best= " << best_value << endl;
-              }
-            }
+            //write some progress
+           if (!(steps%steps_per_output_line)){
+             cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << ngbh->get_objective_value(ORIG_SOLUTION)
+                  << "  best= " << best_objective 
+                  << "  ready= " << setw(3) << 100 - (int)  (100. * steps / maxsteps) 
+                  << "%" << endl;
+             }
           }
-        }else{
-          NB->clean_tabu_param();
-          NB->set_tabulist();
         }
+      }else{
+        ngbh->clean_tabu_param();
+        ngbh->set_tabulist();
       }
+    }
+    
+    non_move--;
+    
+    if ( non_move == 0 ){
+      non_move = max_non_move;
+      steps--;
       
-      non_move--;
-      
-      if ( non_move == 0 ){
-        non_move = max_non_move;
-        steps--;
-        
-        if (!(steps%steps_per_output_line)){
-          cout << "steps= " << steps << " OBJECTIVE= " 
-               << NB->get_objective_value( ORIG_SOLUTION )
-               << " best= " << best_value << endl;
+      //write some progress
+      if (!(steps%steps_per_output_line)){
+        cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << ngbh->get_objective_value(ORIG_SOLUTION)
+             << "  best= " << best_objective 
+             << "  ready= " << setw(3) << 100 - (int)  (100. * steps / maxsteps) 
+             << "%" << endl;
         }
+    
+    }
+    
+    ngbh->set_objective( objective_type, ORIG_SOLUTION );
+    
+    if ( best_step < MAXTIME ) ngbh->accept_best_ngh();
+    
+    if ( best_step < best_objective ){
+      best_objective = ngbh->get_objective_value( ORIG_SOLUTION );
+      ngbh->put_orig_to_best();
+      
+      if ( best_objective <= abort_at_bound ){
+        G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",
+        Lisa_ExceptionList::WARNING);
+        return;
       }
-      
-      NB->set_objective( objective_type, ORIG_SOLUTION );
-      
-      if ( best_step < MAXNUMBER ) NB->accept_best_ngh();
-      
-      if ( best_step < best_value ){
-        best_value = NB->get_objective_value( ORIG_SOLUTION );
-        NB->put_orig_to_best();
-        
-        if ( best_value <= abort_at_bound ){
-          G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",
-          Lisa_ExceptionList::WARNING);
-          abort_algorithm = true;
-        }
-      }
-      
-      NB->set_tabulist();
-      
-      if (abort_algorithm) steps = 0;
-    } // while( steps...
-  } // else ...
-  
+    }
+    
+    if(abort_algorithm) return;
+    
+    ngbh->set_tabulist();
+    
+  }
+
 }
 
 //**************************************************************************
@@ -436,7 +480,7 @@ void Lisa_SimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
   //initialize progress meter
   cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
   long steps_per_output = 1;
-  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output = maxsteps/PROGRESS_INDICATOR_STEPS;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output = (int) ceil((double)maxsteps/PROGRESS_INDICATOR_STEPS);
 
   double T = Tstart;
   
@@ -550,6 +594,7 @@ Lisa_IterativeImprovement::Lisa_IterativeImprovement(Lisa_ControlParameters* CP)
   
        if(gen_nb == RAND) cout << "TYPE= RAND" << endl;
   else if(gen_nb == ENUM) cout << "TYPE= ENUM" << endl;
+
 }
   
 //**************************************************************************
@@ -569,7 +614,7 @@ Lisa_IterativeImprovement::iterate(Lisa_Neighbourhood *ngbh, int objective_type,
   //initialize progress meter
   cout << "OBJECTIVE= " << 2*best_objective << " Not a real objective, please ignore this line." << endl << endl;
   long steps_per_output_line = 1;
-  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = maxsteps/PROGRESS_INDICATOR_STEPS;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = (int) ceil((double)maxsteps/PROGRESS_INDICATOR_STEPS);
 
 
   for (int steps=0;steps<maxsteps;steps++){

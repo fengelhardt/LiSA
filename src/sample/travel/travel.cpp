@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
   // open input file
   std::ifstream i_strm(argv[1]);
   
-  // file exits ?
+  // file exists ?
   if(!i_strm){
     std::cout << "File '"<< argv[1] <<"' not found. Exiting."<< std::endl;
     exit(1);
@@ -182,10 +182,10 @@ int main(int argc, char *argv[]){
   // create iteration object 
   Lisa_Iter* it=0;
   
-  // init algottihm type and parameters 
+  // init algorithm type and parameters 
   if(METHOD==II) it = new Lisa_IterativeImprovement(&param);
   else if(METHOD==SA||METHOD==TA) it = new Lisa_Iterator(METHOD,PROB,MAX_STUCK);
-  else if(METHOD==TS) it = new Lisa_Iterator(METHOD,TABU_LENGTH,NUMB_NGB,NGBH_TYPE);
+  else if(METHOD==TS) it = new Lisa_TabuSearch(&param);
   
   // init aborts
   it->set_abort_at_stuck(NUMB_STUCKS);

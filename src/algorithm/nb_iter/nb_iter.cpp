@@ -131,12 +131,12 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
         break;
 
       case SA_new:
-        it = new Lisa_SimulatedAnnealing(CP);
+          it = new Lisa_SimulatedAnnealing(CP);
 	    case TA:
-        it =  new Lisa_Iterator( TA, PROB, MAX_STUCK );
+          it =  new Lisa_Iterator( TA, PROB, MAX_STUCK );
         break;
 	    case TS:
-	      it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+	      it = new Lisa_TabuSearch(CP);
         break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
@@ -316,7 +316,7 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
         it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
         break;
 	    case TS:
-        it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+        it = new Lisa_TabuSearch(CP);
         break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
@@ -514,7 +514,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
         it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
         break;
 	    case TS:
-        it = new Lisa_Iterator( TS, TABULENGTH, NUMB_NGHB, TYPE );
+        it = new Lisa_TabuSearch(CP);
         break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
