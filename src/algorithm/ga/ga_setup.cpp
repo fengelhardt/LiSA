@@ -157,6 +157,8 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
     //return false;
   }
   else  {//initialize the improver
+    improver.configure(Problem, Parameter, Values);
+        
     impr_id = Parameter.get_string("L_IMPR");
 
     //initialize the improver
@@ -186,9 +188,8 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
     improver.OBJ_TYPE = Problem.get_property(OBJECTIVE);
     improver.PROB_TYPE = Problem.get_property(M_ENV);
     
-    if ( impr_id     == "API"              ) improver.NGBH = NB_Iteration::API;
-    //else if ( NGBH_St     == "SWAP"             ) improver.NGBH = NB_Iteration::SWAP;
-    else if ( impr_id    == "SHIFT"            ) improver.NGBH = NB_Iteration::SHIFT;
+         if ( impr_id     == "API"              ) improver.NGBH = NB_Iteration::API;
+    else if ( impr_id     == "SHIFT"            ) improver.NGBH = NB_Iteration::SHIFT;
     else if ( impr_id     == "CR_TRANS"         ) improver.NGBH = NB_Iteration::CR_TRANS;
     else if ( impr_id     == "CR_TRANS_MIX"     ) improver.NGBH = NB_Iteration::CR_TRANS_MIX;
     else if ( impr_id     == "SC_TRANS"         ) improver.NGBH = NB_Iteration::SC_TRANS;
@@ -208,6 +209,7 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
 
     
     improver.METHOD   = II;
+
     
   }
   
