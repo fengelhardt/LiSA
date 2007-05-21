@@ -113,7 +113,7 @@ proc vTclWindow.datawin {base} {
         -label $Name(Generate_PT)  -command { generate_PT }
     if { ![string match "*F*" [TC_getvar "alpha"]]&&"1"!=[TC_getvar "alpha"]} {
 	$base.fra19.men21.m add command \
-	    -label $Name(Generate_SIJ)  -command {Window show .gen_sij; }
+	    -label $Name(Generate_SIJ)  -command { generate_SIJ }
     }
       if { [string match "*J*" [TC_getvar "alpha"]]} {
 	  $base.fra19.men21.m add command \
@@ -306,9 +306,13 @@ proc vTclWindow.datawin {base} {
     
     if { [string match "*p_ij=1*" [TC_getvar "beta"]] } {
 	TC_genpt 1 1
+        # in case of unit processing times, all SIJ are required to be 1 !!!
+	TC_gen_sij 100 1
     } elseif { [string match "*p_ij=p*" [TC_getvar "beta"]] } {
 	set myvalue [TC_get_pt 0 0] 
 	TC_genpt $myvalue $myvalue
+        # in case of constant processing times, all SIJ are required to be 1 !!!
+	TC_gen_sij 100 1
     } 
     
     TC_draw_dat
@@ -408,8 +412,14 @@ proc  w_set_entry { } {
 		    } else { TC_set_pt $dat(row) $dat(column) $dat(entry)}
 		}
 		if { $identifier == "SIJ" } {
-		    TC_setvar "SIJ" $dat(row) $dat(column) $dat(entry)
-		    TC_draw_dat_entry $dat(row)  $dat(column) [TC_getvar "w_entry"  $dat(row)  $dat(column)]	
+                    # in case of unit or constant processing times, all SIJ are required to be 1 !!!
+                    if { [string match "*p_ij=1*" [TC_getvar "beta"]] ||
+                         [string match "*p_ij=p*" [TC_getvar "beta"]] } {
+			TC_set_pt $dat(row) $dat(column) 1
+                    } else {
+		        TC_setvar "SIJ" $dat(row) $dat(column) $dat(entry)
+		        TC_draw_dat_entry $dat(row)  $dat(column) [TC_getvar "w_entry"  $dat(row)  $dat(column)]	
+                    }
 		}
 		if { $identifier == "MO" } {
 		    TC_setvar "MO" $dat(row) $dat(column) $dat(entry)
@@ -452,6 +462,19 @@ proc generate_PT { } {
  	Window show .gen_const_pij
     } else  {
 	Window show .erzpt
+    }
+}
+
+proc generate_SIJ { } {
+    global glob
+    global dat
+    if { [string match "*p_ij=1*" [TC_getvar "beta"]] ||
+         [string match "*p_ij=p*" [TC_getvar "beta"]] } {
+        # in case of unit or constant processing times, all SIJ are required to be 1 !!!
+	TC_gen_sij 100 1
+	TC_draw_dat
+    } else  {
+        Window show .gen_sij
     }
 }
 
