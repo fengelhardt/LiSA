@@ -1,0 +1,19 @@
+CXXSOURCES=\
+	one_wi_ui.cpp \
+	../../basics/order.cpp \
+	../../basics/matrix.cpp \
+	../../basics/pair.cpp \
+	../../lisa/ctrlpara.cpp\
+	../../lisa/lvalues.cpp \
+	../../lisa/ptype.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/int2str.cpp \
+	../../scheduling/mo_jo.cpp \
+	../../scheduling/schedule.cpp \
+    ../../basics/graph.cpp \
+	../../xml/LisaXmlFile.cpp \
+	../../xml/lisa_xml.cpp \
+	../../xml/Lisa_NativeDataHandler.cpp \
+	../../xml/Lisa_IO_Factory.cpp
+

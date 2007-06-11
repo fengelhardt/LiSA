@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE instance PUBLIC "" "/user/lisa_stud/woelfer/LiSA/data/LiSA.dtd">
+<instance xmlns:LiSA="http://lisa.math.uni-magdeburg.de">
+  <problem>
+    <alpha env="1" m="1"/>
+    <beta/>
+    <gamma objective="Sum_Ui"/>
+  </problem>
+  <values m="1" n="8">
+    <processing_times model="lisa_native">{ 
+ {  38 } 
+ {  48 } 
+ {  25 } 
+ {   9 } 
+ {  23 } 
+ {  65 } 
+ {  25 } 
+ {  82 } 
+} 
+</processing_times>
+    <operation_set model="lisa_native">{ 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+ {   1 } 
+} 
+</operation_set>
+    <due_dates>{  59  88  57  10  48   5   9  53 } 
+</due_dates>
+  </values>
+  <controls>
+    <parameter type="string" name="TEST_PARAMETER" value="FALSE"/>
+  </controls>
+</instance>
