@@ -94,37 +94,36 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   }  
     
   if (!Parameter.defined("POP_SIZE")) {
-    std::cout << "WARNING: \"POP_SIZE\" undefined. Using default " << pop_size << std::endl;
-    //return false;
+    G_ExceptionList.lthrow("You have to define POP_SIZE in the input file!");
+    return false;
   }
   else {
     pop_size = Parameter.get_long("POP_SIZE");
   }
 
   if (!Parameter.defined("NUM_GEN")) {
-    std::cout << "WARNING: \"NUM_GEN\" undefined. Using default " << n_gen << std::endl;
-    //return false;
+    G_ExceptionList.lthrow("You have to define NUM_GEN in the input file!");
+    return false;
   }
   else {
     n_gen = Parameter.get_long("NUM_GEN");
   }
   if (!Parameter.defined("M_PROB")) {
-    std::cout << "WARNING: \"M_PROB\" undefined. Using default " << sel_params.p_mutate  << std::endl;
-    //return false;
+    G_ExceptionList.lthrow("You have to define M_PROB in the input file!");
+    return false;
   }
   else {
     sel_params.p_mutate = Parameter.get_double("M_PROB");
   }
   if (!Parameter.defined("C_PROB")) {
-    std::cout << "WARNING: \"C_PROB\" undefined. Using default " << sel_params.p_combine  << std::endl;
-    //return false;
+    G_ExceptionList.lthrow("You have to define C_PROB in the input file!");
+    return false;
   }
   else {
     sel_params.p_combine = Parameter.get_double("C_PROB");
   }
   if (!Parameter.defined("SEED")) {
     std::cout << "WARNING: \"SEED\" undefined. Using default " << SEED  << std::endl;
-    //return false;
   }
   else {
     SEED = Parameter.get_long("SEED");
@@ -154,7 +153,6 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   if (!Parameter.defined("L_IMPR")) {
     std::cout << "WARNING: \"L_IMPR\" undefined and thus disabled."  << std::endl;
     impr_id = "off";
-    //return false;
   }
   else  {//initialize the improver
     improver.configure(Problem, Parameter, Values);
