@@ -110,14 +110,35 @@ proc vTclWindow.datawin {base} {
     menu $base.fra19.men21.m \
 	-cursor {} -tearoff 0 
     $base.fra19.men21.m add command \
-        -label $Name(Generate_PT)  -command { generate_PT }
+        -label $Name(Generate_PT)  -command { 
+			generate_PT
+			set dat(row) 0
+			set dat(column) 0
+			edit_marked_entry 
+			.datawin.fra19.but22 configure -state disabled;
+			set dat(Matrix) PIJ
+			TC_draw_dat}
     if { ![string match "*F*" [TC_getvar "alpha"]]&&"1"!=[TC_getvar "alpha"]} {
 	$base.fra19.men21.m add command \
-	    -label $Name(Generate_SIJ)  -command { generate_SIJ }
+	    -label $Name(Generate_SIJ)  -command {
+			generate_SIJ
+			set dat(row) 0
+			set dat(column) 0
+			edit_marked_entry  
+			.datawin.fra19.but22 configure -state disabled
+			set dat(Matrix) SIJ
+			TC_draw_dat}
     }
       if { [string match "*J*" [TC_getvar "alpha"]]} {
 	  $base.fra19.men21.m add command \
-	      -label $Name(Generate_MO)  -command { TC_gen_mo;  TC_draw_dat }
+	      -label $Name(Generate_MO)  -command { 
+			TC_gen_mo;  
+			set dat(row) 0
+			set dat(column) 0
+			edit_marked_entry 
+			.datawin.fra19.but22 configure -state active;
+			set dat(Matrix) MO
+			TC_draw_dat}
       }
     if {$dat(WI)==1} {
 	$base.fra19.men21.m add command \
