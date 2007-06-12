@@ -51,7 +51,7 @@
     <integer name="IMPR_STEPS"  caption="Anzahl lokaler Suchschritte" default="10"/>
     <choice name="L_IMPR" caption="Lokale Suche">
       <item name="CR_TST"/>
-      <item name="API"/>
+      <item name="1_API"/>
       <item name="SHIFT"/>
       <item name="PI"/>
       <item name="CR_API"/>

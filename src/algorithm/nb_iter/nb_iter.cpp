@@ -663,7 +663,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   //set flags for algorithms
   cout << "Neighborhood : \"" << NGBH_St << "\"" << endl;
     
-       if ( NGBH_St     == "API"              ) NGBH = API;
+       if ( NGBH_St     == "1_API"              ) NGBH = API;
   else if ( NGBH_St     == "k_API"            ) NGBH = k_API;
   else if ( NGBH_St     == "SHIFT"            ) NGBH = SHIFT;
   else if ( NGBH_St     == "CR_TRANS"         ) NGBH = CR_TRANS;
