@@ -37,6 +37,11 @@ int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
 
+// Changes for adding all basic problem types
+// Start
+int minDD,maxDD,minWI,maxWI;
+// End
+
 std::string algin,algout;
 
 //**************************************************************************
@@ -119,7 +124,46 @@ void parseParameters(Lisa_ControlParameters &cp){
     G_ExceptionList.lthrow((std::string)"No NUMBERALGORITHMS parameter "+
                            "defined, using default '"+ztos(numberalgorithms)+
                            "'.",Lisa_ExceptionList::WARNING);
-  } 
+  }
+
+// Changes for adding all basic problem types
+// Start
+  if(cp.defined("MINDD")==Lisa_ControlParameters::LONG){
+    minDD = cp.get_long("MINDD");
+  }else{
+    minDD = 1;
+    cp.add_key("MINDD",(long)minDD);
+    G_ExceptionList.lthrow((std::string)"No MINDD parameter defined,"+
+                           " generated '"+ztos(minDD)+"'.",Lisa_ExceptionList::WARNING);
+  }
+
+  if(cp.defined("MAXDD")==Lisa_ControlParameters::LONG){
+    maxDD = cp.get_long("MAXDD");
+  }else{
+    maxDD = 99;
+    cp.add_key("MAXDD",(long)maxDD);
+    G_ExceptionList.lthrow((std::string)"No MAXDD parameter defined,"+
+                           " generated '"+ztos(maxDD)+"'.",Lisa_ExceptionList::WARNING);
+  }
+
+  if(cp.defined("MINWI")==Lisa_ControlParameters::LONG){
+    minWI = cp.get_long("MINWI");
+  }else{
+    minWI = 1;
+    cp.add_key("MINWI",(long)minWI);
+    G_ExceptionList.lthrow((std::string)"No MINWI parameter defined,"+
+                           " generated '"+ztos(minWI)+"'.",Lisa_ExceptionList::WARNING);
+  }
+
+  if(cp.defined("MAXWI")==Lisa_ControlParameters::LONG){
+    maxWI = cp.get_long("MAXWI");
+  }else{
+    maxWI = 99;
+    cp.add_key("MAXWI",(long)maxWI);
+    G_ExceptionList.lthrow((std::string)"No MAXWI parameter defined,"+
+                           " generated '"+ztos(maxWI)+"'.",Lisa_ExceptionList::WARNING);
+  }
+// End
 }
 
 //**************************************************************************
@@ -133,8 +177,33 @@ void checkProblemType(Lisa_ProblemType &pt){
   compt.set_property(OBJECTIVE,CMAX);
   if(pt.output_problem() == compt.output_problem()) return;
 
+  // O||Lmax
+  compt.set_property(M_ENV,O);
+  compt.set_property(OBJECTIVE,LMAX);
+  if(pt.output_problem() == compt.output_problem()) return;
+
   // O||SumCi
   compt.set_property(OBJECTIVE,SUM_CI);
+  if(pt.output_problem() == compt.output_problem()) return;
+ 
+  // O||Sum_WiCi
+  compt.set_property(OBJECTIVE,SUM_WICI);
+  if(pt.output_problem() == compt.output_problem()) return;
+ 
+  // O||SumTi
+  compt.set_property(OBJECTIVE,SUM_TI);
+  if(pt.output_problem() == compt.output_problem()) return;
+ 
+  // O||SumWiTi
+  compt.set_property(OBJECTIVE,SUM_WITI);
+  if(pt.output_problem() == compt.output_problem()) return;
+ 
+   // O||SumUi
+  compt.set_property(OBJECTIVE,SUM_UI);
+  if(pt.output_problem() == compt.output_problem()) return;
+ 
+  // O||SumWiUi
+  compt.set_property(OBJECTIVE,SUM_WIUI);
   if(pt.output_problem() == compt.output_problem()) return;
  
   G_ExceptionList.lthrow((std::string)"Cannot handle '"+pt.output_alpha()+
@@ -270,7 +339,11 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
   val.make_PT();
   val.make_SIJ();
   val.SIJ->fill(1);
-  
+  //Added for new problemtypes
+  val.make_DD();
+  val.make_WI();
+  //End
+
   // taken from tcl_c.cpp, TC_genpt()
   if(minpt==maxpt){
     val.PT->fill(minpt);
@@ -295,7 +368,31 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
     }
   
   }
-
+  //Added for new problemtypes
+  if(minDD==maxDD){
+    val.DD->fill(minDD);
+  }
+  else{
+	  //TODO:Couldnt directly change the values of the DD/WI vector?!?
+	  Lisa_Vector<double> test(n);
+      for(int i=0; i<n; i++) {
+        test[i] = lisa_random((long)minDD,(long)maxDD, &timeseed);
+      }
+	  *val.DD = test;
+  }
+  
+  if(minWI==maxWI){
+    val.WI->fill(minWI);
+  }
+  else{
+	 Lisa_Vector<double> test2(n);
+     for(int i=0; i<n; i++) {
+        test2[i] = lisa_random((long)minWI,(long)maxWI, &timeseed);
+      }
+ 	  *val.WI = test2;
+ }
+  std::cout << val.DD << std::endl;
+  //End
 }
 
 //**************************************************************************
@@ -556,7 +653,20 @@ int main(int argc, char *argv[]){
     std::cout << " CMAX " << os.GetValue();
     os.SetValue(SUM_CI);
     std::cout << " SUM_CI " << os.GetValue() << std::endl;
-    
+	//Added for new problemtypes
+    os.SetValue(SUM_WICI);
+    std::cout << " SUM_WICI " << os.GetValue() << std::endl;
+    os.SetValue(LMAX);
+    std::cout << " LMAX " << os.GetValue() << std::endl;
+    os.SetValue(SUM_UI);
+    std::cout << " SUM_UI " << os.GetValue() << std::endl;
+    os.SetValue(SUM_WIUI);
+    std::cout << " SUM_WIUI " << os.GetValue() << std::endl;
+    os.SetValue(SUM_TI);
+    std::cout << " SUM_TI " << os.GetValue() << std::endl;
+    os.SetValue(SUM_WITI);
+    std::cout << " SUM_WITI " << os.GetValue() << std::endl;
+	//End
    }
    
    //open output file, write generated problem + comments
