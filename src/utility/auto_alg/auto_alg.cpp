@@ -643,29 +643,65 @@ int main(int argc, char *argv[]){
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1) << " time " << end-start << " sek objective " 
-              << os.GetValue() << std::endl;
+              << str_alg(j+1) << " time " << end-start << " sek objective ";
+	switch(pt.get_property(OBJECTIVE)){
+	case CMAX : std::cout << " CMAX ";
+			break;
+	case LMAX : std::cout << " LMAX ";
+			break;
+	case SUM_CI : std::cout << " SUM_CI ";
+			break;
+	case SUM_WICI : std::cout << " SUM_WICI ";
+			break;
+	case SUM_UI : std::cout << " SUM_UI ";
+			break;
+	case SUM_WIUI : std::cout << " SUM_WIUI ";
+			break;
+	case SUM_TI : std::cout << " SUM_TI ";
+			break;
+	case SUM_WITI : std::cout << " SUM_WITI ";
+			break;
+	}
+    std::cout << os.GetValue() << std::endl;
 
     
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1);
-    os.SetValue(CMAX);
-    std::cout << " CMAX " << os.GetValue();
-    os.SetValue(SUM_CI);
-    std::cout << " SUM_CI " << os.GetValue() << std::endl;
+              << str_alg(j+1) << std::endl;
+
+	
+	if(pt.get_property(OBJECTIVE) != CMAX){
+		os.SetValue(CMAX);
+		std::cout << " CMAX " << os.GetValue() << std::endl;
+	}
+	if(pt.get_property(OBJECTIVE) != SUM_CI){
+	    os.SetValue(SUM_CI);
+		std::cout << " SUM_CI " << os.GetValue() << std::endl;
+	}
 	//Added for new problemtypes
-    os.SetValue(SUM_WICI);
-    std::cout << " SUM_WICI " << os.GetValue() << std::endl;
-    os.SetValue(LMAX);
-    std::cout << " LMAX " << os.GetValue() << std::endl;
-    os.SetValue(SUM_UI);
-    std::cout << " SUM_UI " << os.GetValue() << std::endl;
-    os.SetValue(SUM_WIUI);
-    std::cout << " SUM_WIUI " << os.GetValue() << std::endl;
-    os.SetValue(SUM_TI);
-    std::cout << " SUM_TI " << os.GetValue() << std::endl;
-    os.SetValue(SUM_WITI);
-    std::cout << " SUM_WITI " << os.GetValue() << std::endl;
+	if(pt.get_property(OBJECTIVE) != SUM_WICI){
+		os.SetValue(SUM_WICI);
+		std::cout << " SUM_WICI " << os.GetValue() << std::endl;
+	}
+    if(pt.get_property(OBJECTIVE) != LMAX){
+		os.SetValue(LMAX);
+		std::cout << " LMAX " << os.GetValue() << std::endl;
+	}
+    if(pt.get_property(OBJECTIVE) != SUM_UI){
+		os.SetValue(SUM_UI);
+		std::cout << " SUM_UI " << os.GetValue() << std::endl;
+	}
+    if(pt.get_property(OBJECTIVE) != SUM_WIUI){
+		os.SetValue(SUM_WIUI);
+		std::cout << " SUM_WIUI " << os.GetValue() << std::endl;
+	}
+    if(pt.get_property(OBJECTIVE) != SUM_TI){
+		os.SetValue(SUM_TI);
+		std::cout << " SUM_TI " << os.GetValue() << std::endl;
+	}
+    if(pt.get_property(OBJECTIVE) != SUM_WITI){
+		os.SetValue(SUM_WITI);
+		std::cout << " SUM_WITI " << os.GetValue() << std::endl;
+	}
 	//End
    }
    
