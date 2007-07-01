@@ -36,11 +36,9 @@ long timeseed,machseed;
 int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
-
-// Changes for adding all basic problem types
-// Start
-int minDD,maxDD,minWI,maxWI;
-// End
+int iMinDD=1,iMaxDD=99,iMinWi=1,iMaxWi=99;
+bool bNeedDD=false,bNeedWI=false,bNeedMO=false;
+bool bIsSetDD=false,bIsSetWI=false;
 
 std::string algin,algout;
 
@@ -126,44 +124,23 @@ void parseParameters(Lisa_ControlParameters &cp){
                            "'.",Lisa_ExceptionList::WARNING);
   }
 
-// Changes for adding all basic problem types
-// Start
   if(cp.defined("MINDD")==Lisa_ControlParameters::LONG){
-    minDD = cp.get_long("MINDD");
-  }else{
-    minDD = 1;
-    cp.add_key("MINDD",(long)minDD);
-    G_ExceptionList.lthrow((std::string)"No MINDD parameter defined,"+
-                           " generated '"+ztos(minDD)+"'.",Lisa_ExceptionList::WARNING);
+    iMinDD = cp.get_long("MINDD");
   }
 
   if(cp.defined("MAXDD")==Lisa_ControlParameters::LONG){
-    maxDD = cp.get_long("MAXDD");
-  }else{
-    maxDD = 99;
-    cp.add_key("MAXDD",(long)maxDD);
-    G_ExceptionList.lthrow((std::string)"No MAXDD parameter defined,"+
-                           " generated '"+ztos(maxDD)+"'.",Lisa_ExceptionList::WARNING);
+    iMaxDD = cp.get_long("MAXDD");
+	bIsSetDD=true;
   }
 
   if(cp.defined("MINWI")==Lisa_ControlParameters::LONG){
-    minWI = cp.get_long("MINWI");
-  }else{
-    minWI = 1;
-    cp.add_key("MINWI",(long)minWI);
-    G_ExceptionList.lthrow((std::string)"No MINWI parameter defined,"+
-                           " generated '"+ztos(minWI)+"'.",Lisa_ExceptionList::WARNING);
+    iMinWi = cp.get_long("MINWI");
   }
 
   if(cp.defined("MAXWI")==Lisa_ControlParameters::LONG){
-    maxWI = cp.get_long("MAXWI");
-  }else{
-    maxWI = 99;
-    cp.add_key("MAXWI",(long)maxWI);
-    G_ExceptionList.lthrow((std::string)"No MAXWI parameter defined,"+
-                           " generated '"+ztos(maxWI)+"'.",Lisa_ExceptionList::WARNING);
+    iMaxWi = cp.get_long("MAXWI");
+	bIsSetWI=true;
   }
-// End
 }
 
 //**************************************************************************
@@ -172,39 +149,60 @@ void parseParameters(Lisa_ControlParameters &cp){
 void checkProblemType(Lisa_ProblemType &pt){
   Lisa_ProblemType compt;
   
-  // O||Cmax
-  compt.set_property(M_ENV,O);
-  compt.set_property(OBJECTIVE,CMAX);
-  if(pt.output_problem() == compt.output_problem()) return;
+  for(int i=0;i<3;i++){
+	  switch(i){
+	  case 0:	compt.set_property(M_ENV,O);
+				break;
+	  case 1:	compt.set_property(M_ENV,J);
+				bNeedMO=true;
+				break;
+	  case 2:	compt.set_property(M_ENV,F);
+				bNeedMO=true;
+				break;
+	  }
+	  compt.set_property(OBJECTIVE,CMAX);
+	  if(pt.output_problem() == compt.output_problem()) return;
 
-  // O||Lmax
-  compt.set_property(M_ENV,O);
-  compt.set_property(OBJECTIVE,LMAX);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,LMAX);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedDD=true;
+		  return;
+	  }
 
-  // O||SumCi
-  compt.set_property(OBJECTIVE,SUM_CI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,SUM_CI);
+	  if(pt.output_problem() == compt.output_problem()) return;
  
-  // O||Sum_WiCi
-  compt.set_property(OBJECTIVE,SUM_WICI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,SUM_WICI);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedWI=true;
+		  return;
+	  }
  
-  // O||SumTi
-  compt.set_property(OBJECTIVE,SUM_TI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,SUM_TI);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedDD=true;
+		  return;
+	  }
  
-  // O||SumWiTi
-  compt.set_property(OBJECTIVE,SUM_WITI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,SUM_WITI);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedDD=true;
+		  bNeedWI=true;
+		  return;
+	  }
+	  compt.set_property(OBJECTIVE,SUM_UI);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedDD=true;
+		  return;
+	  }
  
-   // O||SumUi
-  compt.set_property(OBJECTIVE,SUM_UI);
-  if(pt.output_problem() == compt.output_problem()) return;
- 
-  // O||SumWiUi
-  compt.set_property(OBJECTIVE,SUM_WIUI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,SUM_WIUI);
+	  if(pt.output_problem() == compt.output_problem()){
+		  bNeedDD=true;
+		  bNeedWI=true;
+		  return;
+	  }
+  }
  
   G_ExceptionList.lthrow((std::string)"Cannot handle '"+pt.output_alpha()+
                           " / "+pt.output_beta()+" / "+pt.output_gamma()+
@@ -339,10 +337,74 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
   val.make_PT();
   val.make_SIJ();
   val.SIJ->fill(1);
-  //Added for new problemtypes
-  val.make_DD();
-  val.make_WI();
-  //End
+
+  
+  if(bNeedWI){
+	  if(!bIsSetWI)
+		G_ExceptionList.lthrow((std::string)"No MAXWI parameter defined,"+
+                           " using default '"+ztos(iMaxWi)+"'.",Lisa_ExceptionList::WARNING);
+	  val.make_WI();
+	  if(iMinWi==iMaxWi){
+		  val.WI->fill(iMinWi);
+	  }
+	  else{
+		  Lisa_Vector<double> test2(n);
+		  for(int i=0; i<n; i++){
+			  test2[i] = lisa_random((long)iMinWi,(long)iMaxWi, &timeseed);
+		  }
+ 		  *val.WI = test2;
+	  }
+  }
+
+  if(bNeedDD){
+	  if(!bIsSetDD)
+		G_ExceptionList.lthrow((std::string)"No MAXDD parameter defined,"+
+                           " using default '"+ztos(iMaxDD)+"'.",Lisa_ExceptionList::WARNING);
+	  val.make_DD();
+	  if(iMinDD==iMaxDD){
+		val.DD->fill(iMinDD);
+	  }
+	  else{
+		  //TODO:Couldnt directly change the values of the DD/WI vector?!?
+		  Lisa_Vector<double> test(n);
+		  for(int i=0; i<n; i++) {
+			test[i] = lisa_random((long)iMinDD,(long)iMaxDD, &timeseed);
+		  }
+		  *val.DD = test;
+	  }
+  }
+  if(bNeedMO){
+	  int s,t;
+	  val.make_MO();
+	  Lisa_Matrix<int> MO(n,m);
+	  MO.fill(0);
+	  if(pt.get_property(M_ENV) == J){
+		  // taken from tcl_c.cpp, TC_gen_mo
+		  int j,k,index;
+		  for (j=0; j<n; j++){
+			  for (k=1; k<=m; k++){
+				  for (index=lisa_random((long)0,(long)m,&timeseed); index <m;index++){
+					  if(MO[j][index]==0)
+						  break;
+				  }
+				if(index>=m){
+					for (index=0; index <m;index++)
+						if(MO[j][index]==0)
+							break;
+				}
+				MO[j][index]=k;
+			  }
+		  }
+	  }
+	  else{
+		  for (s=0; s<n; s++){
+			  for(t=0; t<m; t++){
+				MO[s][t]=t+1;
+			  }
+		  }
+	  }
+	  val.MO->read_rank(&MO);
+  }
 
   // taken from tcl_c.cpp, TC_genpt()
   if(minpt==maxpt){
@@ -368,31 +430,6 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
     }
   
   }
-  //Added for new problemtypes
-  if(minDD==maxDD){
-    val.DD->fill(minDD);
-  }
-  else{
-	  //TODO:Couldnt directly change the values of the DD/WI vector?!?
-	  Lisa_Vector<double> test(n);
-      for(int i=0; i<n; i++) {
-        test[i] = lisa_random((long)minDD,(long)maxDD, &timeseed);
-      }
-	  *val.DD = test;
-  }
-  
-  if(minWI==maxWI){
-    val.WI->fill(minWI);
-  }
-  else{
-	 Lisa_Vector<double> test2(n);
-     for(int i=0; i<n; i++) {
-        test2[i] = lisa_random((long)minWI,(long)maxWI, &timeseed);
-      }
- 	  *val.WI = test2;
- }
-  std::cout << val.DD << std::endl;
-  //End
 }
 
 //**************************************************************************
@@ -606,7 +643,7 @@ int main(int argc, char *argv[]){
    
    // generate instance 
    Lisa_Values val;
-   generateValues(val,pt); 
+   generateValues(val,pt);
    Lisa_Schedule sched(n,m); // result from one algorithm
    
    //need those two to calculate objective
@@ -671,36 +708,36 @@ int main(int argc, char *argv[]){
 	
 	if(pt.get_property(OBJECTIVE) != CMAX){
 		os.SetValue(CMAX);
-		std::cout << " CMAX " << os.GetValue() << std::endl;
+		std::cout << " Cmax " << os.GetValue() << std::endl;
 	}
 	if(pt.get_property(OBJECTIVE) != SUM_CI){
 	    os.SetValue(SUM_CI);
-		std::cout << " SUM_CI " << os.GetValue() << std::endl;
+		std::cout << " SumCi " << os.GetValue() << std::endl;
 	}
 	//Added for new problemtypes
 	if(pt.get_property(OBJECTIVE) != SUM_WICI){
 		os.SetValue(SUM_WICI);
-		std::cout << " SUM_WICI " << os.GetValue() << std::endl;
+		std::cout << " SumWiCi " << os.GetValue() << std::endl;
 	}
     if(pt.get_property(OBJECTIVE) != LMAX){
 		os.SetValue(LMAX);
-		std::cout << " LMAX " << os.GetValue() << std::endl;
+		std::cout << " Lmax " << os.GetValue() << std::endl;
 	}
     if(pt.get_property(OBJECTIVE) != SUM_UI){
 		os.SetValue(SUM_UI);
-		std::cout << " SUM_UI " << os.GetValue() << std::endl;
+		std::cout << " SumUi " << os.GetValue() << std::endl;
 	}
     if(pt.get_property(OBJECTIVE) != SUM_WIUI){
 		os.SetValue(SUM_WIUI);
-		std::cout << " SUM_WIUI " << os.GetValue() << std::endl;
+		std::cout << " SumWiUi " << os.GetValue() << std::endl;
 	}
     if(pt.get_property(OBJECTIVE) != SUM_TI){
 		os.SetValue(SUM_TI);
-		std::cout << " SUM_TI " << os.GetValue() << std::endl;
+		std::cout << " SumTi " << os.GetValue() << std::endl;
 	}
     if(pt.get_property(OBJECTIVE) != SUM_WITI){
 		os.SetValue(SUM_WITI);
-		std::cout << " SUM_WITI " << os.GetValue() << std::endl;
+		std::cout << " SumWiTi " << os.GetValue() << std::endl;
 	}
 	//End
    }
