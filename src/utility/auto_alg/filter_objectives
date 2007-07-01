@@ -7,7 +7,7 @@ while ($l = <>) {
   if ($l =~ /max method\) : ([\d\.]+) \(preempt\) : ([\d\.]+) \(avrg\) : ([\d\.]+)/) {
     print "\n$1\t$2\t$3\t";
   }
-  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*CMAX ([\d\.]+) .*SUM_CI ([\d\.]+)/) {
+  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*Cmax ([\d\.]+) .*SumCi ([\d\.]+)/) {
     if($2 == 1){
     }else{
       print "$3\t$4\t";

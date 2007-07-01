@@ -682,21 +682,21 @@ int main(int argc, char *argv[]){
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
               << str_alg(j+1) << " time " << end-start << " sek objective ";
 	switch(pt.get_property(OBJECTIVE)){
-	case CMAX : std::cout << " CMAX ";
+	case CMAX : std::cout << " Cmax ";
 			break;
-	case LMAX : std::cout << " LMAX ";
+	case LMAX : std::cout << " Lmax ";
 			break;
-	case SUM_CI : std::cout << " SUM_CI ";
+	case SUM_CI : std::cout << " SumCi ";
 			break;
-	case SUM_WICI : std::cout << " SUM_WICI ";
+	case SUM_WICI : std::cout << " SumWiCi ";
 			break;
-	case SUM_UI : std::cout << " SUM_UI ";
+	case SUM_UI : std::cout << " SumUi ";
 			break;
-	case SUM_WIUI : std::cout << " SUM_WIUI ";
+	case SUM_WIUI : std::cout << " SumWiUi ";
 			break;
-	case SUM_TI : std::cout << " SUM_TI ";
+	case SUM_TI : std::cout << " SumTi ";
 			break;
-	case SUM_WITI : std::cout << " SUM_WITI ";
+	case SUM_WITI : std::cout << " SumWiTi ";
 			break;
 	}
     std::cout << os.GetValue() << std::endl;
