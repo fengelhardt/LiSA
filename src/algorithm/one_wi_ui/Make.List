@@ -11,6 +11,7 @@ CXXSOURCES=\
 	../../misc/int2str.cpp \
 	../../scheduling/mo_jo.cpp \
 	../../scheduling/schedule.cpp \
+	../../scheduling/m1_sched.cpp \
     ../../basics/graph.cpp \
 	../../xml/LisaXmlFile.cpp \
 	../../xml/lisa_xml.cpp \

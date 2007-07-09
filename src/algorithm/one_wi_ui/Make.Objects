@@ -11,6 +11,7 @@ OBJECTS=\
 	../../../obj/int2str.o \
 	../../../obj/mo_jo.o \
 	../../../obj/schedule.o \
+	../../../obj/m1_sched.o \
 	../../../obj/graph.o \
 	../../../obj/LisaXmlFile.o \
 	../../../obj/lisa_xml.o \

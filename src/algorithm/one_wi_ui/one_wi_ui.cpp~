@@ -6,7 +6,7 @@
 // Include the header files for the used objects! Standard:
 // LisaProblemtype requires global.hpp.
 // The file global.hpp is needed by LisaProblemtype.
-// The files ctrlpara.hpp, ptype.hpp and lvalues.hpp
+// The files ctrlpara.hpp, ptype.hpp and l.hpp
 // are used for parsing the input file.
 // The object Lisa_Schedule (header: schedule.hpp) 
 // is necessary for writing the result into the output file.
@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <fstream>
+#include <queue>
 
 #include "../../xml/LisaXmlFile.hpp"
 
@@ -24,10 +25,28 @@
 #include "../../lisa/lvalues.hpp"
 #include "../../misc/except.hpp"
 #include "../../scheduling/schedule.hpp"
+#include "../../scheduling/m1_sched.hpp"
 #include "../../basics/order.hpp"
 #include "../../basics/matrix.hpp"
 
 using namespace std;
+
+
+/////////////////////////////
+struct Compare_PT{
+	Compare_PT(Lisa_Values* V):Values(V){}
+	
+	bool operator()(int i, int j){
+		return (*(Values->PT))[i][0] > (*(Values->PT))[j][0];
+	}
+	private: Lisa_Values* Values;
+};
+
+typedef std::priority_queue <int, vector<int>, Compare_PT> MyQueue;	//MyQueue neu definiert
+//////////////////////////////
+
+
+
 
 //**************************************************************************
 
@@ -71,7 +90,7 @@ int main(int argc, char *argv[])
     //create Input handler
     LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
     //communication objects
-    Lisa_ProblemType Problem;
+    Lisa_ProblemType Problem;    
     Lisa_ControlParameters Parameter;   
     Lisa_Values Values;
     
@@ -114,7 +133,7 @@ int main(int argc, char *argv[])
 
     // Define the LiSA  schedule object for storing results
     Lisa_Schedule out_schedule(Values.get_n(),Values.get_m());
-    out_schedule.make_LR();
+    out_schedule.make_LR();        
     
     // **************************************************************
     // *************** Insert your algorithm here: ******************
@@ -122,71 +141,66 @@ int main(int argc, char *argv[])
     
     //Mengen verwalten
     Lisa_Order I(Values.get_n());
-    std::list <int> I_v, I_star;
+    std::list <int> I_v;
+    
+    MyQueue I_star = MyQueue(Compare_PT(&Values));
     int d_i = -1;    
+    //std::vector V(Values.get_n());    //V intialisieren, in V stehen 2-Tupel (index des Jobs i, p_i)
+    
+    
     
     //Merker für Indizes
-    int i, j, i_star;
+    int i, j, i_star, k, l;
+    int  temp, ell = 0;
+    TIMETYP d_i_star;
     TIMETYP sum = 0;
     i_star = -1;
     
+
     	for (i = 0; i < Values.get_n(); i++){
     		I.read_one_key(i, (*Values.DD)[i]);
-		cout << (*Values.DD)[i] << '\t';
+		cout << (*Values.DD)[i] << '\t';		
 	}
 		
-	I.sort();
+	I.sort();		//Duedates sortiert
+	
+	sum = 0;
 	for (i = 0; i < Values.get_n(); i++){
 		i_star = I.row(i);
-		cout << i_star << '\n';
+		cout << "istern = " << i_star << "[" << (*Values.DD)[i_star] << "]" << endl;
+		d_i_star = (*Values.DD)[i_star];
+		I_star.push(i_star);
 		
-		sum = 0;
-		for (j = 0; j <= i_star; j++){
-			sum += 
+		sum += (*Values.PT)[i_star][0];
+		
+		if (sum > d_i_star){
+			//suche Job aus I_star mit größter PT
+			cout << "removing job " << I_star.top() << "[" << (*Values.PT)[I_star.top()] << "]" << std::endl;
+			ell = I_star.top();
+			I_star.pop();
+			
+
+			//Element l hat größte Bearbeitungszeiten der schon angeordneten Jobs			
+			sum -= (*Values.PT)[ell][0];
+			//I_v.push_back(ell);
 		}
 	}
-
 	
-	cout << "test";
-	
-	
-
- /*     
-   while (I.size() != 0){
-  
-    	//i_star suchen, wobei i_star hat d_i = min(d_i)
-	i_star = I.front;
-    	for k = 0 to I.size{
-		
+	i = 1;	
+	while (!I_star.empty()){
+		(*(out_schedule.LR))[I_star.top()][0]=i++;
+		I_star.pop();
 	}
-        
-    	I_star = I_star.push_back(i_star);    
-	*/
-  
+	for (k = 0; k < Values.get_n(); k++){
+		if (!(*(out_schedule.LR))[k][0])
+			(*(out_schedule.LR))[k][0]=i++;
+	}
+	
+	
+	cout << "i =" <<i;
+ 
     
-    
-    
-    
-        
-    
-    
-    
-    //alles was hiernach im Algo steht, ist alt.
-/*    
-    int stages=MAX(Values.get_n(),Values.get_m());
-    int i,j;
-    
-    for (i=0; i <Values.get_n(); i++)
-      for (j=0; j <Values.get_m(); j++)
-	if ((*Values.SIJ)[i][j])
-	  (*out_schedule.LR)[i][j]= ((i+j) % stages)+1;
 
-    // The following lines demonstrate how to write into an extra LiSA window:
-     cout << "WARNING: The Problemtype is:" << Problem.output_problem()<< endl;
-     cout << "WARNING: The upper bound is:" << Parameter.get_double("UPPER_BOUND")<< endl;
-     cout << "WARNING: P(1,2)=" << (*Values.PT)[1][2]<< endl;
-     cout << "WARNING: Name:" << Parameter.get_string("NAME")<< endl;
-*/
     // ***************************************************************
     // ********************* End of Algorithm ************************ 
     // ***************************************************************

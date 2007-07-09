@@ -1,5 +1,6 @@
 CXXSOURCES=\
 	one_wi_ui.cpp \
+	../../basics/order.cpp \
 	../../basics/matrix.cpp \
 	../../basics/pair.cpp \
 	../../lisa/ctrlpara.cpp\

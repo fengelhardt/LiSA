@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="larrys_Beispielalgorithmus" type="constructive" call="one_wi_ui" code="external" help_file="algorithm/one_wi_ui.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="XYZ" type="constructive" call="one_wi_ui" code="external" help_file="algorithm/one_wi_ui.html">
   <exact>
     <problem>
       <alpha env="1"/>
-      <beta/>
+      <beta due_dates="yes"/>
       <gamma objective="Sum_Ui"/>
     </problem>
-    <problem>
-      <alpha env="1"/>
-      <beta/>
-      <gamma objective="Sum_wiUi"/>
-    </problem>    
   </exact>
-  <alg_controls>
-    <choice name="TEST_PARAMETER" caption="Testparameter">
-      <item name="TRUE"/>
-      <item name="FALSE"/>
-    </choice>
-  </alg_controls>
 </algorithm>
