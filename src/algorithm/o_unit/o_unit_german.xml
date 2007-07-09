@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="o_unit Algorithmus" type="constructive" call="o_unit" code="external" help_file="algorithm/o_unit_german.html">
+  <heuristic>
+  </heuristic>
+  <exact>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="Sum_Ci"/>
+    </problem>
+  </exact>
+  <alg_controls>
+    <integer name="SEED"     caption="Zufalls-Seed" default="1234567890"/>
+  </alg_controls>
+</algorithm>
