@@ -46,14 +46,14 @@ int main(int argc, char *argv[]){
   int METHOD = II; // which algorithm: II,SA,SA_anti,TA,TS
   string NGBH = "API"; // which neighbourhood: API,RPI
   int STEPS = 100; 
-  int NUMB_STUCKS = 999999;  
-  double ABORT_BOUND = 1; 
-  string ngbh_type_in = "ENUM";
-  int NGBH_TYPE = ENUM; // ENUM,RAND ..  only for II,TS 
-  int PROB = 50; // 0..100 only for SA,SA_anti,TA
-  int MAX_STUCK = 2000; // only for SA,SA_anti,TA
-  int TABU_LENGTH = 1; // length of tabulist ... only TS
-  int NUMB_NGB = 1; // how many NGB's to generate in each step ... only TS
+  //int NUMB_STUCKS = 999999;  
+  //double ABORT_BOUND = 1; 
+  //string ngbh_type_in = "ENUM";
+  //int NGBH_TYPE = ENUM; // ENUM,RAND ..  only for II,TS 
+  //int PROB = 50; // 0..100 only for SA,SA_anti,TA
+  //int MAX_STUCK = 2000; // only for SA,SA_anti,TA
+  //int TABU_LENGTH = 1; // length of tabulist ... only TS
+  //int NUMB_NGB = 1; // how many NGB's to generate in each step ... only TS
 
   // algorithm
   if (!param.defined("METHOD")){ 
@@ -94,78 +94,6 @@ int main(int argc, char *argv[]){
     STEPS = param.get_long("STEPS");
   }
   
-  // stucks after which to abort algorithm
-  if (!param.defined("NUMB_STUCKS")){ 
-    G_ExceptionList.lthrow("You must define a maximum number of stucks (NUMB_STUCKS) in the input file.");
-    exit(7);
-  }else{
-    NUMB_STUCKS = param.get_long("NUMB_STUCKS");
-  }
-  
-  // lower bound
-  if (!param.defined("ABORT_BOUND")){
-    G_ExceptionList.lthrow("You must define a lower bound (ABORT_BOUND) for the objective in the input file.");
-    exit(7);
-  }else{
-    ABORT_BOUND = param.get_double("ABORT_BOUND");
-  }
-  
-  // type of neighbours to generate (ENUM or RAND)
-  if(METHOD==II||METHOD==TS){
-
-    if (!param.defined("NGBH_TYPE")){
-      G_ExceptionList.lthrow("You must define a neighbourhood type (NGBH_TYPE) for II and TS in the input file.");
-      exit(7);
-    }else{
-      ngbh_type_in = param.get_string("NGBH_TYPE");
-      if(ngbh_type_in == "ENUM") NGBH_TYPE = ENUM;
-      else if(ngbh_type_in == "RAND") NGBH_TYPE = RAND;
-      else{
-	      std::cout << ngbh_type_in << " is no valid neighbourhood type." << std::endl;
-	      std::cout << "Must be ENUM or RAND." << std::endl;
-	      exit(7);
-      }
-    }
-
-  }
-    
-  // start probability and number of stucks after which to increase temperature/threshold
-  if(METHOD==SA||METHOD==TA){
-    
-    if(!param.defined("PROB")){
-      G_ExceptionList.lthrow("You must define a start probability (PROB) for SA, SA_anti and TA in the input file.");
-      exit(7);
-    }else{
-      PROB = param.get_long("PROB");
-    }
-
-    if(!param.defined("MAX_STUCK")){
-      G_ExceptionList.lthrow
-	("You must define a number of stucks (MAX_STUCK) for SA, SA_anti and TA in the input file.");
-      exit(7);
-    }else{
-      MAX_STUCK = param.get_long("MAX_STUCK");
-    }
-      
-  }
-  
-  // length of tabulist and number of neighbours to generate in each step
-  if(METHOD==TS){
-     if(!param.defined("TABU_LENGTH")){
-      G_ExceptionList.lthrow("You must define the length of the tabu list (TABU_LENGTH) for TS in the input file.");
-      exit(7);
-    }else{
-      TABU_LENGTH = param.get_long("TABU_LENGTH");
-    }
-     
-     if(!param.defined("NUMB_NGB")){
-      G_ExceptionList.lthrow
-	("You must define the number of neighbours to generate in each step (NUMB_NGB) for TS in the input file.");
-      exit(7);
-    }else{
-      NUMB_NGB = param.get_long("NUMB_NGB");
-    }
-  }
 
   // create an object holding our problem and read it
   Travel_Graph tr1;
@@ -184,13 +112,10 @@ int main(int argc, char *argv[]){
   
   // init algorithm type and parameters 
   if(METHOD==II) it = new Lisa_IterativeImprovement(&param);
-  else if(METHOD==SA||METHOD==TA) it = new Lisa_Iterator(METHOD,PROB,MAX_STUCK);
+  else if(METHOD==SA) it = new Lisa_OldSimulatedAnnealing(&param);
+  else if(METHOD==TA) it = new Lisa_ThresholdAccepting(&param);
   else if(METHOD==TS) it = new Lisa_TabuSearch(&param);
-  
-  // init aborts
-  it->set_abort_at_stuck(NUMB_STUCKS);
-  it->set_abort_at_bound(ABORT_BOUND);
-  
+    
   //go for it ;)
   it->iterate(nbh,1,STEPS);
 

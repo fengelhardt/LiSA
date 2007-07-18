@@ -124,20 +124,20 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
       
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_IterativeImprovement(CP);
-        break;
+          it = new Lisa_IterativeImprovement(CP);
+          break;
 	    case SA:
-        it = new Lisa_OldSimulatedAnnealing(CP);
-        break;
-
-      case SA_new:
+          it = new Lisa_OldSimulatedAnnealing(CP);
+          break;
+        case SA_new:
           it = new Lisa_SimulatedAnnealing(CP);
+          break;
 	    case TA:
-          it =  new Lisa_Iterator( TA, PROB, MAX_STUCK );
-        break;
+          it =  new Lisa_ThresholdAccepting(CP);
+          break;
 	    case TS:
 	      it = new Lisa_TabuSearch(CP);
-        break;
+          break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	  }
@@ -147,8 +147,6 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
 	    exit( 7 );
 	  }
     
-	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
 	  m1_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << m1_Plan->GetValue() << "\n";
 	  it->iterate( m1_api, OBJ_TYPE, STEPS );
@@ -303,21 +301,20 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
 
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_IterativeImprovement(CP);
-        break;
+          it = new Lisa_IterativeImprovement(CP);
+          break;
 	    case SA:
-        it = new Lisa_OldSimulatedAnnealing(CP);
-        break;
-
-      case SA_new:
-        it = new Lisa_SimulatedAnnealing(CP);
-        break;
+          it = new Lisa_OldSimulatedAnnealing(CP);
+          break;
+        case SA_new:
+          it = new Lisa_SimulatedAnnealing(CP);
+          break;
 	    case TA:
-        it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
-        break;
+          it = new Lisa_ThresholdAccepting(CP);
+          break;
 	    case TS:
-        it = new Lisa_TabuSearch(CP);
-        break;
+          it = new Lisa_TabuSearch(CP);
+          break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	  }
@@ -326,9 +323,6 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
     	G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	    exit( 7 );
     }
-      
-	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
 	  
     os_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << os_Plan->GetValue() << "\n";
@@ -501,21 +495,20 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
       
 	  switch ( METHOD ){
 	    case II:
-        it = new Lisa_IterativeImprovement(CP);
-        break;
+          it = new Lisa_IterativeImprovement(CP);
+          break;
 	    case SA:
-        it = new Lisa_OldSimulatedAnnealing(CP);
-        break;
-
-      case SA_new:
-        it = new Lisa_SimulatedAnnealing(CP);
-        break;
+          it = new Lisa_OldSimulatedAnnealing(CP);
+          break;
+        case SA_new:
+          it = new Lisa_SimulatedAnnealing(CP);
+          break;
 	    case TA:
-        it = new Lisa_Iterator( TA, PROB, MAX_STUCK );
-        break;
+          it = new Lisa_ThresholdAccepting(CP);
+          break;
 	    case TS:
-        it = new Lisa_TabuSearch(CP);
-        break;
+          it = new Lisa_TabuSearch(CP);
+          break;
 	    default: G_ExceptionList.lthrow("wrong METHOD specified in ITERATE");
 	      exit(7);
 	  }
@@ -524,9 +517,6 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
 	    G_ExceptionList.lthrow("out of memory",Lisa_ExceptionList::NO_MORE_MEMORY);
 	    exit( 7 );
 	  }
-    
-	  if ( NUMB_STUCKS != MAXINT ) it->set_abort_at_stuck( NUMB_STUCKS );
-	  if ( ABORT_BOUND != -MAXLONG ) it->set_abort_at_bound( ABORT_BOUND );
     
 	  js_Plan->SetValue( OBJ_TYPE );
 	  cout << "\nstart objective_value: " << js_Plan->GetValue() << "\n";
@@ -706,13 +696,11 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   if( NGBH == k_API || NGBH == k_REINSERTION)
     cout << endl << "k: " << k << endl;
   
-  if ( METHOD == II )
-    cout<<"parameters: "<< STEPS <<" STEPS ";
-  if ( (METHOD==SA) || (METHOD==TA) )
-    cout<<"parameters: "<< STEPS <<" STEPS "<< PROB <<" PROB "<< MAX_STUCK <<" MAX_STUCK";
-  if ( METHOD == TS )
-    cout<<"parameters: "<<STEPS<<" STEPS "<<TABULENGTH<<" TABULENGTH "<<NUMB_NGHB<<" NUMB_NGHB";
-
+  cout << "STEPS= " << STEPS << endl;
+  
+  //shut down warning
+  if ( METHOD == TS ) Parameter.add_key("NUMB_STUCKS",(long)MAXNUMBER); 
+  
   return true;
 }
 

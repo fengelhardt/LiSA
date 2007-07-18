@@ -36,7 +36,7 @@ protected:
   TIMETYP abort_at_bound;
   
   //default constructor
-  Lisa_Iter();
+  Lisa_Iter(Lisa_ControlParameters *CP);
   
 public:
   
@@ -52,103 +52,32 @@ public:
   
   /// tell the algorithm to stop now
   void inline abort(){abort_algorithm=true;}
-  
-  /// initialize additional abort criteria
-  /** Force algorithm to stop if it is stuck for given number of steps,
-      default is do not abort. */  
-  void set_abort_at_stuck( int abort ){abort_stuck = abort;}
-  
-  /// initialize additional abort criteria
-  /**  Force algorithm to stop if objective function value reached 
-      given lower bound, default is no bound. */
-  void set_abort_at_bound( TIMETYP abort ){abort_at_bound = abort;}
 };
 
 //*****************************************************************************
 
 /// Problem independent neighbourhood iteration class.
-/** This class provides several neighbourhood search algorithms. 
-    They can be used with any class inherited from Lisa_Neighbourhood.
-
-    The names for the search methods are the follows:
-    - II : iterative improvement
-    - SA : simulated annealing
-    - TA : treshold acception
-    - TS : tabu search
-    - SA_anti : simulated annealing with antineighbour
-    
-    A start solution is given within the neighbourhood.
-
-    How to use Lisa_Iterator:
-    
-    - create a class inherited from Lisa_Neighbourhood describing your 
-      problem and of course the neighbourhood you want to use
-      - My_Neighbourhood nbh(my_problem,my_start_solution);
-
-    - create an instance of Lisa_Iterator
-      - Lisa_Iterator it;
-    
-    - initialize that instance with the algorithm you want and further 
-      parameters
-      - it.init(SA,50,3000);
-      - it.set_abort_at_stuck(100000);
-      - it.set_abort_at_bound(0);
-    
-    - run the algorithm with your neighbourhood, an objective type and the 
-      number of steps
-      - it.iterate(&nbh,my_objective,100000);
-
-    - compile and run that ... it's really easy ;)
-
-    An example showing how to implement your own Neighbourhood and how to use 
-    Lisa_Iterator can be found in LiSA/src/utility/travel/
-
-    @see Lisa_Neighbourhood
-    @see Lisa_Tabu
-
-    @author Andreas Winkler
-    @version 2.3final
-*/
-class Lisa_Iterator:public Lisa_Iter{
+class Lisa_ThresholdAccepting:public Lisa_Iter{
 private: 
+    ///enumerate neightbours or generate them randomly ?
+  int gen_nb;
   
-  /// algorithm parameter, as given by init() methods
-  int method, max_stuck;
-    
-  /// parameter for SA and TS  
+  /** Probability for accepting a neighbour with 1% worse 
+      objective value in the first step. / Start threshold for accepting
+      a neighbour with with a worse objective value. */
+  int prob0;
   double factor0;
-    
-  /// RAND or ENUM
-  int search_type;
   
-  /// number of neighbours to generate as given by init() methods
-  int number_neighbours;
-  
-  /// length of tabu list as given by init() method
-  int tabu_lenght;
-  
-  /// sa with anti neighbours ?
-  bool anti_neighbour;
+  /** If iteration is stuck for so many steps, then increase 
+      temperature or treshold, respectively. */
+  int max_stuck;
   
 public: 
   
-  /// init function for SA, SA_anti and TA 
-  /** Please note that if you intend to use SA_anit your neighbourhood should support
-      anti neighbours. 
-
-      init( SA, prob0, max_stuck); 
-      init( TA, threshold, max_stuck); 
-      
-      @param method SA or TA
-      @param prob0 Probability for accepting a neighbour with 1% worse 
-             objective value in the first step. / Start threshold for accepting
-             a neighbour with with a worse objective value.
-      @param max_stuck If iteration is stuck for so many steps, then increase 
-             temperature or treshold, respectively. */
-  Lisa_Iterator(int method, unsigned int prob0, unsigned int max_stuck);
+  Lisa_ThresholdAccepting(Lisa_ControlParameters* CP);
   
 
-  void  iterate( Lisa_Neighbourhood*, int objective_type, long steps);
+  void  iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);
  
 };
 
@@ -156,7 +85,9 @@ public:
 
 class Lisa_OldSimulatedAnnealing: public Lisa_Iter{
 private:
-
+  ///enumerate neightbours or generate them randomly ?
+  int gen_nb;
+  
   /** Probability for accepting a neighbour with 1% worse 
       objective value in the first step. / Start threshold for accepting
       a neighbour with with a worse objective value. */

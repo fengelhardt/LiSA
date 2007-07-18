@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Nachbarschaftssuche" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Threshold Accepting" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="J"/>
@@ -164,12 +164,12 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
-    <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="10000"/>
-    <integer name="PROB" caption="Anfangswahrscheinlichkeit" default="12"/>
-    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl" default="30"/>
-    <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
-    <choice name="NGBH" caption="Nachbarschaft">
+    <integer name="STEPS" caption="Created Solutions" default="5000"/>
+    <integer name="NUMB_STUCKS" caption="Stuck Since (Abort Criterion)" default="10000"/>
+    <integer name="PROB" caption="Start Parameter" default="12"/>
+    <integer name="MAX_STUCK" caption="Increase After" default="30"/>
+    <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
+    <choice name="NGBH" caption="Neighbourhood">
       <item name="TRANS"/>
       <item name="CR_TRANS"/>
       <item name="CR_TRANS_MIX"/>
@@ -186,9 +186,7 @@
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
     </choice>
-    <choice name="METHOD" caption="Suchmethode">
-      <item name="ThresholdAccepting"/>
-    </choice>
+    <fixed name="METHOD" value="ThresholdAccepting"/>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>
