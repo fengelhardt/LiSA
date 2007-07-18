@@ -154,19 +154,16 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
     std::cout << "WARNING: \"L_IMPR\" undefined and thus disabled."  << std::endl;
     impr_id = "off";
   }else if (Parameter.get_string("L_IMPR") == "(disabled)"){
-    // do nothing
+    impr_id = "off";
   } else  {
     
-    //create  controlparameters for II
-    Lisa_ControlParameters ParameterII;
-    
-    
+    //create  controlparameters for II    
     ParameterII.add_key("METHOD","IterativeImprovement");
     
     
     if (!Parameter.defined("IMPR_STEPS")) {
-      std::cout << "WARNING: \"IMPR_STEPS\" undefined. Using default 100."<< std::endl;
-      ParameterII.add_key("STEPS",(long)100);
+      std::cout << "WARNING: \"IMPR_STEPS\" undefined. Using default 10."<< std::endl;
+      ParameterII.add_key("STEPS",(long)10);
     }else {
       ParameterII.add_key("STEPS",Parameter.get_long("IMPR_STEPS"));
     }
@@ -179,6 +176,8 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
 
     //initialize the improver
     improver.configure(Problem, ParameterII, Values);
+    
+    impr_id = Parameter.get_string("L_IMPR");
   }
   
   apply_LocalImpr = (impr_id == "off")?false:true;

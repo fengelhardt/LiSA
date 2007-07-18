@@ -96,6 +96,7 @@ struct GA_Setup {
 
   Lisa_ProblemType Problem;
   Lisa_ControlParameters Parameter;
+  Lisa_ControlParameters ParameterII; // holds all values needed for local improvement
   Lisa_Values Values;
 
   Lisa_OsProblem *problem;
