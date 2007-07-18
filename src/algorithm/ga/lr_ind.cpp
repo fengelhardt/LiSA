@@ -229,7 +229,7 @@ void LR_Individuum::improve(GA_Setup& s){
   Starters.append(node);
   Starters.reset();
   {
-    //STDOUT_BLOCK b;//make nb_iter shut up
+    STDOUT_BLOCK b;//make nb_iter shut up
     s.improver.nb_iter(s.Values,Starters,Results);
   }
   Results.reset();
