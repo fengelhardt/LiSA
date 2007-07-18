@@ -153,62 +153,32 @@ bool GA_Setup::init(LisaXmlFile& xmlInput){
   if (!Parameter.defined("L_IMPR")) {
     std::cout << "WARNING: \"L_IMPR\" undefined and thus disabled."  << std::endl;
     impr_id = "off";
-  }
-  else  {//initialize the improver
-    improver.configure(Problem, Parameter, Values);
-        
-    impr_id = Parameter.get_string("L_IMPR");
+  }else if (Parameter.get_string("L_IMPR") == "(disabled)"){
+    // do nothing
+  } else  {
+    
+    //create  controlparameters for II
+    Lisa_ControlParameters ParameterII;
+    
+    
+    ParameterII.add_key("METHOD","IterativeImprovement");
+    
+    
+    if (!Parameter.defined("IMPR_STEPS")) {
+      std::cout << "WARNING: \"IMPR_STEPS\" undefined. Using default 100."<< std::endl;
+      ParameterII.add_key("STEPS",(long)100);
+    }else {
+      ParameterII.add_key("STEPS",Parameter.get_long("IMPR_STEPS"));
+    }
+    
+    
+    ParameterII.add_key("NGBH",Parameter.get_string("L_IMPR"));   
+    ParameterII.add_key("TYPE","RAND");
+    ParameterII.add_key("NUMB_STUCKS",ParameterII.get_long("STEPS"));
+    ParameterII.add_key("ABORT_BOUND",0.0);
 
     //initialize the improver
-    improver.NGBH = 0;
-    improver.METHOD = 0;
-    improver.PROB = 1;
-    improver.MAX_STUCK = NB_Iteration::MAXLONG;
-    improver.TABULENGTH = 1;
-    improver.NUMB_NGHB = 1;
-    improver.TYPE = RAND;
-    improver.OBJ_TYPE = 1;
-    improver.STEPS = 10;
-    improver.NUMB_PROBLEMS = 1;
-    improver.NUMB_PLANS = 1;
-    improver.NUMB_STUCKS = NB_Iteration::MAXINT;
-    improver.ABORT_BOUND = -NB_Iteration::MAXLONG;
-    
-    //specific stuff
-    if (!Parameter.defined("IMPR_STEPS")) {
-      std::cout << "WARNING: \"IMPR_STEPS\" undefined. Using default " << improver.STEPS  << std::endl;
-      //return false;
-    }
-    else {
-      improver.STEPS = Parameter.get_long("IMPR_STEPS");
-    }
-    
-    improver.OBJ_TYPE = Problem.get_property(OBJECTIVE);
-    improver.PROB_TYPE = Problem.get_property(M_ENV);
-    
-         if ( impr_id     == "1_API"              ) improver.NGBH = NB_Iteration::API;
-    else if ( impr_id     == "SHIFT"            ) improver.NGBH = NB_Iteration::SHIFT;
-    else if ( impr_id     == "CR_TRANS"         ) improver.NGBH = NB_Iteration::CR_TRANS;
-    else if ( impr_id     == "CR_TRANS_MIX"     ) improver.NGBH = NB_Iteration::CR_TRANS_MIX;
-    else if ( impr_id     == "SC_TRANS"         ) improver.NGBH = NB_Iteration::SC_TRANS;
-    else if ( impr_id     == "TRANS"            ) improver.NGBH = NB_Iteration::TRANS;
-    else if ( impr_id     == "3_API"            ) improver.NGBH = NB_Iteration::_3_API;
-    else if ( impr_id     == "3_CR"             ) improver.NGBH = NB_Iteration::_3_CR;
-    else if ( impr_id     == "CR_API"           ) improver.NGBH = NB_Iteration::CR_API;
-    else if ( impr_id     == "SC_API"           ) improver.NGBH = NB_Iteration::SC_API;
-    else if ( impr_id     == "BL_API"           ) improver.NGBH = NB_Iteration::BL_API;
-    else if ( impr_id     == "CR_SHIFT"         ) improver.NGBH = NB_Iteration::CR_SHIFT;
-    else if ( impr_id     == "CR_SHIFT_MIX"     ) improver.NGBH = NB_Iteration::CR_SHIFT_MIX;
-    else if ( impr_id     == "BL_SHIFT"         ) improver.NGBH = NB_Iteration::BL_SHIFT;
-    else if ( impr_id     == "CR_TST"           ) improver.NGBH = NB_Iteration::CR_TST;
-    else if ( impr_id     == "PI"               ) improver.NGBH = NB_Iteration::PI;
-    else impr_id = "off";
-    
-
-    
-    improver.METHOD   = II;
-
-    
+    improver.configure(Problem, ParameterII, Values);
   }
   
   apply_LocalImpr = (impr_id == "off")?false:true;
