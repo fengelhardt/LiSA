@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Neighbourhood Search" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Simulated Annealing Old" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="J"/>
@@ -186,9 +186,7 @@
       <item name="BL_SHIFT"/>
       <item name="3_CR"/>
     </choice>
-    <choice name="METHOD" caption="Search Method">
-      <item name="ThresholdAccepting"/>
-    </choice>
+    <fixed name="METHOD" value="SimulatedAnnealing"/>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>

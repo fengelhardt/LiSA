@@ -166,10 +166,8 @@
   <alg_controls>
     <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
     <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="10000"/>
-    <integer name="PROB" caption="Anfangswahrscheinlichkeit (nur fuer SA / TA)" default="12"/>
-    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl (nur fuer SA / TA)" default="30"/>
-    <integer name="TABULENGTH" caption="Tabulistenlaenge (nur fuer TS)" default="40"/>
-    <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn (nur fuer TS)" default="40"/>
+    <integer name="PROB" caption="Anfangswahrscheinlichkeit" default="12"/>
+    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl" default="30"/>
     <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
     <choice name="NGBH" caption="Nachbarschaft">
       <item name="TRANS"/>
@@ -189,10 +187,7 @@
       <item name="3_CR"/>
     </choice>
     <choice name="METHOD" caption="Suchmethode">
-      <!-- <item name="TabuSearch"/> -->
       <item name="ThresholdAccepting"/>
-      <!-- <item name="IterativeImprovement"/> -->
-      <item name="SimulatedAnnealing"/>
     </choice>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>

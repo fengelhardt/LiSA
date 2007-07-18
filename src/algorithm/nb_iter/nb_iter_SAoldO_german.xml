@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Neighbourhood Search" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Simulated Annealing Alt" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
@@ -84,13 +84,13 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="STEPS" caption="Created Solutions" default="5000"/>
-    <integer name="NUMB_STUCKS" caption="Stuck Since (Abort Criterion)" default="10000"/>
-    <integer name="PROB" caption="Start Parameter" default="12"/>
-    <integer name="MAX_STUCK" caption="Increase After" default="30"/>
-    <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
-    <integer name="k" caption="k for k_API or k_REINSERTION" default="1"/>
-    <choice name="NGBH" caption="Neighbourhood">
+    <integer name="STEPS" caption="Anzahl der Loesungen" default="5000"/>
+    <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="10000"/>
+    <integer name="PROB" caption="Anfangswahrscheinlichkeit" default="12"/>
+    <integer name="MAX_STUCK" caption="Maximale Stillstandsanzahl" default="30"/>
+    <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
+    <integer name="k" caption="k für k_API oder k_REINSERTION" default="1"/>
+    <choice name="NGBH" caption="Nachbarschaft">
       <item name="CR_TST"/>
       <item name="k_API"/>
       <item name="SHIFT"/>
@@ -102,9 +102,7 @@
       <item name="3_CR"/>
       <item name="k_REINSERTION"/>
     </choice>
-    <choice name="METHOD" caption="Search Method">
-      <item name="ThresholdAccepting"/>
-    </choice>
+    <fixed name="METHOD" value="SimulatedAnnealing"/>
     <fixed name="TYPE" value="RAND"/>
   </alg_controls>
 </algorithm>

@@ -127,7 +127,7 @@ int NB_Iteration::one_mach_iter(Lisa_Values& Values,
         it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
-        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        it = new Lisa_OldSimulatedAnnealing(CP);
         break;
 
       case SA_new:
@@ -306,7 +306,7 @@ int NB_Iteration::osp_iter(Lisa_Values& Values,
         it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
-        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        it = new Lisa_OldSimulatedAnnealing(CP);
         break;
 
       case SA_new:
@@ -504,7 +504,7 @@ int NB_Iteration::jsp_iter(Lisa_Values& Values,
         it = new Lisa_IterativeImprovement(CP);
         break;
 	    case SA:
-        it = new Lisa_Iterator( SA, PROB, MAX_STUCK );
+        it = new Lisa_OldSimulatedAnnealing(CP);
         break;
 
       case SA_new:

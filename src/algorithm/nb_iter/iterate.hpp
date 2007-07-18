@@ -154,6 +154,29 @@ public:
 
 //*****************************************************************************
 
+class Lisa_OldSimulatedAnnealing: public Lisa_Iter{
+private:
+
+  /** Probability for accepting a neighbour with 1% worse 
+      objective value in the first step. / Start threshold for accepting
+      a neighbour with with a worse objective value. */
+  int prob0;
+  double factor0;
+  
+  /** If iteration is stuck for so many steps, then increase 
+      temperature or treshold, respectively. */
+  int max_stuck;
+  
+  
+public:
+  Lisa_OldSimulatedAnnealing(Lisa_ControlParameters* CP);
+    
+  void iterate(Lisa_Neighbourhood *ngbh, int objective_type, long maxsteps);
+
+};
+
+//*****************************************************************************
+
 class Lisa_TabuSearch:public Lisa_Iter{
 private:
 

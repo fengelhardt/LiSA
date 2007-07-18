@@ -44,6 +44,9 @@ Lisa_Iterator::Lisa_Iterator( int methodi, unsigned int param1, unsigned int par
   method = methodi;
   switch(method){
     case  SA:
+      G_ExceptionList.lthrow("wrong method specified in init("+ztos(method)+",int,int)");
+      exit( 7 );
+      
       factor0 = -0.01 / log( double( param1 ) / 100.0 );
       max_stuck = param2;
       search_type = RAND;
@@ -102,39 +105,19 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
   max_non_move = steps/10;
   non_move = max_non_move;
   
-  // preparing parmeters:
-  switch ( method ){
-    case SA:
-      t = double ( NB->get_objective_value(ORIG_SOLUTION) ) * factor0;
-      t_end = double ( NB->get_objective_value(ORIG_SOLUTION) )
-                       * (-0.001 / log( exp( -3 * log( 10. )) ) );
-    
-      decr = 1 / exp( log(t/t_end) / steps );
-      t_old = t;
-      t_first = t;
-      break;
-    case TA:
+
       t = double ( NB->get_objective_value(ORIG_SOLUTION) ) * factor0;
       decr = t / steps;
       t_old = t;
       t_first = t;
-      break;
 
-    default:
-      cout << "error" << std::endl;
-      exit(1);
-  }
 
-  if ( method != TS ){ 
+ 
     for (  ; steps; steps-- ){// iteration loop for SA, II and TA:
       
-      switch ( method ){
-        case SA:
-          t = t * decr;
-          break;
-        case TA:
+
           t = t - decr;
-      }
+
       
       test = NB->prepare_move(search_type);
       NB->set_objective( objective_type, ORIG_SOLUTION );
@@ -151,39 +134,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
           NB->set_objective( objective_type, WORK_SOLUTION );
           
           // deceide whether to accept new solution:
-          switch(method){
-            
-            case SA:
-              accept = (   NB->get_objective_value(WORK_SOLUTION)
-                         < NB->get_objective_value(ORIG_SOLUTION) );
-            
-              if( !accept ){
-                accept = ( lisa_random( 0, 1000000, &seed ) <
-                           1000000*exp(-(NB->get_objective_value(WORK_SOLUTION) - NB->get_objective_value(ORIG_SOLUTION))/t));
-              }
-            
-              if (++total_stuck>=abort_stuck){
-                G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
-                                       Lisa_ExceptionList::WARNING);
-                abort_algorithm = true;
-              }
-            
-              if (++stuck_since>=max_stuck){
-              
-                if ( anti_neighbour == true ){
-                  NB->anti_neighbour();
-                  NB->set_objective( objective_type,ORIG_SOLUTION );
-                }
-              
-                last_break_value = 2*NB->get_objective_value(ORIG_SOLUTION);
-                stuck_since = 0;
-                t = t_first;
-              
-                if ( steps > 5 ) decr = 1/exp( log(t/t_end) / steps );
-              }
-              break;
-            
-            case TA:
+
               accept = (   NB->get_objective_value(WORK_SOLUTION)
                          - NB->get_objective_value(ORIG_SOLUTION) < t );
             
@@ -199,7 +150,7 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
                 //t = t_old;
                 decr = t / steps;
               }
-          } // switch ( method )
+
           
           
           if ( accept ){
@@ -227,8 +178,158 @@ void Lisa_Iterator::iterate( Lisa_Neighbourhood *NB, int objective_type,
       
       if ( (test==NO_NGHBOURS) || (abort_algorithm) ) steps = 1;
     } // for ...
-  }
+ 
   
+}
+
+//**************************************************************************
+//**************************************************************************
+//**************************************************************************
+
+Lisa_OldSimulatedAnnealing::Lisa_OldSimulatedAnnealing(Lisa_ControlParameters* CP){
+ 
+  prob0 = 12;
+  if ( CP->defined("PROB") == Lisa_ControlParameters::LONG){
+    prob0 = CP->get_long( "PROB" );
+    if (prob0 < 0 ){
+      prob0 = 12;
+      G_ExceptionList.lthrow("'PROB' out of range (must be nonnegative), using default.",Lisa_ExceptionList::WARNING);
+    }
+  }else G_ExceptionList.lthrow("'PROB' undefined, using default.",Lisa_ExceptionList::WARNING);
+  
+  cout << "PROB= " << prob0 << endl;
+  
+  
+  factor0 = -0.01 / log( double( prob0 ) / 100.0 );
+  cout << "FACTOR0= " << factor0 << endl;
+   
+  max_stuck = 30;
+  if ( CP->defined("MAX_STUCK") == Lisa_ControlParameters::LONG){ 
+    max_stuck = CP->get_long( "MAX_STUCK" );
+    if ( max_stuck < 1 ){
+      max_stuck = 30;
+      G_ExceptionList.lthrow("'MAX_STUCK' out of range (must be positive), using default.",Lisa_ExceptionList::WARNING);
+    }
+  }else G_ExceptionList.lthrow("'MAX_STUCK' undefined, using default.",Lisa_ExceptionList::WARNING);
+
+  cout << "MAX_STUCK= " << max_stuck << endl;
+  
+}
+    
+void
+Lisa_OldSimulatedAnnealing::iterate(Lisa_Neighbourhood *ngbh,
+                                    int objective_type, long steps){
+  
+  double  t=0, t_old, t_first=0, t_end=0, decr=0;
+  bool    accept=0;
+  long    stuck_since, total_stuck;
+  TIMETYP best_value, best_step, last_break_value;
+  int     test, non_move, max_non_move;
+  
+  long maxsteps = steps;
+  
+ 
+  
+  // getting some memory <-- removed this -marc-
+  
+  ngbh->put_orig_to_best();
+  ngbh->set_objective_type( objective_type );
+  ngbh->set_objective( objective_type,ORIG_SOLUTION );
+  best_value = ngbh->get_objective_value( ORIG_SOLUTION );
+  last_break_value = best_value;
+  best_step = MAXNUMBER;
+  stuck_since = total_stuck = 0;
+  max_non_move = steps/10;
+  non_move = max_non_move;
+  
+  //initialize progress meter
+  cout << "OBJECTIVE= " << 2*best_value << " Not a real objective, please ignore this line." << endl << endl;
+  long steps_per_output_line = 1;
+  if( maxsteps >= PROGRESS_INDICATOR_STEPS ) steps_per_output_line = (int) ceil((double)maxsteps/PROGRESS_INDICATOR_STEPS);
+  
+  t = double ( ngbh->get_objective_value(ORIG_SOLUTION) ) * factor0;
+  t_end = double ( ngbh->get_objective_value(ORIG_SOLUTION) )
+  * (-0.001 / log( exp( -3 * log( 10. )) ) );
+  
+  decr = 1 / exp( log(t/t_end) / steps );
+  t_old = t;
+  t_first = t;
+  
+  
+  
+  for (  ; steps; steps-- ){// iteration loop for SA, II and TA:
+    
+    
+    t = t * decr;
+    
+    
+    test = ngbh->prepare_move(RAND);
+    ngbh->set_objective( objective_type, ORIG_SOLUTION );
+    
+    if (!(steps%steps_per_output_line)){
+      cout << "OBJECTIVE= " << setprecision(0) << setiosflags(ios_base::fixed) << ngbh->get_objective_value(ORIG_SOLUTION)
+           << "  best= " << best_value
+           << "  ready= " << setw(3) << 100 - (int)  (100. * (maxsteps-steps) / maxsteps) 
+           << "%" << endl;
+    }
+
+    
+    if (test==OK){
+      if ( ngbh->do_move() == OK ){
+        
+        ngbh->set_objective( objective_type, WORK_SOLUTION );
+        
+        // deceide whether to accept new solution:
+        
+        accept = (   ngbh->get_objective_value(WORK_SOLUTION)
+        < ngbh->get_objective_value(ORIG_SOLUTION) );
+        
+        if( !accept ){
+          accept = ( lisa_random( 0, 1000000, &seed ) <
+          1000000*exp(-(ngbh->get_objective_value(WORK_SOLUTION) - ngbh->get_objective_value(ORIG_SOLUTION))/t));
+        }
+        
+        if (++total_stuck>=abort_stuck){
+          G_ExceptionList.lthrow("Iteration aborted early because algorithm is stuck for too long. You might want to set other parameters.",
+          Lisa_ExceptionList::WARNING);
+          abort_algorithm = true;
+        }
+        
+        if (++stuck_since>=max_stuck){
+          
+          last_break_value = 2*ngbh->get_objective_value(ORIG_SOLUTION);
+          stuck_since = 0;
+          t = t_first;
+          
+          if ( steps > 5 ) decr = 1/exp( log(t/t_end) / steps );
+        }
+
+        
+        if ( accept ){
+          ngbh->accept_solution();
+          
+          if (( ngbh->get_objective_value(WORK_SOLUTION) < best_value )){
+            total_stuck = 0;
+            best_value = ngbh->get_objective_value(ORIG_SOLUTION);
+            ngbh->put_orig_to_best();
+            
+            if ( best_value <= abort_at_bound ){
+              G_ExceptionList.lthrow("Iteration aborted early because objective reached lower bound. You might want to set other parameters.",Lisa_ExceptionList::WARNING);
+              abort_algorithm = true;
+            }
+          }
+          
+          if (( ngbh->get_objective_value(WORK_SOLUTION) < last_break_value )){
+            t_old = t;
+            stuck_since = 0;
+            last_break_value = ngbh->get_objective_value(ORIG_SOLUTION);
+          }
+        }
+      } // if do_move == OK 
+    } // if test == OK
+    
+    if ( (test==NO_NGHBOURS) || (abort_algorithm) ) steps = 1;
+  } // for ...
 }
 
 //**************************************************************************
