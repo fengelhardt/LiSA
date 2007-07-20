@@ -59,6 +59,46 @@ void fill_LR_column(Lisa_Matrix<int>& C, int z0, int anzahl_z){
     }
 }
 
+void fill_LQ_of_LR(Lisa_Matrix<int>& C, int z0){
+
+    int s = C.get_m(); // Anzahl der Spalten
+    int z = z0+s;      // Anzahl der Zeilen
+    int hilf;          // Hilfsvariabe 
+    for (int i = z0; i < z; i++) {
+      for (int j = 0; j < s; j++) {
+        hilf = i+j+1;
+	if (hilf > z) hilf = hilf % z + z0;
+	C[i][j] = hilf;
+      }
+    } 
+}
+
+void fill_LR(Lisa_Matrix<int>& M, int z0, int b){
+    
+    int m = M.get_m();
+    int hilf = 0;
+    for (int j = 0; j < m; j++){
+      for (int i = z0; i < b+z0; i++){
+	hilf = i+j+1;
+	if (hilf > m+z0) hilf = hilf % (m+z0) + z0;
+	M[i][j] = hilf;
+      }
+      for (int i = b+z0; i < m+b+z0; i++){
+	hilf = i+j+1;
+	if (hilf > m+b+z0) hilf = hilf % (m+b+z0) + z0;
+	M[i][j] = hilf;
+      }
+    }
+    for (int j = m+1-b; j < m; j++){
+      for (int i = b+m-j+z0; i < 2*m-j+z0; i++){
+	M[i][j] = (i+2*j+1+b-m) % (m+b+z0) + z0;
+      }
+      for (int i = 2*m-j+z0; i < m+b+z0; i++){
+	M[i][j] = i+j+1-m;
+      }
+    }
+}
+
 int main(int argc, char *argv[]) 
 {
   long seed2 = 10384776;
@@ -173,11 +213,14 @@ int main(int argc, char *argv[])
 	astern=(lisa_random(0,a-1,&seed));
 
       for (k = 1; k < astern+1; k++) {
-	fill_LR_column(*(result.LR), (k-1)*m, m);
+	//fill_LR_column(*(result.LR), (k-1)*m, m);
+	fill_LQ_of_LR(*(result.LR), (k-1)*m);
       }
-      fill_LR_column(*(result.LR), (k-1)*m, m+b);
+      //fill_LR_column(*(result.LR), (k-1)*m, m+b);
+      fill_LR(*(result.LR), (k-1)*m, b);
       for (l = 1; l < a-astern; l++) {
-	fill_LR_column(*(result.LR), (k+l-1)*m+b, m);
+	//fill_LR_column(*(result.LR), (k+l-1)*m+b, m);
+	fill_LQ_of_LR(*(result.LR), (k+l-1)*m+b);
       }
     }
 
