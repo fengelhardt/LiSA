@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="GenAlg" type="constructive" call="ga" code="external" help_file="algorithm/ga.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Genetische Algorithmen" type="constructive" call="ga" code="external" 
+help_file="algorithm/ga.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
@@ -34,7 +35,7 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="POP_SIZE" caption="Populationsgröße" default="50"/>
+    <integer name="POP_SIZE" caption="Populationsgr?e" default="50"/>
     <integer name="NUM_GEN"  caption="Anzahl Generationen" default="50"/>
     <choice name="INIT" caption="Erzeugung der Anfangspopulation">
       <item name="RANDOM_ORDER"/>

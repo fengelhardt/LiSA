@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="GenAlg" type="constructive" call="ga" code="external" help_file="algorithm/ga.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Genetic Algorithms" type="constructive" call="ga" code="external" 
+help_file="algorithm/ga.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
