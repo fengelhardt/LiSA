@@ -87,7 +87,7 @@
     <integer name="STEPS" caption="Created Solutions" default="5000"/>
     <integer name="TABULENGTH" caption="Tabu List Length" default="40"/>
     <integer name="NUMB_NGHB" caption="Number of Neighbours" default="40"/>
-    <real name="ABORT_BOUND" caption="Objective at Most (Abort Criterion)" default="0"/>
+    <real name="ABORT_BOUND" caption="Abort when reaching Objective (Abort Criterion)" default="0"/>
     <choice name="NGBH" caption="Neighbourhood">
       <item name="1_API"/>
       <item name="SHIFT"/>

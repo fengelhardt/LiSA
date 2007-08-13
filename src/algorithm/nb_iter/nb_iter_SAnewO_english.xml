@@ -93,12 +93,12 @@
     </choice>
     <real name="COOLPARAM" caption="Cooling Parameter" default="0.0005"/>
     <integer name="EPOCH" caption="Epoch Lenght" default="100"/>
-    <integer name="NUMB_NGHB" caption="Number of Neighbours in each Step" 
+    <integer name="NUMB_NGHB" caption="Number of Neighbours" 
 default="1"/>
     <integer name="STEPS" caption="Iteration Steps" default="50000"/>
-    <integer name="NUMB_STUCKS" caption="Stuck Since" 
+    <integer name="NUMB_STUCKS" caption="Abort when Stuck for (Abort Criterion)" 
 default="100000"/>
-    <real name="ABORT_BOUND" caption="Objective at Most" default="0"/>
+    <real name="ABORT_BOUND" caption="Abort when reaching Objective (Abort Criterion)" default="0"/>
     <integer name="k" caption="k for k_API or k_REINSERTION" default="3"/>
     <choice name="NGBH" caption="Neighbourhood">
       <item name="CR_TST"/>

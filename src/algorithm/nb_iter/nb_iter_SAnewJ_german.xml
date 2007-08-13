@@ -93,8 +93,8 @@
     </choice>
     <real name="COOLPARAM" caption="Abkuehlungsparameter" default="0.0005"/>
     <integer name="EPOCH" caption="Epochenlaenge" default="100"/>
-    <integer name="NUMB_NGHB" caption="Anzahl der erzeugten Nachbarn in einem Schritt" default="1"/>
-    <integer name="STEPS" caption="Anzahl Schritte" default="50000"/>
+    <integer name="NUMB_NGHB" caption="Anzahl der Nachbarn" default="1"/>
+    <integer name="STEPS" caption="Anzahl der Iterationsschritte" default="50000"/>
     <integer name="NUMB_STUCKS" caption="Abbruch nach Stillstaenden (Abbruchkriterium)" default="100000"/>
     <real name="ABORT_BOUND" caption="Abbruchschranke (Abbruchkriterium)" default="0"/>
     <choice name="NGBH" caption="Nachbarschaft">

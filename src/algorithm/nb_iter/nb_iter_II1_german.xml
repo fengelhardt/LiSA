@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Iterative Improvement" type="iterative" call="nb_iter" code="external" help_file="algorithm/nb_iter.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Iterative Suche" type="iterative" call="nb_iter" code="external" 
+help_file="algorithm/nb_iter.html">
   <heuristic>
     <problem>
       <alpha env="1"/>
