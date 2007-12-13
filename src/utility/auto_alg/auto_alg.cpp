@@ -36,6 +36,7 @@ long timeseed,machseed;
 int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
+long seedDD, seedWI;
 int iMinDD=1,iMaxDD=99,iMinWi=1,iMaxWi=99;
 bool bNeedDD=false,bNeedWI=false,bNeedMO=false;
 bool bIsSetDD=false,bIsSetWI=false;
@@ -74,6 +75,24 @@ void parseParameters(Lisa_ControlParameters &cp){
                            " generated '"+ztos(machseed)+"'.",Lisa_ExceptionList::WARNING);
   }
   
+  if(cp.defined("DDSEED")==Lisa_ControlParameters::LONG){
+    seedDD = cp.get_long("DDSEED");
+  }else{
+    seedDD = time(0);
+    cp.add_key("DDSEED",seedDD);
+    G_ExceptionList.lthrow((std::string)"No DDSEED parameter defined,"+
+                           " generated '"+ztos(seedDD)+"'.",Lisa_ExceptionList::WARNING);
+  }
+
+  if(cp.defined("WISEED")==Lisa_ControlParameters::LONG){
+    seedWI = cp.get_long("WISEED");
+  }else{
+    seedWI = time(0);
+    cp.add_key("WISEED",seedWI);
+    G_ExceptionList.lthrow((std::string)"No WISEED parameter defined,"+
+                           " generated '"+ztos(seedWI)+"'.",Lisa_ExceptionList::WARNING);
+  }
+
   if(cp.defined("M")==Lisa_ControlParameters::LONG){
     m = cp.get_long("M");
   }else{
@@ -130,7 +149,7 @@ void parseParameters(Lisa_ControlParameters &cp){
 
   if(cp.defined("MAXDD")==Lisa_ControlParameters::LONG){
     iMaxDD = cp.get_long("MAXDD");
-	bIsSetDD=true;
+	  bIsSetDD=true;
   }
 
   if(cp.defined("MINWI")==Lisa_ControlParameters::LONG){
@@ -139,7 +158,7 @@ void parseParameters(Lisa_ControlParameters &cp){
 
   if(cp.defined("MAXWI")==Lisa_ControlParameters::LONG){
     iMaxWi = cp.get_long("MAXWI");
-	bIsSetWI=true;
+	  bIsSetWI=true;
   }
 }
 
@@ -348,11 +367,11 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 		  val.WI->fill(iMinWi);
 	  }
 	  else{
-		  Lisa_Vector<double> test2(n);
+		  Lisa_Vector<double> SwapVector(n);
 		  for(int i=0; i<n; i++){
-			  test2[i] = lisa_random((long)iMinWi,(long)iMaxWi, &timeseed);
+			  SwapVector[i] = lisa_random((long)iMinWi,(long)iMaxWi, &seedWI);
 		  }
- 		  *val.WI = test2;
+ 		  *val.WI = SwapVector;
 	  }
   }
 
@@ -366,11 +385,11 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 	  }
 	  else{
 		  //TODO:Couldnt directly change the values of the DD/WI vector?!?
-		  Lisa_Vector<double> test(n);
+		  Lisa_Vector<double> SwapVector2(n);
 		  for(int i=0; i<n; i++) {
-			test[i] = lisa_random((long)iMinDD,(long)iMaxDD, &timeseed);
+			SwapVector2[i] = lisa_random((long)iMinDD,(long)iMaxDD, &seedDD);
 		  }
-		  *val.DD = test;
+		  *val.DD = SwapVector2;
 	  }
   }
   if(bNeedMO){
