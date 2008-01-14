@@ -1,269 +1,286 @@
-@article{M68,
-  AUTHOR = 	 {Moore, J.M.},
-  TITLE = 	 {An $n$ job, one machine sequencing algorithm for
-                  minimizing the number of late jobs}, 
-  JOURNAL = 	 {Management Sci.},
-  YEAR = 	 1968,
-  VOLUME =	 15,
-  PAGES =	 {102-109},
-  ANNOTE =	 {$1||\sum{U_i}$ is in $P$.}
-}
-
-@article{LM69,
-  AUTHOR = 	 {Lawler, E.L. and  Moore, J.M.},
-  TITLE = 	 {A functional equation and its application to
-                  resource allocation and sequencing problems}, 
-  JOURNAL = 	 {Management Sci.},
-  YEAR = 	 1969,
-  VOLUME =	 16,
-  PAGES =	 {77-84},
-  ANNOTE =	 {$1||\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $1||\sum{w_iU_i}$ is $\NP$-hard.} 
-}
-
-@article{M70,
-  AUTHOR = 	 {Maxwell, W.L.},
-  TITLE = 	 {On sequencing $n$ jobs on one machine to minimize
-                  the number of late jobs}, 
-  JOURNAL = 	 {Management Sci.},
-  YEAR = 	 1970,
-  VOLUME =	 16,
-  PAGES =	 {295-29},
-  ANNOTE =	 {$1||\sum{U_i}$ is in $P$.}
-}
-
-@article{RR72,
-  AUTHOR = 	 {Reddi, S.S. and Ramamoorthy, C.V.},
-  TITLE = 	 {On the flow-shop sequencing problem with no wait in
-                  process}, 
-  JOURNAL = 	 {Operational Res. Quart.},
-  YEAR = 	 1972,
-  VOLUME =	 23,
-  PAGES =	 {323-331},
-  ANNOTE =	 {$F2|no-wait|C_{\max}$ is in $P$.}
-}
-
-@article{L73,
-  AUTHOR = 	 {Lawler, E.L.},
-  TITLE = 	 {Optimal sequencing of a single machine subject to
-                  precedence constraints}, 
-  JOURNAL = 	 {Management Sci.},
-  YEAR = 	 1973,
-  VOLUME =	 19,
-  PAGES =	 {544-546},
-  ANNOTE =	 {$1|prec;r_i|C_{\max}$ is in $P$,\\ 
-                  $1|prec|L_{\max}$ is in $P$.}  
-}
-
-@article{H73,
-  AUTHOR = 	 {Horn, W.A.},
-  TITLE = 	 {Minimizing average flow time with parallel machines},
-  JOURNAL = 	 {Oper. Res.},
-  YEAR = 	 1973,
-  VOLUME =	 21,
-  PAGES =	 {846-847},
-  ANNOTE =	 {$R||\sum{C_i}$ is in $P$,\\ 
-                  $QMPM||\sum{C_i}$ is in $P$.} 
-}
-
-@techreport{L79,
-  AUTHOR = 	 {Lawler, E.L.},
-  TITLE = 	 {Preemptive scheduling of uniform parallel machines
-                  to minimize the weighted number of late jobs},
-  INSTITUTION =  {Centre for Mathematics and Computer Science},
-  YEAR = 	 1979,
-  TYPE =	 {{Report BW}},
-  NUMBER =	 105,
-  ADDRESS =	 {Amsterdam},
-  ANNOTE =       {$Qm|pmtn|\sum{U_i}$ is in $P$,\\
-                  $Qm|pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.}
-}
-
-@article{BLLR83,
-  AUTHOR = 	 {Baker, K.R. and  Lawler, E.L. and  Lenstra, J.K. and
-                  Rinnooy Kan, A.H.G.}, 
-  TITLE = 	 {Preemptive scheduling of a single machine to
-                  minimize maximum cost subject to release dates and
-                  precedence constraints}, 
-  JOURNAL = 	 {Oper. Res.},
-  YEAR = 	 1983,
-  VOLUME =	 31,
-  PAGES =	 {381-386},
-  ANNOTE =	 {$1|prec;r_i;pmtn|L_{\max}$ is in $P$.}
-}
-
-@article{M82,
-  AUTHOR = 	 {Monma, C.L.},
-  TITLE = 	 {Linear-time algorithms for scheduling on parallel
-                  processors}, 
-  JOURNAL = 	 {Oper. Res.},
-  YEAR = 	 1982,
-  VOLUME =	 30,
-  PAGES =	 {116-124},
-  ANNOTE =	 {$P|p_i=1;intree|L_{\max}$ is in $P$.} 
+@article{AB93,
+   AUTHOR = {Albers, S. and Brucker, P.},
+    TITLE = {The complexity of one-machine batching problems},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
+             Optimization and Computer Science},
+   VOLUME = 47,
+     YEAR = 1993,
+   NUMBER = 2,
+    PAGES = {87-107},
+   ANNOTE = {$1|prec;p_i=p;s-batch|\sum{C_i}$ is in $P$,\\
+             $1|p_i=p;s-batch|\sum{w_iC_i}$ is in $P$,\\
+             $1|chains;s-batch|\sum{C_i}$ is $\NP$-hard,\\
+             $1|chains;p_i=1;s-batch|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $1|s-batch|\sum{w_iC_i}$ is $*\NP$-hard.}  
 }
 
 @article{AC82,
-  AUTHOR = 	 {Achugbue, J.O. and Chin, F.Y.},
-  TITLE = 	 {Scheduling the open shop to minimize mean flow
-                  time}, 
-  JOURNAL = 	 {SIAM J. Comput.},
-  YEAR = 	 1982,
-  VOLUME =	 11,
-  PAGES =	 {709-720},
-  ANNOTE =	 {$O2||\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $OMPT2||\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $OMPM2||\sum{C_i}$ is $*\NP$-hard.}
+  AUTHOR  = {Achugbue, J.O. and Chin, F.Y.},
+  TITLE   = {Scheduling the open shop to minimize mean flow time}, 
+  JOURNAL = {SIAM J. Comput.},
+  YEAR    = 1982,
+  VOLUME  = 11,
+  PAGES   = {709-720},
+  ANNOTE  = {$O2||\sum{C_i}$ is $*\NP$-hard,\\ 
+            $OMPT2||\sum{C_i}$ is $*\NP$-hard,\\ 
+            $OMPM2||\sum{C_i}$ is $*\NP$-hard.}
 }
 
-@inproceedings{L82,
-  AUTHOR = 	 {Lawler, E.L.},
-  TITLE = 	 {Preemptive scheduling of precedence-constrained jobs
-                  on parallel machines}, 
-  BOOKTITLE = 	 {Deterministic and stochastic scheduling, Proceedings
-                  of the NATO Advanced Study and Research Institute on
-                  Theoretical Approaches to Scheduling Problems held
-                  in Durham, July 6--17, 1981},
-  EDITOR =	 {Dempster, M.A.H. and Lenstra, J.K. and Rinnooy
-                  Kan, A.H.G.},
-  VOLUME =	 84,
-  SERIES =	 {NATO Advanced Study Institute Series C: Mathematical
-                  and Physical Sciences}, 
-  YEAR =	 1982,
-  PUBLISHER =	 {D. Reidel Publishing Co.},
-  ADDRESS =	 {Dordrecht},
-  PAGES =	 {101-123},
-  ANNOTE =	 {$P|outtree;pmtn;r_i|C_{\max}$ is in $P$,\\
-                  $P|intree;pmtn|L_{\max}$ is in $P$,\\
-                  $Q2|prec;pmtn;r_i|L_{\max}$ is in $P$.}
+@article{ABC05,
+  AUTHOR  = {Averbakh, I. and Berman, O. and Chernykh, I.},
+  TITLE   = {The m-machine flowshop problem with unit-time operations and 
+             precedence constraints},
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+  YEAR    = 2005,
+  VOLUME  = 33,
+  NUMBER  = 3,
+  PAGES   = {263-266},
+  ANNOTE  = {$Fm|intree;p_{ij}=1|\sum{C_i}$ is in $P$.}
 }
 
-@article{S91,
-  AUTHOR = 	 {Sotskov, Y.N.},
-  TITLE = 	 {The complexity of shop-scheduling problems with two
-                  or three jobs}, 
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1991,
-  VOLUME =	 53,
-  NUMBER =	 3,
-  PAGES =	 {326-336},
-  ANNOTE =	 {$J|prec;r_i;n=2|\sum{w_iU_i}$ is in $P$,\\
-                  $J|prec;r_i;n=2|\sum{w_iT_i}$ is in $P$,\\
-                  $J|prec;r_i;n=2;pmtn|\sum{w_iU_i}$ is in $P$,\\
-                  $J|prec;r_i;n=2;pmtn|\sum{w_iT_i}$ is in $P$.} 
+@incollection{B76,
+   AUTHOR =  {B{\l}a{\.z}ewicz, J.},
+    TITLE = {Scheduling dependent tasks with different arrival times to meet 
+             deadlines},
+BOOKTITLE = {Model. Perform. Eval. Comput. Syst., Proc. int. Workshop, 
+             Stresa 1976},
+     YEAR = 1976,
+    PAGES = {57-65},
+PUBLISHER = {North Holland},
+  ADDRESS = {Amsterdam},
+   ANNOTE = {$1|prec;r_i;pmtn|L_{\max}$ is in $P$.}
 }
 
-@article{LY90,
-  AUTHOR = 	 {Leung, J.Y.-T. and  Young, G.H.},
-  TITLE = 	 {Minimizing total tardiness on a single machine with
-                  precedence constraints}, 
-  JOURNAL = 	 {ORSA J. Comput.},
-  YEAR = 	 1990,
-  VOLUME =	 2,
-  NUMBER =	 4,
-  PAGES =	 {346-352},
-  ANNOTE =	 {$1|chains;p_i=1|\sum{T_i}$ is $*\NP$-hard,\\
-                  $1|chains;p_i=1;s-batch|\sum{T_i}$ is $*\NP$-hard.}
+@article{B00,
+  AUTHOR  = {Baptiste, P.},
+  TITLE   = {Scheduling equal-length jobs on identical parallel
+            machines}, 
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics},
+  VOLUME  = 103,
+    YEAR  = 2000,
+  NUMBER  = 1,
+   PAGES  = {21-32},
+  ANNOTE  = {$1|p_i=p;r_i|\sum{w_iC_i}$ is in $P$,\\
+             $1|p_i=p;r_i|\sum{T_i}$ is in $P$,\\
+             $Pm|p_i=p;r_i|\sum{w_iC_i}$ is in $P$,\\
+             $Pm|p_i=p;r_i|\sum{T_i}$ is in $P$.}
 }
 
-@article{KSZ91,
-  AUTHOR = 	 {Kubiak, W. and Sriskandarajah, C. and Zaras, K.},
-  TITLE = 	 {A note on the complexity of openshop scheduling
-                  problems}, 
-  JOURNAL = 	 {INFOR},
-  YEAR = 	 1991,
-  VOLUME =	 29,
-  NUMBER =	 4,
-  PAGES =	 {284-294},
-  ANNOTE =	 {$O|p_{ij}=1;no-wait|\sum{w_iU_i}$ is in $P$,\\
-                  $O2|no-wait|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{BKW94,
-  AUTHOR = 	 {Br{\"a}sel, H. and Kluge, D. and Werner, F.},
-  TITLE = 	 {A polynomial algorithm for the $[n/m/0,\
-                  t\sb{ij}=1, tree/{C}\sb{\max}]$ open shop
-                  problem},  
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1994,
-  VOLUME =	 72,
-  NUMBER =	 1,
-  PAGES =	 {125-134},
-  ANNOTE =	 {$O|p_{ij}=1;tree|C_{\max}$ is in $P$.}
-}
-
-@article{SW94,
-  AUTHOR = 	 {Sriskandarajah, C. and Wagneur, E.},
-  TITLE = 	 {On the complexity of preemptive openshop scheduling
-                  problems}, 
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1994,
-  VOLUME =	 77,
-  NUMBER =	 3,
-  PAGES =	 {404-414},
-  ANNOTE =	 {$O2|pmtn;r_i|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@phdthesis{M92,
-  AUTHOR = 	 {Meyer, W.},
-  TITLE = 	 {Geometrische Methoden zur L{\"o}sung von Job-Shop
-                  Problemen und deren Verallgemeinerungen},
-  SCHOOL = 	 {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR = 	 1992,
-  ANNOTE =	 {$JMPM2|n=3|C_{\max}$ is in $P_{pseudo}$,\\
-                  $JMPM2|n=3|C_{\max}$ is $\NP$-hard.}
-}
-
-@article{CYMS90,
-   AUTHOR = {Coffman, Jr., E.G. and Yannakakis, M. and Magazine, M.J. and
-             Santos, C.},
-    TITLE = {Batch sizing and job sequencing on a single machine},
-  JOURNAL = {Ann. Oper. Res.},
- FJOURNAL = {Annals of Operations Research},
-   VOLUME = 26,
-     YEAR = 1990,
-   NUMBER = {1-4},
-    PAGES = {135-147},
-   ANNOTE = {$1|s-batch|\sum{C_i}$ is in $P$.}
-}
-
-@article{K91,
-   AUTHOR = {Kise, H.},
-    TITLE = {On an automated two-machine flowshop scheduling problem with
-             infinite buffer},
-  JOURNAL = {J. Oper. Res. Soc. Japan},
- FJOURNAL = {Journal of the Operations Research Society of Japan},
-   VOLUME = 34,
-     YEAR = 1991,
+@article{B00a,
+  AUTHOR  = {Baptiste, P.},
+  TITLE   = {Batching identical jobs},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 52,
+     YEAR = 2000,
    NUMBER = 3,
-    PAGES = {354-361},
-   ANNOTE = {$F2;R1|t_{ik}=T|C_{\max}$ is $\NP$-hard.}
+    PAGES = {355-367},
+  ANNOTE  = {$1|p_i=p;s-batch;r_i|\sum{w_iC_i}$ is in $P$,\\
+             $1|p_i=p;s-batch;r_i|\sum{w_iU_i}$ is in $P$,\\
+             $1|p_i=p;s-batch;r_i|\sum{T_i}$ is in $P$,\\
+             $1|p_i=p;p-batch;r_i;b<n|\sum{w_iC_i}$ is in $P$,\\
+             $1|p_i=p;p-batch;r_i;b<n|\sum{w_iU_i}$ is in $P$,\\
+             $1|p_i=p;p-batch;r_i;b<n|\sum{T_i}$ is in $P$.}
 }
 
-@article{BKS97,
-   AUTHOR = {Brucker, P. and Kravchenko, S.A. and Sotskov, Y.N.},
-    TITLE = {On the complexity of two machine job-shop scheduling with
-             regular objective functions},
-  JOURNAL = {OR Spektrum},
-   VOLUME = 19,
-     YEAR = 1997,
-   NUMBER = 1,
-    PAGES = {5-10},
-   ANNOTE = {$J2|n=k|\sum{w_iU_i}$ is in $P$,\\
-             $J2|n=k|\sum{w_iT_i}$ is in $P$.} 
+@techreport{B00b,
+  AUTHOR = {Baptiste, P.},
+  TITLE  = {Preemptive scheduling of identical machines},
+  INSTITUTION =  {Universite de Technologie de Compiegne, France},
+  YEAR   = 2000,
+  TYPE   = {{Technical Report}},
+  NUMBER = {2000-314},
+  ANNOTE = {$Pm|pmtn;p_i=p|\sum{w_iU_i}$ is in $P$.}
 }
 
-@article{KW97,
-   AUTHOR = {Kravchenko, S.A. and Werner, F.},
-    TITLE = {Parallel machine scheduling problems with a single server},
-  JOURNAL = {Math. Comput. Modelling},
- FJOURNAL = {Mathematical and Computer Modelling},
-   VOLUME = 26,
-     YEAR = 1997,
-   NUMBER = 12,
-    PAGES = {1-11},
-   ANNOTE = {$P2;S1|s_i=1|C_{\max}$ is in $P_{pseudo}$.}
+@article{B03b,
+  AUTHOR  = {Baptiste, P.},
+  TITLE   = {A note on scheduling multiprocessor tasks with identical 
+             processing times},
+  JOURNAL = {Comput. Oper. Res.},
+   VOLUME = 30,
+     YEAR = 2003,
+   NUMBER = 13,
+    PAGES = {2071-2078},
+   ANNOTE = {$Pm|r_i;p_i=p;size_i|C_{max}$ is in $P$,\\
+             $Pm|r_i;p_i=p;size_i|\sum{C_i}$ is in $P$.}
+}
+
+@article{BS03,
+  AUTHOR = {Baptiste, P. and Schieber, B.},
+  TITLE  = {A note on scheduling tall/small multiprocessor tasks with unit
+            processing time to minimize maximum tardiness},
+  JOURNAL = {J. Sched.},
+ FJOURNAL = {Journal of Scheduling},
+   VOLUME = 6,
+     YEAR = 2003,
+   NUMBER = 4,
+    PAGES = {395-404},
+   ANNOTE = {$P2|r_i;p_i=1;size_i|L_{max}$ is in $P$.}
+}
+
+@techreport{B02,
+  AUTHOR =      {Baptiste, P.},
+  TITLE =       {On preemption redundancy},
+  INSTITUTION = {IBM T.J. Watson Research Center, New York},
+  YEAR =        2002,
+  TYPE =        {{Technical Report}}, 
+  ANNOTE =      {$P|p_i=1;pmtn;r_i|\sum{w_iT_i}$ is in $P$.}  
+}
+
+@article{B03,
+  AUTHOR  = {Baptiste, P.},
+  TITLE   = {On minimizing the weighted number of late jobs in
+             unit execution time open-shops}, 
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 2003,
+  VOLUME  = 149,
+  NUMBER  = 2,
+  PAGES   = {344-354},
+  ANNOTE  = {$Om|p_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$.}
+}
+
+@book{B74,
+  AUTHOR    = {Baker, K.R.},
+  TITLE     = {Introduction to Sequencing and Scheduling},
+  PUBLISHER = {John Wiley \& Sons},
+  YEAR      = 1974,
+  ADDRESS   = {New York},
+  ANNOTE    = {$1|r_i;pmtn|\sum{C_i}$ is in $P$.}
+}
+
+
+@book{B95,
+   AUTHOR = {Brucker, P.},
+    TITLE = {Scheduling algorithms},
+  EDITION = {First},
+PUBLISHER = {Springer-Verlag},
+  ADDRESS = {Berlin},
+     YEAR = 1995,
+   ANNOTE = {$JMPT|n=2|\sum{w_iU_i}$ is in $P$,\\
+             $JMPT|n=2|\sum{w_iT_i}$ is in $P$,\\
+             $FMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
+             $FMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
+             $OMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
+             $OMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
+             $O|p_{ij}=1;intree|L_{\max}$ is in $P$,\\
+             $O2|p_{ij}=1;prec;r_i|L_{\max}$ is in $P$.}
+}
+
+@article{B99,
+  AUTHOR = {Baptiste, P.},
+  TITLE  =  {Polynomial time algorithms for minimizing the
+            weighted number of late jobs on a single machine
+            with equal processing times}, 
+  JOURNAL = {J. Sched.},
+ FJOURNAL = {Journal of Scheduling},
+   VOLUME = 2,
+     YEAR = 1999,
+    PAGES = {245-252},
+  ANNOTE  = {$1|p_i=p;r_i|\sum{w_iU_i}$ is in $P$,\\
+             $1|pmtn;p_i=p;r_i|\sum{w_iU_i}$ is in $P$.}
+}
+
+@article{BBKT04,
+  AUTHOR = {Baptiste, P. and Brucker, P. and Knust, S. and Timkovsky, V.},
+  TITLE  = {Ten notes on equal-execution-time scheduling},
+ JOURNAL = {4OR},
+FJOURNAL = {Quarterly Journal of the Belgian, French and Italian Operations 
+            Research Societies},
+  VOLUME = 2,
+    YEAR = 2004,
+   PAGES = {111-127},
+  ANNOTE = {$J|prec;r_i;n=k;no-wait|\sum{w_iU_i}$ is in $P$,\\
+            $J|prec;r_i;n=k;no-wait|\sum{w_iT_i}$ is in $P$,\\
+            $1|prec;r_i;p_i=p;pmtn|\sum{C_i}$ is in $P$,\\
+            $1|p_i=p;p-batch;r_i|\sum{w_iT_i}$ is in $P$,\\
+            $1|p-batch;r_i|\sum{w_iT_i}$ is in $P_{pseudo}$,\\ 
+            $1|p-batch;r_i|\sum{w_iU_i}$ is in $P_{pseudo}$,\\ 
+            $Pm|p_i=p;intree|\sum{C_i}$ is in $P$,\\
+            $Pm|p_i=p;tree|\sum{C_i}$ is in $P$,\\   
+            $Pm|p_i=p;r_i|\sum{w_iU_i}$ is in $P$,\\
+            $P|p_i=1;chains;r_i|L_{\max}$ is in $P$,\\
+            $P|p_i=p;pmtn|\sum{C_i}$ is in $P$,\\   
+            $Q|p_i=p;pmtn|\sum{U_i}$ is in $P$,\\
+            $P2|p_i=1;chains;pmtn|\sum{U_i}$ is $*\NP$-hard,\\
+            $O|p_{ij}=1;chains;r_i|L_{\max}$ is in $P$,\\  
+            $Om|p_{ij}=1;intree;no-wait|\sum{C_i}$ is in $P$,\\ 
+            $Om|p_{ij}=1;r_i;no-wait|\sum{w_iU_i}$ is in $P$,\\ 
+            $F3;R1|p_{ij}=1;t_k;r_i|C_{\max}$ is in $P$,\\
+            $F3;R1|p_{ij}=1;t_k|L_{\max}$ is in $P$.}  
+}
+
+@article{BCKS04,
+  AUTHOR = {Brucker, P. and Cheng, T.C.E. and Knust, S. and Shakhlevich, N.V.},
+   TITLE = {Complexity results for flow-shop and open-shop problems with 
+            transportation delays},
+ JOURNAL = {Annals of Operations Research},
+  VOLUME = 129,
+    YEAR = 2004,
+   PAGES = {81-106},
+  ANNOTE = {$F|p_{ij}=1;t_i|\sum{C_i}$ is in $P$,\\
+            $F2|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $F2|p_{ij}=1;t_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $O2|p_{ij}=1;t_{ikl}=T;r_i|C_{max}$ is in $P$,\\
+            $O2|p_{ij}=1;t_{kl}|C_{\max}$ is in $P$,\\
+            $O2|p_{ij}=1;t_{kl}|\sum{w_iC_i}$ is in $P$,\\
+            $O2|p_{ij}=1;t_{ikl}=T|\sum{U_i}$ is in $P$,\\
+            $O2|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $O2|p_{ij}=1;t_i|\sum{w_iC_i}$ is $*\NP$-hard.}
+}
+
+@article{BCS74,
+   AUTHOR = {Bruno, J. and Coffman, Jr., E.G. and Sethi, R.},
+    TITLE = {Scheduling independent tasks to reduce mean finishing time},
+  JOURNAL = {Comm. ACM},
+   VOLUME = 17,
+     YEAR = 1974,
+    PAGES = {382-387},
+   ANNOTE = {$R||\sum{C_i}$ is in $P$,\\ 
+             $P2||\sum{w_iC_i}$ is $\NP$-hard,\\ 
+             $P2|pmtn|\sum{w_iC_i}$ is $\NP$-hard,\\ 
+             $QMPM||\sum{C_i}$ is in $P$,\\
+             $PMPM2||\sum{w_iC_i}$ is $\NP$-hard.}  
+}
+
+@article{BDKKW02,
+  AUTHOR  = {Brucker, P. and Dhaenens-Flipo, C. and Knust, S. and
+             Kravchenko, S.A. and Werner, F.},
+  TITLE   = {Complexity results for parallel machine problems
+             with a single server}, 
+  JOURNAL = {J. Sched.},
+ FJOURNAL = {Journal of Scheduling},
+   VOLUME = 5,
+     YEAR = 2002,
+   NUMBER = 6,
+    PAGES = {429-457},
+  ANNOTE =  {$P;S1|s_i=s;p_i=p;r_i|C_{\max}$ is in $P$,\\
+             $P;S1|s_i=s;p_i=p;r_i|\sum{C_i}$ is in $P$.\\
+             $P;S1|s_i=s;p_i=1;r_i|\sum{w_iC_i}$ is in $P$,\\ 
+             $P;S1|s_i=s;p_i=1;r_i|\sum{w_iU_i}$ is in $P$,\\ 
+             $P;S1|s_i=s;p_i=1;r_i|\sum{T_i}$ is in $P$,\\
+             $P2;S1|p_i=p|C_{\max}$ is $\NP$-hard,\\
+             $P2;S1|p_i=p|\sum{C_i}$ is $\NP$-hard,\\
+             $P2;S1|p_i=1;r_i|L_{\max}$ is $*\NP$-hard,\\
+             $P2;S1|p_i=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+             $P;S1|s_i=1|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@article{BDW86,
+   AUTHOR = {B{\l}a{\.z}ewicz, J. and Drabowski, M. and
+                  W{\c{e}}glarz, J.}, 
+    TITLE = {Scheduling multiprocessor tasks to minimize schedule length},
+  JOURNAL = {IEEE Trans. Comput.},
+ FJOURNAL = {Institute of Electrical and Electronics Engineers. Transactions
+             on Computers},
+   VOLUME = 35,
+     YEAR = 1986,
+   NUMBER = 5,
+    PAGES = {389-393},
+   ANNOTE = {$Pm|p_i=p;size_i|C_{\max}$ is in $P$.}
 }
 
 @article{BGHKPTV98,
@@ -288,231 +305,6 @@
              $1|p-batch|\sum{w_iT_i}$ is $\NP$-hard.}  
 }
 
-@article{BHK99,
-   AUTHOR = {Brucker, P. and Hurink, J. and Kubiak, W.},
-    TITLE = {Scheduling identical jobs with chain precedence constraints on
-             two uniform machines},
-  JOURNAL = {Math. Methods Oper. Res.},
- FJOURNAL = {Mathematical Methods of Operations Research},
-   VOLUME = 49,
-     YEAR = 1999,
-   NUMBER = 2,
-    PAGES = {211-219},
-   ANNOTE = {$Q2|p_i=1;chains|C_{\max}$ is in $P$.}
-}
-
-@article{M59,
-   AUTHOR = {McNaughton, R.},
-    TITLE = {Scheduling with deadlines and loss functions},
-  JOURNAL = {Management Sci.},
-   VOLUME = 6,
-     YEAR = 1959,
-    PAGES = {1-12},
-   ANNOTE = {$P|p_i=p;pmtn|\sum{w_iC_i}$ is in $P$,\\
-             $Pm|pmtn|\sum{w_iC_i}$ is in $P_{pseudo}$.}
-}
-
-@article{H61,
-   AUTHOR = {Hu, T.C.},
-    TITLE = {Parallel sequencing and assembly line problems},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 9,
-     YEAR = 1961,
-    PAGES = {841-848},
-   ANNOTE = {$P|p_i=p;tree|C_{\max}$ is in $P$,\\
-             $P|p_i=p;outtree|\sum{C_i}$ is in $P$,\\
-             $O|p_{ij}=1;tree;no-wait|C_{\max}$ is in $P$,\\
-             $O|p_{ij}=1;outtree;no-wait|\sum{C_i}$ is in $P$.}
-}
-
-@article{GG64,
-   AUTHOR = {Gilmore, P.C. and Gomory, R.E.},
-    TITLE = {Sequencing a one state-variable machine: {A} solvable case of
-             the traveling salesman problem},
-  JOURNAL = {Operations Res.},
-   VOLUME = 12,
-     YEAR = 1964,
-    PAGES = {655-679},
-   ANNOTE = {$F2|no-wait|C_{\max}$ is in $P$.}
-}
-
-@article{MC70,
-   AUTHOR = {Muntz, R.R. and Coffman, Jr., E.G.},
-    TITLE = {Preemptive scheduling of real-time tasks on multiprocessor
-             systems},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 17,
-     YEAR = 1970,
-    PAGES = {324-338},
-   ANNOTE = {$P|tree;pmtn|C_{\max}$ is in $P$.}
-}
-
-@article{CG72,
-   AUTHOR = {Coffman, Jr., E.G. and Graham, R.L.},
-    TITLE = {Optimal scheduling for two-processor systems},
-  JOURNAL = {Acta Informat.},
-   VOLUME = 1,
-     YEAR = {1971/1972},
-    PAGES = {200-213},
-   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$,\\
-             $P2|p_i=p;prec|\sum{C_i}$ is in $P$,\\
-             $O2|p_{ij}=1;prec;no-wait|C_{\max}$ is in $P$.}
-}
-
-@article{BCS74,
-   AUTHOR = {Bruno, J. and Coffman, Jr., E.G. and Sethi, R.},
-    TITLE = {Scheduling independent tasks to reduce mean finishing time},
-  JOURNAL = {Comm. ACM},
-   VOLUME = 17,
-     YEAR = 1974,
-    PAGES = {382-387},
-   ANNOTE = {$R||\sum{C_i}$ is in $P$,\\ 
-             $P2||\sum{w_iC_i}$ is $\NP$-hard,\\ 
-             $P2|pmtn|\sum{w_iC_i}$ is $\NP$-hard,\\ 
-             $QMPM||\sum{C_i}$ is in $P$,\\
-             $PMPM2||\sum{w_iC_i}$ is $\NP$-hard.}  
-}
-
-@incollection{K72,
-   AUTHOR = {Karp, R.M.},
-    TITLE = {Reducibility among combinatorial problems},
-BOOKTITLE = {Complexity of computer computations (Proc. Sympos., IBM Thomas
-             J. Watson Res. Center, Yorktown Heights, N.Y., 1972)},
-    PAGES = {85-103},
-PUBLISHER = {Plenum},
-  ADDRESS = {New York},
-     YEAR = 1972,
-   ANNOTE = {$1||\sum{w_iU_i}$ is $P_{pseudo}$,\\ 
-             $1||\sum{w_iU_i}$ is $\NP$-hard,\\ 
-             $1|s-batch|\sum{w_iU_i}$ is $\NP$-hard.}   
-}
-
-@article{U75,
-   AUTHOR = {Ullman, J.D.},
-    TITLE = {{N}{P}-complete scheduling problems},
-  JOURNAL = {J. Comput. System Sci.},
-   VOLUME = 10,
-     YEAR = 1975,
-    PAGES = {384-393},
-   ANNOTE = {$P|p_i=1;prec|C_{\max}$ is $*\NP$-hard,\\
-             $O|p_{ij}=1;prec;no-wait|C_{\max}$ is $*\NP$-hard,\\
-             $PMPM|prec;p_i=1|C_{\max}$ is $*\NP$-hard,\\
-             $FMPM|prec;p_{ij}=1|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{S76,
-   AUTHOR = {Sethi, R.},
-    TITLE = {Scheduling graphs on two processors},
-  JOURNAL = {SIAM J. Comput.},
-   VOLUME = 5,
-     YEAR = 1976,
-   NUMBER = 1,
-    PAGES = {73-82},
-   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$.}
-}
-
-@article{GJS76,
-   AUTHOR = {Garey, M.R. and Johnson, D.S. and Sethi, R.},
-    TITLE = {The complexity of flowshop and jobshop scheduling},
-  JOURNAL = {Math. Oper. Res.},
-   VOLUME = 1,
-     YEAR = 1976,
-   NUMBER = 2,
-    PAGES = {117-129},
-   ANNOTE = {$F3||C_{\max}$ is $*\NP$-hard,\\ 
-             $F2||\sum{C_i}$ is $*\NP$-hard,\\ 
-             $J2||\sum{C_i}$ is $*\NP$-hard,\\
-             $FMPT2||\sum{C_i}$ is $*\NP$-hard,\\
-             $FMPM3||C_{\max}$ is $*\NP$-hard,\\
-             $FMPM2||\sum{C_i}$ is $*\NP$-hard.} 
-}
-
-@article{LR79,
-   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
-    TITLE = {Computational complexity of discrete optimization problems},
-  JOURNAL = {Ann. Discrete Math.},
-   VOLUME = 4,
-     YEAR = 1979,
-    PAGES = {121-140},
-   ANNOTE = {$J2||C_{\max}$ is $*\NP$-hard,\\ 
-             $J3|p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-             $J2|pmtn|C_{\max}$ is $*\NP$-hard,\\ 
-             $JMPM3|p_{ij}=1|C_{\max}$ is $*\NP$-hard.} 
-}
-
-@inproceedings{S73,
-   AUTHOR = {Sidney, J.B.},
-    TITLE = {An extension of {M}oore's due date algorithm},
-BOOKTITLE = {Symposium on the Theory of Scheduling and its Applications
-             (North Carolina State Univ., Raleigh, N. C., 1972)},
-    PAGES = {393-398. Lecture Notes in Economics and Mathematical Systems,
-             Vol. 86},
-     NOTE = {Incorporating the results of discussion by Hamilton Emmons and
-             John Rau},
-PUBLISHER = {Springer},
-  ADDRESS = {Berlin},
-     YEAR = 1973,
-   ANNOTE = {$1||\sum{U_i}$ is in $P$.}
-}
-
-@article{GS76,
-   AUTHOR = {Gonzalez, T. and Sahni, S.},
-    TITLE = {Open shop scheduling to minimize finish time},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 23,
-     YEAR = 1976,
-   NUMBER = 4,
-    PAGES = {665-679},
-   ANNOTE = {$O2||C_{\max}$ is in $P$,\\ 
-             $O3||C_{\max}$ is $\NP$-hard,\\ 
-             $OMPT|n=3|C_{\max}$ is $\NP$-hard,\\
-             $OMPT3||C_{\max}$ is $\NP$-hard,\\
-             $OMPM|n=3|C_{\max}$ is $\NP$-hard,\\
-             $OMPM3||C_{\max}$ is $\NP$-hard.}  
-}
-
-@article{L77,
-   AUTHOR = {Lawler, E.L.},
-    TITLE = {A ``pseudopolynomial'' algorithm for sequencing jobs to
-             minimize total tardiness},
-BOOKTITLE = {Studies in integer programming (Proc. Workshop, Bonn, 1975)},
-  JOURNAL = {Ann. of Discrete Math.},
-   VOLUME = 1,
-    PAGES = {331-342},
-PUBLISHER = {North-Holland},
-  ADDRESS = {Amsterdam},
-     YEAR = 1977,
-   ANNOTE = {$1||\sum{T_i}$ is in $P_{pseudo}$,\\ 
-             $1||\sum{T_i}$ is $\NP$-hard,\\ 
-             $1||\sum{w_iT_i}$ is $*\NP$-hard.}
-}
-
-@article{LRB77,
-   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G. and Brucker, P.},
-    TITLE = {Complexity of machine scheduling problems},
-BOOKTITLE = {Studies in integer programming (Proc. Workshop, Bonn, 1975)},
-  JOURNAL = {Ann. of Discrete Math.},
-   VOLUME = 1,
-    PAGES = {343-362},
-PUBLISHER = {North-Holland},
-  ADDRESS = {Amsterdam},
-     YEAR = 1977,
-   ANNOTE = {$1|r_i|L_{\max}$ is $*\NP$-hard,\\ 
-             $1|r_i|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $1||\sum{w_iT_i}$ is $*\NP$-hard,\\
-             $P2||C_{\max}$ is $\NP$-hard,\\ 
-             $F2|chains|C_{\max}$ is $*\NP$-hard,\\ 
-             $F2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
-             $F2||L_{\max}$ is $*\NP$-hard,\\
-             $PMPM2||C_{\max}$ is $\NP$-hard,\\ 
-             $FMPM2||C_{\max}$ is $\NP$-hard,\\ 
-             $FMPM2|chains|C_{\max}$ is $*\NP$-hard,\\ 
-             $FMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
-             $FMPM2||L_{\max}$ is $*\NP$-hard,\\
-             $1|s-batch;r_i|L_{\max}$ is $*\NP$-hard,\\
-             $1|s-batch;r_i|\sum{C_i}$ is $*\NP$-hard.}
-}
-
 @article{BGJ77,
    AUTHOR = {Brucker, P. and Garey, M.R. and Johnson, D.S.},
     TITLE = {Scheduling equal-length tasks under treelike precedence
@@ -534,607 +326,55 @@ PUBLISHER = {North-Holland},
              $FMPM|outtree;p_{ij}=1|L_{\max}$ is $*\NP$-hard.}
 }
 
-@article{GJ78,
-   AUTHOR = {Garey, M.R. and Johnson, D.S.},
-    TITLE = {``{S}trong'' {N}{P}-completeness results: motivation, examples,
-             and implications},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 25,
-     YEAR = 1978,
-   NUMBER = 3,
-    PAGES = {499-508},
-   ANNOTE = {$P||C_{\max}$ is $*\NP$-hard,\\ 
-             $PMPM||C_{\max}$ is $*\NP$-hard.} 
-}
-
-@article{GJ76,
-   AUTHOR = {Garey, M.R. and Johnson, D.S.},
-    TITLE = {Scheduling tasks with nonuniform deadlines on two processors},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 23,
-     YEAR = 1976,
-    PAGES = {461-467},
-   ANNOTE = {$P2|p_i=p;prec|L_{\max}$ is in $P$.}
-}
-
-@article{HLS77,
-   AUTHOR = {Horvath, E.C. and Lam, S. and Sethi, R.},
-    TITLE = {A level algorithm for preemptive scheduling},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 24,
-     YEAR = 1977,
-   NUMBER = 1,
-    PAGES = {32-43},
-   ANNOTE = {$Q|chains;pmtn|C_{\max}$ is in $P$.}
-}
-
-@article{LR78,
-   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
-    TITLE = {Complexity of scheduling under precedence constraints},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 26,
-     YEAR = 1978,
-   NUMBER = 1,
-    PAGES = {22-35},
-   ANNOTE = {$1|prec|\sum{C_i}$ is $*\NP$-hard,\\
-             $1|prec;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $P|p_i=1;prec|\sum{C_i}$ is $*\NP$-hard,\\
-             $O|p_{ij}=1;prec;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $PMPM|prec;p_i=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $FMPM|prec;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $OMPM|prec;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $1|prec;s-batch|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{GS78,
-   AUTHOR = {Gonzalez, T. and Sahni, S.},
-    TITLE = {Flowshop and jobshop schedules: complexity and approximation},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 26,
-     YEAR = 1978,
-   NUMBER = 1,
-    PAGES = {36-52},
-   ANNOTE = {$F2|pmtn|C_{\max}$ is in $P$,\\ 
-             $F2|r_i;pmtn|C_{\max}$ is $*\NP$-hard,\\ 
-             $F3|pmtn|C_{\max}$ is $*\NP$-hard,\\
-             $F2|pmtn|L_{\max}$ is $*\NP$-hard.}
-}
-
-@article{L78,
-   AUTHOR = {Lawler, E.L.},
-    TITLE = {Sequencing jobs to minimize total weighted completion time
-             subject to precedence constraints},
-  JOURNAL = {Ann. Discrete Math.},
-   VOLUME = 2,
-     YEAR = 1978,
-    PAGES = {75-90},
-   ANNOTE = {$1|sp-graph|\sum{w_iC_i}$ is in $P$,\\ 
-             $1|prec|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $1|prec;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-             $1|prec;s-batch|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{GJ77,
-   AUTHOR = {Garey, M.R. and Johnson, D.S.},
-    TITLE = {Two-processor scheduling with start-times and deadlines},
-  JOURNAL = {SIAM J. Comput.},
-   VOLUME = 6,
-     YEAR = 1977,
-   NUMBER = 3,
-    PAGES = {416-426},
-   ANNOTE = {$P2|p_i=1;prec;r_i|L_{\max}$ is in $P$.}
-}
-
-@article{LL78,
-   AUTHOR = {Lawler, E.L. and Labetoulle, J.},
-    TITLE = {On preemptive scheduling of unrelated parallel processors by
-             linear programming},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 25,
-     YEAR = 1978,
-   NUMBER = 4,
-    PAGES = {612-619},
-   ANNOTE = {$R|pmtn;r_i|L_{\max}$ is in $P$.}
-}
-
-@incollection{S78,
-   AUTHOR = {Simons, B.},
-    TITLE = {A fast algorithm for single processor scheduling},
-BOOKTITLE = {19th Annual Symposium on Foundations of Computer Science (Ann
-             Arbor, Mich., 1978)},
-    PAGES = {246-252},
-PUBLISHER = {IEEE},
-  ADDRESS = {Long Beach, Calif.},
-     YEAR = 1978,
-   ANNOTE = {$1|prec;p_i=p;r_i|L_{\max}$ is in $P$.}
-}
-
-@article{LB85,
-   AUTHOR = {Liu, C.Y. and Bulfin, R.L.},
-    TITLE = {On the complexity of preemptive open-shop scheduling problems},
+@article{BHH03,
+  AUTHOR  = {Brucker, P. and Heitmann, S. and Hurink, J.},
+  TITLE   = {How useful are preemptive schedules?},
   JOURNAL = {Oper. Res. Lett.},
-   VOLUME = 4,
-     YEAR = 1985,
-   NUMBER = 2,
-    PAGES = {71-74},
-   ANNOTE = {$O3|pmtn|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{R84a,
-   AUTHOR = {R{\"o}ck, H.},
-    TITLE = {The three-machine no-wait flow shop is {N}{P}-complete},
-  JOURNAL = {J. Assoc. Comput. Mach.},
+ FJOURNAL = {Operations Research Letters},
    VOLUME = 31,
-     YEAR = 1984,
+     YEAR = 2003,
+   NUMBER = {2},
+    PAGES = {129-136},
+  ANNOTE  = {$P|p_i=1;pmtn;r_i|\sum{w_iU_i}$ is in $P$,\\
+             $P2|p_i=1;pmtn;r_i|\sum{w_iT_i}$ is in $P$.}  
+}
+
+@article{BHK02,
+  AUTHOR  = {Brucker, P. and Hurink, J. and Knust, S.},
+  TITLE   = {A polynomial algorithm for ${P}|p_j=1, r_j, outtree|\sum{C}_j$},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 56,
+     YEAR = 2002,
+   NUMBER = 3,
+    PAGES = {407-412},
+   ANNOTE = {$P|p_i=1;outtree;r_i|\sum{C_i}$ is in $P$,\\
+             $P|p_i=1;outtree;r_i;pmtn|\sum{C_i}$ is in $P$,\\
+             $P|p_i=p;outtree;pmtn|\sum{C_i}$ is in $P$.}
+}
+
+@article{BHK99,
+   AUTHOR = {Brucker, P. and Hurink, J. and Kubiak, W.},
+    TITLE = {Scheduling identical jobs with chain precedence constraints on
+             two uniform machines},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 49,
+     YEAR = 1999,
    NUMBER = 2,
-    PAGES = {336-345},
-   ANNOTE = {$F3|no-wait|C_{\max}$ is $*\NP$-hard.}
+    PAGES = {211-219},
+   ANNOTE = {$Q2|p_i=1;chains|C_{\max}$ is in $P$.}
 }
 
-@article{LR80,
-   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
-    TITLE = {Complexity results for scheduling chains on a single machine},
-  JOURNAL = {European J. Oper. Res.},
-   VOLUME = 4,
-     YEAR = 1980,
-   NUMBER = 4,
-    PAGES = {270-275},
-   ANNOTE = {$1|chains;p_i=1;r_i|\sum{w_iC_i}$ ins $*\NP$-hard,\\
-             $1|chains;p_i=1|\sum{U_i}$ is $*\NP$-hard,\\
-             $P2|p_i=1;intree|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $P2|p_i=1;outtree|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $PMPM2|intree;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $PMPM2|outtree;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $1|chains;p_i=1;s-batch|\sum{U_i}$ is $*\NP$-hard.}
-}
-
-@article{GJ80,
-   AUTHOR = {Gonzalez, T. and Johnson, D.B.},
-    TITLE = {A new algorithm for preemptive scheduling of trees},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 27,
-     YEAR = 1980,
-   NUMBER = 2,
-    PAGES = {287-312},
-   ANNOTE = {$P|tree;pmtn|C_{\max}$ is in $P$.}
-}
-
-@article{BJS80,
-   AUTHOR = {Bruno, J. and Jones, III, J.W. and So, K.},
-    TITLE = {Deterministic scheduling with pipelined processors},
-  JOURNAL = {IEEE Trans. Comput.},
-   VOLUME = 29,
-     YEAR = 1980,
-   NUMBER = 4,
-    PAGES = {308-316},
-   ANNOTE = {$F|p_{ij}=1;outtree;r_i|C_{\max}$ is in $P$,\\
-             $F|p_{ij}=1;tree|C_{\max}$ is in $P$,\\
-             $F|p_{ij}=1;intree|L_{\max}$ is in $P$,\\
-             $F2|p_{ij}=1;prec;r_i|L_{\max}$ is in $P$,\\
-             $1|outtree(l);p_i=1;r_i|C_{\max}$ is in $P$,\\
-             $1|tree(l);p_i=1|C_{\max}$ is in $P$,\\
-             $1|intree(l);p_i=1|L_{\max}$ is in $P$,\\
-             $1|prec(1);p_i=1;r_i|L_{\max}$ is in $P$.}
-}
-
-@article{L81,
-   AUTHOR = {Lloyd, E.L.},
-    TITLE = {Concurrent task systems},
-  JOURNAL = {Oper. Res.},
- FJOURNAL = {Operations Research. The Journal of the Operations Research
-             Society of America},
-   VOLUME = 29,
-     YEAR = 1981,
-   NUMBER = 1,
-    PAGES = {189-201},
-   ANNOTE = {$P2|prec;p_i=p;size_i|C_{\max}$ is in $P$,\\
-             $P|p_i=1;size_i|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{CS81,
-   AUTHOR = {Cho, Y. and Sahni, S.},
-    TITLE = {Preemptive scheduling of independent jobs with release and due
-             times on open, flow and job shops},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 29,
-     YEAR = 1981,
-   NUMBER = 3,
-    PAGES = {511-522},
-   ANNOTE = {$O|pmtn;r_i|L_{\max}$ is in $P$,\\ 
-             $F2|pmtn|C_{\max}$ is in $P$,\\ 
-             $F2|r_i;pmtn|C_{\max}$ is $*\NP$-hard,\\
-             $F3|pmtn|C_{\max}$ is $*\NP$-hard,\\
-             $F2|pmtn|L_{\max}$ is $*\NP$-hard.}   
-}
-
-
-@article{LLR81,
-   AUTHOR = {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan, A.H.G.},
-    TITLE = {Minimizing maximum lateness in a two-machine open shop},
-  JOURNAL = {Math. Oper. Res.},
-   VOLUME = 6,
-     YEAR = 1981,
-   NUMBER = 1,
-    PAGES = {153-158},
-   ANNOTE = {$O2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
-             $O2||L_{\max}$ is $*\NP$-hard,\\ 
-             $O2|pmtn|\sum{U_i}$ is $\NP$-hard,\\ 
-             $OMPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
-             $OMPT2||L_{\max}$ is $*\NP$-hard,\\
-             $OMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\
-             $OMPM2||L_{\max}$ is $*\NP$-hard.} 
-}
-
-@article{SC79,
-   AUTHOR = {Sahni, S. and Cho, Y.},
-    TITLE = {Complexity of scheduling shops with no wait in process},
-  JOURNAL = {Math. Oper. Res.},
-   VOLUME = 4,
-     YEAR = 1979,
-   NUMBER = 4,
-    PAGES = {448-457},
-   ANNOTE = {$O2|no-wait|C_{\max}$ is $*\NP$-hard,\\
-             $J2|no-wait|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{G82,
-   AUTHOR = {Gabow, H.N.},
-    TITLE = {An almost-linear algorithm for two-processor scheduling},
-  JOURNAL = {J. Assoc. Comput. Mach.},
-   VOLUME = 29,
-     YEAR = 1982,
-   NUMBER = 3,
-    PAGES = {766-780},
-   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$.}
-}
-
-@incollection{U76,
-  AUTHOR = 	 {Ullman, J.D.},
-  TITLE = 	 {Complexity of sequencing problems},
-  BOOKTITLE = 	 {Computer and Job/Shop Scheduling Theory},
-  PUBLISHER =	 {John Wiley \&\ Sons Inc.},
-  YEAR =	 1976,
-  EDITOR =	 {Bruno, J.L. and Coffman, Jr., E.G. and Graham,
-                  R.L. and Kohler, W.H. and Sethi, R. and Steiglitz,
-                  K. and Ullman, J.D.},
-  ADDRESS =	 {New York},
-  ANNOTE =	 {$P|p_i=1;prec;pmtn|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{BLR83,
-   AUTHOR = {B{\l}a{\.z}ewicz, J. and Lenstra, J.K. and Rinnooy Kan,
-                  A.H.G.}, 
-    TITLE = {Scheduling subject to resource constraints: classification and
-             complexity},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics},
-   VOLUME = 5,
-     YEAR = 1983,
-   NUMBER = 1,
-    PAGES = {11-24},
-   ANNOTE = {$MPT2|chains;p_i=1|C_{\max}$ is $*\NP$-hard,\\
-             $MPT2|chains;p_i=1|\sum{C_i}$ is $*\NP$-hard.} 
-}
-
-@article{LLR82,
-   AUTHOR = {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan, A.H.G.},
-    TITLE = {Erratum: ``{M}inimizing maximum lateness in a two-machine open
-             shop''\ [{M}ath. {O}per. {R}es. {\bf 6} (1981), no. 1,
-             153-158]},
-  JOURNAL = {Math. Oper. Res.},
-   VOLUME = 7,
-     YEAR = 1982,
-   NUMBER = 4,
-    PAGES = 635,
-   ANNOTE = {$O2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
-             $O2||L_{\max}$ is $*\NP$-hard,\\ 
-             $O2|pmtn|\sum{U_i}$ is $\NP$-hard,\\ 
-             $OMPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
-             $OMPT2||L_{\max}$ is $*\NP$-hard,\\
-             $OMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\
-             $OMPM2||L_{\max}$ is $*\NP$-hard.} 
-}
-
-@article{S83,
-   AUTHOR = {Simons, B.},
-    TITLE = {Multiprocessor scheduling of unit-time jobs with arbitrary
-             release times and deadlines},
-  JOURNAL = {SIAM J. Comput.},
-   VOLUME = 12,
-     YEAR = 1983,
-   NUMBER = 2,
-    PAGES = {294-299},
-   ANNOTE = {$1|prec;p_i=p;r_i|\sum{C_i}$ is in $P$,\\
-             $P|p_i=p;r_i|L_{\max}$ in in $P$,\\
-             $P|p_i=p;r_i|\sum{C_i}$ is in $P$,\\
-             $O|p_{ij}=1;r_i;no-wait|L_{\max}$ is in $P$.}   
-}
-
-@incollection{L83,
-   AUTHOR = {Lawler, E.L.},
-    TITLE = {Recent results in the theory of machine scheduling},
-BOOKTITLE = {Mathematical programming: the state of the art (Bonn,
-                  1982)},
-   EDITOR = {Bachem, A. and Groetschel, M. and Korte, B.},
-    PAGES = {202-234},
-PUBLISHER = {Springer},
-  ADDRESS = {Berlin},
-     YEAR = 1983,
-   ANNOTE = {$P|pmtn|\sum{U_i}$ is $\NP$-hard.}
-}
-
-@article{R84,
-   AUTHOR = {R{\"o}ck, H.},
-    TITLE = {Some new results in flow shop scheduling},
-  JOURNAL = {Z. Oper. Res. Ser. A-B},
-   VOLUME = 28,
-     YEAR = 1984,
-   NUMBER = 1,
-    PAGES = {1-16},
-   ANNOTE = {$F2|r_i;no-wait|C_{\max}$ is $*\NP$-hard,\\
-             $F2|no-wait|L_{\max}$ is $*\NP$-hard,\\  
-             $F2|no-wait|\sum{C_i}$ is $*\NP$-hard,\\
-             $J2|no-wait|\sum{C_i}$ is $*\NP$-hard.} 
-}
-
-@article{LVW84,
-   AUTHOR = {Leung, J.Y.-T. and Vornberger, O. and Witthoff, J.D.},
-    TITLE = {On some variants of the bandwidth minimization problem},
-  JOURNAL = {SIAM J. Comput.},
- FJOURNAL = {SIAM Journal on Computing},
-   VOLUME = 13,
-     YEAR = 1984,
-   NUMBER = 3,
-    PAGES = {650-667},
-   ANNOTE = {$F|p_{ij}=1;prec|C_{\max}$ is $*\NP$-hard,\\
-             $1|prec(l);p_i=1|C_{\max}$ is $*\NP$-hard.} 
-}
-
-@incollection{LLLR84,
-   AUTHOR = {Labetoulle, J. and Lawler, E.L. and Lenstra, J.K. and Rinnooy
-             Kan, A.H.G.},
-    TITLE = {Preemptive scheduling of uniform machines subject to release
-             dates},
-BOOKTITLE = {Progress in combinatorial optimization (Waterloo, Ont., 1982)},
-    PAGES = {245-261},
-PUBLISHER = {Academic Press},
-  ADDRESS = {Toronto, Ont.},
-     YEAR = 1984,
-   ANNOTE = {$1|r_i;pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $Q|pmtn|\sum{C_i}$ is in $P$,\\
-             $P2|pmtn;r_i|\sum{w_iC_i}$ is $*\NP$-hard.} 
-}
-
-@article{SL86,
-   AUTHOR = {Sriskandarajah, C. and Ladet, P.},
-    TITLE = {Some no-wait shops scheduling problems: complexity aspect},
-  JOURNAL = {European J. Oper. Res.},
-   VOLUME = 24,
-     YEAR = 1986,
-   NUMBER = 3,
-    PAGES = {424-438},
-   ANNOTE = {$J3|p_{ij}=1;no-wait|C_{\max}$ is $*\NP$-hard,\\
-             $J3|p_{ij}=1;no-wait|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{T85,
-   AUTHOR = {Timkovsky, V.G.},
-    TITLE = {On the complexity of scheduling an arbitrary system},
-  JOURNAL = {Soviet J. Comput. Systems Sci.},
-   VOLUME = 23,
-     YEAR = 1985,
-   NUMBER = 5,
-    PAGES = {46-52},
-   ANNOTE = {$J2|chains;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\
-             $J2|p_{ij}=1;no-wait|C_{\max}$ is $\NP$-hard,\\
-             $JMPM2|chains;p_{ij}=1|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{BDW86,
-   AUTHOR = {B{\l}a{\.z}ewicz, J. and Drabowski, M. and
-                  W{\c{e}}glarz, J.}, 
-    TITLE = {Scheduling multiprocessor tasks to minimize schedule length},
-  JOURNAL = {IEEE Trans. Comput.},
- FJOURNAL = {Institute of Electrical and Electronics Engineers. Transactions
-             on Computers},
+@article{BJ01,
+  AUTHOR  =  {Baptiste, P. and Jouglet, A.},
+  TITLE   =  {On minimizing total tardiness in a serial batching problem},
+  JOURNAL = {RAIRO Oper. Res.},
    VOLUME = 35,
-     YEAR = 1986,
-   NUMBER = 5,
-    PAGES = {389-393},
-   ANNOTE = {$Pm|p_i=p;size_i|C_{\max}$ is in $P$.}
-}
-
-@article{LB88,
-   AUTHOR = {Liu, C.Y. and Bulfin, R.L.},
-    TITLE = {Scheduling open shops with unit execution times to minimize
-             functions of due dates},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 36,
-     YEAR = 1988,
-   NUMBER = 4,
-    PAGES = {553-559},
-   ANNOTE = {$O|p_{ij}=1|\sum{U_i}$ is in $P$,\\
-             $O|p_{ij}=1|\sum{T_i}$ is in $P$.} 
-}
-
-@article{LM89,
-   AUTHOR = {Lawler, E.L. and Martel, C.U.},
-    TITLE = {Preemptive scheduling of two uniform machines to minimize the
-             number of late jobs},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 37,
-     YEAR = 1989,
-   NUMBER = 2,
-    PAGES = {314-318},
-   ANNOTE = {$Qm|pmtn|\sum{U_i}$ is in $P$,\\ 
-             $Qm|pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.} 
-}
-
-@article{DL89,
-   AUTHOR = {Du, J. and Leung, J.Y.-T.},
-    TITLE = {Complexity of scheduling parallel task systems},
-  JOURNAL = {SIAM J. Discrete Math.},
- FJOURNAL = {SIAM Journal on Discrete Mathematics},
-   VOLUME = 2,
-     YEAR = 1989,
-   NUMBER = 4,
-    PAGES = {473-487},
-   ANNOTE = {$P2|size_i|C_{\max}$ is in $P_{pseudo}$,\\
-             $P3|size_i|C_{\max}$ is in $P_{pseudo}$,\\
-             $P5|size_i|C_{\max}$ is $*\NP$-hard,\\
-             $Pm|size_i|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{K89,
-   AUTHOR = {Kubiak, W.},
-    TITLE = {A pseudo-polynomial algorithm for a two-machine no-wait
-             job-shop scheduling problem},
-  JOURNAL = {European J. Oper. Res.},
-   VOLUME = 43,
-     YEAR = 1989,
-   NUMBER = 3,
-    PAGES = {267-270},
-   ANNOTE = {$J2|p_{ij}=1;no-wait|C_{\max}$ is in $P_{pseudo}$.}
-}
-
-@article{LY90a,
-   AUTHOR = {Leung, J.Y.-T. and Young, G.H.},
-    TITLE = {Preemptive scheduling to minimize mean weighted flow time},
-  JOURNAL = {Inform. Process. Lett.},
-   VOLUME = 34,
-     YEAR = 1990,
+     YEAR = 2001,
    NUMBER = 1,
-    PAGES = {47-50},
-   ANNOTE = {$P|p_i=p;pmtn;r_i|\sum{w_iC_i}$ is $*\NP$-hard.}
-}
-
-@article{HL90,
-   AUTHOR = {Herrbach, L.A. and Leung, J.Y.-T.},
-    TITLE = {Preemptive scheduling of equal length jobs on two machines to
-             minimize mean flow time},
-  JOURNAL = {Oper. Res.},
-   VOLUME = 38,
-     YEAR = 1990,
-   NUMBER = 3,
-    PAGES = {487-494},
-   ANNOTE = {$P2|p_i=p;pmtn;r_i|\sum{C_i}$ is in $P$.}
-}
-
-@article{DL90,
-   AUTHOR = {Du, J. and Leung, J.Y.-T.},
-    TITLE = {Minimizing total tardiness on one machine is {N}{P}-hard},
-  JOURNAL = {Math. Oper. Res.},
-   VOLUME = 15,
-     YEAR = 1990,
-   NUMBER = 3,
-    PAGES = {483-495},
-   ANNOTE = {$1||\sum{T_i}$ is in $P_{pseudo}$,\\ 
-             $1||\sum{T_i}$ is $\NP$-hard,\\ 
-             $1|s-batch|\sum{T_i}$ is $\NP$-hard.}
-}
-
-@article{DLY90,
-   AUTHOR = {Du, J. and Leung, J.Y.-T. and Young, G.H.},
-    TITLE = {Minimizing mean flow time with release time constraint},
-  JOURNAL = {Theoret. Comput. Sci.},
-   VOLUME = 75,
-     YEAR = 1990,
-   NUMBER = 3,
-    PAGES = {347-355},
-   ANNOTE = {$P2|pmtn;r_i|\sum{C_i}$ is $\NP$-hard.}
-}
-
-@article{DLLV90,
-   AUTHOR = {Dessouky, M.I. and Lageweg, B.J. and Lenstra, J.K. and van
-             de Velde, S.L.},
-    TITLE = {Scheduling identical jobs on uniform parallel machines},
-  JOURNAL = {Statist. Neerlandica},
-   VOLUME = 44,
-     YEAR = 1990,
-   NUMBER = 3,
-    PAGES = {115-123},
-   ANNOTE = {$Qm|p_i=1;r_i|\sum{C_i}$ is in $P$,\\
-	     $Qm|p_i=p;r_i|\sum{C_i}$ is in $P$.}  
-}
-
-@article{L90,
-   AUTHOR = {Lawler, E.L.},
-    TITLE = {A dynamic programming algorithm for preemptive scheduling of a
-             single machine to minimize the number of late jobs},
-  JOURNAL = {Ann. Oper. Res.},
-   VOLUME = 26,
-     YEAR = 1990,
-   NUMBER = {1-4},
-    PAGES = {125-133},
-   ANNOTE = {$1|r_i;pmtn|\sum{U_i}$ is in $P$,\\ 
-             $1|r_i;pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.}  
-}
-
-@article{DL91,
-   AUTHOR = {Du, J. and Leung, J.Y.-T.},
-    TITLE = {Minimizing the number of late jobs on unrelated machines},
-  JOURNAL = {Oper. Res. Lett.},
-   VOLUME = 10,
-     YEAR = 1991,
-   NUMBER = 3,
-    PAGES = {153-158},
-   ANNOTE = {$R|pmtn;r_i|\sum{U_i}$ is $*\NP$-hard.}
-}
-
-@article{DLY91,
-   AUTHOR = {Du, J. and Leung, J.Y.-T. and Young, G.H.},
-    TITLE = {Scheduling chain-structured tasks to minimize makespan and mean
-             flow time},
-  JOURNAL = {Inform. and Comput.},
-   VOLUME = 92,
-     YEAR = 1991,
-   NUMBER = 2,
-    PAGES = {219-236},
-   ANNOTE = {$P2|chains|C_{\max}$ is $*\NP$-hard,\\
-             $P2|chains|\sum{C_i}$ is $*\NP$-hard,\\
-             $P2|p_i=p;chains;pmtn|\sum{C_i}$ is in $P$,\\
-             $P2|p_i=1;chains;pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $P2|chains;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
-             $PMPM2|chains|C_{\max}$ is $*\NP$-hard,\\
-             $PMPM2|chains|\sum{C_i}$ is $*\NP$-hard.}  
-}
-
-@article{DLW92,
-   AUTHOR = {Du, J. and Leung, J.Y.-T. and Wong, C.S.},
-    TITLE = {Minimizing the number of late jobs with release time
-             constraint},
-  JOURNAL = {J. Combin. Math. Combin. Comput.},
-   VOLUME = 11,
-     YEAR = 1992,
-    PAGES = {97-107},
-   ANNOTE = {$P2|pmtn;r_i|\sum{U_i}$ is $\NP$-hard.}
-}
-
-@article{RR92,
-   AUTHOR = {Rayward-Smith, V.J. and Rebaine, D.},
-    TITLE = {Open shop scheduling with delays},
-  JOURNAL = {RAIRO Inform. Th\'eor. Appl.},
- FJOURNAL = {RAIRO Informatique Th\'eorique et Applications. Theoretical
-             Informatics and Applications},
-   VOLUME = 26,
-     YEAR = 1992,
-   NUMBER = 5,
-    PAGES = {439-447},
-   ANNOTE = {$O|p_{ij}=1;t_{ikl}=T|C_{\max}$ is in $P$,\\
-             $O|p_{ij}=1;t_{kl}=t_{lk}|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{DL93,
-   AUTHOR = {Du, J. and Leung, J.Y.-T.},
-    TITLE = {Minimizing mean flow time in two-machine open shops and flow
-             shops},
-  JOURNAL = {J. Algorithms},
-   VOLUME = 14,
-     YEAR = 1993,
-   NUMBER = 1,
-    PAGES = {24-44},
-   ANNOTE = {$O2|pmtn|\sum{C_i}$ is $\NP$-hard,\\ 
-             $F2|pmtn|\sum{C_i}$ is $*\NP$-hard.}
+    PAGES = {107-115},
+  ANNOTE  = {$1|s-batch|\sum{T_i}$ is in $P_{pseudo}$.}
 }
 
 @article{BJJ93,
@@ -1158,191 +398,6 @@ PUBLISHER = {Academic Press},
              $O|p_{ij}=1;r_i;no-wait|L_{\max}$ is in $P$,\\
              $O|p_{ij}=1;outtree;no-wait|\sum{C_i}$ is in $P$,\\    
              $O|p_{ij}=1;no-wait|\sum{w_iT_i}$ is in $P$.}
-}
-
-@article{HL94,
-   AUTHOR = {Hochbaum, D.S. and Landy, D.},
-    TITLE = {Scheduling with batching: minimizing the weighted number of
-             tardy jobs},
-  JOURNAL = {Oper. Res. Lett.},
- FJOURNAL = {Operations Research Letters},
-   VOLUME = 16,
-     YEAR = 1994,
-   NUMBER = 2,
-    PAGES = {79-86},
-   ANNOTE = {$1|p_i=p;s-batch|\sum{w_iU_i}$ is in $P$.}
-}
-
-@article{WLN94,
-   AUTHOR = {Wikum, E.D. and Llewellyn, D.C. and Nemhauser, G.L.},
-    TITLE = {One-machine generalized precedence constrained scheduling
-             problems},
-  JOURNAL = {Oper. Res. Lett.},
- FJOURNAL = {Operations Research Letters},
-   VOLUME = 16,
-     YEAR = 1994,
-   NUMBER = 2,
-    PAGES = {87-99},
-   ANNOTE = {$1|chains(l)|C_{\max}$ is $*\NP$-hard.}
-}
-
-@article{AB93,
-   AUTHOR = {Albers, S. and Brucker, P.},
-    TITLE = {The complexity of one-machine batching problems},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
-             Optimization and Computer Science},
-   VOLUME = 47,
-     YEAR = 1993,
-   NUMBER = 2,
-    PAGES = {87-107},
-   ANNOTE = {$1|prec;p_i=p;s-batch|\sum{C_i}$ is in $P$,\\
-             $1|p_i=p;s-batch|\sum{w_iC_i}$ is in $P$,\\
-             $1|chains;s-batch|\sum{C_i}$ is $\NP$-hard,\\
-             $1|chains;p_i=1;s-batch|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-             $1|s-batch|\sum{w_iC_i}$ is $*\NP$-hard.}  
-}
-
-@article{J95,
-   AUTHOR = {Jurisch, B.},
-    TITLE = {Lower bounds for the job-shop scheduling problem on
-             multi-purpose machines},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
-             Optimization and Computer Science},
-   VOLUME = 58,
-     YEAR = 1995,
-   NUMBER = 2,
-    PAGES = {145-156},
-   ANNOTE = {$JMPM|prec;r_i;n=2|L_{\max}$ is in $P$,\\
-             $JMPM2|n=3|C_{\max}$ is in $P_{pseudo}$,\\
-             $OMPM|p_{ij}=1|C_{\max}$ is in $P_{pseudo}$,\\
-             $JMPM2|n=3|C_{\max}$ is $\NP$-hard.}
-}
-
-@book{TSS94,
-   AUTHOR = {Tanaev, V.S. and Sotskov, Y.N. and Strusevich, V.A.},
-    TITLE = {Scheduling theory. {M}ulti-stage systems},
-     NOTE = {Translated and revised from the 1989 Russian original by the
-             authors},
-   SERIES = {Mathematics and its Applications},
-   VOLUME = 285,
-PUBLISHER = {Kluwer Academic Publishers Group},
-  ADDRESS = {Dordrecht},
-     YEAR = 1994,
-    PAGES = {viii+404},
-   ANNOTE = {$O2|chains|C_{\max}$ is $*\NP$-hard,\\
-             $F2|p_{ij}=1;chains|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $F3|p_{ij}=1;chains|\sum{w_iC_i}$ is $*\NP$-hard,\\
-             $FMPT2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-             $OMPT2|chains|C_{\max}$ is $*\NP$-hard,\\ 
-             $FMPM2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-             $OMPM2|chains|C_{\max}$ is $*\NP$-hard,\\ 
-             $1|chains(1);p_i=1|\sum{w_iC_i}$ is $*\NP$-hard.}   
-}
-
-@article{BKW95,
-   AUTHOR = {Br{\"a}sel, H. and Kluge, D. and Werner, F.},
-    TITLE = {A polynomial algorithm for an open shop problem with unit
-             processing times and tree constraints},
-  JOURNAL = {Discrete Appl. Math.},
-   VOLUME = 59,
-     YEAR = 1995,
-   NUMBER = 1,
-    PAGES = {11-21},
-   ANNOTE = {$O|p_{ij}=1;outtree|\sum{C_i}$ is in $P$,\\
-             $O2|p_{ij}=1;tree|\sum{C_i}$ is in $P$.}
-}
-
-@article{BK95,
-   AUTHOR = {Brucker, P. and Kr{\"a}mer, A.},
-    TITLE = {Shop scheduling problems with multiprocessor tasks on dedicated
-             processors},
-  JOURNAL = {Ann. Oper. Res.},
- FJOURNAL = {Annals of Operations Research},
-   VOLUME = 57,
-     YEAR = 1995,
-    PAGES = {13-27},
-   ANNOTE = {$OMPT2||C_{\max}$ is in $P$,\\ 
-             $JMPT2|n=k|C_{\max}$ is in $P$,\\ 
-             $FMPT2||C_{\max}$ is $*\NP$-hard,\\
-             $JMPT2|p_{ij}=1|C_{\max}$ is $*\NP$-hard.}  
-}
-
-@article{HVV94,
-   AUTHOR = {Hoogeveen, J.A. and van de Velde, S.L. and Veltman, B.},
-    TITLE = {Complexity of scheduling multiprocessor tasks with prespecified
-             processor allocations},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
-             Optimization and Computer Science},
-   VOLUME = 55,
-     YEAR = 1994,
-   NUMBER = 3,
-    PAGES = {259-272},
-   ANNOTE = {$MPT2||C_{\max}$ is in $P$,\\ 
-             $MPT|p_i=1|C_{\max}$ is $*\NP$-hard,\\ 
-             $MPT2|chains;p_i=1|C_{\max}$ is $*\NP$-hard,\\ 
-             $MPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
-             $MPT3||C_{\max}$ is $*\NP$-hard,\\ 
-             $MPT2||L_{\max}$ is $*\NP$-hard,\\ 
-             $MPT|p_i=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-             $MPT2||\sum{C_i}$ is $*\NP$-hard,\\
-             $MPT2|chains;p_i=1|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{SS95,
-   AUTHOR = {Sotskov, Y.N. and Shakhlevich, N.V.},
-    TITLE = {N{P}-hardness of shop-scheduling problems with three jobs},
-  JOURNAL = {Discrete Appl. Math.},
-   VOLUME = 59,
-     YEAR = 1995,
-   NUMBER = 3,
-    PAGES = {237-266},
-   ANNOTE = {$J3|n=3|C_{\max}$ is $\NP$-hard,\\ 
-             $J3|n=3|\sum{C_i}$ is $\NP$-hard,\\ 
-             $JMPT3|n=3|C_{\max}$ is $\NP$-hard,\\
-             $JMPT3|n=3|\sum{C_i}$ is $\NP$-hard,\\
-             $JMPM3|n=3|\sum{C_i}$ is $\NP$-hard.} 
-}
-
-@article{BKo96,
-   AUTHOR = {Brucker, P. and Kovalyov, M.Y.},
-    TITLE = {Single machine batch scheduling to minimize the weighted number
-             of late jobs},
-  JOURNAL = {Math. Methods Oper. Res.},
- FJOURNAL = {Mathematical Methods of Operations Research},
-   VOLUME = 43,
-     YEAR = 1996,
-   NUMBER = 1,
-    PAGES = {1-8},
-   ANNOTE = {$1|s-batch|\sum{U_i}$ is in $P$,\\
-             $1|s-batch|\sum{w_iU_i}$ is in $P_{pseudo}$.}
-}
-
-@article{FL96,
-   AUTHOR = {Finta, L. and Liu, Z.},
-    TITLE = {Single machine scheduling subject to precedence delays},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
-             Optimization and Computer Science},
-   VOLUME = 70,
-     YEAR = 1996,
-   NUMBER = 3,
-    PAGES = {247-266},
-   ANNOTE = {$1|prec(1)|C_{\max}$ is in $P$.}
-}
-
-@article{T97,
-   AUTHOR = {Timkovsky, V.G.},
-    TITLE = {A polynomial-time algorithm for the two-machine unit-time
-             release-date job-shop schedule-length problem},
-  JOURNAL = {Discrete Appl. Math.},
-   VOLUME = 77,
-     YEAR = 1997,
-   NUMBER = 2,
-    PAGES = {185-200},
-   ANNOTE = {$J2|p_{ij}=1;r_i|C_{\max}$ is in $P$.}
 }
 
 @article{BJK97,
@@ -1373,388 +428,908 @@ PUBLISHER = {Kluwer Academic Publishers Group},
              $OMPMm|p_{ij}=1|\sum{T_i}$ is in $P$.}    
 }
 
-@article{CLL98,
-   AUTHOR = {Cai, X. and Lee, C.-Y. and Li, C.-L.},
-    TITLE = {Minimizing total completion time in two-processor task systems
-             with prespecified processor allocations},
-  JOURNAL = {Naval Res. Logist.},
- FJOURNAL = {Naval Research Logistics. An International Journal},
-   VOLUME = 45,
-     YEAR = 1998,
-   NUMBER = 2,
-    PAGES = {231-242},
-   ANNOTE = {$MPT2||\sum{C_i}$ is $*\NP$-hard.}
+@article{BJS80,
+   AUTHOR = {Bruno, J. and Jones, III, J.W. and So, K.},
+    TITLE = {Deterministic scheduling with pipelined processors},
+  JOURNAL = {IEEE Trans. Comput.},
+   VOLUME = 29,
+     YEAR = 1980,
+   NUMBER = 4,
+    PAGES = {308-316},
+   ANNOTE = {$F|p_{ij}=1;outtree;r_i|C_{\max}$ is in $P$,\\
+             $F|p_{ij}=1;tree|C_{\max}$ is in $P$,\\
+             $F|p_{ij}=1;intree|L_{\max}$ is in $P$,\\
+             $F2|p_{ij}=1;prec;r_i|L_{\max}$ is in $P$,\\
+             $1|outtree(l);p_i=1;r_i|C_{\max}$ is in $P$,\\
+             $1|tree(l);p_i=1|C_{\max}$ is in $P$,\\
+             $1|intree(l);p_i=1|L_{\max}$ is in $P$,\\
+             $1|prec(1);p_i=1;r_i|L_{\max}$ is in $P$.}
 }
 
-@article{T98a,
-   AUTHOR = {Timkovsky, V.G.},
-    TITLE = {Is a unit-time job shop not easier than identical parallel
-             machines?},
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
-             Optimization and Computer Science},
-   VOLUME = 85,
-     YEAR = 1998,
-   NUMBER = 2,
-    PAGES = {149-162},
-   ANNOTE = {$J2|p_{ij}=1;r_i|\sum{U_i}$ is $\NP$-hard,\\
-             $J2|chains;p_{ij}=1;no-wait|C_{\max}$ is $*\NP$-hard,\\ 
-             $JMPM2|r_i;p_{ij}=1|\sum{U_i}$ is $\NP$-hard.}  
-}
-
-@book{B95,
-   AUTHOR = {Brucker, P.},
-    TITLE = {Scheduling algorithms},
-  EDITION = {First},
-PUBLISHER = {Springer-Verlag},
-  ADDRESS = {Berlin},
+@article{BK95,
+   AUTHOR = {Brucker, P. and Kr{\"a}mer, A.},
+    TITLE = {Shop scheduling problems with multiprocessor tasks on dedicated
+             processors},
+  JOURNAL = {Ann. Oper. Res.},
+ FJOURNAL = {Annals of Operations Research},
+   VOLUME = 57,
      YEAR = 1995,
-   ANNOTE = {$JMPT|n=2|\sum{w_iU_i}$ is in $P$,\\
-             $JMPT|n=2|\sum{w_iT_i}$ is in $P$,\\
-             $FMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-             $FMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-             $OMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-             $OMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-             $O|p_{ij}=1;intree|L_{\max}$ is in $P$,\\
-             $O2|p_{ij}=1;prec;r_i|L_{\max}$ is in $P$.}
-}
-
-@book{B98,
-   AUTHOR = {Brucker, P.},
-    TITLE = {Scheduling algorithms},
-  EDITION = {Second},
-PUBLISHER = {Springer-Verlag},
-  ADDRESS = {Berlin},
-     YEAR = 1998,
-    PAGES = {xii+342},
-   ANNOTE = {$JMPT|n=2|\sum{w_iU_i}$ is in $P$,\\
-             $JMPT|n=2|\sum{w_iT_i}$ is in $P$,\\
-             $FMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-             $FMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-             $OMPMm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-             $OMPMm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-             $O|p_{ij}=1;intree|L_{\max}$ is in $P$,\\
-             $O2|p_{ij}=1;prec;r_i|L_{\max}$ is in $P$.}
-}
-
-@book{B74,
-  AUTHOR = 	 {Baker, K.R.},
-  TITLE = 	 {Introduction to Sequencing and Scheduling},
-  PUBLISHER = 	 {John Wiley \& Sons},
-  YEAR = 	 1974,
-  ADDRESS =	 {New York},
-  ANNOTE =       {$1|r_i;pmtn|\sum{C_i}$ is in $P$.}
-}
-
-
-@article{B99,
-  AUTHOR = {Baptiste, P.},
-  TITLE =  {Polynomial time algorithms for minimizing the
-            weighted number of late jobs on a single machine
-            with equal processing times}, 
-  JOURNAL = {J. Sched.},
- FJOURNAL = {Journal of Scheduling},
-   VOLUME = 2,
-     YEAR = 1999,
-    PAGES = {245-252},
-   ANNOTE = {$1|p_i=p;r_i|\sum{w_iU_i}$ is in $P$,\\
-             $1|pmtn;p_i=p;r_i|\sum{w_iU_i}$ is in $P$.}
-}
-
-
-@article{B00,
-  AUTHOR = {Baptiste, P.},
-  TITLE = {Scheduling equal-length jobs on identical parallel
-            machines}, 
-  JOURNAL = {Discrete Appl. Math.},
- FJOURNAL = {Discrete Applied Mathematics},
-  VOLUME = 103,
-    YEAR = 2000,
-  NUMBER = 1,
-   PAGES = {21-32},
-  ANNOTE = {$1|p_i=p;r_i|\sum{w_iC_i}$ is in $P$,\\
-             $1|p_i=p;r_i|\sum{T_i}$ is in $P$,\\
-             $Pm|p_i=p;r_i|\sum{w_iC_i}$ is in $P$,\\
-             $Pm|p_i=p;r_i|\sum{T_i}$ is in $P$.}
-}
-
-@article{B03,
-  AUTHOR = 	 {Baptiste, P.},
-  TITLE = 	 {On minimizing the weighted number of late jobs in
-                  unit execution time open-shops}, 
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 2003,
-  VOLUME =	 149,
-  NUMBER =      2,
-  PAGES =	 {344-354},
-  ANNOTE =       {$Om|p_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$.}
-}
-
-@techreport{B00b,
-  AUTHOR =       {Baptiste, P.},
-  TITLE =        {Preemptive scheduling of identical machines},
-  INSTITUTION =  {Universite de Technologie de Compiegne, France},
-  YEAR =         2000,
-  TYPE =         {{Technical Report}},
-  NUMBER =       {2000-314},
-  ANNOTE =       {$Pm|pmtn;p_i=p|\sum{w_iU_i}$ is in $P$.}
-}
-
-@article{BJ01,
-  AUTHOR =  {Baptiste, P. and Jouglet, A.},
-  TITLE =  {On minimizing total tardiness in a serial batching problem},
-  JOURNAL = {RAIRO Oper. Res.},
-   VOLUME = 35,
-     YEAR = 2001,
-   NUMBER = 1,
-    PAGES = {107-115},
-  ANNOTE = {$1|s-batch|\sum{T_i}$ is in $P_{pseudo}$.}
-}
-
-@article{BT01,
-  AUTHOR = {Baptiste, P. and Timkovsky, V.},
-  TITLE = {On preemption redundancy in scheduling unit processing time 
-	     jobs on two parallel machines},
-  JOURNAL = {Oper. Res. Lett.},
- FJOURNAL = {Operations Research Letters},
-  YEAR = 2001,
-  VOLUME = 28,
-  NUMBER = 5,
-  PAGES = {205-212},
-  ANNOTE = {$P2|pmtn;outtree;r_i;p_i=1|\sum{C_i}$ is in $P$.}
-}
-
-@article{B00a,
-  AUTHOR =       {Baptiste, P.},
-  TITLE =        {Batching identical jobs},
-  JOURNAL =      {Math. Methods Oper. Res.},
- FJOURNAL =      {Mathematical Methods of Operations Research},
-   VOLUME =      53,
-     YEAR =      2000,
-   NUMBER =      3,
-    PAGES =      {355-367},
-  ANNOTE =       {$1|p_i=p;s-batch;r_i|\sum{w_iC_i}$ is in $P$,\\
-                  $1|p_i=p;s-batch;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $1|p_i=p;s-batch;r_i|\sum{T_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;r_i;b<n|\sum{w_iC_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;r_i;b<n|\sum{w_iU_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;r_i;b<n|\sum{T_i}$ is in $P$.}
-}
-
-@article{BKRZ00,
-  AUTHOR = 	 {Brucker, P. and Knust, S. and Roper, D. and Zinder, Y.},  
-  TITLE = 	 {Scheduling {UET} task systems with concurrency on two
-                  parallel identical processors},   
-  JOURNAL =      {Math. Methods Oper. Res.},
- FJOURNAL =      {Mathematical Methods of Operations Research},
-   VOLUME =      53,
-     YEAR =      2000,
-   NUMBER =      3,
-    PAGES =      {369-387},
-  ANNOTE =	 {$P2|r_i;p_i=1;size_i|\sum{C_i}$ is in $P$,\\
-                  $Pm|p_i=p;size_i|\sum{w_iU_i}$ is in $P$,\\
-                  $Pm|p_i=p;size_i|\sum{T_i}$ is in $P$,\\
-                  $P2|chains;r_i;p_i=1;size_i|C_{\max}$ is $*\NP$-hard,\\ 
-                  $P2|chains;p_i=1;size_i|L_{\max}$ is $*\NP$-hard,\\ 
-                  $P2|prec;p_i=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{BDKKW02,
-  AUTHOR = {Brucker, P. and Dhaenens-Flipo, C. and Knust, S. and
-             Kravchenko, S.A. and Werner, F.},
-  TITLE = {Complexity results for parallel machine problems
-             with a single server}, 
-  JOURNAL = {J. Sched.},
- FJOURNAL = {Journal of Scheduling},
-   VOLUME = 5,
-     YEAR = 2002,
-   NUMBER = 6,
-    PAGES = {429-457},
-  ANNOTE =  {$P;S1|s_i=s;p_i=p;r_i|C_{\max}$ is in $P$,\\
-             $P;S1|s_i=s;p_i=p;r_i|\sum{C_i}$ is in $P$.\\
-             $P;S1|s_i=s;p_i=1;r_i|\sum{w_iC_i}$ is in $P$,\\ 
-             $P;S1|s_i=s;p_i=1;r_i|\sum{w_iU_i}$ is in $P$,\\ 
-             $P;S1|s_i=s;p_i=1;r_i|\sum{T_i}$ is in $P$,\\
-             $P2;S1|p_i=p|C_{\max}$ is $\NP$-hard,\\
-             $P2;S1|p_i=p|\sum{C_i}$ is $\NP$-hard,\\
-             $P2;S1|p_i=1;r_i|L_{\max}$ is $*\NP$-hard,\\
-             $P2;S1|p_i=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-             $P;S1|s_i=1|\sum{C_i}$ is $*\NP$-hard.}
-}
-
-@article{BK99,
-  AUTHOR =	 {Brucker, P. and Knust, S.},
-  TITLE =        {Complexity results for single-machine problems with
-                  positive finish-start time-lags},  
-  YEAR = 	 1999,
-  JOURNAL =      {Computing},
-  VOLUME =       63,
-  PAGES =        {299-316},
-  ANNOTE =	 {$F|p_{ij}=1;outtree;r_i|\sum{C_i}$ is in $P$,\\
-                  $F2|p_{ij}=1;prec|\sum{C_i}$ is in $P$,\\ 
-                  $F|p_{ij}=1;intree;r_i|C_{\max}$ is $*\NP$-hard,\\
-                  $F|p_{ij}=1;outtree|L_{\max}$ is $*\NP$-hard,\\
-                  $F2|p_{ij}=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
-                  $F3|p_{ij}=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
-                  $F2|p_{ij}=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
-                  $F3|p_{ij}=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
-                  $1|outtree(l);p_i=1;r_i|\sum{C_i}$ is in $P$,\\
-                  $1|prec(1);p_i=1|\sum{C_i}$ is in $P$,\\
-                  $1|intree(l);p_i=1;r_i|C_{\max}$ is $*\NP$-hard,\\
-                  $1|outtree(l);p_i=1|L_{\max}$ is $*\NP$-hard,\\
-                  $1|chains(l)|\sum{C_i}$ is $*\NP$-hard,\\
-                  $FMPT|tree;r_i;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $FMPT|tree;p_{ij}=1|L_{\max}$ is $*\NP$-hard.}
+    PAGES = {13-27},
+   ANNOTE = {$OMPT2||C_{\max}$ is in $P$,\\ 
+             $JMPT2|n=k|C_{\max}$ is in $P$,\\ 
+             $FMPT2||C_{\max}$ is $*\NP$-hard,\\
+             $JMPT2|p_{ij}=1|C_{\max}$ is $*\NP$-hard.}  
 }
 
 @article{BK96,
-  AUTHOR = 	 {Brucker, P. and Kr{\"a}mer, A.},
-  TITLE = 	 {Polynomial Algorithms for resource-constrained and
-                  multiprocessor task scheduling problems}, 
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1996,
-  VOLUME =	 90,
-  PAGES =	 {214-226},
-  ANNOTE =	 {$J|prec;p_{ij}=1;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-                  $J|prec;p_{ij}=1;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-                  $MPTm|r_i;p_i=1|C_{\max}$ is in $P$,\\ 
-                  $MPTm|r_i;p_i=1|\sum{C_i}$ is in $P$,\\
-                  $MPTm|p_i=1|\sum{w_iC_i}$ is in $P$,\\
-                  $MPTm|p_i=1|\sum{w_iU_i}$ is in $P$,\\
-                  $MPTm|p_i=1|\sum{T_i}$ is in $P$,\\
-                  $FMPTm|r_i;p_{ij}=1|C_{\max}$ is in $P$,\\
-                  $FMPTm|r_i;p_{ij}=1|\sum{C_i}$ is in $P$,\\
-                  $FMPTm|p_{ij}=1|\sum{w_iC_i}$ is in $P$,\\
-                  $FMPTm|p_{ij}=1|\sum{w_iU_i}$ is in $P$,\\
-                  $FMPTm|p_{ij}=1|\sum{w_iT_i}$ is in $P$,\\
-                  $JMPT2|n=k|C_{\max}$ is in $P$,\\
-                  $JMPT|prec;r_i;p_{ij}=1;n=k|\sum{w_iU_i}$ is in $P$,\\ 
-                  $JMPT|prec;r_i;p_{ij}=1;n=k|\sum{w_iT_i}$ is in $P$,\\ 
-                  $OMPTm|r_i;p_{ij}=1|C_{\max}$ is in $P$,\\
-                  $OMPTm|r_i;p_{ij}=1|\sum{C_i}$ is in $P$,\\
-                  $OMPTm|p_{ij}=1|\sum{w_iC_i}$ is in $P$,\\
-                  $OMPTm|p_{ij}=1|\sum{w_iU_i}$ is in $P$,\\
-                  $OMPTm|p_{ij}=1|\sum{T_i}$ is in $P$.}  
+  AUTHOR  = {Brucker, P. and Kr{\"a}mer, A.},
+  TITLE   = {Polynomial Algorithms for resource-constrained and
+             multiprocessor task scheduling problems}, 
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1996,
+  VOLUME  = 90,
+  PAGES   = {214-226},
+  ANNOTE  = {$J|prec;p_{ij}=1;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
+             $J|prec;p_{ij}=1;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
+             $MPTm|r_i;p_i=1|C_{\max}$ is in $P$,\\ 
+             $MPTm|r_i;p_i=1|\sum{C_i}$ is in $P$,\\
+             $MPTm|p_i=1|\sum{w_iC_i}$ is in $P$,\\
+             $MPTm|p_i=1|\sum{w_iU_i}$ is in $P$,\\
+             $MPTm|p_i=1|\sum{T_i}$ is in $P$,\\
+             $FMPTm|r_i;p_{ij}=1|C_{\max}$ is in $P$,\\
+             $FMPTm|r_i;p_{ij}=1|\sum{C_i}$ is in $P$,\\
+             $FMPTm|p_{ij}=1|\sum{w_iC_i}$ is in $P$,\\
+             $FMPTm|p_{ij}=1|\sum{w_iU_i}$ is in $P$,\\
+             $FMPTm|p_{ij}=1|\sum{w_iT_i}$ is in $P$,\\
+             $JMPT2|n=k|C_{\max}$ is in $P$,\\
+             $JMPT|prec;r_i;p_{ij}=1;n=k|\sum{w_iU_i}$ is in $P$,\\ 
+             $JMPT|prec;r_i;p_{ij}=1;n=k|\sum{w_iT_i}$ is in $P$,\\ 
+             $OMPTm|r_i;p_{ij}=1|C_{\max}$ is in $P$,\\
+             $OMPTm|r_i;p_{ij}=1|\sum{C_i}$ is in $P$,\\
+             $OMPTm|p_{ij}=1|\sum{w_iC_i}$ is in $P$,\\
+             $OMPTm|p_{ij}=1|\sum{w_iU_i}$ is in $P$,\\
+             $OMPTm|p_{ij}=1|\sum{T_i}$ is in $P$.}  
+}
+
+@article{BK99,
+  AUTHOR  = {Brucker, P. and Knust, S.},
+  TITLE   = {Complexity results for single-machine problems with
+             positive finish-start time-lags},  
+  JOURNAL = {Computing},
+  YEAR    = 1999,
+  VOLUME  = 63,
+  PAGES   = {299-316},
+  ANNOTE  = {$F|p_{ij}=1;outtree;r_i|\sum{C_i}$ is in $P$,\\
+             $F2|p_{ij}=1;prec|\sum{C_i}$ is in $P$,\\ 
+             $F|p_{ij}=1;intree;r_i|C_{\max}$ is $*\NP$-hard,\\
+             $F|p_{ij}=1;outtree|L_{\max}$ is $*\NP$-hard,\\
+             $F2|p_{ij}=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
+             $F3|p_{ij}=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
+             $F2|p_{ij}=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
+             $F3|p_{ij}=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
+             $1|outtree(l);p_i=1;r_i|\sum{C_i}$ is in $P$,\\
+             $1|prec(1);p_i=1|\sum{C_i}$ is in $P$,\\
+             $1|intree(l);p_i=1;r_i|C_{\max}$ is $*\NP$-hard,\\
+             $1|outtree(l);p_i=1|L_{\max}$ is $*\NP$-hard,\\
+             $1|chains(l)|\sum{C_i}$ is $*\NP$-hard,\\
+             $FMPT|tree;r_i;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
+             $FMPT|tree;p_{ij}=1|L_{\max}$ is $*\NP$-hard.}
+}
+
+@article{BKO06,
+  AUTHOR  = {Brucker, P. and Knust, S. and Oguz, C.},
+  TITLE   = {Scheduling chains with identical jobs and constant delays
+             on a single machine},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 63,
+     YEAR = 2006,
+   NUMBER = 1,
+    PAGES = {63-75},
+  ANNOTE  = {$1|chains(l);p_i=p|\sum{C_i}$ is in $P$.}
+}
+
+@techreport{BK04,
+  AUTHOR =       {Brucker, P. and Kravchenko, S.A.},
+  TITLE =        {Complexity of mean flow time scheduling problems with 
+                  release dates},
+  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
+                  Mathematik/Informatik},
+  YEAR =         2004,
+  TYPE =         {OSM {Reihe} P,},
+  NUMBER =       {{Heft} 251},
+  ANNOTE =       {$P|p_i=p;pmtn;r_i|\sum C_i$ is in $P$,\\
+                  $P|pmtn;r_i|\sum C_i$ is $*\NP$-hard,\\ 
+                  $O|p_{ij}=1;r_i|\sum C_i$ is in $P$.}
+}
+
+@techreport{BK04A,
+  AUTHOR =       {Brucker, P. and Kravchenko, S.A.},
+  TITLE =        {Scheduling jobs with equal processing times and time 
+                  windows on identical parallel machines},
+  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
+                  Mathematik/Informatik},
+  YEAR =         2004,
+  TYPE =         {OSM {Reihe} P,},
+  NUMBER =       {{Heft} 257},
+  ANNOTE =       {$P|p_i=p;r_i|\sum w_iC_i$ is in $P$.}
+}
+
+@techreport{BK05,
+  AUTHOR =       {Brucker, P. and Kravchenko, S.A.},
+  TITLE =        {Scheduling jobs with release times on parallel 
+                  machines to minimize total tardiness},
+  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
+                  Mathematik/Informatik},
+  YEAR =         2005,
+  TYPE =         {OSM {Reihe} P,},
+  NUMBER =       {{Heft} 258},
+  ANNOTE =       {$P|p_i=p;r_i|\sum T_i$ is in $P$.}
+}
+
+@article{BKRZ00,
+  AUTHOR  = {Brucker, P. and Knust, S. and Roper, D. and Zinder, Y.},  
+  TITLE   = {Scheduling {UET} task systems with concurrency on two
+             parallel identical processors},   
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 53,
+     YEAR = 2000,
+   NUMBER = 3,
+    PAGES = {369-387},
+  ANNOTE  = {$P2|r_i;p_i=1;size_i|\sum{C_i}$ is in $P$,\\
+             $Pm|p_i=p;size_i|\sum{w_iU_i}$ is in $P$,\\
+             $Pm|p_i=p;size_i|\sum{T_i}$ is in $P$,\\
+             $P2|chains;r_i;p_i=1;size_i|C_{\max}$ is $*\NP$-hard,\\ 
+             $P2|chains;p_i=1;size_i|L_{\max}$ is $*\NP$-hard,\\ 
+             $P2|prec;p_i=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@article{BKS97,
+   AUTHOR = {Brucker, P. and Kravchenko, S.A. and Sotskov, Y.N.},
+    TITLE = {On the complexity of two machine job-shop scheduling with
+             regular objective functions},
+  JOURNAL = {OR Spektrum},
+   VOLUME = 19,
+     YEAR = 1997,
+   NUMBER = 1,
+    PAGES = {5-10},
+   ANNOTE = {$J2|n=k|\sum{w_iU_i}$ is in $P$,\\
+             $J2|n=k|\sum{w_iT_i}$ is in $P$.} 
 }
 
 @article{BKS99,
-  AUTHOR =       {Brucker, P. and Kravchenko, S.A. and Sotskov, Y.N.},
-  TITLE =        {Preemptive job-shop scheduling problems with a fixed
-                  number of jobs},
-  JOURNAL =      {Math. Methods Oper. Res.},
-  YEAR =         1999,
-  VOLUME =       49,
-  NUMBER =       1,
-  PAGES =        {41-76},
-  ANNOTE =       {$Jm|n=k;pmtn|C_{\max}$ is in $P_{pseudo}$,\\
-                  $Jm|n=k;pmtn|\sum{C_i}$ is in $P_{pseudo}$,\\
-                  $J2|n=3;pmtn|C_{\max}$ is $\NP$-hard,\\
-                  $J2|n=3;pmtn|\sum{C_i}$ is $\NP$-hard.}
+  AUTHOR  = {Brucker, P. and Kravchenko, S.A. and Sotskov, Y.N.},
+  TITLE   = {Preemptive job-shop scheduling problems with a fixed
+             number of jobs},
+  JOURNAL = {Math. Methods Oper. Res.},
+  YEAR    = 1999,
+  VOLUME  = 49,
+  NUMBER  = 1,
+  PAGES   = {41-76},
+  ANNOTE  = {$Jm|n=k;pmtn|C_{\max}$ is in $P_{pseudo}$,\\
+             $Jm|n=k;pmtn|\sum{C_i}$ is in $P_{pseudo}$,\\
+             $J2|n=3;pmtn|C_{\max}$ is $\NP$-hard,\\
+             $J2|n=3;pmtn|\sum{C_i}$ is $\NP$-hard.}
+}
+
+@article{BKW05,
+  AUTHOR  = {Brucker, P. and Knust, S. and Wang, G.},
+  TITLE   = {Complexity results for flow-shop problems with a single server},
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 2005,
+  VOLUME  = 165,
+  NUMBER  = 2,
+  PAGES   = {398-407},
+  ANNOTE  = {$F2;S1|p_{ij}=p;s_{ij}=s;r_i|C_{\max}$ is in $P$,\\
+             $F;S1|p_{ij}=1;s_{ij}=s;r_i|C_{\max}$ is in $P$,\\
+             $F;S1|p_{ij}=p;s_{ij}=s|C_{\max}$ is in $P$,\\
+             $F2;S1|p_{ij}=p;s_{ij}=s;r_i|\sum{C_i}$ is in $P$,\\
+             $F;S1|p_{ij}=1;s_{ij}=s;r_i|\sum{C_i}$ is in $P$,\\
+             $F2;S1|p_{ij}=p|C_{\max}$ is $\NP$-hard,\\
+             $F2;S1|s_{ij}=s|C_{\max}$ is $*\NP$-hard,\\
+             $F2;S1|p_{ij}=1;r_i|L_{\max}$ is $*\NP$-hard,\\
+             $F3;S1|p_{ij}=1;r_i|L_{\max}$ is $*\NP$-hard,\\
+             $F2;S1|p_{ij}=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+             $F3;S1|p_{ij}=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+             $F2;S1|p_{ij}=1|\sum{w_iU_i}$ is $\NP$-hard,\\
+             $F3;S1|p_{ij}=1|\sum{w_iU_i}$ is $\NP$-hard,\\
+             $F2;S1|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\
+             $F3;S1|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\
+             $F2;S1|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard,\\
+             $F3;S1|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard.}
+}
+
+@article{BKW94,
+  AUTHOR  = {Br{\"a}sel, H. and Kluge, D. and Werner, F.},
+  TITLE   = {A polynomial algorithm for the $[n/m/0,\ t\sb{ij}=1, 
+             tree/{C}\sb{\max}]$ open shop problem},  
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1994,
+  VOLUME  = 72,
+  NUMBER  = 1,
+  PAGES   = {125-134},
+  ANNOTE  = {$O|p_{ij}=1;tree|C_{\max}$ is in $P$.}
+}
+
+@article{BKW95,
+   AUTHOR = {Br{\"a}sel, H. and Kluge, D. and Werner, F.},
+    TITLE = {A polynomial algorithm for an open shop problem with unit
+             processing times and tree constraints},
+  JOURNAL = {Discrete Appl. Math.},
+   VOLUME = 59,
+     YEAR = 1995,
+   NUMBER = 1,
+    PAGES = {11-21},
+   ANNOTE = {$O|p_{ij}=1;outtree|\sum{C_i}$ is in $P$,\\
+             $O2|p_{ij}=1;tree|\sum{C_i}$ is in $P$.}
+}
+
+@article{BKo96,
+   AUTHOR = {Brucker, P. and Kovalyov, M.Y.},
+    TITLE = {Single machine batch scheduling to minimize the weighted number
+             of late jobs},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 43,
+     YEAR = 1996,
+   NUMBER = 1,
+    PAGES = {1-8},
+   ANNOTE = {$1|s-batch|\sum{U_i}$ is in $P$,\\
+             $1|s-batch|\sum{w_iU_i}$ is in $P_{pseudo}$.}
 }
 
 @techreport{BKr99,
-  AUTHOR = 	 {Brucker, P. and Kravchenko, S.A.}, 
-  TITLE = 	 {Preemption can make parallel machine scheduling
-                  problems hard},  
+  AUTHOR = {Brucker, P. and Kravchenko, S.A.}, 
+  TITLE  = {Preemption can make parallel machine scheduling problems hard},  
   INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
                   Mathematik/Informatik},
-  YEAR = 	 1999,
-  TYPE =	 {OSM {Reihe} P,},
-  NUMBER =	 {{Heft} 211},
-  ANNOTE =	 {$P|p_i=p;pmtn|\sum{w_iU_i}$ is $\NP$-hard.} 
+  YEAR   = 1999,
+  TYPE   = {OSM {Reihe} P,},
+  NUMBER = {{Heft} 211},
+  ANNOTE = {$P|p_i=p;pmtn|\sum{w_iU_i}$ is $\NP$-hard.} 
+}
+
+@article{BL96,
+  AUTHOR  = {B{\l}a{\.z}ewicz, J. and Liu, Z.},
+  TITLE   = {Scheduling multiprocessor tasks with chain constraints}, 
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1996,
+  VOLUME  = 94,
+  NUMBER  = 2,
+  PAGES   = {231-241},
+  ANNOTE  = {$Pm|chains;p_i=1;size_i|C_{\max}$ is $*\NP$-hard,\\
+             $P3|chains;p_i=1;size_i|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{BLLR83,
+  AUTHOR  = {Baker, K.R. and  Lawler, E.L. and  Lenstra, J.K. and
+             Rinnooy Kan, A.H.G.}, 
+  TITLE   = {Preemptive scheduling of a single machine to minimize maximum 
+             cost subject to release dates and precedence constraints}, 
+  JOURNAL = {Oper. Res.},
+  YEAR    = 1983,
+  VOLUME  = 31,
+  PAGES   = {381-386},
+  ANNOTE  = {$1|prec;r_i;pmtn|L_{\max}$ is in $P$.}
+}
+
+@article{BLR83,
+   AUTHOR = {B{\l}a{\.z}ewicz, J. and Lenstra, J.K. and Rinnooy Kan, A.H.G.}, 
+    TITLE = {Scheduling subject to resource constraints: classification and
+             complexity},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics},
+   VOLUME = 5,
+     YEAR = 1983,
+   NUMBER = 1,
+    PAGES = {11-24},
+   ANNOTE = {$MPT2|chains;p_i=1|C_{\max}$ is $*\NP$-hard,\\
+             $MPT2|chains;p_i=1|\sum{C_i}$ is $*\NP$-hard.} 
+}
+
+@article{BT01,
+  AUTHOR  = {Baptiste, P. and Timkovsky, V.},
+  TITLE   = {On preemption redundancy in scheduling unit processing time 
+             jobs on two parallel machines},
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+  YEAR    = 2001,
+  VOLUME  = 28,
+  NUMBER  = 5,
+  PAGES   = {205-212},
+  ANNOTE  = {$P2|pmtn;outtree;r_i;p_i=1|\sum{C_i}$ is in $P$.}
+}
+
+@article{BT04,
+  AUTHOR = {Baptiste, P. and Timkovsky, V.},
+  TITLE  = {Shortest path to nonpreemptive schedules of unit-time jobs on 
+ two identical parallel machines with minimum total completion time}, 
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+     YEAR = 2004,
+   VOLUME = 60,
+   NUMBER = {1},
+  PAGES   = {145-153},
+  ANNOTE  = {$P2|p_i=1;prec;r_i|\sum{C_i}$ is in $P$,\\
+            $F2|p_{ij}=1;prec;r_i|\sum{C_i}$ is in $P$,\\
+            $1|prec(1);p_i=1;r_i|\sum{C_i}$ is in $P$.}
+}
+
+@article{CG72,
+   AUTHOR = {Coffman, Jr., E.G. and Graham, R.L.},
+    TITLE = {Optimal scheduling for two-processor systems},
+  JOURNAL = {Acta Informat.},
+   VOLUME = 1,
+     YEAR = {1971/1972},
+    PAGES = {200-213},
+   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$,\\
+             $P2|p_i=p;prec|\sum{C_i}$ is in $P$,\\
+             $O2|p_{ij}=1;prec;no-wait|C_{\max}$ is in $P$.}
+}
+
+@article{CS81,
+   AUTHOR = {Cho, Y. and Sahni, S.},
+    TITLE = {Preemptive scheduling of independent jobs with release and due
+             times on open, flow and job shops},
+  JOURNAL = {Oper. Res.},
+ FJOURNAL = {Operations Research},
+   VOLUME = 29,
+     YEAR = 1981,
+   NUMBER = 3,
+    PAGES = {511-522},
+   ANNOTE = {$O|pmtn;r_i|L_{\max}$ is in $P$,\\ 
+             $F2|pmtn|C_{\max}$ is in $P$,\\ 
+             $F2|r_i;pmtn|C_{\max}$ is $*\NP$-hard,\\
+             $F3|pmtn|C_{\max}$ is $*\NP$-hard,\\
+             $F2|pmtn|L_{\max}$ is $*\NP$-hard.}   
+}
+
+@article{CST03,
+  AUTHOR =  {Coffman, Jr., E.G. and Sethuraman, J. and Timkovsky, V.G.},
+  TITLE  =  {Ideal preemptive schedules on two processors},
+  JOURNAL = {Acta Informat.},
+   VOLUME = 39,
+     YEAR = 2003,
+    PAGES = {597-612},
+  ANNOTE =  {$P2|p_i=1;pmtn;prec|\sum{C_i}$ is in $P$,\\
+             $O2|p_{ij}=1;prec|\sum{C_i}$ is in $P$.}  
+}
+
+@article{CYMS90,
+   AUTHOR = {Coffman, Jr., E.G. and Yannakakis, M. and Magazine, M.J. and
+             Santos, C.},
+    TITLE = {Batch sizing and job sequencing on a single machine},
+  JOURNAL = {Ann. Oper. Res.},
+ FJOURNAL = {Annals of Operations Research},
+   VOLUME = 26,
+     YEAR = 1990,
+   NUMBER = {1-4},
+    PAGES = {135-147},
+   ANNOTE = {$1|s-batch|\sum{C_i}$ is in $P$.}
+}
+
+@article{DD00,
+  AUTHOR  = {Drozdowski, M. and Dell' Olmo, P.},
+  TITLE   = {Scheduling multiprocessor tasks for mean flow time criterion},
+  JOURNAL = {Comput. Oper. Res.},
+  YEAR    = 2000,
+  VOLUME  = 27,
+  NUMBER  = 6,
+  PAGES   = {571-585},
+  ANNOTE  = {$Pm|p_i=p;size_i|\sum{w_iC_i}$ is in $P$,\\
+             $P|p_i=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
 }
 
 @inproceedings{DL76,
-  AUTHOR = 	 {Davida, G.I. and Linton, D.J.},
-  TITLE = 	 {A new algorithm for the scheduling of tree
-                  structured tasks}, 
-  BOOKTITLE = 	 {Proc. Conf. Inform. Sci. and Syst.},
-  YEAR =	 1976,
-  ADDRESS =	 {Baltimore, MD},
-  PAGES =	 {543-548},
-  ANNOTE =	 {$P|p_i=p;tree|C_{\max}$ is in $P$.}
+  AUTHOR   = {Davida, G.I. and Linton, D.J.},
+  TITLE    = {A new algorithm for the scheduling of tree structured tasks}, 
+  BOOKTITLE = {Proc. Conf. Inform. Sci. and Syst.},
+  YEAR     = 1976,
+  ADDRESS  = {Baltimore, MD},
+  PAGES    = {543-548},
+  ANNOTE   = {$P|p_i=p;tree|C_{\max}$ is in $P$.}
+}
+
+@article{DKD98,
+   AUTHOR = {Dror, M. and Kubiak, W. and Dell' Olmo, P.},
+    TITLE = {Strong-weak chain constrained scheduling},
+  JOURNAL = {Ricerca Operativa},
+   VOLUME = 27,
+     YEAR = 1998,
+    PAGES = {35-49},
+   ANNOTE = {$P|p_i=1;chains;r_i|L_{\max}$ is in $P$.}
+}
+
+@article{DL89,
+   AUTHOR = {Du, J. and Leung, J.Y.-T.},
+    TITLE = {Complexity of scheduling parallel task systems},
+  JOURNAL = {SIAM J. Discrete Math.},
+ FJOURNAL = {SIAM Journal on Discrete Mathematics},
+   VOLUME = 2,
+     YEAR = 1989,
+   NUMBER = 4,
+    PAGES = {473-487},
+   ANNOTE = {$P2|size_i|C_{\max}$ is in $P_{pseudo}$,\\
+             $P3|size_i|C_{\max}$ is in $P_{pseudo}$,\\
+             $P5|size_i|C_{\max}$ is $*\NP$-hard,\\
+             $Pm|size_i|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{DL90,
+   AUTHOR = {Du, J. and Leung, J.Y.-T.},
+    TITLE = {Minimizing total tardiness on one machine is {N}{P}-hard},
+  JOURNAL = {Math. Oper. Res.},
+   VOLUME = 15,
+     YEAR = 1990,
+   NUMBER = 3,
+    PAGES = {483-495},
+   ANNOTE = {$1||\sum{T_i}$ is in $P_{pseudo}$,\\ 
+             $1||\sum{T_i}$ is $\NP$-hard,\\ 
+             $1|s-batch|\sum{T_i}$ is $\NP$-hard.}
+}
+
+@article{DL91,
+   AUTHOR = {Du, J. and Leung, J.Y.-T.},
+    TITLE = {Minimizing the number of late jobs on unrelated machines},
+  JOURNAL = {Oper. Res. Lett.},
+   VOLUME = 10,
+     YEAR = 1991,
+   NUMBER = 3,
+    PAGES = {153-158},
+   ANNOTE = {$R|pmtn;r_i|\sum{U_i}$ is $*\NP$-hard.}
+}
+
+@article{DL93,
+   AUTHOR = {Du, J. and Leung, J.Y.-T.},
+    TITLE = {Minimizing mean flow time in two-machine open shops and flow
+             shops},
+  JOURNAL = {J. Algorithms},
+   VOLUME = 14,
+     YEAR = 1993,
+   NUMBER = 1,
+    PAGES = {24-44},
+   ANNOTE = {$O2|pmtn|\sum{C_i}$ is $\NP$-hard,\\ 
+             $F2|pmtn|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+
+@article{DLLV90,
+   AUTHOR = {Dessouky, M.I. and Lageweg, B.J. and Lenstra, J.K. and van
+             de Velde, S.L.},
+    TITLE = {Scheduling identical jobs on uniform parallel machines},
+  JOURNAL = {Statist. Neerlandica},
+   VOLUME = 44,
+     YEAR = 1990,
+   NUMBER = 3,
+    PAGES = {115-123},
+   ANNOTE = {$Qm|p_i=1;r_i|\sum{C_i}$ is in $P$,\\
+             $Qm|p_i=p;r_i|\sum{C_i}$ is in $P$.}  
+}
+
+@article{DLW92,
+   AUTHOR = {Du, J. and Leung, J.Y.-T. and Wong, C.S.},
+    TITLE = {Minimizing the number of late jobs with release time
+             constraint},
+  JOURNAL = {J. Combin. Math. Combin. Comput.},
+   VOLUME = 11,
+     YEAR = 1992,
+    PAGES = {97-107},
+   ANNOTE = {$P2|pmtn;r_i|\sum{U_i}$ is $\NP$-hard.}
+}
+
+@article{DLY90,
+   AUTHOR = {Du, J. and Leung, J.Y.-T. and Young, G.H.},
+    TITLE = {Minimizing mean flow time with release time constraint},
+  JOURNAL = {Theoret. Comput. Sci.},
+   VOLUME = 75,
+     YEAR = 1990,
+   NUMBER = 3,
+    PAGES = {347-355},
+   ANNOTE = {$P2|pmtn;r_i|\sum{C_i}$ is $\NP$-hard.}
+}
+
+@article{DLY91,
+   AUTHOR = {Du, J. and Leung, J.Y.-T. and Young, G.H.},
+    TITLE = {Scheduling chain-structured tasks to minimize makespan and mean
+             flow time},
+  JOURNAL = {Inform. and Comput.},
+   VOLUME = 92,
+     YEAR = 1991,
+   NUMBER = 2,
+    PAGES = {219-236},
+   ANNOTE = {$P2|chains|C_{\max}$ is $*\NP$-hard,\\
+             $P2|chains|\sum{C_i}$ is $*\NP$-hard,\\
+             $P2|p_i=p;chains;pmtn|\sum{C_i}$ is in $P$,\\
+             $P2|p_i=1;chains;pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $P2|chains;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
+             $PMPM2|chains|C_{\max}$ is $*\NP$-hard,\\
+             $PMPM2|chains|\sum{C_i}$ is $*\NP$-hard.}  
+}
+
+@article{FL96,
+   AUTHOR = {Finta, L. and Liu, Z.},
+    TITLE = {Single machine scheduling subject to precedence delays},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
+             Optimization and Computer Science},
+   VOLUME = 70,
+     YEAR = 1996,
+   NUMBER = 3,
+    PAGES = {247-266},
+   ANNOTE = {$1|prec(1)|C_{\max}$ is in $P$.}
+}
+
+@article{G82,
+   AUTHOR = {Gabow, H.N.},
+    TITLE = {An almost-linear algorithm for two-processor scheduling},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 29,
+     YEAR = 1982,
+   NUMBER = 3,
+    PAGES = {766-780},
+   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$.}
+}
+
+@article{GG64,
+   AUTHOR = {Gilmore, P.C. and Gomory, R.E.},
+    TITLE = {Sequencing a one state-variable machine: {A} solvable case of
+             the traveling salesman problem},
+  JOURNAL = {Oper. Res.},
+ FJOURNAL = {Operations Research},
+   VOLUME = 12,
+     YEAR = 1964,
+    PAGES = {655-679},
+   ANNOTE = {$F2|no-wait|C_{\max}$ is in $P$.}
+}
+
+@article{GJ76,
+   AUTHOR = {Garey, M.R. and Johnson, D.S.},
+    TITLE = {Scheduling tasks with nonuniform deadlines on two processors},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 23,
+     YEAR = 1976,
+    PAGES = {461-467},
+   ANNOTE = {$P2|p_i=p;prec|L_{\max}$ is in $P$.}
+}
+
+@article{GJ77,
+   AUTHOR = {Garey, M.R. and Johnson, D.S.},
+    TITLE = {Two-processor scheduling with start-times and deadlines},
+  JOURNAL = {SIAM J. Comput.},
+   VOLUME = 6,
+     YEAR = 1977,
+   NUMBER = 3,
+    PAGES = {416-426},
+   ANNOTE = {$P2|p_i=1;prec;r_i|L_{\max}$ is in $P$.}
+}
+
+@article{GJ78,
+   AUTHOR = {Garey, M.R. and Johnson, D.S.},
+    TITLE = {``{S}trong'' {N}{P}-completeness results: motivation, examples,
+             and implications},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 25,
+     YEAR = 1978,
+   NUMBER = 3,
+    PAGES = {499-508},
+   ANNOTE = {$P||C_{\max}$ is $*\NP$-hard,\\ 
+             $PMPM||C_{\max}$ is $*\NP$-hard.} 
+}
+
+@article{GJ80,
+   AUTHOR = {Gonzalez, T. and Johnson, D.B.},
+    TITLE = {A new algorithm for preemptive scheduling of trees},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 27,
+     YEAR = 1980,
+   NUMBER = 2,
+    PAGES = {287-312},
+   ANNOTE = {$P|tree;pmtn|C_{\max}$ is in $P$.}
+}
+
+@article{GJS76,
+   AUTHOR = {Garey, M.R. and Johnson, D.S. and Sethi, R.},
+    TITLE = {The complexity of flowshop and jobshop scheduling},
+  JOURNAL = {Math. Oper. Res.},
+   VOLUME = 1,
+     YEAR = 1976,
+   NUMBER = 2,
+    PAGES = {117-129},
+   ANNOTE = {$F3||C_{\max}$ is $*\NP$-hard,\\ 
+             $F2||\sum{C_i}$ is $*\NP$-hard,\\ 
+             $J2||\sum{C_i}$ is $*\NP$-hard,\\
+             $FMPT2||\sum{C_i}$ is $*\NP$-hard,\\
+             $FMPM3||C_{\max}$ is $*\NP$-hard,\\
+             $FMPM2||\sum{C_i}$ is $*\NP$-hard.} 
+}
+
+@article{GS76,
+   AUTHOR = {Gonzalez, T. and Sahni, S.},
+    TITLE = {Open shop scheduling to minimize finish time},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 23,
+     YEAR = 1976,
+   NUMBER = 4,
+    PAGES = {665-679},
+   ANNOTE = {$O2||C_{\max}$ is in $P$,\\ 
+             $O3||C_{\max}$ is $\NP$-hard,\\ 
+             $OMPT|n=3|C_{\max}$ is $\NP$-hard,\\
+             $OMPT3||C_{\max}$ is $\NP$-hard,\\
+             $OMPM|n=3|C_{\max}$ is $\NP$-hard,\\
+             $OMPM3||C_{\max}$ is $\NP$-hard.}  
+}
+
+@article{GS78,
+   AUTHOR = {Gonzalez, T. and Sahni, S.},
+    TITLE = {Flowshop and jobshop schedules: complexity and approximation},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 26,
+     YEAR = 1978,
+   NUMBER = 1,
+    PAGES = {36-52},
+   ANNOTE = {$F2|pmtn|C_{\max}$ is in $P$,\\ 
+             $F2|r_i;pmtn|C_{\max}$ is $*\NP$-hard,\\ 
+             $F3|pmtn|C_{\max}$ is $*\NP$-hard,\\
+             $F2|pmtn|L_{\max}$ is $*\NP$-hard.}
+}
+
+@article{H61,
+   AUTHOR = {Hu, T.C.},
+    TITLE = {Parallel sequencing and assembly line problems},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 9,
+     YEAR = 1961,
+    PAGES = {841-848},
+   ANNOTE = {$P|p_i=p;tree|C_{\max}$ is in $P$,\\
+             $P|p_i=p;outtree|\sum{C_i}$ is in $P$,\\
+             $O|p_{ij}=1;tree;no-wait|C_{\max}$ is in $P$,\\
+             $O|p_{ij}=1;outtree;no-wait|\sum{C_i}$ is in $P$.}
+}
+
+@article{HL05,
+   AUTHOR = {Huo, Y. and Leung, J.Y.-T.},
+    TITLE = {Minimizing total completion time for {UET} tasks with
+             release time and outtree precedence constraints},
+  JOURNAL = {Math. Methods Oper. Res.},
+ FJOURNAL = {Mathematical Methods of Operations Research},
+   VOLUME = 62,
+   NUMBER = {2},
+     YEAR = 2005,
+    PAGES = {275-279},
+   ANNOTE = {$P|p_i=1;outtree;r_i|\sum{C_i}$ is in $P$,\\
+             $P|p_i=1;outtree;r_i;pmtn|\sum{C_i}$ is in $P$,\\
+             $P|p_i=p;outtree;pmtn|\sum{C_i}$ is in $P$.}
+}
+
+@article{H73,
+  AUTHOR  = {Horn, W.A.},
+  TITLE   = {Minimizing average flow time with parallel machines},
+  JOURNAL = {Oper. Res.},
+  YEAR    = 1973,
+  VOLUME  = 21,
+  PAGES   = {846-847},
+  ANNOTE  = {$R||\sum{C_i}$ is in $P$,\\ 
+             $QMPM||\sum{C_i}$ is in $P$.} 
+}
+
+@article{HK01,
+  AUTHOR  = {Hurink, J. and Knust, S.},
+  TITLE   = {Flow-shop problems with transportation times and a single robot}, 
+  JOURNAL = {Discrete Applied Mathematics},
+  YEAR    = 2001,
+  VOLUME  = 112,
+  NUMBER  = {1-3},
+  PAGES   = {199-216},
+  ANNOTE  = {$F2;R1|p_{ij}=1;t_{ik}|C_{\max}$ is in $P$,\\
+             $F2;R1|p_{ij}=p;t_i\in\{T_1,T_2\}|C_{\max}$ is in $P$,\\ 
+             $F;R1|n \ge m-1;p_{ij}=p;t_k|C_{\max}$ is in $P$,\\
+             $F2;R1|p_{ij}=p;t_i|C_{\max}$ is $*\NP$-hard,\\
+             $F2;R1|t_{ik}=T|C_{\max}$ is $*\NP$-hard.} 
+}
+
+@article{HL90,
+   AUTHOR = {Herrbach, L.A. and Leung, J.Y.-T.},
+    TITLE = {Preemptive scheduling of equal length jobs on two machines to
+             minimize mean flow time},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 38,
+     YEAR = 1990,
+   NUMBER = 3,
+    PAGES = {487-494},
+   ANNOTE = {$P2|p_i=p;pmtn;r_i|\sum{C_i}$ is in $P$.}
+}
+
+@article{HL94,
+   AUTHOR = {Hochbaum, D.S. and Landy, D.},
+    TITLE = {Scheduling with batching: minimizing the weighted number of
+             tardy jobs},
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+   VOLUME = 16,
+     YEAR = 1994,
+   NUMBER = 2,
+    PAGES = {79-86},
+   ANNOTE = {$1|p_i=p;s-batch|\sum{w_iU_i}$ is in $P$.}
+}
+
+@article{HLS77,
+   AUTHOR = {Horvath, E.C. and Lam, S. and Sethi, R.},
+    TITLE = {A level algorithm for preemptive scheduling},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 24,
+     YEAR = 1977,
+   NUMBER = 1,
+    PAGES = {32-43},
+   ANNOTE = {$Q|chains;pmtn|C_{\max}$ is in $P$.}
 }
 
 @article{HPS00,
-  AUTHOR = 	 {Hall, N. and Potts, C.N. and Sriskandarajah, C.},
-  TITLE = 	 {Parallel machine scheduling with a common server},  
-  JOURNAL =      {Discrete Appl. Math.},
- FJOURNAL =      {Discrete Applied Mathematics},
-  VOLUME =       102,
-    YEAR =       2000,
-  NUMBER =       3,
-   PAGES =       {223-243},
-  ANNOTE =	 {$P2;S1|s_i=1|\sum{C_i}$ is in $P$,\\
-                  $P;S1|p_i=1|\sum{w_iC_i}$ is in $P$,\\
-                  $P;S1|p_i=1|\sum{U_i}$ is in $P$,\\
-                  $P2;S1|s_i=1|C_{\max}$ is in $P_{pseudo}$,\\
-                  $P2;S1|p_i=1|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $P2;S1|p_i=1|\sum{T_i}$ is in $P_{pseudo}$,\\
-                  $P2;S1|s_i=s|C_{\max}$ is $*\NP$-hard,\\
-                  $P2;S1|s_i=1|L_{\max}$ is $*\NP$-hard,\\
-                  $P2;S1|s_i=s|\sum{C_i}$ is $*\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{T_i}$ is $\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{w_iT_i}$ is $*\NP$-hard.}
+  AUTHOR  = {Hall, N. and Potts, C.N. and Sriskandarajah, C.},
+  TITLE   = {Parallel machine scheduling with a common server},  
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics},
+  VOLUME  = 102,
+    YEAR  = 2000,
+  NUMBER  = 3,
+   PAGES  = {223-243},
+  ANNOTE  = {$P2;S1|s_i=1|\sum{C_i}$ is in $P$,\\
+             $P;S1|p_i=1|\sum{w_iC_i}$ is in $P$,\\
+             $P;S1|p_i=1|\sum{U_i}$ is in $P$,\\
+             $P2;S1|s_i=1|C_{\max}$ is in $P_{pseudo}$,\\
+             $P2;S1|p_i=1|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+             $P2;S1|p_i=1|\sum{T_i}$ is in $P_{pseudo}$,\\
+             $P2;S1|s_i=s|C_{\max}$ is $*\NP$-hard,\\
+             $P2;S1|s_i=1|L_{\max}$ is $*\NP$-hard,\\
+             $P2;S1|s_i=s|\sum{C_i}$ is $*\NP$-hard,\\
+             $P2;S1|p_i=1|\sum{w_iU_i}$ is $\NP$-hard,\\
+             $P2;S1|p_i=1|\sum{T_i}$ is $\NP$-hard,\\
+             $P2;S1|p_i=1|\sum{w_iT_i}$ is $*\NP$-hard.}
+}
+
+@article{HVV94,
+   AUTHOR = {Hoogeveen, J.A. and van de Velde, S.L. and Veltman, B.},
+    TITLE = {Complexity of scheduling multiprocessor tasks with prespecified
+             processor allocations},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
+             Optimization and Computer Science},
+   VOLUME = 55,
+     YEAR = 1994,
+   NUMBER = 3,
+    PAGES = {259-272},
+   ANNOTE = {$MPT2||C_{\max}$ is in $P$,\\ 
+             $MPT|p_i=1|C_{\max}$ is $*\NP$-hard,\\ 
+             $MPT2|chains;p_i=1|C_{\max}$ is $*\NP$-hard,\\ 
+             $MPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
+             $MPT3||C_{\max}$ is $*\NP$-hard,\\ 
+             $MPT2||L_{\max}$ is $*\NP$-hard,\\ 
+             $MPT|p_i=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $MPT2||\sum{C_i}$ is $*\NP$-hard,\\
+             $MPT2|chains;p_i=1|\sum{C_i}$ is $*\NP$-hard.}
 }
 
 @article{J54,
-  AUTHOR = 	 {Johnson, S.M.},
-  TITLE = 	 {Optimal Two-and-Three-Stage Production Schedules
-                  with Set-up Times included},
-  JOURNAL = 	 {Naval Res. Logist. Quart.},
-  YEAR = 	 1954,
-  VOLUME =	 1,
-  PAGES =	 {61-68},
-  ANNOTE =	 {$F2||C_{\max}$ is in $P$,\\ 
-                  $F2|t_k|C_{\max}$ is in $P$,\\
-                  $F2|t_{ik}=T|C_{\max}$ is in $P$.} 
+  AUTHOR  = {Johnson, S.M.},
+  TITLE   = {Optimal Two-and-Three-Stage Production Schedules with 
+             Set-up Times included},
+  JOURNAL = {Naval Res. Logist. Quart.},
+  YEAR    = 1954,
+  VOLUME  = 1,
+  PAGES   = {61-68},
+  ANNOTE  = {$F2||C_{\max}$ is in $P$,\\ 
+             $F2|t_k|C_{\max}$ is in $P$,\\
+             $F2|t_{ik}=T|C_{\max}$ is in $P$.} 
 }
 
-@phdthesis{K99,
-  AUTHOR = 	 {Knust, S.},
-  TITLE = 	 {Shop-scheduling problems with transportation},
-  SCHOOL = 	 {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR = 	 1999,
-  ANNOTE =	 {$O2|p_{ij}=1;t_{kl}|C_{\max}$ is in $P$,\\
-                  $F2;R1|p_{ij}=p;t_k;r_i|\sum{w_iC_i}$ is in $P$,\\ 
-                  $F2;R1|p_{ij}=p;t_k;r_i|\sum{w_iU_i}$ is in $P$,\\ 
-                  $F2;R1|p_{ij}=p;t_k;r_i|\sum{T_i}$ is in $P$,\\ 
-                  $F2;R1|p_{ij}=p;t_k|\sum{w_iT_i}$ is in $P$,\\ 
-                  $F3;R1|p_{ij}=p;t_{ik};r_i|C_{\max}$ is $*\NP$-hard,\\ 
-                  $F2;R1|p_{ij}=1;t_i;r_i|L_{\max}$ is $*\NP$-hard,\\ 
-                  $F3;R1|p_{ij}=1;t_{ik};r_i|L_{\max}$ is $*\NP$-hard,\\ 
-                  $F3;R1|p_{ij}=p;t_{ik}|L_{\max}$ is $*\NP$-hard,\\ 
-                  $F2;R1|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $F3;R1|p_{ij}=1;t_{ik};r_i|\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $F2;R1|p_{ij}=1;t_i|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $F3;R1|p_{ij}=1;t_{ik}|\sum{w_iU_i}$ is $\NP$-hard,\\ 
-                  $F2;R1|p_{ij}=1;t_i|\sum{T_i}$ is $\NP$-hard,\\ 
-                  $F3;R1|p_{ij}=1;t_{ik}|\sum{T_i}$ is $\NP$-hard,\\ 
-                  $F2;R1|p_{ij}=1;t_i|\sum{w_iT_i}$ is $*\NP$-hard,\\ 
-                  $F3;R1|p_{ij}=1;t_{ik}|\sum{w_iT_i}$ is $*\NP$-hard.}
+@article{J95,
+   AUTHOR = {Jurisch, B.},
+    TITLE = {Lower bounds for the job-shop scheduling problem on
+             multi-purpose machines},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
+             Optimization and Computer Science},
+   VOLUME = 58,
+     YEAR = 1995,
+   NUMBER = 2,
+    PAGES = {145-156},
+   ANNOTE = {$JMPM|prec;r_i;n=2|L_{\max}$ is in $P$,\\
+             $JMPM2|n=3|C_{\max}$ is in $P_{pseudo}$,\\
+             $OMPM|p_{ij}=1|C_{\max}$ is in $P_{pseudo}$,\\
+             $JMPM2|n=3|C_{\max}$ is $\NP$-hard.}
+}
+
+@incollection{K72,
+   AUTHOR = {Karp, R.M.},
+    TITLE = {Reducibility among combinatorial problems},
+BOOKTITLE = {Complexity of computer computations (Proc. Sympos., IBM Thomas
+             J. Watson Res. Center, Yorktown Heights, N.Y., 1972)},
+    PAGES = {85-103},
+PUBLISHER = {Plenum},
+  ADDRESS = {New York},
+     YEAR = 1972,
+   ANNOTE = {$1||\sum{w_iU_i}$ is $P_{pseudo}$,\\ 
+             $1||\sum{w_iU_i}$ is $\NP$-hard,\\ 
+             $1|s-batch|\sum{w_iU_i}$ is $\NP$-hard.}   
+}
+
+@inproceedings{K88,
+  AUTHOR  = {Kubiak, W.},
+  TITLE   = {Exact and approximate algorithms for scheduling unit
+             time tasks with tree-like precedence constraints},
+  BOOKTITLE = {Abstracts EURO IX - TIMS XXVIII Paris, 195},
+  YEAR    = 1988,
+  ANNOTE  = {$Q|p_i=1;chains|C_{\max}$ is $*\NP$-hard,\\
+             $Q|p_i=p;chains|C_{\max}$ is $*\NP$-hard,\\
+             $QMPM|chains;p_i=1|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{K89,
+   AUTHOR = {Kubiak, W.},
+    TITLE = {A pseudo-polynomial algorithm for a two-machine no-wait
+             job-shop scheduling problem},
+  JOURNAL = {European J. Oper. Res.},
+   VOLUME = 43,
+     YEAR = 1989,
+   NUMBER = 3,
+    PAGES = {267-270},
+   ANNOTE = {$J2|p_{ij}=1;no-wait|C_{\max}$ is in $P_{pseudo}$.}
+}
+
+@article{K91,
+   AUTHOR = {Kise, H.},
+    TITLE = {On an automated two-machine flowshop scheduling problem with
+             infinite buffer},
+  JOURNAL = {J. Oper. Res. Soc. Japan},
+ FJOURNAL = {Journal of the Operations Research Society of Japan},
+   VOLUME = 34,
+     YEAR = 1991,
+   NUMBER = 3,
+    PAGES = {354-361},
+   ANNOTE = {$F2;R1|t_{ik}=T|C_{\max}$ is $\NP$-hard.}
 }
 
 @phdthesis{K95,
-  AUTHOR = 	 {Kr{\"a}mer, A.}, 
-  TITLE = 	 {Scheduling multiprocessortasks on dedicated
-                  processors},
-  SCHOOL = 	 {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR = 	 1995,
-  ANNOTE =	 {$FMPTm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-                  $FMPTm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
-                  $OMPT|prec;r_i;p_{ij}=1;n=2|\sum{w_iU_i}$ is in $P$,\\ 
-                  $OMPTm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
-                  $OMPT|prec;r_i;p_{ij}=1;n=2|\sum{w_iT_i}$ is in $P$,\\ 
-                  $OMPTm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\ 
-                  $FMPT|n=3|C_{\max}$ is $\NP$-hard.}
+  AUTHOR = {Kr{\"a}mer, A.}, 
+  TITLE  = {Scheduling multiprocessortasks on dedicated processors},
+  SCHOOL = {Universit{\"a}t Osnabr{\"u}ck, Fachbereich Mathematik/Informatik},
+  YEAR   = 1995,
+  ANNOTE = {$FMPTm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
+            $FMPTm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\
+            $OMPT|prec;r_i;p_{ij}=1;n=2|\sum{w_iU_i}$ is in $P$,\\ 
+            $OMPTm|prec;r_i;n=k|\sum{w_iU_i}$ is in $P$,\\
+            $OMPT|prec;r_i;p_{ij}=1;n=2|\sum{w_iT_i}$ is in $P$,\\ 
+            $OMPTm|prec;r_i;n=k|\sum{w_iT_i}$ is in $P$,\\ 
+            $FMPT|n=3|C_{\max}$ is $\NP$-hard.}
+}
+
+@phdthesis{K99,
+  AUTHOR = {Knust, S.},
+  TITLE  = {Shop-scheduling problems with transportation},
+  SCHOOL = {Universit{\"a}t Osnabr{\"u}ck, Fachbereich Mathematik/Informatik},
+  YEAR   = 1999,
+  ANNOTE = {$O2|p_{ij}=1;t_{kl}|C_{\max}$ is in $P$,\\
+            $F2;R1|p_{ij}=p;t_k;r_i|\sum{w_iC_i}$ is in $P$,\\ 
+            $F2;R1|p_{ij}=p;t_k;r_i|\sum{w_iU_i}$ is in $P$,\\ 
+            $F2;R1|p_{ij}=p;t_k;r_i|\sum{T_i}$ is in $P$,\\ 
+            $F2;R1|p_{ij}=p;t_k|\sum{w_iT_i}$ is in $P$,\\ 
+            $F3;R1|p_{ij}=p;t_{ik};r_i|C_{\max}$ is $*\NP$-hard,\\ 
+            $F2;R1|p_{ij}=1;t_i;r_i|L_{\max}$ is $*\NP$-hard,\\ 
+            $F3;R1|p_{ij}=1;t_{ik};r_i|L_{\max}$ is $*\NP$-hard,\\ 
+            $F3;R1|p_{ij}=p;t_{ik}|L_{\max}$ is $*\NP$-hard,\\ 
+            $F2;R1|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $F3;R1|p_{ij}=1;t_{ik};r_i|\sum{C_i}$ is $*\NP$-hard,\\ 
+            $F2;R1|p_{ij}=1;t_i|\sum{w_iU_i}$ is $\NP$-hard,\\
+            $F3;R1|p_{ij}=1;t_{ik}|\sum{w_iU_i}$ is $\NP$-hard,\\ 
+            $F2;R1|p_{ij}=1;t_i|\sum{T_i}$ is $\NP$-hard,\\ 
+            $F3;R1|p_{ij}=1;t_{ik}|\sum{T_i}$ is $\NP$-hard,\\ 
+            $F2;R1|p_{ij}=1;t_i|\sum{w_iT_i}$ is $*\NP$-hard,\\ 
+            $F3;R1|p_{ij}=1;t_{ik}|\sum{w_iT_i}$ is $*\NP$-hard.}
 }
 
 @article{K99a,
   AUTHOR =  {Kravchenko, S.A.},
-  TITLE =  {Minimizing the number of late jobs for the
+  TITLE  =  {Minimizing the number of late jobs for the
              two-machine unit-time job-shop scheduling problem},
   JOURNAL = {Discrete Appl. Math.},
  FJOURNAL = {Discrete Applied Mathematics},
@@ -1768,565 +1343,919 @@ PUBLISHER = {Springer-Verlag},
              $JMPM2|p_{ij}=1|\sum{w_iU_i}$ is $\NP$-hard.}
 }
 
-@article{Kr98,
-  AUTHOR = 	 {Kravchenko, S.A.},
-  TITLE = 	 {A polynomial algorithm for a two-machine no-wait
-                  job-shop scheduling problem},
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1998,
-  VOLUME =	 106,
-  PAGES =        {101-107},
-  ANNOTE =	 {$J2|p_{ij}=1;no-wait|\sum{C_i}$ is in $P$.}
+@article{KSZ91,
+  AUTHOR  = {Kubiak, W. and Sriskandarajah, C. and Zaras, K.},
+  TITLE   = {A note on the complexity of openshop scheduling problems}, 
+  JOURNAL = {INFOR},
+  YEAR    = 1991,
+  VOLUME  = 29,
+  NUMBER  = 4,
+  PAGES   = {284-294},
+  ANNOTE  = {$O|p_{ij}=1;no-wait|\sum{w_iU_i}$ is in $P$,\\
+             $O2|no-wait|\sum{C_i}$ is $*\NP$-hard.}
 }
 
-@article{LC99,
-  AUTHOR = 	 {Lee, C.-Y. and Cai, X.},
-  TITLE = 	 {Scheduling  one and two-processor tasks on two parallel 
-                  processors},
-  JOURNAL =      {IIE Transactions on Scheduling and Logistics},
-  YEAR =         1999,
-  VOLUME =       31,
-  PAGES =        {445-455},
-  ANNOTE =       {$P2|r_i;p_i=p;size_i|C_{\max}$ is in $P$,\\
-                  $P2|p_i=p;size_i|\sum{w_iC_i}$ is in $P$,\\
-                  $P2|r_i;size_i|C_{\max}$ is $*\NP$-hard,\\
-                  $P2|size_i|L_{\max}$ is $*\NP$-hard,\\
-                  $P2|size_i|\sum{C_i}$ is $\NP$-hard,\\
-                  $P2|size_i|\sum{w_iC_i}$ is $*\NP$-hard.} 
+@article{KT96,
+  AUTHOR  = {Kubiak, W. and Timkovsky, V.G.},
+  TITLE   = {A polynomial-time algorithm for total completion time 
+            minimization in two-machine job-shop with unit-time operations},  
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1996,
+  VOLUME  = 94,
+  PAGES   = {310-320},
+  ANNOTE  = {$J2|p_{ij}=1|\sum{C_i}$ is in $P$.}
+}
+
+@article{KW97,
+   AUTHOR = {Kravchenko, S.A. and Werner, F.},
+    TITLE = {Parallel machine scheduling problems with a single server},
+  JOURNAL = {Math. Comput. Modelling},
+ FJOURNAL = {Mathematical and Computer Modelling},
+   VOLUME = 26,
+     YEAR = 1997,
+   NUMBER = 12,
+    PAGES = {1-11},
+   ANNOTE = {$P2;S1|s_i=1|C_{\max}$ is in $P_{pseudo}$.}
+}
+
+@article{Kr98,
+  AUTHOR  = {Kravchenko, S.A.},
+  TITLE   = {A polynomial algorithm for a two-machine no-wait
+             job-shop scheduling problem},
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1998,
+  VOLUME  = 106,
+  PAGES   = {101-107},
+  ANNOTE  = {$J2|p_{ij}=1;no-wait|\sum{C_i}$ is in $P$.}
 }
 
 @article{Kr99,
-  AUTHOR = {Kravchenko, S.A.},
-  TITLE = {On the complexity of minimizing the number of late
+  AUTHOR  = {Kravchenko, S.A.},
+  TITLE   = {On the complexity of minimizing the number of late
              jobs in unit time open shops},
- JOURNAL = {Discrete Appl. Math.},
+ JOURNAL  = {Discrete Appl. Math.},
  FJOURNAL = {Discrete Applied Mathematics},
-  VOLUME = 100,
-    YEAR = 1999,
-  NUMBER = 2,
-   PAGES = {127-132},
-  ANNOTE = {$O|p_{ij}=1;r_i|\sum{U_i}$ is $*\NP$-hard,\\
+  VOLUME  = 100,
+    YEAR  = 1999,
+  NUMBER  = 2,
+   PAGES  = {127-132},
+  ANNOTE  = {$O|p_{ij}=1;r_i|\sum{U_i}$ is $*\NP$-hard,\\
              $OMPT|r_i;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\
              $OMPM|r_i;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard.}
 }
 
-@article{KT96,
-  AUTHOR = 	 {Kubiak, W. and Timkovsky, V.G.},
-  TITLE = 	 {A polynomial-time algorithm for total completion
-                  time minimization in two-machine job-shop with
-                  unit-time operations},  
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1996,
-  VOLUME =	 94,
-  PAGES =	 {310-320},
-  ANNOTE =	 {$J2|p_{ij}=1|\sum{C_i}$ is in $P$.}
+@misc{L,
+  AUTHOR = {Lenstra, J.K.},
+  HOWPUBLISHED = {Not published},
+  ANNOTE = {$1|chains;r_i;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
+            $P|p_i=1;intree;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $P||\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $P|intree;pmtn;r_i|C_{\max}$ is $*\NP$-hard,\\
+            $R2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
+            $P|outtree;pmtn|L_{\max}$ is $*\NP$-hard,\\
+            $P|pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $O||C_{\max}$ is $*\NP$-hard,\\
+            $O2|p_{ij}=1;intree|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $O2|p_{ij}=1;outtree|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $O2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
+            $O2|chains;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
+            $O2|pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $F2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
+            $J3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
+            $J2|pmtn|\sum{C_i}$ is $*\NP$-hard,\\
+            $JMPT3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
+            $OMPT||C_{\max}$ is $*\NP$-hard,\\
+            $PMPM||\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $JMPM3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
+            $OMPM||C_{\max}$ is $*\NP$-hard.}
 }
 
-@inproceedings{K88,
-  AUTHOR = 	 {Kubiak, W.},
-  TITLE = 	 {Exact and approximate algorithms for scheduling unit
-                  time tasks with tree-like precedence constraints},
-  BOOKTITLE = 	 {Abstracts EURO IX - TIMS XXVIII Paris, 195},
-  YEAR =	 1988,
-  ANNOTE =	 {$Q|p_i=1;chains|C_{\max}$ is $*\NP$-hard,\\
-         	  $Q|p_i=p;chains|C_{\max}$ is $*\NP$-hard,\\
-                  $QMPM|chains;p_i=1|C_{\max}$ is $*\NP$-hard.}
+@article{L73,
+  AUTHOR  = {Lawler, E.L.},
+  TITLE   = {Optimal sequencing of a single machine subject to
+             precedence constraints}, 
+  JOURNAL = {Management Sci.},
+  YEAR    = 1973,
+  VOLUME  = 19,
+  PAGES   = {544-546},
+  ANNOTE  = {$1|prec;r_i|C_{\max}$ is in $P$,\\ 
+             $1|prec|L_{\max}$ is in $P$.}  
+}
+
+@article{L77,
+   AUTHOR = {Lawler, E.L.},
+    TITLE = {A ``pseudopolynomial'' algorithm for sequencing jobs to
+             minimize total tardiness},
+BOOKTITLE = {Studies in integer programming (Proc. Workshop, Bonn, 1975)},
+  JOURNAL = {Ann. of Discrete Math.},
+   VOLUME = 1,
+    PAGES = {331-342},
+PUBLISHER = {North-Holland},
+  ADDRESS = {Amsterdam},
+     YEAR = 1977,
+   ANNOTE = {$1||\sum{T_i}$ is in $P_{pseudo}$,\\ 
+             $1||\sum{T_i}$ is $\NP$-hard,\\ 
+             $1||\sum{w_iT_i}$ is $*\NP$-hard.}
+}
+
+@article{L78,
+   AUTHOR = {Lawler, E.L.},
+    TITLE = {Sequencing jobs to minimize total weighted completion time
+             subject to precedence constraints},
+  JOURNAL = {Ann. Discrete Math.},
+   VOLUME = 2,
+     YEAR = 1978,
+    PAGES = {75-90},
+   ANNOTE = {$1|sp-graph|\sum{w_iC_i}$ is in $P$,\\ 
+             $1|prec|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $1|prec;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $1|prec;s-batch|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@techreport{L79,
+  AUTHOR  = {Lawler, E.L.},
+  TITLE   = {Preemptive scheduling of uniform parallel machines
+             to minimize the weighted number of late jobs},
+  INSTITUTION =  {Centre for Mathematics and Computer Science},
+  YEAR    = 1979,
+  TYPE    = {{Report BW}},
+  NUMBER  = 105,
+  ADDRESS = {Amsterdam},
+  ANNOTE  = {$Qm|pmtn|\sum{U_i}$ is in $P$,\\
+             $Qm|pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.}
+}
+
+@article{L81,
+   AUTHOR = {Lloyd, E.L.},
+    TITLE = {Concurrent task systems},
+  JOURNAL = {Oper. Res.},
+ FJOURNAL = {Operations Research. The Journal of the Operations Research
+             Society of America},
+   VOLUME = 29,
+     YEAR = 1981,
+   NUMBER = 1,
+    PAGES = {189-201},
+   ANNOTE = {$P2|prec;p_i=p;size_i|C_{\max}$ is in $P$,\\
+             $P|p_i=1;size_i|C_{\max}$ is $*\NP$-hard.}
+}
+
+@inproceedings{L82,
+  AUTHOR = {Lawler, E.L.},
+  TITLE  = {Preemptive scheduling of precedence-constrained jobs
+            on parallel machines}, 
+  BOOKTITLE = {Deterministic and stochastic scheduling, Proceedings
+               of the NATO Advanced Study and Research Institute on
+               Theoretical Approaches to Scheduling Problems held
+               in Durham, July 6--17, 1981},
+  EDITOR = {Dempster, M.A.H. and Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+  VOLUME = 84,
+  SERIES = {NATO Advanced Study Institute Series C: Mathematical
+            and Physical Sciences}, 
+  YEAR   = 1982,
+  PUBLISHER = {D. Reidel Publishing Co.},
+  ADDRESS = {Dordrecht},
+  PAGES   = {101-123},
+  ANNOTE  = {$P|outtree;pmtn;r_i|C_{\max}$ is in $P$,\\
+             $P|intree;pmtn|L_{\max}$ is in $P$,\\
+             $Q2|prec;pmtn;r_i|L_{\max}$ is in $P$.}
+}
+
+@incollection{L83,
+   AUTHOR = {Lawler, E.L.},
+    TITLE = {Recent results in the theory of machine scheduling},
+BOOKTITLE = {Mathematical programming: the state of the art (Bonn, 1982)},
+   EDITOR = {Bachem, A. and Groetschel, M. and Korte, B.},
+    PAGES = {202-234},
+PUBLISHER = {Springer},
+  ADDRESS = {Berlin},
+     YEAR = 1983,
+   ANNOTE = {$P|pmtn|\sum{U_i}$ is $\NP$-hard.}
+}
+
+@article{L90,
+   AUTHOR = {Lawler, E.L.},
+    TITLE = {A dynamic programming algorithm for preemptive scheduling of a
+             single machine to minimize the number of late jobs},
+  JOURNAL = {Ann. Oper. Res.},
+   VOLUME = 26,
+     YEAR = 1990,
+   NUMBER = {1-4},
+    PAGES = {125-133},
+   ANNOTE = {$1|r_i;pmtn|\sum{U_i}$ is in $P$,\\ 
+             $1|r_i;pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.}  
+}
+
+@article{LB85,
+   AUTHOR = {Liu, C.Y. and Bulfin, R.L.},
+    TITLE = {On the complexity of preemptive open-shop scheduling problems},
+  JOURNAL = {Oper. Res. Lett.},
+   VOLUME = 4,
+     YEAR = 1985,
+   NUMBER = 2,
+    PAGES = {71-74},
+   ANNOTE = {$O3|pmtn|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@article{LB88,
+   AUTHOR = {Liu, C.Y. and Bulfin, R.L.},
+    TITLE = {Scheduling open shops with unit execution times to minimize
+             functions of due dates},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 36,
+     YEAR = 1988,
+   NUMBER = 4,
+    PAGES = {553-559},
+   ANNOTE = {$O|p_{ij}=1|\sum{U_i}$ is in $P$,\\
+             $O|p_{ij}=1|\sum{T_i}$ is in $P$.} 
+}
+
+@article{LC99,
+  AUTHOR  = {Lee, C.-Y. and Cai, X.},
+  TITLE   = {Scheduling  one and two-processor tasks on two parallel 
+             processors},
+  JOURNAL = {IIE Transactions on Scheduling and Logistics},
+  YEAR    = 1999,
+  VOLUME  = 31,
+  PAGES   = {445-455},
+  ANNOTE  = {$P2|r_i;p_i=p;size_i|C_{\max}$ is in $P$,\\
+             $P2|p_i=p;size_i|\sum{w_iC_i}$ is in $P$,\\
+             $P2|r_i;size_i|C_{\max}$ is $*\NP$-hard,\\
+             $P2|size_i|L_{\max}$ is $*\NP$-hard,\\
+             $P2|size_i|\sum{C_i}$ is $\NP$-hard,\\
+             $P2|size_i|\sum{w_iC_i}$ is $*\NP$-hard.} 
+}
+
+@article{LL78,
+   AUTHOR = {Lawler, E.L. and Labetoulle, J.},
+    TITLE = {On preemptive scheduling of unrelated parallel processors by
+             linear programming},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 25,
+     YEAR = 1978,
+   NUMBER = 4,
+    PAGES = {612-619},
+   ANNOTE = {$R|pmtn;r_i|L_{\max}$ is in $P$.}
+}
+
+
+@incollection{LLLR84,
+   AUTHOR = {Labetoulle, J. and Lawler, E.L. and Lenstra, J.K. and Rinnooy
+             Kan, A.H.G.},
+    TITLE = {Preemptive scheduling of uniform machines subject to release
+             dates},
+BOOKTITLE = {Progress in combinatorial optimization (Waterloo, Ont., 1982)},
+    PAGES = {245-261},
+PUBLISHER = {Academic Press},
+  ADDRESS = {Toronto, Ont.},
+     YEAR = 1984,
+   ANNOTE = {$1|r_i;pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $Q|pmtn|\sum{C_i}$ is in $P$,\\
+             $P2|pmtn;r_i|\sum{w_iC_i}$ is $*\NP$-hard.} 
+}
+
+@article{LLR81,
+   AUTHOR = {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+    TITLE = {Minimizing maximum lateness in a two-machine open shop},
+  JOURNAL = {Math. Oper. Res.},
+   VOLUME = 6,
+     YEAR = 1981,
+   NUMBER = 1,
+    PAGES = {153-158},
+   ANNOTE = {$O2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
+             $O2||L_{\max}$ is $*\NP$-hard,\\ 
+             $O2|pmtn|\sum{U_i}$ is $\NP$-hard,\\ 
+             $OMPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
+             $OMPT2||L_{\max}$ is $*\NP$-hard,\\
+             $OMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\
+             $OMPM2||L_{\max}$ is $*\NP$-hard.} 
+}
+
+@article{LLR82,
+   AUTHOR = {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+    TITLE = {Erratum: ``{M}inimizing maximum lateness in a two-machine open
+             shop''\ [{M}ath. {O}per. {R}es. {\bf 6} (1981), no. 1, 153-158]},
+  JOURNAL = {Math. Oper. Res.},
+   VOLUME = 7,
+     YEAR = 1982,
+   NUMBER = 4,
+    PAGES = 635,
+   ANNOTE = {$O2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
+             $O2||L_{\max}$ is $*\NP$-hard,\\ 
+             $O2|pmtn|\sum{U_i}$ is $\NP$-hard,\\ 
+             $OMPT2|r_i|C_{\max}$ is $*\NP$-hard,\\
+             $OMPT2||L_{\max}$ is $*\NP$-hard,\\
+             $OMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\
+             $OMPM2||L_{\max}$ is $*\NP$-hard.} 
 }
 
 @book{LLRS89,
-  AUTHOR = 	 {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan,
-                  A.H.G. and Shmoys, D.B.},
-  TITLE = 	 {Sequencing and Scheduling: Algorithmus and
-                  Complexity}, 
-  PUBLISHER = 	 {CWI},
-  YEAR = 	 1989,
-  VOLUME =	 4,
-  SERIES =	 {Operations Research and Managment Science},
-  ADDRESS =	 {Amsterdam},
-  ANNOTE =	 {$Qm|r_i|C_{\max}$ is in $P_{pseudo}$,\\
-                  $Qm||\sum{w_iC_i}$ is in $P_{pseudo}$,\\
-                  $Qm||\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $Pm|pmtn|\sum{w_iC_i}$ is in $P_{pseudo}$.}
+  AUTHOR  = {Lawler, E.L. and Lenstra, J.K. and Rinnooy Kan, A.H.G. and 
+             Shmoys, D.B.},
+  TITLE   = {Sequencing and Scheduling: Algorithmus and Complexity}, 
+  PUBLISHER = {CWI},
+  YEAR    = 1989,
+  VOLUME  = 4,
+  SERIES  = {Operations Research and Managment Science},
+  ADDRESS = {Amsterdam},
+  ANNOTE  = {$Qm|r_i|C_{\max}$ is in $P_{pseudo}$,\\
+             $Qm||\sum{w_iC_i}$ is in $P_{pseudo}$,\\
+             $Qm||\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+             $Pm|pmtn|\sum{w_iC_i}$ is in $P_{pseudo}$.}
 }
 
-@misc{L,
-  AUTHOR =	 {Lenstra, J.K.},
-  HOWPUBLISHED = {Not published},
-  ANNOTE =	 {$1|chains;r_i;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
-                  $P|p_i=1;intree;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $P||\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $P|intree;pmtn;r_i|C_{\max}$ is $*\NP$-hard,\\
-                  $R2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
-                  $P|outtree;pmtn|L_{\max}$ is $*\NP$-hard,\\
-                  $P|pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O||C_{\max}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;intree|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;outtree|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
-                  $O2|chains;pmtn|\sum{C_i}$ is $*\NP$-hard,\\
-                  $O2|pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $F2|chains;pmtn|C_{\max}$ is $*\NP$-hard,\\
-                  $J3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
-                  $J2|pmtn|\sum{C_i}$ is $*\NP$-hard,\\
-                  $JMPT3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
-                  $OMPT||C_{\max}$ is $*\NP$-hard,\\
-                  $PMPM||\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $JMPM3|p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
-                  $OMPM||C_{\max}$ is $*\NP$-hard.}
+@article{LM69,
+  AUTHOR  = {Lawler, E.L. and  Moore, J.M.},
+  TITLE   = {A functional equation and its application to
+             resource allocation and sequencing problems}, 
+  JOURNAL = {Management Sci.},
+  YEAR    = 1969,
+  VOLUME  = 16,
+  PAGES   = {77-84},
+  ANNOTE  = {$1||\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+             $1||\sum{w_iU_i}$ is $\NP$-hard.} 
 }
 
-@misc{Lu,
-  AUTHOR =	 {Lushchakova, I.},
-  HOWPUBLISHED = {Not published},
-  ANNOTE =	 {$O2|outtree;p_{ij}=1;r_i|\sum{C_i}$ is in $P$.}
+@article{LM89,
+   AUTHOR = {Lawler, E.L. and Martel, C.U.},
+    TITLE = {Preemptive scheduling of two uniform machines to minimize the
+             number of late jobs},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 37,
+     YEAR = 1989,
+   NUMBER = 2,
+    PAGES = {314-318},
+   ANNOTE = {$Qm|pmtn|\sum{U_i}$ is in $P$,\\ 
+             $Qm|pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$.} 
 }
 
-
-@article{DD00,
-  AUTHOR =       {Drozdowski, M. and Dell' Olmo, P.},
-  TITLE =        {Scheduling multiprocessor tasks for mean flow time criterion},
-  JOURNAL =      {Comput. Oper. Res.},
-  YEAR =         2000,
-  VOLUME =       27,
-  NUMBER =	 6,
-  PAGES =        {571-585},
-  ANNOTE =       {$Pm|p_i=p;size_i|\sum{w_iC_i}$ is in $P$,\\
-                  $P|p_{ij}=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
+@article{LR78,
+   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+    TITLE = {Complexity of scheduling under precedence constraints},
+  JOURNAL = {Oper. Res.},
+   VOLUME = 26,
+     YEAR = 1978,
+   NUMBER = 1,
+    PAGES = {22-35},
+   ANNOTE = {$1|prec|\sum{C_i}$ is $*\NP$-hard,\\
+             $1|prec;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $P|p_i=1;prec|\sum{C_i}$ is $*\NP$-hard,\\
+             $O|p_{ij}=1;prec;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $PMPM|prec;p_i=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $FMPM|prec;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $OMPM|prec;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $1|prec;s-batch|\sum{C_i}$ is $*\NP$-hard.}
 }
 
-@article{MT99,
-  AUTHOR = 	 {Middendorf, M. and Timkovsky, V.G.},
-  TITLE = 	 {Transversal graphs for partially ordered sets:
-                  sequencing, merging and scheduling problems},
-  JOURNAL =      {J. Comb. Optim.},
- FJOURNAL =      {Journal of Combinatorial Optimization},
-  YEAR =         1999,
-  VOLUME =       3,
-  NUMBER =	 4,
-  PAGES =        {417-435},
-  ANNOTE =	 {$J|prec;r_i;n=k|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $J|prec;r_i;n=k|\sum{w_iT_i}$ is in $P_{pseudo}$,\\
-                  $J|prec;r_i;n=k;pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $J|prec;r_i;n=k;pmtn|\sum{w_iT_i}$ is in $P_{pseudo}$.}
+@article{LR79,
+   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+    TITLE = {Computational complexity of discrete optimization problems},
+  JOURNAL = {Ann. Discrete Math.},
+   VOLUME = 4,
+     YEAR = 1979,
+    PAGES = {121-140},
+   ANNOTE = {$J2||C_{\max}$ is $*\NP$-hard,\\ 
+             $J3|p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
+             $J2|pmtn|C_{\max}$ is $*\NP$-hard,\\ 
+             $JMPM3|p_{ij}=1|C_{\max}$ is $*\NP$-hard.} 
 }
 
-@article{BL96,
-  AUTHOR = 	 {B{\l}a{\.z}ewicz, J. and Liu, Z.},
-  TITLE = 	 {Scheduling multiprocessor tasks with chain
-                  constraints}, 
-  JOURNAL = 	 {European J. Oper. Res.},
-  YEAR = 	 1996,
-  VOLUME =	 94,
-  NUMBER =	 2,
-  PAGES =	 {231-241},
-  ANNOTE =       {$Pm|chains;p_i=1;size_i|C_{\max}$ is $*\NP$-hard,\\
-                  $P3|chains;p_i=1;size_i|C_{\max}$ is $*\NP$-hard.}
+@article{LR80,
+   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G.},
+    TITLE = {Complexity results for scheduling chains on a single machine},
+  JOURNAL = {European J. Oper. Res.},
+   VOLUME = 4,
+     YEAR = 1980,
+   NUMBER = 4,
+    PAGES = {270-275},
+   ANNOTE = {$1|chains;p_i=1;r_i|\sum{w_iC_i}$ ins $*\NP$-hard,\\
+             $1|chains;p_i=1|\sum{U_i}$ is $*\NP$-hard,\\
+             $P2|p_i=1;intree|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $P2|p_i=1;outtree|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $PMPM2|intree;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $PMPM2|outtree;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $1|chains;p_i=1;s-batch|\sum{U_i}$ is $*\NP$-hard.}
 }
 
-@misc{see:assign,
-    KEY =        {see assign},
-  TITLE =	 {see: Assignment Problem},
-  ANNOTE =	 {$1|p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
-                  $1|p_i=p|\sum{w_iT_i}$ is in $P$,\\
-                  $P|p_i=p|\sum{w_iU_i}$ is in $P$,\\
-                  $P|p_i=p|\sum{w_iT_i}$ is in $P$,\\
-                  $P;S1|s_i=s;p_i=p|\sum{w_iU_i}$ is in $P$,\\
-                  $P;S1|s_i=1;p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
-                  $P;S1|s_i=s;p_i=p|\sum{w_iT_i}$ is in $P$,\\
-                  $Q|p_i=p;r_i|C_{\max}$ is in $P$,\\
-                  $Q|p_i=p|\sum{w_iU_i}$ is in $P$,\\ 
-                  $Q|p_i=p|\sum{w_iT_i}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=s|\sum{w_iU_i}$ is in $P$,\\
-                  $F;S1|p_{ij}=1;s_{ij}=s|\sum{w_iU_i}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=s|\sum{w_iT_i}$ is in $P$,\\
-                  $F;S1|p_{ij}=1;s_{ij}=s|\sum{w_iT_i}$ is in $P$.}
+@article{LRB77,
+   AUTHOR = {Lenstra, J.K. and Rinnooy Kan, A.H.G. and Brucker, P.},
+    TITLE = {Complexity of machine scheduling problems},
+BOOKTITLE = {Studies in integer programming (Proc. Workshop, Bonn, 1975)},
+  JOURNAL = {Ann. of Discrete Math.},
+   VOLUME = 1,
+    PAGES = {343-362},
+PUBLISHER = {North-Holland},
+  ADDRESS = {Amsterdam},
+     YEAR = 1977,
+   ANNOTE = {$1|r_i|L_{\max}$ is $*\NP$-hard,\\ 
+             $1|r_i|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $1||\sum{w_iT_i}$ is $*\NP$-hard,\\
+             $P2||C_{\max}$ is $\NP$-hard,\\ 
+             $F2|chains|C_{\max}$ is $*\NP$-hard,\\ 
+             $F2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
+             $F2||L_{\max}$ is $*\NP$-hard,\\
+             $PMPM2||C_{\max}$ is $\NP$-hard,\\ 
+             $FMPM2||C_{\max}$ is $\NP$-hard,\\ 
+             $FMPM2|chains|C_{\max}$ is $*\NP$-hard,\\ 
+             $FMPM2|r_i|C_{\max}$ is $*\NP$-hard,\\ 
+             $FMPM2||L_{\max}$ is $*\NP$-hard,\\
+             $1|s-batch;r_i|L_{\max}$ is $*\NP$-hard,\\
+             $1|s-batch;r_i|\sum{C_i}$ is $*\NP$-hard.}
 }
 
-@misc{see:earliest-start,
-    KEY =        {see earliest-start},
-  TITLE =        {see: Earliest Start Schedule},
-  ANNOTE =       {$1|prec;p_i=p;p-batch|\sum{w_iU_i}$ is in $P$,\\
-                  $1|prec;p_i=p;p-batch|\sum{w_iT_i}$ is in $P$.}
+@article{LVW84,
+   AUTHOR = {Leung, J.Y.-T. and Vornberger, O. and Witthoff, J.D.},
+    TITLE = {On some variants of the bandwidth minimization problem},
+  JOURNAL = {SIAM J. Comput.},
+ FJOURNAL = {SIAM Journal on Computing},
+   VOLUME = 13,
+     YEAR = 1984,
+   NUMBER = 3,
+    PAGES = {650-667},
+   ANNOTE = {$F|p_{ij}=1;prec|C_{\max}$ is $*\NP$-hard,\\
+             $1|prec(l);p_i=1|C_{\max}$ is $*\NP$-hard.} 
 }
 
-@misc{see:networkflow,
-    KEY =        {see networkflow},
-  TITLE =	 {see: Network Flow Problem},
-  ANNOTE =	 {$P|p_i=1;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $P|p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
-                  $O|p_{ij}=1;r_i|L_{\max}$ is in $P$.}
+@article{LY90,
+  AUTHOR  = {Leung, J.Y.-T. and  Young, G.H.},
+  TITLE   = {Minimizing total tardiness on a single machine with
+             precedence constraints}, 
+  JOURNAL = {ORSA J. Comput.},
+  YEAR    = 1990,
+  VOLUME  = 2,
+  NUMBER  = 4,
+  PAGES   = {346-352},
+  ANNOTE  = {$1|chains;p_i=1|\sum{T_i}$ is $*\NP$-hard,\\
+             $1|chains;p_i=1;s-batch|\sum{T_i}$ is $*\NP$-hard.}
 }
 
-@misc{see:parallel,
-    KEY =        {see parallel},
-  TITLE =        {see: Parallel Machine Problem},
-  ANNOTE =       {$1|tree;p_i=p;p-batch;b<n|C_{\max}$ is in $P$,\\
-                  $1|outtree;p_i=p;p-batch;r_i;b<n|C_{\max}$ is in $P$,\\
-                  $1|intree;p_i=p;p-batch;b<n|L_{\max}$ is in $P$,\\
-                  $1|p_i=1;p-batch;chains;r_i;b<n|L_{\max}$ is in $P$,\\
-                  $1|p_i=1;p-batch;outtree;r_i;b<n|\sum{C_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;tree;b<n|\sum{C_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;b<n|\sum{w_iT_i}$ is in $P$,\\
-	          $1|p_i=1;p-batch;r_i;b<n|\sum{w_iT_i}$ is in $P$,\\
-                  $1|intree;p_i=1;p-batch;r_i;b<n|C_{\max}$ is $*\NP$-hard,\\
-                  $1|prec;p_i=1;p-batch;b<n|C_{\max}$ is $*\NP$-hard,\\
-                  $1|outtree;p_i=1;p-batch;b<n|L_{\max}$ is $*\NP$-hard,\\
-                  $1|prec;p_i=1;p-batch;b<n|\sum{C_i}$ is $*\NP$-hard,\\
-                  $1|intree;p_i=1;p-batch;r_i;b<n|\sum{C_i}$ is $*\NP$-hard,\\
-                  $1|chains;p_i=1;p-batch;b<n|\sum{w_iC_i}$ is $*\NP$-hard.}
+@article{LY90a,
+   AUTHOR = {Leung, J.Y.-T. and Young, G.H.},
+    TITLE = {Preemptive scheduling to minimize mean weighted flow time},
+  JOURNAL = {Inform. Process. Lett.},
+   VOLUME = 34,
+     YEAR = 1990,
+   NUMBER = 1,
+    PAGES = {47-50},
+   ANNOTE = {$P|p_i=p;pmtn;r_i|\sum{w_iC_i}$ is $*\NP$-hard.}
 }
 
-@misc{see:single,
-    KEY =        {see single},
-  TITLE =	 {see: Single Machine Problem},
-  ANNOTE =	 {$P2|r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $P2|p_i=1;chains;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $P2|p_i=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
-                  $P2|p_i=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
-                  $P2|pmtn|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $F|p_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $F|p_{ij}=1;r_i|\sum{w_iT_i}$ is in $P$,\\
-                  $FMPT2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\
-                  $FMPT2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\
-                  $PMPM2|r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $PMPM2|chains;p_i=1;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $PMPM2|chains;p_i=1|\sum{U_i}$ is $*\NP$-hard,\\ 
-                  $PMPM2|chains;p_i=1|\sum{T_i}$ is $*\NP$-hard,\\ 
-                  $FMPM2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\ 
-                  $FMPM2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\ 
-                  $F|p_{ij}=1;t_k;r_i|\sum{w_iU_i}$ is in $P$,\\ 
-                  $F|p_{ij}=1;t_k;r_i|\sum{w_iT_i}$ is in $P$,\\ 
-                  $P2;S1|p_i=1|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
-                  $P2;S1|p_i=1|\sum{T_i}$ is in $P_{pseudo}$,\\
-                  $P2;S1|p_i=1;r_i|L_{\max}$ is $*\NP$-hard,\\
-                  $P2;S1|p_i=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{T_i}$ is $\NP$-hard,\\
-                  $P2;S1|p_i=1|\sum{w_iT_i}$ is $*\NP$-hard,\\    
-                  $1|p-batch;r_i;b<n|\sum{C_i}$ is $*\NP$-hard,\\
-                  $1|chains;p_i=1;p-batch;b<n|\sum{U_i}$ is $*\NP$-hard,\\   
-                  $1|chains;p_i=1;p-batch;b<n|\sum{T_i}$ is $*\NP$-hard,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{w_iC_i}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{T_i}$ is in $P$.} 
+@article{L06,
+  AUTHOR  = {Lushchakova, I.},
+  TITLE   = {Two machine preemptive scheduling problem with release dates, 
+             equal processing times and precedence constraints},
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 2006,
+  VOLUME  = 171,
+  NUMBER  = 1,
+  PAGES   = {107-122},
+  ANNOTE = {$P2|pmtn;outtree;p_i=p;r_i|\sum{C_i}$ is in $P$,\\
+            $O2|outtree;p_{ij}=1;r_i|\sum{C_i}$ is in $P$.}
 }
 
-@techreport{T93,
-  AUTHOR = 	 {Timkovsky, V.G.},
-  TITLE = 	 {The complexity of unit-time job-shop scheduling},
-  INSTITUTION =  {{Dept. of Comp. Sc. and systems, McMaster
-                  Univ. Hamilton}}, 
-  YEAR = 	 1993,
-  TYPE =	 {{Technical Report}},
-  NUMBER =	 {93-09},
-  ANNOTE =	 {$J2|p_{ij}=1;r_i|\sum{C_i}$ is $\NP$-hard,\\
-                  $J2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
-                  $J2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\
-                  $J2|p_{ij}=1;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $J2|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\
-                  $J2|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard,\\
-                  $J2|p_{ij}=1;r_i;no-wait|L_{\max}$ is $*\NP$-hard,\\
-                  $J2|chains;p_{ij}=1;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $J2|p_{ij}=1;r_i;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $J2|p_{ij}=1;no-wait|\sum{w_iC_i}$ is $\NP$-hard,\\ 
-                  $J2|p_{ij}=1;no-wait|\sum{w_iT_i}$ is $*\NP$-hard,\\ 
-                  $JMPT2|r_i;p_{ij}=1|\sum{C_i}$ is $\NP$-hard,\\ 
-                  $JMPT2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $JMPT2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\ 
-                  $JMPT2|r_i;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $JMPM2|r_i;p_{ij}=1|\sum{C_i}$ is $\NP$-hard,\\ 
-                  $JMPM2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
-                  $JMPM2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\ 
-                  $JMPM2|r_i;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $JMPM2|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\ 
-                  $JMPM2|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard.}  
+@article{M59,
+   AUTHOR = {McNaughton, R.},
+    TITLE = {Scheduling with deadlines and loss functions},
+  JOURNAL = {Management Sci.},
+   VOLUME = 6,
+     YEAR = 1959,
+    PAGES = {1-12},
+   ANNOTE = {$P|p_i=p;pmtn|\sum{w_iC_i}$ is in $P$,\\
+             $Pm|pmtn|\sum{w_iC_i}$ is in $P_{pseudo}$.}
 }
 
-@techreport{T98,
-  AUTHOR = 	 {Timkovsky, V.G.},
-  TITLE = 	 {Identical parallel machines vs. unit-time shops,
-                  preemptions vs. chains, and other offsets in
-                  scheduling complexity},
-  INSTITUTION =  {{Dept. of Comp. Sc. and Systems, McMaster
-                  Univ. Hamilton}},
-  YEAR = 	 1998,
-  TYPE =	 {{Technical Report}},
-  ANNOTE =	 {$F|p_{ij}=1;prec|C_{\max}$ is $*\NP$-hard,\\
-                  $P2|chains;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $P2|p_i=p;chains;pmtn|\sum{C_i}$ is in $P$,\\
-                  $P2|chains;p_i=1;pmtn|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $O|p_{ij}=1;outtree;r_i|C_{\max}$ is $*\NP$-hard,\\
-                  $O|p_{ij}=1;prec|C_{\max}$ is $*\NP$-hard,\\
-                  $O|p_{ij}=1;outtree|L_{\max}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;chains;|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;chains;|\sum{U_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;|\sum{U_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;chains;|\sum{T_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;|\sum{T_i}$ is $*\NP$-hard,\\ 
-                  $O|p_{ij}=1;r_i;no-wait|\sum{C_i}$ is in $P$,\\
-                  $O2|p_{ij}=1;chains;r_i;no-wait|C_{\max}$ is in $P$,\\
-                  $O2|p_{ij}=1;chains;r_i;no-wait|\sum{C_i}$ is in $P$,\\ 
-                  $O2|p_{ij}=1;prec;no-wait|\sum{C_i}$ is in $P$,\\ 
-                  $Om|p_{ij}=1;r_i;no-wait|\sum{w_iC_i}$ is in $P$,\\ 
-                  $Om|p_{ij}=1;r_i;no-wait|\sum{T_i}$ is in $P$,\\ 
-                  $O2|p_{ij}=1;chains;no-wait|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;no-wait|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;chains;no-wait|\sum{U_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;no-wait|\sum{U_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;chains;no-wait|\sum{T_i}$ is $*\NP$-hard,\\
-                  $O3|p_{ij}=1;chains;no-wait|\sum{T_i}$ is $*\NP$-hard,\\ 
-                  $FMPT|prec;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPT|prec;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPT|tree;r_i;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPT|tree;p_{ij}=1|L_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPT2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $OMPT2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\ 
-                  $OMPT2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\
-                  $PMPM2|chains;p_i=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $OMPM|outtree;r_i;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPM|prec;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPM|outtree;p_{ij}=1|L_{\max}$ is $*\NP$-hard,\\ 
-                  $OMPM2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
-                  $OMPM2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\ 
-                  $OMPM2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\ 
-                  $1|prec(l);p_i=1|C_{\max}$ is $*\NP$-hard.}
+@article{M68,
+  AUTHOR  = {Moore, J.M.},
+  TITLE   = {An $n$ job, one machine sequencing algorithm for
+             minimizing the number of late jobs}, 
+  JOURNAL = {Management Sci.},
+  YEAR    = 1968,
+  VOLUME  = 15,
+  PAGES   = {102-109},
+  ANNOTE  = {$1||\sum{U_i}$ is in $P$.}
 }
 
-@article{TW97,
-  AUTHOR = {Tautenhahn, T. and  Woeginger, G.J.},
-  TITLE = {Minimizing the total completion time in a unit-time open shop with 
-	     release times},
-  JOURNAL = {Oper. Res. Lett.},
- FJOURNAL = {Operations Research Letters},
-  YEAR = 1997,
-  VOLUME = 20,
-  NUMBER = 5,
-  PAGES = {207-212},
-  ANNOTE = {$Om|p_{ij}=1;r_i|\sum{C_i}$ is in $P$.}
+@article{M70,
+  AUTHOR  = {Maxwell, W.L.},
+  TITLE   = {On sequencing $n$ jobs on one machine to minimize
+             the number of late jobs}, 
+  JOURNAL = {Management Sci.},
+  YEAR    = 1970,
+  VOLUME  = 16,
+  PAGES   = {295-29},
+  ANNOTE  = {$1||\sum{U_i}$ is in $P$.}
+}
+
+@article{M82,
+  AUTHOR  = {Monma, C.L.},
+  TITLE   = {Linear-time algorithms for scheduling on parallel processors}, 
+  JOURNAL = {Oper. Res.},
+  YEAR    = 1982,
+  VOLUME  = 30,
+  PAGES   = {116-124},
+  ANNOTE  = {$P|p_i=1;intree|L_{\max}$ is in $P$.} 
+}
+
+@phdthesis{M92,
+  AUTHOR = {Meyer, W.},
+  TITLE  = {Geometrische Methoden zur L{\"o}sung von Job-Shop
+            Problemen und deren Verallgemeinerungen},
+  SCHOOL = {Universit{\"a}t Osnabr{\"u}ck, Fachbereich Mathematik/Informatik},
+  YEAR   = 1992,
+  ANNOTE = {$JMPM2|n=3|C_{\max}$ is in $P_{pseudo}$,\\
+            $JMPM2|n=3|C_{\max}$ is $\NP$-hard.}
+}
+
+@article{MC70,
+   AUTHOR = {Muntz, R.R. and Coffman, Jr., E.G.},
+    TITLE = {Preemptive scheduling of real-time tasks on multiprocessor
+             systems},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 17,
+     YEAR = 1970,
+    PAGES = {324-338},
+   ANNOTE = {$P|tree;pmtn|C_{\max}$ is in $P$.}
 }
 
 @article{MS03,
-  AUTHOR = {Munier, A. and  Sourd, F.},
-  TITLE = {Scheduling chains on a single machine with non-negative time lags},
+  AUTHOR  = {Munier, A. and  Sourd, F.},
+  TITLE   = {Scheduling chains on a single machine with non-negative time lags},
   JOURNAL = {Math. Methods Oper. Res.},
  FJOURNAL = {Mathematical Methods of Operations Research},
    VOLUME = 57,
      YEAR = 2003,
    NUMBER = 1,
     PAGES = {111-123},
-  ANNOTE = {$1|chains(l);p_i=p|C_{\max}$ is in $P$,\\
-             $1|chains(1);p_i=p|\sum{C_i}$ is in $P$.}
+  ANNOTE  = {$1|chains(l);p_i=p|C_{max}$ is in $P$,\\
+             $1|chains(1);p_i=p|\sum C_i$ is in $P$.}
+}
+
+@article{MT99,
+  AUTHOR  = {Middendorf, M. and Timkovsky, V.G.},
+  TITLE   = {Transversal graphs for partially ordered sets:
+             sequencing, merging and scheduling problems},
+  JOURNAL = {J. Comb. Optim.},
+ FJOURNAL = {Journal of Combinatorial Optimization},
+  YEAR    = 1999,
+  VOLUME  = 3,
+  NUMBER  = 4,
+  PAGES   = {417-435},
+  ANNOTE  = {$J|prec;r_i;n=k|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+             $J|prec;r_i;n=k|\sum{w_iT_i}$ is in $P_{pseudo}$,\\
+             $J|prec;r_i;n=k;pmtn|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+             $J|prec;r_i;n=k;pmtn|\sum{w_iT_i}$ is in $P_{pseudo}$.}
 }
 
 @article{NCY02,
-  AUTHOR = 	 {Ng, C.T. and Cheng, T.C.E. and Yuan, J.J.},
-  TITLE = 	 {A note on the single machine serial batching scheduling problem to
-                  minimize maximum lateness with precedence constraints}, 
-  JOURNAL = 	 {Operations Research Letters},
-  YEAR = 	 2002,
-  VOLUME =	 30,
-  PAGES =	 {66-68},
-  ANNOTE =       {$1|prec;s-batch|L_{\max}$ is in $P$.}
+  AUTHOR  = {Ng, C.T. and Cheng, T.C.E. and Yuan, J.J.},
+  TITLE   = {A note on the single machine serial batching scheduling problem to
+             minimize maximum lateness with precedence constraints}, 
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+  YEAR    = 2002,
+  VOLUME  = 30,
+  PAGES   = {66-68},
+  ANNOTE  = {$1|prec;s-batch|L_{\max}$ is in $P$.}
+}
+
+@article{R84,
+   AUTHOR = {R{\"o}ck, H.},
+    TITLE = {Some new results in flow shop scheduling},
+  JOURNAL = {Z. Oper. Res. Ser. A-B},
+   VOLUME = 28,
+     YEAR = 1984,
+   NUMBER = 1,
+    PAGES = {1-16},
+   ANNOTE = {$F2|r_i;no-wait|C_{\max}$ is $*\NP$-hard,\\
+             $F2|no-wait|L_{\max}$ is $*\NP$-hard,\\  
+             $F2|no-wait|\sum{C_i}$ is $*\NP$-hard,\\
+             $J2|no-wait|\sum{C_i}$ is $*\NP$-hard.} 
+}
+
+@article{R84a,
+   AUTHOR = {R{\"o}ck, H.},
+    TITLE = {The three-machine no-wait flow shop is {N}{P}-complete},
+  JOURNAL = {J. Assoc. Comput. Mach.},
+   VOLUME = 31,
+     YEAR = 1984,
+   NUMBER = 2,
+    PAGES = {336-345},
+   ANNOTE = {$F3|no-wait|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{RR72,
+  AUTHOR  = {Reddi, S.S. and Ramamoorthy, C.V.},
+  TITLE   = {On the flow-shop sequencing problem with no wait in process}, 
+  JOURNAL = {Operational Res. Quart.},
+  YEAR    = 1972,
+  VOLUME  = 23,
+  PAGES   = {323-331},
+  ANNOTE  = {$F2|no-wait|C_{\max}$ is in $P$.}
 }
 
 
-@article{BHK02,
-  AUTHOR = {Brucker, P. and Hurink, J. and Knust, S.},
-  TITLE = {A polynomial algorithm for ${P}|p_j=1, r_j, 
-              outtree|\sum{C}_j$},
-  JOURNAL = {Math. Methods Oper. Res.},
- FJOURNAL = {Mathematical Methods of Operations Research},
-   VOLUME = 56,
-     YEAR = 2002,
-   NUMBER = 3,
-    PAGES = {407-412},
-   ANNOTE = {$P|p_i=1;outtree;r_i|\sum{C_i}$ is in $P$,\\
-             $P|p_i=1;outtree;r_i;pmtn|\sum{C_i}$ is in $P$,\\
-             $P|p_i=p;outtree;pmtn|\sum{C_i}$ is in $P$.}
-}
-
-@article{BHH03,
-  AUTHOR =       {Brucker, P. and Heitmann, S. and Hurink, J.},
-  TITLE =        {How useful are preemptive schedules?},
-  JOURNAL =      {Oper. Res. Lett.},
-   VOLUME =      31,
-     YEAR =      2003,
-   NUMBER =      {},
-    PAGES =      {129-136},
-  ANNOTE =       {$P|p_i=1;pmtn;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $P2|p_i=1;pmtn;r_i|\sum{w_iT_i}$ is in $P$.}  
-}
-
-@techreport{BCKS01,
-  AUTHOR =       {Brucker, P. and Cheng, T.C.E. and Knust, S. and Shakhlevich, N.V.},
-  TITLE =        {Complexity results for shop problems with transportation delays},
-  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR =         2001,
-  TYPE =         {OSM {Reihe} P,},
-  NUMBER =       {{Heft} 228},
-  ANNOTE =	 {$F|p_{ij}=1;t_i|\sum{C_i}$ is in $P$,\\
-                  $F2|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $F2|p_{ij}=1;t_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;t_{ikl}=T;r_i|C_{\max}$ is in $P$,\\
-                  $O2|p_{ij}=1;t_{kl}|C_{\max}$ is in $P$,\\
-                  $O2|p_{ij}=1;t_{kl}|\sum{w_iC_i}$ is in $P$,\\
-                  $O2|p_{ij}=1;t_{ikl}=T|\sum{U_i}$ is in $P$,\\
-                  $O2|p_{ij}=1;t_i;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $O2|p_{ij}=1;t_i|\sum{w_iC_i}$ is $*\NP$-hard.}
-}
-
-@techreport{BBKT02,
-  AUTHOR =       {Baptiste, P. and Brucker, P. and Knust, S. and Timkovsky, V.},
-  TITLE =        {Fourteen notes on equal-execution-time scheduling},
-  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR =         2002,
-  TYPE =         {OSM {Reihe} P,},
-  NUMBER =       {{Heft} 246},
-  ANNOTE =	 {$J|prec;r_i;n=k;no-wait|\sum{w_iU_i}$ is in $P$,\\
-                  $J|prec;r_i;n=k;no-wait|\sum{w_iT_i}$ is in $P$,\\
-                  $1|prec;r_i;p_i=p;pmtn|\sum{C_i}$ is in $P$,\\
-                  $1|p_i=p;p-batch;r_i|\sum{w_iT_i}$ is in $P$,\\
-                  $1|p-batch;r_i|\sum{w_iT_i}$ is in $P_{pseudo}$,\\ 
-                  $1|p-batch;r_i|\sum{w_iU_i}$ is in $P_{pseudo}$,\\ 
-                  $Pm|p_i=p;intree|\sum{C_i}$ is in $P$,\\
-                  $Pm|p_i=p;tree|\sum{C_i}$ is in $P$,\\   
-                  $Pm|p_i=p;r_i|\sum{w_iU_i}$ is in $P$,\\
-                  $P|p_i=1;chains;r_i|L_{\max}$ is in $P$,\\
-                  $P|p_i=p;pmtn|\sum{C_i}$ is in $P$,\\   
-                  $Q|p_i=p;pmtn|\sum{U_i}$ is in $P$,\\
-                  $P2|p_i=1;chains;pmtn|\sum{U_i}$ is $*\NP$-hard,\\
-                  $O|p_{ij}=1;chains;r_i|L_{\max}$ is in $P$,\\  
-                  $Om|p_{ij}=1;intree;no-wait|\sum{C_i}$ is in $P$,\\ 
-                  $Om|p_{ij}=1;r_i;no-wait|\sum{w_iU_i}$ is in $P$,\\ 
-                  $F3;R1|p_{ij}=1;t_k;r_i|C_{\max}$ is in $P$,\\
-                  $F3;R1|p_{ij}=1;t_k|L_{\max}$ is in $P$.}  
+@article{RR92,
+   AUTHOR = {Rayward-Smith, V.J. and Rebaine, D.},
+    TITLE = {Open shop scheduling with delays},
+  JOURNAL = {RAIRO Inform. Th\'eor. Appl.},
+ FJOURNAL = {RAIRO Informatique Th\'eorique et Applications. Theoretical
+             Informatics and Applications},
+   VOLUME = 26,
+     YEAR = 1992,
+   NUMBER = 5,
+    PAGES = {439-447},
+   ANNOTE = {$O|p_{ij}=1;t_{ikl}=T|C_{\max}$ is in $P$,\\
+             $O|p_{ij}=1;t_{kl}=t_{lk}|C_{\max}$ is $*\NP$-hard.}
 }
 
 @inproceedings{S01,
-  AUTHOR = 	 {Sitters, R.A.},
-  TITLE = 	 {Two {N}{P}-hardness results for preemptive minsum scheduling
-                  of unrelated parallel machines},
-  BOOKTITLE = 	 {Proc. 8th International IPCO Conference, 
-                  Lecture Notes in Computer Science},
-  PUBLISHER =    {Springer},
-  YEAR =	 2001,
-  PAGES =      {396-405},
-  ANNOTE =	 {$R|pmtn|\sum{C_i}$ is $*\NP$-hard,\\
-                  $R|pmtn|\sum{U_i}$ is $*\NP$-hard.}
+  AUTHOR = {Sitters, R.A.},
+  TITLE  = {Two {N}{P}-hardness results for preemptive minsum scheduling
+            of unrelated parallel machines},
+  BOOKTITLE = {Proc. 8th International IPCO Conference, 
+               Lecture Notes in Computer Science},
+  PUBLISHER = {Springer},
+  YEAR    = 2001,
+  PAGES   = {396-405},
+  ANNOTE  = {$R|pmtn|\sum{C_i}$ is $*\NP$-hard,\\
+             $R|pmtn|\sum{U_i}$ is $*\NP$-hard.}
 }
 
-@techreport{B01,
-  AUTHOR =       {Baptiste, P.},
-  TITLE =        {Scheduling multiprocessor tasks to minimize makespan and total completion time},
-  INSTITUTION =  {Universite de Technologie de Compiegne, France},
-  YEAR =         2001,
-  TYPE =         {{Technical Report}},
-  NUMBER =       {},
-  ANNOTE =       {$Pm|r_i;p_i=p;size_i|C_{\max}$ is in $P$,\\
-                  $Pm|r_i;p_i=p;size_i|\sum{C_i}$ is in $P$.}
+@inproceedings{S73,
+   AUTHOR = {Sidney, J.B.},
+    TITLE = {An extension of {M}oore's due date algorithm},
+BOOKTITLE = {Symposium on the Theory of Scheduling and its Applications
+             (North Carolina State Univ., Raleigh, N. C., 1972)},
+    PAGES = {393-398. Lecture Notes in Economics and Mathematical Systems,
+             Vol. 86},
+     NOTE = {Incorporating the results of discussion by Hamilton Emmons and
+             John Rau},
+PUBLISHER = {Springer},
+  ADDRESS = {Berlin},
+     YEAR = 1973,
+   ANNOTE = {$1||\sum{U_i}$ is in $P$.}
 }
 
-@techreport{B01b,
-  AUTHOR =       {Baptiste, P.},
-  TITLE =        {A note on scheduling tall/small multiprocessor tasks with unit
-                  processing time to minimize maximum tardiness},
-  INSTITUTION =  {IBM T.J. Watson Research Center, New York},
-  YEAR =         2001,
-  TYPE =         {{Technical Report}}, 
-  ANNOTE =       {$P2|r_i;p_i=1;size_i|L_{\max}$ is in $P$.}
+@article{S76,
+   AUTHOR = {Sethi, R.},
+    TITLE = {Scheduling graphs on two processors},
+  JOURNAL = {SIAM J. Comput.},
+   VOLUME = 5,
+     YEAR = 1976,
+   NUMBER = 1,
+    PAGES = {73-82},
+   ANNOTE = {$P2|p_i=p;prec|C_{\max}$ is in $P$.}
 }
 
-@techreport{B02,
-  AUTHOR =       {Baptiste, P.},
-  TITLE =        {On preemption redundancy},
-  INSTITUTION =  {IBM T.J. Watson Research Center, New York},
-  YEAR =         2002,
-  TYPE =         {{Technical Report}}, 
-  ANNOTE =       {$P|p_i=1;pmtn;r_i|\sum{w_iT_i}$ is in $P$.}  
+@incollection{S78,
+   AUTHOR = {Simons, B.},
+    TITLE = {A fast algorithm for single processor scheduling},
+BOOKTITLE = {19th Annual Symposium on Foundations of Computer Science (Ann
+             Arbor, Mich., 1978)},
+    PAGES = {246-252},
+PUBLISHER = {IEEE},
+  ADDRESS = {Long Beach, Calif.},
+     YEAR = 1978,
+   ANNOTE = {$1|prec;p_i=p;r_i|L_{\max}$ is in $P$.}
 }
 
-@techreport{CST02,
-  AUTHOR =       {Coffman, Jr., E.G. and Sethuraman, J. and Timkovsky, V.G.},
-  TITLE =        {Ideal preemptive schedules on two processors},
-  INSTITUTION =  {Columbia University},
-  YEAR =         2002,
-  TYPE =         {{Technical Report}}, 
-  ANNOTE =       {$P2|p_i=1;pmtn;prec|\sum{C_i}$ is in $P$,\\
-                  $O2|p_{ij}=1;prec|\sum{C_i}$ is in $P$.}  
+@article{S83,
+   AUTHOR = {Simons, B.},
+    TITLE = {Multiprocessor scheduling of unit-time jobs with arbitrary
+             release times and deadlines},
+  JOURNAL = {SIAM J. Comput.},
+   VOLUME = 12,
+     YEAR = 1983,
+   NUMBER = 2,
+    PAGES = {294-299},
+   ANNOTE = {$1|prec;p_i=p;r_i|\sum{C_i}$ is in $P$,\\
+             $P|p_i=p;r_i|L_{\max}$ in in $P$,\\
+             $P|p_i=p;r_i|\sum{C_i}$ is in $P$,\\
+             $O|p_{ij}=1;r_i;no-wait|L_{\max}$ is in $P$.}   
 }
 
-@techreport{BKW01,
-  AUTHOR =       {Brucker, P. and Knust, S. and Wang, G.},
-  TITLE =        {Complexity results for flow-shop problems with a
-	          single server},
-  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR =         2001,
-  TYPE =         {OSM {Reihe} P,},
-  NUMBER =       {{Heft} 237},
-  ANNOTE =       {$F2;S1|p_{ij}=p;s_{ij}=s;r_i|C_{\max}$ is in $P$,\\
-                  $F;S1|p_{ij}=1;s_{ij}=s;r_i|C_{\max}$ is in $P$,\\
-                  $F;S1|p_{ij}=p;s_{ij}=s|C_{\max}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p;s_{ij}=s;r_i|\sum{C_i}$ is in $P$,\\
-                  $F;S1|p_{ij}=1;s_{ij}=s;r_i|\sum{C_i}$ is in $P$,\\
-                  $F2;S1|p_{ij}=p|C_{\max}$ is $\NP$-hard,\\
-                  $F2;S1|s_{ij}=s|C_{\max}$ is $*\NP$-hard,\\
-                  $F2;S1|p_{ij}=1;r_i|L_{\max}$ is $*\NP$-hard,\\
-                  $F3;S1|p_{ij}=1;r_i|L_{\max}$ is $*\NP$-hard,\\
-                  $F2;S1|p_{ij}=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $F3;S1|p_{ij}=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
-                  $F2;S1|p_{ij}=1|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $F3;S1|p_{ij}=1|\sum{w_iU_i}$ is $\NP$-hard,\\
-                  $F2;S1|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\
-                  $F3;S1|p_{ij}=1|\sum{T_i}$ is $\NP$-hard,\\
-                  $F2;S1|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard,\\
-                  $F3;S1|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard.}
+@article{S91,
+  AUTHOR  = {Sotskov, Y.N.},
+  TITLE   = {The complexity of shop-scheduling problems with two
+             or three jobs}, 
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1991,
+  VOLUME  = 53,
+  NUMBER  = 3,
+  PAGES   = {326-336},
+  ANNOTE  = {$J|prec;r_i;n=2|\sum{w_iU_i}$ is in $P$,\\
+             $J|prec;r_i;n=2|\sum{w_iT_i}$ is in $P$,\\
+             $J|prec;r_i;n=2;pmtn|\sum{w_iU_i}$ is in $P$,\\
+             $J|prec;r_i;n=2;pmtn|\sum{w_iT_i}$ is in $P$.} 
 }
 
-@techreport{BKO03,
-  AUTHOR =       {Brucker, P. and Knust, S. and Oguz, C.},
-  TITLE =        {Scheduling chains with identical jobs and constant delays
-	          on a single machine},
-  INSTITUTION =  {Universit{\"a}t Osnabr{\"u}ck, Fachbereich
-                  Mathematik/Informatik},
-  YEAR =         2003,
-  TYPE =         {OSM {Reihe} P,},
-  NUMBER =       {{Heft} ???},
-  ANNOTE =       {$1|chains(l);p_i=p|\sum{C_i}$ is in $P$.}
+@article{SC79,
+   AUTHOR = {Sahni, S. and Cho, Y.},
+    TITLE = {Complexity of scheduling shops with no wait in process},
+  JOURNAL = {Math. Oper. Res.},
+   VOLUME = 4,
+     YEAR = 1979,
+   NUMBER = 4,
+    PAGES = {448-457},
+   ANNOTE = {$O2|no-wait|C_{\max}$ is $*\NP$-hard,\\
+             $J2|no-wait|C_{\max}$ is $*\NP$-hard.}
 }
 
-@techreport{BT03,
-  AUTHOR =       {Baptiste, P. and Timkovsky, V.},
-  TITLE =        {Are all nonpreemptive schedules of unit-time jobs on
-	          two identical parallel machines with minimum total
-	          completion time ideal?},
-  INSTITUTION =  {Universite de Technologie de Compiegne, France},
-  YEAR =         2003,
-  TYPE =         {{Technical Report}},
-  NUMBER =       {},
-  ANNOTE =       {$P2|p_i=1;prec;r_i|\sum{C_i}$ is in $P$,\\
-                  $F2|p_{ij}=1;prec;r_i|\sum{C_i}$ is in $P$,\\
-                  $1|prec(1);p_i=1;r_i|\sum{C_i}$ is in $P$.}
+@article{SL86,
+   AUTHOR = {Sriskandarajah, C. and Ladet, P.},
+    TITLE = {Some no-wait shops scheduling problems: complexity aspect},
+  JOURNAL = {European J. Oper. Res.},
+   VOLUME = 24,
+     YEAR = 1986,
+   NUMBER = 3,
+    PAGES = {424-438},
+   ANNOTE = {$J3|p_{ij}=1;no-wait|C_{\max}$ is $*\NP$-hard,\\
+             $J3|p_{ij}=1;no-wait|\sum{C_i}$ is $*\NP$-hard.}
 }
 
-@article{HK01,
-  AUTHOR = 	 {Hurink, J. and Knust, S.},
-  TITLE = 	 {Flow-shop problems with transportation times and a
-                  single robot}, 
-  JOURNAL = 	 {Discrete Applied Mathematics},
-  YEAR = 	 2001,
-  VOLUME =	 112,
-  NUMBER =       {1-3},
-  PAGES =	 {199-216},
-  ANNOTE =	 {$F2;R1|p_{ij}=1;t_{ik}|C_{\max}$ is in $P$,\\
-                  $F2;R1|p_{ij}=p;t_i\in\{T_1,T_2\}|C_{\max}$ is in $P$,\\ 
-                  $F;R1|n \ge m-1;p_{ij}=p;t_k|C_{\max}$ is in $P$,\\
-                  $F2;R1|p_{ij}=p;t_i|C_{\max}$ is $*\NP$-hard,\\
-                  $F2;R1|t_{ik}=T|C_{\max}$ is $*\NP$-hard.} 
- 
+@article{SS95,
+   AUTHOR = {Sotskov, Y.N. and Shakhlevich, N.V.},
+    TITLE = {N{P}-hardness of shop-scheduling problems with three jobs},
+  JOURNAL = {Discrete Appl. Math.},
+   VOLUME = 59,
+     YEAR = 1995,
+   NUMBER = 3,
+    PAGES = {237-266},
+   ANNOTE = {$J3|n=3|C_{\max}$ is $\NP$-hard,\\ 
+             $J3|n=3|\sum{C_i}$ is $\NP$-hard,\\ 
+             $JMPT3|n=3|C_{\max}$ is $\NP$-hard,\\
+             $JMPT3|n=3|\sum{C_i}$ is $\NP$-hard,\\
+             $JMPM3|n=3|\sum{C_i}$ is $\NP$-hard.} 
+}
+
+@article{SW94,
+  AUTHOR  = {Sriskandarajah, C. and Wagneur, E.},
+  TITLE   = {On the complexity of preemptive openshop scheduling problems}, 
+  JOURNAL = {European J. Oper. Res.},
+  YEAR    = 1994,
+  VOLUME  = 77,
+  NUMBER  = 3,
+  PAGES   = {404-414},
+  ANNOTE  = {$O2|pmtn;r_i|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@article{TNC06,
+   AUTHOR = {Tian, Z. and Ng, C.T. and Cheng, T.C.E.},
+    TITLE = {An ${O}(n^2)$ algorithm for scheduling equal-length preemptive
+             jobs on a single machine to minimize total tardiness},
+  JOURNAL = {J. Sched.},
+ FJOURNAL = {Journal of Scheduling},
+   VOLUME = 9,
+     YEAR = 2006,
+   NUMBER = 4,
+    PAGES = {343-364},
+   ANNOTE = {$1|pmtn;r_i;p_i=p|\sum T_i$ is in $P$.}
+}
+
+@article{T85,
+   AUTHOR = {Timkovsky, V.G.},
+    TITLE = {On the complexity of scheduling an arbitrary system},
+  JOURNAL = {Soviet J. Comput. Systems Sci.},
+   VOLUME = 23,
+     YEAR = 1985,
+   NUMBER = 5,
+    PAGES = {46-52},
+   ANNOTE = {$J2|chains;p_{ij}=1|C_{\max}$ is $*\NP$-hard,\\
+             $J2|p_{ij}=1;no-wait|C_{\max}$ is $\NP$-hard,\\
+             $JMPM2|chains;p_{ij}=1|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{T97,
+   AUTHOR = {Timkovsky, V.G.},
+    TITLE = {A polynomial-time algorithm for the two-machine unit-time
+             release-date job-shop schedule-length problem},
+  JOURNAL = {Discrete Appl. Math.},
+   VOLUME = 77,
+     YEAR = 1997,
+   NUMBER = 2,
+    PAGES = {185-200},
+   ANNOTE = {$J2|p_{ij}=1;r_i|C_{\max}$ is in $P$.}
+}
+
+@article{T98,
+   AUTHOR = {Timkovsky, V.G.},
+    TITLE = {Is a unit-time job shop not easier than identical parallel
+             machines?},
+  JOURNAL = {Discrete Appl. Math.},
+ FJOURNAL = {Discrete Applied Mathematics. Combinatorial Algorithms,
+             Optimization and Computer Science},
+   VOLUME = 85,
+     YEAR = 1998,
+   NUMBER = 2,
+    PAGES = {149-162},
+   ANNOTE = {$J2|p_{ij}=1;r_i|\sum{U_i}$ is $\NP$-hard,\\
+             $J2|p_{ij}=1;r_i|\sum{C_i}$ is $\NP$-hard,\\
+             $J2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\
+             $J2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\
+             $J2|p_{ij}=1;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $J2|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard,\\
+             $J2|chains;p_{ij}=1;no-wait|C_{\max}$ is $*\NP$-hard,\\ 
+             $J2|p_{ij}=1;r_i;no-wait|L_{\max}$ is $*\NP$-hard,\\
+             $J2|chains;p_{ij}=1;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $J2|p_{ij}=1;r_i;no-wait|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $J2|p_{ij}=1;no-wait|\sum{w_iC_i}$ is $\NP$-hard,\\ 
+             $J2|p_{ij}=1;no-wait|\sum{w_iT_i}$ is $*\NP$-hard,\\ 
+             $JMPT2|r_i;p_{ij}=1|\sum{C_i}$ is $\NP$-hard,\\ 
+             $JMPT2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $JMPT2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\ 
+             $JMPT2|r_i;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $JMPM2|r_i;p_{ij}=1|\sum{C_i}$ is $\NP$-hard,\\ 
+             $JMPM2|chains;p_{ij}=1|\sum{C_i}$ is $*\NP$-hard,\\ 
+             $JMPM2|p_{ij}=1|\sum{w_iC_i}$ is $\NP$-hard,\\ 
+             $JMPM2|r_i;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $JMPM2|r_i;p_{ij}=1|\sum{U_i}$ is $\NP$-hard,\\
+             $JMPM2|p_{ij}=1|\sum{w_iT_i}$ is $*\NP$-hard.}  
+}
+
+@book{TSS94,
+   AUTHOR = {Tanaev, V.S. and Sotskov, Y.N. and Strusevich, V.A.},
+    TITLE = {Scheduling theory. {M}ulti-stage systems},
+     NOTE = {Translated and revised from the 1989 Russian original by the
+             authors},
+   SERIES = {Mathematics and its Applications},
+   VOLUME = 285,
+PUBLISHER = {Kluwer Academic Publishers Group},
+  ADDRESS = {Dordrecht},
+     YEAR = 1994,
+    PAGES = {viii+404},
+   ANNOTE = {$O2|chains|C_{\max}$ is $*\NP$-hard,\\
+             $F2|p_{ij}=1;chains|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $F3|p_{ij}=1;chains|\sum{w_iC_i}$ is $*\NP$-hard,\\
+             $FMPT2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $OMPT2|chains|C_{\max}$ is $*\NP$-hard,\\ 
+             $FMPM2|chains;p_{ij}=1|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+             $OMPM2|chains|C_{\max}$ is $*\NP$-hard,\\ 
+             $1|chains(1);p_i=1|\sum{w_iC_i}$ is $*\NP$-hard.}   
+}
+
+@article{TW97,
+  AUTHOR  = {Tautenhahn, T. and  Woeginger, G.J.},
+  TITLE   = {Minimizing the total completion time in a unit-time open shop with 
+             release times},
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+  YEAR    = 1997,
+  VOLUME  = 20,
+  NUMBER  = 5,
+  PAGES   = {207-212},
+  ANNOTE  = {$Om|p_{ij}=1;r_i|\sum{C_i}$ is in $P$.}
+}
+
+@article{U75,
+   AUTHOR = {Ullman, J.D.},
+    TITLE = {{N}{P}-complete scheduling problems},
+  JOURNAL = {J. Comput. System Sci.},
+   VOLUME = 10,
+     YEAR = 1975,
+    PAGES = {384-393},
+   ANNOTE = {$P|p_i=1;prec|C_{\max}$ is $*\NP$-hard,\\
+             $O|p_{ij}=1;prec;no-wait|C_{\max}$ is $*\NP$-hard,\\
+             $PMPM|prec;p_i=1|C_{\max}$ is $*\NP$-hard,\\
+             $FMPM|prec;p_{ij}=1|C_{\max}$ is $*\NP$-hard.}
+}
+
+@incollection{U76,
+  AUTHOR = {Ullman, J.D.},
+  TITLE  = {Complexity of sequencing problems},
+  BOOKTITLE = {Computer and Job/Shop Scheduling Theory},
+  PUBLISHER = {John Wiley \&\ Sons Inc.},
+  YEAR   = 1976,
+  EDITOR = {Bruno, J.L. and Coffman, Jr., E.G. and Graham, R.L. and 
+            Kohler, W.H. and Sethi, R. and Steiglitz, K. and Ullman, J.D.},
+  ADDRESS = {New York},
+  ANNOTE  = {$P|p_i=1;prec;pmtn|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{WLN94,
+   AUTHOR = {Wikum, E.D. and Llewellyn, D.C. and Nemhauser, G.L.},
+    TITLE = {One-machine generalized precedence constrained scheduling
+             problems},
+  JOURNAL = {Oper. Res. Lett.},
+ FJOURNAL = {Operations Research Letters},
+   VOLUME = 16,
+     YEAR = 1994,
+   NUMBER = 2,
+    PAGES = {87-99},
+   ANNOTE = {$1|chains(l)|C_{\max}$ is $*\NP$-hard.}
+}
+
+@article{YHL04,
+   AUTHOR = {Yu, W. and Hoogeveen, H. and Lenstra, J.K.},
+    TITLE = {Minimizing makespan in a two-machine flow shop with delays 
+             and unit-time operations is {NP}-hard},
+  JOURNAL = {J. Sched.},
+ FJOURNAL = {Journal of Scheduling},
+   VOLUME = 7,
+     YEAR = 2004,
+   NUMBER = 5,
+    PAGES = {333-348},
+   ANNOTE = {$1|chains(l_{ij});p_i=1|C_{\max}$ is $*\NP$-hard,\\
+             $F2|p_{ij}=1;t_i|C_{\max}$ is $*\NP$-hard,\\
+             $O2|p_{ij}=1;t_i|C_{\max}$ is $*\NP$-hard.}
 }
 
 @phdthesis{Y96,
@@ -2349,3 +2278,115 @@ PUBLISHER = {Springer-Verlag},
 }
 
 
+@article{ZDO05,
+  AUTHOR  = {Zinder, Y. and Do, V.H. and Oguz, C.},  
+  TITLE   = {Computational complexity of some scheduling problems with
+             multiprocessor tasks},
+  JOURNAL = {Discr. Opt.},
+ FJOURNAL = {Discrete Optimization},
+   VOLUME = 2,
+     YEAR = 2005,
+   NUMBER = 4,
+    PAGES = {391-408},
+  ANNOTE  = {$P2|outtree;p_i=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@inproceedings{ZD05,
+  AUTHOR  = {Zinder, Y. and Do, V.H.},  
+  TITLE   = {Scheduling {UET} tasks on two parallel machines 
+             with the criteria of makespan and total completion time}, 
+  BOOKTITLE = {Multidisciplinary Scheduling: Theory and Applications},
+  EDITOR = {Kendall, G. and Burke, E. and Petrovic, S. and Gendreau, M.},
+  PUBLISHER = {Springer},
+     YEAR = 2005,
+    PAGES = {83-112},
+  ANNOTE  = {$P2|intree;p_i=1;size_i|\sum{C_i}$ is $*\NP$-hard.}
+}
+
+@misc{see:assign,
+    KEY  = {see assign},
+  TITLE  = {see: Assignment Problem},
+  ANNOTE = {$1|p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
+            $1|p_i=p|\sum{w_iT_i}$ is in $P$,\\
+            $P|p_i=p|\sum{w_iU_i}$ is in $P$,\\
+            $P|p_i=p|\sum{w_iT_i}$ is in $P$,\\
+            $P;S1|s_i=s;p_i=p|\sum{w_iU_i}$ is in $P$,\\
+            $P;S1|s_i=1;p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
+            $P;S1|s_i=s;p_i=p|\sum{w_iT_i}$ is in $P$,\\
+            $Q|p_i=p;r_i|C_{\max}$ is in $P$,\\
+            $Q|p_i=p|\sum{w_iU_i}$ is in $P$,\\ 
+            $Q|p_i=p|\sum{w_iT_i}$ is in $P$,\\
+            $F2;S1|p_{ij}=p;s_{ij}=s|\sum{w_iU_i}$ is in $P$,\\
+            $F;S1|p_{ij}=1;s_{ij}=s|\sum{w_iU_i}$ is in $P$,\\
+            $F2;S1|p_{ij}=p;s_{ij}=s|\sum{w_iT_i}$ is in $P$,\\
+            $F;S1|p_{ij}=1;s_{ij}=s|\sum{w_iT_i}$ is in $P$.}
+}
+
+@misc{see:earliest-start,
+    KEY  = {see earliest-start},
+  TITLE  = {see: Earliest Start Schedule},
+  ANNOTE = {$1|prec;p_i=p;p-batch|\sum{w_iU_i}$ is in $P$,\\
+            $1|prec;p_i=p;p-batch|\sum{w_iT_i}$ is in $P$.}
+}
+
+@misc{see:networkflow,
+    KEY  = {see networkflow},
+  TITLE  = {see: Network Flow Problem},
+  ANNOTE = {$P|p_i=1;r_i|\sum{w_iU_i}$ is in $P$,\\
+            $P|p_i=1;r_i|\sum{w_iT_i}$ is in $P$,\\
+            $O|p_{ij}=1;r_i|L_{\max}$ is in $P$.}
+}
+
+@misc{see:parallel,
+    KEY  = {see parallel},
+  TITLE  = {see: Parallel Machine Problem},
+  ANNOTE = {$1|tree;p_i=p;p-batch;b<n|C_{\max}$ is in $P$,\\
+            $1|outtree;p_i=p;p-batch;r_i;b<n|C_{\max}$ is in $P$,\\
+            $1|intree;p_i=p;p-batch;b<n|L_{\max}$ is in $P$,\\
+            $1|p_i=1;p-batch;chains;r_i;b<n|L_{max}$ is in $P$,\\
+            $1|p_i=1;p-batch;outtree;r_i;b<n|\sum{C_i}$ is in $P$,\\
+            $1|p_i=p;p-batch;tree;b<n|\sum{C_i}$ is in $P$,\\
+            $1|p_i=p;p-batch;b<n|\sum{w_iT_i}$ is in $P$,\\
+            $1|p_i=1;p-batch;r_i;b<n|\sum{w_iT_i}$ is in $P$,\\
+            $1|intree;p_i=1;p-batch;r_i;b<n|C_{\max}$ is $*\NP$-hard,\\
+            $1|prec;p_i=1;p-batch;b<n|C_{\max}$ is $*\NP$-hard,\\
+            $1|outtree;p_i=1;p-batch;b<n|L_{\max}$ is $*\NP$-hard,\\
+            $1|prec;p_i=1;p-batch;b<n|\sum{C_i}$ is $*\NP$-hard,\\
+            $1|intree;p_i=1;p-batch;r_i;b<n|\sum{C_i}$ is $*\NP$-hard,\\
+            $1|chains;p_i=1;p-batch;b<n|\sum{w_iC_i}$ is $*\NP$-hard.}
+}
+
+@misc{see:single,
+    KEY  = {see single},
+  TITLE  = {see: Single Machine Problem},
+  ANNOTE = {$P2|r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $P2|p_i=1;chains;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\
+            $P2|p_i=1;chains|\sum{U_i}$ is $*\NP$-hard,\\
+            $P2|p_i=1;chains|\sum{T_i}$ is $*\NP$-hard,\\
+            $P2|pmtn|\sum{w_iU_i}$ is $\NP$-hard,\\
+            $F|p_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$,\\
+            $F|p_{ij}=1;r_i|\sum{w_iT_i}$ is in $P$,\\
+            $FMPT2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\
+            $FMPT2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\
+            $PMPM2|r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $PMPM2|chains;p_i=1;r_i|\sum{w_iC_i}$ is $*\NP$-hard,\\ 
+            $PMPM2|chains;p_i=1|\sum{U_i}$ is $*\NP$-hard,\\ 
+            $PMPM2|chains;p_i=1|\sum{T_i}$ is $*\NP$-hard,\\ 
+            $FMPM2|chains;p_{ij}=1|\sum{U_i}$ is $*\NP$-hard,\\ 
+            $FMPM2|chains;p_{ij}=1|\sum{T_i}$ is $*\NP$-hard,\\ 
+            $F|p_{ij}=1;t_k;r_i|\sum{w_iU_i}$ is in $P$,\\ 
+            $F|p_{ij}=1;t_k;r_i|\sum{w_iT_i}$ is in $P$,\\ 
+            $P2;S1|p_i=1|\sum{w_iU_i}$ is in $P_{pseudo}$,\\
+            $P2;S1|p_i=1|\sum{T_i}$ is in $P_{pseudo}$,\\
+            $P2;S1|p_i=1;r_i|L_{\max}$ is $*\NP$-hard,\\
+            $P2;S1|p_i=1;r_i|\sum{C_i}$ is $*\NP$-hard,\\
+            $P2;S1|p_i=1|\sum{w_iU_i}$ is $\NP$-hard,\\
+            $P2;S1|p_i=1|\sum{T_i}$ is $\NP$-hard,\\
+            $P2;S1|p_i=1|\sum{w_iT_i}$ is $*\NP$-hard,\\    
+            $1|p-batch;r_i;b<n|\sum{C_i}$ is $*\NP$-hard,\\
+            $1|chains;p_i=1;p-batch;b<n|\sum{U_i}$ is $*\NP$-hard,\\   
+            $1|chains;p_i=1;p-batch;b<n|\sum{T_i}$ is $*\NP$-hard,\\
+            $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{w_iC_i}$ is in $P$,\\
+            $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{w_iU_i}$ is in $P$,\\
+            $F2;S1|p_{ij}=p;s_{ij}=1;r_i|\sum{T_i}$ is in $P$.} 
+}
