@@ -778,32 +778,30 @@ int main(int argc, char *argv[]){
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1) << " time " << end-start << " sek objective ";
-	switch(pt.get_property(OBJECTIVE)){
-	case CMAX : std::cout << " Cmax ";
+              << str_alg(j+1) << " time " << end-start << " sek objective "
+              << os.GetValue();
+
+    switch(pt.get_property(OBJECTIVE)){
+	    case CMAX : std::cout << "(Cmax)" << std::endl;
 			break;
-	case LMAX : std::cout << " Lmax ";
+	    case LMAX : std::cout << "(Lmax)" << std::endl;
 			break;
-	case SUM_CI : std::cout << " SumCi ";
+	    case SUM_CI : std::cout << "(SumCi)" << std::endl;
 			break;
-	case SUM_WICI : std::cout << " SumWiCi ";
+	    case SUM_WICI : std::cout << "(SumWiCi)" << std::endl;
 			break;
-	case SUM_UI : std::cout << " SumUi ";
+	    case SUM_UI : std::cout << "(SumUi)" << std::endl;
 			break;
-	case SUM_WIUI : std::cout << " SumWiUi ";
+	    case SUM_WIUI : std::cout << "(SumWiUi)" << std::endl;
 			break;
-	case SUM_TI : std::cout << " SumTi ";
+	    case SUM_TI : std::cout << "(SumTi)" << std::endl;
 			break;
-	case SUM_WITI : std::cout << " SumWiTi ";
+	    case SUM_WITI : std::cout << "(SumWiTi)" << std::endl;
 			break;
-	}
-    std::cout << os.GetValue() << std::endl;
+	  }
 
     
-    std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1) << std::endl;
-
-	os.SetValue(CMAX);
+  os.SetValue(CMAX);
 	std::cout << " Cmax " << os.GetValue() << std::endl;
     os.SetValue(SUM_CI);
 	std::cout << " SumCi " << os.GetValue() << std::endl;
