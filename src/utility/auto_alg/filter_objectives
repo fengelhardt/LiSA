@@ -10,7 +10,7 @@ while ($l = <>) {
   if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*objective ([\d\.]+)/) {
     if($2 == 1){
     }else{
-      print "$3\t$4";
+      print "$3\t";
     }
   }
 }
