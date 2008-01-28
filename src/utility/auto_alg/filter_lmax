@@ -1,0 +1,21 @@
+#! /usr/bin/perl
+
+print "first algorithm is assumed to be bounds, no objectives will be reported";
+print "\nSUMCI bounds\t\tobjectives \nmax\tpreept\tavrg\tLmax";
+
+while ($l = <>) {
+  if ($l =~ /max method\) : ([\d\.]+) \(preempt\) : ([\d\.]+) \(avrg\) : ([\d\.]+)/) {
+    print "\n$1\t$2\t$3\t";
+  }
+  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*objective ([\d\.]+)/) {
+    $iCurrentAlg = $2;
+  }
+  if($l =~ / Lmax ([-*\d]+)/ ){
+    if($iCurrentAlg > 1){
+      print "$1\t";
+    }
+  }
+}
+
+print "\n";
+
