@@ -186,7 +186,7 @@ void parseParameters(Lisa_ControlParameters &cp){
 void checkProblemType(Lisa_ProblemType &pt){
   Lisa_ProblemType compt;
   
-  for(int i=0;i<3;i++){
+  for(int i=0;i<6;i++){
 	  switch(i){
 	  case 0:	compt.set_property(M_ENV,O);
 				break;
@@ -194,7 +194,17 @@ void checkProblemType(Lisa_ProblemType &pt){
 				bNeedMO=true;
 				break;
 	  case 2:	compt.set_property(M_ENV,F);
+				break;
+	  case 3:	compt.set_property(RI,true);
+        compt.set_property(M_ENV,O);
+        bNeedMO=false;
+				break;
+	  case 4:	compt.set_property(RI,true);
+        compt.set_property(M_ENV,J);
 				bNeedMO=true;
+				break;
+	  case 5:	compt.set_property(RI,true);
+        compt.set_property(M_ENV,F);
 				break;
 	  }
 	  compt.set_property(OBJECTIVE,CMAX);
