@@ -36,11 +36,11 @@ long timeseed,machseed;
 int minpt=1,maxpt=100;
 int numberproblems=1;
 int numberalgorithms=1;
-long seedDD, seedWI, seedRI;
+long seedDD, seedWI, seedRI, modeRIDI=0;
 int iMinDD=1,iMaxDD=99,iMinWi=1,iMaxWi=99,iMinRI=1,iMaxRI=99;
 bool bNeedDD=false,bNeedWI=false,bNeedMO=false;
-bool bIsSetDD=false,bIsSetWI=false, bIsSetRI=false;
-
+bool bIsSetDD=false,bIsSetWI=false;
+double dTFactor=1.5;
 std::string algin,algout;
 
 //**************************************************************************
@@ -157,8 +157,8 @@ void parseParameters(Lisa_ControlParameters &cp){
   }
 
   if(cp.defined("MAXDD")==Lisa_ControlParameters::LONG){
+	bIsSetDD = true;
     iMaxDD = cp.get_long("MAXDD");
-	  bIsSetDD=true;
   }
 
   if(cp.defined("MINWI")==Lisa_ControlParameters::LONG){
@@ -167,16 +167,27 @@ void parseParameters(Lisa_ControlParameters &cp){
 
   if(cp.defined("MAXWI")==Lisa_ControlParameters::LONG){
     iMaxWi = cp.get_long("MAXWI");
-	  bIsSetWI=true;
+	bIsSetWI=true;
   }
 
-   if(cp.defined("MINRI")==Lisa_ControlParameters::LONG){
+  if(cp.defined("MINRI")==Lisa_ControlParameters::LONG){
     iMinRI = cp.get_long("MINRI");
   }
 
   if(cp.defined("MAXRI")==Lisa_ControlParameters::LONG){
     iMaxRI = cp.get_long("MAXRI");
-	  bIsSetRI=true;
+  }
+
+  if(cp.defined("RIDIMODE")==Lisa_ControlParameters::LONG){
+    modeRIDI = cp.get_long("RIDIMODE");
+  }else{
+    cp.add_key("RIDIMODE",(long)modeRIDI);
+    G_ExceptionList.lthrow((std::string)"No RIDIMODE parameter defined. Using default r_i//d_i generation.",
+		                   Lisa_ExceptionList::WARNING);
+  }
+
+  if(cp.defined("TFACTOR")==Lisa_ControlParameters::DOUBLE){
+    dTFactor = cp.get_double("TFACTOR");
   }
 }
 
@@ -196,15 +207,15 @@ void checkProblemType(Lisa_ProblemType &pt){
 	  case 2:	compt.set_property(M_ENV,F);
 				break;
 	  case 3:	compt.set_property(RI,true);
-        compt.set_property(M_ENV,O);
-        bNeedMO=false;
+                compt.set_property(M_ENV,O);
+                bNeedMO=false;
 				break;
 	  case 4:	compt.set_property(RI,true);
-        compt.set_property(M_ENV,J);
+                compt.set_property(M_ENV,J);
 				bNeedMO=true;
 				break;
 	  case 5:	compt.set_property(RI,true);
-        compt.set_property(M_ENV,F);
+                compt.set_property(M_ENV,F);
 				break;
 	  }
 	  compt.set_property(OBJECTIVE,CMAX);
@@ -380,60 +391,36 @@ struct algParameters{
 // problemtype .. only problemtypes that can be handled here should be accepted 
 // by checkProblemType()
 void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
+  long lSumPij=0;
+  int i,j;
+
   val.init(n,m);
   val.make_PT();
   val.make_SIJ();
   val.SIJ->fill(1);
 
   
-  if(bIsSetRI){
-	  val.make_RD();
-	  if(iMinRI==iMaxRI){
-		  val.RD->fill(iMinWi);
-	  }
-	  else{
-		  Lisa_Vector<double> SwapVector(n);
-		  for(int i=0; i<n; i++){
-			  SwapVector[i] = lisa_random((long)iMinRI,(long)iMaxRI, &seedRI);
-		  }
- 		  *val.RD = SwapVector;
-	  }
-  }
-
   if(bNeedWI){
-	  if(!bIsSetWI)
-		G_ExceptionList.lthrow((std::string)"No MAXWI parameter defined,"+
-                           " using default '"+ztos(iMaxWi)+"'.",Lisa_ExceptionList::WARNING);
+	  if(!bIsSetWI){
+		  std::cout << "WARNING: No MAXWI parameter defined, using default '" << ztos(iMaxWi) << "'."<< std::endl;
+//		I cannot throw a warning here, because in the later procedure a check is performed
+//		whether there a warnings in the list and if so, the algorithms exits with -1.
+//		G_ExceptionList.lthrow((std::string)"No MAXWI parameter defined,"+
+//                           " using default '"+ztos(iMaxWi)+"'.",Lisa_ExceptionList::WARNING);
+	  }
 	  val.make_WI();
 	  if(iMinWi==iMaxWi){
 		  val.WI->fill(iMinWi);
 	  }
 	  else{
 		  Lisa_Vector<double> SwapVector(n);
-		  for(int i=0; i<n; i++){
+		  for(i=0; i<n; i++){
 			  SwapVector[i] = lisa_random((long)iMinWi,(long)iMaxWi, &seedWI);
 		  }
  		  *val.WI = SwapVector;
 	  }
   }
 
-  if(bNeedDD){
-	  if(!bIsSetDD)
-		G_ExceptionList.lthrow((std::string)"No MAXDD parameter defined,"+
-                           " using default '"+ztos(iMaxDD)+"'.",Lisa_ExceptionList::WARNING);
-	  val.make_DD();
-	  if(iMinDD==iMaxDD){
-		val.DD->fill(iMinDD);
-	  }
-	  else{
-		  //TODO:Couldnt directly change the values of the DD/WI vector?!?
-		  Lisa_Vector<double> SwapVector2(n);
-		  for(int i=0; i<n; i++) {
-			SwapVector2[i] = lisa_random((long)iMinDD,(long)iMaxDD, &seedDD);
-		  }
-		  *val.DD = SwapVector2;
-	  }
-  }
   if(bNeedMO){
 	  int s,t;
 	  val.make_MO();
@@ -441,7 +428,7 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 	  MO.fill(0);
 	  if(pt.get_property(M_ENV) == J){
 		  // taken from tcl_c.cpp, TC_gen_mo
-		  int j,k,index;
+		  int k,index;
 		  for (j=0; j<n; j++){
 			  for (k=1; k<=m; k++){
 				  for (index=lisa_random((long)0,(long)m,&timeseed); index <m;index++){
@@ -473,23 +460,79 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
   }else{
     
     Lisa_Vector<int> zeg(m), mg(m);
-    for(int j=0; j<n; j++) {
+    for(j=0; j<n; j++) {
       
-      for(int i=0; i<m; i++) {
+      for(i=0; i<m; i++) {
         zeg[i] = lisa_random((long)minpt,(long)maxpt, &timeseed);
         mg[i]=i;
       }
       
-      for(int i=0; i<m; i++) {
+      for(i=0; i<m; i++) {
         int u = lisa_random(i+1, m, &machseed) -1 ;
         int temp = mg[i];
         mg[i]=mg[u];
         mg[u]=temp;
       }
       
-      for(int i=0; i<m; i++) if((*val.SIJ)[j][mg[i]]) (*val.PT)[j][mg[i]]= zeg[i];
+      for(i=0; i<m; i++) if((*val.SIJ)[j][mg[i]]) (*val.PT)[j][mg[i]]= zeg[i];
     }
   
+  }
+
+  if(pt.get_property(RI)){
+	  if(!(iMinRI+iMaxRI))
+		  pt.set_property(RI,false);
+	  else{
+		  val.make_RD();
+		  if(iMinRI==iMaxRI)
+			  val.RD->fill(iMinWi);
+		  else{
+			  Lisa_Vector<double> SwapVector(n);
+			  if(modeRIDI == 1){
+				  iMinRI = 0;
+				  for(j=0; j<n; j++)
+					  for(i=0; i<m; i++){
+						  lSumPij += long((*val.PT)[j][i]);
+					  }
+				  iMaxRI = lSumPij /(2*n);
+			  }
+			  for(i=0; i<n; i++)
+				  SwapVector[i] = lisa_random((long)iMinRI,(long)iMaxRI, &seedRI);
+			  *val.RD = SwapVector;
+		  }
+	  }
+  }
+
+
+  if(bNeedDD){
+	  if(!bIsSetDD){
+		  std::cout << "WARNING: No MAXDD parameter defined, using default '" << ztos(iMaxDD) << "'."<< std::endl;
+//		Cannot use warnings here, see above!
+//		G_ExceptionList.lthrow((std::string)"No MAXDD parameter defined,"+
+//                           " using default '"+ztos(iMaxDD)+"'.",Lisa_ExceptionList::WARNING);
+	  }
+	  val.make_DD();
+	  if(iMinDD==iMaxDD){
+		val.DD->fill(iMinDD);
+	  }
+	  else{
+		  //TODO:Couldnt directly change the values of the DD/WI vector?!?
+		  Lisa_Vector<double> SwapVector2(n);
+		  if(modeRIDI == 1){
+			  for(i=0; i<n; i++){
+				  lSumPij = 0;
+				  for(j=0;j<m;j++)
+					  lSumPij += (long)(*val.PT)[i][j];
+				  SwapVector2[i] = long((*val.RD)[i] + dTFactor*lSumPij);
+			  }
+		  }
+		  else{
+			  for(i=0; i<n; i++) {
+				SwapVector2[i] = lisa_random((long)iMinDD,(long)iMaxDD, &seedDD);
+			  }
+		  }
+		  *val.DD = SwapVector2;
+	  }
   }
 }
 
@@ -741,67 +784,46 @@ int main(int argc, char *argv[]){
     os.read_LR(sched.LR);
     os.SetValue(pt.get_property(OBJECTIVE));
     std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1) << " time " << end-start << " sek objective ";
-	switch(pt.get_property(OBJECTIVE)){
-	case CMAX : std::cout << " Cmax ";
+              << str_alg(j+1) << " time " << end-start << " sek objective "
+              << os.GetValue();
+
+    switch(pt.get_property(OBJECTIVE)){
+	    case CMAX : std::cout << "(Cmax)" << std::endl;
 			break;
-	case LMAX : std::cout << " Lmax ";
+	    case LMAX : std::cout << "(Lmax)" << std::endl;
 			break;
-	case SUM_CI : std::cout << " SumCi ";
+	    case SUM_CI : std::cout << "(SumCi)" << std::endl;
 			break;
-	case SUM_WICI : std::cout << " SumWiCi ";
+	    case SUM_WICI : std::cout << "(SumWiCi)" << std::endl;
 			break;
-	case SUM_UI : std::cout << " SumUi ";
+	    case SUM_UI : std::cout << "(SumUi)" << std::endl;
 			break;
-	case SUM_WIUI : std::cout << " SumWiUi ";
+	    case SUM_WIUI : std::cout << "(SumWiUi)" << std::endl;
 			break;
-	case SUM_TI : std::cout << " SumTi ";
+	    case SUM_TI : std::cout << "(SumTi)" << std::endl;
 			break;
-	case SUM_WITI : std::cout << " SumWiTi ";
+	    case SUM_WITI : std::cout << "(SumWiTi)" << std::endl;
 			break;
-	}
-    std::cout << os.GetValue() << std::endl;
+	  }
 
     
-    std::cout << "AUTO_ALG: problem " << str_prob(i+1) << " algorithm "
-              << str_alg(j+1) << std::endl;
-
-	
-	if(pt.get_property(OBJECTIVE) != CMAX){
-		os.SetValue(CMAX);
-		std::cout << " Cmax " << os.GetValue() << std::endl;
-	}
-	if(pt.get_property(OBJECTIVE) != SUM_CI){
-	    os.SetValue(SUM_CI);
-		std::cout << " SumCi " << os.GetValue() << std::endl;
-	}
-	//Added for new problemtypes
-	if(pt.get_property(OBJECTIVE) != SUM_WICI){
-		os.SetValue(SUM_WICI);
-		std::cout << " SumWiCi " << os.GetValue() << std::endl;
-	}
-    if(pt.get_property(OBJECTIVE) != LMAX){
-		os.SetValue(LMAX);
-		std::cout << " Lmax " << os.GetValue() << std::endl;
-	}
-    if(pt.get_property(OBJECTIVE) != SUM_UI){
-		os.SetValue(SUM_UI);
-		std::cout << " SumUi " << os.GetValue() << std::endl;
-	}
-    if(pt.get_property(OBJECTIVE) != SUM_WIUI){
-		os.SetValue(SUM_WIUI);
-		std::cout << " SumWiUi " << os.GetValue() << std::endl;
-	}
-    if(pt.get_property(OBJECTIVE) != SUM_TI){
-		os.SetValue(SUM_TI);
-		std::cout << " SumTi " << os.GetValue() << std::endl;
-	}
-    if(pt.get_property(OBJECTIVE) != SUM_WITI){
-		os.SetValue(SUM_WITI);
-		std::cout << " SumWiTi " << os.GetValue() << std::endl;
-	}
-	//End
-   }
+  os.SetValue(CMAX);
+	std::cout << " Cmax " << os.GetValue() << std::endl;
+    os.SetValue(SUM_CI);
+	std::cout << " SumCi " << os.GetValue() << std::endl;
+	os.SetValue(SUM_WICI);
+	std::cout << " SumWiCi " << os.GetValue() << std::endl;
+	os.SetValue(LMAX);
+	std::cout << " Lmax " << os.GetValue() << std::endl;
+	os.SetValue(SUM_UI);
+	std::cout << " SumUi " << os.GetValue() << std::endl;
+	os.SetValue(SUM_WIUI);
+	std::cout << " SumWiUi " << os.GetValue() << std::endl;
+	os.SetValue(SUM_TI);
+	std::cout << " SumTi " << os.GetValue() << std::endl;
+	os.SetValue(SUM_WITI);
+	std::cout << " SumWiTi " << os.GetValue() << std::endl;
+  }
    
    //open output file, write generated problem + comments
    std::string out_file_name = strAutoAlgFilename+"."+str_prob(i+1)+".xml";
