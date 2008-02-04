@@ -523,7 +523,10 @@ void generateValues(Lisa_Values &val,Lisa_ProblemType &pt){
 				  lSumPij = 0;
 				  for(j=0;j<m;j++)
 					  lSumPij += (long)(*val.PT)[i][j];
-				  SwapVector2[i] = long((*val.RD)[i] + dTFactor*lSumPij);
+          if(pt.get_property(RI))
+				    SwapVector2[i] = long((*val.RD)[i] + dTFactor*lSumPij);
+          else
+            SwapVector2[i] = long(dTFactor*lSumPij);
 			  }
 		  }
 		  else{
