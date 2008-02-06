@@ -26,15 +26,61 @@
 void checkProblemType(Lisa_ProblemType &pt){
   Lisa_ProblemType compt;
   
-  // O||Cmax
-  compt.set_property(M_ENV,O);
-  compt.set_property(OBJECTIVE,CMAX);
-  if(pt.output_problem() == compt.output_problem()) return;
+  for(int i=0;i<6;i++){
+	  switch(i){
+	  case 0:	compt.set_property(M_ENV,O);
+				break;
+	  case 1:	compt.set_property(M_ENV,J);
+				break;
+	  case 2:	compt.set_property(M_ENV,F);
+				break;
+	  case 3:	compt.set_property(RI,true);
+            compt.set_property(M_ENV,O);
+				break;
+	  case 4:	compt.set_property(RI,true);
+            compt.set_property(M_ENV,J);
+				break;
+	  case 5:	compt.set_property(RI,true);
+            compt.set_property(M_ENV,F);
+				break;
+	  }
+	  compt.set_property(OBJECTIVE,CMAX);
+	  if(pt.output_problem() == compt.output_problem()) 
+      return;
 
-  // O||SumCi
-  compt.set_property(OBJECTIVE,SUM_CI);
-  if(pt.output_problem() == compt.output_problem()) return;
+	  compt.set_property(OBJECTIVE,LMAX);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+	
+
+	  compt.set_property(OBJECTIVE,SUM_CI);
+	  if(pt.output_problem() == compt.output_problem()) 
+      return;
  
+	  compt.set_property(OBJECTIVE,SUM_WICI);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+
+ 
+	  compt.set_property(OBJECTIVE,SUM_TI);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+
+ 
+	  compt.set_property(OBJECTIVE,SUM_WITI);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+
+	  compt.set_property(OBJECTIVE,SUM_UI);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+
+ 
+	  compt.set_property(OBJECTIVE,SUM_WIUI);
+	  if(pt.output_problem() == compt.output_problem())
+		  return;
+  }
+  
   G_ExceptionList.lthrow((std::string)"Cannot handle '"+pt.output_alpha()+
                           " / "+pt.output_beta()+" / "+pt.output_gamma()+
                           "'.",Lisa_ExceptionList::INCONSISTENT_INPUT);
