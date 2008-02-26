@@ -1,0 +1,32 @@
+#! /usr/bin/perl
+
+print "Lower_bounds is assumed to be the first algorithm and skipped";
+print "\nAll abortions are counted, no matter the reason(stuck,reaching LB,...)";
+print "\nAlgo 1\tAlgo 2\tAlgo 3\t...";
+$pAbort = -2;
+while ($l = <>) {
+  if ($l =~ /max method\) : ([\d\.]+) \(preempt\) : ([\d\.]+) \(avrg\) : ([\d\.]+)/) {
+    print "\n";
+  }
+
+  if ( $l =~ /AUTO_ALG.*problem ([\d\.]+) .*algorithm ([\d\.]+) .*objective ([\d\.]+)/) {
+    if($2 == 1){
+    }else{
+      if($pAbort > -1){
+        printf "$pAbort\%\t";
+        $pAbort = -1;
+      }
+      else{
+        printf "n\\a\t";
+      }
+    }
+  }
+  
+  if ( $l =~ /.*ready=[\ ]+([\d]+).*/) {
+    $pAbort = $1;
+  }
+}
+
+print "\n";
+
+ 
