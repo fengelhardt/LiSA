@@ -1,10 +1,8 @@
 #! /usr/bin/perl
 
-print "Lower_bounds is assumed to be the first algorithm and skipped.";
-print "\nAll abortions caused by \"stuck for too long\" are indicated";
-print "\nwith '1'. If the algorithm aborted for another reason it is";
-print "\nindicated with a '0', the rest is marked with 'n/a'.";
-print "\nAlgo 1\tAlgo 2\tAlgo 3\t...";
+print "first algorithm is assumed to be bounds and will be skipped";
+print "\nabortions caused by \"stuck for too long\" are marked with '1'";
+print "\nabortions for other reasons are marked with '0'";
 $pAbort = -2;
 $Reason = 0;
 while ($l = <>) {

@@ -1,7 +1,7 @@
 #! /usr/bin/perl
 
-print "Lower_bounds is assumed to be the first algorithm and skipped";
-print "\nAll abortions are counted, no matter the reason(stuck,reaching LB,...)";
+print "first algorithm is assumed to be bounds and will be skipped";
+print "\nall abortions are counted, no matter the reason (time,stuck,reaching LB,...)";
 print "\nAlgo 1\tAlgo 2\tAlgo 3\t...";
 $pAbort = -2;
 while ($l = <>) {
