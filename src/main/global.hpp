@@ -2,6 +2,12 @@
 #ifndef _global_h 
 #define _global_h 
 
+// these files have to be included for compilation with newer gcc versions (>= 4.3)
+#include <cmath>
+#include <cstdlib>
+#include <cstring>
+#include <cstddef>
+
 #ifdef DEBUG
 /// debug parameter ... comment for the final version
 #define LISA_DEBUG
