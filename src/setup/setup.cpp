@@ -3,6 +3,8 @@
  * @version 2.3final
  */
  
+#include <cstdlib>
+
 #include <string.h>
 #include <unistd.h>
 
