@@ -53,13 +53,13 @@ private:
   Lisa_Vector<TIMETYP> * mstart;
   
   /// returns ECT of unscheduled operation (i,j) 
-  TIMETYP Lisa_Dispatcher::getECT(int i, int j);
+  TIMETYP /*Lisa_Dispatcher::*/getECT(int i, int j);
 
   /// returns earliest start time of unscheduled operation (i,j) 
-  TIMETYP Lisa_Dispatcher::getEST(int i, int j);
+  TIMETYP /*Lisa_Dispatcher::*/getEST(int i, int j);
 
   /// returns earliest ECT of any unscheduled operation
-  TIMETYP Lisa_Dispatcher::getEECT();
+  TIMETYP /*Lisa_Dispatcher::*/getEECT();
 
   /// returns priority for operation (i,j) according to current rule
   TIMETYP priority(int i, int j); 
