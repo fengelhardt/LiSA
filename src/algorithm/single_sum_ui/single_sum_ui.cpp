@@ -165,8 +165,8 @@ int main(int argc, char *argv[])
         scheduled[numScheduled++] = order[i];
         sumPi += (*Values.PT)[order[i]][0];
         
-        //print(scheduled, numScheduled);
-        //print(odd, numOdd);
+        print(scheduled, numScheduled);
+        print(odd, numOdd);
         
         if(sumPi > (*Values.DD)[order[i]]) {
              // the last job got delayed, remove the most time consuming job from the schedule
@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
     
     // create latin rectangle
     for(i=0; i<numScheduled; i++) (*out_schedule.LR)[scheduled[i]][0] = i+1;
-    for(i=0; i<numOdd; i++) (*out_schedule.LR)[odd[i]][0] = i+numScheduled;
+    for(i=0; i<numOdd; i++) (*out_schedule.LR)[odd[i]][0] = i+numScheduled+1;
 
     // clean up
     delete[] order;
