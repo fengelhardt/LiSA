@@ -80,7 +80,7 @@ private:
   
   /// draws a colored box
   void draw_box(TIMETYP end, TIMETYP time, int x_value, int y_value, 
-                int color, char *text_color);
+                int color, const char *text_color);
   
   /// draws the duedates
   void draw_DD(Lisa_Vector<TIMETYP> *DD);

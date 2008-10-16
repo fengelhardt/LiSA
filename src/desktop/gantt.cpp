@@ -232,7 +232,7 @@ void TCGantt::draw_x_lines()
 //**************************************************************************
 
 void TCGantt::draw_box(TIMETYP end, TIMETYP time, int x_value, int y_value, 
-		       int color, char *text_color)
+		       int color, const char *text_color)
 {
   double x1, x2, x3;
 
@@ -344,7 +344,7 @@ void TCGantt::draw(Lisa_Matrix<bool> *CP,
 {
 
   
-  int i1, i2, color; char *text_color;
+  int i1, i2, color; const char *text_color;
 
  
   if(zoom != true)
