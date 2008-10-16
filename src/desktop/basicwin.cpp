@@ -82,7 +82,7 @@ void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,char * col){
+void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,const char * col){
   sprintf(command, "%s create line %3.0f %3.0f %3.0f %3.0f -fill %s",
 	  cv_name,x1,y1,x2,y2,col);
   Tcl_Eval(cv_interp,command);
@@ -91,7 +91,7 @@ void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,char * col){
 //**************************************************************************
 
 void  Lisa_Canvas::line(float x1,float y1,float x2,float y2,
-			string tag, char * col){
+			string tag, const char * col){
   sprintf(command, "%s create line %3.0f %3.0f %3.0f %3.0f -tag {%s} -fill %s",
 	  cv_name,x1,y1,x2,y2,(char*) tag.c_str(),col);
   Tcl_Eval(cv_interp,command);
@@ -105,7 +105,7 @@ void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,char * col){
+void  Lisa_Canvas::line_rel(float x1,float y1,float x2,float y2,const char * col){
   sprintf(command, "%s create line %3.0f %3.0f %3.0f %3.0f  -fill %s",
 	  cv_name,x1/100.*width,(100.-y1)/100.*height,
 	  x2/100.*width,(100.-y2)/100.*height,col);
@@ -144,7 +144,7 @@ void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,char* col){
+void Lisa_Canvas::arrow(float x1,float y1,float x2,float y2,const char* col){
  sprintf(command, 
 	 "%s create line %3.0f %3.0f %3.0f %3.0f -arrow last -arrowshape {16 20 5}  -fill %s",
 	 cv_name,x1,y1,x2,y2,col);
@@ -159,7 +159,7 @@ void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,char* col) {
+void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,const char* col) {
   sprintf(command, 
 	  "%s create line %3.0f %3.0f %3.0f %3.0f -arrow last -arrowshape {16 20 5}  -fill %s",
 	  cv_name,x1/100.*width,(100.-y1)/100.*height,
@@ -169,7 +169,7 @@ void Lisa_Canvas::arrow_rel(float x1,float y1,float x2,float y2,char* col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::arc_arrow(float x1,float y1,float x2,float y2,float d,char *col){
+void Lisa_Canvas::arc_arrow(float x1,float y1,float x2,float y2,float d,const char *col){
   // Eine gerichtete, gebogene Kante eines Graphen  
   // d entspricht den Unterschied zur Linie (d=0 <==> gerade Kante)
   float xzp1,yzp1; // Zwischenpunkt
@@ -194,7 +194,7 @@ void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,char * col){
+void Lisa_Canvas::rect(float x1,float y1,float x2,float y2,const char * col){
   sprintf(command, 
 	  "%s create rect %3.0f %3.0f %3.0f %3.0f -fill %s -outline black",
 	  cv_name,x1,y1,x2,y2,col);
@@ -209,7 +209,7 @@ void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,int col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,char * col){
+void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,const char * col){
   sprintf(command, "%s create rect %3.0f %3.0f %3.0f %3.0f -fill %s -outline black",
 	  cv_name,x1/100.*width,(100.-y1)/100.*height,
 	  x2/100.*width,(100.-y2)/100.*height,col);
@@ -218,13 +218,13 @@ void Lisa_Canvas::rect_rel(float x1,float y1,float x2,float y2,char * col){
 
 //**************************************************************************
 
-void Lisa_Canvas::text(float x,float y,char *txt, int col){
+void Lisa_Canvas::text(float x,float y,const char *txt, int col){
   text(x,y,txt,color[col%(MAX_CANV_COLORS)]);
 }
 
 //**************************************************************************
 
-void Lisa_Canvas::text(float x,float y,char *txt, char * col){
+void Lisa_Canvas::text(float x,float y,const char *txt, const char * col){
   sprintf(command, 
 	  "%s create text %3.0f %3.0f -text \"%s\" -fill %s -justify left",
 	  cv_name,x,y,txt,col);
@@ -233,13 +233,13 @@ void Lisa_Canvas::text(float x,float y,char *txt, char * col){
 
 //**************************************************************************
 
-void Lisa_Canvas::text_rel(float x,float y,char *txt, int col){
+void Lisa_Canvas::text_rel(float x,float y,const char *txt, int col){
   text_rel(x,y,txt,color[col%(MAX_CANV_COLORS)]);
 }
 
 //**************************************************************************
 
-void Lisa_Canvas::text_rel(float x,float y,char *txt, char * col){
+void Lisa_Canvas::text_rel(float x,float y,const char *txt, const char * col){
   sprintf(command, 
 	  "%s create text %3.0f %3.0f -text  \"%s\" -fill %s -justify center",
 	  cv_name,x/100.*width,(100.-y)/100.*height,txt,col);
@@ -254,7 +254,7 @@ void Lisa_Canvas::text(float x,float y,string txt, int col){
 
 //**************************************************************************
 
-void Lisa_Canvas::text(float x,float y,string text, char * col){
+void Lisa_Canvas::text(float x,float y,string text, const char * col){
   sprintf(command, 
 	  "%s create text %3.0f %3.0f -text \"%s\" -fill %s -justify left",
 	  cv_name,x,y,text.c_str(),col);
@@ -269,7 +269,7 @@ void Lisa_Canvas::text_rel(float x,float y,string text, int col){
 
 //**************************************************************************
 
-void Lisa_Canvas::text_rel(float x,float y,string text, char * col){
+void Lisa_Canvas::text_rel(float x,float y,string text, const char * col){
   sprintf(command, 
 	  "%s create text %3.0f %3.0f -text  \"%s\" -fill %s -justify center",
 	  cv_name,x/100.*width,(100.-y)/100.*height,text.c_str(),col);
@@ -291,7 +291,7 @@ void Lisa_Canvas::circle(float x,float y,float rad,int  col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::circle(float x,float y,float rad,char* col){
+void Lisa_Canvas::circle(float x,float y,float rad,const char* col){
   sprintf(command, 
 	  "%s create oval %3.0f %3.0f %3.0f %3.0f -fill white -outline %s -width 2",
 	  cv_name,x-rad,y-rad,x+rad,y+rad,col);
@@ -306,7 +306,7 @@ void Lisa_Canvas::fil_circle(float x,float y,float rad,int  col) {
 
 //**************************************************************************
 
-void Lisa_Canvas::fil_circle(float x,float y,float rad,char* col){
+void Lisa_Canvas::fil_circle(float x,float y,float rad,const char* col){
   sprintf(command, 
 	  "%s create oval %3.0f %3.0f %3.0f %3.0f -fill %s -outline %s -width 2",
 	  cv_name,x-rad,y-rad,x+rad,y+rad,col,col);
@@ -365,7 +365,7 @@ Lisa_TextObject::Lisa_TextObject(Tcl_Interp * tclinterp){
 
 //**************************************************************************
 
-Lisa_TextObject::Lisa_TextObject(char * name,Tcl_Interp * tclinterp){
+Lisa_TextObject::Lisa_TextObject(const char * name,Tcl_Interp * tclinterp){
   cv_name = new char[200];
   command = "";
   sprintf(cv_name,"%s",name);
