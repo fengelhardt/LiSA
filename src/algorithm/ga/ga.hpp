@@ -6,6 +6,7 @@
 #include "./lr_ind.hpp"
 #include <numeric>
 #include <set>
+#include <algorithm>
 
 template <class Ind>
 class GA {
