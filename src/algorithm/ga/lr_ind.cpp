@@ -1,6 +1,7 @@
 
 #include "./lr_ind.hpp"
 #include <functional>
+#include <algorithm>
 
 #include "../nb_iter/nb_iter.hpp"
 #include <cstdio>
