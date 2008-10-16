@@ -58,16 +58,16 @@ class Lisa_Canvas{
   void clear( double xpos, double ypos );
   
   /// draw line
-  void line(float x1,float y1,float x2,float y2,char * col);
+  void line(float x1,float y1,float x2,float y2,const char * col);
   
   /// draw line with tag
-  void line(float x1,float y1,float x2,float y2,std::string tag, char * col);
+  void line(float x1,float y1,float x2,float y2,std::string tag, const char * col);
   
   /// draw line
   void line(float x1,float y1,float x2,float y2,int col);
 
   /// draw linie with relativ koordinates (0-100)
-  void line_rel(float x1,float y1,float x2,float y2,char * col);
+  void line_rel(float x1,float y1,float x2,float y2,const char * col);
 
   /// draw linie with relativ koordinates (0-100)
   void line_rel(float x1,float y1,float x2,float y2,int col);
@@ -76,13 +76,13 @@ class Lisa_Canvas{
   void dashed_hline_rel(double x1, double x2, double y);
 
   /// draw arrow (used as directed edge)
-  void arrow(float x1,float y1,float x2,float y2,char* col);
+  void arrow(float x1,float y1,float x2,float y2,const char* col);
   
   /// draw arrow (used as directed edge)
   void arrow(float x1,float y1,float x2,float y2,int col);
   
   /// draw arrow with relativ koordinates (0-100)
-  void arrow_rel(float x1,float y1,float x2,float y2,char* col);
+  void arrow_rel(float x1,float y1,float x2,float y2,const char* col);
   
   /// draw arrow with relativ koordinates (0-100)
   void arrow_rel(float x1,float y1,float x2,float y2,int col);
@@ -90,40 +90,40 @@ class Lisa_Canvas{
   /// draw arrow (used as directed edge)
   /** additional to arrow() the arrow is bent corresponding
       to the value of rad */ 
-  void arc_arrow(float x1,float y1,float x2,float y2,float rad,char *col);
+  void arc_arrow(float x1,float y1,float x2,float y2,float rad,const char *col);
 
   /// draw rectangle with  koordinates x1,y1,x2,y2
-  void rect(float x1,float y1,float x2,float y2,char * col);
+  void rect(float x1,float y1,float x2,float y2,const char * col);
   
   /// draw rectangle with  koordinates x1,y1,x2,y2
   void rect(float x1,float y1,float x2,float y2,int col);
 
   /// draw rectangle with relativ koordinates (0-100)
-  void rect_rel(float x1,float y1,float x2,float y2,char * col);
+  void rect_rel(float x1,float y1,float x2,float y2,const char * col);
 
   /// draw rectangle with relativ koordinates (0-100)
   void rect_rel(float x1,float y1,float x2,float y2,int col);
 
   /// write text
-  void text(float x,float y,char *text, char * col);
+  void text(float x,float y,const char *text, const char * col);
 
   /// write text
-  void text(float x,float y,char *text, int col);
+  void text(float x,float y,const char *text, int col);
 
   /// write text with relativ koordinates (0-100)
-  void text_rel(float x,float y,char *text, char * col);
+  void text_rel(float x,float y,const char *text, const char * col);
   
   /// write text with relativ koordinates (0-100)
-  void text_rel(float x,float y,char *text, int col);
+  void text_rel(float x,float y,const char *text, int col);
 
   /// write text
-  void text(float x,float y, std::string text, char * col);
+  void text(float x,float y, std::string text, const char * col);
   
   /// write text
   void text(float x,float y, std::string text, int col);
   
   /// write text  with relativ koordinates (0-100)
-  void text_rel(float x,float y, std::string text, char * col);
+  void text_rel(float x,float y, std::string text, const char * col);
   
   /// write text  with relativ koordinates (0-100)
   void text_rel(float x,float y, std::string text, int col);
@@ -132,13 +132,13 @@ class Lisa_Canvas{
   void point(float x,float y,char col);
 
   /// draw circle
-  void circle(float x,float y,float rad,char* col);
+  void circle(float x,float y,float rad,const char* col);
 
   /// draw circle
   void circle(float x,float y,float rad,int col);
 
   /// draw filled circle
-  void fil_circle(float x,float y,float rad,char* col);
+  void fil_circle(float x,float y,float rad,const char* col);
 
   /// draw filled circle
   void fil_circle(float x,float y,float rad,int col);
@@ -179,7 +179,7 @@ public:
   Lisa_TextObject();
   
   /// constructor
-  Lisa_TextObject(char * name,Tcl_Interp * tclinterp);
+  Lisa_TextObject(const char * name,Tcl_Interp * tclinterp);
   
   ///constructor
   Lisa_TextObject(Tcl_Interp * tclinterp);
