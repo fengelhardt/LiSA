@@ -2,6 +2,16 @@
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
 <algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="o_unit Algorithmus" type="constructive" call="o_unit" code="external" help_file="algorithm/o_unit_german.html">
   <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Cmax"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta />
+      <gamma objective="Sum_Ci"/>
+    </problem>
   </heuristic>
   <exact>
     <problem>
@@ -16,6 +26,16 @@
     </problem>
   </exact>
   <alg_controls>
-    <integer name="SEED"     caption="Zufalls-Seed" default="1234567890"/>
+    <integer name="ASTERN" caption="LR Parameter" default="-1"/>
+    <integer name="SEED" caption="Zufalls-Seed" default="1234567890"/>
+    <choice name="SORT" caption="Vorsortierungsregel">
+	<item name="LPT"/>
+	<item name="SPT"/>
+	<item name="MINPTMIN"/>
+	<item name="MINPTMAX"/>
+	<item name="MAXPTMIN"/>
+	<item name="MAXPTMAX"/>
+	<item name="RAND"/>
+    </choice>
   </alg_controls>
 </algorithm>

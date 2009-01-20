@@ -9,30 +9,52 @@ Benutzen Sie diesen Algorithmus, um ein
 open shop Problem mit Cmax- oder SumCi-Zielfunktionswert
 exakt (bei Einheitsbearbeitungszeiten) oder
 heuristisch zu L&ouml;sen. Dieser Algorithmus 
-erzeugt stets einen rangminimalen Plan.
+erzeugt stets einen rangminimalen Plan.<BR>
+F&uuml;r Probleme mit mehr Auftr&auml;gen <I>n</I> als 
+Maschinen <I>m</I> wird der Plan <I>LR[n,m,x]</I> in lateinische 
+Quadrate der Ordnung <I>m</I> und ein lateinisches Rechteck 
+<A name="B"></A><I>B := LR[m+b,m, x]</I> zerlegt.
 
 <P>
 <H2>So kommen Sie hierher:</H2> 
-Stellen Sie sicher, da&szlig; ein 
-<A HREF="../problem.html"> Problemtyp </A> und alle 
-<A HREF="../values.html"> Problemparameter </A> 
-definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
-<I> Algorithmen|Exakte Verfahren|o_unit</I> und
+Stellen Sie sicher, dass ein 
+<A HREF="../problem.html">Problemtyp</A> und alle 
+<A HREF="../values.html">Problemparameter</A> 
+definiert sind. W&auml;hlen Sie dann einen der Men&uuml;punkte 
+<I> Algorithmen|Exakte (oder Heuristische) Verfahren|o_unit</I> und
 dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>.
 <P>
 
 <H2>Einstellungen:</H2>
-<DL>
-<DT>Parameter: Seed</DT>
-<DD>
-Mit dem Seed wird der im Algorithmus benutzte Zufallsgenerator initialisiert.</DD>
-</DL>
+<UL>
+  <LI><H3>Parameter</H3></LI>
+  <UL>
+    <LI><B>LR Parameter</B><BR><I>Der LR Parameter legt fest, an 
+welcher Stelle das lateinische Rechteck <A HREF="#B">B</A> in den 
+Plan eingef&uuml;gt wird.</I></LI>
+    <LI><B>Zufalls-Seed</B><BR><I>Mit dem Seed wird der im 
+Algorithmus benutzte Zufallsgenerator initialisiert.</I></LI>
+    <LI><B>Vorsortierungsregel</B><BR><I>W&auml;hlen Sie aus, 
+mit welcher Regel die Auftr&auml;ge vorsortiert werden sollen.</I></LI>
+    <UL>
+      <LI>RAND<BR><I>keine &Auml;nderung der Reihenfolge</I></LI>
+      <LI>LPT<BR><I>gr&ouml;&szlig;te Bearbeitungszeiten(Summe) zuerst</I></LI>
+      <LI>SPT<BR><I>kleinste Bearbeitungszeiten(Summe) zuerst</I></LI>
+      <LI>MINPTMIN<BR><I>kleinste Bearbeitungszeit zuerst</I></LI>
+      <LI>MINPTMAX<BR><I>kleinste Bearbeitungszeit zuletzt</I></LI>
+      <LI>MAXPTMIN<BR><I>gr&ouml;&szlig;te Bearbeitungszeit zuerst</I></LI>
+      <LI>MAXPTMAX<BR><I>gr&ouml;&szlig;te Bearbeitungszeit zuletzt</I></LI>
+    </UL>
+  </UL>
+</UL>
+
 
 <H2>Probleme:</H2>
 <UL>
-<LI> Es gibt Instanzen des Problems O/p_ij=1/Cmax,SumCi
-mit unvollst&auml;ndiger Operationenmenge, f&uuml;r die
-dieser Algorithmus nicht optimal ist.
+<LI> Der exakte Algorithmus ist f&uuml;r vollst&auml;ndige 
+Operationenmengen ausgelegt. Es gibt Instanzen des Problems 
+O/p_ij=1/Cmax,SumCi mit unvollst&auml;ndiger Operationenmenge, 
+f&uuml;r die dieser Algorithmus nicht optimal ist.</LI>
 </UL>
 <P>
 

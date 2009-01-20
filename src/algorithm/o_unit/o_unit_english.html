@@ -5,31 +5,53 @@
 <BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
 <H2> o_unit algorithm </H2>
 
-Use this algorithm to solve a open shop
+Use this algorithm to solve an open shop
 problem with Cmax,SumCi objective heuristically.
 This algorithm is for problems with unit 
-processing times exact.
+processing times exact.<BR>
+For problems with more jobs <I>n</I> than 
+machines <I>m</I>, the sequence <I>LR[n,m,x]</I> is divided 
+into latin squares of order <I>m</I> and one latin rectangle 
+<A name="B"></A><I>B := LR[m+b,m, x]</I>.
 
 <P>
 <H2>What you have to do:</H2>
 <P>
 Make sure that both a 
-<A HREF="../problem.html"> problem type </A> and all 
-<A HREF="../values.html"> parameters </A> 
-are defined. Choose <I>Exact Algorithms|o_unit</I> from
-the menu <I>Algorithms</I> and after editing the options press <I>OK</I>.
+<A HREF="../problem.html">problem type</A> and all 
+<A HREF="../values.html">parameters</A> 
+are defined. Choose <I>Exact Algorithms|o_unit</I> or <I>Heuristic 
+Algorithms|o_unit</I> from the menu <I>Algorithms</I> and after 
+editing the options press <I>OK</I>.
 <P>
 
 <H2>Options:</H2>
-<DL>
-<DT>seed parameter</DT> 
-<DD>the seed parameter is used to initiate the random function in the algorithm. </DD>
-</DL>
+<UL>
+  <LI><H3>Parameters</H3></LI>
+  <UL>
+    <LI><B>LR parameter</B><BR><I>The LR parameter defines the postion where 
+the latin square <A HREF="#B">B</A> is inserted into the sequence.</I></LI>
+    <LI><B>Random seed</B><BR><I>The random seed is used to initiate the 
+random function in the algorithm</I></LI>
+    <LI><B>Presorting rule</B><BR><I>Choose the presorting rule - how to 
+order the jobs</I></LI>
+    <UL>
+      <LI>RAND<BR><I>no change of the job order</I></LI>
+      <LI>LPT<BR><I>longest processing times(sum) first</I></LI>
+      <LI>SPT<BR><I>shortest processing times(sum) first</I></LI>
+      <LI>MINPTMIN<BR><I>shortest processing time first</I></LI>
+      <LI>MINPTMAX<BR><I>shortest processing time last</I></LI>
+      <LI>MAXPTMIN<BR><I>longest processing time first</I></LI>
+      <LI>MAXPTMAX<BR><I>longest processing time last</I></LI>
+    </UL>
+  </UL>
+</UL>
 
 <H2>Problems:</H2>
 <UL>
-<LI> The result of this algorithm is for some O/p_ij=1/Cmax,SumCi problems with
-     incomplete operation set not optimal. 
+<LI> The exact algorithm is laid out for complete operation sets. 
+The result of this algorithm is for some O/p_ij=1/Cmax,SumCi problems with 
+incomplete operation set not optimal. 
 </UL>
 
 <P>
