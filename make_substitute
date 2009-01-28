@@ -6,6 +6,8 @@
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
+# invoked by a 'make version'-command to update version information in some files
+# <Frank>
 
 # just do it
 

@@ -6,6 +6,10 @@
 # E-Mail: Lars.Dornheim@Student.Uni-Magdeburg.DE
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
+# usage: make_version <new_version> <file>
+# updates the '@version'-tag in a source file to the new version
+# invoked by a 'make version'-command 
+# <Frank>
 
 # just do it
 
