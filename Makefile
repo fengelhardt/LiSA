@@ -4,6 +4,7 @@
 # WWW: http://graf350.urz.uni-magdeburg.de/~dornheim/index.html
 
 # ------------------------------------------------------------------------------
+# for a version update, simply change this value and call 'make version'
 
 VERSION=2.3final
 
