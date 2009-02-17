@@ -1,32 +1,124 @@
-installation of the binary distribtution:
------------------------------------------
 
-- please make sure that your LiSA toplevel directory path is in the old dos style format, otherwise LiSA won't be able to start properly
-
-- start LiSA with the lisa.bat start script in LiSA's home directory or with the desktop 
-shortcut or the start menu entry if created by the installation
+LiSA Setup Guide
+================
 
 
 
-installation of the source distribtution (UNIX like environments):
-------------------------------------------------------------------
+1. Windows Systems:
+-------------------
 
-- make sure that tcl/tk and the g++ compiler are installed on your machine
+Installation with LiSASetup.exe
 
-- tar -xjvf lisa-XXX.tar.bz2
+	There is nothing much to say here. Just double click the file LiSASetup.exe and follow
+	the instructions. To avoid errors, please make sure to use old 8.3 DOS-style 
+	pathnames, like C:\PROGRA~1 instead of C:\Program Files.
 
-- cd LiSA
 
-- ./configure --enable-release (or --enable-debug for switching on error checking)
+Installation from Source
 
-- edit Make.Config if configure is unable to find some of the includes or 
-  libraries
+	We create our binary distribution with cygwin (www.cygwin.com). Unfortunately, I failed
+	with compiling LiSA with other tools (like MinGW or MSYS), so using cygwin will be the 
+	best way to compile LiSA on Windows hosts.
+	
+	If not done yet, please install cygwin by double clicking the setup.exe file. Choose
+	your installation path (say C:\cygwin) and the server from which you want to download 
+	the packages. After that, you will be asked for the packages you want to install. 
+	Now select the following packages (by a single click on 'Skip', so that instead a 
+	version number appears):
+	
+		Devel
+		  +- binutils
+		  +- gcc
+		  +- gcc-g++
+		  +- libxml2
+		  +- libxml2-devel
+		  +- make
+		  
+		Libs
+		  +- tcltk
+		  
+		X11
+		  +- libX11
+		  +- libX11-devel
+		  
+	Click 'Next' to begin the installation. 
+	
+	Now, unzip the LiSA source into the directory C:\cygwin\home\<your name>\. 
+	A subfolder LiSA should now be created. Open a cygwin shell and change to that directory:
+	
+	->  cd /home/<your name>/LiSA
+	
+	Compile LiSA using the following steps:
+	
+	->  ./configure --enable-release
+	
+	configure may complain about missing X11 development files once. This is no real problem,
+	as long as tcl/tk libraries have been found.
+	
+	-> make depend
+	
+	-> make
+	
+	If all worked fine, a file named 'lisa' should be created in this directory. You can start 
+	LiSA with:
+	
+	-> ./lisa
+	
+	or you create a Windows distribution by entering
+	
+	-> make dist-cygwin
+	
+	This command creates a subfolder win\LiSA. Copy this folder everywhere you want (like 
+	C:\Program Files\) and double click the file setup.bat in it. Another file named 
+	lisa.bat should then appear. Finally double click it to start LiSA from your Windows
+	Explorer.
+	
+	If you want to work with source code files (view our files or write your own to develop 
+	new algorithms), you will have to use a text editor that can read and export files in 
+	UNIX format, i.e. it should save line feeds as LF. The character-encoding should be 
+	latin-1 (ISO 8859-1), otherwise the compiler might complain. I can recommend TextPad
+	for that purpose.
+	
+	
+	
+2. UNIX Systems
+---------------
 
-- optimizations (recommended, but not nessecary)
-  edit Make.Config to add compiler flags like -O3 -march=pentium4, you may 
-  also try to use another compiler, intels icc works fine for me, and really
-  gives great results
-  
-- make
+	Make sure you have the following packages installed (refer to your distributions's 
+	documentation how to install software packages):
+	
+		- libX11 development files (mostly named something like libX11-dev or libX11-src)
+		
+		- libxml2 development files (also often named libxml2-dev or libxml2-src)
+		
+		- tcl and tk library 
+		
+		- gcc and make of course :)
 
-- ./lisa
+	Unpack the source code into any directory you like, say this will be your home directory.
+	Change to the newly created LiSA directory. 
+	
+	Try to configure the makefiles:
+	
+	-> ./configure --enable-release
+	
+	configure may complain about missing X11 library once, but as long as the tcl/tk library was
+	found, everything is ok. If configure prints a line like 'checking for tcl library... couldn't
+	find it', you will have to specify the correct paths explicitly. Look for libtcl.a and libtk.a
+	(library) and tk.h/tcl.h (includes). This, for example, is the configure call I have to use 
+	on my Debian system:
+	
+	-> ./configure --enable-release --with-tcl-libraries=/ --with-tcl-includes=/  TODO: Pfade nachgucken!!
+	
+	If configure then still complains, you should check your libX11-package.
+	
+	To build LiSA, call
+	
+	-> make depend
+	
+	-> make
+	
+	Ok, this should have created a script file named 'lisa' in the current directory. Start lisa 
+	with the call:
+	
+	-> ./lisa
