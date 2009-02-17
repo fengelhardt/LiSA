@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="os_sum_ti Algorithmus" type="constructive" call="os_sum_ti" code="external" help_file="algorithm/os_sum_ti_german.html">
+  <heuristic>
+    <problem>
+      <alpha env="O"/>
+      <beta />
+      <gamma objective="Sum_Ti"/>
+    </problem>
+  </heuristic>
+  <exact>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta processing_times="unit" no-wait="yes"/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
+  </exact>
+  <alg_controls>
+  </alg_controls>
+</algorithm>

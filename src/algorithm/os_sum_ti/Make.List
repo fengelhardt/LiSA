@@ -1,0 +1,21 @@
+CXXSOURCES=\
+	os_sum_ti.cpp \
+	eulersplit.cpp \
+	../../basics/lmatrix.cpp \
+	../../basics/matrix.cpp \
+	../../basics/pair.cpp \
+	../../basics/graph.cpp \
+	../../lisa/ctrlpara.cpp\
+	../../lisa/lvalues.cpp \
+	../../lisa/ptype.cpp \
+	../../main/global.cpp \
+	../../misc/except.cpp \
+	../../misc/int2str.cpp \
+	../../scheduling/matching.cpp \
+	../../scheduling/mo_jo.cpp \
+	../../scheduling/schedule.cpp \
+	../../xml/LisaXmlFile.cpp \
+	../../xml/lisa_xml.cpp \
+	../../xml/Lisa_NativeDataHandler.cpp \
+	../../xml/Lisa_IO_Factory.cpp
+
