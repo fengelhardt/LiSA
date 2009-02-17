@@ -1,5 +1,5 @@
 /**
- * @author  Mathisas Zimmermann
+ * @author  Mathias Zimmermann
  * @version 2.3final
  */
 
@@ -8,9 +8,9 @@
 // The file global.hpp is needed by LisaProblemtype.
 // The files ctrlpara.hpp, ptype.hpp and lvalues.hpp
 // are used for parsing the input file.
-// The object Lisa_Schedule (header: schedule.hpp) 
+// The object Lisa_Schedule (header: schedule.hpp)
 // is necessary for writing the result into the output file.
-// The file except.hpp is used for the exception handling.  
+// The file except.hpp is used for the exception handling.
 
 #include <unistd.h>
 #include <iostream>
@@ -35,7 +35,7 @@ using namespace std;
 void sort_by_processing_times(Lisa_Matrix<TIMETYP>& P, Lisa_Matrix<int>& LR, string s) {
 
     if (s == "RAND") return; // nothing to sort then
-    
+
     int n = P.get_n();
     int m = P.get_m();
 
@@ -119,6 +119,54 @@ void sort_by_processing_times(Lisa_Matrix<TIMETYP>& P, Lisa_Matrix<int>& LR, str
     }
 }
 
+void sort_by_duedates(Lisa_Vector<TIMETYP>& D, Lisa_Matrix<int>& LR) {
+
+    int n = LR.get_n(); // number of jobs
+    int m = LR.get_m(); // number of machines
+
+    // redundant field for result.LR
+    int LR_new[n][m];
+    // initialize the array
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+	LR_new[i][j] = LR[i][j];
+      }
+    }
+
+    int comp[n]; // same values as in D but in ordered form
+    int pos[n]; // positions of the ordered elements in D
+
+    // initialize the arrays
+    fill(comp, comp + n, 0);
+    fill(pos, pos + n, 0);
+
+    // copy the duedates to comp
+    for (int i = 0; i < n; i++) {
+      comp[i] = D[i];
+    }
+
+    // sort the duedates
+    sort(comp, comp + n);
+
+    // store the original positions of the duedates
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+	if(comp[i] == D[j]) {
+	  pos[i] = j;
+	  D[j] = -1;
+	  break;
+	}
+      }
+    }
+
+    // copy the ordered values to the original field
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+	LR[pos[i]][j] = LR_new[i][j];
+      }
+    }
+}
+
 void fill_LR_row(Lisa_Matrix<int>& C) {
 
     int s = C.get_m(); // number of columns
@@ -131,7 +179,7 @@ void fill_LR_row(Lisa_Matrix<int>& C) {
 	if (hilf > s) hilf = hilf % s;
 	C[i][j] = hilf;
       }
-    } 
+    }
 }
 
 void fill_LQ_of_LR(Lisa_Matrix<int>& C, int z0) {
@@ -139,14 +187,14 @@ void fill_LQ_of_LR(Lisa_Matrix<int>& C, int z0) {
     int s = C.get_m(); // number of columns
     int z = z0+s;      // number of rows
     int hilf;          // auxiliary variable
- 
+
     for (int i = z0; i < z; i++) {
       for (int j = 0; j < s; j++) {
         hilf = i+j+1;
 	if (hilf > z) hilf = hilf % z + z0;
 	C[i][j] = hilf;
       }
-    } 
+    }
 }
 
 void fill_LR(Lisa_Matrix<int>& M, int z0, int b) {
@@ -158,7 +206,7 @@ void fill_LR(Lisa_Matrix<int>& M, int z0, int b) {
 	b = 1;
 	workaround = 1;
     }
-    // fill the first m - b columns  
+    // fill the first m - b columns
     for (int i = z0; i < n; i++) {
 	for(int j = 0; j < m - b + 1; j++) {
 	    int hilf = i+j+1;
@@ -173,7 +221,7 @@ void fill_LR(Lisa_Matrix<int>& M, int z0, int b) {
 	    int hilf = i+j+1;
 	    if (hilf > m +z0) hilf = hilf % (m+z0) + z0;
 	    M[i][j] = hilf;
-	}			
+	}
     }
     // fill the rest row by row
     for (int i = b +z0; i < n; i++) {
@@ -189,7 +237,7 @@ void fill_LR(Lisa_Matrix<int>& M, int z0, int b) {
 	    }
 	    M[i][j] = hilf;
 	}
-    }	
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -200,10 +248,10 @@ int main(int argc, char *argv[]) {
     // The Lisa_Exceptionlist is forced for writing
     // error messages to cout. Then LiSA is able
     // to show the error messages of an external module.
-    G_ExceptionList.set_output_to_cout();   
+    G_ExceptionList.set_output_to_cout();
 
     // open files and assure existence:
-    if (argc != 3) 
+    if (argc != 3)
       {
         cout << "\nUsage: " << argv[0] << " [input file] [output file]\n";
         exit(1);
@@ -225,21 +273,21 @@ int main(int argc, char *argv[]) {
     }
     i_strm.close();
     o_strm.close();
-    
+
     //initialize class
     LisaXmlFile::initialize();
     //create Input handler
     LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
     //communication objects
     Lisa_ProblemType Problem;
-    Lisa_ControlParameters Parameter;   
+    Lisa_ControlParameters Parameter;
     Lisa_Values Values;
-    
+
     //parse xml file
     xmlInput.read(argv[1]);
     //determine document type
     LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
-    
+
     //check for successful parsing and valid document type
     if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
     {
@@ -270,7 +318,7 @@ int main(int argc, char *argv[]) {
       cout << "ERROR: cannot read input , aborting program." << endl;
       exit(1);
     }
-    
+
     int astern = -1;
     if (Parameter.defined("ASTERN")) astern = (int)(Parameter.get_long("ASTERN"));
     cout << "astern = " << astern << endl;
@@ -284,16 +332,16 @@ int main(int argc, char *argv[]) {
 
     // Define the LiSA  schedule object for storing results
     Lisa_Schedule result(Values.get_n(),Values.get_m());
-    
+
     result.make_LR();
-    
+
     // **************************************************************
     // *************** Insert your algorithm here: ******************
     // **************************************************************
-    
+
     int n = Values.get_n(); // number of rows
     int m = Values.get_m(); // number of columns
-    
+
     if (n <= m) {
 	fill_LR_row(*(result.LR)); // fill schedule row by row
     }
@@ -301,8 +349,8 @@ int main(int argc, char *argv[]) {
 	int a = n / m;
 	int b = n % m;
 	int k = 1; // control variable
-	int l = 1; // control variable       
-	// if astern is undefinied or to big it will be generated randomly, astern in {0,...,a-1} 
+	int l = 1; // control variable
+	// if astern is undefinied or to big it will be generated randomly, astern in {0,...,a-1}
 	if (astern < 0 || astern > a-1) {
 	    astern=(lisa_random(0,a-1,&seed));
 	}
@@ -317,13 +365,18 @@ int main(int argc, char *argv[]) {
 	    fill_LQ_of_LR(*(result.LR), (k+l-1)*m+b);
 	}
     }
+
+    if (sort == "EDD") {
+      sort_by_duedates(*(Values.DD), *(result.LR));
+      sort = "RAND";
+    }
     // sort the processing times and the plan
     sort_by_processing_times(*(Values.PT), *(result.LR), sort);
 
     // ***************************************************************
-    // ********************* End of Algorithm ************************ 
+    // ********************* End of Algorithm ************************
     // ***************************************************************
-    
+
     // The object out_schedule contain the result of this algorithm,
     // which is written into the output file
     //create xml output handler

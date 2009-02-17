@@ -12,6 +12,11 @@
       <beta />
       <gamma objective="Sum_Ci"/>
     </problem>
+    <problem>
+      <alpha env="O"/>
+      <beta/>
+      <gamma objective="Sum_Ti"/>
+    </problem>
   </heuristic>
   <exact>
     <problem>
@@ -35,6 +40,7 @@
 	<item name="MINPTMAX"/>
 	<item name="MAXPTMIN"/>
 	<item name="MAXPTMAX"/>
+	<item name="EDD"/>
 	<item name="RAND"/>
     </choice>
   </alg_controls>
