@@ -14,13 +14,12 @@
       <beta processing_times="unit"/>
       <gamma objective="Sum_Ti"/>
     </problem>
-    <problem>
-      <alpha env="O"/>
-      <beta processing_times="unit" no-wait="yes"/>
-      <gamma objective="Sum_Ti"/>
-    </problem>
   </exact>
   <alg_controls>
+    <choice name="SCHEDULE" caption="generate schedule">
+      <item name="ACTIVE"/>
+      <item name="NONDELAY"/>
+    </choice>
   </alg_controls>
 </algorithm>
 

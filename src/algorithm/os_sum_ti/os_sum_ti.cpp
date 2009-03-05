@@ -69,7 +69,7 @@ void sort_duedates(Lisa_Vector<TIMETYP>& D, int pos[]) {
     }
 }
 
-int compute_M(Lisa_Vector<TIMETYP>& dd, Lisa_Matrix<int> *M, int m, int no_wait) {
+int compute_M(Lisa_Vector<TIMETYP>& dd, Lisa_Matrix<int> *M, int m, int nondelay) {
 
     int n = (*M).get_n(); // number of jobs
     int max = (*M).get_m(); // maximum number of columns of the job-time matrix M
@@ -82,8 +82,8 @@ int compute_M(Lisa_Vector<TIMETYP>& dd, Lisa_Matrix<int> *M, int m, int no_wait)
     fill(d, d + n, 0);
     fill(h, h + max, 0);
 
-    // if no-wait: compute new duedates
-    if ((no_wait) && (n > 2*m-3)) {
+    // if nondelay: compute new duedates
+    if ((nondelay) && (n > 2*m-3)) {
       int diff = n-m;
       for (int i = 0; i < n; i++) {
 	d[i] = i < diff ? (dd[i] < n ? dd[i] : n) : n;
@@ -417,6 +417,10 @@ int main(int argc, char *argv[]) {
       exit(1);
     }
 
+    string schedule = "ACTIVE";
+    if(Parameter.defined("SCHEDULE")) schedule = Parameter.get_string("SCHEDULE");
+    cout << "schedule = " << schedule << endl;
+
     // Define the LiSA  schedule object for storing results
     Lisa_Schedule result(Values.get_n(), Values.get_m());
 
@@ -426,17 +430,16 @@ int main(int argc, char *argv[]) {
     // *************** Insert your algorithm here: ******************
     // **************************************************************
 
-    // checks if a no-wait schedule schould be generated (works for p_ij = 1)
-    string::size_type nowait = Problem.output_beta().find("no-wait", 0);
-    int no_wait = 0;
-    if (nowait != string::npos) {
-      no_wait = 1;
+    // checks if a nondelay schedule schould be generated (works for p_ij = 1)
+    int nondelay = 0;
+    if (schedule == "NONDELAY") {
+      nondelay = 1;
     }
 
     int n = Values.get_n(); // number of jobs
     int m = Values.get_m(); // number of machines
     int max = n * m; // maximum number of columns of the job-time matrix M
-    if(no_wait) {
+    if(nondelay) {
       max = n > m ? (n > 2*m-3 ? n : ((n / m) + 1) * m ) : m;
     }
     int realmax = 0; // the real number of columns of the job-time matrix M (equal to cmax)
@@ -451,7 +454,7 @@ int main(int argc, char *argv[]) {
     M.fill(0);
 
     // main algorithm - compute the job-time matrix M
-    realmax = compute_M(*(Values.DD), &M, m, no_wait);
+    realmax = compute_M(*(Values.DD), &M, m, nondelay);
 
     // compute the sequence out of the job-time matrix
     compute_LR(*(result.LR), &M, pos, m, realmax);
