@@ -108,7 +108,7 @@ Installation from Source
 	(library) and tk.h/tcl.h (includes). This, for example, is the configure call I have to use 
 	on my Debian system:
 	
-	-> ./configure --enable-release --with-tcl-libraries=/ --with-tcl-includes=/  TODO: Pfade nachgucken!!
+	-> ./configure --with-tcl-libraries=/usr/lib --with-tcl-includes=/usr/include/tcl --enable-release
 	
 	If configure then still complains, you should check your libX11-package.
 	
