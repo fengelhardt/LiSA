@@ -10,8 +10,7 @@ LiSA Setup Guide
 Installation with LiSASetup.exe
 
 	There is nothing much to say here. Just double click the file LiSASetup.exe and follow
-	the instructions. To avoid errors, please make sure to use old 8.3 DOS-style 
-	pathnames, like C:\PROGRA~1 instead of C:\Program Files.
+	the instructions. To uninstall LiSA, double click unins000.exe in the LiSA directory.
 
 
 Installation from Source
@@ -29,8 +28,6 @@ Installation from Source
 		Devel
 		  +- binutils
 		  +- gcc
-		  +- gcc-g++
-		  +- libxml2
 		  +- libxml2-devel
 		  +- make
 		  
@@ -59,8 +56,10 @@ Installation from Source
 	
 	-> make
 	
-	If all worked fine, a file named 'lisa' should be created in this directory. You can start 
-	LiSA with:
+	On systems with a newer version of gcc installed (>= 4), some compiler warnigs may occur.
+	This should be no problem, as long as no build errors happen.
+	If all worked fine, a file named 'lisa' should have been created in this directory. 
+	You can start LiSA with:
 	
 	-> ./lisa
 	
@@ -69,15 +68,14 @@ Installation from Source
 	-> make dist-cygwin
 	
 	This command creates a subfolder win\LiSA. Copy this folder everywhere you want (like 
-	C:\Program Files\) and double click the file setup.bat in it. Another file named 
-	lisa.bat should then appear. Finally double click it to start LiSA from your Windows
+	C:\Program Files\). Double click the file lisa.bat to start LiSA from your Windows
 	Explorer.
 	
 	If you want to work with source code files (view our files or write your own to develop 
 	new algorithms), you will have to use a text editor that can read and export files in 
 	UNIX format, i.e. it should save line feeds as LF. The character-encoding should be 
-	latin-1 (ISO 8859-1), otherwise the compiler might complain. I can recommend TextPad
-	for that purpose.
+	latin-1 (ISO 8859-1) or ANSI, otherwise the compiler might complain. I can recommend 
+	TextPad for that purpose.
 	
 	
 	
