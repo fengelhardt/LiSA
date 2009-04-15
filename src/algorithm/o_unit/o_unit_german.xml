@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="o_unit Algorithmus" type="constructive" call="o_unit" code="external" help_file="algorithm/o_unit_german.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="o_unit Algorithmus" type="constructive" call="o_unit" code="external" help_file="algorithm/o_unit.html">
   <heuristic>
     <problem>
       <alpha env="O"/>
