@@ -4,12 +4,11 @@ rem LiSA start shell script
 rem written by Frank Engelhardt
 
 rem setting the LiSA home path
-rem these nice commands put the current directory into LISAHOME in 8.3 short format
+rem this nice command converts the current directory into 8.3 short format and saves in into LISAHOME 
 for %%x in ("%cd%") do set LISAHOME=%%~sx
-set LISAHOME=%LISAHOME%/
 
 rem setting the LiSA config path
-set LISACONFIG=%LISAHOME%data/
+set LISACONFIG=%LISAHOME%/data/
 
 rem starting LiSA
 cd bin\
