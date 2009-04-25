@@ -39,7 +39,7 @@ Lisa_MatrixOfLists<TIMETYP> * result_pmtnLR;
 Lisa_Matrix<TIMETYP> * P_input;
 Lisa_Matrix<bool> * MatchingMatrix;
 int level;
-int m,n;		  
+int m,n;
 Lisa_List<Lisa_Pair> * allMatchings;
 Lisa_List<TIMETYP> * allDeltas;
 
@@ -47,14 +47,14 @@ Lisa_List<TIMETYP> * allDeltas;
 
 // first thing ever to do: calculating the sums for each col and row
 void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
-{  
+{
   // initializing the arrays with 0
   (*rowsums).fill(0);
   (*colsums).fill(0);
 
   // taking a primitive LB
   LB=P[0][0];
-    
+
   // calculating rowsums, colsums and LB
   for(int j=0;j<n;j++) {
     for(int i=0;i<m;i++) {
@@ -62,7 +62,7 @@ void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
 	if (P[j][i]<LV) LV=P[j][i];
 	(*colsums)[i]+=P[j][i];
 	(*rowsums)[j]+=P[j][i];
-	
+
 	if ((*colsums)[i]>LB) LB=(*colsums)[i];
 	if ((*rowsums)[j]>LB) LB=(*rowsums)[j];
       }
@@ -77,7 +77,7 @@ void calc_RowAndColSums(const Lisa_Matrix<TIMETYP> & P)
 TIMETYP get_delta(Lisa_Matrix<TIMETYP> & P,
 		  const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J)
 {
-  TIMETYP delta=LB;  
+  TIMETYP delta=LB;
   for(int i=0;i<m;i++) {
     if (matching_J[i]>=0 && matching_J[i]<n && P[matching_J[i]][i]>0) {
       // && ((*colsums)[i]==LB || (*rowsums)[matching_J[i]]==LB)) {
@@ -100,7 +100,7 @@ TIMETYP get_delta(Lisa_Matrix<TIMETYP> & P,
 // this is for updating everything needed in the general case...
 void update(Lisa_Matrix<TIMETYP> & P,
 	    const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J,
-	    TIMETYP delta) 
+	    TIMETYP delta)
 {
   LB-=delta;
   if (n>=m) {
@@ -117,7 +117,7 @@ void update(Lisa_Matrix<TIMETYP> & P,
   else {
     for(int i=0;i<m;i++)
       if (matching_J[i]>=0 && matching_J[i]<n &&  P[matching_J[i]][i]>0) {
-	P[matching_J[i]][i]-=delta; 
+	P[matching_J[i]][i]-=delta;
 	if (P[matching_J[i]][i]<=0) {
           MatchingMatrix[matching_J[i]][i]=0;
      }
@@ -127,7 +127,7 @@ void update(Lisa_Matrix<TIMETYP> & P,
 	(*result_pmtnP)[matching_J[i]][i].append(delta);
       }
   }
-  
+
   for(int j=0;j<n;j++)  {
        (*MatchingMatrix)[j][m+j]=(((*rowsums)[j]==LB) ? 0 : ((LB - (*rowsums)[j])>0));
   }
@@ -141,7 +141,7 @@ void update(Lisa_Matrix<TIMETYP> & P,
 // this is for updating everything needed in the case of nondelay...
 void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 	    const Lisa_Vector<int> & matching_I, const Lisa_Vector<int> & matching_J,
-	    TIMETYP delta) 
+	    TIMETYP delta)
 {
   Lisa_List<Lisa_Pair> * MatchingEdges=new Lisa_List<Lisa_Pair>();
   int edgecount=0;
@@ -170,7 +170,7 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 	edge->y=matching_J[i];
 	MatchingEdges->append(*edge);
 	delete edge;
-	P[matching_J[i]][i]-=delta; 
+	P[matching_J[i]][i]-=delta;
 	if (P[matching_J[i]][i]<=0) MatchingMatrix[matching_J[i]][i]=0;
 	(*colsums)[i]-=delta;
 	(*rowsums)[matching_J[i]]-=delta;
@@ -184,12 +184,12 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
   Lisa_Pair *EdgesAndDelta=new Lisa_Pair();
 
   EdgesAndDelta->x=level-1;
-  EdgesAndDelta->y=(int)MatchingEdges;
+  EdgesAndDelta->y=(int)MatchingEdges; // FIXME: conversion from pointer to int causes an error on 64bit machines
 
   MatchingInfo->x=edgecount;
-  MatchingInfo->y=(int)EdgesAndDelta;
-  
-  
+  MatchingInfo->y=(int)EdgesAndDelta; // FIXME: here too
+
+
   for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j] = (((*rowsums)[j]==LB) ? 0 : ( (LB - (*rowsums)[j]) > 0 ));
   for(int i=0;i<m;i++)  (*MatchingMatrix)[n+i][i] = (((*colsums)[i]==LB) ? 0 : ( (LB - (*colsums)[i]) > 0 ));
 
@@ -201,45 +201,45 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 //**************************************************************************
 
 int main(int argc, char *argv[]){
-  
+
     // write error messages so lisa can pick them up
-    G_ExceptionList.set_output_to_cout();   
+    G_ExceptionList.set_output_to_cout();
 
     if(argc < 3){
       cout << "Usage: " << argv[0] << " [input file] [output file]" << endl;
       exit(1);
     }
 
-    cout << "PID= " << getpid() << endl; 
+    cout << "PID= " << getpid() << endl;
 
     ifstream i_strm(argv[1]);
     ofstream o_strm(argv[2]);
     if(!i_strm){
       cout << "Could not open '" << argv[1] << "' for reading." << endl;
       exit(1);
-    }  
+    }
     if(!o_strm){
       cout << "Could not open '" << argv[2] << "' for writing." << endl;
-      exit(1);      
+      exit(1);
     }
     o_strm.close();
     i_strm.close();
-    
+
     Lisa_ProblemType lpr;
     Lisa_ControlParameters sp;
     Lisa_Values my_werte;
-    
+
     // read problem instance:
    //initialize class
    LisaXmlFile::initialize();
    //create Input handler
    LisaXmlFile xmlInput(LisaXmlFile::IMPLICIT);
-   
+
    //parse xml file
     xmlInput.read(argv[1]);
     //determine document type
     LisaXmlFile::DOC_TYPE type = xmlInput.getDocumentType();
-    
+
     //check for successful parsing and valid document type
     if (!xmlInput || !(type == LisaXmlFile::INSTANCE || type == LisaXmlFile::SOLUTION))
     {
@@ -270,9 +270,9 @@ int main(int argc, char *argv[]){
       cout << "ERROR: cannot read input , aborting program." << endl;
       exit(1);
     }
-    
-    
-    
+
+
+
     n=my_werte.get_n();
     m=my_werte.get_m();
     P_input=my_werte.PT;
@@ -306,10 +306,10 @@ int main(int argc, char *argv[]){
 
     TIMETYP delta;
     for (level=1;;level++) {
-      
+
       // calculating a set of independend operations...
       Lisa_BipartMatching * myMatching = new Lisa_BipartMatching(MatchingMatrix);
-      
+
       // ..., determining the maximum delta for that...
       delta=get_delta(*P_input,
 		      *myMatching->get_matching_I(),
@@ -326,10 +326,10 @@ int main(int argc, char *argv[]){
 			   delta);
 
       delete myMatching;
-      
-      // we have to stop if either LB<=0 or delta<=0 
+
+      // we have to stop if either LB<=0 or delta<=0
       // 2nd case should never occur - but well: safe is safe :-)
-      if (LB<=0||delta<=0) break;      
+      if (LB<=0||delta<=0) break;
     }
 
 
@@ -338,22 +338,22 @@ int main(int argc, char *argv[]){
     // - in the case of nondelay, we've to built them up, out of the
     // matchings having calculated ever before...
     if (nondelay) {
-      
+
       // just a few variables for later use...
       Lisa_Pair* currMatchingInfo=new Lisa_Pair();
       Lisa_Pair* anEdge=new Lisa_Pair();
-      
+
       // converting the list of deltas into an array - this makes the algorithm faster!
       Lisa_Vector<TIMETYP> * arrayOfDeltas=new Lisa_Vector<TIMETYP>(allMatchings->length());
       for (int level=0;level < allMatchings->length()>0;level++) {
 	(*arrayOfDeltas)[level]=allDeltas->pop();
       }
-      
+
 
       // ok: sorting the matchings by the amount of matched edges
       allMatchings->sort();
       // and now: going through all of the matchings...
-      for (int level=1;allMatchings->length()>0;level++) 
+      for (int level=1;allMatchings->length()>0;level++)
 	{
 	  // extracting current matching with all additional information
 	  // out of the queue
@@ -361,7 +361,7 @@ int main(int argc, char *argv[]){
 	  Lisa_Pair * EdgesAndDelta=(Lisa_Pair*)currMatchingInfo->y;
 	  Lisa_List<Lisa_Pair> * currMatching=(Lisa_List<Lisa_Pair>*)EdgesAndDelta->y;
 
- 	  // going through all edges of the current matching and 
+ 	  // going through all edges of the current matching and
 	  // and updating the preemtive P and LR
 	  while (currMatching->length()>0) {
 	    (*anEdge)=currMatching->dequeue();
@@ -380,7 +380,7 @@ int main(int argc, char *argv[]){
 
       delete allMatchings;
       delete allDeltas;
-      
+
     }
 
     /**                                                     **
@@ -394,18 +394,18 @@ int main(int argc, char *argv[]){
     xmlOutput << lpr << my_werte << sp;
     //write content to a file
     xmlOutput.write(argv[2]);
-    
-    ofstream oo_strm(argv[2],ios::out|ios::app); 
+
+    ofstream oo_strm(argv[2],ios::out|ios::app);
     if(!oo_strm){
       cout << "Could not open '" << argv[2] << "' for writing." << endl;
-      exit(1);      
+      exit(1);
     }
 
     // add real solution as comment
-    oo_strm << "<!--" << endl 
+    oo_strm << "<!--" << endl
             << "pmtnP= " << *result_pmtnP << endl
-            << "pmtnLR= " << *result_pmtnLR << endl 
-            << "level= " << level << endl 
+            << "pmtnLR= " << *result_pmtnLR << endl
+            << "level= " << level << endl
             << "-->";
     oo_strm.close();
 
