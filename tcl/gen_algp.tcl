@@ -1,4 +1,5 @@
 
+# this procedure runs very slow on Windows Vista
 proc {read_all_desc_files_xml} { } {
     global env
     global lsa_status
@@ -31,6 +32,8 @@ proc {read_all_desc_files_xml} { } {
     file delete "$source_dir/*.tcl"
     set ext_alg [open "$source_dir/ext_alg.tcl" "w"]
 				
+	# the following loop takes too much time to evaluate on Vista
+	# is slows down LiSA startup extremely
 				foreach filename $filelist {
 								set filename [file rootname $filename]
 								catch {exec $bin_dir/xml2tcl -s -N $filename $descr_dir/$filename.xml $source_dir/$filename.tcl}
