@@ -4,5 +4,5 @@
   <parameter type="integer" name="WIDTH" value="600"/>
   <parameter type="integer" name="HEIGHT" value="500"/>
   <parameter type="string" name="LANGUAGE" value="german"/>
-  <parameter type="string" name="HTML_VIEWER" value="konqueror"/>
+  <parameter type="string" name="HTML_VIEWER" value=""/>
 </controls>
