@@ -119,7 +119,7 @@ file mkdir proc
     cd [TC_getvar LISAHOME]/tcl
     file mkdir external
     cd [TC_getvar LISAHOME]/tcl/external
-    file delete ext_alg.tcl
+    #file delete ext_alg.tcl # do not delete this, so that lisa does not rebuild algorithm descriptions everytime
     read_all_desc_files_xml
     source  [TC_getvar LISAHOME]/tcl/external/ext_alg.tcl
 #} 
