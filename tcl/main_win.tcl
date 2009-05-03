@@ -52,6 +52,9 @@ proc vTclWindow.lisa {base} {
         wm deiconify $base; return
     }
 
+    # check if the html-browser is available
+    check_browser
+    
 # set some defaults in the main window variable:
     set mw(zoom) 0
     set mw(mwout) {Gantt Diagram}    
@@ -946,4 +949,47 @@ set lsa_status(width) [winfo width .lisa]
 proc set_height { } {
 global lsa_status
 set lsa_status(height) [winfo height .lisa]
+}
+
+# check for browsers on different systems
+proc check_browser { } {
+    global options
+    global system
+    # check if the command HTML_VIEWER is available
+    if {[TC_getvar "HTML_VIEWER"]==""} {
+        
+        set browser ""
+
+        if {$::tcl_platform(platform) == "windows"} {
+		    # under cygwin, the registry seems to be unavailable, so simply use iexplore
+		    set browser "C:\\Progra~1\\Intern~1\\iexplore.exe"
+	    } else {
+			# assume a linux system and try some commands that are often available
+			set l [list "mozilla" "konqueror" "firefox" "safari" "iron" "chrome" "netscape"]
+		
+			for {set i 0} {$i<[llength l]} {incr i} {
+				if {[file exists [format "/usr/bin/%s" [lindex $l $i]]]} {
+					set browser [lindex $l $i]
+					break
+				}
+			}
+	    }
+        
+        if {$browser==""} {
+            # well... maybe we are on a mac os platform
+            # luckily someone told me some programs to look for
+            set l [list "/Applications/Safari.app/Contents/MacOS/Safari" "/Applications/Firefox.app/Contents/MacOS/firefox"]
+                
+            for {set i 0} {$i<[llength l]} {incr i} {
+                if {[file exists [lindex $l $i]]} {
+                    set browser [lindex $l $i]
+                    break
+                }
+            }
+        }
+        
+        # if we did not find any browser yet, the user has to fill in one himself
+        
+        TC_setvar options HTML_VIEWER $browser
+    }
 }
