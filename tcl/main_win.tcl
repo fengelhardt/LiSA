@@ -965,7 +965,7 @@ proc check_browser { } {
 		    set browser "C:\\Progra~1\\Intern~1\\iexplore.exe"
 	    } else {
 			# assume a linux system and try some commands that are often available
-			set l [list "mozilla" "konqueror" "firefox" "safari" "iron" "chrome" "netscape"]
+			set l [list "x-www-browser" "mozilla" "konqueror" "firefox" "safari" "iron" "chrome" "netscape"]
 		
 			for {set i 0} {$i<[llength l]} {incr i} {
 				if {[file exists [format "/usr/bin/%s" [lindex $l $i]]]} {
@@ -980,6 +980,7 @@ proc check_browser { } {
             # luckily someone told me some programs to look for
             set l [list "/Applications/Safari.app/Contents/MacOS/Safari" "/Applications/Firefox.app/Contents/MacOS/firefox"]
                 
+            
             for {set i 0} {$i<[llength l]} {incr i} {
                 if {[file exists [lindex $l $i]]} {
                     set browser [lindex $l $i]
