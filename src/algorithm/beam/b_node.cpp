@@ -10,12 +10,14 @@ B_Node::B_Node(B_Node& p):Lisa_OsSchedule(p.problem)
   this->lastAddedRow = p.lastAddedRow;
   this->lastAddedCol = p.lastAddedCol;
 }
-   
+
 B_Node::B_Node(Lisa_OsProblem * p):Lisa_OsSchedule(p) {
   ComputeHeadsTails( true, true);
   costValid = false;
   //parent = 0;
   problem = p;
+  this->lastAddedRow = 0;
+  this->lastAddedCol = 0;
 }
 
 int B_Node::insert(int i, int j, int k, int l) {
@@ -57,7 +59,7 @@ ostream & operator << ( ostream & os , B_Node & b){
   delete lr;
   return os;
 
-} 
+}
 
 
 
@@ -71,7 +73,7 @@ KList::KList(int k, int obj, BeamSearch::CostFunc cf) {
 }
 
 
-void KList::add(B_Node*& n) 
+void KList::add(B_Node*& n)
 {
   if(in_list < k)
     {
@@ -93,19 +95,19 @@ void KList::add(B_Node*& n)
       worst_in_list = i;
 }
 
-void KList::add(B_Node*& n,  int pos) 
+void KList::add(B_Node*& n,  int pos)
 {
   if (in_list > pos)
     {
       if (list[pos]->getCosts(destObjective, costFunc) > n->getCosts(destObjective, costFunc)) {
 	delete list[pos];
 	list[pos] = n;
-      } 
+      }
       else {
 	delete n;
 	n = NULL;
       }
-    } 
+    }
   else {
     list[in_list] = n;
     in_list++;
@@ -116,6 +118,6 @@ void KList::add(B_Node*& n,  int pos)
 
 KList::~KList() {
   for (int i= 0; i < in_list; i++)
-    delete list[i]; 
+    delete list[i];
   delete[] list;
 }
