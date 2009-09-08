@@ -117,11 +117,15 @@ file mkdir proc
 #source  [TC_getvar LISAHOME]/tcl/external/ext_alg.tcl
 #if { $glob(OLD_LISAHOME) != [TC_getvar LISAHOME] || $glob(OLD_LANGUAGE) != [TC_getvar LANGUAGE] } {
     cd [TC_getvar LISAHOME]/tcl
+    file mkdir language
+    cd language
+    file mkdir [TC_getvar LANGUAGE]
+    cd [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]
     file mkdir external
-    cd [TC_getvar LISAHOME]/tcl/external
+    cd [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external
     #file delete ext_alg.tcl # do not delete this, so that lisa does not rebuild algorithm descriptions everytime
     read_all_desc_files_xml
-    source  [TC_getvar LISAHOME]/tcl/external/ext_alg.tcl
+    source  [TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external/ext_alg.tcl
 #} 
 cd [TC_getvar LISAHOME]/data
 
