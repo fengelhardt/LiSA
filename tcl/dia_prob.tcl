@@ -195,7 +195,7 @@ proc vTclWindow.dprob {base} {
 	-padx 9 -pady 3 -text $Name(OK) \
 	-command {dpend }
     button $base.fra75.but77 \
-        -padx 9 -pady 3 -text $Name(Help) -command { lisa_help problem.html }
+        -padx 9 -pady 3 -text $Name(Help) -command { lisa_help [lisa_help_topic HELP_PROBLEM] }
 
     ###################
     # SETTING GEOMETRY

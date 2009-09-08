@@ -155,7 +155,7 @@ proc vTclWindow.datawin {base} {
     button $base.fra19.but22 -text "$Name(Adopt_MO)" -pady 3 \
 	-command adopt_MO -state disabled
     button $base.fra19.but23 -text "$Name(Help)" -pady 3 \
-	-command { lisa_help values.html }
+	-command { lisa_help [lisa_help_topic HELP_VALUES] }
     frame $base.fra22 \
          -borderwidth 2 -height 75 -width 125 
     frame $base.fra22.fra25 \

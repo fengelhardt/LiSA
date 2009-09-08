@@ -908,7 +908,7 @@ proc vTclWindow.write_text {base} {
 }
 
 proc lisa_docu { } {
-    lisa_help main.html
+    lisa_help [lisa_help_topic HELP_MAIN]
 }
 
 proc lisa_page { } {
@@ -929,6 +929,19 @@ proc lisa_help { helpfile } {
         set start_node ""
     }
 	exec $html_viewer $start_node[TC_getvar LISAHOME]/doc/lisa/$lang/$helpfile &
+}
+
+proc lisa_help_topic { topic } {
+    # map a help topic to a corresponding help file 
+    switch $topic {
+        HELP_MAIN     { return main.html }
+        HELP_CLASSIFY { return classify.html }
+        HELP_PROBLEM  { return problem.html }
+        HELP_MAN_OPER { return man_oper.html }
+        HELP_SCHEDULE { return schedule.html }
+        HELP_VALUES   { return values.html }
+        HELP_GEN_PTST { return utility/gen_ptst.html }
+    }
 }
 
 proc close_all_open_windows { } {
