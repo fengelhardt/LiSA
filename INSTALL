@@ -63,7 +63,14 @@ Installation from Source
 	
 	-> ./lisa
 	
-	or you create a Windows distribution by entering
+	HINT: if an error message like "Tcl_Init_failed: Can't find usable init.tcl in the following
+	directories: ..." occurs, make a symlink named '/share' that points to '/usr/share', so that 
+	LiSA is able to locate the Tcl-library correctly:
+	
+	-> ln -s /usr/share /share
+	
+	As you have compiled LiSA an got it working correectly, you can create a Windows distribution 
+	(i.e. a directory that behaves like a 'normal' Windows installation) of LiSA by entering
 	
 	-> make dist-cygwin
 	
