@@ -672,7 +672,7 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   else if ( NGBH_St     == "PI"               ) NGBH = PI;
   else if ( NGBH_St     == "k_REINSERTION"    ) NGBH = k_REINSERTION;
   else{
-    G_ExceptionList.lthrow("Neighbourhood "+NGBH_St+" unknown.");
+    G_ExceptionList.lthrow("Neighbourhood '"+NGBH_St+" unknown.");
     return false;//exit(7);
   }
   
@@ -682,14 +682,14 @@ bool NB_Iteration::configure(Lisa_ProblemType& Problem,
   else if ( METHOD_St   == "TabuSearch"       ) METHOD   = TS;
   else if ( METHOD_St   == "SimulatedAnnealingNew"  ) METHOD   = SA_new;
   else{
-    G_ExceptionList.lthrow("Method "+METHOD_St+" unknown.");
+    G_ExceptionList.lthrow("Method '"+METHOD_St+"' unknown.");
     return false;//exit(7);
   }
   
   if      ( TYPE_St     == "ENUM"     ) TYPE     = ENUM;
   else if ( TYPE_St     == "RAND"     ) TYPE     = RAND;
   else{
-    G_ExceptionList.lthrow("TYPE "+TYPE_St+" unknown.");
+    G_ExceptionList.lthrow("TYPE '"+TYPE_St+"' unknown.");
     return false;//exit(7);
   }
 
