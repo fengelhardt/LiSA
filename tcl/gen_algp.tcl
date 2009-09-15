@@ -9,8 +9,6 @@ proc {read_all_desc_files_xml} { } {
     set descr_dir "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]"    
     set source_dir "[TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external"
 				set bin_dir "[TC_getvar LISAHOME]/bin"
-    cd [TC_getvar LISAHOME]/tcl
-    file mkdir external
     cd $descr_dir
     set filelist ""
 
