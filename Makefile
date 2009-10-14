@@ -179,6 +179,8 @@ dist-cygwin:
 	cp /bin/cygxml2*.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygz.dll $(CYGWINPATH)/LiSA/bin
 	cp /bin/cygiconv*.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cyggcc_s-1.dll $(CYGWINPATH)/LiSA/bin
+	cp /bin/cygstdc++-6.dll $(CYGWINPATH)/LiSA/bin
 	mkdir -p $(CYGWINPATH)/LiSA/share/`cd /usr/share; find tcl* -maxdepth 0`
 	cp -r /usr/share/tcl*/tclIndex $(CYGWINPATH)/LiSA/share/tcl*
 	cp -r /usr/share/tcl*/*.tcl $(CYGWINPATH)/LiSA/share/tcl*
