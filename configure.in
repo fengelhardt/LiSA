@@ -77,6 +77,10 @@ dnl##
 
 AC_CHECK_PROGS(CXX, $CCC g++ c++ CC cxx cc++)
 
+AC_CHECK_PROG(GAWK, gawk, gawk)
+
+AC_CHECK_PROG(SED, sed, sed)
+
 # checking for libxml2
 AC_CHECK_PROG(XML_CNF,xml2-config,yes,no)
 if test "$XML_CNF" = "no" ; then
@@ -404,7 +408,7 @@ AC_MSG_CHECKING(for release build)
 AC_ARG_ENABLE(release,[  --enable-release        compile for release])
 AC_MSG_RESULT([$enable_release])
 if test "x$enable_release" = "xyes" ; then
-COMPILE_FLAGS="${COMPILE_FLAGS} -O2 -DNDEBUG"
+COMPILE_FLAGS="${COMPILE_FLAGS} -O3 -DNDEBUG"
 if test "${GXX}" = "yes" ; then
 COMPILE_FLAGS="${COMPILE_FLAGS} -Wuninitialized -ffast-math -fstrict-aliasing -finline-functions -fomit-frame-pointer -fexpensive-optimizations"
 fi
