@@ -180,10 +180,10 @@ proc vTclWindow.lisa {base} {
     $base.mmenf.menex.m add command \
         -label $Name(Classification) -command { TC_classify}
     $base.mmenf.menex.m add separator
-    $base.mmenf.menex.m add cascade -menu  $base.mmenf.menex.m.alg_ptst \
+    #$base.mmenf.menex.m add cascade -menu  $base.mmenf.menex.m.alg_ptst \
 	-label "$Name(general_parameter_test)"
-    set submen [menu  $base.mmenf.menex.m.alg_ptst -tearoff 0] 
-    $base.mmenf.menex.m add separator
+    #set submen [menu  $base.mmenf.menex.m.alg_ptst -tearoff 0] 
+    #$base.mmenf.menex.m add separator
     $base.mmenf.menex.m add checkbutton  -state disabled\
         -label $Name(Zoommode) -variable mw(zoom) \
         -command { config_zoom_button }
@@ -509,7 +509,7 @@ proc mw_no_problem { } {
     .lisa.mmenf.men27.m entryconfigure $Name(List_of_Sequences) -state disabled
     .lisa.mmenf.menex.m  entryconfigure  $Name(Classification) -state disabled
     .lisa.mmenf.men27.m entryconfigure $Name(Parameter) -state disabled
-    .lisa.mmenf.menex.m  entryconfigure $Name(general_parameter_test) -state disabled
+    #.lisa.mmenf.menex.m  entryconfigure $Name(general_parameter_test) -state disabled
     if {[winfo exists .datawin]} { destroy .datawin }
     mw_no_values
 }
@@ -520,7 +520,7 @@ proc mw_no_values { } {
     global mw;
     .lisa.mmenf.fileb.m entryconfigure "$Name(Print)" -state disabled
     .lisa.mmenf.men27.m entryconfigure $Name(Solution) -state disabled  
-    .lisa.mmenf.menex.m  entryconfigure $Name(general_parameter_test) -state disabled
+    #.lisa.mmenf.menex.m  entryconfigure $Name(general_parameter_test) -state disabled
     .lisa.mmenf.men31.m  entryconfigure $Name(Parameter) -state disabled
     set mw(fParameter) "0"
     if {[winfo exists .schedulewin]} { destroy .schedulewin }
@@ -545,7 +545,7 @@ proc  mw_no_schedule { } {
 	foreach algo $ext_algo(LIST_OF_HEURISTIC_ALGOS) {
 	    if { $ext_algo(TYPE,$algo)=="iterative" } {
 		.lisa.mmenf.men30.m.heur_alg entryconfigure $ext_algo(NAME,$algo) -state disabled
-		.lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state disabled
+		#.lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state disabled
 	    }
 	}
     }
@@ -564,7 +564,7 @@ proc problem_exist { } {
 
     .lisa.mmenf.men30.m.exakt_alg delete 0 last
     .lisa.mmenf.men30.m.heur_alg delete 0 last
-    .lisa.mmenf.menex.m.alg_ptst delete 0 last
+    #.lisa.mmenf.menex.m.alg_ptst delete 0 last
     set test 0
     set ext_algo(LIST_OF_EXACT_ALGOS) ""
     set ext_algo(LIST_OF_HEURISTIC_ALGOS) ""
@@ -574,7 +574,7 @@ proc problem_exist { } {
 		  "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.exakt_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
-	    .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
+	    #.lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	    lappend ext_algo(LIST_OF_EXACT_ALGOS) $algname
 	    set test 1
@@ -582,10 +582,10 @@ proc problem_exist { } {
     }
     if { $test==1 } {
  	.lisa.mmenf.men30.m entryconfigure $Name(exact_algs)   -state active
-	.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state active
+	#.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state active
      } else {
  	.lisa.mmenf.men30.m entryconfigure $Name(exact_algs)  -state disabled
-	.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state disabled
+	#.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state disabled
      }
      set test 0
     foreach algname $lsa_status(list_of_external_alg) {
@@ -594,7 +594,7 @@ proc problem_exist { } {
 		  "[TC_getvar LISAHOME]/data/alg_desc/language/[TC_getvar LANGUAGE]/$algname.xml"]==1 } {
 	    .lisa.mmenf.men30.m.heur_alg add command -command "Window show .$algname" \
 		-label $ext_algo(NAME,$algname) -state disabled
-	     .lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
+	     #.lisa.mmenf.menex.m.alg_ptst add command -command "Window show .$algname\_ptst" \
 		-label $ext_algo(NAME,$algname) -state disabled
 	    lappend ext_algo(LIST_OF_HEURISTIC_ALGOS) $algname
 	    set test 1
@@ -602,7 +602,7 @@ proc problem_exist { } {
     }
      if { $test==1 } {
  	.lisa.mmenf.men30.m entryconfigure $Name(heuristic_algs) -state active
-	.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state active
+	#.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)   -state active
      } else {
  	.lisa.mmenf.men30.m entryconfigure $Name(heuristic_algs) -state disabled
      }
@@ -610,7 +610,7 @@ proc problem_exist { } {
     .lisa.mmenf.fileb.m entryconfigure $Name(Save_as) -state active
     .lisa.mmenf.menex.m  entryconfigure  $Name(Classification) -state active
     .lisa.mmenf.men27.m entryconfigure $Name(Parameter) -state active
-    .lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
+    #.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
 	-state active
 }
 
@@ -620,18 +620,18 @@ proc values_exist { } {
     global ext_algo;
 
     .lisa.mmenf.fileb.m entryconfigure "$Name(Print)" -state active
-   .lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
+   #.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
 	-state active
     foreach algo $ext_algo(LIST_OF_EXACT_ALGOS) {
 	if { $ext_algo(TYPE,$algo)=="constructive" } {
 	    .lisa.mmenf.men30.m.exakt_alg entryconfigure $ext_algo(NAME,$algo) -state active
-	    .lisa.mmenf.menex.m.alg_ptst entryconfigure $ext_algo(NAME,$algo) -state active
+	    #.lisa.mmenf.menex.m.alg_ptst entryconfigure $ext_algo(NAME,$algo) -state active
 	}
     }
     foreach algo $ext_algo(LIST_OF_HEURISTIC_ALGOS) {
 	if { $ext_algo(TYPE,$algo)=="constructive" } {
 	    .lisa.mmenf.men30.m.heur_alg entryconfigure $ext_algo(NAME,$algo) -state active
-	    .lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state active 
+	    #.lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state active 
 	}
     }
 
@@ -675,7 +675,7 @@ proc  schedule_exist { } {
     }
     foreach algo $ext_algo(LIST_OF_HEURISTIC_ALGOS) {
 	.lisa.mmenf.men30.m.heur_alg entryconfigure $ext_algo(NAME,$algo) -state active
-  .lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state active 
+  #.lisa.mmenf.menex.m.alg_ptst  entryconfigure $ext_algo(NAME,$algo) -state active 
     }
 
     if { [TC_getvar no_solutions]>1 } {
@@ -683,7 +683,7 @@ proc  schedule_exist { } {
     }
  #    .lisa.mmenf.men30.m entryconfigure $Name(Neighbourhood_Search) -state active
  #    .lisa.mmenf.menex.m entryconfigure $Name(Ngbh-Test)  -state active
-    .lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
+    #.lisa.mmenf.menex.m entryconfigure $Name(general_parameter_test)  \
 	-state active
     .lisa.mmenf.men31.m  entryconfigure  $Name(Sequence_Graph) -state active
     .lisa.mmenf.men31.m entryconfigure $Name(Schedule)  -state active
