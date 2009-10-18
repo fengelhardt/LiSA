@@ -41,9 +41,11 @@ proc {read_all_desc_files_xml} { } {
 		set filename [file rootname $filename]
 		catch {exec $bin_dir/xml2tcl -s -N $filename $descr_dir/$filename.xml $source_dir/$filename.tcl}
 		puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external/$filename.tcl\""
-		set ptst_filename "$filename\_ptst"
-		catch {exec $bin_dir/xml2tcl -P -s -N $filename $descr_dir/$filename.xml $source_dir/$ptst_filename.tcl}
-		puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external/$ptst_filename.tcl\""
+        
+        # parameter-test files are no longer needed 
+		#set ptst_filename "$filename\_ptst"
+		#catch {exec $bin_dir/xml2tcl -P -s -N $filename $descr_dir/$filename.xml $source_dir/$ptst_filename.tcl}
+		#puts $ext_alg "source \"\[TC_getvar LISAHOME]/tcl/language/[TC_getvar LANGUAGE]/external/$ptst_filename.tcl\""
     }
     puts $ext_alg "set lsa_status(OLD_LISAHOME) [TC_getvar LISAHOME]"
     puts $ext_alg "set lsa_status(OLD_LANGUAGE) [TC_getvar LANGUAGE]"
