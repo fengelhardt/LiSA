@@ -66,9 +66,9 @@ install:
 	mkdir -p $(ALGPATH)/language/german
 	cp $(PROGRAMNAME)*german.xml $(ALGPATH)/language/german/
 	mkdir -p $(DOCPATH)/lisa/english/algorithm
-	cp $(PROGRAMNAME)_english.html $(DOCPATH)/lisa/english/algorithm/$(PROGRAMNAME).html
+	cp $(PROGRAMNAME)*english.html $(DOCPATH)/lisa/english/algorithm/
 	mkdir -p $(DOCPATH)/lisa/german/algorithm
-	cp $(PROGRAMNAME)_german.html $(DOCPATH)/lisa/german/algorithm/$(PROGRAMNAME).html
+	cp $(PROGRAMNAME)*german.html $(DOCPATH)/lisa/german/algorithm/
 
 # ------------------------------------------------------------------------------
 

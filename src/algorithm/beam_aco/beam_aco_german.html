@@ -1,54 +1,164 @@
-<HTML>
-<HEAD> <TITLE>Hilfe zum Beam ACO - Eingabefenster</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2> Beam ACO Algorithmus </H2>
-
-<P>
-<H2>So kommen Sie hierher:</H2> 
-Stellen Sie sicher, da&szlig; ein 
-<A HREF="../problem.html"> Problemtyp </A> und alle 
-<A HREF="../values.html"> Problemparameter </A> 
-definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
-<I> Algorithmen|N&auml;herungsverfahren|beamACO</I> und
-dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>.
-<P>
-<H2>Einstellungen:</H2>
-<DL>
-<DT>Beamweite:<DD>
-ooooo
-<DT>Bestimmung der Beam Extensions:<DD>
-MED: Anzahl der freien Oreationen /2,  LDS: Zu Beginn wie MED, ab der zweiten H&auml;fte auf 2 festgelegt,
-FIXED: Feste Anzahl
-<DT>Anzahl der Beam-Extensions:<DD>
-Hier werden die maximal pro Erweiterungsschritt einzuf&uuml;genden Operationen angegeben. Dieser Wert wird nur ber&uuml;cksichtigt, wenn die Bestimmung der Beam Extension auf FIXED gesetzt wurde.
-<DT>Strategie der Auswahl der Extensions:<DD>
-ORIGINAL entspricht der in der Literatur beschriebenen Methode. Bei SORTED werden die einzuf&uuml;genden Operationen gewichtet und entsprechend dieses Wertes sortiert.
-<DT>Vorauswahl der Erweiterungen:<DD>
-Wird hier ACTIVE gew&auml;hlt, dann werden nur aktive Pl&auml;ne ber&uuml;cksichtigt.
-<DT>STEPS:<DD>
-Anzahl der Einzelschritte. Da die Ameisen nacheinander gestartet werden, entspricht diese Zahl auch die Anzahl der Ameisen der Gesamtpopulation.
-<DT>Konvergenzfaktor fuer Neustart:<DD>
-Gibt eine untere Schranke f&uuml;r der Konvergenzfaktor an, ab dem eine Neuberechung der Pheromonewerte angeregt wird.
-<DT>evaporationRate:<DD>
-Bezeichnet den Einflu&szlig; den ein neuer bester Plan zur Berechnung der Pheromonewerte hat. Dieser Wert sollte zwischen 0 und 1 liegen.
-<DT>Einfluss der Earliest Completion Time:<DD>
-Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
-<DT>Einfluss der Pheromone Werte:<DD>
-Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
-<DT>Einfluss des Zufalls:<DD>
-Gilt nur f&uuml; Strategie der Auswahl der Extensions = SORTED
-   Zielfunktionswert.
-</DL>
-<P>
-<HR>
-<A HREF="../main.html"> Inhaltsverzeichnis </A>
-<HR>
-29.10.99 TAU
-</BODY>
-</HTML>
-
-
-
-
-
+<!--l. 1330--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Beam Ant Colony Verfahren</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-10-18 16:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1327-->
+<h4 class="subsectionHead"> <a 
+ id="x34-330004.3.6"></a>Beam Ant Colony Verfahren</h4>
+<!--l. 1330--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
+<!--l. 1332--><p class="noindent" >???
+<!--l. 1336--><p class="noindent" ><span id="textcolor41">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1338--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Beam Ant Colony </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1344--><p class="noindent" ><span id="textcolor42">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Anzahl der Beam-Extensions:</span> </dt><dd 
+class="description">Hier   werden   die   maximal   pro   Erweiterungsschritt
+      einzufügenden Operationen angegeben. Dieser Wert wird nur berücksichtigt, wenn die
+      bestimmung der Beam Extension auf FIXED gesetzt wurde.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Anzahl der Durchl</span><span 
+class="cmbx-12">äufe:</span> </dt><dd 
+class="description">Anzahl  der  Einzelschritte.  Da  die  Ameisen  nacheinander
+      gestartet  werden,  entspricht  dies  Zahl  auch  der  Anzahl  der  Ameisen  in  der
+      Gesamtpopulation.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Konvergenzfaktor f</span><span 
+class="cmbx-12">ür Neustart:</span> </dt><dd 
+class="description">Dieser   Wert   gibt   eine   untere   Schranke   für   den
+      Konvergenzfaktor an, ab dem eine Neuberechnung der Pheromonwerte angeregt wird.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">evaporationRate:</span> </dt><dd 
+class="description">Dieser Parameter bezeichnet den Einfluss, den ein neuer bester Plan
+      zur Berechnung der Pheromonwerte hat. Dieser Wert sollte zwischen 0 und 1 liegen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Einfluss der Earliest Completion Time:</span> </dt><dd 
+class="description">Gilt  nur  für  Strategie  der  Auswahl  der
+      Extensions = SORTED.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Einfluss der Pheromone Werte:</span> </dt><dd 
+class="description">Gilt nur für Strategie der Auswahl der Extensions =
+      SORTED.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Einfluss des Zufalls:</span> </dt><dd 
+class="description">Gilt  nur  für  Strategie  der  Auswahl  der  Extensions  =  SORTED
+      Zielfunktionswert.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Bestimmung der Beam Extensions:</span> </dt><dd 
+class="description">
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">MED: </span>Anzahl der freien Operationen / 2.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LDS: </span>Zu Beginn wie MED, ab der zweiten Hälfte auf 2 festgelegt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">FIXED: </span>Feste Anzahl.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Stategie der Auswahl der Extension:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">ORIGINAL: </span>Entspricht der in der Literatur beschriebenen Methode.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SORTED:  </span>Hier   werden   die   einzufügenden   Operationen   gewichtet   und
+           entsprechend dieses Wertes sortiert.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Vorauswahl der Erweiterungen:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">NONE:</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ACTIVE: </span>Es werden nur aktive Pläne berücksichtigt.</li></ul>
+      </dd></dl>
+<!--l. 1398--><p class="noindent" ><span id="textcolor43">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1400--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> werden Beam Ant Colony-Verfahren wie
+folgt aufgerufen:
+<!--l. 1404--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-15">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;beam_aco
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;BEAM_WIDTH&#x00A0;32
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;UPPER_BOUND&#x00A0;10000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;LOWER_BOUND&#x00A0;0
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;EXTENSION_STRATEGY&#x00A0;FIXED
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;2500
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;CONVERGENCE_FACTOR&#x00A0;0.98
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;FIXED_KEXT&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;APPEND_STRATEGY&#x00A0;SORTED
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;PRE_SELECTION&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_EST&#x00A0;1.8
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_TIJ&#x00A0;2
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_RAND&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;EVAPORATION_RATE&#x00A0;0.3
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1423--><p class="nopar" ></div>
+<!--l. 1426--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 1430--><p class="noindent" >Als ausführbare Datei muss für Beam Ant Colony-Verfahren beam_aco aufgerufen
+werden. Optional können anschließend die folgenden Parameter aufgerufen werden:
+<span 
+class="cmbx-12">Beamweite</span>, <span 
+class="cmbx-12">obere Schranke</span>, <span 
+class="cmbx-12">untere Schranke</span>, <span 
+class="cmbx-12">Bestimmung der Beam-Extensions</span>
+(EXTENSION_STRATEGY), <span 
+class="cmbx-12">Anzahl der Durchlaufe </span>(STEPS), <span 
+class="cmbx-12">Konvergenzfaktor </span>für
+Neustart, <span 
+class="cmbx-12">Anzahl der Beam-Extensions </span>(FIXED_KEXT), Strategie zur <span 
+class="cmbx-12">Auswahl der</span>
+<span 
+class="cmbx-12">Extensions </span>(APPEND_STRATEGY), <span 
+class="cmbx-12">Vorauswahl der Erweiterungen</span>, Einfluss der <span 
+class="cmbx-12">Earliest</span>
+<span 
+class="cmbx-12">Completion Time </span>(WEIGHT_EST), Einfluss der <span 
+class="cmbx-12">Pheromone Werte </span>(WEIGHT_TIJ), und
+Einfluss des <span 
+class="cmbx-12">Zufalls</span>.
+                                                                                         
+                                                                                         
+<!--l. 1447-->
+<!--l. 1447--><p class="noindent" ><a 
+ id="tailhandbuchsu16.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

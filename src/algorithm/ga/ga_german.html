@@ -1,89 +1,210 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-</head>
-<body>
-<h1>Genetischer Algortihmus</h1>
-<pre>(von Jan Tusch tusch&lt;at&gt;isg.cs.uni-magdeburg.de )<br><br></pre>
-Dieser Algorithmus implementiert ein heuristisches Suchverfahren bei
-dem eine Population von L&ouml;sungskandidaten iterativ derart
-ver&auml;ndert wird, sodass ausgehend von der initialen Population eine
-stetige Verbesserung des Funktionswertes (Fitness) der besten
-vorhandenen L&ouml;sung erreicht wird. Erreicht wird dies durch ein
-Rekombinations-und Selektionsverfahren, dass in [<span
- style="color: rgb(255, 0, 0);">Quelle IFAC-Artikel</span>] n&auml;her
-beschrieben ist.<br>
-Im folgenden werden die einzelnen zur Verf&uuml;gung stehenden
-Parameter kurz beschrieben. Ausf&uuml;hliche Erl&auml;uterungen zu den
-Parametern finden Sie in den entsprechenden Verweisen bzw. der o.a.
-Quelle.<br>
-<br>
-<ul style="font-weight: bold;">
-  <li>POP_SIZE</li>
-</ul>
-<div style="margin-left: 40px;">Gibt die Gr&ouml;&szlig;e der zu
-verwaltenden Population an.<br>
+<!--l. 1183--><p class="noindent" ><!-- LISA ALGORITHM ga -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Genetische Algorithmen</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-10-18 16:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1180-->
+<h4 class="subsectionHead"> <a 
+ id="x33-320004.3.5"></a>Genetische Algorithmen</h4>
+<!--l. 1183--><p class="noindent" ><!-- LISA ALGORITHM ga -->
+<!--l. 1185--><p class="noindent" >Bei genetischen Algorithmen handelt es sich um Metaheuristiken, die aus einer Population von
+Startlösungen durch zufällige Änderungen neue Lösungen erzeugen. Dabei werden die
+biologischen Konzepte der Mutation und der Kreuzung zweier Individuen imitiert. Bei der
+<span 
+class="cmti-12">Mutation </span>wird der Rang einer zufällig gewählten Operation eines zufällig gewählten
+Individuums (einer Lösung der aktuellen Population) verändert. Dieser veränderte Plan
+wird anschließend so manipuliert, dass er wieder ein Plan, d.h. eine Lösung für das
+zugrundeliegende Schedulingproblem ist. Bei der <span 
+class="cmti-12">Kreuzung </span>wird eine zufällig bestimmte Teilmenge
+der Ränge zweier zufällig ausgewählter Individuen vertauscht. Anschließend werden
+auch in diesem Fall beide veränderte Pläne wieder zu Plänen gemacht. Auf diese Weise
+entstehen neue Individuen. Diese neuen Individuen werden dann in die nächste Generation
+übernommen, wenn sie gemäß&#x00A0;einer Fitness-Funktion nicht weniger &#8216;fit&#8217; sind, als ihre jeweiligen
+Vorgänger.
+<!--l. 1201--><p class="noindent" >Die Startpopulation wird dabei aus zufällig generierten Plänen gebildet. Mit Hilfe der
+<span 
+class="cmbx-12">Autoalg</span>-Funktion  ist es jedoch auch möglich, sicherzustellen, dass die Startpopulation
+bereits sehr gute Lösungen enthält, die mit selbstgewählten konstruktiven Heuristiken erzeugt
+wurden.
+<!--l. 1209--><p class="noindent" ><span id="textcolor38">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1211--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/GenAlg </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1217--><p class="noindent" ><span id="textcolor39">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Populationsgr</span><span 
+class="cmbx-12">öße:</span> </dt><dd 
+class="description">Hier wird angegeben, wie viele Lösungen zu einer Population gehören
+      sollen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Anzahl Generationen:</span> </dt><dd 
+class="description">Dieser  Parameter  bestimmt  die  Anzahl  der  Iterationen  des
+      Verfahrens.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Zufalls-Seed:</span> </dt><dd 
+class="description">Dieser  Parameter  dient  als  Eingabe  für  die  zufällige  Erzeugung  der
+      Startpopulation.  Außerdem  werden  die  zufälligen  Entscheidungen  in  jedem  Schritt
+      beeinflusst. Wird das Verfahren ohne lokale Suchschritte durchgeführt, so kann es mit
+      demselben Parameter exakt wiederholt werden.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Anzahl lokaler Suchschritte:</span> </dt><dd 
+class="description">Ein   durch   Mutation   oder   Kreuzung   neu   erzeugtes
+                                                                                         
+                                                                                         
+      Individuum kann durch eine einfache <span 
+class="cmbx-12">Lokale Suche </span> in der Regel leicht
+      verbessert werden. Hier wird festgelegt, wie viele Iterationen der Lokalen Suche bei
+      jeder neuen Lösung durchgeführt werden sollen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Mutationswahrscheinlichkeit:</span> </dt><dd 
+class="description">Dieser Parameter gibt die Wahrscheinlichkeit an, mit der
+      im aktuellen Iterationsschritt ein Individuum der aktuellen Population durch Mutation
+      verändert wird.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Rekombinationswahrscheinlichkeit:</span> </dt><dd 
+class="description">Dieser Parameter gibt die Wahrscheinlichkeit an,
+      mit der im aktuellen Iterationsschritt zwei Individuen der aktuellen Population durch
+      Kreuzung (cross over) verändert werden.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Erzeugung der Anfangspopulation:</span> </dt><dd 
+class="description">Hier wird festgelegt, welche Art von Plänen für die
+      Startpopulation zufällig erzeugt werden sollen.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM</span><span 
+class="cmbx-12">_ORDER: </span>Es werden Pläne generiert, deren Schedules aktiv oder
+           non-delay sein können.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ACTIVE</span><span 
+class="cmbx-12">_DISPATCH: </span>Es werden ausschließlich Pläne mit aktiven Schedules
+           generiert.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NON</span><span 
+class="cmbx-12">_DELAY</span><span 
+class="cmbx-12">_DISPATCH: </span>Es werden ausschließlich Pläne mit non-delay
+           Schedules generiert.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Lokale Suche:</span> </dt><dd 
+class="description">Hier wird die Nachbarschaft festgelegt, in der neue Lösungen lokal
+      verbessert werden sollen. Bei der Einstellung <span 
+class="cmti-12">(disabled) </span>wird keine lokale Suche
+      durchgeführt.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TST</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API</span>
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">(disabled).</span></li></ul>
+      </dd></dl>
+<!--l. 1278--><p class="noindent" ><span id="textcolor40">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1280--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> werden genetische Algorithmen wie folgt
+aufgerufen:
+<!--l. 1284--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-14">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;ga
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;POP_SIZE&#x00A0;20
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUM_GEN&#x00A0;100
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INIT&#x00A0;RANDOM_ORDER
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;FITNESS&#x00A0;OBJECTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;M_PROB&#x00A0;0.25
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;C_PROB&#x00A0;0.35
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;SEED&#x00A0;1234567890
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;IMPR_STEPS&#x00A0;10
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;L_IMPR&#x00A0;(disabled)
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-<ul style="font-weight: bold;">
-  <li>NUM_GEN</li>
-</ul>
-<div style="margin-left: 40px;">Gibt die Anzahl der Generationen an,
-die erzeugt werden soll.<br>
-</div>
-<ul style="font-weight: bold;">
-  <li>INIT</li>
-</ul>
-<div style="margin-left: 40px;">Gibt die Methode an, mit der die
-Anfangspopulation erzeugt wird.<br>
-Die m&ouml;glichen Werte sind:<br>
-<ul>
-  <ul>
-    <li>RANDOM_ORDER : zuf&auml;llige L&ouml;sungen<br>
-    </li>
-    <li>ACTIVE_DISPATCH : Anwendung der <a href="dispatch.html">Reihungsregeln</a>
-mit Parametern (<span style="font-style: italic;">ACTIVE,RAND</span>)<br>
-    </li>
-    <li>NON_DELAY_DISPATCH : Anwendung der <a href="dispatch.html">Reihungsregeln</a>
-mit Parametern (<span style="font-style: italic;">NON_DELAY,RAND</span>)</li>
-  </ul>
-</ul>
-</div>
-<ul style="font-weight: bold;">
-  <li>M_PROB</li>
-</ul>
-<div style="margin-left: 40px;">Gibt die Wahrscheinlichkeit an, mit der
-eine L&ouml;sung der Mutation unterworfen wird.<br>
-</div>
-<ul style="font-weight: bold;">
-  <li>C_PROB</li>
-</ul>
-<div style="margin-left: 40px;">Gibt die Wahrscheinlichkeit an, mit der
-zwei zuf&auml;llig gew&auml;hlte L&ouml;sungen der Rekombination (<span
- style="font-weight: bold;">C</span>rossing Over) unterworfen werden.</div>
-<ul style="font-weight: bold;">
-  <li>SEED</li>
-</ul>
-<div style="text-align: left; margin-left: 40px;">Initialisierung der
-ZufallsgeneratorsL_IMPR<br>
-</div>
-<ul style="font-weight: bold;">
-  <li>L_IMPR</li>
-</ul>
-<div style="margin-left: 40px;">Auswahl einer Startegie zur lokalen
-Verbesserung mit Hilfe von <a href="nb_iter.html">Nachbarschaftssuchverfahren</a>
-der Einzell&ouml;sungen.&nbsp; Zum deaktivieren mu&szlig; "(disabled)"
-eingestellt werden.<br>
-</div>
-<ul style="font-weight: bold;">
-  <li>IMPR_STEPS</li>
-</ul>
-<div style="margin-left: 40px;">Anzahl der Wiederholung der Iterativen
-Verbesserungsstrategie.<br>
-<br>
-<br>
-</div>
-Siehe auch die <a
- href="../../../data/alg_desc/language/german/ga_german.xml">Algorithmen-Beschreibungsdatei</a>.<br>
-<br>
-</body>
-</html>
+      <!--l. 1299--><p class="nopar" ></div>
+<!--l. 1302--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 1306--><p class="noindent" >Als ausführbare Datei muss für alle genetischen Verfahren ga aufgerufen werden. Unbedingt
+notwendig sind danach Angaben zu der <span 
+class="cmbx-12">Populationsgr</span><span 
+class="cmbx-12">öße</span>, der <span 
+class="cmbx-12">Anzahl der Generationen</span>, der
+Methode zur <span 
+class="cmbx-12">Erzeugung der Anfangspopulation </span>(INIT), der <span 
+class="cmbx-12">Mutationswahrscheinlichkeit</span>
+(M_PROB), und der <span 
+class="cmbx-12">Rekombinationswahrscheinlichkeit </span>(C_PROB). Optional ist die Vorgabe
+von Parametern für den <span 
+class="cmbx-12">Zufalls-Seed</span>, die <span 
+class="cmbx-12">Anzahl lokaler Suchschritte</span>, und die Auswahl der
+Nachbarschaft der <span 
+class="cmbx-12">Lokalen Suche</span>.
+<!--l. 1315--><p class="noindent" >Zusätzlich kann durch den Aufruf eines genetischen Verfahrens mit Hilfe der Autoalg-Eingabedatei
+auch Einfluss auf die Wahl der <span 
+class="cmbx-12">Fitness-Funktion </span>(FITNESS) genommen werden. Diese
+bestimmt, welche Individuen in die nächste Generation übernommen werden. Zur Auswahl stehen
+dabei zwei Optionen: Mit OBJECTIVE wählt man den jeweiligen Zielfunktionswert als
+Fitness-Funktion. Daneben kann auch SUM_Ci2 gewählt werden.
+                                                                                         
+                                                                                         
+<!--l. 1327-->
+<!--l. 1327--><p class="noindent" ><a 
+ id="tailhandbuchsu15.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

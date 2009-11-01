@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
 <algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Tabu-Suche" type="iterative" call="nb_iter" code="external" 
-help_file="algorithm/nb_iter.html">
+help_file="algorithm/nb_iter_TS_german.html">
   <heuristic>
     <problem>
       <alpha env="J"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Search (attach)" type="constructive" call="beam" code="external" help_file="algorithm/beam.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Beam Search (attach)" type="constructive" call="beam" code="external" help_file="algorithm/beam_att_english.html">
   <heuristic>
     <problem>
       <alpha env="1"/>

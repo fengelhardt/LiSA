@@ -1,0 +1,157 @@
+<!--l. 401--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Beam Search Verfahren mit Anfugetechnik</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-10-18 16:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 398-->
+<h4 class="subsectionHead"> <a 
+ id="x26-250004.2.3"></a>Beam Search Verfahren mit Anfügetechnik</h4>
+<!--l. 401--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 403--><p class="noindent" >Beam Search Verfahren sind eine heuristische Variante des <span 
+class="cmbx-12">Branch &amp; Bound Verfahren </span>. Im Unterschied zu diesem ist bei ihnen die Anzahl der untersuchten Teillösungen in jedem
+Knoten des Lösungsbaumes beschränkt. Das führt zu einer unvollständigen Suche im
+Lösungsraum, die möglicherweise sämtliche optimalen Lösungen ausschließt. Allerdings sind
+Verfahren dieser Art jedoch auch bedeutend schneller als ein umfangreicher Branch &amp; Bound
+Algorithmus. Die Qualität der Lösung hängt dabei sowohl vom gewählten Problemtyp, als auch
+von den gewählten Einstellungen ab.
+<!--l. 414--><p class="noindent" >Beim <span 
+class="cmbx-12">Anf</span><span 
+class="cmbx-12">üge</span>-Verfahren werden für jeden Teilplan verschiedene Positionen betrachtet, in die
+neue Operationen mit aufsteigendem Rang <span 
+class="cmti-12">an</span>gefügt werden können. Dabei wird mit
+unterschiedlichen Strategien jeweils nach einer Operation gesucht, die möglichst gut an diese Stelle
+passt. Neben dem Anfüge-Verfahren ist auch ein <span 
+class="cmbx-12">Einf</span><span 
+class="cmbx-12">üge</span>-Verfahren  in LiSA
+implementiert.
+<!--l. 424--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 426--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Beam Search (Anf</span><span 
+class="cmbxti-10x-x-120">ügen) </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 432--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Anzahl zu verfolgender Zweige:</span> </dt><dd 
+class="description">Hier wird festgelegt, wie viele der in jedem Schritt neu
+      erzeugten Teilpläne weiterbetrachtet werden sollen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Auswahlmethode:</span> </dt><dd 
+class="description">Hier wird festgelegt, wie die gewählte Anzahl der Teilpläne, die weiter
+      betrachtet werden sollen (<span 
+class="cmbx-12">Anzahl zu verfolgender Zweige</span>), ausgewählt werden. Die
+      Teilpläne werden dabei mit ihren Zielfunktionswerten bewertet.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">INSERT1: </span>Aus der Gesamtheit <span 
+class="cmti-12">aller </span>in einem Iterationsschritt zur Verfügung
+           stehenden Kinder-Pläne werden die besten ausgewählt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">INSERT2:  </span>Es  wird  für  jeden  Vater-Plan  genau  ein  (bester)  Kind-Plan
+           ausgewählt, unabhängig davon, ob dieser global erfolgversprechend ist oder nicht.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Auswahlkriterium:</span> </dt><dd 
+class="description">Diese Option steht nur bei <span 
+class="cmti-12">C</span><span 
+class="cmr-10">max</span>-Problemen zur Verfügung. Sie stellt dort
+      eine alternative Bewertungsmethode für die Teilpläne zur Verfügung.<br 
+class="newline" />
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">CLAST: </span>Als Bewertung eines Teilplans dienen die Kosten eines längsten Weges
+           durch die Operation, die als letzte eingefügt wurde.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LB(Sum</span><span 
+class="cmbx-12">_Ci):      </span>Als      Bewertung      eines      Teilplans      dient      der
+           Sum_Ci-Zielfunktionswert.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">OBJECTIVE:  </span>Der  Zielfunktionswert  wird  zur  Bewertung  eines  Teilplans
+           benutzt. Dies ist die Standardmethode.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Tie Braking:</span> </dt><dd 
+class="description">Ist die Auswahl der anzufügenden Operation nicht eindeutig, so legt diese Option
+      fest, mit welcher Regel die gesuchte Operation unter den in Frage kommenden ausgewählt
+      wird.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">FCFS </span>(first come - first serve): Es wird die Operation als nächste angeordnet,
+           die schon am längsten bereitsteht.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT  </span>(longest  processing  time):  Es  wird  die  Operation  mit  der  größten
+           Bearbeitungszeit ausgewählt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT  </span>(shortest  processing  time):  Es  wird  die  Operation  mit  der  kleinsten
+           Bearbeitungszeit ausgewählt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM: </span>Die Operation wird zufällig ausgewählt.</li></ul>
+      </dd></dl>
+<!--l. 478--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 480--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> werden Beam Search Anfüge-Verfahren
+wie folgt aufgerufen:
+<!--l. 484--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-8">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;beam
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MODE&#x00A0;ATTACH
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;ATTACH_WHAT&#x00A0;Machines+Jobs
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;BREAK_TIES&#x00A0;FCFS
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_METHOD&#x00A0;INSERT1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;CRITERION&#x00A0;OBJECTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;K_BRANCHES&#x00A0;5
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 496--><p class="nopar" ></div>
+<!--l. 499--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 503--><p class="noindent" >Als ausführbare Datei muss für alle Beam Search Verfahren beam aufgerufen werden. Die Angabe
+des Beam Search-Modus ist obligatorisch. Danach können optional die Parameter für das
+<span 
+class="cmbx-12">Anf</span><span 
+class="cmbx-12">ügekriterium </span>(ATTACH_WHAT mit Optionen Machines, Jobs, Machines+Jobs), das <span 
+class="cmbx-12">Tie</span>
+<span 
+class="cmbx-12">Braking</span>, die <span 
+class="cmbx-12">Auswahlmethode</span>, das <span 
+class="cmbx-12">Auswahlkriterium</span>, und die <span 
+class="cmbx-12">Anzahl zu verfolgender</span>
+<span 
+class="cmbx-12">Zweige </span>gesetzt werden.
+                                                                                         
+                                                                                         
+<!--l. 515-->
+<!--l. 515--><p class="noindent" ><a 
+ id="tailhandbuchsu9.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

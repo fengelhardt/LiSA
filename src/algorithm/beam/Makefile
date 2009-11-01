@@ -70,7 +70,7 @@ install: install_xml install_doc
 	cp $(OBJPATH)/$(PROGRAMNAME) $(BINPATH)/$(PROGRAMNAME)
 	for l in ${LANGS}; do \
 		( mkdir -p $(ALGPATH)/language/$${l} && cp $(PROGRAMNAME)_$${l}*.$(ALGEXT) $(ALGPATH)/language/$${l} && \
-		  mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp $(PROGRAMNAME)_$${l}*.html $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME).html; ); done
+		  mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp *.html $(DOCPATH)/lisa/$${l}/algorithm/ ; ); done
 # ------------------------------------------------------------------------------
 
 install_xml:
@@ -79,7 +79,7 @@ install_xml:
 
 install_doc:
 	for l in ${LANGS}; do \
-	( mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp $(PROGRAMNAME)_$${l}*.html $(DOCPATH)/lisa/$${l}/algorithm/$(PROGRAMNAME).html; ); done
+	( mkdir -p $(DOCPATH)/lisa/$${l}/algorithm && cp *.html $(DOCPATH)/lisa/$${l}/algorithm/ ; ); done
 
 clean_doc:
 	for l in ${LANGS}; do \
