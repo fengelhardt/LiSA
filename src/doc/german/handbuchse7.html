@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Das File Format in LiSA</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 194--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse6.html" >prev</a>] [<a 
+href="handbuchse6.html#tailhandbuchse6.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse7.html">tail</a>] [<a 
+href="handbuchch2.html#handbuchse7.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x10-90002.4"></a>Das File Format in LiSA</h3>
+<!--l. 1--><p class="noindent" >LiSA benutzt zur Kommunikation von Schedulingproblemen Dateien im XML-Format. In diesen
+Dateien &#8211; im Folgenden auch <span 
+class="cmti-12">Dokumente </span>genannt &#8211; werden Problemtypen in <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>&#8211; Notation,
+Probleminstanzen und Schedules gespeichert. Darüber hinaus gibt es weitere Dokumente, die
+zur Algorithmenbeschreibung und zur Übergabe von Programmparametern an LiSA
+dienen.
+<!--l. 7--><p class="noindent" >Die XML-Dokumente lassen sich, je nach ihrer Funktion, einem <span 
+class="cmti-12">Dokumenttyp </span>zuordnen. Im
+Einzelnen gibt es fünf Dokumenttypen:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmtt-12">problem </span>enthält nur einen Problemtyp in <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>&#8211; Notation
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">instance </span>enthält neben dem Problemtyp auch eine Probleminstanz
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">schedule </span>enthält zusätzlich ein oder mehrere Pläne
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">algorithm </span>enthält eine Algorithmenbeschreibung
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">controls </span>enthält Programmparameter für LiSA</li></ul>
+<!--l. 21--><p class="noindent" >Alle XML-Dateien in LiSA beginnen mit den folgenden Zeilen:
+<!--l. 23--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-1">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
+</div>
+      <!--l. 29--><p class="nopar" ></div>
+<!--l. 32--><p class="noindent" >Die erste Zeile ist der typische Dateiheader für XML-Dateien und muss für jede neue Datei
+übernommen werden. Sie beschreibt die verwendete XML-Version und die Zeichencodierung (hier
+latin-1). Die zweite Zeile beschreibt den Dokumenttyp (hier <span 
+class="cmtt-12">instance</span>). Zusätzlich wird hier eine
+Datei LiSA.dtd angegeben. Diese Datei befindet sich je einmal in den Unterordnern
+<span 
+class="cmtt-12">bin </span>und <span 
+class="cmtt-12">data</span>. Sie enthält eine Strukturbeschreibung (eine sogenannte <span 
+class="cmti-12">document type</span>
+<span 
+class="cmti-12">definititon</span>, DTD), die dem XML-Interpreter hilft, den korrekten Aufbau des Dokumentes zu
+überprüfen.
+<!--l. 42--><p class="noindent" >
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1 <a 
+href="handbuchsu1.html#x11-100002.4.1">Der Dokumenttyp <span 
+class="cmtt-12">problem</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2 <a 
+href="handbuchsu2.html#x12-110002.4.2">Der Dokumenttyp <span 
+class="cmtt-12">instance</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3 <a 
+href="handbuchsu3.html#x13-120002.4.3">Der Dokumenttyp <span 
+class="cmtt-12">solution</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.4 <a 
+href="handbuchsu4.html#x14-130002.4.4">Der Dokumenttyp <span 
+class="cmtt-12">algorithm</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.5 <a 
+href="handbuchsu5.html#x15-140002.4.5">Der Dokumenttyp <span 
+class="cmtt-12">controls</span></a></span>
+</div>
+
+
+
+
+                                                                                         
+                                                                                         
+<!--l. 203--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse6.html" >prev</a>] [<a 
+href="handbuchse6.html#tailhandbuchse6.html" >prev-tail</a>] [<a 
+href="handbuchse7.html" >front</a>] [<a 
+href="handbuchch2.html#handbuchse7.html" >up</a>] </p></div>
+<!--l. 203--><p class="noindent" ><a 
+ id="tailhandbuchse7.html"></a>  
+</body></html> 

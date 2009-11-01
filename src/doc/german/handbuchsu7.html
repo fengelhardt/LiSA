@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Reihungsregeln</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 191--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu8.html" >next</a>] [<a 
+href="#tailhandbuchsu7.html">tail</a>] [<a 
+href="handbuchse12.html#handbuchsu7.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.1   </span> <a 
+ id="x24-230004.2.1"></a>Reihungsregeln</h4>
+<!--l. 194--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 196--><p class="noindent" >Reihungsregeln (Dispatching Rules) sind sehr schnelle Heuristiken, bei denen Schritt für Schritt
+neue Operationen angefügt werden. Die jeweils anzufügenden Operationen werden dabei durch die
+gewählte Strategie bestimmt.
+<!--l. 201--><p class="noindent" >Einige Problemklassen können mit Hilfe solcher einfachen Verfahren sogar exakt gelöst
+werden.
+<!--l. 206--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 208--><p class="noindent" >Nach Eingabe von <span 
+class="cmbxti-10x-x-120">Problemtyp </span>und erforderlichen <span 
+class="cmbxti-10x-x-120">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Reihungsregeln </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>. Abhängig vom Problemtyp können
+einzelne Vorrangregeln auch unter <span 
+class="cmbxti-10x-x-120">Exakte Verfahren </span>aufgelistet sein. In diesem Fall können
+meist keine Einstellungen getroffen werden.
+<!--l. 217--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Erzeuge Plan:</span> </dt><dd 
+class="description">
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SEMIAKTIV:  </span>Ein  Schedule  heißt  semiaktiv,  wenn  keine  Operation  früher
+           begonnen werden kann, ohne den Plan zu verändern. D.h. in einem semiaktiven
+           Schedule treten keine unnötigen Stillstandszeiten auf.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">AKTIV: </span>Ein Schedule heißt aktiv, wenn er semiaktiv ist, und keine Stillstandszeit
+           so existiert, dass eine spätere Operation auf der betreffenden Maschine in dieser
+           Stillstandszeit bearbeitet werden könnte.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NON-DELAY: </span>Ein Schedule heißt non-delay, wenn zu jedem Zeitpunkt, an dem
+           eine Maschine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub> und ein Auftrag <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> zur Verfügung stehen, mit der Bearbeitung
+           von Operation (<span 
+class="cmti-12">ij</span>) begonnen wird. Ein non-delay-Schedule ist dann auch aktiv.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Priorit</span><span 
+class="cmbx-12">ätsregel:</span> </dt><dd 
+class="description">Es stehen folgende Definitionen von Prioritäten zur Auswahl. Die
+      einzufügenden Operationen werden dann gemäß&#x00A0;der gewählten Strategie geordnet
+      und in der sich dadurch ergebenden Reihenfolge Schritt für Schritt in dem Plan
+      angefügt.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">RAND </span>(random): Die Operationen werden zufällig angeordnet.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">FCFS </span>(first come - first serve): Es wird die Operation als nächste angeordnet,
+           die schon am längsten bereitsteht.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">EDD  </span>(earliest  due  date):  Die  Operationen  werden  (aufsteigend)  nach  ihren
+           Fälligkeitsterminen angeordnet.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LQUE</span>: Es wird die Operation als nächste angeordnet, die die kleinste Differenz
+           &#8216;Fälligkeitstermin  <span 
+class="cmsy-10x-x-120">&minus; </span>(Bearbeitungszeit  +  Tail)&#8217;  hat.  Im  Fall  von  Open  Shop
+           wird  statt  des  Tails  die  Summe  der  Bearbeitungszeiten  aller  noch  nicht
+           angeordneten Operationen des jeweiligen Auftrags betrachtet. Als zweitrangige
+           Auswahlregel wird die Operation gewählt, auf deren Maschine die Summe der
+           Bearbeitungszeiten der noch nicht angeordneten Operationen am größten ist.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT   </span>(shortest   processing   time):   Die   Operationen   werden   gemäß&#x00A0;ihrer
+           Bearbeitungszeiten angeordnet, beginnend mit der kleinsten.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WSPT </span>(weighted shortest processing time): Es wird die Operation mit dem
+           kleinsten Quotienten aus Bearbeitungszeit und Gewicht als nächste angeordnet.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ECT </span>(earliest completion time): Es wird die Operation als nächste angeordnet,
+           die am schnellsten fertiggestellt werden kann.
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WI</span>:  Die  Aufträge  sind  gewichtet,  und  die  Operationen  werden  gemäß&#x00A0;der
+           Gewichte der Aufträge angeordnet, beginnend mit den wichtigsten.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT   </span>(longest   processing   time):   Die   Operationen   werden   gemäß&#x00A0;ihrer
+           Bearbeitungszeiten angeordnet, beginnend mit der größten.</li></ul>
+      </dd></dl>
+<!--l. 272--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 274--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu23.html#x53-560006.2.3">6.2.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Reihungsregeln wie folgt
+aufgerufen:
+<!--l. 278--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-6">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;dispatch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SCHEDULE&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 286--><p class="nopar" ></div>
+<!--l. 289--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 293--><p class="noindent" >Als ausführbare Datei muss für alle Reihungsregeln dispatch aufgerufen werden. Optional sind die
+Anforderung, was für ein Plan <span 
+class="cmbx-12">erzeugt </span>werden soll, und welche <span 
+class="cmbx-12">Reihungsregel </span>angewandt
+werden soll.
+                                                                                         
+                                                                                         
+<!--l. 302--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu8.html" >next</a>] [<a 
+href="handbuchsu7.html" >front</a>] [<a 
+href="handbuchse12.html#handbuchsu7.html" >up</a>] </p></div>
+<!--l. 302--><p class="noindent" ><a 
+ id="tailhandbuchsu7.html"></a>  
+</body></html> 

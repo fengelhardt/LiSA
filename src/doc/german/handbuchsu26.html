@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Darstellung von Daten</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu25.html" >prev</a>] [<a 
+href="handbuchsu25.html#tailhandbuchsu25.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu26.html">tail</a>] [<a 
+href="handbuchse27.html#handbuchsu26.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.1.2   </span> <a 
+ id="x62-67000A.1.2"></a>Darstellung von Daten</h4>
+<!--l. 60--><p class="noindent" >Einfache Datentypen, wie ganze oder gebrochene Zahlen, sowie Zeichenketten werden einfach mit
+Hilfe von Attributen dargestellt. Ein Beispiel dafür ist das <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Tag:
+<!--l. 63--><p class="noindent" >
+      <div class="quote">
+      <!--l. 64--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule</span><span 
+class="cmtt-12">&#x00A0;m="10"</span><span 
+class="cmtt-12">&#x00A0;n="20"</span><span 
+class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span></div>
+<!--l. 67--><p class="noindent" >Hier wird die Problemgröße durch die Ganzzahlen <span 
+class="cmmi-12">m </span>= 10 und <span 
+class="cmmi-12">n </span>= 20 festgelegt. Zusätzlich besagt
+die Zeichenkette <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">"yes"</span></span></span> als Wert des Attributes <span 
+class="cmtt-12">semiactive</span>, dass der folgende Zeitplan semiaktiv
+ist. Zu beachten ist bei reellen Zahlen die Verwendung des Dezimalpunktes anstatt eines
+Kommas.
+<!--l. 74--><p class="noindent" >Weiterhin werden Vektoren und Matrizen als komplexe Datentypen verwendet. Ein Vektor der
+Dimension <span 
+class="cmmi-12">n </span>mit den Komponenten <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_1 </span>bis <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_n </span>wird dargestellt durch:
+<!--l. 77--><p class="noindent" >
+      <div class="quote">
+      <!--l. 78--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">{</span><span 
+class="cmtt-12">&#x00A0;a_1</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_2</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_3</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_n</span><span 
+class="cmtt-12">&#x00A0;}</span></span></span></div>
+<!--l. 81--><p class="noindent" >Als Trennung zwischen den Werten können beliebig viele Whitespace-Zeichen benutzt werden.
+Eine <span 
+class="cmmi-12">n</span><span 
+class="cmsy-10x-x-120">&#x00D7;</span><span 
+class="cmmi-12">m </span>Matrix kann als <span 
+class="cmmi-12">n</span>-dimensionaler Vektor dargestellt werden, der selbst <span 
+class="cmmi-12">m</span>-dimensionale
+Vektoren enthält:
+<!--l. 85--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-25">
+&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_11&#x00A0;&#x00A0;a_12&#x00A0;&#x00A0;a_13&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_1m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_21&#x00A0;&#x00A0;a_22&#x00A0;&#x00A0;a_23&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_2m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_n1&#x00A0;&#x00A0;a_n2&#x00A0;&#x00A0;a_n3&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_nm&#x00A0;}
+&#x00A0;<br />&#x00A0;}
+</div>
+      <!--l. 93--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu25.html" >prev</a>] [<a 
+href="handbuchsu25.html#tailhandbuchsu25.html" >prev-tail</a>] [<a 
+href="handbuchsu26.html" >front</a>] [<a 
+href="handbuchse27.html#handbuchsu26.html" >up</a>] </p></div>
+<!--l. 98--><p class="noindent" ><a 
+ id="tailhandbuchsu26.html"></a>  
+</body></html> 

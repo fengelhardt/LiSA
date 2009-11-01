@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Was ist LiSA? - Einfuhrung und Ubersicht</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 74--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse2.html" >next</a>] [<a 
+href="#tailhandbuchse1.html">tail</a>] [<a 
+href="handbuchch1.html#handbuchse1.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x3-20001.1"></a>Was ist LiSA? - Einführung und Übersicht</h3>
+<!--l. 76--><p class="noindent" >LiSA - A Library of Scheduling Algorithms ist ein Softwarepaket zur Lösung von deterministischen
+Shop-Schedulingproblemen. In einem Shop-Schedulingproblem soll eine Menge von Jobs
+(Aufträgen) unter bestimmten zusätzlichen Bedingungen so auf einer Menge von Maschinen
+bearbeitet werden, dass eine Zielfunktion optimal wird. Alle Parameter sind bekannt und fest
+vorgegeben. In der Literatur werden solche Probleme gewöhnlich durch ein Tripel <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma;</span>
+beschrieben, wobei <span 
+class="cmmi-12">&alpha; </span>die Maschinenumgebung, <span 
+class="cmmi-12">&beta; </span>die zusätzlichen Bedingungen <span 
+class="cmmi-12">&gamma; </span>die Zielfunktion
+beschreibt.<br 
+class="newline" />
+<!--l. 83--><p class="noindent" >Die Software LiSA verwendet die <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>Beschreibung der Probleme. Ihr modularer Aufbau ist in
+Abbildung <a 
+href="#x3-20011">1.1<!--tex4ht:ref: Bestandteile von LiSA --></a> veranschaulicht.
+<!--l. 86--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x3-20011"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 87--><p class="noindent" >
+<!--l. 88--><p class="noindent" ><img 
+src="handbuch0x.png" alt="PIC" class="graphics"><!--tex4ht:graphics  
+name="handbuch0x.png" src="bilder/lisa_module.pdf"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Abbildung&#x00A0;1.1: </span><span  
+class="content">Bestandteile von LiSA</span></div><!--tex4ht:label?: x3-20011 -->
+                                                                                         
+                                                                                         
+<!--l. 91--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 93--><p class="noindent" >Der Hauptteil enthält alle Basisalgorithmen des Blockmatrizenmodells, die Ein- und
+Ausgabeprozeduren und die Module der grafischen Oberfläche. Daneben erfolgt hier die Übergabe
+der Programmdaten und die Koordinierung der Arbeit mit den externen Algorithmen.
+Enthalten ist auch die Bestimmung des Komplexitätsstatus eines Problems in der <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma;</span>
+Notation.<br 
+class="newline" />Alle Algorithmen zur Lösung der Shop-Schedulingprobleme sind in externen Modulen erhalten, die
+mit dem Hauptprogramm über Dateien kommunizieren. Die Algorithmen werden über die grafische
+Oberfläche aufgerufen, können aber auch direkt über eine Kommandozeile ohne Nutzung der LiSA
+Oberfläche angewendet werden. Durch den automatisierten Algorithmenaufruf lassen sich
+darüberhinaus eigene hybride ALgorithmen konstruieren. Das Einfügen selbstimplementierter
+Algorithmen als externe Module wird durch eine Beschreibungsdatei in XML-Format
+zur Anbindung an den Hauptteil von LiSA und einen Help-File in HTML organisiert.
+<br 
+class="newline" />
+<!--l. 104--><p class="noindent" >Dieses Handbuch enthält die folgenden Informationen:
+<!--l. 106--><p class="noindent" >Kapitel <a 
+href="#x3-20001.1">1.1<!--tex4ht:ref: Was ist LiSA? - Einfuehrung und Uebersicht --></a> enthält neben der Einführung eine Übersicht über das LiSA-Team (Kapitel <span 
+class="cmbx-12">??</span>) sowie
+die Systemanforderungen zur LiSA-Nutzung und die Lizenzbedingungen (Kapitel <span 
+class="cmbx-12">??</span>) . Die in
+LiSA verwendeten Bezeichnungen, die Klassifizierung der Probleme und das verwendete
+Block-Matrizen-Modell sind in Kapitel <span 
+class="cmbx-12">??</span> enthalten. Hier wird auch auf das in LiSA verwendete
+File-Format eingegangen.
+<!--l. 113--><p class="noindent" >Die folgenden drei Kapitel beschreiben die Eingabe eines Problems (Kapitel <span 
+class="cmbx-12">??</span>) , die in LiSA
+enthaltenen Algorithmen (Kapitel <span 
+class="cmbx-12">??</span>), unterteilt in universell anwendbare exakte Algorithmen
+(Kapitel <span 
+class="cmbx-12">??</span>), universell anwendbare konstruktive und iterative Heuristiken (Kapitel <span 
+class="cmbx-12">??</span> und <span 
+class="cmbx-12">??</span>)
+sowie spezielle Algorithmen (Kapitel <span 
+class="cmbx-12">??</span>), und die Ausgabe der Ergebnisse (Kapitel
+<span 
+class="cmbx-12">??</span>).
+<!--l. 119--><p class="noindent" >Kapitel <span 
+class="cmbx-12">??</span> enthält zusätzliche interne Programmbausteine, wie die Ermittlung des Komplexitätsstatus
+eines Problems (Kapitel <span 
+class="cmbx-12">??</span>)
+<!--l. 126--><p class="noindent" >&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-
+                                                                                         
+                                                                                         
+<!--l. 132--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse2.html" >next</a>] [<a 
+href="handbuchse1.html" >front</a>] [<a 
+href="handbuchch1.html#handbuchse1.html" >up</a>] </p></div>
+<!--l. 132--><p class="noindent" ><a 
+ id="tailhandbuchse1.html"></a>  
+</body></html> 

@@ -1,0 +1,701 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Automatisierter Algorithmenaufruf</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 452--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu24.html" >next</a>] [<a 
+href="handbuchsu22.html" >prev</a>] [<a 
+href="handbuchsu22.html#tailhandbuchsu22.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu23.html">tail</a>] [<a 
+href="handbuchse23.html#handbuchsu23.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">6.2.3   </span> <a 
+ id="x53-560006.2.3"></a>Automatisierter Algorithmenaufruf</h4>
+<!--l. 1--><p class="noindent" >Diese Funktion ermöglicht es, mittels Talliard&#8217;s Zufallsgenerator, automatisch Instanzen von
+Schedulingproblemen zu erzeugen, und für diese bestimmte Algorithmen aufzurufen. Dadurch kann
+z.B. ein und dasselbe Problem automatisch mit mehreren verschiedenen Algorithmen gelöst, und
+die Ergebnisse anschließend verglichen werden.
+<!--l. 7--><p class="noindent" >Um diese Funktion nutzen zu können, muss zunächst eine Eingabedatei erstellt werden, die
+anschließend als Parameter für den Programmaufruf <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>fungiert.
+<!--l. 13--><p class="noindent" ><span id="textcolor60">&nbsp;<br><span 
+class="cmbx-12x-x-120">Erstellen einer Eingabedatei</span></span>
+<!--l. 15--><p class="noindent" >Die Eingabedatei ist eine Textdatei (z.B. <span 
+class="cmtt-12">~/test/myproblem.alg</span>), die den zu bearbeitenden
+Problemtyp, Parameter für den Zufallsgenerator und die abzuarbeitenden Algorithmen definiert.
+Das folgende Beipiel soll den Aufbau verdeutlichen. Es generiert zehn Probleminstanzen vom Typ
+O<span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub>. Auf jede Instanz wird zunächst die Zufallsreihungsregel angewendet und
+anschließend die Lösung per iterativer Suche verbessert.
+<!--l. 23--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-20">
+&#x003C;PROBLEMTYPE&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;Lisa_ProblemType=&#x00A0;{&#x00A0;O&#x00A0;/&#x00A0;r_i&#x00A0;/&#x00A0;SumWiTi&#x00A0;}
+&#x00A0;<br />&#x003C;/PROBLEMTYPE&#x003E;
+&#x00A0;<br />
+&#x00A0;<br />&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MINPT&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAXPT&#x00A0;99
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MINRI&#x00A0;0
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAXRI&#x00A0;100
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MINDD&#x00A0;200
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAXDD&#x00A0;1000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;MINWI&#x00A0;0.0
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;MAXWI&#x00A0;2.0
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;M&#x00A0;10
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;N&#x00A0;20
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;TIMESEED&#x00A0;658496
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MACHSEED&#x00A0;2465865
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;DDSEED&#x00A0;1123545
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;WISEED&#x00A0;8885564
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;RISEED&#x00A0;566945
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMBERPROBLEMS&#x00A0;10
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMBERALGORITHMS&#x00A0;3
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;RIDIMODE&#x00A0;0
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;TFACTOR&#x00A0;0.7
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />
+&#x00A0;<br />&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;lower_bounds
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />
+&#x00A0;<br />&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;dispatch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SCHEDULE&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;RANDOM
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />
+&#x00A0;<br />&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;IterativeImprovement
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;1000
+                                                                                         
+                                                                                         
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 72--><p class="nopar" ></div>
+<!--l. 75--><p class="noindent" >Der erste Block, der mit <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;PROBLEMTYPE&#x003E;</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;&#x003C;/PROBLEMTYPE&#x003E;</span></span></span> umschlossen ist, gibt den den zu
+behandelnden Problemtyp in <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>&#8211; Notation an. Es können folgende Angaben gemacht werden
+(siehe auch <span 
+class="cmbx-12">Problemtyp </span><span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse5.html#x8-70002.2">2.2<!--tex4ht:ref: Klassifizierung deterministischer Schedulingprobleme --></a>):
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-1-1"  
+class="td11"><!--l. 84--><p class="noindent" ><span 
+class="cmbx-12">Parameter</span>     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-1-2"  
+class="td11"><!--l. 84--><p class="noindent" ><span 
+class="cmbx-12">M</span><span 
+class="cmbx-12">ögliche Werte</span>                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-2-1"  
+class="td11"><!--l. 84--><p class="noindent" >&#x00A0;                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-2-2"  
+class="td11"><!--l. 85--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-3-1"  
+class="td11"><!--l. 86--><p class="noindent" ><span 
+class="cmmi-12">&alpha;</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-3-2"  
+class="td11"><!--l. 87--><p class="noindent" ><span 
+class="cmtt-12">O</span>, <span 
+class="cmtt-12">J </span>oder <span 
+class="cmtt-12">F</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-4-1"  
+class="td11"><!--l. 88--><p class="noindent" >&#x00A0;                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-4-2"  
+class="td11"><!--l. 89--><p class="noindent" >                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-5-1"  
+class="td11"><!--l. 90--><p class="noindent" ><span 
+class="cmmi-12">&beta;</span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-5-2"  
+class="td11"><!--l. 91--><p class="noindent" ><span 
+class="cmtt-12">r</span><span 
+class="cmtt-12">_i </span>oder nichts (freilassen)                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-6-1"  
+class="td11"><!--l. 92--><p class="noindent" >&#x00A0;                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-6-2"  
+class="td11"><!--l. 93--><p class="noindent" >                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-7-1"  
+class="td11"><!--l. 94--><p class="noindent" ><span 
+class="cmmi-12">&gamma;</span>                  </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-7-2"  
+class="td11"><!--l. 95--><p class="noindent" ><span 
+class="cmtt-12">Cmax</span>, <span 
+class="cmtt-12">Lmax</span>, <span 
+class="cmtt-12">SumCi</span>, <span 
+class="cmtt-12">SumWiCi</span>, <span 
+class="cmtt-12">SumUi</span>, <span 
+class="cmtt-12">SumWiUi</span>, <span 
+class="cmtt-12">SumTi </span>oder <span 
+class="cmtt-12">SumWiTi</span>  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-8-1"  
+class="td11"><!--l. 97--><p class="noindent" >&#x00A0;                     </td><td  style="white-space:wrap; text-align:left;" id="TBL-2-8-2"  
+class="td11"><!--l. 98--><p class="noindent" >                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-2-9-1"  
+class="td11">              </td></tr></table></div>
+<div class="paragraphTOCS">
+&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x53-570006.2.3" id="QQ2-53-58">Wichtig:</a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x53-580006.2.3" id="QQ2-53-59">Anmerkung:</a></span>
+</div>
+<!--l. 103--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-570006.2.3"></a><span 
+class="cmbx-12">Wichtig:</span></span>
+Die Notation in der Eingabedatei für <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>ist ist abhängig von der Groß- und
+Kleinschreibung. Ebenso muss darauf geachtet werden, dass Leerzeichen korrekt (wie im Beispiel
+dargestellt) gesetzt sind.
+<!--l. 108--><p class="noindent" >Nach der Deklaration des Problemtyps folgen in der Eingabedatei nun mehrere Blöcke, die mit
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;CONTROLPARAMETERS&#x003E;</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;&#x003C;/CONTROLPARAMETERS&#x003E;</span></span></span> umschlossen sind. Der erste dieser Blöcke hat
+eine besondere Bedeutung, hier werden die Parameter für den Zufallsgenerator und die Anzahl der
+Algorithmen angegeben. Parameter, die nicht benötigt werden, können weggelassen werden. Diese
+einzelnen Parameter haben folgende Bedeutung:
+                                                                                         
+                                                                                         
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"></colgroup><colgroup id="TBL-3-2g"><col 
+id="TBL-3-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-1-1"  
+class="td11"><!--l. 119--><p class="noindent" ><span 
+class="cmbx-12">Parameter</span>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-1-2"  
+class="td11"><!--l. 119--><p class="noindent" ><span 
+class="cmbx-12">Bedeutung</span>                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-2-1"  
+class="td11"><!--l. 119--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-2-2"  
+class="td11"><!--l. 120--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-3-1"  
+class="td11"><!--l. 121--><p class="noindent" ><span 
+class="cmtt-12">M</span>, <span 
+class="cmtt-12">N</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-3-2"  
+class="td11"><!--l. 122--><p class="noindent" >Gibt die Problemgröße <span 
+class="cmmi-12">n </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">m </span>an, wobei <span 
+class="cmmi-12">n </span>die Anzahl der Jobs und <span 
+class="cmmi-12">m</span>
+die Anzahl der Maschinen ist.                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-4-1"  
+class="td11"><!--l. 124--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-4-2"  
+class="td11"><!--l. 125--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-5-1"  
+class="td11"><!--l. 126--><p class="noindent" ><span 
+class="cmtt-12">NUMBERPROBLEMS</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-5-2"  
+class="td11"><!--l. 127--><p class="noindent" >Gibt die Anzahl der Probleminstanzen an, die <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>generieren
+und lösen soll.                                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-6-1"  
+class="td11"><!--l. 128--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-6-2"  
+class="td11"><!--l. 129--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-7-1"  
+class="td11"><!--l. 130--><p class="noindent" ><span 
+class="cmtt-12">NUMBERALGORITHMS</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-7-2"  
+class="td11"><!--l. 131--><p class="noindent" >Gibt die Anzahl der Algorithmen an, die auf eine Probleminstanz
+angewendet werden sollen.                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-8-1"  
+class="td11"><!--l. 132--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-8-2"  
+class="td11"><!--l. 133--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-9-1"  
+class="td11"><!--l. 134--><p class="noindent" ><span 
+class="cmtt-12">MINPT</span>, <span 
+class="cmtt-12">MAXPT</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-9-2"  
+class="td11"><!--l. 135--><p class="noindent" >Minimale und maximale Werte für einen Eintrag in der Matrix der
+Bearbeitungszeiten.                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-10-1"  
+class="td11"><!--l. 136--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-10-2"  
+class="td11"><!--l. 137--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-11-1"  
+class="td11"><!--l. 138--><p class="noindent" ><span 
+class="cmtt-12">MINDD</span>, <span 
+class="cmtt-12">MAXDD</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-11-2"  
+class="td11"><!--l. 139--><p class="noindent" >Minimale und maximale Werte für die Fälligkeitstermine der Jobs.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-12-1"  
+class="td11"><!--l. 140--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-12-2"  
+class="td11"><!--l. 141--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-13-1"  
+class="td11"><!--l. 142--><p class="noindent" ><span 
+class="cmtt-12">MINRI</span>, <span 
+class="cmtt-12">MAXRI</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-13-2"  
+class="td11"><!--l. 143--><p class="noindent" >Minimale und maximale Werte für die Bereitstellungszeiten der Jobs.
+Diese  Parameter  werden  nur  benötigt,  wenn  <span 
+class="cmtt-12">r</span><span 
+class="cmtt-12">_i </span>im  Problemtyp
+gesetzt wurde.                                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-14-1"  
+class="td11"><!--l. 145--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-14-2"  
+class="td11"><!--l. 146--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-15-1"  
+class="td11"><!--l. 147--><p class="noindent" ><span 
+class="cmtt-12">MINWI</span>, <span 
+class="cmtt-12">MAXWI</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-15-2"  
+class="td11"><!--l. 148--><p class="noindent" >Minimale und maximale Werte für die Wichtungsfaktoren der Jobs
+(wird für die Zielfunktionen <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub>, <span 
+class="cmex-10x-x-120">&sum;</span>
+<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> und <span 
+class="cmex-10x-x-120">&sum;</span>
+<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> benötigt). </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-16-1"  
+class="td11"><!--l. 150--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-16-2"  
+class="td11"><!--l. 151--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-17-1"  
+class="td11"><!--l. 152--><p class="noindent" ><span 
+class="cmtt-12">TIMESEED</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-17-2"  
+class="td11"><!--l. 153--><p class="noindent" >Zufallssaat für die Matrix der Bearbeitungszeiten.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-18-1"  
+class="td11"><!--l. 154--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-18-2"  
+class="td11"><!--l. 155--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-19-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-19-1"  
+class="td11"><!--l. 156--><p class="noindent" ><span 
+class="cmtt-12">MACHSEED</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-19-2"  
+class="td11"><!--l. 157--><p class="noindent" >Zufallssaat für die technologische Reihenfolge.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-20-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-20-1"  
+class="td11"><!--l. 158--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-20-2"  
+class="td11"><!--l. 159--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-21-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-21-1"  
+class="td11"><!--l. 160--><p class="noindent" ><span 
+class="cmtt-12">DDSEED</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-21-2"  
+class="td11"><!--l. 161--><p class="noindent" >Zufallssaat für die Fälligkeitstermine der Jobs.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-22-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-22-1"  
+class="td11"><!--l. 162--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-22-2"  
+class="td11"><!--l. 163--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-23-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-23-1"  
+class="td11"><!--l. 164--><p class="noindent" ><span 
+class="cmtt-12">RISEED</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-23-2"  
+class="td11"><!--l. 165--><p class="noindent" >Zufallssaat für die Bereitstellungszeiten der Jobs.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-24-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-24-1"  
+class="td11"><!--l. 166--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-24-2"  
+class="td11"><!--l. 167--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-25-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-25-1"  
+class="td11"><!--l. 168--><p class="noindent" ><span 
+class="cmtt-12">WISEED</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-25-2"  
+class="td11"><!--l. 169--><p class="noindent" >Zufallssaat für die Wichtungsfaktoren der Jobs.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-26-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-26-1"  
+class="td11"><!--l. 170--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-26-2"  
+class="td11"><!--l. 171--><p class="noindent" >                                                          </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-27-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-27-1"  
+class="td11"><!--l. 172--><p class="noindent" ><span 
+class="cmtt-12">RIDIMODE</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-27-2"  
+class="td11"><!--l. 173--><p class="noindent" >Wird dieser Parameter auf <span 
+class="cmtt-12">1 </span>gesetzt, werden die Fälligkeitstermine <span 
+class="cmmi-12">d</span><sub>
+<span 
+class="cmmi-8">i</span></sub> nach
+folgender Formel berechnet:
+<table 
+class="equation"><tr><td><a 
+ id="x53-57001r1"></a>
+<center class="math-display" >
+<img 
+src="handbuch13x.png" alt="               m
+              &sum;
+di = ri + TF &sdot;    pij,     i = 1,2,...n
+              j=1
+" class="math-display" ></center></td></tr></table>
+<!--l. 177--><p class="nopar" >
+Die Bereitstellungszeiten <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> der Jobs werden gleichmäßig im Intervall
+[0<span 
+class="cmmi-12">,r</span><sub><span 
+class="cmr-8">max</span></sub>] verteilt.
+<table 
+class="equation"><tr><td><a 
+ id="x53-57002r1"></a>
+<center class="math-display" >
+<img 
+src="handbuch14x.png" alt="        1   &sum;n  &sum;m
+rmax =  ---&sdot;       pij
+        2n  i=1 j=1
+" class="math-display" ></center></td></tr></table>
+<!--l. 182--><p class="nopar" >
+<!--l. 184--><p class="noindent" >                                                                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-28-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-28-1"  
+class="td11"><!--l. 184--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-28-2"  
+class="td11"><!--l. 185--><p class="noindent" >                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-29-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-29-1"  
+class="td11"><!--l. 186--><p class="noindent" ><span 
+class="cmtt-12">TFACTOR</span>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-29-2"  
+class="td11"><!--l. 187--><p class="noindent" >Setzt den Parameter TF (tightness factor) für den Fall <span 
+class="cmtt-12">RIDIMODE </span>= 1.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-30-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-30-1"  
+class="td11"><!--l. 188--><p class="noindent" >&#x00A0;                         </td><td  style="white-space:wrap; text-align:left;" id="TBL-3-30-2"  
+class="td11"><!--l. 189--><p class="noindent" >                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-31-"><td  style="white-space:wrap; text-align:left;" id="TBL-3-31-1"  
+class="td11">                 </td></tr></table>                                                                   
+                                                                                         
+</div>
+<!--l. 194--><p class="noindent" >Nach der Deklaration der Parameter für den Zufallsgenerator folgen nun weitere Parameterblöcke,
+die die nacheinander abzuarbeitenden Algorithmen darstellen. Hiervon muss es genau so viele
+geben, wie im Parameter <span 
+class="cmtt-12">NUMBERALGORITHMS </span>angegeben wurde. Der erste Algorithmus sollte immer
+<span 
+class="cmtt-12">lower</span><span 
+class="cmtt-12">_bounds </span>sein, um später Probleme mit der Filterung der Ausgabedaten zu vermeiden. Die
+genaue Notation für den Aufruf eines speziellen Algorithmus wird im Abschnitt <span 
+class="cmbx-12">Algorithmen in</span>
+<span 
+class="cmbx-12">LiSA </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchch4.html#x20-190004">4<!--tex4ht:ref: Algorithmen in LiSA --></a>) beschrieben.
+<!--l. 202--><p class="noindent" ><span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>arbeitet die Eingabedatei wie folgt ab:
+      <ul class="itemize1">
+      <li class="itemize">Generierung einer Probleminstanz aus dem Zufallsgenerator nach den angegebenen
+      Parametern.
+      </li>
+      <li class="itemize">Anwendung der Algorithmen auf die generierte Probleminstanz in der Reihenfolge,
+      wie sie in der Eingabedatei angegeben sind. Gefundene Lösungen eines Algorithmus
+      können dabei von einem der nachfolgenden Algorithmen als Grundlage genommen und
+      iterativ verbessert werden.
+      </li>
+      <li class="itemize">Abspeichern  der  Probleminstanz  mit  allen  Lösungen,  die  von  den  Algorithmen
+      gefunden wurden.</li></ul>
+<!--l. 212--><p class="noindent" >Diese Schritte werden so oft wiederholt, wie im Parameter <span 
+class="cmtt-12">NUMBERPROBLEMS </span>angegeben
+wurde.
+<!--l. 216--><p class="noindent" ><span id="textcolor61">&nbsp;<br><span 
+class="cmbx-12x-x-120">Zus</span><span 
+class="cmbx-12x-x-120">ätzliche Parameter zu den Algorithmen</span></span>
+<!--l. 218--><p class="noindent" >Der Aufruf <span 
+class="cmtt-12">AUTOALG</span><span 
+class="cmtt-12">_START</span><span 
+class="cmtt-12">_FROM </span><span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmtt-12">ZAHL1,ZAHL2,...</span><span 
+class="cmsy-10x-x-120">} </span>bestimmt, welche Ausgaben als
+Eingaben für den aktuellen Algorithmus verwendet werden sollen. <span 
+class="cmtt-12">ZAHL1 </span>und <span 
+class="cmtt-12">ZAHL2 </span>sind
+dabei die Nummern von bereits abgearbeiteten Verfahren. <span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmtt-12">0</span><span 
+class="cmsy-10x-x-120">} </span>bedeutet keine Eingabe
+für diesen Algorithmus. Der Standardwert für einen Algorithmus mit Nummer <span 
+class="cmtt-12">i </span>ist
+<span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmtt-12">i-1</span><span 
+class="cmsy-10x-x-120">}</span>.
+<!--l. 225--><p class="noindent" >Durch den Algorithmus <span 
+class="cmtt-12">best</span><span 
+class="cmtt-12">_of </span>wird die beste Lösung zu einer Instanz unter den angegebenen
+Verfahren ausgewählt. Dadurch können z.B. für alle Probleminstanzen die jeweils besten Lösungen
+verschiedener konstruktiver Verfahren als Startlösung eines iterativen Verfahrens dienen. Dieser
+Auswahlalgorithmus funktioniert wie ein selbsständiges Verfahren, und muss bei der Anzahl der
+Algorithmen im Dateikopf mitgezählt werden.
+<!--l. 233--><p class="noindent" >Durch den Aufruf <span 
+class="cmtt-12">AUTOALG</span><span 
+class="cmtt-12">_TIMELIMIT </span>kann für jeden Algorithmus ein Zeitlimit angegeben
+werden. Dann wird das Verfahren mit <span 
+class="cmtt-12">SIGINT </span>unterbrochen, sobald das Zeitlimit abgelaufen ist.
+Die dabei gemessene Zeit ist keine reine Prozesszeit, sondern reale Zeit. Der Standardwert ist <span 
+class="cmtt-12">0</span>
+und entspricht keinem Limit. Dieser Parameter sollte nur für Algorithmen benutzt werden, die eine
+Ausgabe erzeugen, wenn sie mit <span 
+class="cmtt-12">SIGINT </span>abgebrochen werden.
+<!--l. 243--><p class="noindent" ><span id="textcolor62">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf von Autoalg</span></span>
+                                                                                         
+                                                                                         
+<!--l. 245--><p class="noindent" >Das Programm <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>befindet sich im LiSA-Hauptverzeichnis im Unterordner <span 
+class="cmtt-12">bin</span>. Es muss
+genau aus diesem Ordner aufgerufen werden, da es von hier aus die abzuarbeitenden Algorithmen
+starten muss. Die erwartete Eingabedatei kann natürlich in einem beliebigen Verzeichnis
+liegen. In dem Verzeichnis, in dem die Eingabedatei liegt, legt <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>alle während
+seiner Abarbeitung gelösten Probleme ab. Diese können in LiSA geöffnet und angesehen
+werden.
+<!--l. 250--><p class="noindent" ><span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>gibt während der Abarbeitung Logmeldungen auf die Standardausgabe aus. Diese
+Meldungen sind jedoch sehr zahlreich und unübersichtlich. Es empfiehlt sich also, diese von der
+Standardausgabe in eine Datei umzuleiten. Die ausgegebenen Informationen lassen sich dann
+besser auswerten, indem man Filter auf diese Datei anwendet.
+<!--l. 256--><p class="noindent" >Ein Aufruf von <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>kann unter Linux/Unix/Cygwin Beispielsweise so aussehen:
+<!--l. 258--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-21">
+&#x00A0;cd&#x00A0;~/LiSA/bin
+&#x00A0;<br />&#x00A0;./auto_alg&#x00A0;~/LiSA-Daten/algorithmen.alg&#x00A0;&#x003E;&#x00A0;~/LiSA-Daten/auto_alg.out
+</div>
+      <!--l. 264--><p class="nopar" ></div>
+<!--l. 267--><p class="noindent" >Unter Windows (mit der Standard-Installation des LiSA-Paketes) kann die Eingabeaufforderung
+(Start/Ausführen <span 
+class="cmsy-10x-x-120">&rarr; </span>&#8220;cmd&#8221;) genutzt werden. Der entsprechende Befehl kann dort so
+aussehen:
+<!--l. 270--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-22">
+&#x00A0;cd&#x00A0;C:\Programme\LiSA\bin
+&#x00A0;<br />&#x00A0;auto_alg.exe&#x00A0;C:\LiSA-Daten\algorithmen.alg&#x00A0;&#x003E;&#x00A0;C:\LiSA-Daten\auto_alg.out
+</div>
+      <!--l. 276--><p class="nopar" ></div>
+<!--l. 279--><p class="noindent" >Dies ruft <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">auto_alg</span></span></span> mit der Eingabedatei <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">algorithmen.alg</span></span></span> auf und leitet die Ausgabe in die Datei
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">auto_alg.out</span></span></span> um.
+<!--l. 284--><p class="noindent" ><span id="textcolor63">&nbsp;<br><span 
+class="cmbx-12x-x-120">Auswertung der Resultate durch Filter</span></span>
+<!--l. 286--><p class="noindent" >Die Filter liegen ebenfalls im Unterordner <span 
+class="cmtt-12">bin</span>. Um sie auszuführen, muss Perl installiert sein.
+Beim Aufruf muss ihnen die vorher erzeugte Ausgabedatei von <span 
+class="cmtt-12">auto</span><span 
+class="cmtt-12">_alg </span>übergeben werden. Die
+Filter schreiben ihre Ausgaben wiederum auf die Standardausgabe, diese lässt sich aber ebenfalls
+mit dem <span 
+class="cmtt-12">&#x003E;</span>-Operator in eine Datei umleiten.
+<!--l. 290--><p class="noindent" >Folgender Konsolenbefehl unter Linux/Unix/Cygwin ruft einen Filter auf die vorher
+erzeugte Ausgabedatei auf. Das Ergebnis der Filterung wird in die Datei <span 
+class="cmtt-12">filter.out</span>
+geschrieben.
+<!--l. 293--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-23">
+&#x00A0;./filter_objectives&#x00A0;~/LiSA-Daten/auto_alg.out&#x00A0;&#x003E;&#x00A0;~/LiSA-Daten/filter.out
+</div>
+      <!--l. 298--><p class="nopar" ></div>
+<!--l. 301--><p class="noindent" >In der Windows-Eingabeaufforderung sieht der Befehl z.B. folgendermaßen aus:
+<!--l. 303--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-24">
+&#x00A0;perl&#x00A0;filter_objectives&#x00A0;C:\LiSA-Daten\auto_alg.out&#x00A0;&#x003E;&#x00A0;C:\LiSA-Daten\filter.out
+</div>
+      <!--l. 308--><p class="nopar" ></div>
+<!--l. 311--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x53-580006.2.3"></a><span 
+class="cmbx-12">Anmerkung:</span></span>
+Für den Aufruf der Filter über die Windows-Eingabeaufforderung ist darauf zu achten, dass Perl
+korrekt in der Umgebungsvariablen <span 
+class="cmtt-12">PATH </span>eingetragen ist. Dies passiert bei der Installation von Perl
+aber meist automatisch.
+<!--l. 316--><p class="noindent" >Alle Filter listen ihre Ergebnisse in Tabellen auf. Jede Zeile enthält Informationen zu einer
+bearbeiteten Probleminstanz. Es wird immer davon ausgegangen, dass als erster Algorithmus
+<span 
+class="cmtt-12">lower</span><span 
+class="cmtt-12">_bounds </span>ausgeführt wird. Die Ergebnisse des jeweils ersten Algorithmus werden
+dementsprechend von den Filtern nicht ausgegeben. Eine Ausnahme stellt <span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_runtime </span>dar,
+der auch die Laufzeit des ersten Algorithmus ausgibt.
+                                                                                         
+                                                                                         
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"></colgroup><colgroup id="TBL-4-2g"><col 
+id="TBL-4-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-1-1"  
+class="td11"><!--l. 324--><p class="noindent" ><span 
+class="cmbx-12">filter</span>                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-1-2"  
+class="td11"><!--l. 324--><p class="noindent" ><span 
+class="cmbx-12">Bedeutung</span>                                                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-2-1"  
+class="td11"><!--l. 324--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-2-2"  
+class="td11"><!--l. 325--><p class="noindent" >                                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-3-1"  
+class="td11"><!--l. 326--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_runtime</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-3-2"  
+class="td11"><!--l. 327--><p class="noindent" >Listet spaltenweise für jeden Algorithmus die Laufzeit in
+Sekunden auf.                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-4-1"  
+class="td11"><!--l. 328--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-4-2"  
+class="td11"><!--l. 329--><p class="noindent" >                                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-5-1"  
+class="td11"><!--l. 330--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_objectives</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-5-2"  
+class="td11"><!--l. 331--><p class="noindent" >Gibt in den ersten drei Spalten gefundene untere Schranken
+für  das  Problem  an.  Die  folgenden  Spalten  listen  für  jeden
+ausgeführten Algorithmus den erreichten Zielfunktionswert auf.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-6-1"  
+class="td11"><!--l. 333--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-6-2"  
+class="td11"><!--l. 334--><p class="noindent" >                                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-7-1"  
+class="td11"><!--l. 335--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_lb</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-7-2"  
+class="td11"><!--l. 336--><p class="noindent" >Tut das gleiche wie <span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_objectives</span>.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-8-1"  
+class="td11"><!--l. 337--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-8-2"  
+class="td11"><!--l. 338--><p class="noindent" >                                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-9-1"  
+class="td11"><!--l. 339--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_lmax</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-9-2"  
+class="td11"><!--l. 340--><p class="noindent" >Gibt in den ersten drei Spalten gefundene untere Schranken
+für das Problem an. In den folgenden Spalten wird für jeden
+ausgeführten  Algorithmus  die  erreichte  maximale  Verspätung
+der Jobs ausgegeben.                                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-10-1"  
+class="td11"><!--l. 342--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-10-2"  
+class="td11"><!--l. 343--><p class="noindent" >                                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-11-1"  
+class="td11"><!--l. 344--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_abort</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-11-2"  
+class="td11"><!--l. 345--><p class="noindent" >Gibt für jeden Algorithmus den Abarbeitungsstatus in Prozent
+an,   falls   gegeben.   Dieser   beträgt   normalerweise   99   oder
+100%, wenn der Algorithmus normal durchgelaufen ist. Einige
+Algorithmen haben jedoch Abbruchkriterien (eine Schranke für
+den Zielfunktionswert wurde erreicht, oder es wurde über zu viele
+Nachbarlösungen iteriert, ohne dass eine Verbesserung auftrat),
+sodass  sie  auch  außerplanmäßig  früher  terminieren.  Bei  sehr
+schnellen Algorithmen wird &#8220;n/a&#8221; ausgegeben.                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-12-1"  
+class="td11"><!--l. 349--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-12-2"  
+class="td11"><!--l. 350--><p class="noindent" >                                                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-13-1"  
+class="td11"><!--l. 351--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_abortStucks</span> </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-13-2"  
+class="td11"><!--l. 352--><p class="noindent" >Gibt für iterative Algorithmen an, ob sie vorzeitig terminiert
+sind.  Dies  kann  passieren,  wenn  sich  der  Zielfunktionswert
+über  lange  Zeit  nicht  verbessert  hat.  Eine  &#8220;1&#8221;  bedeutet,
+der  Algorithmus  ist  vorzeitig  terminiert,  bei  &#8220;0&#8221;  hat  der
+Algorithmus  die  angegebene  Anzahl  an  Iterationsschritten
+vollständig ausgeführt. Bei sehr schnellen Algorithmen steht hier
+ebenfalls &#8220;n/a&#8221;.                                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-14-1"  
+class="td11"><!--l. 355--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-14-2"  
+class="td11"><!--l. 356--><p class="noindent" >                                                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-15-1"  
+class="td11"><!--l. 357--><p class="noindent" ><span 
+class="cmtt-12">filter</span><span 
+class="cmtt-12">_sumti</span>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-15-2"  
+class="td11"><!--l. 358--><p class="noindent" >Gibt für jeden Algorithmus den erreichten Wert für <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub>  an
+(auch  wenn  dies  nicht  die  Zielfunktion  war).  Die  ersten  drei
+Spalten listen verschiedene untere Schranken auf.                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-16-1"  
+class="td11"><!--l. 360--><p class="noindent" >&#x00A0;                            </td><td  style="white-space:wrap; text-align:left;" id="TBL-4-16-2"  
+class="td11"><!--l. 361--><p class="noindent" >                                                     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-4-17-1"  
+class="td11">                   </td></tr></table></div>
+                                                                                         
+                                                                                         
+<!--l. 464--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu24.html" >next</a>] [<a 
+href="handbuchsu22.html" >prev</a>] [<a 
+href="handbuchsu22.html#tailhandbuchsu22.html" >prev-tail</a>] [<a 
+href="handbuchsu23.html" >front</a>] [<a 
+href="handbuchse23.html#handbuchsu23.html" >up</a>] </p></div>
+<!--l. 464--><p class="noindent" ><a 
+ id="tailhandbuchsu23.html"></a>  
+</body></html> 

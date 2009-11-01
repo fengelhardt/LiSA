@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Algorithmenmodule</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-09-11 13:23:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 433--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu22.html" >next</a>] [<a 
+href="#tailhandbuchsu21.html">tail</a>] [<a 
+href="handbuchse23.html#handbuchsu21.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">6.2.1   </span> <a 
+ id="x51-500006.2.1"></a>Algorithmenmodule</h4>
+<!--l. 1--><p class="noindent" >Alle Algorithmen zur Lösung von Schedulingproblemen in LiSA sind in externe Module
+ausgelagert. Es handelt sich dabei um eigenständige ausführbare Programme, die nach der
+Auswahl im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen </span>von LiSA aufgerufen werden. Sie können aber auch manuell über
+die Kommandozeile ausgeführt werden.
+<!--l. 9--><p class="noindent" ><span id="textcolor49">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufbau eines Moduls</span></span> <br 
+class="newline" />Ein Modul in LiSA besteht im Wesentlichen aus fünf einzelnen Dateien:
+      <ul class="itemize1">
+      <li class="itemize">einer     XML-Datei     vom     <span 
+class="cmbx-12">Dokumenttyp     </span>(<span 
+class="cmsy-10x-x-120">&rarr;  </span><a 
+href="handbuchse7.html#x10-90002.4">2.4<!--tex4ht:ref: Das File Format in LiSA --></a>)     <span 
+class="cmtt-12">algorithm   </span>zur
+      Algorithmenbeschreibung,
+      </li>
+      <li class="itemize">einer Hilfedatei im HTML-Format,
+      </li>
+      <li class="itemize">und schließlich dem Algorithmus selbst in Form eines eigenständigen Programms,</li></ul>
+<!--l. 17--><p class="noindent" >wobei die ersten beiden Dateien jeweils in einer deutschen und englischen Version vorliegen
+müssen.
+<!--l. 20--><p class="noindent" >Das XML-Dokument dient dabei zur Einbindung des Moduls in das Hauptprogramm. Es
+befindet sich in den Unterordnern <span 
+class="cmtt-12">data/alg</span><span 
+class="cmtt-12">_desc/language/german </span>und <span 
+class="cmtt-12">data/alg</span><span 
+class="cmtt-12">_desc/</span>
+<span 
+class="cmtt-12">language/english</span>. Dort wird unter anderem festgelegt, welche Problemtypen ein Algorithmus
+lösen kann, ob er auf einer bereits gefundenen Lösung aufbaut oder ob er ein Problem heuristisch
+oder exakt löst. Zudem können hier Parameter deklariert werden, die dem Algorithmus
+übergeben werden. Der genaue Aufbau eines solchen XML-Dokuments ist im Anhang <a 
+href="handbuchap1.html#x59-64000A">A<!--tex4ht:ref: XML-Referenz --></a>
+beschrieben.
+                                                                                         
+                                                                                         
+<!--l. 30--><p class="noindent" >Die Hilfedatei dient zur Beschreibung des Algorithmus in menschenlesbarer Form. Sie sollte
+kurz auf die Lösungsstrategie eingehen, die lösbaren Problemtypen aufzählen und die
+Programmparameter beschreiben. Sie befindet sich im Unterordner <span 
+class="cmtt-12">doc/lisa/english/algorithm</span>
+und <span 
+class="cmtt-12">doc/lisa/german/algorithm</span>.
+<!--l. 36--><p class="noindent" >Der Algorithmus selbst liegt im Unterordner <span 
+class="cmtt-12">bin</span>.
+<!--l. 41--><p class="noindent" ><span id="textcolor50">&nbsp;<br><span 
+class="cmbx-12x-x-120">Kommandozeilenschnittstelle</span></span> <br 
+class="newline" />Das Programm, das den Algorithmus implementiert, nimmt genau zwei Komandozeilenparameter
+entgegen: eine Eingabedatei und eine Ausgabedatei. Die Eingabedatei muss eine LiSA-Probleminstanz
+im XML-Format enthalten. Sie kann entweder vom <span 
+class="cmbx-12">Dokumenttyp </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse7.html#x10-90002.4">2.4<!--tex4ht:ref: Das File Format in LiSA --></a>) <span 
+class="cmtt-12">instance </span>oder
+<span 
+class="cmtt-12">solution </span>sein. Die Ausgabedatei wird vom Algorithmenmodul erzeugt und enthält die vom
+Algorithmus berechnete Lösung des Problems.
+<!--l. 52--><p class="noindent" ><span id="textcolor51">&nbsp;<br><span 
+class="cmbx-12x-x-120">Übergabe von Parametern</span></span> <br 
+class="newline" />Kapitel <a 
+href="handbuchch4.html#x20-190004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> beschreibt zu jedem Algorithmus einen Satz von Parametern, die dessen Verhalten
+beeinflussen. Die Übergabe der Parameter erfolgt mit Hilfe der Eingabedatei. Zu diesem Zweck
+steht das <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element zur Verfügung, das sich in die Dokumente des Typs <span 
+class="cmtt-12">instance</span>
+und <span 
+class="cmtt-12">solution </span>einfügen lässt. Es enthält einzelne Parameterbelegungen in Form von
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;parameter&#x003E;</span></span></span>-Elementen. Mit diesen erfolgt eine Wertzuweisung für einen Parameter
+durch Angabe von Datentyp (<span 
+class="cmtt-12">integer</span>, <span 
+class="cmtt-12">real </span>oder <span 
+class="cmtt-12">string</span>), Parametername und dem
+Wert.
+<!--l. 62--><p class="noindent" >Ein <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Bock für einen Aufruf des Algorithmus <span 
+class="cmbx-12">Iterative Suche </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu11.html#x29-280004.3.1">4.3.1<!--tex4ht:ref: Iterative Suche --></a>) kann
+beispielsweise so aussehen:
+<!--l. 65--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-17">
+&#x003C;controls&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="METHOD"&#x00A0;value="IterativeImprovement"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="NGBH"&#x00A0;value="k_API"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="k"&#x00A0;value="1"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="STEPS"&#x00A0;value="1"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="NUMB_STUCKS"&#x00A0;value="214748000"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="real"&#x00A0;name="ABORT_BOUND"&#x00A0;value="-214748000"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x003C;/controls&#x003E;
+</div>
+      <!--l. 77--><p class="nopar" ></div>
+<!--l. 80--><p class="noindent" >In <span 
+class="cmtt-12">instance</span>-Dokumenten müssen <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Böcke direkt nach dem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element eingefügt
+werden. In <span 
+class="cmtt-12">solution</span>-Dokumenten stehen sie ebenfalls hinter dem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element, noch vor
+dem ersten <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Element.
+<!--l. 86--><p class="noindent" ><span id="textcolor52">&nbsp;<br><span 
+class="cmbx-12x-x-120">Ausgabe von Laufzeitinformationen</span></span> <br 
+class="newline" />Algorithmenmodule können mit Hilfe ihrer Standardausgabe Informationen an das Hauptprogramm
+ausgeben. Dazu stehen die vier Schlüsselworte <span 
+class="cmtt-12">PID=</span>, <span 
+class="cmtt-12">OBJECTIVE=</span>, <span 
+class="cmtt-12">WARNING: </span>und <span 
+class="cmtt-12">ERROR:</span>
+bereit.
+<div class="paragraphTOCS">
+&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x51-510006.2.1" id="QQ2-51-52"><span 
+class="cmtt-12">PID=x</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x51-520006.2.1" id="QQ2-51-53"><span 
+class="cmtt-12">OBJECTIVE=x</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x51-530006.2.1" id="QQ2-51-54"><span 
+class="cmtt-12">WARNING:msg</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="paragraphToc" ><a 
+href="#x51-540006.2.1" id="QQ2-51-55"><span 
+class="cmtt-12">ERROR:msg</span></a></span>
+</div>
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-510006.2.1"></a><span 
+class="cmtt-12">PID=x</span></span>
+teilt dem Hauptprogramm die Prozess-ID <span 
+class="cmtt-12">x </span>des laufenden Moduls mit. Diese Information sollte
+möglichst zu Beginn der Ausführung ausgegeben werden.
+<!--l. 95--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-520006.2.1"></a><span 
+class="cmtt-12">OBJECTIVE=x</span></span>
+gibt eine Meldung über den aktuellen Rechenstatus zurück. Als Ausgabewert kann z.B. der
+aktuelle Zielfunktionswert dienen. Diese Werte werden dann von der LiSA-Oberfläche
+während der Berechnung grafisch dargestellt. Die erste Ausgabe setzt dabei die Größe des
+Anzeigefensters, alle weiteren Meldungen sollten also wenn möglich unter dieser Grenze
+bleiben.
+<!--l. 100--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-530006.2.1"></a><span 
+class="cmtt-12">WARNING:msg</span></span>
+zeigt ein Meldungsfenster mit der Warnungsmeldung <span 
+class="cmtt-12">msg</span>. Das Algorithmenmodul setzt danach
+seine Ausführung fort.
+                                                                                         
+                                                                                         
+<!--l. 102--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x51-540006.2.1"></a><span 
+class="cmtt-12">ERROR:msg</span></span>
+zeigt ein Meldungsfenster mit der Fehlermeldung <span 
+class="cmtt-12">msg </span>und bricht die Ausführung des Algorithmus
+ab.
+<!--l. 108--><p class="noindent" ><span id="textcolor53">&nbsp;<br><span 
+class="cmbx-12x-x-120">Manuelles Aufrufen eines Algorithmus</span></span> <br 
+class="newline" />Soll ein Algorithmus unabhängig von der LiSA-Oberfläche ausgeführt werden, kann dies also duch
+den Aufruf der entsprechenden ausführbaren Datei im Unterordner <span 
+class="cmtt-12">bin </span>geschehen. Dazu
+muss eine Eingabedatei erstellt werden, die das zu lösende Problem enthält. Solche
+Dateien lassen sich einfach erzeugen, indem ein in LiSA erstelltes Problem mit dem
+Menüpunkt <span 
+class="cmbxti-10x-x-120">Datei/Speichern als </span>abgespeichert wird (<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse10.html#x19-180003.3">3.3<!--tex4ht:ref: Eingabedatei --></a>). Es müssen dann jedoch
+noch die Parameter für den Algorithmus von Hand eingefügt werden (mindestens ein
+leeres <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls</span><span 
+class="cmtt-12">&#x00A0;/&#x003E;</span></span></span>-Tag, wenn alle Parameter mit den Standardwerten belegt werden
+sollen).
+<!--l. 118--><p class="noindent" >Für nähere Informationen zu den Parametern der einzelnen Algorithmen siehe Kapitel <a 
+href="handbuchch4.html#x20-190004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> und die
+XML-Referenz im Anhang <a 
+href="handbuchap1.html#x59-64000A">A<!--tex4ht:ref: XML-Referenz --></a>.
+                                                                                         
+                                                                                         
+<!--l. 442--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu22.html" >next</a>] [<a 
+href="handbuchsu21.html" >front</a>] [<a 
+href="handbuchse23.html#handbuchsu21.html" >up</a>] </p></div>
+<!--l. 442--><p class="noindent" ><a 
+ id="tailhandbuchsu21.html"></a>  
+</body></html> 
