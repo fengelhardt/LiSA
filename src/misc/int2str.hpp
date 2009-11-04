@@ -9,7 +9,7 @@ bool inttst(const double value);
 
 /// returns string
 /** @author Per Willenius
-    @version 2.3final
+    @version 3.0pre1
  */
 std::string ztos(const double value);
 

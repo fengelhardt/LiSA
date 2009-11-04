@@ -1,6 +1,6 @@
 /**
  * @author  Thomas Tautenhahn 21.10.99
- * @version 2.3final
+ * @version 3.0pre1
  */
 
 #include <string.h>

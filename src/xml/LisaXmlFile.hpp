@@ -74,7 +74,7 @@ typedef void* xmlCharEncodingHandlerPtr;
  *  
  *
  *		@author Jan Tusch
- *		@version 2.3pre3
+ *		@version 3.0pre1
  */
 //@}
 

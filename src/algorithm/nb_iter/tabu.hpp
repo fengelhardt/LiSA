@@ -23,7 +23,7 @@
     @see Lisa_Neighbourhood
     @see Lisa_Iterator
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
 */  
 class Lisa_Tabu{
 private:

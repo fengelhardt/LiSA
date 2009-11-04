@@ -11,7 +11,7 @@
  * The class constists of single static funtion to create a DataHandler for IO of LiSA objects.
  *
  * @author Jan Tusch
- * @version 2.3pre3
+ * @version 3.0pre1
 */
 //@}
 

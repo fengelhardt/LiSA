@@ -23,7 +23,7 @@
  *  the constructor of the Lisa_Transform object.
  *  
  *  @author Jan Tusch
- *  @version 2.3pre3
+ *  @version 3.0pre1
  *  @see Lisa_Transform
  *  @see Lisa_ReductionTree
  */
@@ -77,7 +77,7 @@ class Lisa_AtomicTransform {
  *  It is used to register a reduction implementation within the reduction tree class.
  *
  *  @author Jan Tusch
- *  @version 2.3pre3
+ *  @version 3.0pre1
  *  
  *  @see Lisa_ReductionTree
  */
@@ -133,7 +133,7 @@ class Lisa_Transform {
  *
  *
  *  @author Jan Tusch
- *  @version 2.3pre3
+ *  @version 3.0pre1
  */
 /// Reduction Graph for a particuler problem signature transition 
 class Lisa_ReductionTree : public Lisa_GenericObject {

@@ -355,7 +355,7 @@ switch $tcl_platform(platform) {
 }
 
 proc init {argc argv} {
-     set version "2.3final"
+     set version "3.0pre1"
      global lisaVersionText
      set lisaVersionText "LiSA $version"
      global installDir

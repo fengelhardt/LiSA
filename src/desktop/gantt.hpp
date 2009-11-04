@@ -22,7 +22,7 @@ typedef struct O_Data operation_data;
 /// Gantt Chart.
 /** graphical output of schedules
     @author Ines Wasmund
-    @version 2.3final
+    @version 3.0pre1
  */
 class TCGantt: public TCGraphic{
 private:

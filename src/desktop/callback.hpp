@@ -7,7 +7,7 @@
 
 /// to be called when Lisa_ProblemType has changed
 /** @author Per Willenius
-    @version 2.3final
+    @version 3.0pre1
  */
 void new_problemtype();
 

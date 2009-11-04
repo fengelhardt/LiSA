@@ -1,6 +1,6 @@
 /**
  * @author  Andreas Winkler
- * @version 2.3final
+ * @version 3.0pre1
  */ 
 
 #include "nb_iter.hpp"

@@ -8,7 +8,7 @@
 
 /// neighbourhood for football pool problem
 /** @author  Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
  */
 class FP_Neighbourhood: public Lisa_Neighbourhood{
 public:

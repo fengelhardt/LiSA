@@ -36,7 +36,7 @@
 
 /// starts external algorithm parameter test
 /** @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
 */ 
 int TC_startparam(ClientData /* clientData */,
 		Tcl_Interp *interp,
@@ -46,7 +46,7 @@ int TC_startparam(ClientData /* clientData */,
 
 /// call external algorithm parameter test
 /** @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
 */ 
 int start_paratest(Tcl_Interp *interp, 
                    std::string name_of_algo,

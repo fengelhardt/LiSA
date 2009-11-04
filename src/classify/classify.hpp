@@ -32,7 +32,7 @@
 
     @see Lisa_RedGraph
     @author Martin Harborth
-    @version 2.3final
+    @version 3.0pre1
 */
 class Lisa_Classify{
 private:

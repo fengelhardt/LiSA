@@ -1,6 +1,6 @@
 /**
  * @author  Ines Wasmund
- * @version 2.3final
+ * @version 3.0pre1
  */ 
 
 #include "../scheduling/xsched.hpp"

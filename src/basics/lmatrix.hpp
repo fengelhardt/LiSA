@@ -16,7 +16,7 @@ template<class T> class Lisa_MatrixOfLists;
 /**
  * @see Lisa_MatrixOfLists
  * @author Ivo Roessling
- * @version 2.3final
+ * @version 3.0pre1
  */
 template<class T>
 class Lisa_VectorOfLists : public Lisa_Object{ 
@@ -121,7 +121,7 @@ public:
 /**
  * @see Lisa_VectorOfLists
  * @author Ivo Roessling
- * @version 2.3final
+ * @version 3.0pre1
  */
 template<class T>
 class Lisa_MatrixOfLists: public Lisa_Object{

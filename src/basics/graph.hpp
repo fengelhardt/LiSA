@@ -61,7 +61,7 @@
     init_successor(), next_successor() functions.
     
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
     
   */
 class Lisa_Graph : public Lisa_FileEntry{
@@ -201,7 +201,7 @@ public:
     choosen kind of connection.
 
     @author Christian Schulz
-    @version 2.3final
+    @version 3.0pre1
 */  
 class Lisa_MatrixListGraph  : public Lisa_Graph {
 private:
@@ -335,7 +335,7 @@ public:
     matrix with entrys of 1 and 0
 
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
 */  
 class Lisa_MatrixGraph : public Lisa_Graph {
 private:
@@ -637,7 +637,7 @@ public:
 /// some algorithms on graphs
 /**
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
   */
 class Lisa_GraphAlg{
 public:

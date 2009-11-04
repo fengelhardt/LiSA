@@ -25,7 +25,7 @@ template<class T> class Lisa_Matrix;
     lists use Lisa_VectorOfLists.
     
     @author Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Matrix
 */
 template<class T>
@@ -125,7 +125,7 @@ public:
     lists use Lisa_MatrixOfLists.
     
     @author Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Vector
 */
 template<class T>

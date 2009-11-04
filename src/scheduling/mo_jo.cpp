@@ -1,6 +1,6 @@
 /**
  * @author  unknown
- * @version 2.3final
+ * @version 3.0pre1
  */
  
 #include <string>

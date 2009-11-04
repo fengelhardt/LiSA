@@ -1,6 +1,6 @@
 /**
  * @author  Ivo Roessling
- * @version 2.3final
+ * @version 3.0pre1
  */
 
 #include <stdlib.h>
@@ -25,6 +25,52 @@
 
 using namespace std;
 
+// FIXME: this algorithm uses the old .lsa-format for output and seems to be broken anyway
+
+//**************************************************************************
+
+// A 'Lisa_Pair'-like object with one integer and one pointer.
+// This class is needed as a fix for this algorithm due to a compiler error on 64bit systems.
+class Lisa_Pair_fix : public Lisa_Object {
+public:
+	Lisa_Pair_fix() {
+		// do nothing
+	}
+
+	virtual ~Lisa_Pair_fix() {
+		// do nothing
+	}
+
+	int x;
+	void* y;
+
+	void write (std::ostream &strm=std::cout) const {
+		// do nothing
+	}
+
+	void read (std::istream &strm=std::cin) {
+		// do nothing
+	}
+
+	bool operator!=(const Lisa_Pair_fix &other) {
+		if(x == other.x && y == other.y) return false;
+		else return true;
+	}
+
+	bool operator==(const Lisa_Pair_fix &other) {
+		if(x == other.x && y == other.y) return true;
+		else return false;
+	}
+
+	bool operator<(const Lisa_Pair_fix &other) {
+		return x < other.x;
+	}
+
+	bool operator>(const Lisa_Pair_fix &other) {
+		return x > other.x;
+	}
+};
+
 //**************************************************************************
 
 bool nondelay=false;
@@ -40,7 +86,7 @@ Lisa_Matrix<TIMETYP> * P_input;
 Lisa_Matrix<bool> * MatchingMatrix;
 int level;
 int m,n;
-Lisa_List<Lisa_Pair> * allMatchings;
+Lisa_List<Lisa_Pair_fix> * allMatchings;
 Lisa_List<TIMETYP> * allDeltas;
 
 //**************************************************************************
@@ -180,14 +226,14 @@ void update_nondelay(Lisa_Matrix<TIMETYP> & P,
 
   allDeltas->append(delta);
 
-  Lisa_Pair *MatchingInfo=new Lisa_Pair();
-  Lisa_Pair *EdgesAndDelta=new Lisa_Pair();
+  Lisa_Pair_fix *MatchingInfo=new Lisa_Pair_fix();
+  Lisa_Pair_fix *EdgesAndDelta=new Lisa_Pair_fix();
 
   EdgesAndDelta->x=level-1;
-  EdgesAndDelta->y=(int)MatchingEdges; // FIXME: conversion from pointer to int causes an error on 64bit machines
+  EdgesAndDelta->y=(void*)MatchingEdges;
 
   MatchingInfo->x=edgecount;
-  MatchingInfo->y=(int)EdgesAndDelta; // FIXME: here too
+  MatchingInfo->y=(void*)EdgesAndDelta;
 
 
   for(int j=0;j<n;j++)  (*MatchingMatrix)[j][m+j] = (((*rowsums)[j]==LB) ? 0 : ( (LB - (*rowsums)[j]) > 0 ));
@@ -283,7 +329,7 @@ int main(int argc, char *argv[]){
     result_pmtnLR = new Lisa_MatrixOfLists<TIMETYP>(my_werte.get_n(),my_werte.get_m());
 
     if (nondelay) {
-      allMatchings=new Lisa_List<Lisa_Pair>();
+      allMatchings=new Lisa_List<Lisa_Pair_fix>();
       allDeltas=new Lisa_List<TIMETYP>();
     }
 
@@ -340,12 +386,12 @@ int main(int argc, char *argv[]){
     if (nondelay) {
 
       // just a few variables for later use...
-      Lisa_Pair* currMatchingInfo=new Lisa_Pair();
+    	Lisa_Pair_fix* currMatchingInfo=new Lisa_Pair_fix();
       Lisa_Pair* anEdge=new Lisa_Pair();
 
       // converting the list of deltas into an array - this makes the algorithm faster!
       Lisa_Vector<TIMETYP> * arrayOfDeltas=new Lisa_Vector<TIMETYP>(allMatchings->length());
-      for (int level=0;level < allMatchings->length()>0;level++) {
+      for (int level=0;level < allMatchings->length() && allMatchings->length() > 0;level++) {
 	(*arrayOfDeltas)[level]=allDeltas->pop();
       }
 
@@ -358,7 +404,7 @@ int main(int argc, char *argv[]){
 	  // extracting current matching with all additional information
 	  // out of the queue
 	  (*currMatchingInfo)=allMatchings->dequeue();
-	  Lisa_Pair * EdgesAndDelta=(Lisa_Pair*)currMatchingInfo->y;
+	  Lisa_Pair_fix * EdgesAndDelta=(Lisa_Pair_fix*)currMatchingInfo->y;
 	  Lisa_List<Lisa_Pair> * currMatching=(Lisa_List<Lisa_Pair>*)EdgesAndDelta->y;
 
  	  // going through all edges of the current matching and

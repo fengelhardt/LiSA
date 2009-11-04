@@ -6,7 +6,7 @@
  *  For most pairs it does nothing except for those just increasing problem size by a constant.
  *  
  *  @author Jan Tusch
- *  @version 2.3pre3
+ *  @version 3.0pre1
  */
 /// Atomic Transform class for transforming equal signatures.
 class Identity_AtomicTransform : public virtual Lisa_AtomicTransform {
@@ -29,7 +29,7 @@ static Lisa_Transform* IdentityTransform = new Lisa_Transform(IdentityAtomic,Ide
 /** Class performing objective function transform from SumCi to SumWiCi.
  *  
  *  @author Jan Tusch
- *  @version 2.3pre3
+ *  @version 3.0pre1
  */
 
 /// Atomic Transform class for transforming SumCi to SumWiCi.

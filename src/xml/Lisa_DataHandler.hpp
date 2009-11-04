@@ -18,7 +18,7 @@ class Lisa_Graph;
  * Objects are obtained via Lisa_IO_Factory::createHandler . 
  * 
  * @author Jan Tusch
- * @version 2.3pre3
+ * @version 3.0pre1
  */
 /// Abstract base class for IO data handler.
 class Lisa_DataHandler {

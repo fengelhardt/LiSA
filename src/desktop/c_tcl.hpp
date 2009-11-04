@@ -8,7 +8,7 @@
 /// start the Tcl/Tk part of LiSA
 /** registers c++ function for use within Tcl/Tk and enters main idle loop 
  * @author Per Willenius
- * @version 2.3final
+ * @version 3.0pre1
  */
 int Tcl_myAppInit(int argc, char **argv, Tcl_Interp *interp );
 

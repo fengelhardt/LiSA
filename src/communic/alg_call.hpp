@@ -16,7 +16,7 @@
 /// call external algorithm
 /** manage the calling of external algorithms
     @author Per Willenius
-    @version 2.3final
+    @version 3.0pre1
   */
 int start_ext_algo(Tcl_Interp *interp, 
                    std::string name_of_algo, 

@@ -23,7 +23,7 @@ typedef struct {
     but uses a global list of error messages instead.
     
     @author Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
  */
 class Lisa_ExceptionList{
 public:

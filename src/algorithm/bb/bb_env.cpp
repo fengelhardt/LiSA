@@ -1,6 +1,6 @@
 /**
  * @author  Thomas Tautenhahn
- * @version 2.3final
+ * @version 3.0pre1
  */
 
 // replace the following line for a Windows version:

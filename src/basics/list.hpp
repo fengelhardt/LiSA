@@ -15,7 +15,7 @@
 /** you should not use this type explicitly
     @see Lisa_List 
     @author Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
  */
 template<class T>
 class Lisa_Node{
@@ -46,7 +46,7 @@ public:
     T be a pointer to the desired type.
 
     @author Thomas Tautenhahn
-    @version 2.3final
+    @version 3.0pre1
 */    
 template<class T>
 class Lisa_List: public Lisa_Object{

@@ -1,6 +1,6 @@
 /**
  * @author  Martin Harborth
- * @version 2.3final
+ * @version 3.0pre1
  */
  
 

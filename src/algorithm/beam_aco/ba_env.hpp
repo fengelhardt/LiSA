@@ -37,7 +37,7 @@ void set_abort(int i);
 /** Provides some environment for a branch and bound algorithm to run like 
 list of results, step counters, control output and so on.
 @author Thomas Tautenhahn
-@version 2.3final
+@version 3.0pre1
 */
 class Lisa_GenericBeamACO {
 protected:

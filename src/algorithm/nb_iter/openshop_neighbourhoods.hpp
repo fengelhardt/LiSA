@@ -17,7 +17,7 @@
     a machine or for a job). It is inherited from the class Lisa_Neighbourhood.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
 */
 class OSHOP_Ngbh: public Lisa_Neighbourhood{
@@ -75,7 +75,7 @@ public:
     steps are done.
     
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -105,7 +105,7 @@ public:
     randomly reinserted.
     
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -132,7 +132,7 @@ public:
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -168,7 +168,7 @@ public:
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -215,7 +215,7 @@ class OSHOP_3_CR_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -250,7 +250,7 @@ class OSHOP_cr_bl_API_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -285,7 +285,7 @@ class OSHOP_cr_bl_shift_Ngbh: public OSHOP_Ngbh{
     order of the critical operations.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
     @see OSHOP_cr_API_Ngbh
@@ -317,7 +317,7 @@ class OSHOP_cr_TST_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -349,7 +349,7 @@ class OSHOP_cr_API_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
 */
@@ -382,7 +382,7 @@ class OSHOP_cr_shift_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Andreas Winkler
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
  */
@@ -413,7 +413,7 @@ class OSHOP_shift_Ngbh: public OSHOP_Ngbh{
     It is inherited from the class OSHOP_Ngbh.
 
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
     @see Lisa_Neighbourhood
     @see OSHOP_Ngbh
  */

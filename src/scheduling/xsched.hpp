@@ -14,7 +14,7 @@
     instance of Lisa_Schedule.
 
     @author Per Willenius 
-    @version 2.3final
+    @version 3.0pre1
   */  
 class Lisa_XSchedule{
 protected:

@@ -10,7 +10,7 @@
 /** Determine whether we need to use char** oder const char** in our tcl2cpp
     callback functions.
     @author Marc Moerig
-    @version 2.3final
+    @version 3.0pre1
   */
 #if TCL_MAJOR_VERSION < 8
  #define TCL_HACK_CHAR char

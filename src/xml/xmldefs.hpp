@@ -12,7 +12,7 @@ class Lisa_ProblemType;
 /**
  * 
  * @author Jan Tusch
- * @version 2.3pre3
+ * @version 3.0pre1
  */
 
 /// Data structure for the definition of an GUI element
