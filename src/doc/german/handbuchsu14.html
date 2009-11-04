@@ -1,182 +1,128 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Threshold Accepting</title> 
+<head><title>Matchingheuristiken</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 1071--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 302--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >next</a>] [<a 
 href="handbuchsu13.html" >prev</a>] [<a 
 href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu14.html">tail</a>] [<a 
 href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">4.3.4   </span> <a 
- id="x32-310004.3.4"></a>Threshold Accepting</h4>
-<!--l. 1074--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
-<!--l. 1076--><p class="noindent" >Threshold Accepting ist ebenfalls eine erweiterte Version der Iterativen Suche. Im Unterschied zur
-Lokalen Suche werden in jedem Schritt auch kleine Verschlechterungen akzeptiert. Die Schwelle für
-die Akzeptanz schlechterer Lösungen sinkt jedoch im Laufe des Prozesses ab. In LiSA ist eine
-lineare Verkleinerung der Threshold-Schranke implementiert.
-<!--l. 1084--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
+<h4 class="subsectionHead"><span class="titlemark">4.2.2   </span> <a 
+ id="x32-310004.2.2"></a>Matchingheuristiken</h4>
+<!--l. 305--><p class="noindent" ><!-- LISA ALGORITHM match -->
+<!--l. 307--><p class="noindent" >Diese Heuristiken erzeugen einen Plan für Open-Shop Probleme. Dabei wird das gegebene Problem
+auf ein Zuordnungsproblem zurückgeführt, das durch die Suche nach einem maximalen Matching
+heuristisch gelöst wird. Das führt zu einem Plan, bei dem Operationen mit ähnlichen
+Bearbeitungszeiten möglichst parallel laufen.
+<!--l. 315--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 1086--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 317--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
-class="cmbxti-10x-x-120">Verfahren/Threshold Accepting </span>im Menü <span 
+class="cmbxti-10x-x-120">Verfahren/Matching Heuristiken </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 1092--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
+<!--l. 323--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen:</span> </dt><dd 
-class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösungen
-      festgelegt.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abbruch nach Stillst</span><span 
-class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
-class="description">Hiermit kann ein Abbruchkriterium
-      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
-      besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen</span>,
-      so ist er unwirksam.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Anfangswahrscheinlichkeit:</span> </dt><dd 
-class="description">Dieser     Parameter     gibt     die     maximal     zulässige
-      Verschlechterung in Promille wieder.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Maximale Stillstandsanzahl:</span> </dt><dd 
-class="description">Um  bei  zu  gering  gewordener  Wahrscheinlichkeit  ein
-      Stehenbleiben des Verfahrens in einem lokalen Optimum zu verhindern, wird nach der
-      hier angegebenen Anzahl von Iterationen ohne Verbesserung der aktuellen Lösung die
-      Wahrscheinlichkeit wieder auf ihren Anfangswert zurückgesetzt.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">k f</span><span 
-class="cmbx-12">ür k-API oder k-REINSERTION:</span> </dt><dd 
-class="description">Hier wird der Parameter <span 
-class="cmti-12">k </span>angegeben, falls als
+class="cmbx-12">Art des Algorithmus:</span> </dt><dd 
+class="description">Mit dieser Option wird festgelegt, wie mit den durch die <span 
+class="cmbx-12">Art des</span>
       <span 
-class="cmbx-12">Nachbarschaft </span>k_API oder k_REINSERTION gewählt wird.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abbruchschranke (Abbruchkriterium):</span> </dt><dd 
-class="description">Hier   kann   eine   obere   Schranke   für   die
-      Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
-      abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
-      wurde.
-                                                                                         
-                                                                                         
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Nachbarschaft:</span> </dt><dd 
-class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
-      einem Plan neue Pläne erzeugt werden.<br 
+class="cmbx-12">Matchings </span>festgelegten Gewichten der Operationen umgegangen wird.<br 
 class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
+class="cmbx-12">BOTTLENECK:  </span>Die  Operationen  werden  nach  ihren  Gewichten  sortiert.
+           Anschließend   wird   das   größte   Gewicht   <span 
+class="cmti-12">p   </span>bestimmt,   so   dass   <span 
+class="cmmi-12">M    </span>=
+           <img 
+src="handbuch15x.png" alt="{p (i,j) | p (i,j) &ge; p}"  class="left" align="middle"> ein   perfektes   Matching   enthält.   Die   entsprechenden
+           Operationen aus diesem Matching werden an den Plan angefügt und die Gewichte
+           gelöscht. Dieser Vorgang wird solange wiederholt, bis alle Operationen an den
+           Plan angefügt sind.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">k</span><span 
-class="cmbx-12">_API</span>
+class="cmbx-12">WEIGHTED:  </span>Es  wird  ein  maximal  gewichtetes  Matching  berechnet.  Die
+           entsprechenden  Operationen  werden  an  den  Plan  angefügt  und  die  Gewichte
+           gelöscht (d.h. auf den kleinsten zulässigen Wert gesetzt). Dieser Vorgang wird
+           solange wiederholt, bis alle Operationen an den Plan angefügt sind. (Dies ist die
+           Standardeinstellung.)</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Art des Matchings:</span> </dt><dd 
+class="description">Mit dieser Option wird festgelegt, wie die Gewichte der einzelnen
+      Operationen berechnet werden.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">HEADS:  </span>Die  erste  anzufügende  Menge  wird  mit  dem  MIN  Parameter
+           berechnet. Nachdem eine Anfangsmenge von Operationen angefügt wurde werden
+                                                                                         
+                                                                                         
+           für  alle  verbleibenden  Operationen  die  Heads  bestimmt.  Diese  werden  zur
+           Bearbeitungszeit addiert und das Ergebnis wird vom größten möglichen Wert
+           abgezogen. Dies ergibt die Gewichte für das nächste Matching. Auf diese Weise
+           minimiert der Algorithmus in jedem Schritt die aktuelle Gesamtbearbeitungszeit.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">SHIFT</span>
+class="cmbx-12">MIN: </span>Das Gewicht einer Operation ergibt sich aus der Differenz zwischen der
+           Bearbeitungszeit  der  Operation  und  dem  größten  zulässigen  Wert.  Auf  diese
+           Weise  wird  die  durchschnittliche  Bearbeitungszeit  aller  Operationen  in  einem
+           Anfügeschritt minimiert.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">PI</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_API</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">BL</span><span 
-class="cmbx-12">_API</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_SHIFT</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">BL</span><span 
-class="cmbx-12">_SHIFT</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">3</span><span 
-class="cmbx-12">_CR</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">k</span><span 
-class="cmbx-12">_REINSERTION.</span></li></ul>
+class="cmbx-12">MAX: </span>Das Gewicht einer Operation ergibt sich direkt aus der Bearbeitungszeit.
+           Auf diese Weise wird die durchschnittliche Bearbeitungszeit aller Operationen in
+           einem Anfügeschritt maximiert. (Dies ist die Standardeinstellung.)</li></ul>
       </dd></dl>
-<!--l. 1139--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
+<!--l. 368--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1141--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 370--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu23.html#x53-560006.2.3">6.2.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird Threshold Accepting wie folgt
+href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Matching Heuristiken wie folgt
 aufgerufen:
-<!--l. 1145--><p class="noindent" >
+<!--l. 374--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-13">
+      <div class="verbatim" id="verbatim-7">
 &#x003C;CONTROLPARAMETERS&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;ThresholdAccepting
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;PROB&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAX_STUCK&#x00A0;30
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;match
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MINMAX&#x00A0;MAX
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPEOF&#x00A0;WEIGHTED
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1160--><p class="nopar" ></div>
-<!--l. 1163--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 382--><p class="nopar" ></div>
+<!--l. 385--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1167--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter
-aufgerufen werden. Für Threshold Accepting muss als Methode ThresholdAccepting
-aufgerufen werden. Angaben zur Auswahl der <span 
-class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf.
-zusätzlich mit entsprechendem Parameter für <span 
-class="cmti-12">k</span>). Danach können optional die folgenden
-Parameter gesetzt werden: die <span 
-class="cmbx-12">Gesamtzahl der erzeugten Pl</span><span 
-class="cmbx-12">äne</span>, die <span 
-class="cmbx-12">Anzahl der</span>
-<span 
-class="cmbx-12">Stillst</span><span 
-class="cmbx-12">ände</span>, nach denen abgebrochen wird, die <span 
-class="cmbx-12">Startwahrscheinlichkeit</span>, eine etwaige
-<span 
-class="cmbx-12">Abbruchschranke</span>.
+<!--l. 389--><p class="noindent" >Als ausführbare Datei muss für die Matching Heuristiken match aufgerufen werden.
+Optional können dann die <span 
+class="cmbx-12">Art des Matchings </span>und die <span 
+class="cmbx-12">Art des Algorithmus </span>angegeben
+werden.
                                                                                          
                                                                                          
-<!--l. 1180--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 397--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >next</a>] [<a 
 href="handbuchsu13.html" >prev</a>] [<a 
 href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
 href="handbuchsu14.html" >front</a>] [<a 
 href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
-<!--l. 1180--><p class="noindent" ><a 
+<!--l. 397--><p class="noindent" ><a 
  id="tailhandbuchsu14.html"></a>  
 </body></html> 

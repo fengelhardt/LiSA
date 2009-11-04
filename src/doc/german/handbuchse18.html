@@ -1,74 +1,77 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Plangraph (Sequencegraph)</title> 
+<head><title>Schedule (Zeitplan)</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 277--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 303--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse19.html" >next</a>] [<a 
 href="handbuchse17.html" >prev</a>] [<a 
 href="handbuchse17.html#tailhandbuchse17.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse18.html">tail</a>] [<a 
 href="handbuchch5.html#handbuchse18.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">5.2   </span> <a 
- id="x41-400005.2"></a>Plangraph (Sequencegraph)</h3>
-<!--l. 1--><p class="noindent" >Der Plangraph (Sequencegraph) <span 
-class="cmmi-12">G</span>(<span 
-class="cmmi-12">MO,JO</span>) ist ein azyklischer Digraph mit den Operationen als
-Knoten. Die gerichteten Kanten (Bögen) entsprechen den direkten Vorrangbedingungen der
-Operationen in den technologischen und organisatorischen Reihenfolgen der Operationen, d.h. von
-der Operation (<span 
-class="cmmi-12">ij</span>) gibt es einen Bogen zur Operation (<span 
-class="cmmi-12">kl</span>), wenn <br 
-class="newline" />(a) <span 
-class="cmmi-12">i </span>= <span 
-class="cmmi-12">k </span>und der Auftrag <span 
-class="cmmi-12">J</span><sub><span 
-class="cmmi-8">i</span></sub> geht nach der Bearbeitung auf <span 
-class="cmmi-12">M</span><sub><span 
-class="cmmi-8">j</span></sub> direkt zur Bearbeitung auf <span 
-class="cmmi-12">M</span><sub><span 
-class="cmmi-8">l</span></sub>
-über oder<br 
-class="newline" />(b) <span 
-class="cmmi-12">j </span>= <span 
-class="cmmi-12">l </span>und auf der Maschine <span 
-class="cmmi-12">M</span><sub><span 
-class="cmmi-8">j</span></sub> wird nach dem Auftrag <span 
-class="cmmi-12">J</span><sub><span 
-class="cmmi-8">i</span></sub> direkt der Auftrag <span 
-class="cmmi-12">J</span><sub><span 
-class="cmmi-8">k</span></sub>
-bearbeitet.<br 
+<h3 class="sectionHead"><span class="titlemark">5.3   </span> <a 
+ id="x47-460005.3"></a>Schedule (Zeitplan)</h3>
+<!--l. 1--><p class="noindent" >Werden in einem Plangraphen die Operationen mit der zugehörenden Bearbeitungszeit gewichtet,
+so läßt sich ein Schedule (Zeitplan der Abarbeitung aller Operationen) konstruieren. Die Menge
+der zu einem Plangraphen gehörenden Schedules hat unendlich viele Elemente, aber zu einem
+Schedule gehört ein eindeutiger Plan. Ein Schedule heißt:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmbx-12">semiaktiv</span>, wenn alle Operationen so früh wie möglich bearbeitet werden, wobei der
+      zugrundeliegende Plan eingehalten wird.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">aktiv</span>,  wenn  es  keine  Stillstandszeit  auf  den  Maschinen  gibt,  in  der  eine  später
+      angeordnete Operation vollständig bearbeitet werden kann.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">non-delay</span>, wenn es keinerlei Verzögerung der Abarbeitung der Operationen gibt, d.h.
+      wenn zu einem Zeitpunkt eine Maschine frei ist und ein Auftrag zur Abarbeitung auf
+      dieser Maschine wartet, muss mit der Bearbeitung begonnen werden.</li></ul>
+<!--l. 13--><p class="noindent" >Jeder non-delay Schedule ist aktiv und jeder aktive Schedule ist semiaktiv, die Umkehrung gilt
+nicht.<br 
+class="newline" />
+<!--l. 15--><p class="noindent" >In LiSA werden semiaktive Schedules durch die Matrix <span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>] beschrieben, wobei <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> die
+Fertigstellungszeit der Operation (<span 
+class="cmmi-12">ij</span>) bezeichnet.<br 
 class="newline" />Nähere Informationen: siehe Block-Matrizen-Modell <span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse6.html#x9-80002.3">2.3<!--tex4ht:ref: Das Block-Matrizen-Modell --></a>
-<!--l. 11--><p class="noindent" >&nbsp;<br><span 
+class="cmsy-10x-x-120">&rarr;</span> <span 
+class="cmbx-12">??</span>
+<!--l. 20--><p class="noindent" >&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span>
-<!--l. 13--><p class="noindent" >Nach Eingabe einer Probleminstanz und erster Anwendung eines Algorithmusses wird
-standardmäßig der entstehende Schedule durch ein Gantt-Diagramm dargestellt. Dann wird
-nach Wahl des Menüpunktes <span 
-class="cmbxti-10x-x-120">Ansicht/Plangraph </span>der Plangraph im Hauptfenster
+<!--l. 22--><p class="noindent" >Nach Eingabe einer Probleminstanz und erster Anwendung eines Algorithmusses wird
+standardmäßig der entstehende Schedule durch ein Gantt-Diagramm dargestellt. Dann
+wird nach Wahl des Menüpunktes <span 
+class="cmbxti-10x-x-120">Ansicht/Schedule </span>der Schedule im Hauptfenster
 angezeigt.
-<!--l. 18--><p class="noindent" >&nbsp;<br><span 
+<!--l. 27--><p class="noindent" >&nbsp;<br><span 
 class="cmbx-12x-x-120">Extras</span>
-<!--l. 20--><p class="noindent" >Bei Minimierung der Gesamtbearbeitungszeit sind die Bögen des kritischen Weges (bzw. der
-kritischen Wege) rot eingefärbt.
+<!--l. 29--><p class="noindent" >Bei Minimierung der Gesamtbearbeitungszeit sind die <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> rot eingefärbt, die zu den Operationen
+(<span 
+class="cmmi-12">ij</span>) gehören, durch die mindestens ein kritischer Weg geht.
                                                                                          
                                                                                          
-<!--l. 287--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse19.html" >next</a>] [<a 
 href="handbuchse17.html" >prev</a>] [<a 
 href="handbuchse17.html#tailhandbuchse17.html" >prev-tail</a>] [<a 
 href="handbuchse18.html" >front</a>] [<a 
 href="handbuchch5.html#handbuchse18.html" >up</a>] </p></div>
-<!--l. 287--><p class="noindent" ><a 
+<!--l. 1--><p class="noindent" ><a 
  id="tailhandbuchse18.html"></a>  
 </body></html> 

@@ -1,285 +1,152 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Simulated Annealing</title> 
+<head><title>Reihungsregeln</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 921--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 191--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu14.html" >next</a>] [<a 
-href="handbuchsu12.html" >prev</a>] [<a 
-href="handbuchsu12.html#tailhandbuchsu12.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu13.html">tail</a>] [<a 
 href="handbuchse13.html#handbuchsu13.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">4.3.3   </span> <a 
- id="x31-300004.3.3"></a>Simulated Annealing</h4>
-<!--l. 924--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
-<!--l. 926--><p class="noindent" >Simulated Annealing ist eine erweiterte Variante der Iterativen Suche. Hierbei darf die
-Verbesserung in jedem Schritt mit einer gewissen, kleiner werdenden Wahrscheinlichkeit auch
-negativ sein. Dadurch kann vermieden werden, dass man zu schnell in einem schlechtem lokalen
-Optimum stecken bleibt. Die Wahrscheinlichkeit für die Akzeptanz einer schlechteren Lösung
-hängt von der &#8216;Temperatur&#8217; ab, die im Laufe des Prozesses abkühlt. Der gesamte Prozess kann aus
-mehreren Abkühlungsperioden oder -zyklen bestehen, wobei die Temperatur zu Beginn jeder
-Periode erneut auf den Ausgangswert gesetzt wird.
-<!--l. 938--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
+<h4 class="subsectionHead"><span class="titlemark">4.2.1   </span> <a 
+ id="x31-300004.2.1"></a>Reihungsregeln</h4>
+<!--l. 194--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 196--><p class="noindent" >Reihungsregeln (Dispatching Rules) sind sehr schnelle Heuristiken, bei denen Schritt für Schritt
+neue Operationen angefügt werden. Die jeweils anzufügenden Operationen werden dabei durch die
+gewählte Strategie bestimmt.
+<!--l. 201--><p class="noindent" >Einige Problemklassen können mit Hilfe solcher einfachen Verfahren sogar exakt gelöst
+werden.
+<!--l. 206--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 940--><p class="noindent" >Nach Eingabe von <span 
-class="cmbx-12">Problemtyp </span>und erforderlichen <span 
-class="cmbx-12">Parametern </span>wählt man <span 
+<!--l. 208--><p class="noindent" >Nach Eingabe von <span 
+class="cmbxti-10x-x-120">Problemtyp </span>und erforderlichen <span 
+class="cmbxti-10x-x-120">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
-class="cmbxti-10x-x-120">Verfahren/Simulated Annealing </span>im Menü <span 
-class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 946--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
+class="cmbxti-10x-x-120">Verfahren/Reihungsregeln </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>. Abhängig vom Problemtyp können
+einzelne Vorrangregeln auch unter <span 
+class="cmbxti-10x-x-120">Exakte Verfahren </span>aufgelistet sein. In diesem Fall können
+meist keine Einstellungen getroffen werden.
+<!--l. 217--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
-class="cmbx-12">Epochenl</span><span 
-class="cmbx-12">änge:</span> </dt><dd 
-class="description">Hier  kann  die  Länge  einer  sogenannten  Epoche  festgesetzt  werden.
-      Während einer Epoche bleibt die Temperatur gleich. Erst zu Beginn der folgenden
-      Epoche wird sie auf die nächste Stufe abgekühlt.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Anzahl der Nachbarn:</span> </dt><dd 
-class="description">Hiermit  wird  die  Anzahl  der  Nachbarn  der  aktuellen  Lösung
-      festgelegt, die in jedem Iterationsschritt erzeugt werden sollen.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Anzahl der Iterationsschritte:</span> </dt><dd 
-class="description">Hiermit wird die maximale Anzahl der Iterationsschritte
-      festgelegt.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abbruch nach Stillst</span><span 
-class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
-class="description">Hiermit kann ein Abbruchkriterium
-      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
-      besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen</span>,
-      so ist er unwirksam.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">k f</span><span 
-class="cmbx-12">ür k-API oder k-REINSERTION:</span> </dt><dd 
-class="description">Hier wird der Parameter <span 
-class="cmti-12">k </span>angegeben, falls als
-      <span 
-class="cmbx-12">Nachbarschaft </span>k_API oder k_REINSERTION gewählt wird.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Starttemperatur:</span> </dt><dd 
-class="description">Dieser Parameter legt die Starttemperatur für den Abkühlungsprozess
-      fest. Wird im Laufe der Abkühlungsperiode die <span 
-class="cmbx-12">Endtemperatur </span>erreicht, so wird die
-      Temperatur zurückgesetzt, und eine neue Periode beginnt.
+class="cmbx-12">Erzeuge Plan:</span> </dt><dd 
+class="description">
                                                                                          
                                                                                          
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SEMIAKTIV:  </span>Ein  Schedule  heißt  semiaktiv,  wenn  keine  Operation  früher
+           begonnen werden kann, ohne den Plan zu verändern. D.h. in einem semiaktiven
+           Schedule treten keine unnötigen Stillstandszeiten auf.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">AKTIV: </span>Ein Schedule heißt aktiv, wenn er semiaktiv ist, und keine Stillstandszeit
+           so existiert, dass eine spätere Operation auf der betreffenden Maschine in dieser
+           Stillstandszeit bearbeitet werden könnte.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NON-DELAY: </span>Ein Schedule heißt non-delay, wenn zu jedem Zeitpunkt, an dem
+           eine Maschine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub> und ein Auftrag <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> zur Verfügung stehen, mit der Bearbeitung
+           von Operation (<span 
+class="cmti-12">ij</span>) begonnen wird. Ein non-delay-Schedule ist dann auch aktiv.</li></ul>
       </dd><dt class="description">
 <span 
-class="cmbx-12">Endtemperatur:</span> </dt><dd 
-class="description">Dieser Parameter legt die Endtemperatur für eine Abkühlungsperiode
-      fest.  In  Abhängigkeit  vom  <span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsparameter</span>,  der  <span 
-class="cmbx-12">Epochenl</span><span 
-class="cmbx-12">änge </span>und  der
-      <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen </span>kann diese Temperatur deutlich vor der Anzahl der Lösungen
-      oder auch deutlich danach erreicht werden. Daraus ergeben sich im ersten Fall mehrere
-      Abkühlungsperioden, und im zweiten Fall eine unvollständige Periode.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsparameter:</span> </dt><dd 
-class="description">Dieser Parameter steuert die Geschwindigkeit der Abkühlung.
-      Abhängig vom gewählten <span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsschema </span>bestimmt er, wie sich die Temperatur
-      für die nächste Epoche aus der aktuellen Temperatur berechnet.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abbruchschranke (Abbruchkriterium):</span> </dt><dd 
-class="description">Hier   kann   eine   obere   Schranke   für   die
-      Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
-      abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
-      wurde.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsschema:</span> </dt><dd 
-class="description">Die Abkühlung der Temperatur von einer Epoche zur nächsten kann nach
-      verschiedenen fallenden Funktionen bestimmt werden. Für jedes Schema kann der
-      <span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsparameter </span><span 
-class="cmmi-12">p </span>(0 <span 
-class="cmmi-12">&#x003C; p &#x003C; </span>1) jeweils explizit angegeben werden.<br 
+class="cmbx-12">Priorit</span><span 
+class="cmbx-12">ätsregel:</span> </dt><dd 
+class="description">Es stehen folgende Definitionen von Prioritäten zur Auswahl. Die
+      einzufügenden Operationen werden dann gemäß&#x00A0;der gewählten Strategie geordnet
+      und in der sich dadurch ergebenden Reihenfolge Schritt für Schritt in dem Plan
+      angefügt.<br 
 class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">LINEAR</span>: Die neue Temperatur wird wie folgt aus der alten berechnet: <span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">new</span></sup> =
-           <span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">old</span></sup> <span 
-class="cmsy-10x-x-120">&minus; </span><span 
-class="cmmi-12">p</span><sub>
-<span 
-class="cmmi-8">L</span></sub> <span 
-class="cmsy-10x-x-120">&sdot; </span><span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">start</span></sup>.
+class="cmbx-12">RAND </span>(random): Die Operationen werden zufällig angeordnet.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">GEOMETRIC</span>: Die neue Temperatur wird wie folgt aus der alten berechnet:
-           <span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">new</span></sup> = <span 
-class="cmmi-12">p</span><sub>
-<span 
-class="cmmi-8">G</span></sub> <span 
-class="cmsy-10x-x-120">&sdot; </span><span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">old</span></sup>.
+class="cmbx-12">FCFS </span>(first come - first serve): Es wird die Operation als nächste angeordnet,
+           die schon am längsten bereitsteht.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">LUNDYANDMEES</span>:  Die  neue  Temperatur  wird  wie  folgt  aus  der  alten
-           berechnet (nach Lundy-Mees): <span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">new</span></sup> = <span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">old</span></sup><span 
-class="cmmi-12">&#x2215;</span>(1 + <span 
-class="cmmi-12">p</span><sub>
-<span 
-class="cmmi-8">LM</span></sub> <span 
-class="cmsy-10x-x-120">&sdot; </span><span 
-class="cmmi-12">T</span><sup><span 
-class="cmmi-8">old</span></sup>).</li></ul>
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Nachbarschaft:</span> </dt><dd 
-class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
-      einem Plan neue Pläne erzeugt werden.<br 
-class="newline" />
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
+class="cmbx-12">EDD  </span>(earliest  due  date):  Die  Operationen  werden  (aufsteigend)  nach  ihren
+           Fälligkeitsterminen angeordnet.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">k</span><span 
-class="cmbx-12">_API</span>
+class="cmbx-12">LQUE</span>: Es wird die Operation als nächste angeordnet, die die kleinste Differenz
+           &#8216;Fälligkeitstermin  <span 
+class="cmsy-10x-x-120">&minus; </span>(Bearbeitungszeit  +  Tail)&#8217;  hat.  Im  Fall  von  Open  Shop
+           wird  statt  des  Tails  die  Summe  der  Bearbeitungszeiten  aller  noch  nicht
+           angeordneten Operationen des jeweiligen Auftrags betrachtet. Als zweitrangige
+           Auswahlregel wird die Operation gewählt, auf deren Maschine die Summe der
+           Bearbeitungszeiten der noch nicht angeordneten Operationen am größten ist.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">SHIFT</span>
+class="cmbx-12">SPT   </span>(shortest   processing   time):   Die   Operationen   werden   gemäß&#x00A0;ihrer
+           Bearbeitungszeiten angeordnet, beginnend mit der kleinsten.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">PI</span>
+class="cmbx-12">WSPT </span>(weighted shortest processing time): Es wird die Operation mit dem
+           kleinsten Quotienten aus Bearbeitungszeit und Gewicht als nächste angeordnet.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ECT </span>(earliest completion time): Es wird die Operation als nächste angeordnet,
+           die am schnellsten fertiggestellt werden kann.
                                                                                          
                                                                                          
            </li>
            <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_API</span>
+class="cmbx-12">WI</span>:  Die  Aufträge  sind  gewichtet,  und  die  Operationen  werden  gemäß&#x00A0;der
+           Gewichte der Aufträge angeordnet, beginnend mit den wichtigsten.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">BL</span><span 
-class="cmbx-12">_AP</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_SHIFT</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">BL</span><span 
-class="cmbx-12">_SHIFT</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">3</span><span 
-class="cmbx-12">_CR</span>
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">k</span><span 
-class="cmbx-12">_REINSERTION.</span></li></ul>
+class="cmbx-12">LPT   </span>(longest   processing   time):   Die   Operationen   werden   gemäß&#x00A0;ihrer
+           Bearbeitungszeiten angeordnet, beginnend mit der größten.</li></ul>
       </dd></dl>
-<!--l. 1022--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
+<!--l. 272--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1024--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 274--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu23.html#x53-560006.2.3">6.2.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird Simulated Annealing wie folgt
+href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Reihungsregeln wie folgt
 aufgerufen:
-<!--l. 1028--><p class="noindent" >
+<!--l. 278--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-12">
+      <div class="verbatim" id="verbatim-6">
 &#x003C;CONTROLPARAMETERS&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;SimulatedAnnealingNew
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;EPOCH&#x00A0;100
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_NGHB&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;TSTART&#x00A0;20
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;TEND&#x00A0;0.9
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;COOLPARAM&#x00A0;0.0005
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;COOLSCHEME&#x00A0;LUNDYANDMEES
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;ENUM
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;dispatch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SCHEDULE&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1047--><p class="nopar" ></div>
-<!--l. 1050--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 286--><p class="nopar" ></div>
+<!--l. 289--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1054--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
-werden. Für Simulated Annealing muss als Methode SimulatedAnnealingNew aufgerufen
-werden. Angaben zur Auswahl der <span 
-class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf. zusätzlich mit
-entsprechendem Parameter für <span 
-class="cmti-12">k</span>). Danach können optional die folgenden Parameter gesetzt
-werden: die <span 
-class="cmbx-12">Anzahl der Epochen</span>, die <span 
-class="cmbx-12">Anzahl der Nachbarn</span>, die <span 
-class="cmbx-12">Anzahl der</span>
-<span 
-class="cmbx-12">Iterationsschritte</span>, die <span 
-class="cmbx-12">Anzahl der Stillst</span><span 
-class="cmbx-12">ände</span>, nach denen abgebrochen wird, die
-<span 
-class="cmbx-12">Starttemperatur</span>, die <span 
-class="cmbx-12">Endtemperatur</span>, den <span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsparameter</span>, eine etwaige
-<span 
-class="cmbx-12">Abbruchschranke</span>, das <span 
-class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsschema</span>, und die Art und Weise zur <span 
-class="cmbx-12">Erzeugung</span>
-<span 
-class="cmbx-12">der Nachbarn </span>(zufällig oder enumeriert) (Variable TYPE mit Optionen ENUM und
-RAND).
+<!--l. 293--><p class="noindent" >Als ausführbare Datei muss für alle Reihungsregeln dispatch aufgerufen werden. Optional sind die
+Anforderung, was für ein Plan <span 
+class="cmbx-12">erzeugt </span>werden soll, und welche <span 
+class="cmbx-12">Reihungsregel </span>angewandt
+werden soll.
                                                                                          
                                                                                          
-<!--l. 1071--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 302--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu14.html" >next</a>] [<a 
-href="handbuchsu12.html" >prev</a>] [<a 
-href="handbuchsu12.html#tailhandbuchsu12.html" >prev-tail</a>] [<a 
 href="handbuchsu13.html" >front</a>] [<a 
 href="handbuchse13.html#handbuchsu13.html" >up</a>] </p></div>
-<!--l. 1071--><p class="noindent" ><a 
+<!--l. 302--><p class="noindent" ><a 
  id="tailhandbuchsu13.html"></a>  
 </body></html> 

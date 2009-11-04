@@ -1,128 +1,126 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Matchingheuristiken</title> 
+<head><title>Der Dokumenttyp instance</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 302--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 77--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu9.html" >next</a>] [<a 
 href="handbuchsu7.html" >prev</a>] [<a 
 href="handbuchsu7.html#tailhandbuchsu7.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu8.html">tail</a>] [<a 
-href="handbuchse12.html#handbuchsu8.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">4.2.2   </span> <a 
- id="x25-240004.2.2"></a>Matchingheuristiken</h4>
-<!--l. 305--><p class="noindent" ><!-- LISA ALGORITHM match -->
-<!--l. 307--><p class="noindent" >Diese Heuristiken erzeugen einen Plan für Open-Shop Probleme. Dabei wird das gegebene Problem
-auf ein Zuordnungsproblem zurückgeführt, das durch die Suche nach einem maximalen Matching
-heuristisch gelöst wird. Das führt zu einem Plan, bei dem Operationen mit ähnlichen
-Bearbeitungszeiten möglichst parallel laufen.
-<!--l. 315--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 317--><p class="noindent" >Nach Eingabe von <span 
-class="cmbx-12">Problemtyp </span>und erforderlichen <span 
-class="cmbx-12">Parametern </span>wählt man <span 
-class="cmbxti-10x-x-120">Heuristische</span>
-<span 
-class="cmbxti-10x-x-120">Verfahren/Matching Heuristiken </span>im Menü <span 
-class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 323--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
-class="cmbx-12x-x-120">Einstellungen</span></span>
-      <dl class="description"><dt class="description">
-<span 
-class="cmbx-12">Art des Algorithmus:</span> </dt><dd 
-class="description">Mit dieser Option wird festgelegt, wie mit den durch die <span 
-class="cmbx-12">Art des</span>
-      <span 
-class="cmbx-12">Matchings </span>festgelegten Gewichten der Operationen umgegangen wird.<br 
-class="newline" />
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">BOTTLENECK:  </span>Die  Operationen  werden  nach  ihren  Gewichten  sortiert.
-           Anschließend   wird   das   größte   Gewicht   <span 
-class="cmti-12">p   </span>bestimmt,   so   dass   <span 
-class="cmmi-12">M    </span>=
-           <img 
-src="handbuch1x.png" alt="{p (i,j) | p (i,j) &ge; p}"  class="left" align="middle"> ein   perfektes   Matching   enthält.   Die   entsprechenden
-           Operationen aus diesem Matching werden an den Plan angefügt und die Gewichte
-           gelöscht. Dieser Vorgang wird solange wiederholt, bis alle Operationen an den
-           Plan angefügt sind.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">WEIGHTED:  </span>Es  wird  ein  maximal  gewichtetes  Matching  berechnet.  Die
-           entsprechenden  Operationen  werden  an  den  Plan  angefügt  und  die  Gewichte
-           gelöscht (d.h. auf den kleinsten zulässigen Wert gesetzt). Dieser Vorgang wird
-           solange wiederholt, bis alle Operationen an den Plan angefügt sind. (Dies ist die
-           Standardeinstellung.)</li></ul>
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Art des Matchings:</span> </dt><dd 
-class="description">Mit dieser Option wird festgelegt, wie die Gewichte der einzelnen
-      Operationen berechnet werden.<br 
-class="newline" />
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">HEADS:  </span>Die  erste  anzufügende  Menge  wird  mit  dem  MIN  Parameter
-           berechnet. Nachdem eine Anfangsmenge von Operationen angefügt wurde werden
-                                                                                         
-                                                                                         
-           für  alle  verbleibenden  Operationen  die  Heads  bestimmt.  Diese  werden  zur
-           Bearbeitungszeit addiert und das Ergebnis wird vom größten möglichen Wert
-           abgezogen. Dies ergibt die Gewichte für das nächste Matching. Auf diese Weise
-           minimiert der Algorithmus in jedem Schritt die aktuelle Gesamtbearbeitungszeit.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">MIN: </span>Das Gewicht einer Operation ergibt sich aus der Differenz zwischen der
-           Bearbeitungszeit  der  Operation  und  dem  größten  zulässigen  Wert.  Auf  diese
-           Weise  wird  die  durchschnittliche  Bearbeitungszeit  aller  Operationen  in  einem
-           Anfügeschritt minimiert.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">MAX: </span>Das Gewicht einer Operation ergibt sich direkt aus der Bearbeitungszeit.
-           Auf diese Weise wird die durchschnittliche Bearbeitungszeit aller Operationen in
-           einem Anfügeschritt maximiert. (Dies ist die Standardeinstellung.)</li></ul>
-      </dd></dl>
-<!--l. 368--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 370--><p class="noindent" >In der Eingabedatei für die <span 
-class="cmbx-12">Autoalg-Funktion </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu23.html#x53-560006.2.3">6.2.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Matching Heuristiken wie folgt
-aufgerufen:
-<!--l. 374--><p class="noindent" >
+href="handbuchse8.html#handbuchsu8.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.2   </span> <a 
+ id="x19-180002.5.2"></a>Der Dokumenttyp <span 
+class="cmtt-12">instance</span></h4>
+<!--l. 81--><p class="noindent" >Der Dokumenttyp <span 
+class="cmtt-12">instance </span>enthält eine Probleminstanz, also neben dem Problemtyp auch
+Parameter wie Problemgröße, Bearbeitungszeitenmatrix und Fälligkeitstermine. Diese Parameter
+werden zusammengefasst in einem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element, das dem bereits vorgestellten
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;problem&#x003E;</span></span></span>-Element folgt. Die Problemgröße, die Bearbeitungszeitenmatrix und die Matrix
+der Operationenmenge müssen immer angegeben werden; alle weiteren Parameter sind
+optional.
+<!--l. 90--><p class="noindent" >Ein Beispiel mit dem Problemtyp <span 
+class="cmmi-12">O</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> der Größe n=5, m=10 mit gegebenen Bearbeitungszeiten,
+Fälligkeitsterminen und Operationenmenge:
+<!--l. 93--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-7">
-&#x003C;CONTROLPARAMETERS&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;match
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MINMAX&#x00A0;MAX
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPEOF&#x00A0;WEIGHTED
-&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+      <div class="verbatim" id="verbatim-3">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
+&#x00A0;<br />&#x003C;instance&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="O"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ti"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="10"&#x00A0;n="5"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;28&#x00A0;&#x00A0;32&#x00A0;&#x00A0;93&#x00A0;&#x00A0;71&#x00A0;&#x00A0;42&#x00A0;&#x00A0;18&#x00A0;&#x00A0;24&#x00A0;&#x00A0;10&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;15&#x00A0;&#x00A0;68&#x00A0;&#x00A0;88&#x00A0;&#x00A0;39&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;15&#x00A0;&#x00A0;84&#x00A0;&#x00A0;39&#x00A0;&#x00A0;59&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;98&#x00A0;&#x00A0;56&#x00A0;&#x00A0;59&#x00A0;&#x00A0;56&#x00A0;&#x00A0;95&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;49&#x00A0;&#x00A0;15&#x00A0;&#x00A0;25&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;80&#x00A0;&#x00A0;63&#x00A0;&#x00A0;32&#x00A0;&#x00A0;62&#x00A0;&#x00A0;96&#x00A0;&#x00A0;13&#x00A0;&#x00A0;20&#x00A0;&#x00A0;13&#x00A0;&#x00A0;46&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;39&#x00A0;&#x00A0;43&#x00A0;&#x00A0;94&#x00A0;&#x00A0;21&#x00A0;&#x00A0;25&#x00A0;&#x00A0;41&#x00A0;&#x00A0;48&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;90&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;95&#x00A0;&#x00A0;94&#x00A0;&#x00A0;39&#x00A0;&#x00A0;27&#x00A0;&#x00A0;69&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
+&#x00A0;<br />&#x003C;/instance&#x003E;
 </div>
-      <!--l. 382--><p class="nopar" ></div>
-<!--l. 385--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
-Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 389--><p class="noindent" >Als ausführbare Datei muss für die Matching Heuristiken match aufgerufen werden.
-Optional können dann die <span 
-class="cmbx-12">Art des Matchings </span>und die <span 
-class="cmbx-12">Art des Algorithmus </span>angegeben
-werden.
+      <!--l. 129--><p class="nopar" ></div>
+<!--l. 132--><p class="noindent" >Im Anhang <a 
+href="handbuchap1.html#x64-69000A">A<!--tex4ht:ref: XML-Referenz --></a> finden sich Codierungen für weitere Parameter, die zur Probleminstanz
+gehören.
+<!--l. 137--><p class="noindent" >Dieser Dokumenttyp wird von den Algorithmen als Eingabe akzeptiert, d.h. einem Algorithmus
+kann durch einen <span 
+class="cmbx-12">externen Aufruf </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>) ein solches Dokument übergeben werden. Dieser
+berechnet für die in dem Dokument enthaltene Probleminstanz eine oder auch mehrere
+Lösungen.
+<!--l. 142--><p class="noindent" >Zusätzlich zu den Parametern, die eine Probleminstanz ausmachen, lassen sich in
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span>-Dokumenten auch Aufrufparameter für einen Lösungsalgorithmus ablegen. Diese
+Aufrufparameter steuern das Verhalten eines Algorithmus, dem das betreffende Dokument als
+Eingabe übergeben werden soll und gehören nicht zur eigentlichen Probleminstanz. Sie werden in
                                                                                          
                                                                                          
-<!--l. 397--><div class="crosslinks"><p class="noindent">[<a 
+einem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element zusammengefasst, das dem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element folgt. Der Inhalt dieses
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Elementes ist für jeden Lösungsalgorithmus individuell. Näheres hierzu wird im
+Abschnitt <span 
+class="cmbx-12">Algorithmenmodule </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>) behandelt. In Kapitel <a 
+href="handbuchch4.html#x27-260004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> sind die Aufrufparameter der
+Algorithmen dokumentiert.
+<!--l. 152--><p class="noindent" >Probleminstanzen können leicht über die LiSA-Oberfläche erzeugt werden. Nach der Angabe eines
+Problemtyps über <span 
+class="cmbxti-10x-x-120">Datei/Neu </span>und der Eingabe der Parameter mit <span 
+class="cmbxti-10x-x-120">Bearbeiten/Parameter</span>
+kann man diese Daten mit <span 
+class="cmbxti-10x-x-120">Datei/Speichern als </span>in Form eines <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span>-Dokumentes
+abspeichern.
+                                                                                         
+                                                                                         
+<!--l. 159--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu9.html" >next</a>] [<a 
 href="handbuchsu7.html" >prev</a>] [<a 
 href="handbuchsu7.html#tailhandbuchsu7.html" >prev-tail</a>] [<a 
 href="handbuchsu8.html" >front</a>] [<a 
-href="handbuchse12.html#handbuchsu8.html" >up</a>] </p></div>
-<!--l. 397--><p class="noindent" ><a 
+href="handbuchse8.html#handbuchsu8.html" >up</a>] </p></div>
+<!--l. 159--><p class="noindent" ><a 
  id="tailhandbuchsu8.html"></a>  
 </body></html> 

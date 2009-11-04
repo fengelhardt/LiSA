@@ -1,111 +1,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Der Dokumenttyp solution</title> 
+<head><title>Disjunktives Graphenmodell und Block-Matrizen Modell</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 138--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 174--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu4.html" >next</a>] [<a 
 href="handbuchsu2.html" >prev</a>] [<a 
 href="handbuchsu2.html#tailhandbuchsu2.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu3.html">tail</a>] [<a 
-href="handbuchse7.html#handbuchsu3.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">2.4.3   </span> <a 
- id="x13-120002.4.3"></a>Der Dokumenttyp <span 
-class="cmtt-12">solution</span></h4>
-<!--l. 141--><p class="noindent" >Ein <span 
-class="cmtt-12">solution</span>-Dokument ist ähnlich aufgebaut wie ein <span 
-class="cmtt-12">instance</span>-Dokument, mit dem Unterschied,
-dass zusätzlich ein oder mehrere Lösungen in Form von Plänen enthalten sind. Daneben können
-auch weitere Daten wie Fertigstellungszeiten oder Machine- und Joborder gespeichert
-werden. Alle Daten, die zu einer Lösung gehören, werden in einem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Element
-zusammengefasst.
-<!--l. 149--><p class="noindent" >Ein Beispiel mit einer Lösung, die als Plan und Matrix der Fertigstellungszeiten vorliegt:
-<!--l. 151--><p class="noindent" >
-      <div class="quote">
+href="handbuchse6.html#handbuchsu3.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.3   </span> <a 
+ id="x12-110002.3.3"></a>Disjunktives Graphenmodell und Block-Matrizen Modell</h4>
+<!--l. 176--><p class="noindent" >Shop-Probleme werden in der Literatur häufig durch das <span 
+class="cmti-12">disjunktive Graphenmodell </span>modelliert,
+vergleiche z. B. <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span><span 
+class="small-caps">u</span><span 
+class="small-caps">c</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span></span>, <span class="cite">[<a 
+href="handbuchli1.html#Xbr01">5</a>]</span>. Die Menge der Knoten des disjunktiven Graphen sind die
+Operationen, die gewöhnlich durchnummeriert werden und mit der Bearbeitungszeit gewichtet
+sind. Zwei Knoten sind durch eine Kante verbunden, wenn sie nicht gleichzeitig bearbeitet
+werden können, d.h. wenn sie zum gleichen Job oder zur gleichen Maschine gehören.
+Von einer fiktiven Quelle gibt es Bögen zu jedem Knoten. Von jedem Knoten gibt es
+Bögen zu einer fiktiven Senke. Vorrangbedingungen für die Operationen im job-shop
+und flow-shop Fall werden dann durch Richtung der entsprechenden Kante modelliert.
+Gesucht ist eine Orientierung der noch ungerichteten Kanten so, dass der Graph zyklenfrei
+ist und dass das Gewicht des kritischen Weges (bei Makespanminimierung) minimal
+wird.
+<!--l. 185--><p class="noindent" >Das in LiSA verwendete Modell kann von diesem durch die folgenden Überlegungen abgeleitet
+werden:
+<!--l. 187--><p class="noindent" >- Streiche die Quelle und die Senke und die mit ihnen inzidierenden Bögen aus dem disjunktiven
+Graphen.<br 
+class="newline" />- Bestimme eine azyklische Orientierung des disjunktiven Graphen.
+<!--l. 190--><p class="noindent" >Wenn man weiter alle bezüglich der Technologie und Organisation transitiven Bögen aus der
+azyklischen Orientierung des disjunktiven Graphen streicht, erhält man den in LiSA benutzten
+Plangraphen <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>). Also ist ein Plan eine Zusammenfassung aller Ränge einer azyklischen
+Orientierung eines disjunktiven Graphen.
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-4">
-&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
-&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;solution&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
-&#x00A0;<br />&#x003C;solution&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="O"/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ui"/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="5"&#x00A0;n="3"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;38&#x00A0;&#x00A0;25&#x00A0;&#x00A0;&#x00A0;9&#x00A0;&#x00A0;48&#x00A0;&#x00A0;23&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;59&#x00A0;&#x00A0;25&#x00A0;&#x00A0;65&#x00A0;&#x00A0;88&#x00A0;&#x00A0;82&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;9&#x00A0;&#x00A0;48&#x00A0;&#x00A0;57&#x00A0;&#x00A0;10&#x00A0;&#x00A0;&#x00A0;5&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;107&#x00A0;175&#x00A0;&#x00A0;71&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;schedule&#x00A0;m="5"&#x00A0;n="3"&#x00A0;semiactive="yes"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;plan&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;4&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;2&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;4&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;7&#x00A0;&#x00A0;&#x00A0;6&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;6&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/plan&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;completion_times&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;95&#x00A0;&#x00A0;57&#x00A0;&#x00A0;&#x00A0;9&#x00A0;143&#x00A0;&#x00A0;32&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;158&#x00A0;&#x00A0;99&#x00A0;&#x00A0;74&#x00A0;328&#x00A0;240&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;14&#x00A0;147&#x00A0;204&#x00A0;&#x00A0;24&#x00A0;&#x00A0;&#x00A0;5&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/completion_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/schedule&#x003E;
-&#x00A0;<br />&#x003C;/solution&#x003E;
-</div>
-      <!--l. 199--><p class="nopar" ></div>
-                                                                                         
-                                                                                         
-<!--l. 202--><p class="noindent" >Dokumente vom Typ <span 
-class="cmtt-12">solution </span>werden von Algorithmen als Ausgabe erzeugt. Sie können
-aber auch, wie <span 
-class="cmtt-12">instance</span>-Dokumente, als Eingabe für einen Algorithmus dienen. In
-diesem Fall werden allerdings die bereits enthaltenen Lösungen verworfen. Wie auch beim
-<span 
-class="cmtt-12">instance</span>-Dokument muss ein <span 
-class="cmtt-12">solution</span>-Dokument bei der Übergabe an einen Algorithmus ein
-<span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element zur Parameterübergabe enthalten. Näheres hierzu wird im Abschnitt
-<span 
-class="cmbx-12">Algorithmenmodule </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu21.html#x51-500006.2.1">6.2.1<!--tex4ht:ref: Algorithmenmodule --></a>) behandelt. In Kapitel <a 
-href="handbuchch4.html#x20-190004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> sind die Parameter der Algorithmen
-dokumentiert.
-                                                                                         
-                                                                                         
-<!--l. 213--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 201--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu4.html" >next</a>] [<a 
 href="handbuchsu2.html" >prev</a>] [<a 
 href="handbuchsu2.html#tailhandbuchsu2.html" >prev-tail</a>] [<a 
 href="handbuchsu3.html" >front</a>] [<a 
-href="handbuchse7.html#handbuchsu3.html" >up</a>] </p></div>
-<!--l. 213--><p class="noindent" ><a 
+href="handbuchse6.html#handbuchsu3.html" >up</a>] </p></div>
+<!--l. 201--><p class="noindent" ><a 
  id="tailhandbuchsu3.html"></a>  
 </body></html> 

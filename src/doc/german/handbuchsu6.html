@@ -1,146 +1,242 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Universeller Branch &amp; Bound Algorithmus</title> 
+<head><title>Spezielle Algorithmen</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 42--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 89--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu5.html" >prev</a>] [<a 
+href="handbuchsu5.html#tailhandbuchsu5.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu6.html">tail</a>] [<a 
-href="handbuchse11.html#handbuchsu6.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">4.1.1   </span> <a 
- id="x22-210004.1.1"></a>Universeller Branch &amp; Bound Algorithmus</h4>
-<!--l. 45--><p class="noindent" ><!-- LISA ALGORITHM bb -->
-<!--l. 47--><p class="noindent" >Mit diesem Branch &amp; Bound Algorithmus können exakte Lösungen für alle Open-Shop,-
-Flow-Shop-, Job-Shop-, oder Einmaschinenprobleme mit regulärer Zielfunktion ermittelt werden.
-Sollte für den gewählten Problemtyp ein alternatives exaktes Verfahren verfügbar sein, so sollte
-dieses gewählt werden, da die Rechenzeit für den universellen Branch &amp; Bound Algorithmus unter
-Umständen beträchtlich sein kann.
-<!--l. 55--><p class="noindent" >Bei geeigneten Einschränkungen (siehe Einstellungen) kann dieser Algorithmus auch zur
-Bestimmung einer guten Näherungslösung verwendet werden.
-<!--l. 61--><p class="noindent" ><span id="textcolor9">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 63--><p class="noindent" >Nach der Eingabe von <span 
-class="cmbx-12">Problemtyp </span>und den erforderlichen <span 
-class="cmbx-12">Parametern </span>kann dieses Verfahren
-im Menüpunkt <span 
-class="cmbxti-10x-x-120">Exakte Verfahren/Branch &amp; Bound </span>im Menü <span 
-class="cmbxti-10x-x-120">Algorithmen </span>erreicht
-werden.
-<!--l. 70--><p class="noindent" ><span id="textcolor10">&nbsp;<br><span 
-class="cmbx-12x-x-120">Einstellungen</span></span>
-      <dl class="description"><dt class="description">
-<span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen:</span> </dt><dd 
-class="description">Hier kann eine obere Schranke für die Anzahl der auszugebenden
-      Pläne angegeben werden. Die Standardeinstellung beträgt 1. Der Algorithmus ist in der
-      Lage <span 
-class="cmti-12">alle </span>optimalen Pläne zu berechnen. Für diesen Fall muss in diesem Feld eine Zahl
-      eingetragen werden, die mindestens so groß&#x00A0;wie die tatsächliche Anzahl aller optimalen
-      Pläne ist.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Untere Schranke:</span> </dt><dd 
-class="description">Hier  kann  eine  bekannte  untere  Schranke  angegeben  werden.  LiSA
-      behandelt jeden Plan, dessen Zielfunktionswert diesen Wert nicht überschreitet, als
-      optimal. Wird hier ein Wert eingegeben, der größer als der optimale Zielfunktionswert
-      ist, so kann das zur Ausgabe von nicht optimalen Plänen führen. Auf diese Weise kann
-      hier auch ein Level der Zielfunktion angegeben werden, der als Näherung akzeptiert
-      wird.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Obere Schranke:</span> </dt><dd 
-class="description">Hier kann eine bekannte obere Schranke für den Zielfunktionswert einer
-      optimalen Lösung eingegeben werden. Eine solche Schranke ergibt sich beispielsweise
-      durch den Zielfunktionswert einer bekannten (Näherungs-) Lösung für das vorliegende
-      Problem. LiSA verwirft dann alle Teilpläne mit größerem Zielfunktionswert.
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Einf</span><span 
-class="cmbx-12">ügereihenfolge:</span> </dt><dd 
-class="description">Durch die Auswahl der Einfügereihenfolge wird festgelegt, in welcher
-      Reihenfolge die Operationen in den Teilplänen angefügt werden.<br 
+href="handbuchse7.html#handbuchsu6.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.2   </span> <a 
+ id="x16-150002.4.2"></a>Spezielle Algorithmen</h4>
+<!--l. 90--><p class="noindent" >Einige Algorithmen in LiSA sind speziellen Problemklassen gewidmet.<br 
+class="newline" />Tabelle <a 
+href="#x16-150017">2.7<!--tex4ht:ref: exact_special --></a> enthält exakte Algorithmen und Heuristiken. Die meisten der Algorithmen aus dieser
+Tabelle findet man in jedem Lehrbuch zur Schedulingtheorie. Die exakten Algorithmen von dem
+Brucker-Team sind im Netz verfügbar und wurden in LiSA mit Erlaubnis eingebunden.
+<br 
 class="newline" />
+<div class="table">
                                                                                          
                                                                                          
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">LPT </span>(longest processing time): Die Operationen werden abhängig von der Größe
-           der Bearbeitungszeiten angefügt, beginnend mit der längsten Bearbeitungszeit.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">RANDOM: </span>Die Operationen werden in zufälliger Reihenfolge angefügt.</li></ul>
-      </dd><dt class="description">
-<span 
-class="cmbx-12">Art der unteren Schranke:</span> </dt><dd 
-class="description">Hiermit wird festgelegt, mit welcher Prozedur LiSA untere
-      Schranken für den Zielfunktionswert berechnet.<br 
-class="newline" />
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">NORMAL:  </span>Als  untere  Schranke  wird  der  Zielfunktionswert  des  Teilplans
-           benutzt.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">EXTENDED: </span>(Diese erweiterte Methode ist noch nicht implementiert.)</li></ul>
-      </dd></dl>
-<!--l. 117--><p class="noindent" ><span id="textcolor11">&nbsp;<br><span 
-class="cmbx-12x-x-120">Problembehandlung</span></span>
-<!--l. 119--><p class="noindent" >Dieser Branch &amp; Bound Algorithmus ist ein Universalsolver, und deshalb sehr aufwendig.
-Sofern möglich, sollte ein problemspezifisches Verfahren benutzt werden. Gestaltet sich
-die Laufzeit zu lang, so kann der Algorithmus jederzeit abgebrochen. Dieser Vorgang
-kann jedoch selbst einige Minuten dauern. Man erhält dann Näherungslösungen als
-Ausgabe.
-<!--l. 125--><p class="noindent" >Wenn mehrere optimale Lösungen gefunden werden sollen, so empfiehlt es sich, zunächst den
-optimalen Zielfunktionswert mit der Einstellung 1 für die <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen </span>zu bestimmen,
-und anschließend weitere Optimallösungen in einem zweiten Lauf mit nun bekannten Schranken zu
-berechnen.
-<!--l. 133--><p class="noindent" ><span id="textcolor12">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 135--><p class="noindent" >In einer Eingabedatei für die <span 
-class="cmbx-12">Autoalg-Funktion </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu23.html#x53-560006.2.3">6.2.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird der allgemeine Branch &amp; Bound
-Algorithmus folgendermaßen aufgerufen:
-<!--l. 139--><p class="noindent" >
-      <div class="quote">
+<!--l. 96--><p class="noindent" ><a 
+ id="x16-150017"></a><hr class="float"><div class="float" 
+>
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-5">
-&#x003C;CONTROLPARAMETERS&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bb
-&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_ORDER&#x00A0;RANDOM
-&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NB_SOLUTIONS&#x00A0;1000000
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;UPPER_BOUND&#x00A0;10000000
-&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;LOWER_BOUND&#x00A0;-10000000
-&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+<div class="center" 
+>
+<!--l. 96--><p class="noindent" >
+<div class="tabular"> <table id="TBL-10" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-10-1g"><col 
+id="TBL-10-1"></colgroup><colgroup id="TBL-10-2g"><col 
+id="TBL-10-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-1-1"  
+class="td11">Problemtyp   </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-1-2"  
+class="td11"><!--l. 98--><p class="noindent" >Exakte Verfahren                                                  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-2-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-2-2"  
+class="td11"><!--l. 100--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-3-1"  
+class="td11">1<span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-3-2"  
+class="td11"><!--l. 100--><p class="noindent" >Branch and Bound                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-4-1"  
+class="td11">1<span 
+class="cmsy-10x-x-120">&#x2225;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-4-2"  
+class="td11"><!--l. 101--><p class="noindent" >Smith Regel (arbeitet wie die WSPT Regel)               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-5-1"  
+class="td11">1<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-5-2"  
+class="td11"><!--l. 102--><p class="noindent" >ERD Regel, Job mit kleinster Bereitstellungszeit zuerst
+(earliest release date first)                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-6-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-6-2"  
+class="td11"><!--l. 104--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-7-1"  
+class="td11">F2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-7-2"  
+class="td11"><!--l. 104--><p class="noindent" >Johnson Regel                                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-8-1"  
+class="td11">J2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-8-2"  
+class="td11"><!--l. 105--><p class="noindent" >Jackson regel                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-9-1"  
+class="td11">O2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-9-2"  
+class="td11"><!--l. 106--><p class="noindent" >Gonzales/ Sahni Algorithmus                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-10-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-10-2"  
+class="td11"><!--l. 108--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-11-1"  
+class="td11">P2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-11-2"  
+class="td11"><!--l. 108--><p class="noindent" >Pseudopolynomialer Algorithmus ( ohne Visualisierung)</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-12-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-12-2"  
+class="td11"><!--l. 110--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-13-1"  
+class="td11">J<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-13-2"  
+class="td11"><!--l. 111--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-14-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-14-2"  
+class="td11"><!--l. 113--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-15-1"  
+class="td11">O<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-15-2"  
+class="td11"><!--l. 114--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-16-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-16-2"  
+class="td11"><!--l. 116--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-17-1"  
+class="td11">O <span 
+class="cmsy-10x-x-120">&#x2223;</span>pmtn <span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub></td><td  style="white-space:wrap; text-align:left;" id="TBL-10-17-2"  
+class="td11"><!--l. 116--><p class="noindent" >Gonzales/ Sahni (ohne Visualisierung)                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-18-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-18-2"  
+class="td11"><!--l. 118--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-19-1"  
+class="td11">O2<span 
+class="cmsy-10x-x-120">&#x2225;</span> <span 
+class="cmmi-12">&#x00A0;C</span><sub><span 
+class="cmmi-8">max</span></sub>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-19-2"  
+class="td11"><!--l. 119--><p class="noindent" >LAPT  Regel,  Job  mit  längster  Bearbeitung  auf  der
+anderen Maschine zuerst (longest alternating processing
+time first)                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-20-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-20-2"  
+class="td11"><!--l. 120--><p class="noindent" >                                              </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-21-1"  
+class="td11">Problemtyp    </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-21-2"  
+class="td11"><!--l. 121--><p class="noindent" >Heuristiken                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-22-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-22-2"  
+class="td11"><!--l. 122--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-23-1"  
+class="td11">F <span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-23-2"  
+class="td11"><!--l. 123--><p class="noindent" >Beam Insert mit Beamweite 1 auf der                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-24-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-24-2"  
+class="td11"><!--l. 124--><p class="noindent" >Menge der permutation-flow-shop Pläne                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-25-1"  
+class="td11">J <span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-25-2"  
+class="td11"><!--l. 126--><p class="noindent" >Shifting bottleneck Heuristik <span class="cite">[<a 
+href="handbuchli1.html#Xadbaza88">11</a>]</span>                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-26-1"  
+class="td11">O <span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-26-2"  
+class="td11"><!--l. 128--><p class="noindent" >Matching Heuristiken <span class="cite">[<a 
+href="handbuchli1.html#Xbrtawe93">4</a>]</span>                                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-27-1"  
+class="td11">O <span 
+class="cmsy-10x-x-120">&#x2225;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-27-2"  
+class="td11"><!--l. 130--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-28-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-28-2"  
+class="td11"><!--l. 130--><p class="noindent" >                                              </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-10-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-29-1"  
+class="td11">             </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Tabelle&#x00A0;2.7: </span><span  
+class="content"> Algorithmen für spezielle Probleme</span></div><!--tex4ht:label?: x16-150017 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
 </div>
-      <!--l. 149--><p class="nopar" ></div>
-<!--l. 152--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
-Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 156--><p class="noindent" >Als ausführbare Datei muss für das Branch &amp; Bound Verfahren bb aufgerufen werden. Optional
-können dann die <span 
-class="cmbx-12">Einf</span><span 
-class="cmbx-12">ügereihenfolge</span>, die <span 
-class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen</span>, sowie jeweils eine <span 
-class="cmbx-12">obere </span>bzw.
-eine <span 
-class="cmbx-12">untere Schranke </span>angegeben werden.
+<!--l. 137--><p class="noindent" >In LiSA - Version 3.0 gibt es keine Algorithmen für<br 
+class="newline" />- Probleme mit Vorrangbedingungen,<br 
+class="newline" />- Basisalgorithmen und Visualisierung von Problemen mit Unterbrechung der Operationen,<br 
+class="newline" />- Parallelmaschinenprobleme.
                                                                                          
                                                                                          
-<!--l. 168--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 210--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu5.html" >prev</a>] [<a 
+href="handbuchsu5.html#tailhandbuchsu5.html" >prev-tail</a>] [<a 
 href="handbuchsu6.html" >front</a>] [<a 
-href="handbuchse11.html#handbuchsu6.html" >up</a>] </p></div>
-<!--l. 168--><p class="noindent" ><a 
+href="handbuchse7.html#handbuchsu6.html" >up</a>] </p></div>
+<!--l. 210--><p class="noindent" ><a 
  id="tailhandbuchsu6.html"></a>  
 </body></html> 

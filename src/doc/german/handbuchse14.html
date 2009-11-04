@@ -1,37 +1,157 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Exakte Verfahren zum Losen spezieller Probleme</title> 
+<head><title>Universelle iterative Verbesserungsverfahren</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 1448--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 645--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse15.html" >next</a>] [<a 
 href="handbuchse13.html" >prev</a>] [<a 
 href="handbuchse13.html#tailhandbuchse13.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse14.html">tail</a>] [<a 
 href="handbuchch4.html#handbuchse14.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">4.4   </span> <a 
- id="x35-340004.4"></a>Exakte Verfahren zum Lösen spezieller Probleme</h3>
-<!--l. 1457--><p class="noindent" >
+<h3 class="sectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x35-340004.3"></a>Universelle iterative Verbesserungsverfahren</h3>
+<!--l. 649--><p class="noindent" >Iterative Verbesserungsverfahren versuchen, eine vorgegebene Startlösung, die z.B. durch eine
+schnelle Heuristik gefunden wurde, schrittweise zu verbessern. Dazu werden verschiedene
+Nachbarschaften zwischen Lösungen betrachtet, die mit unterschiedlichen Strategien abgesucht
+werden können. Anwendung finden solche Verfahren bei der Suche nach sehr guten
+Näherungslösungen in mittlerer Laufzeit.
+<!--l. 656--><p class="noindent" >Neben der einfachen <span 
+class="cmbx-12">Iterativen Suche </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu17.html#x36-350004.3.1">4.3.1<!--tex4ht:ref: Iterative Suche --></a>) und der <span 
+class="cmbx-12">Tabu-Suche </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu18.html#x37-360004.3.2">4.3.2<!--tex4ht:ref: Tabu-Suche --></a>) sind in LiSA
+auch erweiterte Nachbarschaftssuchverfahren, wie <span 
+class="cmbx-12">Simmulated Annealing </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu19.html#x38-370004.3.3">4.3.3<!--tex4ht:ref: Simulated Annealing --></a>) oder
+<span 
+class="cmbx-12">Threshold Accepting </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu20.html#x39-380004.3.4">4.3.4<!--tex4ht:ref: Threshold Accepting --></a>) implementiert. Darüberhinaus stehen mit den <span 
+class="cmbx-12">Genetischen</span>
+<span 
+class="cmbx-12">Algorithmen </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu21.html#x40-390004.3.5">4.3.5<!--tex4ht:ref: Genetische Algorithmen --></a>) und einem <span 
+class="cmbx-12">Ameisensuchverfahren </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu22.html#x41-400004.3.6">4.3.6<!--tex4ht:ref: Beam Ant Colony Verfahren --></a>) auch noch weitere
+sogenannte Metaheuristiken zur Verfügung.
+<!--l. 665--><p class="noindent" >Die Qualität der Lösung hängt dabei sowohl von dem verwendeten Verfahren, der Qualität der
+Startlösung, als auch von dem investierten Aufwand ab.
+<!--l. 671--><p class="noindent" ><span id="textcolor25">&nbsp;<br><span 
+class="cmbx-12x-x-120">Nachbarschaften</span></span>
+<!--l. 673--><p class="noindent" >In allen Verbesserungsverfahren spielen die verschiedenen Nachbarschaften eine besondere Rolle.
+Ein Nachbarschaftsgraph gibt Auskunft darüber, welche anderen Pläne von einem gegebenem Plan
+in einem Iterationsschritt erzeugt werden können. Die Wahl der Nachbarschaft kann großen
+Einfluss auf die Güte des Verfahrens haben. In LiSA sind die folgenden Nachbarschaften
+berücksichtigt:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TST:</span>
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API </span>(<span 
+class="cmti-12">k</span>-adjacent pairwise interchange)<span 
+class="cmbx-12">: </span><span 
+class="cmti-12">k + 1 </span>benachbarte Operationen werden
+      zufällig neu angeordnet.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">SHIFT: </span>Eine Operation wird im Plan verschoben.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">PI </span>(pairwise interchange)<span 
+class="cmbx-12">: </span>Zwei beliebige Operationen werden vertauscht.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API  </span>(critical  API)<span 
+class="cmbx-12">:  </span>Eine  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>-kritische  Operation  wird  mit  einer  direkt
+      benachbarten Operation vertauscht.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API </span>(block API)<span 
+class="cmbx-12">: </span>Eine <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>-kritische Block-End-Operation wird mit einer direkt
+      benachbarten Operation vertauscht.
+                                                                                         
+                                                                                         
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT  </span>(critical   SHIFT)<span 
+class="cmbx-12">:  </span>Eine   <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>-kritische   Operation   wird   im   Plan
+      verschoben.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT </span>(block SHIFT)<span 
+class="cmbx-12">: </span>Eine <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>-kritische Block-End-Operation wird im Plan
+      verschoben.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR: </span>Eine <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>-kritische Operation wird mit einer direkt benachbarten Operation
+      vertauscht.  Zusätzlich  werden  jeweils  noch  Vorgänger  und  Nachfolger  mit  anderen
+      Operationen getauscht.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION: </span><span 
+class="cmti-12">k </span>beliebige Operationen werden aus dem Plan entfernt, und
+      anschließend wieder neu eingefügt.</li></ul>
+<!--l. 715--><p class="noindent" >
 <div class="subsectionTOCS">
-&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1 <a 
-href="handbuchsu17.html#x36-350004.4.1">Brucker&#8217;s Branch &amp; Bound Algorithmus</a></span>
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.1 <a 
+href="handbuchsu17.html#x36-350004.3.1">Iterative Suche</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.2 <a 
+href="handbuchsu18.html#x37-360004.3.2">Tabu-Suche</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.3 <a 
+href="handbuchsu19.html#x38-370004.3.3">Simulated Annealing</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.4 <a 
+href="handbuchsu20.html#x39-380004.3.4">Threshold Accepting</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.5 <a 
+href="handbuchsu21.html#x40-390004.3.5">Genetische Algorithmen</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.6 <a 
+href="handbuchsu22.html#x41-400004.3.6">Beam Ant Colony Verfahren</a></span>
 </div>
+
+
+
+
+
                                                                                          
                                                                                          
-<!--l. 1532--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1447--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse15.html" >next</a>] [<a 
 href="handbuchse13.html" >prev</a>] [<a 
 href="handbuchse13.html#tailhandbuchse13.html" >prev-tail</a>] [<a 
 href="handbuchse14.html" >front</a>] [<a 
 href="handbuchch4.html#handbuchse14.html" >up</a>] </p></div>
-<!--l. 1532--><p class="noindent" ><a 
+<!--l. 1447--><p class="noindent" ><a 
  id="tailhandbuchse14.html"></a>  
 </body></html> 

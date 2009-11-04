@@ -1,32 +1,175 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Einfugen eines Algorithmusses</title> 
+<head><title>Einbinden externer Algorithmen</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 492--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 395--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse26.html" >next</a>] [<a 
 href="handbuchse24.html" >prev</a>] [<a 
 href="handbuchse24.html#tailhandbuchse24.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse25.html">tail</a>] [<a 
 href="handbuchch7.html#handbuchse25.html" >up</a>] </p></div>
 <h3 class="sectionHead"><span class="titlemark">7.2   </span> <a 
- id="x57-620007.2"></a>Einfügen eines Algorithmusses</h3>
+ id="x56-590007.2"></a>Einbinden externer Algorithmen</h3>
+<!--l. 1--><p class="noindent" >Zum Einfügen eines neuen Algorithmenmoduls genügt es, die im vorherigen Kapitel beschriebenen
+Dateien zu erstellen. Prinzipiell kann der Algorithmus in jeder beliebigen Programmiersprache
+implementiert werden, die in das Binärformat übersetzt werden kann. LiSA stellt jedoch speziell
+für C++ Klassen bereit, die die Arbeit mit Scheduling-Problemen erleichtern sollen und die
+Implementierung von Algorithmen vereinfachen. So lassen sich z.B. Problembeschreibung,
+Schedules und Parameter aus den XML-Dateien lesen und schreiben. Zudem werden grundlegende
+und auch spezielle Datentypen bereitgestellt, die für den Umgang mit Scheduling-Problemen
+hilfreich sind. Um diese Klassenbibliothek nutzen zu können, muss das LiSA-Quellcodepaket
+installiert sein.
+<!--l. 13--><p class="noindent" >Im folgenden Abschnitt wird davon ausgegangen, dass ein Algorithmus in C++ implementiert
+werden soll.
+<!--l. 16--><p class="noindent" >Neue Algorithmen sollten im Unterordner <span 
+class="cmtt-12">src/algorithm </span>ein eigenes Verzeichnis bekommen, um
+den späteren Erstellungsvorgang zu vereinfachen. Dort müssen die folgenden Dateien erstellt
+werden:
+      <ul class="itemize1">
+      <li class="itemize">C++-Quellcode und -Headerdateien, die den Algorithmus implementieren.
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Makefile</span>
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Make.List</span>
+      </li>
+      <li class="itemize">Die  im  Abschnitt  <a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>  genannten  XML-  und  HTML-Dateien.  Diese  werden  beim
+      Erstellungsvorgang in die jeweiligen Ordner verschoben.
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Make.Depend </span>und <span 
+class="cmtt-12">Make.Objects</span>, welche automatisch erstellt werden.</li></ul>
+<!--l. 33--><p class="noindent" ><span id="textcolor54">&nbsp;<br><span 
+class="cmbx-12x-x-120">Quellcode</span></span> <br 
+class="newline" />Der Algorithmus selbst ist als gewöhnliches Konsolenprogramm implementiert, das die im Kapitel
+<a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a> genannten Eingaben entgegennimmt und die daraus brechnete Lösung in eine Ausgabedatei
+schreibt. Als einführendes Beispiel sei hier auf den Algorithmus im Ordner <span 
+class="cmtt-12">src/algorithm/sample</span>
+verwiesen, wo der Grundlegende Aufbau einer Algorithmenimplementation bereits vorgefertigt ist.
+Es genügt meist, die Quellcodedatei <span 
+class="cmtt-12">sample.cpp </span>zu übernehmen und die markierte Passage durch
+eigenen Code zu ersetzen. Zudem ist es natürlich möglich, eigenen Code in andere Dateien
+auszulagern.
                                                                                          
                                                                                          
-<!--l. 500--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 45--><p class="noindent" ><span id="textcolor55">&nbsp;<br><span 
+class="cmbx-12x-x-120">Makefile</span></span> <br 
+class="newline" />Der folgende Grundaufbau des Makefiles kann für C++-Programme direkt übernommen werden.
+Es muss lediglich der Programmname Angepasst werden; dies ist der Name des Unterordners, in
+dem die Quellcodedateien des Algorithmus liegen.
+<!--l. 50--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-18">
+#&#x00A0;LiSA&#x00A0;Sample&#x00A0;Algorithm&#x00A0;Makefile
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;LiSA&#x00A0;part:&#x00A0;sample
+&#x00A0;<br />
+&#x00A0;<br />PROGRAMNAME=sample
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />TOPPROGRAMPATH=../../..
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />include&#x00A0;../Make.Algorithm
+</div>
+      <!--l. 69--><p class="nopar" ></div>
+<!--l. 74--><p class="noindent" ><span id="textcolor56">&nbsp;<br><span 
+class="cmbx-12x-x-120">Make.List</span></span> <br 
+class="newline" />In dieser Datei werden alle C++-Quellcodedateien angegeben, die beim Erstellungsvorgang
+kompiliert und zur ausführbaren Moduldatei gelinkt werden. Neben den eigentlichen
+Quellcodedateien des Moduls müssen hier auch alle externen Abhängigkeiten angegeben werden,
+damit der Linker alle Symbole auflösen kann. Wird im Quellcode des Moduls z.B. die Klasse
+<span 
+class="cmtt-12">LISA</span><span 
+class="cmtt-12">_Matrix </span>verwendet, muss die entsprechende Quellcodedatei <span 
+class="cmtt-12">matrix.cpp </span>im Unterordner
+<span 
+class="cmtt-12">src/basics </span>verlinkt werden. Die Pfadangabe erfolgt dabei immer relativ zum Modulordner, also
+muss letztendlich der Eintrag <span 
+class="cmtt-12">../../basics/matrix.cpp </span>eingefügt werden. Die entsprechenden
+Quellcodedateien zu den Klassen lassen sich aus der Dokumentation zur LiSA-Klassenbibliothek
+entnehmen.
+<!--l. 85--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-19">
+CXXSOURCES=\
+&#x00A0;<br />&#x00A0;&#x00A0;sample.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/list.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/matrix.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/pair.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/ctrlpara.cpp\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/lvalues.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/ptype.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../main/global.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../misc/except.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../misc/int2str.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../scheduling/mo_jo.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../scheduling/schedule.cpp
+</div>
+      <!--l. 102--><p class="nopar" ></div>
+<!--l. 107--><p class="noindent" ><span id="textcolor57">&nbsp;<br><span 
+class="cmbx-12x-x-120">Make.Depend und Make.Object</span></span> <br 
+class="newline" />Diese Dateien werden duch einen einmaligen Aufruf <span 
+class="cmtt-12">make depend </span>im Modulverzeichnis aus der
+Datei <span 
+class="cmtt-12">Make.List </span>erstellt. Wird die Datei <span 
+class="cmtt-12">Make.List </span>verändert, müssen sie durch ein erneutes <span 
+class="cmtt-12">make</span>
+<span 
+class="cmtt-12">depend </span>aktualisiert werden.
+<!--l. 114--><p class="noindent" ><span id="textcolor58">&nbsp;<br><span 
+class="cmbx-12x-x-120">XML- und HTML-Dokumente</span></span> <br 
+class="newline" />Diese Dokumente müssen in einer englischen und einer deutschen Version vorliegen (die beiden
+Versionen des XML-Dokuments unterscheiden sich meist nur durch die Übersetung des
+Algorithmennamens und der Parameter). Die englischen Versionen der Dokumente bekommen
+die Endungen <span 
+class="cmtt-12">_english.xml </span>bzw. <span 
+class="cmtt-12">_english.html </span>und die deutschen Versionen die
+Endungen <span 
+class="cmtt-12">_german.xml </span>bzw. <span 
+class="cmtt-12">_german.html</span>. Beim Erstellungsvorgang werden diese
+Endungen dann duch <span 
+class="cmtt-12">.html </span>bzw. <span 
+class="cmtt-12">.xml </span>ersetzt und die Dokumente an ihre Bestimmungsorte
+verschoben.
+<!--l. 125--><p class="noindent" ><span id="textcolor59">&nbsp;<br><span 
+class="cmbx-12x-x-120">Erstellungsvorgang</span></span> <br 
+class="newline" />Der Erstellungsvorgang kann mit Hilfe des Aufrufs <span 
+class="cmtt-12">make </span>im Modulordner gestartet werden. In
+Laufe dieses Vorgangs werden Quellcodedateien, die in <span 
+class="cmtt-12">Make.list </span>angegeben sind, kompiliert und
+zu einer ausführbaren Datei gelinkt. Anschließend werden alle Moduldateien an ihre
+Bestimmungsorte kopiert (<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>).
+                                                                                         
+                                                                                         
+<!--l. 405--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse26.html" >next</a>] [<a 
 href="handbuchse24.html" >prev</a>] [<a 
 href="handbuchse24.html#tailhandbuchse24.html" >prev-tail</a>] [<a 
 href="handbuchse25.html" >front</a>] [<a 
 href="handbuchch7.html#handbuchse25.html" >up</a>] </p></div>
-<!--l. 500--><p class="noindent" ><a 
+<!--l. 405--><p class="noindent" ><a 
  id="tailhandbuchse25.html"></a>  
 </body></html> 

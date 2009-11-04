@@ -7,20 +7,84 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
 <div class="center" 
 >
-<!--l. 56--><p class="noindent" >
-<!--l. 57--><p class="noindent" ><span 
-class="cmbx-12x-x-172">LiSA - A Library of Scheduling Algorithms -</span>
+<!--l. 58--><p class="noindent" >
+<!--l. 59--><p class="noindent" ><img 
+src="handbuch0x.png" alt="PIC" class="graphics" width="284.53123pt" height="170.72192pt" ><!--tex4ht:graphics  
+name="handbuch0x.png" src="bilder/logo.eps"  
+--></div>
+<div class="center" 
+>
+<!--l. 64--><p class="noindent" >
+<!--l. 65--><p class="noindent" ><span 
+class="cmbx-12x-x-172">LiSA - A Library of Scheduling Algorithms </span></div>
+<div class="center" 
+>
+<!--l. 68--><p class="noindent" >
+<!--l. 69--><p class="noindent" ><span 
+class="cmbx-12x-x-172">Handbuch zu Version 3.0</span></div>
+<div class="center" 
+>
+<!--l. 73--><p class="noindent" >
+<!--l. 74--><p class="noindent" >&nbsp;<br><span 
+class="cmbx-12x-x-120">Michael Andresen, Heidemarie Br</span><span 
+class="cmbx-12x-x-120">äsel, Frank Engelhardt,</span><br />
+&nbsp;<br><span 
+class="cmbx-12x-x-120">Frank Werner</span><br />
+&nbsp;<br><span 
+class="cmbx-12x-x-120">Fakult</span><span 
+class="cmbx-12x-x-120">ät f</span>&nbsp;<br><span 
+class="cmbx-12x-x-120">ür Mathematik</span><br />
+&nbsp;<br><span 
+class="cmbx-12x-x-120">Otto-von-Guericke Universit</span><span 
+class="cmbx-12x-x-120">ät Magdeburg</span></div>
+<div class="center" 
+>
+<!--l. 4--><p class="noindent" >
+<!--l. 4--><p class="noindent" ><span 
+class="cmbx-12">Abstrakt</span></div>
+                                                                                         
+                                                                                         
+<!--l. 7--><p class="noindent" ><span 
+class="cmti-12">LiSA - A Library of Scheduling Algorithms </span>ist ein Softwarepaket zur Lösung deterministischer
+Schedulingprobleme, insbesondere von Shop-Problemen, die in der Form <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>gegeben sind, wobei
 <span 
-class="cmbx-12x-x-172">Version 3.0</span></div>
-                                                                                         
-                                                                                         
-<!--l. 66--><p class="noindent" >
+class="cmmi-12">&alpha; </span>die Maschinenumgebung, <span 
+class="cmmi-12">&beta; </span>zusätzliche Restriktionen für die Aufträge und <span 
+class="cmmi-12">&gamma; </span>die Zielfunktion
+beschreibt. Die Entwicklung von LiSA wurde durch Förderung der Projekte <span 
+class="cmti-12">Lateinische Rechtecke</span>
+<span 
+class="cmti-12">in der Schedulingtheorie (1997-1999) </span>und <span 
+class="cmti-12">LiSA - A Library of Scheduling Algorithms (1999-2001)</span>
+durch das Kultusministerium des Landes Sachsen-Anhalt ermöglicht. Ergebnisse von
+Diplomarbeiten und Dissertationen in unserer Forschungsgruppe sowie von Praktika der
+Studierenden sind in das Softwarepaket eingeflossen.<br 
+class="newline" />
+<!--l. 14--><p class="noindent" >Das Handbuch enthält alle notwendigen Informationen, um mit LiSA arbeiten zu können:
+Lizenzbedingungen, technische Voraussetzungen, mathematisches Basiswissen zu den in LiSA
+verwendeten Modellen, Beschreibung der Algorithmen und des verwendeten Fileformats, Beispiel
+zur Arbeit mit Lisa, Anleitungen zur Einfügung eigener Algorithmen und zum automatisierten
+Algorithmenaufruf.<br 
+class="newline" />
+<!--l. 18--><p class="noindent" >Das Handbuch ist auch als html-File auf der LiSA-Homepage verfügbar, die Erläuterungen zu
+den Algorithmen und zu den LiSA-Komponenten sind als Hilfedateien in die Software
+eingebunden.
+<div class="center" 
+>
+<!--l. 21--><p class="noindent" >
+<!--l. 21--><p class="noindent" ><span 
+class="cmbx-12">Homepage: http://lisa.math.uni-magdeburg.de</span></div>
                                                                                          
                                                                                          
 <div class="tableofcontents">
@@ -29,290 +93,300 @@ href="handbuchch1.html#x2-10001" id="QQ2-2-1">Allgemeine Informationen</a></span
 <br />&#x00A0;<span class="sectionToc" >1.1 <a 
 href="handbuchse1.html#x3-20001.1" id="QQ2-3-2">Was ist LiSA? - Einführung und Übersicht</a></span>
 <br />&#x00A0;<span class="sectionToc" >1.2 <a 
-href="handbuchse2.html#x4-30001.2" id="QQ2-4-4">Das LiSA-Team</a></span>
+href="handbuchse2.html#x4-30001.2" id="QQ2-4-3">Systemanforderungen und Lizenz</a></span>
 <br />&#x00A0;<span class="sectionToc" >1.3 <a 
-href="handbuchse3.html#x5-40001.3" id="QQ2-5-5">Systemanforderungen und Lizenz</a></span>
+href="handbuchse3.html#x5-40001.3" id="QQ2-5-4">Das LiSA-Team</a></span>
 <br /><span class="chapterToc" >2 <a 
-href="handbuchch2.html#x6-50002" id="QQ2-6-6">Basiswissen</a></span>
+href="handbuchch2.html#x6-50002" id="QQ2-6-5">Basiswissen</a></span>
 <br />&#x00A0;<span class="sectionToc" >2.1 <a 
-href="handbuchse4.html#x7-60002.1" id="QQ2-7-7">Definitionen und Bezeichnungen </a></span>
+href="handbuchse4.html#x7-60002.1" id="QQ2-7-6">Definitionen und Bezeichnungen </a></span>
 <br />&#x00A0;<span class="sectionToc" >2.2 <a 
 href="handbuchse5.html#x8-70002.2" id="QQ2-8-8">Klassifizierung deterministischer Schedulingprobleme</a></span>
 <br />&#x00A0;<span class="sectionToc" >2.3 <a 
-href="handbuchse6.html#x9-80002.3" id="QQ2-9-9">Das Block-Matrizen-Modell</a></span>
+href="handbuchse6.html#x9-80002.3" id="QQ2-9-12">Modelle für Shopprobleme</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.1 <a 
+href="handbuchsu1.html#x10-90002.3.1" id="QQ2-10-13">Pläne und Zeitpläne (Sequences and Schedules)</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.2 <a 
+href="handbuchsu2.html#x11-100002.3.2" id="QQ2-11-16">Das Block-Matrizen Modell für Shopprobleme</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.3 <a 
+href="handbuchsu3.html#x12-110002.3.3" id="QQ2-12-18">Disjunktives Graphenmodell und Block-Matrizen Modell</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.3.4 <a 
+href="handbuchsu4.html#x13-120002.3.4" id="QQ2-13-19">Basisalgorithmen zum Block-Matrizen Modell</a></span>
 <br />&#x00A0;<span class="sectionToc" >2.4 <a 
-href="handbuchse7.html#x10-90002.4" id="QQ2-10-10">Das File Format in LiSA</a></span>
+href="handbuchse7.html#x14-130002.4" id="QQ2-14-21">Algorithmenübersicht</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.1 <a 
-href="handbuchsu1.html#x11-100002.4.1" id="QQ2-11-11">Der Dokumenttyp <span 
-class="cmtt-12">problem</span></a></span>
+href="handbuchsu5.html#x15-140002.4.1" id="QQ2-15-22">Universelle Algorithmen</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.2 <a 
-href="handbuchsu2.html#x12-110002.4.2" id="QQ2-12-12">Der Dokumenttyp <span 
+href="handbuchsu6.html#x16-150002.4.2" id="QQ2-16-25">Spezielle Algorithmen</a></span>
+<br />&#x00A0;<span class="sectionToc" >2.5 <a 
+href="handbuchse8.html#x17-160002.5" id="QQ2-17-27">Das File Format in LiSA</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.1 <a 
+href="handbuchsu7.html#x18-170002.5.1" id="QQ2-18-28">Der Dokumenttyp <span 
+class="cmtt-12">problem</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.2 <a 
+href="handbuchsu8.html#x19-180002.5.2" id="QQ2-19-29">Der Dokumenttyp <span 
 class="cmtt-12">instance</span></a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.3 <a 
-href="handbuchsu3.html#x13-120002.4.3" id="QQ2-13-13">Der Dokumenttyp <span 
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.3 <a 
+href="handbuchsu9.html#x20-190002.5.3" id="QQ2-20-30">Der Dokumenttyp <span 
 class="cmtt-12">solution</span></a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.4 <a 
-href="handbuchsu4.html#x14-130002.4.4" id="QQ2-14-14">Der Dokumenttyp <span 
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.4 <a 
+href="handbuchsu10.html#x21-200002.5.4" id="QQ2-21-31">Der Dokumenttyp <span 
 class="cmtt-12">algorithm</span></a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.4.5 <a 
-href="handbuchsu5.html#x15-140002.4.5" id="QQ2-15-15">Der Dokumenttyp <span 
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.5 <a 
+href="handbuchsu11.html#x22-210002.5.5" id="QQ2-22-32">Der Dokumenttyp <span 
 class="cmtt-12">controls</span></a></span>
 <br /><span class="chapterToc" >3 <a 
-href="handbuchch3.html#x16-150003" id="QQ2-16-16">Eingabe</a></span>
+href="handbuchch3.html#x23-220003" id="QQ2-23-33">Eingabe</a></span>
 <br />&#x00A0;<span class="sectionToc" >3.1 <a 
-href="handbuchse8.html#x17-160003.1" id="QQ2-17-17">Problemtyp</a></span>
+href="handbuchse9.html#x24-230003.1" id="QQ2-24-34">Problemtyp</a></span>
 <br />&#x00A0;<span class="sectionToc" >3.2 <a 
-href="handbuchse9.html#x18-170003.2" id="QQ2-18-18">Parameter</a></span>
+href="handbuchse10.html#x25-240003.2" id="QQ2-25-35">Parameter</a></span>
 <br />&#x00A0;<span class="sectionToc" >3.3 <a 
-href="handbuchse10.html#x19-180003.3" id="QQ2-19-19">Eingabedatei</a></span>
+href="handbuchse11.html#x26-250003.3" id="QQ2-26-36">Eingabedatei</a></span>
 <br /><span class="chapterToc" >4 <a 
-href="handbuchch4.html#x20-190004" id="QQ2-20-20">Algorithmen in LiSA</a></span>
+href="handbuchch4.html#x27-260004" id="QQ2-27-37">Algorithmen in LiSA</a></span>
 <br />&#x00A0;<span class="sectionToc" >4.1 <a 
-href="handbuchse11.html#x21-200004.1" id="QQ2-21-21">Universelle exakte Verfahren </a></span>
+href="handbuchse12.html#x28-270004.1" id="QQ2-28-38">Universelle exakte Verfahren </a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.1.1 <a 
-href="handbuchsu6.html#x22-210004.1.1" id="QQ2-22-22">Universeller Branch &amp; Bound Algorithmus</a></span>
+href="handbuchsu12.html#x29-280004.1.1" id="QQ2-29-39">Universeller Branch &amp; Bound Algorithmus</a></span>
 <br />&#x00A0;<span class="sectionToc" >4.2 <a 
-href="handbuchse12.html#x23-220004.2" id="QQ2-23-23">Universelle konstruktive Verfahren</a></span>
+href="handbuchse13.html#x30-290004.2" id="QQ2-30-40">Universelle konstruktive Verfahren</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.1 <a 
-href="handbuchsu7.html#x24-230004.2.1" id="QQ2-24-24">Reihungsregeln</a></span>
+href="handbuchsu13.html#x31-300004.2.1" id="QQ2-31-41">Reihungsregeln</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.2 <a 
-href="handbuchsu8.html#x25-240004.2.2" id="QQ2-25-25">Matchingheuristiken</a></span>
+href="handbuchsu14.html#x32-310004.2.2" id="QQ2-32-42">Matchingheuristiken</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.3 <a 
-href="handbuchsu9.html#x26-250004.2.3" id="QQ2-26-26">Beam Search Verfahren mit Anfügetechnik</a></span>
+href="handbuchsu15.html#x33-320004.2.3" id="QQ2-33-43">Beam Search Verfahren mit Anfügetechnik</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.4 <a 
-href="handbuchsu10.html#x27-260004.2.4" id="QQ2-27-27">Beam Search Verfahren mit Einfügetechnik </a></span>
+href="handbuchsu16.html#x34-330004.2.4" id="QQ2-34-44">Beam Search Verfahren mit Einfügetechnik </a></span>
 <br />&#x00A0;<span class="sectionToc" >4.3 <a 
-href="handbuchse13.html#x28-270004.3" id="QQ2-28-28">Universelle iterative Verbesserungsverfahren</a></span>
+href="handbuchse14.html#x35-340004.3" id="QQ2-35-45">Universelle iterative Verbesserungsverfahren</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.1 <a 
-href="handbuchsu11.html#x29-280004.3.1" id="QQ2-29-29">Iterative Suche</a></span>
+href="handbuchsu17.html#x36-350004.3.1" id="QQ2-36-46">Iterative Suche</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.2 <a 
-href="handbuchsu12.html#x30-290004.3.2" id="QQ2-30-30">Tabu-Suche</a></span>
+href="handbuchsu18.html#x37-360004.3.2" id="QQ2-37-47">Tabu-Suche</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.3 <a 
-href="handbuchsu13.html#x31-300004.3.3" id="QQ2-31-31">Simulated Annealing</a></span>
+href="handbuchsu19.html#x38-370004.3.3" id="QQ2-38-48">Simulated Annealing</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.4 <a 
-href="handbuchsu14.html#x32-310004.3.4" id="QQ2-32-32">Threshold Accepting</a></span>
+href="handbuchsu20.html#x39-380004.3.4" id="QQ2-39-49">Threshold Accepting</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.5 <a 
-href="handbuchsu15.html#x33-320004.3.5" id="QQ2-33-33">Genetische Algorithmen</a></span>
+href="handbuchsu21.html#x40-390004.3.5" id="QQ2-40-50">Genetische Algorithmen</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.6 <a 
-href="handbuchsu16.html#x34-330004.3.6" id="QQ2-34-34">Beam Ant Colony Verfahren</a></span>
+href="handbuchsu22.html#x41-400004.3.6" id="QQ2-41-51">Beam Ant Colony Verfahren</a></span>
 <br />&#x00A0;<span class="sectionToc" >4.4 <a 
-href="handbuchse14.html#x35-340004.4" id="QQ2-35-35">Exakte Verfahren zum Lösen spezieller Probleme</a></span>
+href="handbuchse15.html#x42-410004.4" id="QQ2-42-52">Algorithmen zum Lösen spezieller Probleme</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1 <a 
-href="handbuchsu17.html#x36-350004.4.1" id="QQ2-36-36">Brucker&#8217;s Branch &amp; Bound Algorithmus</a></span>
-<br />&#x00A0;<span class="sectionToc" >4.5 <a 
-href="handbuchse15.html#x37-360004.5" id="QQ2-37-37">Konstruktive Verfahren zum Lösen spezieller Probleme</a></span>
-<br />&#x00A0;<span class="sectionToc" >4.6 <a 
-href="handbuchse16.html#x38-370004.6" id="QQ2-38-38">Iterative Verfahren zum Lösen spezieller Probleme</a></span>
+href="handbuchsu23.html#x43-420004.4.1" id="QQ2-43-53">Brucker&#8217;s Branch &amp; Bound Algorithmus</a></span>
 <br /><span class="chapterToc" >5 <a 
-href="handbuchch5.html#x39-380005" id="QQ2-39-39">Ausgabe</a></span>
+href="handbuchch5.html#x44-430005" id="QQ2-44-54">Ausgabe</a></span>
 <br />&#x00A0;<span class="sectionToc" >5.1 <a 
-href="handbuchse17.html#x40-390005.1" id="QQ2-40-40">Plan (Sequence)</a></span>
+href="handbuchse16.html#x45-440005.1" id="QQ2-45-55">Plan (Sequence)</a></span>
 <br />&#x00A0;<span class="sectionToc" >5.2 <a 
-href="handbuchse18.html#x41-400005.2" id="QQ2-41-41">Plangraph (Sequencegraph)</a></span>
+href="handbuchse17.html#x46-450005.2" id="QQ2-46-56">Plangraph (Sequencegraph)</a></span>
 <br />&#x00A0;<span class="sectionToc" >5.3 <a 
-href="handbuchse19.html#x42-410005.3" id="QQ2-42-42">Schedule (Zeitplan)</a></span>
+href="handbuchse18.html#x47-460005.3" id="QQ2-47-57">Schedule (Zeitplan)</a></span>
+                                                                                         
+                                                                                         
 <br />&#x00A0;<span class="sectionToc" >5.4 <a 
-href="handbuchse20.html#x43-420005.4" id="QQ2-43-43">Gantt-Diagramm</a></span>
+href="handbuchse19.html#x48-470005.4" id="QQ2-48-58">Gantt-Diagramm</a></span>
 <br />&#x00A0;<span class="sectionToc" >5.5 <a 
-href="handbuchse21.html#x44-430005.5" id="QQ2-44-44">Ergebnisdatei</a></span>
+href="handbuchse20.html#x49-480005.5" id="QQ2-49-59">Ergebnisdatei</a></span>
 <br /><span class="chapterToc" >6 <a 
-href="handbuchch6.html#x45-440006" id="QQ2-45-45">Extras</a></span>
+href="handbuchch6.html#x50-490006" id="QQ2-50-60">Extras</a></span>
 <br />&#x00A0;<span class="sectionToc" >6.1 <a 
-href="handbuchse22.html#x46-450006.1" id="QQ2-46-46">Interne Programmbausteine</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.1.1 <a 
-href="handbuchsu18.html#x47-460006.1.1" id="QQ2-47-47">Komplexitätsstatus eines Problems</a></span>
-                                                                                         
-                                                                                         
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.1.2 <a 
-href="handbuchsu19.html#x48-470006.1.2" id="QQ2-48-48">Manipulation von Plänen und Schedules</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.1.3 <a 
-href="handbuchsu20.html#x49-480006.1.3" id="QQ2-49-49">Irreduzibilitätstest</a></span>
+href="handbuchse21.html#x51-500006.1" id="QQ2-51-61">Komplexitätsstatus eines Problems</a></span>
 <br />&#x00A0;<span class="sectionToc" >6.2 <a 
-href="handbuchse23.html#x50-490006.2" id="QQ2-50-50">Zur externen Arbeit mit LiSA</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.2.1 <a 
-href="handbuchsu21.html#x51-500006.2.1" id="QQ2-51-51">Algorithmenmodule</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.2.2 <a 
-href="handbuchsu22.html#x52-550006.2.2" id="QQ2-52-56">Einbinden externer Algorithmen</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.2.3 <a 
-href="handbuchsu23.html#x53-560006.2.3" id="QQ2-53-57">Automatisierter Algorithmenaufruf</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >6.2.4 <a 
-href="handbuchsu24.html#x54-590006.2.4" id="QQ2-54-60">Konstruktion von hybriden Algorithmen</a></span>
+href="handbuchse22.html#x52-510006.2" id="QQ2-52-62">Manipulation von Plänen und Schedules</a></span>
+<br />&#x00A0;<span class="sectionToc" >6.3 <a 
+href="handbuchse23.html#x53-520006.3" id="QQ2-53-63">Irreduzibilitätstest</a></span>
 <br /><span class="chapterToc" >7 <a 
-href="handbuchch7.html#x55-600007" id="QQ2-55-61">Beispiele</a></span>
+href="handbuchch7.html#x54-530007" id="QQ2-54-64">Zur externen Arbeit mit LiSA</a></span>
 <br />&#x00A0;<span class="sectionToc" >7.1 <a 
-href="handbuchse24.html#x56-610007.1" id="QQ2-56-62">Lösung eines Problems mit LiSA</a></span>
+href="handbuchse24.html#x55-540007.1" id="QQ2-55-65">Algorithmenmodule</a></span>
 <br />&#x00A0;<span class="sectionToc" >7.2 <a 
-href="handbuchse25.html#x57-620007.2" id="QQ2-57-63">Einfügen eines Algorithmusses</a></span>
+href="handbuchse25.html#x56-590007.2" id="QQ2-56-70">Einbinden externer Algorithmen</a></span>
 <br />&#x00A0;<span class="sectionToc" >7.3 <a 
-href="handbuchse26.html#x58-630007.3" id="QQ2-58-64">Konstruktion hybrider Algorithmen in LiSA</a></span>
+href="handbuchse26.html#x57-600007.3" id="QQ2-57-71">Automatisierter Algorithmenaufruf</a></span>
+<br />&#x00A0;<span class="sectionToc" >7.4 <a 
+href="handbuchse27.html#x58-630007.4" id="QQ2-58-74">Konstruktion von hybriden Algorithmen</a></span>
+<br /><span class="chapterToc" >8 <a 
+href="handbuchch8.html#x59-640008" id="QQ2-59-75">Beispiele</a></span>
+<br />&#x00A0;<span class="sectionToc" >8.1 <a 
+href="handbuchse28.html#x60-650008.1" id="QQ2-60-76">Lösung eines Problems mit LiSA</a></span>
+<br />&#x00A0;<span class="sectionToc" >8.2 <a 
+href="handbuchse29.html#x61-660008.2" id="QQ2-61-77">Aufruf eines Algorithmus über die Kommandozeile</a></span>
+<br />&#x00A0;<span class="sectionToc" >8.3 <a 
+href="handbuchse30.html#x62-670008.3" id="QQ2-62-78">Konstruktion hybrider Algorithmen in LiSA</a></span>
+<br /><span class="likechapterToc" ><a 
+href="handbuchli1.html#x63-680008.3" id="QQ2-63-79">Literaturverzeichnis</a></span>
 <br /><span class="appendixToc" >A <a 
-href="handbuchap1.html#x59-64000A" id="QQ2-59-65">XML-Referenz </a></span>
+href="handbuchap1.html#x64-69000A" id="QQ2-64-80">XML-Referenz </a></span>
 <br />&#x00A0;<span class="sectionToc" >A.1 <a 
-href="handbuchse27.html#x60-65000A.1" id="QQ2-60-66">Allgemeines </a></span>
+href="handbuchse31.html#x65-70000A.1" id="QQ2-65-81">Allgemeines </a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.1.1 <a 
-href="handbuchsu25.html#x61-66000A.1.1" id="QQ2-61-67">Die Sprache XML</a></span>
+href="handbuchsu24.html#x66-71000A.1.1" id="QQ2-66-82">Die Sprache XML</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.1.2 <a 
-href="handbuchsu26.html#x62-67000A.1.2" id="QQ2-62-68">Darstellung von Daten</a></span>
+href="handbuchsu25.html#x67-72000A.1.2" id="QQ2-67-83">Darstellung von Daten</a></span>
 <br />&#x00A0;<span class="sectionToc" >A.2 <a 
-href="handbuchse28.html#x63-68000A.2" id="QQ2-63-69">Die Dokumenttypen <span 
+href="handbuchse32.html#x68-73000A.2" id="QQ2-68-84">Die Dokumenttypen <span 
 class="cmtt-12">problem</span>, <span 
 class="cmtt-12">instance </span>und <span 
 class="cmtt-12">solution </span></a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.2.1 <a 
-href="handbuchsu27.html#x64-69000A.2.1" id="QQ2-64-70">Aufbau</a></span>
+href="handbuchsu26.html#x69-74000A.2.1" id="QQ2-69-85">Aufbau</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.2.2 <a 
-href="handbuchsu28.html#x65-70000A.2.2" id="QQ2-65-71">Beschreibung</a></span>
+href="handbuchsu27.html#x70-75000A.2.2" id="QQ2-70-86">Beschreibung</a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu29.html#x66-71000A.2.2" id="QQ2-66-72"><span 
+href="handbuchsu28.html#x71-76000A.2.2" id="QQ2-71-87"><span 
 class="cmtt-12">&#x003C;solution&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu30.html#x67-72000A.2.2" id="QQ2-67-73"><span 
+href="handbuchsu29.html#x72-77000A.2.2" id="QQ2-72-88"><span 
 class="cmtt-12">&#x003C;instance&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu31.html#x68-73000A.2.2" id="QQ2-68-74"><span 
+href="handbuchsu30.html#x73-78000A.2.2" id="QQ2-73-89"><span 
 class="cmtt-12">&#x003C;problem&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu32.html#x69-74000A.2.2" id="QQ2-69-75"><span 
+href="handbuchsu31.html#x74-79000A.2.2" id="QQ2-74-90"><span 
 class="cmtt-12">&#x003C;alpha&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu33.html#x70-75000A.2.2" id="QQ2-70-76"><span 
+href="handbuchsu32.html#x75-80000A.2.2" id="QQ2-75-91"><span 
 class="cmtt-12">&#x003C;beta&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu34.html#x71-76000A.2.2" id="QQ2-71-77"><span 
+href="handbuchsu33.html#x76-81000A.2.2" id="QQ2-76-92"><span 
 class="cmtt-12">&#x003C;gamma&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu35.html#x72-77000A.2.2" id="QQ2-72-78"><span 
+href="handbuchsu34.html#x77-82000A.2.2" id="QQ2-77-93"><span 
 class="cmtt-12">&#x003C;values&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu36.html#x73-78000A.2.2" id="QQ2-73-79"><span 
+href="handbuchsu35.html#x78-83000A.2.2" id="QQ2-78-94"><span 
 class="cmtt-12">&#x003C;processing</span><span 
 class="cmtt-12">_times&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu37.html#x74-79000A.2.2" id="QQ2-74-80"><span 
+href="handbuchsu36.html#x79-84000A.2.2" id="QQ2-79-95"><span 
 class="cmtt-12">&#x003C;operation</span><span 
 class="cmtt-12">_set&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu38.html#x75-80000A.2.2" id="QQ2-75-81"><span 
+href="handbuchsu37.html#x80-85000A.2.2" id="QQ2-80-96"><span 
 class="cmtt-12">&#x003C;machine</span><span 
 class="cmtt-12">_order&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu39.html#x76-81000A.2.2" id="QQ2-76-82"><span 
+href="handbuchsu38.html#x81-86000A.2.2" id="QQ2-81-97"><span 
 class="cmtt-12">&#x003C;release</span><span 
 class="cmtt-12">_times&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu40.html#x77-82000A.2.2" id="QQ2-77-83"><span 
+href="handbuchsu39.html#x82-87000A.2.2" id="QQ2-82-98"><span 
 class="cmtt-12">&#x003C;due</span><span 
 class="cmtt-12">_dates&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu41.html#x78-83000A.2.2" id="QQ2-78-84"><span 
+href="handbuchsu40.html#x83-88000A.2.2" id="QQ2-83-99"><span 
 class="cmtt-12">&#x003C;weights&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu42.html#x79-84000A.2.2" id="QQ2-79-85"><span 
+href="handbuchsu41.html#x84-89000A.2.2" id="QQ2-84-100"><span 
 class="cmtt-12">&#x003C;weights</span><span 
 class="cmtt-12">_2&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu43.html#x80-85000A.2.2" id="QQ2-80-86"><span 
+href="handbuchsu42.html#x85-90000A.2.2" id="QQ2-85-101"><span 
 class="cmtt-12">&#x003C;extra&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu44.html#x81-86000A.2.2" id="QQ2-81-87"><span 
+href="handbuchsu43.html#x86-91000A.2.2" id="QQ2-86-102"><span 
 class="cmtt-12">&#x003C;controls&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu45.html#x82-87000A.2.2" id="QQ2-82-88"><span 
+href="handbuchsu44.html#x87-92000A.2.2" id="QQ2-87-103"><span 
 class="cmtt-12">&#x003C;parameter&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu46.html#x83-88000A.2.2" id="QQ2-83-89"><span 
+href="handbuchsu45.html#x88-93000A.2.2" id="QQ2-88-104"><span 
 class="cmtt-12">&#x003C;schedule&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu47.html#x84-89000A.2.2" id="QQ2-84-90"><span 
+href="handbuchsu46.html#x89-94000A.2.2" id="QQ2-89-105"><span 
 class="cmtt-12">&#x003C;plan&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu48.html#x85-90000A.2.2" id="QQ2-85-91"><span 
+href="handbuchsu47.html#x90-95000A.2.2" id="QQ2-90-106"><span 
 class="cmtt-12">&#x003C;machine</span><span 
 class="cmtt-12">_sequences&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu49.html#x86-91000A.2.2" id="QQ2-86-92"><span 
+href="handbuchsu48.html#x91-96000A.2.2" id="QQ2-91-107"><span 
 class="cmtt-12">&#x003C;job</span><span 
 class="cmtt-12">_sequences&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu50.html#x87-92000A.2.2" id="QQ2-87-93"><span 
+href="handbuchsu49.html#x92-97000A.2.2" id="QQ2-92-108"><span 
 class="cmtt-12">&#x003C;completion</span><span 
 class="cmtt-12">_times&#x003E;</span></a></span>
 <br />&#x00A0;<span class="sectionToc" >A.3 <a 
-href="handbuchse29.html#x88-93000A.3" id="QQ2-88-94">Der Dokumenttyp <span 
+href="handbuchse33.html#x93-98000A.3" id="QQ2-93-109">Der Dokumenttyp <span 
 class="cmtt-12">algorithm </span></a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.3.1 <a 
-href="handbuchsu51.html#x89-94000A.3.1" id="QQ2-89-95">Aufbau</a></span>
+href="handbuchsu50.html#x94-99000A.3.1" id="QQ2-94-110">Aufbau</a></span>
+                                                                                         
+                                                                                         
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.3.2 <a 
-href="handbuchsu52.html#x90-95000A.3.2" id="QQ2-90-96">Beschreibung</a></span>
+href="handbuchsu51.html#x95-100000A.3.2" id="QQ2-95-111">Beschreibung</a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu53.html#x91-96000A.3.2" id="QQ2-91-97"><span 
+href="handbuchsu52.html#x96-101000A.3.2" id="QQ2-96-112"><span 
 class="cmtt-12">&#x003C;algorithm&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu54.html#x92-97000A.3.2" id="QQ2-92-98"><span 
+href="handbuchsu53.html#x97-102000A.3.2" id="QQ2-97-113"><span 
 class="cmtt-12">&#x003C;exact&#x003E; </span>und <span 
 class="cmtt-12">&#x003C;heuristic&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu55.html#x93-98000A.3.2" id="QQ2-93-99"><span 
+href="handbuchsu54.html#x98-103000A.3.2" id="QQ2-98-114"><span 
 class="cmtt-12">&#x003C;problem&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu56.html#x94-99000A.3.2" id="QQ2-94-100"><span 
+href="handbuchsu55.html#x99-104000A.3.2" id="QQ2-99-115"><span 
 class="cmtt-12">&#x003C;alpha&#x003E;</span></a></span>
-                                                                                         
-                                                                                         
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu57.html#x95-100000A.3.2" id="QQ2-95-101"><span 
+href="handbuchsu56.html#x100-105000A.3.2" id="QQ2-100-116"><span 
 class="cmtt-12">&#x003C;beta&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu58.html#x96-101000A.3.2" id="QQ2-96-102"><span 
+href="handbuchsu57.html#x101-106000A.3.2" id="QQ2-101-117"><span 
 class="cmtt-12">&#x003C;gamma&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu59.html#x97-102000A.3.2" id="QQ2-97-103"><span 
+href="handbuchsu58.html#x102-107000A.3.2" id="QQ2-102-118"><span 
 class="cmtt-12">&#x003C;alg</span><span 
 class="cmtt-12">_controls&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu60.html#x98-103000A.3.2" id="QQ2-98-104"><span 
+href="handbuchsu59.html#x103-108000A.3.2" id="QQ2-103-119"><span 
 class="cmtt-12">&#x003C;integer&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu61.html#x99-104000A.3.2" id="QQ2-99-105"><span 
+href="handbuchsu60.html#x104-109000A.3.2" id="QQ2-104-120"><span 
 class="cmtt-12">&#x003C;real&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu62.html#x100-105000A.3.2" id="QQ2-100-106"><span 
+href="handbuchsu61.html#x105-110000A.3.2" id="QQ2-105-121"><span 
 class="cmtt-12">&#x003C;choice&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu63.html#x101-106000A.3.2" id="QQ2-101-107"><span 
+href="handbuchsu62.html#x106-111000A.3.2" id="QQ2-106-122"><span 
 class="cmtt-12">&#x003C;item&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu64.html#x102-107000A.3.2" id="QQ2-102-108"><span 
+href="handbuchsu63.html#x107-112000A.3.2" id="QQ2-107-123"><span 
 class="cmtt-12">&#x003C;fixed&#x003E;</span></a></span>
 <br />&#x00A0;<span class="sectionToc" >A.4 <a 
-href="handbuchse30.html#x103-108000A.4" id="QQ2-103-109">Der Dokumenttyp <span 
+href="handbuchse34.html#x108-113000A.4" id="QQ2-108-124">Der Dokumenttyp <span 
 class="cmtt-12">controls </span></a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.4.1 <a 
-href="handbuchsu65.html#x104-109000A.4.1" id="QQ2-104-110">Aufbau</a></span>
+href="handbuchsu64.html#x109-114000A.4.1" id="QQ2-109-125">Aufbau</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.4.2 <a 
-href="handbuchsu66.html#x105-110000A.4.2" id="QQ2-105-111">Beschreibung</a></span>
+href="handbuchsu65.html#x110-115000A.4.2" id="QQ2-110-126">Beschreibung</a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu67.html#x106-111000A.4.2" id="QQ2-106-112"><span 
+href="handbuchsu66.html#x111-116000A.4.2" id="QQ2-111-127"><span 
 class="cmtt-12">&#x003C;controls&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu68.html#x107-112000A.4.2" id="QQ2-107-113"><span 
+href="handbuchsu67.html#x112-117000A.4.2" id="QQ2-112-128"><span 
 class="cmtt-12">&#x003C;parameter&#x003E;</span></a></span>
 <br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.4.3 <a 
-href="handbuchsu69.html#x108-113000A.4.3" id="QQ2-108-114">LiSA-Programmparameter</a></span>
-<br /><span class="likechapterToc" ><a 
-href="handbuchli1.html#x109-114000A.4.3" id="QQ2-109-115">Literaturverzeichnis</a></span>
+href="handbuchsu68.html#x113-118000A.4.3" id="QQ2-113-129">LiSA-Programmparameter</a></span>
+<br /><span class="appendixToc" >B <a 
+href="handbuchap2.html#x114-119000B" id="QQ2-114-130">GNU-Lizenzbedingungen</a></span>
+<br />&#x00A0;&#x00A0;<span class="likesubsectionToc" ><a 
+href="handbuchli2.html#x115-120000B" id="QQ2-115-131">GNU GENERAL PUBLIC LICENSE</a></span>
+<br />&#x00A0;&#x00A0;<span class="likesubsectionToc" ><a 
+href="handbuchli3.html#x116-121000B" id="QQ2-116-132">Preamble</a></span>
+<br />&#x00A0;&#x00A0;<span class="likesubsectionToc" ><a 
+href="handbuchli4.html#x117-122000B" id="QQ2-117-133">Terms and conditions for copying, distribution and modification</a></span>
 </div>
                                                                                          
                                                                                          
 
                                                                                          
                                                                                          
-
-                                                                                         
-                                                                                         
-                                                                                         
-                                                                                         
-
                                                                                          
                                                                                          
 
@@ -323,21 +397,33 @@ href="handbuchli1.html#x109-114000A.4.3" id="QQ2-109-115">Literaturverzeichnis</
 
                                                                                          
                                                                                          
+
+                                                                                         
+                                                                                         
                                                                                          
                                                                                          
 
                                                                                          
                                                                                          
-<!--l. 511--><p class="noindent" >
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
+                                                                                         
+                                                                                         
+
                                                                                          
                                                                                          
 <a 
- id="x1-63001r61"></a>
+ id="x1-68022r75"></a>
                                                                                          
                                                                                          
                                                                                          
                                                                                          
- 
+<a 
+ id="x1-118001r75"></a> 
 </body></html> 
 
                                                                                          

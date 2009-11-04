@@ -1,98 +1,129 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Aufbau</title> 
+<head><title>Beschreibung</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 111--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu28.html" >next</a>] [<a 
-href="#tailhandbuchsu27.html">tail</a>] [<a 
-href="handbuchse28.html#handbuchsu27.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">A.2.1   </span> <a 
- id="x64-69000A.2.1"></a>Aufbau</h4>
-                                                                                         
-                                                                                         
-<!--l. 113--><p class="noindent" >Stellvertretend für die drei Dokumenttypen ist hier der Aufbau eines <span 
-class="cmtt-12">solution</span>-Dokumentes
-dargestellt. In <span 
-class="cmtt-12">instance</span>-Dokumenten fehlen im Gegensatz dazu nur die <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Elemente,
-<span 
-class="cmtt-12">problem</span>-Dokumente bestehen nur aus dem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;problem&#x003E;</span></span></span>-Element.
-<!--l. 118--><p class="noindent" >
-      <div class="quote">
-                                                                                         
-                                                                                         
-      <div class="verbatim" id="verbatim-26">
-&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
-&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;solution&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
-&#x00A0;<br />&#x003C;solution&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;...&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta&#x00A0;...&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;...&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="..."&#x00A0;n="..."&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;release_times&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/release_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;weights&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/weights&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;weights_2&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/weights_2&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;extra&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/extra&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;controls&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="..."&#x00A0;name="..."&#x00A0;value="..."&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/controls&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;schedule&#x00A0;m="..."&#x00A0;n="..."&#x00A0;semiactive="..."&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;plan&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/plan&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;machine_sequences&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/machine_sequences&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;job_sequences&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/job_sequences&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;completion_times&#x00A0;model="lisa_native"&#x003E;
-                                                                                         
-                                                                                         
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/completion_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/schedule&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x003C;/solution&#x003E;
-</div>
-      <!--l. 173--><p class="nopar" ></div>
-                                                                                         
-                                                                                         
 <!--l. 177--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu28.html" >next</a>] [<a 
+href="handbuchsu26.html" >prev</a>] [<a 
+href="handbuchsu26.html#tailhandbuchsu26.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu27.html">tail</a>] [<a 
+href="handbuchse32.html#handbuchsu27.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.2.2   </span> <a 
+ id="x70-75000A.2.2"></a>Beschreibung</h4>
+<!--l. 181--><p class="noindent" >
+<div class="subsubsectionTOCS">
+&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu28.html#x71-76000A.2.2"><span 
+class="cmtt-12">&#x003C;solution&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu29.html#x72-77000A.2.2"><span 
+class="cmtt-12">&#x003C;instance&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu30.html#x73-78000A.2.2"><span 
+class="cmtt-12">&#x003C;problem&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu31.html#x74-79000A.2.2"><span 
+class="cmtt-12">&#x003C;alpha&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu32.html#x75-80000A.2.2"><span 
+class="cmtt-12">&#x003C;beta&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu33.html#x76-81000A.2.2"><span 
+class="cmtt-12">&#x003C;gamma&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu34.html#x77-82000A.2.2"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu35.html#x78-83000A.2.2"><span 
+class="cmtt-12">&#x003C;processing</span><span 
+class="cmtt-12">_times&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu36.html#x79-84000A.2.2"><span 
+class="cmtt-12">&#x003C;operation</span><span 
+class="cmtt-12">_set&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu37.html#x80-85000A.2.2"><span 
+class="cmtt-12">&#x003C;machine</span><span 
+class="cmtt-12">_order&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu38.html#x81-86000A.2.2"><span 
+class="cmtt-12">&#x003C;release</span><span 
+class="cmtt-12">_times&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu39.html#x82-87000A.2.2"><span 
+class="cmtt-12">&#x003C;due</span><span 
+class="cmtt-12">_dates&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu40.html#x83-88000A.2.2"><span 
+class="cmtt-12">&#x003C;weights&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu41.html#x84-89000A.2.2"><span 
+class="cmtt-12">&#x003C;weights</span><span 
+class="cmtt-12">_2&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu42.html#x85-90000A.2.2"><span 
+class="cmtt-12">&#x003C;extra&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu43.html#x86-91000A.2.2"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu44.html#x87-92000A.2.2"><span 
+class="cmtt-12">&#x003C;parameter&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu45.html#x88-93000A.2.2"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu46.html#x89-94000A.2.2"><span 
+class="cmtt-12">&#x003C;plan&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu47.html#x90-95000A.2.2"><span 
+class="cmtt-12">&#x003C;machine</span><span 
+class="cmtt-12">_sequences&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu48.html#x91-96000A.2.2"><span 
+class="cmtt-12">&#x003C;job</span><span 
+class="cmtt-12">_sequences&#x003E;</span></a></span>
+<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
+href="handbuchsu49.html#x92-97000A.2.2"><span 
+class="cmtt-12">&#x003C;completion</span><span 
+class="cmtt-12">_times&#x003E;</span></a></span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                         
+                                                                                         
+<!--l. 814--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu26.html" >prev</a>] [<a 
+href="handbuchsu26.html#tailhandbuchsu26.html" >prev-tail</a>] [<a 
 href="handbuchsu27.html" >front</a>] [<a 
-href="handbuchse28.html#handbuchsu27.html" >up</a>] </p></div>
-<!--l. 177--><p class="noindent" ><a 
+href="handbuchse32.html#handbuchsu27.html" >up</a>] </p></div>
+<!--l. 814--><p class="noindent" ><a 
  id="tailhandbuchsu27.html"></a>  
 </body></html> 

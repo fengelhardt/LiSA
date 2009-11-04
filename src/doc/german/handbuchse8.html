@@ -1,129 +1,122 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Problemtyp</title> 
+<head><title>Das File Format in LiSA</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 213--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse9.html" >next</a>] [<a 
+<!--l. 210--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse7.html" >prev</a>] [<a 
+href="handbuchse7.html#tailhandbuchse7.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse8.html">tail</a>] [<a 
-href="handbuchch3.html#handbuchse8.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
- id="x17-160003.1"></a>Problemtyp</h3>
-<!--l. 2--><p class="noindent" >Um ein Scheduling-Problem mit LiSA behandeln zu können, muss zuerst der Problemtyp in der
-3-Feld-Notation <span 
+href="handbuchch2.html#handbuchse8.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.5   </span> <a 
+ id="x17-160002.5"></a>Das File Format in LiSA</h3>
+<!--l. 1--><p class="noindent" >LiSA benutzt zur Verarbeitung von Schedulingproblemen Dateien im XML-Format. In diesen
+Dateien &#8211; im Folgenden auch <span 
+class="cmti-12">Dokumente </span>genannt &#8211; werden Problemtypen in <span 
 class="cmmi-12">&alpha;</span><span 
 class="cmsy-10x-x-120">&#x2223;</span><span 
 class="cmmi-12">&beta;</span><span 
 class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&gamma; </span>nach Graham et al. festgelegt werden. Daneben wird die Maschinen- und die
-Jobanzahl eingegeben. Dabei gilt ein Problemtyp als zulässig, wenn mindestens die
-Maschinenumgebung und eine Zielfunktion gewählt wurde. Wurde zusätzlich eine Maschinen- und
-Aufragsanzahl angegeben, kann später das Parameterfenster zur Eingabe und Veränderung der
-problemspezifischen Daten angewählt werden.
-<!--l. 10--><p class="noindent" ><span id="textcolor1">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf </span></span>
-<!--l. 12--><p class="noindent" >Nach Aufruf des Menüpunktes <span 
-class="cmbxti-10x-x-120">Datei/Neu </span>zur Eingabe eines neuen Problemtyps oder
-<span 
-class="cmbxti-10x-x-120">Bearbeiten/Problemtyp </span>zur Editierung eines bereits vorhandenen Problemtyps öffnet sich das
-Problemtyp-Fenster.
-<!--l. 17--><p class="noindent" ><span id="textcolor2">&nbsp;<br><span 
-class="cmbx-12x-x-120">Einstellungen </span></span>
-<!--l. 19--><p class="noindent" >Die Problemtypeingabe folgt den in jedem Scheduling-Lehrbuch üblichen Konventionen, vergleiche
-auch Kapitel <span 
-class="cmbx-12">Definitionen und Bezeichnungen </span><a 
-href="handbuchse4.html#x7-60002.1">2.1<!--tex4ht:ref: Definitionen und Bezeichnungen --></a>, deshalb wird an dieser Stelle auf
-eine ausführliche Beschreibung aller Möglichkeiten für die Maschinenumgebung, für die
-Nebenbedingungen und für die Zielfunktion verzichtet.
+class="cmmi-12">&gamma; </span>&#8211; Notation,
+Probleminstanzen und Schedules gespeichert. Darüber hinaus gibt es weitere Dokumente, die
+zur Algorithmenbeschreibung und zur Übergabe von Programmparametern an LiSA
+dienen.
+<!--l. 7--><p class="noindent" >Bei der Arbeit mit der LiSA-Oberfläche sind keine Kenntnisse über den Aufbau der Dokumente
+nötig. Dort treten sie nur über die Menüpunkte <span 
+class="cmbxti-10x-x-120">Datei/Speichern als </span>und <span 
+class="cmbxti-10x-x-120">Datei/Oeffnen </span>in
+Erscheinung, wo sie zur Abspeicherung und zur Anzeige bereits bearbeiteter Schedulingprobleme
+dienen. Beim externen Aufruf der LiSA-Algorithmen (<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse24.html#x55-540007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>) oder der automatischen Abarbeitung
+von Algorithmen durch <span 
+class="cmbx-12">auto</span><span 
+class="cmbx-12">_alg </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) ist die Kenntnis über den genauen Aufbau dieser
+Dateien jedoch notwendig.
+<!--l. 15--><p class="noindent" >Die XML-Dokumente lassen sich, je nach ihrer Funktion, einem <span 
+class="cmti-12">Dokumenttyp </span>zuordnen. Im
+Einzelnen gibt es fünf Dokumenttypen:
       <ul class="itemize1">
       <li class="itemize"><span 
-class="cmbx-12">Maschinenumgebung</span>
-      </li>
-      <li class="itemize"><span 
-class="cmbx-12">Nebenbedingungen</span>
-                                                                                         
-                                                                                         
-      </li>
-      <li class="itemize"><span 
-class="cmbx-12">Zielfunktion</span>
-      </li>
-      <li class="itemize"><span 
-class="cmbx-12">(Anzahl der) Maschinen</span>
-      </li>
-      <li class="itemize"><span 
-class="cmbx-12">(Anzahl der) Auftr</span><span 
-class="cmbx-12">äge</span></li></ul>
-<!--l. 33--><p class="noindent" ><span id="textcolor3">&nbsp;<br><span 
-class="cmbx-12x-x-120">Irregul</span><span 
-class="cmbx-12x-x-120">äre Zielfunktionen </span></span>
-<!--l. 35--><p class="noindent" >Zusätzlich können folgende Zielfunktionen angegeben werden:<br 
-class="newline" /><span 
-class="cmmi-12">IRREG</span>1 = &Sigma;<span 
+class="cmtt-12">problem </span>enthält nur einen Problemtyp in <span 
+class="cmmi-12">&alpha;</span><span 
 class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">i</span></sub> <span 
-class="cmsy-10x-x-120">&minus; </span><span 
-class="cmmi-12">d</span><sub><span 
-class="cmmi-8">i</span></sub><span 
-class="cmsy-10x-x-120">&#x2223;</span><br 
-class="newline" /><span 
-class="cmmi-12">IRREG</span>2 = <span 
-class="cmmi-12">w</span><sub><span 
-class="cmmi-8">late</span></sub><span 
-class="cmmi-12">L</span><sub><span 
-class="cmmi-8">max</span></sub> + <span 
-class="cmmi-12">w</span><sub><span 
-class="cmmi-8">early</span></sub> max(<span 
-class="cmmi-12">d</span><sub><span 
-class="cmmi-8">i</span></sub> <span 
-class="cmsy-10x-x-120">&minus; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">i</span></sub>)<sup><span 
-class="cmr-8">+</span></sup> + &Sigma;<span 
-class="cmmi-12">w</span><sub>
-<span 
-class="cmmi-8">i</span></sub><span 
-class="cmmi-12">T</span><sub><span 
-class="cmmi-8">i</span></sub> + &Sigma;<span 
-class="cmmi-12">w</span><sub><span 
-class="cmmi-8">early</span></sub>(<span 
-class="cmmi-12">d</span><sub><span 
-class="cmmi-8">i</span></sub> <span 
-class="cmsy-10x-x-120">&minus; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">i</span></sub>)<sup><span 
-class="cmr-8">+</span></sup><br 
-class="newline" />Man beachte, daß die in dieser Zielfunktion vorkommenden zusätzlichen Gewichte von einem
-externen Problemgenerator erzeugt werden müssen.
-<!--l. 41--><p class="noindent" ><span id="textcolor4">&nbsp;<br><span 
-class="cmbx-12x-x-120">Bemerkungen </span></span>
-<!--l. 43--><p class="noindent" >LiSA versucht stets, die letzte Eingabe umzusetzen. Wenn man eine inkonsistente Eingabe
-macht, modifiziert LiSA gegebenenfalls frühere Eingaben. Gibt man zum Beispiel für ein
-Einmaschinenproblem Mehrmaschinenaufträge an, so wird der Problemtyp automatisch auf P
-geändert.<br 
-class="newline" />Da die Klassifikation ständig erweitert wird, kann es sein, daß bestimmte Felder noch nicht
-implementiert sind. LiSA erlaubt schon jetzt die Eingabe von mehreren zehntausend verschiedenen
-Problemtypen.<br 
-class="newline" />Nicht zu jedem auswählbaren Problemtyp ist schon ein Lösungsverfahren implementiert. Passende
-Algorithmen sind in den Untermenüs von <span 
-class="cmbxti-10x-x-120">Algorithmen/Exakte Verfahren </span>und
-<span 
-class="cmbxti-10x-x-120">Algorithmen/Heuristische Verfahren </span>auszuwählen, sofern LiSA auch schon die Parameter
-kennt.
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>&#8211; Notation
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">instance </span>enthält neben dem Problemtyp auch eine Probleminstanz
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">schedule </span>enthält zusätzlich ein oder mehrere Pläne
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">algorithm </span>enthält eine Algorithmenbeschreibung
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">controls </span>enthält Programmparameter für LiSA</li></ul>
+<!--l. 29--><p class="noindent" >Alle XML-Dateien in LiSA beginnen mit den folgenden Zeilen:
+<!--l. 31--><p class="noindent" >
+      <div class="quote">
                                                                                          
                                                                                          
-<!--l. 224--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse9.html" >next</a>] [<a 
+      <div class="verbatim" id="verbatim-1">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
+</div>
+      <!--l. 37--><p class="nopar" ></div>
+<!--l. 40--><p class="noindent" >Die erste Zeile ist der typische Dateikopf für XML-Dateien und muss für jede neue Datei
+übernommen werden. Sie beschreibt die verwendete XML-Version und die Zeichencodierung (hier
+latin-1). Die zweite Zeile gibt den Dokumenttyp (hier <span 
+class="cmtt-12">instance</span>) an. Zusätzlich wird hier eine
+Datei LiSA.dtd angegeben. Sie enthält eine Strukturbeschreibung (eine sogenannte <span 
+class="cmti-12">document type</span>
+<span 
+class="cmti-12">definititon</span>, DTD), die dem XML-Interpreter hilft, den korrekten Aufbau des Dokumentes zu
+überprüfen. Diese Datei befindet sich je einmal in den Unterordnern <span 
+class="cmtt-12">bin </span>und <span 
+class="cmtt-12">data </span>des
+LiSA-Hauptverzeichnisses.
+<!--l. 50--><p class="noindent" >
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.1 <a 
+href="handbuchsu7.html#x18-170002.5.1">Der Dokumenttyp <span 
+class="cmtt-12">problem</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.2 <a 
+href="handbuchsu8.html#x19-180002.5.2">Der Dokumenttyp <span 
+class="cmtt-12">instance</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.3 <a 
+href="handbuchsu9.html#x20-190002.5.3">Der Dokumenttyp <span 
+class="cmtt-12">solution</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.4 <a 
+href="handbuchsu10.html#x21-200002.5.4">Der Dokumenttyp <span 
+class="cmtt-12">algorithm</span></a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >2.5.5 <a 
+href="handbuchsu11.html#x22-210002.5.5">Der Dokumenttyp <span 
+class="cmtt-12">controls</span></a></span>
+</div>
+
+
+
+
+                                                                                         
+                                                                                         
+<!--l. 219--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse7.html" >prev</a>] [<a 
+href="handbuchse7.html#tailhandbuchse7.html" >prev-tail</a>] [<a 
 href="handbuchse8.html" >front</a>] [<a 
-href="handbuchch3.html#handbuchse8.html" >up</a>] </p></div>
-<!--l. 224--><p class="noindent" ><a 
+href="handbuchch2.html#handbuchse8.html" >up</a>] </p></div>
+<!--l. 219--><p class="noindent" ><a 
  id="tailhandbuchse8.html"></a>  
 </body></html> 

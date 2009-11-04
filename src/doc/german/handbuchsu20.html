@@ -1,131 +1,182 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Irreduzibilitatstest</title> 
+<head><title>Threshold Accepting</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 361--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1071--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu21.html" >next</a>] [<a 
 href="handbuchsu19.html" >prev</a>] [<a 
 href="handbuchsu19.html#tailhandbuchsu19.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu20.html">tail</a>] [<a 
-href="handbuchse22.html#handbuchsu20.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">6.1.3   </span> <a 
- id="x49-480006.1.3"></a>Irreduzibilitätstest</h4>
-<!--l. 363--><p class="noindent" >Dieser Test löst verschiedene Aufgabenstellungen aus der Irreduzibilitätstheorie, Literaturhinweis:
-Willenius. Er ist für open-, job- und flow-shop Probleme mit Bereitstellungszeiten der Jobs und
-mit den regulären Zielfunktionen Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und
-SumWiTi anwendbar.
-<!--l. 367--><p class="noindent" >Ein Plan <span 
-class="cmmi-12">S</span><sup><span 
-class="cmsy-8">&lowast;</span></sup> reduziert einen Plan <span 
-class="cmmi-12">S</span>, wenn <span 
-class="cmmi-12">S</span><sup><span 
-class="cmsy-8">&lowast;</span></sup> für jede Wahl der Bearbeitungszeiten keinen
-schlechteren Zielfunktionswert als <span 
-class="cmmi-12">S </span>liefert. Zwei Pläne sind zueinander ähnlich, wenn sie für jede
-Wahl von Bearbeitungszeiten den gleichen Zielfunktionswert besitzen. Ein Plan <span 
-class="cmmi-12">S</span><sup><span 
-class="cmsy-8">&lowast;</span></sup> reduziert einen
-Plan <span 
-class="cmmi-12">S </span>echt, wenn sie nicht ähnlich zueinander sind und wenn <span 
-class="cmmi-12">S</span><sup><span 
-class="cmsy-8">&lowast;</span></sup> den Plan <span 
-class="cmmi-12">S </span>reduziert. Ein
-Plan <span 
-class="cmmi-12">S </span>heißt irreduzibel, wenn es keinen Plan <span 
-class="cmmi-12">S</span><sup><span 
-class="cmsy-8">&lowast;</span></sup> gibt, der <span 
-class="cmmi-12">S </span>echt reduziert. Damit
-existiert in der Menge aller irreduziblen Pläne ein global optimaler Plan für jede Wahl der
-Bearbeitungszeiten.
-<!--l. 377--><p class="noindent" ><span id="textcolor47">&nbsp;<br><span 
+href="handbuchse14.html#handbuchsu20.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.3.4   </span> <a 
+ id="x39-380004.3.4"></a>Threshold Accepting</h4>
+<!--l. 1074--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1076--><p class="noindent" >Threshold Accepting ist ebenfalls eine erweiterte Version der Iterativen Suche. Im Unterschied zur
+Lokalen Suche werden in jedem Schritt auch kleine Verschlechterungen akzeptiert. Die Schwelle für
+die Akzeptanz schlechterer Lösungen sinkt jedoch im Laufe des Prozesses ab. In LiSA ist eine
+lineare Verkleinerung der Threshold-Schranke implementiert.
+<!--l. 1084--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 379--><p class="noindent" >Wenn LiSA den Problemtyp und alle Parameter kennt und bereits ein Plan erzeugt wurde, läßt
-sich der Algorithmus im Menüpunkt <span 
-class="cmbxti-10x-x-120">Heuristische Verfahren/Irreduzibilit</span><span 
-class="cmbxti-10x-x-120">ätstest </span>des Menues
+<!--l. 1086--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
 <span 
-class="cmbxti-10x-x-120">Algorithmen </span>aufrufen.
-<!--l. 384--><p class="noindent" ><span id="textcolor48">&nbsp;<br><span 
+class="cmbxti-10x-x-120">Verfahren/Threshold Accepting </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1092--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
-class="cmbx-12">Erzeuge Pl</span><span 
-class="cmbx-12">äne:</span> </dt><dd 
-class="description">Es wird eingegeben, welche Pläne erzeugt werden sollen:
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">SIMILAR </span>Es werden alle zum Ausgangsplan ähnlichen Pläne erzeugt.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">ALL</span><span 
-class="cmbx-12">_</span><span 
-class="cmbx-12">REDUCING </span>Es werden alle Pläne erzeugt, die den Eingabeplan streng
-           reduzieren und zwar genau einer aus jeder Ähnlichkeitsklasse. Wenn kein solcher
-           Plan  existiert,  wird  eine  LiSA-Fehlermeldung  ausgegeben:  Warning:  Plan  is
-           irreducible.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">ITERATIVE</span><span 
-class="cmbx-12">_</span><span 
-class="cmbx-12">REDUCING  </span>Sobald  ein  Plan  gefunden  wurde,  der  den
-           ursprünglichen Plan streng reduziert, wird der Algorithmus unterbrochen und mit
-           dem neuen Plan erneut gestartet. Dies wird fortgeführt bis ein irreduzibler Plan
-           gefunden wurde.
-           <!--l. 397--><p class="noindent" >Sollte   der   Ausgangsplan   irreduzibel   sein,   wird   eine   LiSA-Fehlermeldung
-           ausgegeben: Warning: Plan is irreducible.</li></ul>
+class="cmbx-12">Anzahl der L</span><span 
+class="cmbx-12">ösungen:</span> </dt><dd 
+class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösungen
+      festgelegt.
       </dd><dt class="description">
 <span 
-class="cmbx-12">Gib folgende Pl</span><span 
-class="cmbx-12">äne zur</span><span 
-class="cmbx-12">ück:</span> </dt><dd 
-class="description">Eine Abspeicherung erfolgt in der Datei <span 
-class="cmti-12">algo</span><span 
-class="cmti-12">_out.XML </span>im
-      Verzeichnis <span 
-class="cmti-12">.lisa/proc</span>. In LiSA wird das Ergebnis unter <span 
-class="cmbxti-10x-x-120">Bearbeiten/Liste von Plaenen</span>
-      angezeigt.
-                                                                                         
-                                                                                         
-           <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">ALL  </span>Alle  erzeugten  Pläne  werden  zurückgegeben,  wobei  die  Anzahl  im
-           Zusammenhang mit der ALL_REDUCING Option sehr groß sein kann.
-           </li>
-           <li class="itemize"><span 
-class="cmbx-12">ONLY</span><span 
-class="cmbx-12">_</span><span 
-class="cmbx-12">IRREDUCIBLE </span>Nur irreduzible Pläne werden zurückgegeben.</li></ul>
+class="cmbx-12">Abbruch nach Stillst</span><span 
+class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
+class="description">Hiermit kann ein Abbruchkriterium
+      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
+      besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
+class="cmbx-12">Anzahl der L</span><span 
+class="cmbx-12">ösungen</span>,
+      so ist er unwirksam.
       </dd><dt class="description">
 <span 
-class="cmbx-12">Erzeuge Pl</span><span 
-class="cmbx-12">äne in zuf</span><span 
-class="cmbx-12">älliger Reihenfolge:</span> </dt><dd 
-class="description">Auswahlmöglichkeiten:
+class="cmbx-12">Anfangswahrscheinlichkeit:</span> </dt><dd 
+class="description">Dieser     Parameter     gibt     die     maximal     zulässige
+      Verschlechterung in Promille wieder.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Maximale Stillstandsanzahl:</span> </dt><dd 
+class="description">Um  bei  zu  gering  gewordener  Wahrscheinlichkeit  ein
+      Stehenbleiben des Verfahrens in einem lokalen Optimum zu verhindern, wird nach der
+      hier angegebenen Anzahl von Iterationen ohne Verbesserung der aktuellen Lösung die
+      Wahrscheinlichkeit wieder auf ihren Anfangswert zurückgesetzt.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k f</span><span 
+class="cmbx-12">ür k-API oder k-REINSERTION:</span> </dt><dd 
+class="description">Hier wird der Parameter <span 
+class="cmti-12">k </span>angegeben, falls als
+      <span 
+class="cmbx-12">Nachbarschaft </span>k_API oder k_REINSERTION gewählt wird.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abbruchschranke (Abbruchkriterium):</span> </dt><dd 
+class="description">Hier   kann   eine   obere   Schranke   für   die
+      Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
+      abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
+      wurde.
+                                                                                         
+                                                                                         
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Nachbarschaft:</span> </dt><dd 
+class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
+      einem Plan neue Pläne erzeugt werden.<br 
+class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">YES </span>Pläne werden vom Algorithmus in zufälliger Reihenfolge erzeugt. Dies ist
-           nur interessant im Zusammenhang mit der ITERATIVE_REDUCING Option, um
-           bei verschiedenen Aufrufen des Algorithmus verschiedene Resultate zu erhalten.
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TST</span>
            </li>
            <li class="itemize"><span 
-class="cmbx-12">NO </span>Pläne werden vom Algorithmus in einer effizienten Reihenfolge erzeugt.</li></ul>
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
+<!--l. 1139--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1141--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird Threshold Accepting wie folgt
+aufgerufen:
+<!--l. 1145--><p class="noindent" >
+      <div class="quote">
                                                                                          
                                                                                          
-<!--l. 424--><div class="crosslinks"><p class="noindent">[<a 
+      <div class="verbatim" id="verbatim-13">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;ThresholdAccepting
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;PROB&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAX_STUCK&#x00A0;30
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1160--><p class="nopar" ></div>
+<!--l. 1163--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 1167--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter
+aufgerufen werden. Für Threshold Accepting muss als Methode ThresholdAccepting
+aufgerufen werden. Angaben zur Auswahl der <span 
+class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf.
+zusätzlich mit entsprechendem Parameter für <span 
+class="cmti-12">k</span>). Danach können optional die folgenden
+Parameter gesetzt werden: die <span 
+class="cmbx-12">Gesamtzahl der erzeugten Pl</span><span 
+class="cmbx-12">äne</span>, die <span 
+class="cmbx-12">Anzahl der</span>
+<span 
+class="cmbx-12">Stillst</span><span 
+class="cmbx-12">ände</span>, nach denen abgebrochen wird, die <span 
+class="cmbx-12">Startwahrscheinlichkeit</span>, eine etwaige
+<span 
+class="cmbx-12">Abbruchschranke</span>.
+                                                                                         
+                                                                                         
+<!--l. 1180--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu21.html" >next</a>] [<a 
 href="handbuchsu19.html" >prev</a>] [<a 
 href="handbuchsu19.html#tailhandbuchsu19.html" >prev-tail</a>] [<a 
 href="handbuchsu20.html" >front</a>] [<a 
-href="handbuchse22.html#handbuchsu20.html" >up</a>] </p></div>
-<!--l. 424--><p class="noindent" ><a 
+href="handbuchse14.html#handbuchsu20.html" >up</a>] </p></div>
+<!--l. 1180--><p class="noindent" ><a 
  id="tailhandbuchsu20.html"></a>  
 </body></html> 

@@ -1,51 +1,174 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Komplexitatsstatus eines Problems</title> 
+<head><title>Tabu-Suche</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 341--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 813--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu19.html" >next</a>] [<a 
+href="handbuchsu17.html" >prev</a>] [<a 
+href="handbuchsu17.html#tailhandbuchsu17.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu18.html">tail</a>] [<a 
-href="handbuchse22.html#handbuchsu18.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">6.1.1   </span> <a 
- id="x47-460006.1.1"></a>Komplexitätsstatus eines Problems</h4>
-<!--l. 1--><p class="noindent" >LiSA ist in der Lage, den Komplexitätsstatus eines Problems in der <span 
-class="cmmi-12">&alpha;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&beta;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&gamma; </span>- Notation
-anzugeben. Die Bestimmung der Komplexität wird durch Analyse einer BibTeX-Datenbank
-(Datei classify.bib) durchgeführt, die auf der folgenden Sammlung von Resultaten
-für Schedulingprobleme basiert: Complexity results of scheduling problems, siehe:
-http://www.mathematik.uni-osnabrueck.de/research/OR/class/.
-<!--l. 8--><p class="noindent" >&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf</span>
+href="handbuchse14.html#handbuchsu18.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.3.2   </span> <a 
+ id="x37-360004.3.2"></a>Tabu-Suche</h4>
+<!--l. 816--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
+<!--l. 818--><p class="noindent" >Ber der Tabu-Suche handelt es sich um eine einfache Erweiterung der Iterativen Suche. Um nicht
+zu schnell in einem schlechten lokalen Optimum stecken zu bleiben, wird immer der Nachbar mit
+dem besten Zielfunktionswert als nächste Lösung akzeptiert. Um bei einer Verschlechterung in
+einem Schritt zu verhindern, dass man im nächsten Schritt wieder zu der bereits betrachteten
+(besseren) Lösung zurückgeht, werden alle besuchten Lösungen in einer Tabu-Liste gespeichert
+und für eine nochmalige Betrachtung gesperrt. Um die Rechenzeit für die Vergleiche
+jeder Lösung mit dieser Tabu-Liste in Grenzen zu halten, wird die Liste in ihrer Länge
+begrenzt.
+<!--l. 831--><p class="noindent" ><span id="textcolor29">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 833--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Tabu-Suche </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 839--><p class="noindent" ><span id="textcolor30">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Anzahl der L</span><span 
+class="cmbx-12">ösungen:</span> </dt><dd 
+class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösungen
+      festgelegt.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Tabulistenl</span><span 
+class="cmbx-12">änge:</span> </dt><dd 
+class="description">Dieser   Parameter   bestimmt,   wie   viele   vergangene   Lösungen   im
+      &#8216;Gedächtnis&#8217; des Verfahrens bleiben, und im aktuellen Schritt nicht erneut gewählt
+      werden dürfen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Anzahl der Nachbarn:</span> </dt><dd 
+class="description">Hier wird festgelegt, wieviele Nachbarn in jedem Schritt generiert
+      werden sollen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k f</span><span 
+class="cmbx-12">ür k-API oder k-REINSERTION:</span> </dt><dd 
+class="description">Hier wird der Parameter <span 
+class="cmti-12">k </span>angegeben, falls als
+      <span 
+class="cmbx-12">Nachbarschaft </span>k_API oder k_REINSERTION gewählt wird.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abbruchschranke (Abbruchkriterium):</span> </dt><dd 
+class="description">Hier   kann   eine   obere   Schranke   für   die
+      Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
+      abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
+      wurde.
                                                                                          
                                                                                          
-<!--l. 10--><p class="noindent" >Sobald ein Problemtyp eingegeben ist, kann man den Menüpunkt <span 
-class="cmbxti-10x-x-120">Extras/Problemklassifikation</span>
-anwählen. Im Fenster Problemklassifikation wird angegeben, ob das Problem polynomial lösbar,
-pseudo-polynomial lösbar, NP-schwer oder NP-schwer im strengen Sinne ist.
-<!--l. 14--><p class="noindent" >Wenn die Komplexität des betrachteten Problems bekannt ist, wird ein Hinweis auf die
-entsprechende Literaturquelle gegeben, die die Aussage belegt. Für die Ausgabe der
-entsprechenden vollständigen Literaturquellen muß der Button <span 
-class="cmbxti-10x-x-120">Vollstaendige Literaturquellen</span>
-gedrückt werden.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Nachbarschaft:</span> </dt><dd 
+class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise
+      aus einem Plan neue Pläne erzeugt werden.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TST</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
+      </dd></dl>
+<!--l. 881--><p class="noindent" ><span id="textcolor31">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 883--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird die Tabu-Suche wie folgt
+aufgerufen:
+<!--l. 887--><p class="noindent" >
+      <div class="quote">
                                                                                          
                                                                                          
-<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+      <div class="verbatim" id="verbatim-11">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;TabuSearch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;TABULENGTH&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_NGHB&#x00A0;50
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 901--><p class="nopar" ></div>
+<!--l. 904--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+Parametern ist hier jeweils der default-Wert angegeben.
+<!--l. 908--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
+werden. Für die Tabu Suche muss als Methode TabuSearch aufgerufen werden. Angaben zur
+Auswahl der <span 
+class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf. zusätzlich mit entsprechendem Parameter für
+<span 
+class="cmti-12">k</span>). Danach können optional die folgenden Parameter gesetzt werden: die <span 
+class="cmbx-12">Gesamtzahl der</span>
+<span 
+class="cmbx-12">erzeugten Pl</span><span 
+class="cmbx-12">äne </span>, die <span 
+class="cmbx-12">L</span><span 
+class="cmbx-12">änge der Tabuliste</span>, die <span 
+class="cmbx-12">Anzahl der erzeugten Nachbarn</span>, eine
+etwaige <span 
+class="cmbx-12">Abbruchschranke</span>.
+                                                                                         
+                                                                                         
+<!--l. 921--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu19.html" >next</a>] [<a 
+href="handbuchsu17.html" >prev</a>] [<a 
+href="handbuchsu17.html#tailhandbuchsu17.html" >prev-tail</a>] [<a 
 href="handbuchsu18.html" >front</a>] [<a 
-href="handbuchse22.html#handbuchsu18.html" >up</a>] </p></div>
-<!--l. 1--><p class="noindent" ><a 
+href="handbuchse14.html#handbuchsu18.html" >up</a>] </p></div>
+<!--l. 921--><p class="noindent" ><a 
  id="tailhandbuchsu18.html"></a>  
 </body></html> 

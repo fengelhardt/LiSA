@@ -1,63 +1,369 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Der Dokumenttyp problem</title> 
+<head><title>Plane und Zeitplane (Sequences and Schedules)</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 42--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 15--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu2.html" >next</a>] [<a 
 href="#tailhandbuchsu1.html">tail</a>] [<a 
-href="handbuchse7.html#handbuchsu1.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">2.4.1   </span> <a 
- id="x11-100002.4.1"></a>Der Dokumenttyp <span 
-class="cmtt-12">problem</span></h4>
-<!--l. 46--><p class="noindent" >Eine XML-Datei vom Dokumenttyp <span 
-class="cmtt-12">problem </span>enthält nur eine Problembeschreibung in der
-üblichen <span 
-class="cmmi-12">&alpha;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&beta;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&gamma; </span>&#8211; Notation. Hier eine Beispieldatei mit der Codierung des Problemtyps
+href="handbuchse6.html#handbuchsu1.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.1   </span> <a 
+ id="x10-90002.3.1"></a>Pläne und Zeitpläne (Sequences and Schedules)</h4>
+<!--l. 16--><p class="noindent" >Zur Einführung der Begriffe Plan und Schedule werden die folgenden Graphen definiert, wobei die
+Menge der Knoten gerade die Menge der Operationen <span 
+class="cmmi-12">SIJ </span>ist:
+      <ul class="itemize1">
+      <li class="itemize">Der  Graph  der  technologischen  Reihenfolgen  <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>)  enthält  alle  Bögen,  die  den
+      direkten Vorrangbedingungen der technologischen Reihenfolgen der Maschinen für die
+      Aufträge entsprechen.
+      </li>
+      <li class="itemize">Der  Graph  der  organisatorischen  Reihenfolgen  <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>)  enthält  alle  Bögen,  die  den
+      direkten Vorrangbedingungen der organisatorischen Reihenfolgen der Aufträge auf den
+      Maschinen entsprechen.
+      </li>
+      <li class="itemize">Der Graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) = (<span 
+class="cmmi-12">SIJ,A</span>) enthält alle Bögen aus <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) und <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>), d.h.
+      <center class="math-display" >
+      <img 
+src="handbuch2x.png" alt="                    (
+                    |  (i = k &and; nach der Bearbeitung von Job  Ai auf
+                    |{   M  wird dieser Job auf M  bearbeitet)&or;
+((ij),(kl)) &isin; A &lArr; &rArr;        j                      l
+                    ||(  (j = l &and; nachdem die Maschine  Mj  den Job Ai bearbeitet hat,
+                        bearbeitet diese Maschine den Job Ak.)
+      " class="math-display" ></center>
+      <!--l. 31--><p class="nopar" ></li></ul>
+<!--l. 33--><p class="noindent" >Eine Kombination von technologischen und organisatorischen Reihenfolgen wird <span 
+class="cmti-12">zul</span><span 
+class="cmti-12">ässig </span>genannt,
+wenn der zugehörende Graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) zyklenfrei ist. In diesem Fall heißt der Graph
 <span 
-class="cmmi-12">F</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">r</span><sub><span 
-class="cmmi-8">i</span></sub><span 
-class="cmmi-12">,intree</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>:
-<!--l. 50--><p class="noindent" >
-      <div class="quote">
+class="cmti-12">Plangraph</span>.
+<div class="newtheorem">
+<!--l. 37--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-12">Beispiel</span><span 
+class="cmbx-12">&#x00A0;1</span> </span><span 
+class="cmti-12">Drei     Jobs     sollen     auf     vier     Maschinen     bearbeitet     werden.</span>
+<span 
+class="cmti-12">Die Bearbeitungszeitmatrix </span><span 
+class="cmmi-12">PT </span><span 
+class="cmti-12">und die technologischen und organisatorischen Reihenfolgen</span>
+<span 
+class="cmti-12">sind gegeben durch</span>
+<center class="math-display" >
+<img 
+src="handbuch3x.png" alt="      &lfloor;             &rfloor;
+         2  1  0  1
+PT  = &lceil;  2  3  4  3 &rceil; , deshalb gilt SIJ = I &#x00D7; J \{(13)}.
+
+         1  5  1  2
+" class="math-display" ></center>
+<div class="center" 
+>
+<!--l. 43--><p class="noindent" >
+<!--l. 44--><p class="noindent" ><div class="array"> <table id="TBL-5" class="array" 
+cellpadding="0" cellspacing="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"><col 
+id="TBL-5-3"><col 
+id="TBL-5-4"><col 
+id="TBL-5-5"><col 
+id="TBL-5-6"></colgroup><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub>             </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub>           </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">                    </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td></tr></table>                                                                                  </div></div>
+<!--l. 51--><p class="noindent" ><span 
+class="cmti-12">Die folgende Abbildung zeigt die Graphen </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>)<span 
+class="cmti-12">, </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) <span 
+class="cmti-12">und </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>)<span 
+class="cmti-12">: </span><hr class="figure"><div class="figure" 
+><a 
+ id="x10-90021"></a>
+<div class="center" 
+>
+<!--l. 53--><p class="noindent" >
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-2">
-&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"&#x003E;
-&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;problem&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
-&#x00A0;<br />&#x003C;problem&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="F"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta&#x00A0;release_times="yes"&#x00A0;prec="intree"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ci"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x003C;/problem&#x003E;
+<!--l. 54--><p class="noindent" ><img 
+src="handbuch4x.png" alt="PIC" class="graphics" width="341.45724pt" height="284.5337pt" ><!--tex4ht:graphics  
+name="handbuch4x.png" src="bilder/bild1_neu.eps"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Abbildung&#x00A0;2.1: </span><span  
+class="content"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>), <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) und <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) </span></div><!--tex4ht:label?: x10-90021 -->
+<!--l. 57--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 59--><p class="noindent" ><span 
+class="cmti-12">Diese Kombination von technologischen und organisatorischen Reihenfolgen ist nicht zul</span><span 
+class="cmti-12">ässig, da</span>
+<span 
+class="cmti-12">der Digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">den Zyklus</span>
+<center class="math-display" >
+<img 
+src="handbuch5x.png" alt="(1, 2) &rarr; (1,4) &rarr;  (2, 4) &rarr; (2,1) &rarr;  (3,1) &rarr; (3,2) &rarr;  (1,2)  " class="math-display" ></center>
+<span 
+class="cmti-12">enth</span><span 
+class="cmti-12">ält. Dann w</span><span 
+class="cmti-12">äre jede Operation auf dem Zyklus Vorg</span><span 
+class="cmti-12">änger und Nachfolger von sich selbst, was</span>
+<span 
+class="cmti-12">nat</span><span 
+class="cmti-12">ürlich logisch nicht geht.</span><br 
+class="newline" /><span 
+class="cmti-12">Wenn wir f</span><span 
+class="cmti-12">ür die technologischen und organisatorischen Reihenfolgen die nat</span><span 
+class="cmti-12">ürliche</span>
+<span 
+class="cmti-12">Reihenfolge der Maschinen bzw. der Jobs w</span><span 
+class="cmti-12">ählen, kann der Digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">keine Zyklen</span>
+<span 
+class="cmti-12">enthalten, da alle horizontalen B</span><span 
+class="cmti-12">ögen von links nach rechts und alle vertikalen B</span><span 
+class="cmti-12">ögen</span>
+<span 
+class="cmti-12">von oben nach unten gerichtet sind. In diesem Fall ist der Digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">ein</span>
+<span 
+class="cmti-12">Plangraph.</span>
 </div>
-      <!--l. 61--><p class="nopar" ></div>
-<!--l. 64--><p class="noindent" >Eine vollständige Liste für die Codierung aller Problemtypen in XML findet sich im Anhang
-<a 
-href="handbuchap1.html#x59-64000A">A<!--tex4ht:ref: XML-Referenz --></a>.
+<!--l. 69--><p class="noindent" >Jetzt wird jeder Knoten (<span 
+class="cmmi-12">ij</span>) des Plangraphen <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) mit der Bearbeitungszeit <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> gewichtet.
+Dann bezeichnet man einen Zeitplan der Bearbeitung aller Operationen als <span 
+class="cmti-12">Schedule</span>.
+Schedules werden gewöhnlich durch die Start- oder Endzeitpunkte der Bearbeitung aller
+Operationen beschrieben und durch <span 
+class="cmti-12">Ganttdiagramme </span>visualisiert, die <span 
+class="cmti-12">maschinenorientiert</span>
                                                                                          
                                                                                          
-<!--l. 69--><div class="crosslinks"><p class="noindent">[<a 
+oder <span 
+class="cmti-12">auftragsorientiert </span>sein können. Es existieren die folgenden Klassen von Schedules:
+<br 
+class="newline" />
+<!--l. 75--><p class="noindent" >Ein Schedule heißt <span 
+class="cmti-12">semiaktiv</span>, wenn keine Operation eher fertig werden kann, ohne dass man den
+zugehörenden Plan ändert.<br 
+class="newline" />
+<!--l. 78--><p class="noindent" >Ein Schedule heißt <span 
+class="cmti-12">aktiv</span>, wenn keine Operation früher fertig werden kann, ohne dass irgendeine
+andere Operation später fertig wird. <br 
+class="newline" />
+<!--l. 81--><p class="noindent" >Ein Schedule heißt <span 
+class="cmti-12">non-delay</span>, wenn keine Maschine stillsteht, solange es einen verfügbaren Job
+gibt, der auf dieser Maschine zu bearbeiten ist.<br 
+class="newline" />
+<!--l. 85--><p class="noindent" >Jeder non-delay Schedule ist aktiv und jeder aktive Schedule ist semiaktiv. Die Umkehrung ist im
+allgemeinen nicht gültig.<br 
+class="newline" />
+<div class="newtheorem">
+<!--l. 87--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-12">Beispiel</span><span 
+class="cmbx-12">&#x00A0;2</span> </span><span 
+class="cmti-12">Zu der Bearbeitungsmatrix aus Beispiel 1 ist der folgende azyklische Digraph</span>
+<span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">gegeben. Damit kann der zugeh</span><span 
+class="cmti-12">örende semiaktive Schedule in einem</span>
+<span 
+class="cmti-12">auftragsorientierten Ganttdiagramm visualisiert werden. Zun</span><span 
+class="cmti-12">ächst werden alle Operationen</span>
+<span 
+class="cmti-12">bearbeitet, die Quellen (Knoten ohne Vorg</span><span 
+class="cmti-12">änger) im Plangraphen sind. Dann streicht</span>
+<span 
+class="cmti-12">man die Quellen und alle von ihnen ausgehenden B</span><span 
+class="cmti-12">ögen und ordnet die Operationen als</span>
+<span 
+class="cmti-12">n</span><span 
+class="cmti-12">ächste an, die nun Quellen sind, usw. Der Schedule ist dar</span><span 
+class="cmti-12">überhinaus aktiv, aber im</span>
+<span 
+class="cmti-12">open-shop Fall nicht non-delay, da die Operation </span>(11) <span 
+class="cmti-12">zum Zeitpunkt 2 starten k</span><span 
+class="cmti-12">önnte.</span>
+<hr class="figure"><div class="figure" 
+><a 
+ id="x10-90042"></a>
+<div class="center" 
+>
+<!--l. 92--><p class="noindent" >
+<div class="minipage">
+<!--l. 94--><p class="noindent" ><img 
+src="handbuch6x.png" alt="PIC" class="graphics" width="128.03868pt" height="85.35934pt" ><!--tex4ht:graphics  
+name="handbuch6x.png" src="bilder/bild2.eps"  
+-->
+</div> &#x00A0;&#x00A0;        <div class="minipage">
+<img 
+src="handbuch7x.png" alt="PIC" class="graphics" width="170.721pt" height="79.67148pt" ><!--tex4ht:graphics  
+name="handbuch7x.png" src="bilder/gantt1.eps"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Abbildung&#x00A0;2.2: </span><span  
+class="content">Plangraph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) und Schedule (auftragsorientiertes Ganttdiagramm)</span></div><!--tex4ht:label?: x10-90042 -->
+</div>
+<!--l. 101--><p class="noindent" ></div><hr class="endfigure">
+                                                                                         
+                                                                                         
+</div>
+                                                                                         
+                                                                                         
+<!--l. 104--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu2.html" >next</a>] [<a 
 href="handbuchsu1.html" >front</a>] [<a 
-href="handbuchse7.html#handbuchsu1.html" >up</a>] </p></div>
-<!--l. 69--><p class="noindent" ><a 
+href="handbuchse6.html#handbuchsu1.html" >up</a>] </p></div>
+<!--l. 104--><p class="noindent" ><a 
  id="tailhandbuchsu1.html"></a>  
 </body></html> 

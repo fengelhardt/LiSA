@@ -1,91 +1,90 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Die Sprache XML</title> 
+<head><title>Darstellung von Daten</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu26.html" >next</a>] [<a 
-href="#tailhandbuchsu25.html">tail</a>] [<a 
-href="handbuchse27.html#handbuchsu25.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">A.1.1   </span> <a 
- id="x61-66000A.1.1"></a>Die Sprache XML</h4>
-<!--l. 20--><p class="noindent" >XML (<span 
-class="cmti-12">extensible markup language</span>) ist eine HTML-ähnliche Auszeichnungssprache für
-Informationen in Klartextform. Genau wie in HTML bestehen XML-Dokumente aus Elementen,
-die miteinander verschachtelt werden können, sodass eine Baumstruktur entsteht. Die Elemente
-können Text, Attribute und weitere Elemente enthalten. An dieser Stelle soll auf einige
-Begriffe eingegangen werden, die in dieser Dokumentation in Verbindung mit XML häufig
-benutzt werden. Diese Beschreibungen sind jedoch stark vereinfacht und dienen nur dem
-Grundverständnis der hier gezeigten Beispiele. Eine genauere Beschreibung der Sprache XML
-kann auf der Website des World Wide Web Consortium (<a 
-href="http://www.w3.org/xml" >www.w3.org/xml</a>) eingesehen
-                                                                                         
-                                                                                         
-werden.
-      <ul class="itemize1">
-      <li class="itemize">Ein <span 
-class="cmti-12">Tag </span>ist eine in spitzen Klammern (<span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;</span><span 
-class="cmtt-12">&#x00A0;&#x003E;</span></span></span>) eingeschlossene Zeichenkette. Beginnt diese
-      Zeichenkette mit einem Slash (<span 
-class="cmtt-12">/</span>) spricht man von einem <span 
-class="cmti-12">Endtag</span>, andernfalls von einem
-      <span 
-class="cmti-12">Starttag</span>. Das erste Wort der Zeichenkette ist der Name des Tags. Einem Starttag muss
-      immer ein Endtag gleichen Namens folgen. <br 
-class="newline" />Bsp. <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;&#x003C;/controls&#x003E;</span></span></span>
-      </li>
-      <li class="itemize">Starttags können <span 
-class="cmti-12">Attribute </span>enthalten. Diese werden in der Form <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">[attribut]="[wert]"</span></span></span>
-      mit einem Leerzeichen vom Tagnamen getrennt notiert. <br 
-class="newline" />Bsp. <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule</span><span 
-class="cmtt-12">&#x00A0;m="5"</span><span 
-class="cmtt-12">&#x00A0;n="3"</span><span 
-class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span>
-      </li>
-      <li class="itemize">Ein <span 
-class="cmti-12">Element  </span>bezeichnet ein Paar von Start- und Endtags, zusammen mit dem von
-      ihnen eingeschlossenen Text. Dieser Text kann wiederum selbst Elemente enthalten,
-      die <span 
-class="cmti-12">Kindelemente </span>genannt werden. <br 
-class="newline" />Bsp. <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;due_dates</span><span 
-class="cmtt-12">&#x00A0;model="lisa_native"&#x003E;</span><span 
-class="cmtt-12">&#x00A0;{</span><span 
-class="cmtt-12">&#x00A0;5</span><span 
-class="cmtt-12">&#x00A0;8</span><span 
-class="cmtt-12">&#x00A0;10</span><span 
-class="cmtt-12">&#x00A0;4</span><span 
-class="cmtt-12">&#x00A0;2</span><span 
-class="cmtt-12">&#x00A0;}</span><span 
-class="cmtt-12">&#x00A0;&#x003C;/due_dates&#x003E;</span></span></span>
-      </li>
-      <li class="itemize">Besitzt   ein   Element   keinen   eingeschlossenen   Text   oder   Kindelemente,   kann
-      die Kurzschreibweise <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;[tagname]</span><span 
-class="cmtt-12">&#x00A0;[attribut1]="[wert1]"</span><span 
-class="cmtt-12">&#x00A0;...</span><span 
-class="cmtt-12">&#x00A0;/&#x003E;</span></span></span> benutzt werden,
-      wodurch das Endtag entfällt.</li></ul>
-                                                                                         
-                                                                                         
 <!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu26.html" >next</a>] [<a 
+href="handbuchsu24.html" >prev</a>] [<a 
+href="handbuchsu24.html#tailhandbuchsu24.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu25.html">tail</a>] [<a 
+href="handbuchse31.html#handbuchsu25.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.1.2   </span> <a 
+ id="x67-72000A.1.2"></a>Darstellung von Daten</h4>
+<!--l. 60--><p class="noindent" >Einfache Datentypen, wie ganze oder gebrochene Zahlen, sowie Zeichenketten werden einfach mit
+Hilfe von Attributen dargestellt. Ein Beispiel dafür ist das <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Tag:
+<!--l. 63--><p class="noindent" >
+      <div class="quote">
+      <!--l. 64--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule</span><span 
+class="cmtt-12">&#x00A0;m="10"</span><span 
+class="cmtt-12">&#x00A0;n="20"</span><span 
+class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span></div>
+<!--l. 67--><p class="noindent" >Hier wird die Problemgröße durch die Ganzzahlen <span 
+class="cmmi-12">m </span>= 10 und <span 
+class="cmmi-12">n </span>= 20 festgelegt. Zusätzlich besagt
+die Zeichenkette <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">"yes"</span></span></span> als Wert des Attributes <span 
+class="cmtt-12">semiactive</span>, dass der folgende Zeitplan semiaktiv
+ist. Zu beachten ist bei reellen Zahlen die Verwendung des Dezimalpunktes anstatt eines
+Kommas.
+<!--l. 74--><p class="noindent" >Weiterhin werden Vektoren und Matrizen als komplexe Datentypen verwendet. Ein Vektor der
+Dimension <span 
+class="cmmi-12">n </span>mit den Komponenten <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_1 </span>bis <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_n </span>wird dargestellt durch:
+<!--l. 77--><p class="noindent" >
+      <div class="quote">
+      <!--l. 78--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">{</span><span 
+class="cmtt-12">&#x00A0;a_1</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_2</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_3</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_n</span><span 
+class="cmtt-12">&#x00A0;}</span></span></span></div>
+<!--l. 81--><p class="noindent" >Als Trennung zwischen den Werten können beliebig viele Whitespace-Zeichen benutzt werden.
+Eine <span 
+class="cmmi-12">n</span><span 
+class="cmsy-10x-x-120">&#x00D7;</span><span 
+class="cmmi-12">m </span>Matrix kann als <span 
+class="cmmi-12">n</span>-dimensionaler Vektor dargestellt werden, der selbst <span 
+class="cmmi-12">m</span>-dimensionale
+Vektoren enthält:
+<!--l. 85--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-28">
+&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_11&#x00A0;&#x00A0;a_12&#x00A0;&#x00A0;a_13&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_1m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_21&#x00A0;&#x00A0;a_22&#x00A0;&#x00A0;a_23&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_2m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_n1&#x00A0;&#x00A0;a_n2&#x00A0;&#x00A0;a_n3&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_nm&#x00A0;}
+&#x00A0;<br />&#x00A0;}
+</div>
+      <!--l. 93--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu24.html" >prev</a>] [<a 
+href="handbuchsu24.html#tailhandbuchsu24.html" >prev-tail</a>] [<a 
 href="handbuchsu25.html" >front</a>] [<a 
-href="handbuchse27.html#handbuchsu25.html" >up</a>] </p></div>
-<!--l. 56--><p class="noindent" ><a 
+href="handbuchse31.html#handbuchsu25.html" >up</a>] </p></div>
+<!--l. 98--><p class="noindent" ><a 
  id="tailhandbuchsu25.html"></a>  
 </body></html> 

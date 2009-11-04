@@ -1,90 +1,98 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Darstellung von Daten</title> 
+<head><title>Aufbau</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu25.html" >prev</a>] [<a 
-href="handbuchsu25.html#tailhandbuchsu25.html" >prev-tail</a>] [<a 
+<!--l. 111--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu27.html" >next</a>] [<a 
 href="#tailhandbuchsu26.html">tail</a>] [<a 
-href="handbuchse27.html#handbuchsu26.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">A.1.2   </span> <a 
- id="x62-67000A.1.2"></a>Darstellung von Daten</h4>
-<!--l. 60--><p class="noindent" >Einfache Datentypen, wie ganze oder gebrochene Zahlen, sowie Zeichenketten werden einfach mit
-Hilfe von Attributen dargestellt. Ein Beispiel dafür ist das <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Tag:
-<!--l. 63--><p class="noindent" >
-      <div class="quote">
-      <!--l. 64--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule</span><span 
-class="cmtt-12">&#x00A0;m="10"</span><span 
-class="cmtt-12">&#x00A0;n="20"</span><span 
-class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span></div>
-<!--l. 67--><p class="noindent" >Hier wird die Problemgröße durch die Ganzzahlen <span 
-class="cmmi-12">m </span>= 10 und <span 
-class="cmmi-12">n </span>= 20 festgelegt. Zusätzlich besagt
-die Zeichenkette <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">"yes"</span></span></span> als Wert des Attributes <span 
-class="cmtt-12">semiactive</span>, dass der folgende Zeitplan semiaktiv
-ist. Zu beachten ist bei reellen Zahlen die Verwendung des Dezimalpunktes anstatt eines
-Kommas.
-<!--l. 74--><p class="noindent" >Weiterhin werden Vektoren und Matrizen als komplexe Datentypen verwendet. Ein Vektor der
-Dimension <span 
-class="cmmi-12">n </span>mit den Komponenten <span 
-class="cmtt-12">a</span><span 
-class="cmtt-12">_1 </span>bis <span 
-class="cmtt-12">a</span><span 
-class="cmtt-12">_n </span>wird dargestellt durch:
-<!--l. 77--><p class="noindent" >
-      <div class="quote">
-      <!--l. 78--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">{</span><span 
-class="cmtt-12">&#x00A0;a_1</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_2</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_3</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;...</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_n</span><span 
-class="cmtt-12">&#x00A0;}</span></span></span></div>
-<!--l. 81--><p class="noindent" >Als Trennung zwischen den Werten können beliebig viele Whitespace-Zeichen benutzt werden.
-Eine <span 
-class="cmmi-12">n</span><span 
-class="cmsy-10x-x-120">&#x00D7;</span><span 
-class="cmmi-12">m </span>Matrix kann als <span 
-class="cmmi-12">n</span>-dimensionaler Vektor dargestellt werden, der selbst <span 
-class="cmmi-12">m</span>-dimensionale
-Vektoren enthält:
-<!--l. 85--><p class="noindent" >
+href="handbuchse32.html#handbuchsu26.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.2.1   </span> <a 
+ id="x69-74000A.2.1"></a>Aufbau</h4>
+                                                                                         
+                                                                                         
+<!--l. 113--><p class="noindent" >Stellvertretend für die drei Dokumenttypen ist hier der Aufbau eines <span 
+class="cmtt-12">solution</span>-Dokumentes
+dargestellt. In <span 
+class="cmtt-12">instance</span>-Dokumenten fehlen im Gegensatz dazu nur die <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Elemente,
+<span 
+class="cmtt-12">problem</span>-Dokumente bestehen nur aus dem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;problem&#x003E;</span></span></span>-Element.
+<!--l. 118--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-25">
-&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_11&#x00A0;&#x00A0;a_12&#x00A0;&#x00A0;a_13&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_1m&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_21&#x00A0;&#x00A0;a_22&#x00A0;&#x00A0;a_23&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_2m&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_n1&#x00A0;&#x00A0;a_n2&#x00A0;&#x00A0;a_n3&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_nm&#x00A0;}
-&#x00A0;<br />&#x00A0;}
+      <div class="verbatim" id="verbatim-29">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;solution&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
+&#x00A0;<br />&#x003C;solution&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;...&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta&#x00A0;...&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;...&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="..."&#x00A0;n="..."&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;release_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/release_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;weights&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/weights&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;weights_2&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/weights_2&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;extra&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/extra&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;controls&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="..."&#x00A0;name="..."&#x00A0;value="..."&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/controls&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;schedule&#x00A0;m="..."&#x00A0;n="..."&#x00A0;semiactive="..."&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;plan&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/plan&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;machine_sequences&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/machine_sequences&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;job_sequences&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/job_sequences&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;completion_times&#x00A0;model="lisa_native"&#x003E;
+                                                                                         
+                                                                                         
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/completion_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/schedule&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x003C;/solution&#x003E;
 </div>
-      <!--l. 93--><p class="nopar" ></div>
+      <!--l. 173--><p class="nopar" ></div>
                                                                                          
                                                                                          
-<!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu25.html" >prev</a>] [<a 
-href="handbuchsu25.html#tailhandbuchsu25.html" >prev-tail</a>] [<a 
+<!--l. 177--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu27.html" >next</a>] [<a 
 href="handbuchsu26.html" >front</a>] [<a 
-href="handbuchse27.html#handbuchsu26.html" >up</a>] </p></div>
-<!--l. 98--><p class="noindent" ><a 
+href="handbuchse32.html#handbuchsu26.html" >up</a>] </p></div>
+<!--l. 177--><p class="noindent" ><a 
  id="tailhandbuchsu26.html"></a>  
 </body></html> 

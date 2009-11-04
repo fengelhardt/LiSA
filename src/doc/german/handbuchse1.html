@@ -7,17 +7,17 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 74--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 101--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse2.html" >next</a>] [<a 
 href="#tailhandbuchse1.html">tail</a>] [<a 
 href="handbuchch1.html#handbuchse1.html" >up</a>] </p></div>
 <h3 class="sectionHead"><span class="titlemark">1.1   </span> <a 
  id="x3-20001.1"></a>Was ist LiSA? - Einführung und Übersicht</h3>
-<!--l. 76--><p class="noindent" >LiSA - A Library of Scheduling Algorithms ist ein Softwarepaket zur Lösung von deterministischen
+<!--l. 9--><p class="noindent" >LiSA - A Library of Scheduling Algorithms ist ein Softwarepaket zur Lösung von deterministischen
 Shop-Schedulingproblemen. In einem Shop-Schedulingproblem soll eine Menge von Jobs
 (Aufträgen) unter bestimmten zusätzlichen Bedingungen so auf einer Menge von Maschinen
 bearbeitet werden, dass eine Zielfunktion optimal wird. Alle Parameter sind bekannt und fest
@@ -29,91 +29,92 @@ class="cmsy-10x-x-120">&#x2223;</span><span
 class="cmmi-12">&gamma;</span>
 beschrieben, wobei <span 
 class="cmmi-12">&alpha; </span>die Maschinenumgebung, <span 
-class="cmmi-12">&beta; </span>die zusätzlichen Bedingungen <span 
-class="cmmi-12">&gamma; </span>die Zielfunktion
-beschreibt.<br 
-class="newline" />
-<!--l. 83--><p class="noindent" >Die Software LiSA verwendet die <span 
-class="cmmi-12">&alpha;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&beta;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&gamma; </span>Beschreibung der Probleme. Ihr modularer Aufbau ist in
-Abbildung <a 
-href="#x3-20011">1.1<!--tex4ht:ref: Bestandteile von LiSA --></a> veranschaulicht.
-<!--l. 86--><p class="noindent" ><hr class="figure"><div class="figure" 
->
-                                                                                         
-                                                                                         
-<a 
- id="x3-20011"></a>
-                                                                                         
-                                                                                         
-<div class="center" 
->
-<!--l. 87--><p class="noindent" >
-<!--l. 88--><p class="noindent" ><img 
-src="handbuch0x.png" alt="PIC" class="graphics"><!--tex4ht:graphics  
-name="handbuch0x.png" src="bilder/lisa_module.pdf"  
---></div>
-<br /> <div class="caption" 
-><span class="id">Abbildung&#x00A0;1.1: </span><span  
-class="content">Bestandteile von LiSA</span></div><!--tex4ht:label?: x3-20011 -->
-                                                                                         
-                                                                                         
-<!--l. 91--><p class="noindent" ></div><hr class="endfigure">
-<!--l. 93--><p class="noindent" >Der Hauptteil enthält alle Basisalgorithmen des Blockmatrizenmodells, die Ein- und
-Ausgabeprozeduren und die Module der grafischen Oberfläche. Daneben erfolgt hier die Übergabe
-der Programmdaten und die Koordinierung der Arbeit mit den externen Algorithmen.
-Enthalten ist auch die Bestimmung des Komplexitätsstatus eines Problems in der <span 
-class="cmmi-12">&alpha;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">&beta;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta; </span>zusätzliche Bedingungen für die Aufträge und <span 
 class="cmmi-12">&gamma;</span>
-Notation.<br 
-class="newline" />Alle Algorithmen zur Lösung der Shop-Schedulingprobleme sind in externen Modulen erhalten, die
-mit dem Hauptprogramm über Dateien kommunizieren. Die Algorithmen werden über die grafische
-Oberfläche aufgerufen, können aber auch direkt über eine Kommandozeile ohne Nutzung der LiSA
-Oberfläche angewendet werden. Durch den automatisierten Algorithmenaufruf lassen sich
-darüberhinaus eigene hybride ALgorithmen konstruieren. Das Einfügen selbstimplementierter
-Algorithmen als externe Module wird durch eine Beschreibungsdatei in XML-Format
-zur Anbindung an den Hauptteil von LiSA und einen Help-File in HTML organisiert.
+die Zielfunktion beschreibt. Eine zulässige Lösung eines Shopproblems wird als Plan und der
+zugehörende zeitliche Ablauf als Zeitplan oder Schedule bezeichnet. Pläne und Schedules werden
+                                                                                         
+                                                                                         
+durch Matrizen beschrieben und in LiSA durch azyklische Digraphen bzw. Ganttdiagramme
+visualisiert. Da die meisten Shopprobleme schwierig zu lösen sind, enthält LiSA eine Vielzahl von
+konstruktiven und iterativen Heuristiken.<br 
+class="newline" />
+<!--l. 17--><p class="noindent" >Will ein Nutzer ein Schedulingproblem mit LiSA lösen, hat er unter Verwendung der grafischen
+Nutzeroberfläche zuerst den Problemtyp in der <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>Notation und die Anzahl der Aufträge und
+Maschinen einzugeben. Die Bearbeitungszeiten und die restlichen Parameter des Inputs
+lassen sich per Hand eingeben oder können mit einem Zufallszahlengenerator erzeugt
+werden. Es ist auch möglich, alle diese Daten aus einer xml-Datei einzulesen. Sobald
+ein Input vollständig in LiSA vorhanden ist, werden alle Algorithmen zur Nutzung
+freigegeben, die dieses Problem exakt oder näherungsweise lösen. Nach Anwendung eines
+Algorithmusses wird der Schedule in einem Ganttdiagramm visualisiert, das auftrags-
+bzw. maschinenorientiert ausgewählt werden kann. Liegt eine erste Lösung vor, werden
+die iterativen Algorithmen zur Nutzung freigegeben. Da in den Algorithmen in den
+meisten Fällen noch Parametersetzungen möglich sind, hat der Nutzer eine Vielzahl
+von Algorithmen zur Verfügung. Die Lösung kann in einer XML-Datei abgespeichert
+werden.<br 
+class="newline" />
+<!--l. 22--><p class="noindent" >LiSA enthält einige Extras, wie z.B. den Abruf des Komplexitätsstatus (mit Literaturquelle)
+eines Problems. Hier wird die Datenbank der Osnabrücker Kollegen zur Komplexität
+von Schedulingproblemen genutzt. Weiter sind Manipulationen des Ganttdiagramms
+möglich, so dass der Nutzer selbst in die Konstruktion eines Schedules eingreifen kann.
 <br 
 class="newline" />
-<!--l. 104--><p class="noindent" >Dieses Handbuch enthält die folgenden Informationen:
-<!--l. 106--><p class="noindent" >Kapitel <a 
-href="#x3-20001.1">1.1<!--tex4ht:ref: Was ist LiSA? - Einfuehrung und Uebersicht --></a> enthält neben der Einführung eine Übersicht über das LiSA-Team (Kapitel <span 
-class="cmbx-12">??</span>) sowie
-die Systemanforderungen zur LiSA-Nutzung und die Lizenzbedingungen (Kapitel <span 
-class="cmbx-12">??</span>) . Die in
-LiSA verwendeten Bezeichnungen, die Klassifizierung der Probleme und das verwendete
-Block-Matrizen-Modell sind in Kapitel <span 
-class="cmbx-12">??</span> enthalten. Hier wird auch auf das in LiSA verwendete
-File-Format eingegangen.
-<!--l. 113--><p class="noindent" >Die folgenden drei Kapitel beschreiben die Eingabe eines Problems (Kapitel <span 
-class="cmbx-12">??</span>) , die in LiSA
-enthaltenen Algorithmen (Kapitel <span 
-class="cmbx-12">??</span>), unterteilt in universell anwendbare exakte Algorithmen
-(Kapitel <span 
-class="cmbx-12">??</span>), universell anwendbare konstruktive und iterative Heuristiken (Kapitel <span 
-class="cmbx-12">??</span> und <span 
-class="cmbx-12">??</span>)
-sowie spezielle Algorithmen (Kapitel <span 
-class="cmbx-12">??</span>), und die Ausgabe der Ergebnisse (Kapitel
-<span 
-class="cmbx-12">??</span>).
-<!--l. 119--><p class="noindent" >Kapitel <span 
-class="cmbx-12">??</span> enthält zusätzliche interne Programmbausteine, wie die Ermittlung des Komplexitätsstatus
-eines Problems (Kapitel <span 
-class="cmbx-12">??</span>)
-<!--l. 126--><p class="noindent" >&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-
+<!--l. 24--><p class="noindent" >LiSA hat einen modularen Aufbau, in dem jeder Algorithmus auch extern nutzbar ist. So ist es
+möglich, einen Algorithmus mit einer Kommandozeile aufzurufen oder ihn in einen automatisierten
+Algorithmenaufruf einzubinden. Bei einem solchen automatisierten Algorithmenaufruf lassen sich
+mit Eingabe eines Problemtyps und der Parameter eine einzugebende Anzahl von Beispielen mit
+allen für diesen Problemtyp anwendbaren Algorithmen lösen. LiSA legt für jedes Beispiel eine Liste
+der durch die Algorithmen erzeugten Lösungen an, die wiederum direkt aus der grafischen
+Nutzeroberfläche aufgerufen werden kann. Aus der bei der Rechnung erzeugten log-Datei lassen
+sich die Ergebnisse in eine mit Excel kompatible Datei filtern, so dass eine schnelle Auswertung
+möglich ist. Darüber hinaus lassen sich mit diesem Konzept auch hybride Algorithmen
+konstruieren.<br 
+class="newline" />
+<!--l. 26--><p class="noindent" >Durch den modularen Aufbau ist es für den Nutzer einfach, eigene Algorithmen in LiSA
+einzufügen. Dazu braucht er neben dem C++ Quelltext eine XML-Datei, die seinen
+Algorithmus mit der grafischen Nutzeroberfläche verbindet, damit LiSA bei Eingabe des von
+ihm betrachteten Problems den Algorithmus automatisch zur Nutzung freigibt. Eine
+Hilfedatei für den neuen Algorithmus ermöglicht anderen Nutzern die Anwendung des neuen
+Verfahrens.<br 
+class="newline" />
+<!--l. 28--><p class="noindent" >Dieses Handbuch ist folgendermaßen aufgebaut:<br 
+class="newline" />
+<!--l. 30--><p class="noindent" >Kapitel 1 enthält neben dieser Einführung eine Übersicht über das LiSA-Team sowie die
+Systemanforderungen zur LiSA-Nutzung und die Lizenzbedingungen.<br 
+class="newline" />
                                                                                          
                                                                                          
-<!--l. 132--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 33--><p class="noindent" >Die in LiSA verwendeten Bezeichnungen, die Klassifizierung der Probleme, das verwendete
+Block-Matrizen-Modell mit den grundlegenden Basisalgorithmen und eine Übersicht zu den in LiSA
+enthaltenen Algorithmen sind in Kapitel 2 enthalten. Hier wird auch auf das in LiSA verwendete
+File-Format eingegangen.<br 
+class="newline" />
+<!--l. 36--><p class="noindent" >Die folgenden drei Kapitel beschreiben die Eingabe eines Problems (Kapitel 3) , die in LiSA
+enthaltenen Algorithmen (Kapitel 4), unterteilt in universell anwendbare exakte Algorithmen,
+universell anwendbare konstruktive und iterative Heuristiken sowie spezielle Algorithmen und die
+Ausgabe der Ergebnisse (Kapitel 5).<br 
+class="newline" />
+<!--l. 42--><p class="noindent" >Das sechste Kapitel enthält die Extras, begonnen wird mit der Beschreibung zusätzlicher interner
+Programmbausteine, wie z.B. die Ermittlung des Komplexitätsstatus eines Problems, die
+Manipulation eines Schedules oder die Reduzierbarkeitsalgorithmen.<br 
+class="newline" />Weiter wird das Einfügen eigener Algorithmen und der automatisierte Algorithmenaufruf
+beschrieben. <br 
+class="newline" />
+<!--l. 45--><p class="noindent" >Kapitel 8 enthält einige anschauliche Beispiele zur Arbeit mit LiSA.<br 
+class="newline" />
+<!--l. 47--><p class="noindent" >Das Handbuch schließt im Anhang mit einer XML-Referenz, den GNU-Lizenzbedingungen und
+einer Literaturübersicht.
+                                                                                         
+                                                                                         
+<!--l. 112--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse2.html" >next</a>] [<a 
 href="handbuchse1.html" >front</a>] [<a 
 href="handbuchch1.html#handbuchse1.html" >up</a>] </p></div>
-<!--l. 132--><p class="noindent" ><a 
+<!--l. 112--><p class="noindent" ><a 
  id="tailhandbuchse1.html"></a>  
 </body></html> 

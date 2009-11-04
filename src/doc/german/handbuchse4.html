@@ -7,22 +7,321 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 168--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 154--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse5.html" >next</a>] [<a 
 href="#tailhandbuchse4.html">tail</a>] [<a 
 href="handbuchch2.html#handbuchse4.html" >up</a>] </p></div>
 <h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
  id="x7-60002.1"></a>Definitionen und Bezeichnungen </h3>
+<!--l. 10--><p class="noindent" >In einem <span 
+class="cmti-12">Shop-Schedulingproblem </span>soll eine Menge von <span 
+class="cmti-12">Jobs </span>auf einer Menge von <span 
+class="cmti-12">Maschinen </span>in einer
+festgelegten <span 
+class="cmti-12">Maschinenumgebung </span>unter verschiedenen <span 
+class="cmti-12">zus</span><span 
+class="cmti-12">ätzlichen Restriktionen </span>so bearbeitet
+werden, dass eine <span 
+class="cmti-12">Zielfunktion </span>optimiert wird. Das Problem heisst <span 
+class="cmti-12">deterministisch</span>, wenn alle
+Parameter bekannt und fest vorgegeben sind. Eine Vielzahl von Optimierungsproblemen, die eine
+optimale Anordnung von Aktivitäten unter beschränkten Ressourcen suchen, lassen sich als
+Schedulingprobleme modellieren.<br 
+class="newline" />Die folgende Tabelle <a 
+href="#x7-60011">2.1<!--tex4ht:ref: basic_notations --></a> enthält die grundlegenden Bezeichnungen, die in LiSA benutzt
+werden:
+<div class="table">
                                                                                          
                                                                                          
-<!--l. 178--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 18--><p class="noindent" ><a 
+ id="x7-60011"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 19--><p class="noindent" >
+<div class="tabular"> <table id="TBL-1" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-1-1g"><col 
+id="TBL-1-1"></colgroup><colgroup id="TBL-1-2g"><col 
+id="TBL-1-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-1-"><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-1-1-1"  
+class="td11">                            <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmbx-12">Bezeichnungen</span></div>
+</td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-2-1"  
+class="td11"><span 
+class="cmmi-12">n</span>, <span 
+class="cmmi-12">m                          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-2-2"  
+class="td11">Anzahl der Jobs bzw. Anzahl der Maschinen            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-3-1"  
+class="td11"><span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,A</span><sub><span 
+class="cmmi-8">n</span></sub><span 
+class="cmsy-10x-x-120">}         </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-3-2"  
+class="td11">Menge der zu bearbeitenden Jobs                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-4-1"  
+class="td11"><span 
+class="cmmi-12">I </span>= <span 
+class="cmsy-10x-x-120">{</span>1<span 
+class="cmmi-12">,...,n</span><span 
+class="cmsy-10x-x-120">}        </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-4-2"  
+class="td11">Menge der Indizes der Jobs                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-5-1"  
+class="td11"><span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,M</span><sub><span 
+class="cmmi-8">m</span></sub><span 
+class="cmsy-10x-x-120">}        </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-5-2"  
+class="td11">Menge der Maschinen, die die Jobs bearbeiten          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-6-1"  
+class="td11"><span 
+class="cmmi-12">J </span>= <span 
+class="cmsy-10x-x-120">{</span>1<span 
+class="cmmi-12">,...,m</span><span 
+class="cmsy-10x-x-120">}        </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-6-2"  
+class="td11">Menge der Indizes der Maschinen                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-7-1"  
+class="td11"><span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0                            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-7-2"  
+class="td11">Bearbeitungszeit für Job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> auf Maschine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-8-1"  
+class="td11"><span 
+class="cmmi-12">PT </span>= [<span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>]                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-8-2"  
+class="td11">Matrix der Bearbeitungszeiten                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-9-1"  
+class="td11">(<span 
+class="cmmi-12">ij</span>)                                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-9-2"  
+class="td11">Operation, d.h. die Bearbeitung von <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> auf <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-10-1"  
+class="td11"><span 
+class="cmmi-12">SIJ                           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-10-2"  
+class="td11">Menge der Operationen (<span 
+class="cmmi-12">ij</span>)                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-11-1"  
+class="td11"><span 
+class="cmmi-12">u</span><sub><span 
+class="cmmi-8">i</span></sub>, <span 
+class="cmmi-12">v</span><sub><span 
+class="cmmi-8">j</span></sub>                                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-11-2"  
+class="td11">Anzahl der Operationen von <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> bzw. auf <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-12-1"  
+class="td11"><span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>                                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-12-2"  
+class="td11">Fertigstellungszeit der Operation (<span 
+class="cmmi-12">ij</span>)                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-13-1"  
+class="td11"><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub>                                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-13-2"  
+class="td11">Fertigstellungszeit des Jobs <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-14-1"  
+class="td11"><span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>]                         </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-14-2"  
+class="td11">Matrix der Fertigstellungszeiten                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-15-1"  
+class="td11"><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub>, <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub>                                   </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-15-2"  
+class="td11">Bereitstellungszeit bzw. Fälligkeitstermin des Jobs <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-16-1"  
+class="td11"><span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub>                                       </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-16-2"  
+class="td11">Gewicht des Jobs <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-17-1"  
+class="td11"><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub>                        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-17-2"  
+class="td11">Terminabweichung für Job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>                                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-18-1"  
+class="td11"><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> = max<span 
+class="cmsy-10x-x-120">{</span>0<span 
+class="cmmi-12">,C</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">}</span>;        </td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-18-2"  
+class="td11">Verspätung von Job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-19-1"  
+class="td11"><span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> = <img 
+src="handbuch1x.png" alt="{
+   0,   wenn  Ci &le; di
+   1,  sonst"  class="left" align="middle"></td><td  style="white-space:nowrap; text-align:left;" id="TBL-1-19-2"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> zählt die verspäteten Jobs                            </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-1-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-1-20-1"  
+class="td11">                       </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Tabelle&#x00A0;2.1: </span><span  
+class="content"> Grundlegende Bezeichnungen für deterministische Schedulingprobleme</span></div><!--tex4ht:label?: x7-60011 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 46--><p class="noindent" >Für ein Schedulingproblem mit mehr als einer Maschine werden folgende Reihenfolgen
+eingeführt:<br 
+class="newline" />Die <span 
+class="cmti-12">technologische Reihenfolge des Jobs </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> ist die Reihenfolge der Maschinen, auf denen dieser Job
+bearbeitet wird: <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span><sub><span 
+class="cmr-6">1</span></sub></sub><sup><span 
+class="cmmi-8">i</span></sup> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub>
+<span 
+class="cmmi-8">j</span><sub><span 
+class="cmr-6">2</span></sub></sub><sup><span 
+class="cmmi-8">i</span></sup> <span 
+class="cmsy-10x-x-120">&rarr;</span><span 
+class="cmmi-12">&hellip;</span> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub>
+<span 
+class="cmmi-8">j</span><sub><span 
+class="cmmi-6">u</span><sub><span 
+class="cmmi-6">i</span></sub></sub></sub><sup><span 
+class="cmmi-8">i</span></sup>, wobei <span 
+class="cmmi-12">j</span><sub>
+<span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,j</span><sub><span 
+class="cmmi-8">u</span><sub><span 
+class="cmmi-6">i</span></sub></sub> eine Permutation der Zahlen 1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,u</span><sub><span 
+class="cmmi-8">i</span></sub>
+ist.
+<!--l. 50--><p class="noindent" >Die <span 
+class="cmti-12">organisatorische Reihenfolge auf der Maschine </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub> ist die Reihenfolge der Aufträge
+auf dieser Maschine: <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span><sub><span 
+class="cmr-6">1</span></sub></sub><sup><span 
+class="cmmi-8">j</span></sup> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub>
+<span 
+class="cmmi-8">i</span><sub><span 
+class="cmr-6">2</span></sub></sub><sup><span 
+class="cmmi-8">j</span></sup> <span 
+class="cmsy-10x-x-120">&rarr;</span><span 
+class="cmmi-12">&hellip;</span> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub>
+<span 
+class="cmmi-8">i</span><sub><span 
+class="cmmi-6">v</span><sub><span 
+class="cmmi-6">j</span></sub></sub></sub><sup><span 
+class="cmmi-8">j</span></sup>, wobei <span 
+class="cmmi-12">i</span><sub>
+<span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,i</span><sub><span 
+class="cmmi-8">v</span><sub><span 
+class="cmmi-6">j</span></sub></sub> eine Permutation der
+Zahlen 1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,v</span><sub><span 
+class="cmmi-8">j</span></sub> ist. Wenn es nicht zu Mißverständnissen führt, wird auf die oberen Indizes
+verzichtet.
+                                                                                         
+                                                                                         
+<!--l. 166--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse5.html" >next</a>] [<a 
 href="handbuchse4.html" >front</a>] [<a 
 href="handbuchch2.html#handbuchse4.html" >up</a>] </p></div>
-<!--l. 178--><p class="noindent" ><a 
+<!--l. 166--><p class="noindent" ><a 
  id="tailhandbuchse4.html"></a>  
 </body></html> 

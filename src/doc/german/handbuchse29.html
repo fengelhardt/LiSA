@@ -1,84 +1,312 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Der Dokumenttyp algorithm </title> 
+<head><title>Aufruf eines Algorithmus uber die Kommandozeile</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 814--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 446--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse30.html" >next</a>] [<a 
 href="handbuchse28.html" >prev</a>] [<a 
 href="handbuchse28.html#tailhandbuchse28.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse29.html">tail</a>] [<a 
-href="handbuchap1.html#handbuchse29.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">A.3   </span> <a 
- id="x88-93000A.3"></a>Der Dokumenttyp <span 
-class="cmtt-12">algorithm </span></h3>
-<!--l. 818--><p class="noindent" >Dieser Dokumenttyp dient zur Einbindung der Algorithmen in LiSA. Näheres zu deren
-Verwendung findet sich im Abschnitt <span 
-class="cmbx-12">Algorithmenmodule </span>(<span 
+href="handbuchch8.html#handbuchse29.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.2   </span> <a 
+ id="x61-660008.2"></a>Aufruf eines Algorithmus über die Kommandozeile</h3>
+<!--l. 2--><p class="noindent" >In diesem Beispiel soll eine gegebene Probleminstanz ohne die Benutzung der grafischen Oberfläche
+von LiSA gelöst werden. Dies erfolgt durch die Codierung der Probleminstanz in XML und dem
+anschließenden Aufruf eines Lösungsalgorithmus direkt über die Kommandozeile. Dieses Vorgehen
+kann dazu verwendet werden, um das Lösen und Optimieren gegebener Shop-Schedulingprobleme
+zu automatisieren.
+<!--l. 9--><p class="noindent" >Gegeben sei eine Probleminstanz vom Typ <span 
+class="cmmi-12">J</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> mit 4 Maschinen und 3 Aufträgen. Weiterhin
+sind die Bearbeitungszeiten und die technologische Reihenfolge gegeben:
+<div class="center" 
+>
+<!--l. 13--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><div class="array"> <table id="TBL-15" class="array" 
+cellpadding="0" cellspacing="0"  
+><colgroup id="TBL-15-1g"><col 
+id="TBL-15-1"><col 
+id="TBL-15-2"></colgroup><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">PT </span>= <img 
+src="handbuch29x.png" alt="&lfloor;  53  98  0   80 &rfloor;
+&lceil;                 &rceil;
+   88  38  89  96
+   37  30  0   60"  class="left" align="middle"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><div class="array"> <table id="TBL-16" class="array" 
+cellpadding="0" cellspacing="0"  
+><colgroup id="TBL-16-1g"><col 
+id="TBL-16-1"><col 
+id="TBL-16-2"><col 
+id="TBL-16-3"><col 
+id="TBL-16-4"><col 
+id="TBL-16-5"><col 
+id="TBL-16-6"><col 
+id="TBL-16-7"><col 
+id="TBL-16-8"><col 
+id="TBL-16-9"></colgroup><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub></div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">:</div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11">  </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11">   </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub></div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">:</div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">:</div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmsy-10x-x-120">&rarr;</span></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11">  </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11">   </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">   </div></td></tr></table>                                                                       </div></div></td>
+</tr></table>                                                                                                                         </div></div>
+<!--l. 25--><p class="noindent" >Für diese Probleminstanz soll mit Hilfe des Algorithmus <span 
+class="cmbxti-10x-x-120">Beam Search </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu21.html#x51-500006.2.1">6.2.1<!--tex4ht:ref: Algorithmenmodule --></a>).
-<!--l. 822--><p class="noindent" >
-<div class="subsectionTOCS">
-&#x00A0;&#x00A0;<span class="subsectionToc" >A.3.1 <a 
-href="handbuchsu51.html#x89-94000A.3.1">Aufbau</a></span>
-<br />&#x00A0;&#x00A0;<span class="subsectionToc" >A.3.2 <a 
-href="handbuchsu52.html#x90-95000A.3.2">Beschreibung</a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu53.html#x91-96000A.3.2"><span 
-class="cmtt-12">&#x003C;algorithm&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu54.html#x92-97000A.3.2"><span 
-class="cmtt-12">&#x003C;exact&#x003E; </span>und <span 
-class="cmtt-12">&#x003C;heuristic&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu55.html#x93-98000A.3.2"><span 
-class="cmtt-12">&#x003C;problem&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu56.html#x94-99000A.3.2"><span 
-class="cmtt-12">&#x003C;alpha&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu57.html#x95-100000A.3.2"><span 
-class="cmtt-12">&#x003C;beta&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu58.html#x96-101000A.3.2"><span 
-class="cmtt-12">&#x003C;gamma&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu59.html#x97-102000A.3.2"><span 
-class="cmtt-12">&#x003C;alg</span><span 
-class="cmtt-12">_controls&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu60.html#x98-103000A.3.2"><span 
-class="cmtt-12">&#x003C;integer&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu61.html#x99-104000A.3.2"><span 
-class="cmtt-12">&#x003C;real&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu62.html#x100-105000A.3.2"><span 
-class="cmtt-12">&#x003C;choice&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu63.html#x101-106000A.3.2"><span 
-class="cmtt-12">&#x003C;item&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu64.html#x102-107000A.3.2"><span 
-class="cmtt-12">&#x003C;fixed&#x003E;</span></a></span>
-</div>
+href="handbuchsu15.html#x33-320004.2.3">4.2.3<!--tex4ht:ref: Beam Search Verfahren mit Anfuegetechnik --></a>) ein Zeitplan
+gefunden werden.
+<!--l. 29--><p class="noindent" ><span id="textcolor64">&nbsp;<br><span 
+class="cmbx-12x-x-120">Erg</span><span 
+class="cmbx-12x-x-120">änzen der fehlenden Angaben</span></span> <br 
+class="newline" />Für die Übergabe an einen Lösungsalgorithmus müssen die Operationenmenge und die technologische
+Reihenfolge in Matrixform angegeben werden. Aus der Matrix der Bearbeitungszeiten <span 
+class="cmmi-12">PT </span>lässt
+sich die folgende Operationenmenge ableiten:
+<div class="center" 
+>
+<!--l. 34--><p class="noindent" >
+<!--l. 35--><p class="noindent" ><span 
+class="cmmi-12">SIJ </span>= <span 
+class="cmmi-12">I </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">J</span><span 
+class="cmsy-10x-x-120">\{</span>(13)<span 
+class="cmmi-12">, </span>(33)<span 
+class="cmsy-10x-x-120">}</span><img 
+src="handbuch30x.png" alt="=&rArr;"  class="Longrightarrow" ><img 
+src="handbuch31x.png" alt="&lfloor;            &rfloor;
+  1  1  0  1
+&lceil; 1  1  1  1 &rceil;
 
+  1  1  0  1"  class="left" align="middle"></div>
+<!--l. 40--><p class="noindent" >Die Matrix <span 
+class="cmmi-12">MO </span>ergibt sich wie folgt:
+<div class="center" 
+>
+<!--l. 43--><p class="noindent" >
+<!--l. 44--><p class="noindent" ><span 
+class="cmmi-12">MO </span>= <img 
+src="handbuch32x.png" alt="&lfloor;            &rfloor;
+  3  1   . 2
+&lceil; 2  1  3  4 &rceil;
+  3  2   . 1"  class="left" align="middle"></div>
                                                                                          
                                                                                          
-<!--l. 1257--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 48--><p class="noindent" ><span id="textcolor65">&nbsp;<br><span 
+class="cmbx-12x-x-120">Erzeugen des </span><span 
+class="cmtt-12x-x-120">instance</span>&nbsp;<br><span 
+class="cmbx-12x-x-120">-Dokumentes</span></span> <br 
+class="newline" />Die Probleminstanz muss nun in ein XML-Dokument überführt werden, das dem
+Lösungsalgorithmus übergeben werden kann. Wichtig ist auch die Angabe der Aufrufparameter für
+den Lösungsalgorithmus, die &#8211; in einem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element zusammengefasst &#8211; in dem
+Dokument mit enthalten sind. Die einzelnen Parameter bestehen jeweils aus einem Namen, dem
+Typ (<span 
+class="cmtt-12">string</span>, <span 
+class="cmtt-12">integer </span>oder <span 
+class="cmtt-12">real</span>) und einem Wert. Welche Parameter ein Algorithmus genau
+verlangt, lässt sich im Kapitel <a 
+href="handbuchch4.html#x27-260004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> nachschlagen.
+<!--l. 59--><p class="noindent" ><span 
+class="cmbx-12">Hinweis: </span>Für das korrekte Einlesen der XML-Datei ist auch die Reihenfolge der XML-Elemente
+wichtig. Beispielsweise muss das <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element <span 
+class="cmti-12">direkt nach </span>dem <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element folgen.
+Der allgemeine Aufbau eines <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span>-Dokumentes ist in Anhang <a 
+href="handbuchap1.html#x64-69000A">A<!--tex4ht:ref: XML-Referenz --></a> beschrieben.
+<!--l. 65--><p class="noindent" >Für die oben gegebenen Daten wird also das folgende <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span>-Dokument erstellt:
+<!--l. 68--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-25">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"/home/frank/LiSA-Main/LiSA/data/LiSA.dtd"&#x003E;
+&#x00A0;<br />&#x003C;instance&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="J"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ci"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="4"&#x00A0;n="3"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;53&#x00A0;&#x00A0;98&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;80&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;88&#x00A0;&#x00A0;38&#x00A0;&#x00A0;89&#x00A0;&#x00A0;96&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;37&#x00A0;&#x00A0;30&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;60&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;machine_order&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;2&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;4&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/machine_order&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;controls&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="MODE"&#x00A0;value="INSERT"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="INS_ORDER"&#x00A0;value="LPT"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="INS_METHOD"&#x00A0;value="INSERT1"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="CRITERION"&#x00A0;value="OBJECTIVE"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="k_BRANCHES"&#x00A0;value="5"&#x00A0;/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/controls&#x003E;
+&#x00A0;<br />&#x003C;/instance&#x003E;
+</div>
+      <!--l. 111--><p class="nopar" ></div>
+<!--l. 115--><p class="noindent" ><span id="textcolor66">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf des Algorithmus unter Windows</span></span> <br 
+class="newline" />Es wird angenommen, dass die eben erstellte XML-Datei unter dem Namen <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">beispiel.xml</span></span></span> im
+Ordner <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">C:\Scheduling\</span></span></span> liegt. Der aufzurufende Algorithmus (in diesem Fall <span 
+class="cmtt-12">beam.exe</span>) liegt im
+                                                                                         
+                                                                                         
+Unterordner <span 
+class="cmtt-12">bin </span>des LiSA-Verzeichnisses (standardmäßig <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">C:\Programme\LiSA\bin</span></span></span>). Mit Hilfe der
+Windows- Eingabeaufforderung (<span 
+class="cmtt-12">cmd</span>) muss in diesen Ordner gewechselt werden, um von hier aus
+den Algorithmus aufzurufen (der Aufruf von einem anderen Arbeitsverzeichnis aus ist leider nicht
+möglich).
+<!--l. 125--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-26">
+&#x00A0;cd&#x00A0;C:\Programme\LiSA\bin
+&#x00A0;<br />&#x00A0;beam.exe&#x00A0;C:\Schedulng\beispiel.xml&#x00A0;C:\Scheduling\beispiel.out.xml
+</div>
+      <!--l. 129--><p class="nopar" ></div>
+<!--l. 132--><p class="noindent" >Dieser Aufruf erzeugt im Ordner <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">C:\Scheduling\</span></span></span> die Datei <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">beispiel.out.xml</span></span></span>, welche ein
+Dokument vom Typ <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">solution</span></span></span> ist. In ihr ist die Ausgabe des Algorithmus und damit der gesuchte
+Zeitplan enthalten.
+<!--l. 138--><p class="noindent" ><span id="textcolor67">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf des Algorithmus unter UNIX und cygwin</span></span> <br 
+class="newline" />Hierbei wird angenommen, dass die erstellte XML-Datei im Home-Verzeichnis unter dem Namen
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">beispiel.xml</span></span></span> gespeichert wurde. Der aufzurufende Algorithmus (in diesem Fall <span 
+class="cmtt-12">beam</span>) liegt im
+Unterordner <span 
+class="cmtt-12">bin </span>des LiSA-Verzeichnisses (standardmäßig <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">~/LiSA/bin</span></span></span>). Mit Hilfe einer Konsole
+kann das Programm in diesem Arbeitsverzeichnis aufgerufen werden (ein Aufruf aus einem anderen
+Verzeichnis ist leider nicht möglich).
+<!--l. 147--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-27">
+&#x00A0;cd&#x00A0;~/LiSA/bin
+&#x00A0;<br />&#x00A0;./beam&#x00A0;~/beispiel.xml&#x00A0;~/beispiel.out.xml
+</div>
+      <!--l. 151--><p class="nopar" ></div>
+<!--l. 154--><p class="noindent" >Dieser Aufruf erzeugt im Home-Verzeichnis die Datei <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">beispiel.out.xml</span></span></span>, welche ein Dokument
+vom Typ <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">solution</span></span></span> ist. In ihr ist die Ausgabe des Algorithmus und damit der gesuchte Zeitplan
+enthalten.
+                                                                                         
+                                                                                         
+<!--l. 455--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchse30.html" >next</a>] [<a 
 href="handbuchse28.html" >prev</a>] [<a 
 href="handbuchse28.html#tailhandbuchse28.html" >prev-tail</a>] [<a 
 href="handbuchse29.html" >front</a>] [<a 
-href="handbuchap1.html#handbuchse29.html" >up</a>] </p></div>
-<!--l. 1257--><p class="noindent" ><a 
+href="handbuchch8.html#handbuchse29.html" >up</a>] </p></div>
+<!--l. 455--><p class="noindent" ><a 
  id="tailhandbuchse29.html"></a>  
 </body></html> 

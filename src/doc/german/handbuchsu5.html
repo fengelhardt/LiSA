@@ -1,43 +1,268 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Der Dokumenttyp controls</title> 
+<head><title>Universelle Algorithmen</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 237--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu4.html" >prev</a>] [<a 
-href="handbuchsu4.html#tailhandbuchsu4.html" >prev-tail</a>] [<a 
+<!--l. 5--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu6.html" >next</a>] [<a 
 href="#tailhandbuchsu5.html">tail</a>] [<a 
 href="handbuchse7.html#handbuchsu5.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">2.4.5   </span> <a 
- id="x15-140002.4.5"></a>Der Dokumenttyp <span 
-class="cmtt-12">controls</span></h4>
-<!--l. 240--><p class="noindent" >Ein Dokument vom Typ <span 
-class="cmtt-12">controls </span>wird verwendet, um die Programmoptionen von LiSA
-dauerhaft zu speichern. Ein solches Dokument muss LiSA beim Programmstart übergeben
-werden; standardmäßig ist dies die Datei <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">~/.lisa/default.xml</span></span></span>. Der genaue Aufbau
-und die änderbaren Optionen werden im Anhang <a 
-href="handbuchap1.html#x59-64000A">A<!--tex4ht:ref: XML-Referenz --></a> beschrieben. Die wichtigsten der
-hier gespeicherten Optionen lassen sich auch im Menüpunkt <span 
-class="cmbx-12">Optionen/allgemeine</span>
+<h4 class="subsectionHead"><span class="titlemark">2.4.1   </span> <a 
+ id="x15-140002.4.1"></a>Universelle Algorithmen</h4>
+<!--l. 7--><p class="noindent" >-  <span 
+class="cmbx-12">Exakte Algorithmen</span><br 
+class="newline" />Ein allgemeiner Branch and Bound Algorithmus, der auf der Insertion-Technik aus <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span></span><span 
+class="cmcsc-10x-x-120">ä<span 
+class="small-caps">s</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xbr90">3</a>]</span> und
 <span 
-class="cmbx-12">Einstellungen </span>eingeben, sodass das manuelle Bearbeiten dieses Dokumentes selten nötig
-ist.
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span></span><span 
+class="cmcsc-10x-x-120">ä<span 
+class="small-caps">s</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span> <span 
+class="small-caps">u</span>.<span 
+class="small-caps">a</span>. </span><span class="cite">[<a 
+href="handbuchli1.html#Xbrtawe93">4</a>]</span> basiert, löst die meisten open-, flow- und job-shop Probleme mit regulären
+Zielfunktionen. Der Nutzer kann hier untere und obere Schranken eingeben, wobei eine obere
+Schranke durch eine vorher angewendete Heuristik ermittelt werden kann. Dieses Verfahren ist nur
+für kleine Parameter <span 
+class="cmmi-12">n,m </span>sinnvoll, da das Verfahren aufgrund seiner Universalität einen hohen
+Aufwand hat. Die Verwendung von guten unteren Schranken können die Laufzeit erheblich
+verringern.<br 
+class="newline" />
+<!--l. 16--><p class="noindent" >-  <span 
+class="cmbx-12">Konstruktive Heuristiken</span><br 
+class="newline" />Einfachen Reihungsregeln (Dispatching Rules) sind für eine große Reihe von Problemen verfügbar,
+auch unter zusätzlichen Bedingungen, wie z.B. Bereitstellungszeiten der Jobs. Schritt für Schritt
+wird eine neue Operation nach einer gegebenen Strategie angefügt.<br 
+class="newline" />
+<div class="table">
                                                                                          
                                                                                          
-<!--l. 203--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu4.html" >prev</a>] [<a 
-href="handbuchsu4.html#tailhandbuchsu4.html" >prev-tail</a>] [<a 
+<!--l. 19--><p class="noindent" ><a 
+ id="x15-140015"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 20--><p class="noindent" >
+<div class="tabular"> <table id="TBL-8" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"></colgroup><colgroup id="TBL-8-2g"><col 
+id="TBL-8-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-1-1"  
+class="td11">Regel </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-1-2"  
+class="td11"><!--l. 22--><p class="noindent" >Auswahl der nächsten Operation                                                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-2-1"  
+class="td11">      </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-2-2"  
+class="td11"><!--l. 25--><p class="noindent" >                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-3-1"  
+class="td11">RAND</td><td  style="white-space:wrap; text-align:left;" id="TBL-8-3-2"  
+class="td11"><!--l. 25--><p class="noindent" >zufällig (random)                                                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-4-1"  
+class="td11">FCFS </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-4-2"  
+class="td11"><!--l. 26--><p class="noindent" >erste zur Verfügung stehende Operation (first come, first serve)                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-5-1"  
+class="td11">EDD  </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-5-2"  
+class="td11"><!--l. 27--><p class="noindent" >mit kleinstem Fälligkeitstermin (earliest due date first)                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-6-1"  
+class="td11">LQUE</td><td  style="white-space:wrap; text-align:left;" id="TBL-8-6-2"  
+class="td11"><!--l. 28--><p class="noindent" >mit kleinster Differenz von Fälligkeitstermin und (Bearbeitungszeit + Tail)   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-7-1"  
+class="td11">SPT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-7-2"  
+class="td11"><!--l. 29--><p class="noindent" >mit kleinster Bearbeitungszeit (shortest processing time first)                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-8-1"  
+class="td11">WSPT</td><td  style="white-space:wrap; text-align:left;" id="TBL-8-8-2"  
+class="td11"><!--l. 30--><p class="noindent" >mit kleinstem Quotienten aus Bearbeitungszeit und Gewicht                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-9-1"  
+class="td11">      </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-9-2"  
+class="td11"><!--l. 31--><p class="noindent" >(weighted shortest processing time first)                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-10-1"  
+class="td11">ECT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-10-2"  
+class="td11"><!--l. 32--><p class="noindent" >mit kleinster Fertigstellungszeit ((reachable) earliest completion time first)    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-11-1"  
+class="td11">WI     </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-11-2"  
+class="td11"><!--l. 33--><p class="noindent" >mit größtem Gewicht (largest weight first)                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-12-1"  
+class="td11">LPT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-12-2"  
+class="td11"><!--l. 34--><p class="noindent" >mit größter Bearbeitungszeit (largest processing time first)                        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-13-1"  
+class="td11">      </td><td  style="white-space:wrap; text-align:left;" id="TBL-8-13-2"  
+class="td11"><!--l. 35--><p class="noindent" >                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-8-14-1"  
+class="td11">      </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Tabelle&#x00A0;2.5: </span><span  
+class="content">Reihungsregeln</span></div><!--tex4ht:label?: x15-140015 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 41--><p class="noindent" >In LiSA Version 3.0 sind für viele Probleme sogenannte Beam-Search Verfahren enthalten.
+Dies sind abgerüstete Branch-and-Bound Verfahren, d.h. der Branch-and Bound Baum
+wird nur teilweise erzeugt. Der Algorithmus bleibt polynomial, da eine Lösung durch
+Tiefensuche bestimmt wird und in jedem Schritt nur eine beschränkte Anzahl von Knoten
+(Beamweite) weiterverzweigt wird. Diese Verfahren unterteilen sich in Beam-Insert und
+Beam-Append Verfahren, je nachdem, ob die nächste Operation ein- oder angefügt
+wird.<br 
+class="newline" />
+<!--l. 48--><p class="noindent" >- <span 
+class="cmbx-12">Iterative Algorithmen </span><br 
+class="newline" />In LiSA sind verschiedene Nachbarschaftssuchverfahren verfügbar. Jeder Knoten eines
+Nachbarschaftsgraphen entspricht einem Plan und wird mit dem Zielfunktionswert des jeweils
+betrachteten Problems gewichtet. Die Menge der Kanten ist in den verschiedenen Nachbarschaften
+unterschiedlich. Zum Start der Verfahren ist eine erste Lösung notwendig, die mit einem einfachen
+Konstruktionsverfahren ermittelt werden kann. Dann beginnt die iterative Suche auf dem
+Nachbarschaftsgraphen, um eine bessere Lösung zu finden.<br 
+class="newline" />
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 54--><p class="noindent" ><a 
+ id="x15-140026"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 55--><p class="noindent" >
+<div class="tabular"> <table id="TBL-9" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1"></colgroup><colgroup id="TBL-9-2g"><col 
+id="TBL-9-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-1-1"  
+class="td11"><!--l. 58--><p class="noindent" >&#x00A0;&#x00A0;         Methode      </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-1-2"  
+class="td11"><!--l. 58--><p class="noindent" >&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;                                    Beschreibung                  </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-2-1"  
+class="td11"><!--l. 61--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-2-2"  
+class="td11"><!--l. 62--><p class="noindent" >                                                   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-3-1"  
+class="td11"><!--l. 62--><p class="noindent" >Iterative Improvement </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-3-2"  
+class="td11">
+<!--l. 63--><p class="noindent" >Übergang zu einer besseren Lösung                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-4-1"  
+class="td11"><!--l. 64--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-4-2"  
+class="td11"><!--l. 64--><p class="noindent" >- nach Enumeration aller Nachbarn oder                           </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-5-1"  
+class="td11"><!--l. 65--><p class="noindent" > </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-5-2"  
+class="td11"><!--l. 65--><p class="noindent" >- wenn der erste bessere Nachbar gefunden wurde.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-6-1"  
+class="td11"><!--l. 66--><p class="noindent" >Simulated Annealing   </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-6-2"  
+class="td11"><!--l. 67--><p class="noindent" >erlaubt  den  Übergang  zu  einer  schlechteren  Lösung  mit
+einer gewissen Wahrscheinlichkeit, die sich Schritt für Schritt
+verkleinert.                                                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-7-1"  
+class="td11"><!--l. 69--><p class="noindent" >Threshold Accepting   </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-7-2"  
+class="td11"><!--l. 69--><p class="noindent" >erlaubt  den  Übergang  zu  einer  schlechteren  Lösung  durch
+einen Schwellwert, der sich verkleinert.                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-8-1"  
+class="td11"><!--l. 71--><p class="noindent" >Tabu Search              </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-8-2"  
+class="td11"><!--l. 71--><p class="noindent" >erzeugt   eine   Tabu-Liste,   um   die   Rückkehr   zu   bereits
+betrachteten Lösungen zu verhindern.                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-9-1"  
+class="td11"><!--l. 72--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-9-9-2"  
+class="td11"><!--l. 73--><p class="noindent" >                                                   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-9-10-1"  
+class="td11">                   </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Tabelle&#x00A0;2.6: </span><span  
+class="content"> Nachbarschafts-Suchstrategien</span></div><!--tex4ht:label?: x15-140026 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 78--><p class="noindent" >In Tabelle <a 
+href="#x15-140026">2.6<!--tex4ht:ref: Iterative_Search --></a> sind die verschiedenen implementierten Suchmethoden erklärt. Um mehr
+Informationen zu erhalten werden, verweisen wir auf die Bücher von <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span><span 
+class="small-caps">u</span><span 
+class="small-caps">c</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xbr01">5</a>]</span>, <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">z</span><span 
+class="small-caps">e</span><span 
+class="small-caps">w</span><span 
+class="small-caps">i</span><span 
+class="small-caps">c</span><span 
+class="small-caps">z</span></span>
+<span 
+class="cmcsc-10x-x-120"><span 
+class="small-caps">u</span>.<span 
+class="small-caps">a</span>. </span><span class="cite">[<a 
+href="handbuchli1.html#Xbl96">2</a>]</span> oder <span 
+class="cmcsc-10x-x-120">P<span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">e</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xpi95">18</a>]</span>. In LiSA sind eine Reihe von Nachbarschaften verfügbar, wie z.B. die
+API (adjacent pairwise interchange), bei der zwei benachbarte Operationen bzgl. Technologie oder
+Organisation miteinander vertauscht werden. In Kapitel <a 
+href="handbuchse14.html#x35-340004.3">4.3<!--tex4ht:ref: Universelle iterative Verbesserungsverfahren --></a> ist eine Übersicht aller in LiSA
+verfügbaren Nachbarschaften enthalten.
+<!--l. 85--><p class="noindent" >In LiSA-Version 3.0 sind auch genetische Algorithmen implementiert. Ausgehend von einer
+Population (Menge von Startlösungen) wird eine neue Generation erzeugt, wobei bestimmte
+Vererbungsgesetze (Mutation und Kreuzung)gelten. Das Maß der Güte einer Lösung ist ihr
+Zielfunktionswert. Wie in der Natur, setzen sich die besseren Lösungen im Laufe der Generationen
+durch.
+                                                                                         
+                                                                                         
+<!--l. 89--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu6.html" >next</a>] [<a 
 href="handbuchsu5.html" >front</a>] [<a 
 href="handbuchse7.html#handbuchsu5.html" >up</a>] </p></div>
-<!--l. 203--><p class="noindent" ><a 
+<!--l. 89--><p class="noindent" ><a 
  id="tailhandbuchsu5.html"></a>  
 </body></html> 

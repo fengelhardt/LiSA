@@ -1,106 +1,245 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Der Dokumenttyp instance</title> 
+<head><title>Das Block-Matrizen Modell fur Shopprobleme</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-09-11 13:23:00"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 69--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 104--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu3.html" >next</a>] [<a 
 href="handbuchsu1.html" >prev</a>] [<a 
 href="handbuchsu1.html#tailhandbuchsu1.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu2.html">tail</a>] [<a 
-href="handbuchse7.html#handbuchsu2.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">2.4.2   </span> <a 
- id="x12-110002.4.2"></a>Der Dokumenttyp <span 
-class="cmtt-12">instance</span></h4>
-<!--l. 73--><p class="noindent" >Der Dokumenttyp <span 
-class="cmtt-12">instance </span>enthält eine Probleminstanz, also neben dem Problemtyp auch
-Parameter wie Problemgröße, Bearbeitungszeitenmatrix und Fälligkeitstermine. Diese Parameter
-werden zusammengefasst in einem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element, das dem bereits vorgestellten
-<span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;problem&#x003E;</span></span></span>-Element folgt.
-<!--l. 80--><p class="noindent" >Ein Beispiel mit dem Problemtyp <span 
-class="cmmi-12">O</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmex-10x-x-120">&sum;</span>
-   <span 
-class="cmmi-12">t</span><sub><span 
-class="cmmi-8">i</span></sub> der Größe n=5, m=10 mit gegebenen Bearbeitungszeiten,
-Fälligkeitsterminen und Operationenmenge:
-<!--l. 83--><p class="noindent" >
-      <div class="quote">
-                                                                                         
-                                                                                         
-      <div class="verbatim" id="verbatim-3">
-&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
-&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
-&#x00A0;<br />&#x003C;instance&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="O"/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ti"/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="10"&#x00A0;n="5"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;28&#x00A0;&#x00A0;32&#x00A0;&#x00A0;93&#x00A0;&#x00A0;71&#x00A0;&#x00A0;42&#x00A0;&#x00A0;18&#x00A0;&#x00A0;24&#x00A0;&#x00A0;10&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;15&#x00A0;&#x00A0;68&#x00A0;&#x00A0;88&#x00A0;&#x00A0;39&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;15&#x00A0;&#x00A0;84&#x00A0;&#x00A0;39&#x00A0;&#x00A0;59&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;98&#x00A0;&#x00A0;56&#x00A0;&#x00A0;59&#x00A0;&#x00A0;56&#x00A0;&#x00A0;95&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;49&#x00A0;&#x00A0;15&#x00A0;&#x00A0;25&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;80&#x00A0;&#x00A0;63&#x00A0;&#x00A0;32&#x00A0;&#x00A0;62&#x00A0;&#x00A0;96&#x00A0;&#x00A0;13&#x00A0;&#x00A0;20&#x00A0;&#x00A0;13&#x00A0;&#x00A0;46&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;39&#x00A0;&#x00A0;43&#x00A0;&#x00A0;94&#x00A0;&#x00A0;21&#x00A0;&#x00A0;25&#x00A0;&#x00A0;41&#x00A0;&#x00A0;48&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;90&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;95&#x00A0;&#x00A0;94&#x00A0;&#x00A0;39&#x00A0;&#x00A0;27&#x00A0;&#x00A0;69&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
-&#x00A0;<br />&#x003C;/instance&#x003E;
-</div>
-      <!--l. 119--><p class="nopar" ></div>
-<!--l. 122--><p class="noindent" >Im Anhang <a 
-href="handbuchap1.html#x59-64000A">A<!--tex4ht:ref: XML-Referenz --></a> finden sich Codierungen für weitere Parameter, die zur Probleminstanz
-gehören.
-<!--l. 127--><p class="noindent" >Dieser Dokumenttyp wird von den Algorithmen als Eingabe akzeptiert. Diese berechnen aus der
-Probleminstanz einen Plan. Da die Übergabe von Parametern an die Algorithmenmodule über die
-Eingabedatei erfolgt, wird hier hinter dem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element noch ein <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element
-erwartet, das diese Parameter enthält. Wird eine Probleminstanz über den Menüpunkt
+href="handbuchse6.html#handbuchsu2.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.2   </span> <a 
+ id="x11-100002.3.2"></a>Das Block-Matrizen Modell für Shopprobleme</h4>
+<!--l. 105--><p class="noindent" >Für ein Shopproblem lassen sich die technologischen und organisatorischen Reihenfolgen, die
+Pläne und Schedules durch Matrizen beschreiben. Jede der Matrizen enthält in der
 <span 
-class="cmbxti-10x-x-120">Datei/Speichern als </span>abgespeichert, enthält diese Datei kein <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element. Näheres
-hierzu wird im Abschnitt <span 
-class="cmbx-12">Algorithmenmodule </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu21.html#x51-500006.2.1">6.2.1<!--tex4ht:ref: Algorithmenmodule --></a>) behandelt. In Kapitel <a 
-href="handbuchch4.html#x20-190004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> sind die
-Parameter der Algorithmen dokumentiert.
+class="cmmi-12">i</span>-ten Zeile und <span 
+class="cmmi-12">j</span>-ten Spalte eine Information zu der Operation (<span 
+class="cmmi-12">ij</span>). Dies ist entweder
+eine strukturelle oder zeitliche Eigenschaft der Operation (<span 
+class="cmmi-12">ij</span>). Dazu wird der Rang
+<span 
+class="cmmi-12">rg</span>(<span 
+class="cmmi-12">v</span>) eines Knotens <span 
+class="cmmi-12">v </span>in einem azyklischen Digraphen eingeführt. Bezeichnet man die
+Anzahl der Knoten auf einem Weg <span 
+class="cmmi-12">w </span>in einem azyklischen Digraphen als Länge <span 
+class="cmmi-12">l</span>(<span 
+class="cmmi-12">w</span>) des
+Weges, so ist der Rang <span 
+class="cmmi-12">rg</span>(<span 
+class="cmmi-12">v</span>) die Knotenanzahl eines längsten Weges, der im Knoten <span 
+class="cmmi-12">v</span>
+endet. Werden die Knoten (<span 
+class="cmmi-12">ij</span>) des Plangraphen <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) mit der Bearbeitungszeit
+<span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> gewichtet, ergibt sich die Gesamtbearbeitungszeit des zugehörenden semiaktiven
+Schedules als Gewicht eines kritischen Weges (Weg mit maximalem Gewicht) in dem
+Plangraphen.<br 
+class="newline" />
+<!--l. 111--><p class="noindent" >Damit ergeben sich zur Beschreibung der Graphen die folgenden Matrizen:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) wird durch <span 
+class="cmmi-12">MO </span>= [<span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub>] beschrieben, wobei <span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub> der Rang der Operation
+      (<span 
+class="cmmi-12">ij</span>) in <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) ist (Matrix der technologischen Reihenfolgen).
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) wird durch <span 
+class="cmmi-12">JO </span>= [<span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub>] beschrieben, wobei <span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> der Rang der Operation (<span 
+class="cmmi-12">ij</span>) in
+      <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) ist (Matrix der organisatorischen Reihenfolgen).
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) wird durch <span 
+class="cmmi-12">LR </span>= [<span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub>] beschrieben, wobei <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> der Rang der Operation
+      (<span 
+class="cmmi-12">ij</span>) im Plangraphen <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) ist (Plan).</li></ul>
+<!--l. 119--><p class="noindent" >In jeder Zeile <span 
+class="cmmi-12">i </span>der Matrix <span 
+class="cmmi-12">MO </span>steht eine Permutation der Zahlen 1<span 
+class="cmmi-12">.</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,u</span><sub><span 
+class="cmmi-8">i</span></sub>, wobei <span 
+class="cmmi-12">u</span><sub><span 
+class="cmmi-8">i</span></sub> die Anzahl der
+Operationen des Auftrags <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> ist. In jeder Spalte <span 
+class="cmmi-12">j </span>der Matrix <span 
+class="cmmi-12">JO </span>steht eine Permutation
+der Zahlen 1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,v</span><sub><span 
+class="cmmi-8">j</span></sub>, wobei <span 
+class="cmmi-12">v</span><sub><span 
+class="cmmi-8">j</span></sub> die Anzahl der Operationen ist, die auf der Maschine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>
+bearbeitet werden sollen. Ein Plan <span 
+class="cmmi-12">LR </span>vereint die Eigenschaften von <span 
+class="cmmi-12">MO </span>und <span 
+class="cmmi-12">JO</span>.
+Jeder Plan erfüllt aufgrund der Definition des Ranges die <span 
+class="cmti-12">Planeigenschaft</span>: Zu jeder Zahl
+<span 
+class="cmmi-12">z </span>= <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmmi-12">&#x003E; </span>1 existiert in der Zeile <span 
+class="cmmi-12">i </span>oder in der Spalte <span 
+class="cmmi-12">j </span>oder in beiden die Zahl <span 
+class="cmmi-12">z </span><span 
+class="cmsy-10x-x-120">&minus; </span>1. Es sei
+bemerkt, dass Pläne über vollständigen Operationenmengen <span 
+class="cmmi-12">SIJ </span>= <span 
+class="cmmi-12">I </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">J </span>spezielle
+lateinische Rechtecke sind. Ein lateinisches Rechteck <span 
+class="cmmi-12">LR</span>[<span 
+class="cmmi-12">n,m,r</span>] ist eine Matrix mit <span 
+class="cmmi-12">n</span>-Zeilen,
+<span 
+class="cmmi-12">m</span>-Spalten und Einträgen aus einer Belegungsmenge <span 
+class="cmsy-10x-x-120">{</span>1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,r</span><span 
+class="cmsy-10x-x-120">}</span>, wobei jede Zahl aus der
+Belegungsmenge in jeder Zeile und jeder Spalte höchstens einmal vorkommt. Erfüllt ein lateinisches
+Rechteck die Planbedingung, so ist es die Rangmatrix eines Plangraphen <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>). Bei
+unvollständigen Operationenmengen entstehen sogenannte partielle lateinische Rechtecke als
+Rangmatrizen.<br 
+class="newline" />
                                                                                          
                                                                                          
-<!--l. 138--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 124--><p class="noindent" >Zur Beschreibung eines semiaktiven Schedules, der eineindeutig zu einem Plan mit gegebener
+Matrix der Bearbeitungszeiten gehört, werden die folgenden Matrizen eingeführt:<br 
+class="newline" />
+      <ul class="itemize1">
+      <li class="itemize">Die Matrix <span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>], wobei <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> die Fertigstellungszeit für die Operationen (<span 
+class="cmmi-12">ij</span>) ist.
+      </li>
+      <li class="itemize">Die Matrix <span 
+class="cmmi-12">H </span>= [<span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub>], wobei <span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> die minimale Zeit der Bearbeitung aller Vorgänger der
+      Operationen (<span 
+class="cmmi-12">ij</span>) ist (Head von (<span 
+class="cmmi-12">ij</span>): frühester Starttermin der Operation (<span 
+class="cmmi-12">ij</span>)).
+      </li>
+      <li class="itemize">Die Matrix <span 
+class="cmmi-12">T </span>= [<span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub>], wobei <span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> die minimale Zeit für die Bearbeitung aller Nachfolger
+      der Operationen (<span 
+class="cmmi-12">ij</span>) ist (Tail von (<span 
+class="cmmi-12">ij</span>)).
+      </li>
+      <li class="itemize">Die Matrix <span 
+class="cmmi-12">W </span>= <span 
+class="cmmi-12">H </span>+<span 
+class="cmmi-12">PT </span>+<span 
+class="cmmi-12">T </span>= <span 
+class="cmmi-12">C </span>+<span 
+class="cmmi-12">T </span>= [<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub>], wobei <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> das Gewicht eines schwersten
+      Weges ist, der über die Operation (<span 
+class="cmmi-12">ij</span>) führt.</li></ul>
+<!--l. 133--><p class="noindent" >Damit ergibt sich die Gesamtbearbeitungszeit
+<center class="math-display" >
+<img 
+src="handbuch8x.png" alt="Cmax  = (mija)x&isin;SIJ cij = (imj)a&isin;xSIJ wij.  " class="math-display" ></center> Alle
+Operationen (<span 
+class="cmmi-12">ij</span>) mit <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> liegen auf mindestens einem kritischen Weg. Mit Hilfe der Matrix
+<span 
+class="cmmi-12">W </span>kann man durch Breitensuche alle kritischen Wege konstruieren. Die folgende Abbildung enthält
+das Block-Matrizen Modell:
+<!--l. 137--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x11-100013"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 159--><p class="noindent" >
+<!--l. 160--><p class="noindent" ><img 
+src="handbuch9x.png" alt="PIC" class="graphics" width="455.24408pt" height="186.48894pt" ><!--tex4ht:graphics  
+name="handbuch9x.png" src="./bilder/b-modell.eps"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Abbildung&#x00A0;2.3: </span><span  
+class="content">Block-Matrizen Modell</span></div><!--tex4ht:label?: x11-100013 -->
+                                                                                         
+                                                                                         
+<!--l. 166--><p class="noindent" ></div><hr class="endfigure">
+                                                                                         
+                                                                                         
+<!--l. 174--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu3.html" >next</a>] [<a 
 href="handbuchsu1.html" >prev</a>] [<a 
 href="handbuchsu1.html#tailhandbuchsu1.html" >prev-tail</a>] [<a 
 href="handbuchsu2.html" >front</a>] [<a 
-href="handbuchse7.html#handbuchsu2.html" >up</a>] </p></div>
-<!--l. 138--><p class="noindent" ><a 
+href="handbuchse6.html#handbuchsu2.html" >up</a>] </p></div>
+<!--l. 174--><p class="noindent" ><a 
  id="tailhandbuchsu2.html"></a>  
 </body></html> 

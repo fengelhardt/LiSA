@@ -1,31 +1,58 @@
  
 /* start css.sty */
+.cmex-10{font-size:83%;}
 .cmr-10{font-size:83%;}
+.cmmi-10{font-size:83%;font-style: italic;}
+.cmsy-10{font-size:83%;}
 .cmbx-12x-x-172{font-size:172%; font-weight: bold;}
 .cmbx-12x-x-172{ font-weight: bold;}
 .cmbx-12x-x-172{ font-weight: bold;}
-.cmtt-12{font-family: monospace;}
-.cmtt-12{font-family: monospace;}
-.cmtt-12{font-family: monospace;}
-.cmr-8{font-size:66%;}
-.cmmi-12{font-style: italic;}
-.cmmi-8{font-size:66%;font-style: italic;}
-.cmsy-8{font-size:66%;}
-.cmbx-12{ font-weight: bold;}
-.cmbx-12{ font-weight: bold;}
-.cmbx-12{ font-weight: bold;}
-.cmti-12{ font-style: italic;}
-.cmtt-10x-x-109{font-size:90%;font-family: monospace;}
-.cmtt-10x-x-109{font-family: monospace;}
-.cmtt-10x-x-109{font-family: monospace;}
+.cmbx-12x-x-172{ font-weight: bold;}
 .cmr-12x-x-120{font-size:120%;}
 .cmbx-12x-x-120{font-size:120%; font-weight: bold;}
 .cmbx-12x-x-120{ font-weight: bold;}
 .cmbx-12x-x-120{ font-weight: bold;}
+.cmbx-12x-x-120{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmbx-12{ font-weight: bold;}
+.cmti-12{ font-style: italic;}
+.cmr-8{font-size:66%;}
+.cmr-6{font-size:50%;}
+.cmmi-12{font-style: italic;}
+.cmmi-8{font-size:66%;font-style: italic;}
+.cmmi-6{font-size:50%;font-style: italic;}
+.cmsy-8{font-size:66%;}
+.cmtt-12{font-family: monospace;}
+.cmtt-12{font-family: monospace;}
+.cmtt-12{font-family: monospace;}
+.cmtt-12{font-family: monospace;}
+.cmtt-12{font-family: monospace;}
+.cmbx-8{font-size:66%; font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmbx-8{ font-weight: bold;}
+.cmmib-10x-x-120{font-style: italic; font-weight: bold;}
+.cmmib-8{font-size:66%;font-style: italic; font-weight: bold;}
+.cmbsy-10x-x-120{font-weight: bold;}
+.cmitt-10x-x-120{font-family: monospace; font-style: italic;}
+.cmitt-10x-x-120{font-family: monospace; font-style: italic;}
+.cmti-10{font-size:83%; font-style: italic;}
+.cmitt-10{font-size:83%;font-family: monospace; font-style: italic;}
+.cmitt-10{font-family: monospace; font-style: italic;}
 .cmbxti-10x-x-120{ font-weight: bold; font-style: italic;}
+.cmtt-10x-x-109{font-size:90%;font-family: monospace;}
+.cmtt-10x-x-109{font-family: monospace;}
+.cmtt-10x-x-109{font-family: monospace;}
+.cmtt-10x-x-109{font-family: monospace;}
+.cmtt-10x-x-109{font-family: monospace;}
 .cmtt-12x-x-120{font-size:120%;font-family: monospace;}
 .cmtt-12x-x-120{font-family: monospace;}
 .cmtt-12x-x-120{font-family: monospace;}
+.cmtt-12x-x-120{font-family: monospace;}
+.cmtt-12x-x-120{font-family: monospace;}
+.small-caps{font-variant: small-caps; }
 p.noindent { text-indent: 0em }
 td p.noindent { text-indent: 0em; margin-top:0em; }
 p.nopar { text-indent: 0em; }
@@ -156,6 +183,10 @@ table.multline, table.multline-star {width:100%;}
 td.gather {text-align:center; }
 table.gather {width:100%;}
 div.gather-star {text-align:center;}
+td#TBL-1-1-1{border-left:solid black 0.4pt;border-right:solid black 0.4pt;}
+td#TBL-2-1-1{border-left:solid black 0.4pt;border-right:solid black 0.4pt;}
+td#TBL-3-1-1{border-left:solid black 0.4pt;border-right:solid black 0.4pt;}
+td#TBL-4-1-1{border-left:solid black 0.4pt;border-right:solid black 0.4pt;}
 span#textcolor1{color:rgb(153,153,153)}
 span#textcolor2{color:rgb(153,153,153)}
 span#textcolor3{color:rgb(153,153,153)}
@@ -219,8 +250,12 @@ span#textcolor60{color:rgb(153,153,153)}
 span#textcolor61{color:rgb(153,153,153)}
 span#textcolor62{color:rgb(153,153,153)}
 span#textcolor63{color:rgb(153,153,153)}
+span#textcolor64{color:rgb(153,153,153)}
+span#textcolor65{color:rgb(153,153,153)}
+span#textcolor66{color:rgb(153,153,153)}
+span#textcolor67{color:rgb(153,153,153)}
 /* end css.sty */
 
-body {background-color:rgb(230,230,230); background-image:url('../../../img/lisa.gif')}
+body {background-color:rgb(230,230,230); background-image:url('lisa.gif')}
 h1   {font-size:120%; font-weight: bold; color: rgb(000,000,000)}
 h2   {font-size:120%; font-weight: bold; color: rgb(153,153,153)}
