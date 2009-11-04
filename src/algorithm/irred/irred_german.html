@@ -1,82 +1,125 @@
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-<html>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <title>Hilfe zu Irreduzibilit&auml;tstest</title>
-</head>
-<body bgcolor="#E3E3E3" background="../../../../img/lisa.gif">
-
-<h2>Irreduzibilit&auml;tstest</h2>
-    Dieser Algorithmus &uuml;berpr&uuml;ft einen vorgegebenen Plan auf Irreduzibilit&auml;t. Ein Plan S* reduziert 
-    einen anderen Plan S wenn er f&uuml;r jede Wahl von Bearbeitungszeiten einen besseren Zielfunktionswert liefert als 
-    S. S ist also irreduzibel wenn kein solcher Plan existiert.<br><br>Der Test funktioniert f&uuml;r Open, Job und Flow
-    Shop Probleme, in Kombination mit Freigabezeiten und f&uuml;r die Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi
-    und SumWiTi Zielfunktionen.
-<h2>So wird der Test gestartet:</h2>
-Stellen sie sicher, das der <a href="../problem.html">Problemtyp</a> und alle <a href="../values.html">Problemparameter</a>
-definiert sind und bereits ein Plan existiert. W&auml;hlen sie <i>Heuristische Verfahren|Irreduzibilit&auml;tstest</i>
-aus dem Menu <i>Algorithmen</i> , editieren sie die Optionen und dr&uuml;cken sie <i>OK</i>.
-<h2>Optionen:</h2>
-
-<dl>
-<dt>Erzeuge Pl&auml;ne:</dt>
-
-<dl>
-<dt>SIMILAR</dt>
-
-<dd>Wenn diese Option gew&auml;hlt wurde wird der Algorithmus NICHT auf Irreduzibilit&auml;t pr&uuml;fen.
-    Stattdessen werden alle Pl&auml;ne erzeugt und zur&uuml;ckgegeben, die f&uuml;r jede Wahl von Bearbeitungszeiten 
-    genau den selben Zielfunktionswert liefern wie der urspr&uuml;ngliche Plan.</dd>
-
-<dt>ALL_REDUCING</dt>
-
-<dd>Alle Pl&auml;ne die den Eingebeplan reduzieren werden erzeugt. Wenn kein solcher Plan existiert wird der 
-    Eingabeplan zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur die irreduziblen
-    Pl&auml;ne zur&uuml;ckgegeben werden. Die Option Pl&auml;ne in zuf&auml;lliger Reihenfolge  zu erzeugen hat auf
-    diesen Algorithmus keinen Einfluss.</dd>
-
-<dt>ITERATIVE_REDUCING</dt>
-
-<dd>Sobald ein Plan gefunden wurde, der den urspr&uuml;nglichen Plan reduziert wird der Algorithmus unterbrochen 
-    und mit dem neuen Plan neu gestartet. Dies wird fortgef&uuml;hrt bis ein irreduzibler Plan gefunden wurde. 
-    Pl&auml;ne k&ouml;nnen in zuf&auml;lliger Reihenfolge erzeugt werden, so das bei wiederholten Aufrufen des 
-    Algorithmus unterschiedliche Resultate erzielt werden k&ouml;nnen. Sollte der urspr&uuml;ngliche Plan irreduzibel 
-    sein, so wird er zusammen mit einer Warnung zur&uuml;ckgegeben. Ansonsten k&ouml;nnen alle oder nur der letzte
-    (irreduzible) Plan zur&uuml;ckgegeben werden.</dd>
-
-</dl>
-
-<dt>Gib folgende Pl&auml;ne zur&uuml;ck:</dt>
-
-<dl>
-<dt>ALL</dt>
-
-<dd>Alle erzeugten Pl&auml;ne werden zur&uuml;ckgegeben. Bitte beachten sie das dies im Zusammenhang mit der 
-    ALL_REDUCING Option sehr viele sein k&ouml;nnen.</dd>
-
-<dt>ONLY_IRREDUCIBLE</dt>
-
-<dd>Nur die irreduziblen Pl&auml;ne werden zur&uuml;ckgegeben.</dd>
-
-</dl>
-
-<dt>Erzeuge Pl&auml;ne in zuf&auml;lliger Reihenfolge:</dt>
-
-<dl>
-<dt>YES</dt>
-
-<dd>Pl&auml;ne werden vom Algorithmus in zuf&auml;lliger Reihenfolge erzeugt. Dies ist nur interessant
-    im Zusammenhang mit der ITERATIVE_REDUCING Option, um bei verschiedenen Aufrufen des Algorithmus 
-    verschiedene Resultate zu erhalten.</dd>
-
-<dt>NO</dt>
-
-<dd>Pl&auml;ne werden vom Algorithmus in der effizientesten Reihenfolge erzeugt.</dd>
-
-</dl>
-</dl>
-
-<hr><a href="../main.html">Inhaltsverzeichnis
-<hr></a>23.10.01
-</body>
-</html>
+<!--l. 2--><p class="noindent" ><!-- LISA ALGORITHM irred -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Irreduzibilitatstest</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2009-11-04 12:23:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 367-->
+<h3 class="sectionHead"> <a 
+ id="x53-520006.3"></a>Irreduzibilitätstest</h3>
+<!--l. 2--><p class="noindent" ><!-- LISA ALGORITHM irred -->
+<!--l. 4--><p class="noindent" >Dieser Test löst verschiedene Aufgabenstellungen aus der Irreduzibilitätstheorie, Literaturhinweis:
+Willenius. Er ist für open-, job- und flow-shop Probleme mit Bereitstellungszeiten der Jobs und
+mit den regulären Zielfunktionen Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und
+SumWiTi anwendbar.
+<!--l. 8--><p class="noindent" >Ein Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> reduziert einen Plan <span 
+class="cmmi-12">S</span>, wenn <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> für jede Wahl der Bearbeitungszeiten keinen
+schlechteren Zielfunktionswert als <span 
+class="cmmi-12">S </span>liefert. Zwei Pläne sind zueinander ähnlich, wenn sie für jede
+Wahl von Bearbeitungszeiten den gleichen Zielfunktionswert besitzen. Ein Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> reduziert einen
+Plan <span 
+class="cmmi-12">S </span>echt, wenn sie nicht ähnlich zueinander sind und wenn <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> den Plan <span 
+class="cmmi-12">S </span>reduziert. Ein
+Plan <span 
+class="cmmi-12">S </span>heißt irreduzibel, wenn es keinen Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> gibt, der <span 
+class="cmmi-12">S </span>echt reduziert. Damit
+existiert in der Menge aller irreduziblen Pläne ein global optimaler Plan für jede Wahl der
+Bearbeitungszeiten.
+<!--l. 18--><p class="noindent" ><span id="textcolor47">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 20--><p class="noindent" >Wenn LiSA den Problemtyp und alle Parameter kennt und bereits ein Plan erzeugt wurde, läßt
+sich der Algorithmus im Menüpunkt <span 
+class="cmbxti-10x-x-120">Heuristische Verfahren/Irreduzibilit</span><span 
+class="cmbxti-10x-x-120">ätstest </span>des Menüs
+<span 
+class="cmbxti-10x-x-120">Algorithmen </span>aufrufen.
+<!--l. 25--><p class="noindent" ><span id="textcolor48">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Erzeuge Pl</span><span 
+class="cmbx-12">äne:</span> </dt><dd 
+class="description">Es wird eingegeben, welche Pläne erzeugt werden sollen:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SIMILAR </span>Es werden alle zum Ausgangsplan ähnlichen Pläne erzeugt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ALL</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">REDUCING </span>Es werden alle Pläne erzeugt, die den Eingabeplan streng
+           reduzieren und zwar genau einer aus jeder Ähnlichkeitsklasse. Wenn kein solcher
+           Plan  existiert,  wird  eine  LiSA-Fehlermeldung  ausgegeben:  Warning:  Plan  is
+           irreducible.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ITERATIVE</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">REDUCING  </span>Sobald  ein  Plan  gefunden  wurde,  der  den
+           ursprünglichen Plan streng reduziert, wird der Algorithmus unterbrochen und mit
+           dem neuen Plan erneut gestartet. Dies wird fortgeführt bis ein irreduzibler Plan
+           gefunden wurde.
+           <!--l. 38--><p class="noindent" >Sollte   der   Ausgangsplan   irreduzibel   sein,   wird   eine   LiSA-Fehlermeldung
+           ausgegeben: Warning: Plan is irreducible.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Gib folgende Pl</span><span 
+class="cmbx-12">äne zur</span><span 
+class="cmbx-12">ück:</span> </dt><dd 
+class="description">Eine Abspeicherung erfolgt in der Datei <span 
+class="cmti-12">algo</span><span 
+class="cmti-12">_out.xml </span>im
+      Verzeichnis <span 
+class="cmti-12">.lisa/proc</span>. In LiSA wird das Ergebnis unter <span 
+class="cmbxti-10x-x-120">Bearbeiten/Liste von Plaenen</span>
+      angezeigt.
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">ALL  </span>Alle  erzeugten  Pläne  werden  zurückgegeben,  wobei  die  Anzahl  im
+           Zusammenhang mit der ALL_REDUCING Option sehr groß sein kann.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ONLY</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">IRREDUCIBLE </span>Nur irreduzible Pläne werden zurückgegeben.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Erzeuge Pl</span><span 
+class="cmbx-12">äne in zuf</span><span 
+class="cmbx-12">älliger Reihenfolge:</span> </dt><dd 
+class="description">Auswahlmöglichkeiten:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">YES </span>Pläne werden vom Algorithmus in zufälliger Reihenfolge erzeugt. Dies ist
+           nur interessant im Zusammenhang mit der ITERATIVE_REDUCING Option, um
+           bei verschiedenen Aufrufen des Algorithmus verschiedene Resultate zu erhalten.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NO </span>Pläne werden vom Algorithmus in einer effizienten Reihenfolge erzeugt.</li></ul>
+      </dd></dl>
+                                                                                         
+                                                                                         
+<!--l. 377-->
+<!--l. 377--><p class="noindent" ><a 
+ id="tailhandbuchse23.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
