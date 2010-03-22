@@ -246,22 +246,22 @@
     </problem>
   </exact>
   <alg_controls>
-    <integer name="K_BRANCHES" caption="Beamwidth" default="5"/>
-    <choice name="INS_METHOD" caption="Choice method">
+    <integer name="K_BRANCHES" caption="Beam width" default="5"/>
+    <choice name="INS_METHOD" caption="Selection method">
       <item name="INSERT1"/>
       <item name="INSERT2"/>
     </choice>
-    <choice name="CRITERION" caption="Choice criterion">
+    <choice name="CRITERION" caption="Selection criterion">
       <item name="CLAST"/>
       <item name="LB(Sum_Ci)"/>
       <item name="OBJECTIVE"/>
     </choice>
-    <choice name="ATTACH_WHAT" caption="Attach at">
+    <choice name="ATTACH_WHAT" caption="Attach what">
 	<item name="Machines"/>
 	<item name="Jobs"/>
 	<item name="Machines+Jobs"/>
     </choice>
-    <choice name="BREAK_TIES" caption="Tie Breaking">
+    <choice name="BREAK_TIES" caption="Tie breaking">
 	<item name="LPT"/>
 	<item name="SPT"/>
 	<item name="RANDOM"/>

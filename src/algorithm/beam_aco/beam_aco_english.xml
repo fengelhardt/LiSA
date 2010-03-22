@@ -14,29 +14,29 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <integer name="BEAM_WIDTH" caption="Beamweite" default="100"/>
-    <real name="LOWER_BOUND" caption="Untere Schranke" default="0"/>
-    <real name="UPPER_BOUND" caption="Obere Schranke" default="1e+06"/>
-    <choice name="EXTENSION_STRATEGY" caption="Bestimmung der Beam Extensions">
+    <integer name="BEAM_WIDTH" caption="Beam width" default="100"/>
+    <real name="LOWER_BOUND" caption="Lower bound" default="0"/>
+    <real name="UPPER_BOUND" caption="Upper bound" default="1e+06"/>
+    <choice name="EXTENSION_STRATEGY" caption="Determination of beam extensions">
       <item name="MED"/>
       <item name="LDS"/>
       <item name="FIXED"/>
     </choice>
-    <integer name="FIXED_KEXT" caption="Anzahl der Beam-Extensions" default="10"/>
-    <choice name="APPEND_STRATEGY" caption="Strategie der Auswahl der Extensions">
+    <integer name="FIXED_KEXT" caption="Number of beam extensions" default="10"/>
+    <choice name="APPEND_STRATEGY" caption="Strategy of selection of extensions">
       <item name="ORIGINAL"/>
       <item name="SORTED"/>
       </choice>
-    <choice name="PRE_SELECTION" caption="Vorauswahl der Erweiterungen">
+    <choice name="PRE_SELECTION" caption="Pre-selection of extensions">
       <item name="NONE"/>
       <item name="ACTIVE"/>
      </choice>
-    <integer name="STEPS" caption="Anzahl Durchlaeufe" default="50"/>
-    <real name="CONVERGENCE_FACTOR" caption="Konvergenzfaktor fuer Neustart" default="0.98"/>
-    <real name="EVAPORATION_RATE" caption="evaporationRate" default="0.3"/>
-    <real name="WEIGHT_EST" caption="Einfluss der Earliest Completion Time" default="1"/>
-  <real name="WEIGHT_TIJ" caption="Einfluss der Pheromone Werte" default="1"/>
-  <real name="WEIGHT_RAND" caption="Einfluss des Zufalls" default="1"/>
+    <integer name="STEPS" caption="Number of runs" default="50"/>
+    <real name="CONVERGENCE_FACTOR" caption="Convergence factor for re-start" default="0.98"/>
+    <real name="EVAPORATION_RATE" caption="Evaporation rate" default="0.3"/>
+    <real name="WEIGHT_EST" caption="Influence of Earliest Completion Time" default="1"/>
+  <real name="WEIGHT_TIJ" caption="Influence of pheromone values" default="1"/>
+  <real name="WEIGHT_RAND" caption="Influence of randomness" default="1"/>
 
   </alg_controls>
 </algorithm>

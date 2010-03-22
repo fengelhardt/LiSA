@@ -84,22 +84,22 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <real name="TSTART" caption="Start Temperature" default="20"/>
-    <real name="TEND" caption="End Temperature" default="0.9"/>
-    <choice name="COOLSCHEME" caption="Cooling Scheme">
+    <real name="TSTART" caption="Start temperature" default="20"/>
+    <real name="TEND" caption="End temperature" default="0.9"/>
+    <choice name="COOLSCHEME" caption="Cooling scheme">
       <item name="LINEAR"/>
       <item name="GEOMETRIC"/>
       <item name="LUNDYANDMEES"/>
     </choice>
-    <real name="COOLPARAM" caption="Cooling Parameter" default="0.0005"/>
-    <integer name="EPOCH" caption="Epoch Lenght" default="100"/>
-    <integer name="NUMB_NGHB" caption="Number of Neighbours" 
+    <real name="COOLPARAM" caption="Cooling parameter" default="0.0005"/>
+    <integer name="EPOCH" caption="Epoch length" default="100"/>
+    <integer name="NUMB_NGHB" caption="Number of neighbors" 
 default="1"/>
-    <integer name="STEPS" caption="Iteration Steps" default="50000"/>
-    <integer name="NUMB_STUCKS" caption="Abort when Stuck for (Abort Criterion)" 
+    <integer name="STEPS" caption="Iteration steps" default="50000"/>
+    <integer name="NUMB_STUCKS" caption="Abort when stuck for (stopping criterion)" 
 default="100000"/>
-    <real name="ABORT_BOUND" caption="Abort when reaching Objective (Abort Criterion)" default="0"/>
-    <choice name="NGBH" caption="Neighbourhood">
+    <real name="ABORT_BOUND" caption="Abort when reaching objective (stopping criterion)" default="0"/>
+    <choice name="NGBH" caption="Neighborhood">
       <item name="TRANS"/>
       <item name="CR_TRANS"/>
       <item name="CR_TRANS_MIX"/>

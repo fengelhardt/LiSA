@@ -324,12 +324,12 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <choice name="SCHEDULE" caption="generate schedule">
+    <choice name="SCHEDULE" caption="Generate schedule">
       <item name="SEMIACTIVE"/>
       <item name="ACTIVE"/>
       <item name="NONDELAY"/>
     </choice>
-    <choice name="RULE" caption="priority">
+    <choice name="RULE" caption="Priority">
       <item name="RAND"/>
       <item name="FCFS"/>
       <item name="EDD"/>

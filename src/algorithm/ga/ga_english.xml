@@ -37,7 +37,7 @@ help_file="algorithm/ga.html">
   <alg_controls>
     <integer name="POP_SIZE" caption="Population size" default="50"/>
     <integer name="NUM_GEN"  caption="Number of generations" default="50"/>
-    <choice name="INIT" caption="Population Initialization">
+    <choice name="INIT" caption="Population initialization">
       <item name="RANDOM_ORDER"/>
       <item name="ACTIVE_DISPATCH"/>
       <item name="NON_DELAY_DISPATCH"/>

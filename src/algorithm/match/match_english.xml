@@ -14,11 +14,11 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <choice name="TYPEOF" caption="Kind of algorithm :">
+    <choice name="TYPEOF" caption="Kind of algorithm">
       <item name="BOTTLENECK"/>
       <item name="WEIGHTED"/>
     </choice>
-    <choice name="MINMAX" caption="Kind of matching :">
+    <choice name="MINMAX" caption="Kind of matching">
       <item name="HEADS"/>
       <item name="MIN"/>
       <item name="MAX"/>

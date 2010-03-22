@@ -85,15 +85,15 @@
   </heuristic>
   <alg_controls>
     <integer name="STEPS" caption="Created Solutions" default="50000"/>
-    <integer name="NUMB_STUCKS" caption="'Abort when Stuck for (Abort Criterion)" default="100000"/>
-    <real name="ABORT_BOUND" caption="Abort when reaching Objective (Abort Criterion)" default="0"/>
-    <choice name="NGBH" caption="Neighbourhood">
+    <integer name="NUMB_STUCKS" caption="Abort when stuck for (stopping criterion)" default="100000"/>
+    <real name="ABORT_BOUND" caption="Abort when reaching objective (stopping criterion)" default="0"/>
+    <choice name="NGBH" caption="Neighborhood">
       <item name="1_API"/>
       <item name="SHIFT"/>
       <item name="PI"/>
     </choice>
     <fixed name="METHOD" value="IterativeImprovement"/>
-    <choice name="TYPE" caption="Create Neighbour">
+    <choice name="TYPE" caption="Create neighbor">
       <item name="ENUM"/>
       <item name="RAND"/>
     </choice>
