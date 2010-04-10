@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE algorithm PUBLIC "" "LiSA.dtd">
-<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Single machine - sum ui" type="constructive" call="single_sum_ui" code="external" help_file="algorithm/single_sum_ui.html">
+<algorithm xmlns:LiSA="http://lisa.math.uni-magdeburg.de" name="Single Machine - Sum Ui" type="constructive" call="single_sum_ui" code="external" help_file="algorithm/single_sum_ui.html">
     <exact>
         <problem>
             <alpha env="1"/>
