@@ -1,77 +1,133 @@
-<HTML>
-<HEAD> <TITLE>Help for the branch and bound windows</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2> General Branch &amp; Bound Algorithm </H2>
-
-Use this algorithm to minimize any regular objective function for job
-shop, flow shop, open shop or one machine problems exactly or
-heuristicly if there is no specific algorithm to solve this problem.
-Because this algorithm needs exponential time, it cannot be applied to
-big problem instances. 
-<P>
-<H2>What you have to do:</H2> 
-<P>
-Make sure that both a 
-<A HREF="../problem.html"> problem type </A> and all 
-<A HREF="../values.html"> parameters </A> 
-are defined. Choose <I>Exact Algorithms|Branch &amp; Bound</I> from
-the menu <I>Algorithms</I> and after editing the options press <I>OK</I>.
-<P>
-<H2>Options:</H2>
-<DL>
-<DT>Number of Solutions: <DD>
-   LisaBB is able to compute all optimal solutions of a given
-   problem. To safe time and memory, give an upper bound for the
-   number of schedules in the output, normally 1.
-<DT>Lower bound:<DD>
-   If you know a lower bound for the objective function value, then
-   enter it here. Each schedule which does not exceed this value is
-   treated as optimal.
-<DT>Upper bound:<DD>
-   If a schedule is already known, enter its objective value here to
-   make the algorithm reject all schedules with bigger objective
-   value.
-<DT>Insertion order:<DD>
-   Chose the order in which LisaBB considers the operations. Possible
-   are:
-   <DL>
-   <DT>LPT <DD> ordered by nonincreasing processing times
-   <DT>RANDOM <DD> in random order
-   </DL>
-<DT>Bounding:<DD>
-   Chose a procedure to compute lower bounds within the algorithm:
-   <DL>
-   <DT> NORMAL <DD> objective function value of partial schedule
-   <DT> EXTENDED <DD> not implemented
-   </DL>
-</DL>
-<P>
-<H2>If LisaBB is too slow:</H2>
-<UL>
-<LI> Because LisaBB handles different kinds of problems, it cannot take
-  advantage problem specific things. Use an algorithm especially
-  implemented for your problem if possible.
-<LI> Abort the algorithm after some time. It will output the best
-  solution(s) found so far.
-<LI> Try another insertion order or bounding procedure.
-<LI> Find the optimal objective value with option "Number of
-  solutions=1". To find further optimal solutions in a second run,
-  give the optimal objective value as upper and lower bound.
-<LI> If you cannot find the optimal solution, try finding a schedule
-  with objective function in the interval [x,y] by giving x and y as
-  lower and upper boud, respectively. However, it is possible that
-  LisaBB does not find a schedule with this properties.
-</UL>
-<P>
-<HR>
-<A HREF="../main.html"> Table of Contents </A>
-<HR>
-29.10.99 TAU
-</BODY>
-</HTML>
-
-
-
-
-
+<!--l. 36--><p class="noindent" ><!-- LISA ALGORITHM bb -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Universal Branch &amp; Bound Algorithm</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-04-10 15:42:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 33-->
+                                                                                         
+                                                                                         
+<h4 class="subsectionHead"> <a 
+ id="x29-280004.1.1"></a>Universal Branch &amp; Bound Algorithm</h4>
+<!--l. 36--><p class="noindent" ><!-- LISA ALGORITHM bb -->
+<!--l. 38--><p class="noindent" >This branch &amp; bound algorithm determines an exact solution for all open-shop, flow-shop,
+job-shop, or single machine problems with a regular criterion. If an alternative exact procedure is
+available for the chosen problem type, this should be chosen since the running time for the
+universal branch &amp; bound algorithm can be possibly rather large.
+<!--l. 46--><p class="noindent" >Using appropriate restrictions, this algorithm can also be used for determining a good approximate
+solution.
+<!--l. 51--><p class="noindent" ><span id="textcolor9">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 53--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters </span>this procedure can
+be reached in the menu item <span 
+class="cmbxti-10x-x-120">Exact Algorithms/Branch &amp; Bound </span>in the menu
+<span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 58--><p class="noindent" ><span id="textcolor10">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Number of solutions:</span> </dt><dd 
+class="description">Here an upper bound for the number of output sequences can be
+      settled. The standard setting is 1. The algorithm is able to determine <span 
+class="cmti-12">all </span>optimal
+      sequences. In this case, one must set a number which is at least as large as the number
+      of optimal solutions.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Lower bound:</span> </dt><dd 
+class="description">Here one can set a known lower bound. LiSA considers any sequence, which
+      objective function does not exceed this value, as optimal. If a value is inserted which is
+      larger than the optimal function value, this may lead to the output of sequences which
+      are not optimal. In this way, one can also set a level of the objective function value
+      which is accepted as an approximation.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Upper bound:</span> </dt><dd 
+class="description">Here one can set a known upper bound for the objective function value of
+      an optimal solution. Such a bound can be obtained e.g. by the objective function value
+      of a known approximate solution. Then LiSA disregards all partial sequences with a
+      larger objective function value.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Insertion order:</span> </dt><dd 
+class="description">By selecting an insertion order it is fixed in which sequence the operations will
+      be appended to the partial sequences. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">LPT </span>(longest processing time): The operations are appended in dependence on
+           the processing times, starting with the largest processing time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM: </span>The operations are appended in a random order.</li></ul>
+                                                                                         
+                                                                                         
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Bounding:</span> </dt><dd 
+class="description">Here it is fixed which procedure is used by LiSA to calculate lower bounds for the
+      objective function value. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">NORMAL: </span>The objective function value of the partial sequence is used as lower
+           bound.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">EXTENDED: </span>(This extended method is not implemented yet.)</li></ul>
+      </dd></dl>
+<!--l. 99--><p class="noindent" ><span id="textcolor11">&nbsp;<br><span 
+class="cmbx-12x-x-120">Treatment of the problem</span></span>
+<!--l. 102--><p class="noindent" >This branch &amp; bound algorithm is a universal solver and therefore rather time consuming. If
+possible, one should use a problem-specific procedure. If the running time becomes too large, the
+procedure can be stopped at any time. This stopping procedure can also last a few minutes. Then
+the output gives approximate solutions.
+<!--l. 107--><p class="noindent" >If one looks for several optimal solutions, it is recommended to determine first the optimal function
+value with the setting 1 for the <span 
+class="cmbx-12">number of solutions </span>and then further optimal solutions in a
+second run with known bounds.
+<!--l. 113--><p class="noindent" ><span id="textcolor12">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 115--><p class="noindent" >The general branch &amp; bound algorithm is called in an input file for the <span 
+class="cmbx-12">Autoalg-function </span> as follows:
+<!--l. 120--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-5">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bb
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_ORDER&#x00A0;RANDOM
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NB_SOLUTIONS&#x00A0;1000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;UPPER_BOUND&#x00A0;10000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;LOWER_BOUND&#x00A0;-10000000
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 130--><p class="nopar" ></div>
+<!--l. 133--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, the
+default-value is given.
+<!--l. 136--><p class="noindent" >For the branch &amp; bound procedure, bb must be invoked as an executable file. Then the <span 
+class="cmbx-12">insertion</span>
+<span 
+class="cmbx-12">order</span>, the <span 
+class="cmbx-12">number of solutions </span>as well as an <span 
+class="cmbx-12">upper </span>and a <span 
+class="cmbx-12">lower bound </span>can be optionally
+set.
+                                                                                         
+                                                                                         
+<!--l. 145-->
+<!--l. 145--><p class="noindent" ><a 
+ id="tailhandbuchsu12.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

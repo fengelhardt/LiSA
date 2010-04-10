@@ -1,0 +1,155 @@
+<!--l. 769--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Tabu Search</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-04-10 15:42:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 766-->
+<h4 class="subsectionHead"> <a 
+ id="x37-360004.3.2"></a>Tabu Search</h4>
+<!--l. 769--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
+<!--l. 771--><p class="noindent" >Tabu search is a simple extension of iterative search. In order to avoid a quick stagnation in a bad
+local optimum, in any step the neighbor with the best objective function value is accepted. In
+order to avoid that after the acceptance of a worse solution one goes back to the old
+solution, recently visited solution are stored in a tabu list, and they are forbidden to
+be re-considered in the search. In order to limit the computational time required for
+the comparisons of any solution with those in the list, the length of the tabu list is
+restricted.
+<!--l. 779--><p class="noindent" ><span id="textcolor29">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 781--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters </span>one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Tabu Search </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 787--><p class="noindent" ><span id="textcolor30">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Created solutions:</span> </dt><dd 
+class="description">Here the maximal number of generated solutions is fixed.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Tabu list length:</span> </dt><dd 
+class="description">This  parameter  fixes  how  many  previous  solutions  are  kept  in  the
+      memory of the procedure which cannot be chosen again in the current step.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Number of neighbors:</span> </dt><dd 
+class="description">Here it is settled how many neighbors should be generated in each
+      iteration.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k for k</span><span 
+class="cmbx-12">_API or k</span><span 
+class="cmbx-12">_REINSERTION:</span> </dt><dd 
+class="description">Here   the   parameter   <span 
+class="cmti-12">k   </span>is   settled,   if   the
+      <span 
+class="cmbx-12">neighborhood </span>k_API or k_REINSERTION has been chosen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when reaching objective (stopping criterion):</span> </dt><dd 
+class="description">Here one can settle an upper
+      bound for the acceptance of an objective function value. The neighborhood search is
+      finished if the settled objective function value has been reached.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Neighborhood:</span> </dt><dd 
+class="description">Here the choice of the neighborhood is fixed, i.e., in which way neighbors
+      are generated from a given sequence.<br 
+class="newline" />
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TST</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
+      </dd></dl>
+<!--l. 831--><p class="noindent" ><span id="textcolor31">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 833--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, tabu search is activated as follows:
+<!--l. 836--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-11">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;TabuSearch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;TABULENGTH&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_NGHB&#x00A0;50
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 850--><p class="nopar" ></div>
+<!--l. 853--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+the default-value is given.
+<!--l. 856--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For tabu
+search, method TabuSearch must be activated. The settlements on the selection of the
+<span 
+class="cmbx-12">neighborhood </span>are mandatory (possibly in addition with the corresponding parameter for <span 
+class="cmti-12">k</span>).
+Then, optionally, the following parameters can be set: the <span 
+class="cmbx-12">number of generated sequences</span>, the
+<span 
+class="cmbx-12">length of tabu list</span>, the <span 
+class="cmbx-12">number of generated neighbors</span>, and possibly a <span 
+class="cmbx-12">stopping</span>
+<span 
+class="cmbx-12">bound</span>.
+                                                                                         
+                                                                                         
+<!--l. 873-->
+<!--l. 873--><p class="noindent" ><a 
+ id="tailhandbuchsu18.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

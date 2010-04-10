@@ -1,71 +1,141 @@
-<HTML>
-<HEAD> <TITLE>Help on Dispatching Rules</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2>Dispatching Rules</H2>
-
-These are fast algorithms for solving a scheduling problem exactly or 
-heuristically. Use a dispatching rule if it solves your problem
-exactly or if you need a very fast algorithm.
-<P>
-<H2>What you have to do:</H2> 
-<P>
-Make sure that both a 
-<A HREF="../problem.html"> problem type </A> and all 
-<A HREF="../values.html"> parameters </A> 
-are defined. Choose <I>Heuristic Algortihms|Dispatching Rules</I> from
-the menu <I>Algorithms</I> and after editing the options press <I>OK</I>.
-Dependent on the current problem type, special dispatching rules may
-also be listed as exact algorithms.
-<P>
-<H2>Options:</H2>
-<DL>
-<DT> construct active schedule <DD>
-   Choose an algorithm:
-   <DL>
-   <DT> TRUE <DD> At each time a job or machine becomes ready schedule
-   the ready unscheduled operation with highest priority. The
-   resulting schedule is active.
-   <DT>FALSE <DD> To extend a partial schedule, among all unscheduled 
-   operations without unscheduled predecessor the one with highest
-   priority is appended to the schedule. The resulting
-   schedule is semiactive, but in general not activ.
-   </DL>
-<DT>Priority<DD>
-   Choose one of the following definitions of priority. The algorithm
-   will schedule the operation
- <DL>
-   <DT> RAND <DD> which is randomly determined,
-   <DT> FCFS <DD> which became ready first,
-   <DT> EDD  <DD> with the smallest due date,
-   <DT> LQUE  <DD> with smallest difference due date-(processing time +
-   tail). In case of open shop instead of the tail the total processing 
-   processing time of all unscheduled operations of the respective job
-   is considered. To break ties, the operation with largest total 
-   unscheduled processing time on the corresponding machine is choosen.     	  <DT> SPT  <DD> with smallest processing time
-   <DT> WSPT <DD> with smallest ratio (processing time / weight)
-   <DT> ECT  <DD> which can be completed first
-   <DT> WI   <DD> with biggest weight,
-   <DT> LPT  <DD> with longest processing time
-   </DL>
-</DL>
-<P>
-<H2>But...</H2>
-<UL>
-<LI> If you call a dispatching rule as exact algorithm, normally you
-  cannot choose the priority or rule type. If you want to choose, call
-  <I>Algorithms|Heuristic Algorithms|Dispatching Rules</I>.
-<LI> Dispatching rules will not appear in any menue if the current
-  problem type cannot be handled by the implemented algorithm.
-</UL>
-<P>
-<HR>
-<A HREF="../main.html"> Table of Contents </A>
-<HR>
-29.10.99 TAU / updated  29.06.04 TAU
-</BODY>
-</HTML>
-
-
-
-
+<!--l. 170--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Dispatching Rules</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-04-10 15:42:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 167-->
+<h4 class="subsectionHead"> <a 
+ id="x31-300004.2.1"></a>Dispatching Rules</h4>
+<!--l. 170--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 172--><p class="noindent" >Dispatching Rules are very fast heuristics, where step by step new operations are appended. The
+operation which is appended next is determined by a chosen strategy.
+<!--l. 176--><p class="noindent" >Some problem classes can be even optimally solved by means of such simple procedures.
+<!--l. 180--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 182--><p class="noindent" >After the input of <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters </span>one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Dispatching Rules </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>. In dependence on the problem type,
+particular dispatching rules can also be listed under <span 
+class="cmbxti-10x-x-120">Exact Algorithms</span>. In this case, usually no
+settings can be made.
+<!--l. 189--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Generate schedule:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SEMI-ACTIVE: </span>A schedule is called semi-active if no operation can be started
+           earlier without changing the sequence, i.e., a semi-active schedule has no unforced
+           idle times.
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ACTIVE: </span>A schedule is called active if it is semi-active and no idle time exists
+           such  that  a  later  operation  on  the  corresponding  machine  can  be  completely
+           processed within this idle time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NON-DELAY: </span>A schedule is called non-delay, if at any time where a machine
+           <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>  and a job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>  are available, the processing of operation (<span 
+class="cmti-12">ij</span>) is started. A
+           non-delay schedule is also active.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Priority:</span> </dt><dd 
+class="description">The following definition of priorities are available. The operations to be inserted are
+      ordered according to the chosen strategy and then step by step appended according to the
+      resulting order inserted into the sequence.
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">RAND </span>(random): The operations are randomly sequenced.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">FCFS </span>(first come - first served): The operation is sequenced next which entered
+           the queue first.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">EDD </span>(earliest due date): The operations are ordered according to non-decreasing
+           due dates.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LQUE</span>: The operation is processed next which has the smallest difference &#8216;due
+           date <span 
+class="cmsy-10x-x-120">&minus; </span>(processing time + tail)&#8217;. In the case of an open shop, instead of the tail
+           the sum of the processing times of all operations of the corresponding job not
+           sequenced yet is taken. As a tie breaking rule, an operation is chosen such that
+           on the corresponding machine the sum of the processing times of the operations
+           not yet sequenced is maximal.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT </span>(shortest processing time): The operations are sequenced according to their
+           processing times, starting with the shortest one.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WSPT </span>(weighted shortest processing time): The operation with the smallest
+           quotient of the processing time and the weight is sequenced next.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ECT </span>(earliest completion time): The operation with the earliest completion time
+           is sequenced next.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WI</span>: Jobs are weighted, and the operations are sequenced according to the weights
+           of the jobs, starting with the largest weight.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT </span>(longest processing time): The operations are sequenced according to their
+           processing times, starting with the largest time.
+           </li></ul>
+                                                                                         
+                                                                                         
+      </dd></dl>
+<!--l. 229--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 231--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, dispatching rules are activated as
+follows:
+<!--l. 234--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-6">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;dispatch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SCHEDULE&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 242--><p class="nopar" ></div>
+<!--l. 245--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+the default-value is given.
+<!--l. 248--><p class="noindent" >As an executable file, dispatch must be invoked for all dispatching rules. Optionally, it can be
+settled which type of a sequence should be <span 
+class="cmbx-12">generated </span>and which <span 
+class="cmbx-12">dispatching rule </span>should be
+used.
+                                                                                         
+                                                                                         
+<!--l. 256-->
+<!--l. 256--><p class="noindent" ><a 
+ id="tailhandbuchsu13.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

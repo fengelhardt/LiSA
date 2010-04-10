@@ -1,45 +1,91 @@
-
-<HTML>
-<HEAD> <TITLE>help for the open shop branch and bound</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2> Brucker's Open-Shop B&amp;B </H2>
-
-This algorithm was designed and implemented at the university of Osnabr&uuml;ck
-by the group of Peter Brucker. It can solve problems of the type O||Cmax
-exactly.
-
-<P>
-<H2>What you have to do::</H2>
-<P>
-
-Make sure that both a <A HREF="../problem.html"> problem type </A> and all 
-<A HREF="../values.html"> parameters </A> are defined. Choose <I> Exact 
-Algorithms|Open-Shop B&amp;B</I> from the menu <I>Algorithms</I> and after 
-editing the options press <I>OK</I>. You may stop the algorithm at any time, it
-will then return the best schedule found so far.
-
-<P>
-<H2>Options:</H2>
-<DL>
-<DT>Heuristic</DT> 
-<DD>The algorithm can use various heuristics to construct/complete schedules
-    in each branch node. There are more heuristics than those listed here, they 
-    have however been disabled since they don't seem to work with incomplete
-    operation sets.</DD>
-<DL>
-<DT>LB_PREC_RULE</DT>
-<DD>A heuristic based on a precedence rule determined by certain lower bounds.</DD>
-<DT>LB_PREC_RULE_VAR</DT>
-<DD>A variation of the rule above.</DD>
-</DL>
-
-</DL>
-
-<P>
-<HR>
-<A HREF="../main.html">  Table of Contents </A>
-<HR>
-27.04.2004 LiSA
-</BODY>
-</HTML>
+<!--l. 1385--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Brucker&#8217;s Branch &amp; Bound Algorithm</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-04-10 15:42:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1382-->
+<h4 class="subsectionHead"> <a 
+ id="x43-420004.4.1"></a>Brucker&#8217;s Branch &amp; Bound Algorithm</h4>
+<!--l. 1385--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
+<!--l. 1387--><p class="noindent" ><!-- LISA ALGORITHM js_bb_br -->
+<!--l. 1389--><p class="noindent" >This exact algorithm has been developed and implemented by the team of Peter Brucker at the
+University of Osnabrück. There exists a variant for <span 
+class="cmbx-12">open-shop problems </span>and a variant for
+<span 
+class="cmbx-12">job-shop problems</span>.
+<!--l. 1395--><p class="noindent" ><span id="textcolor44">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1397--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters </span>one chooses <span 
+class="cmbxti-10x-x-120">Exact</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Brucker&#8217;s Open-Shop B&amp;B </span>and <span 
+class="cmbxti-10x-x-120">Exact Algorithms/Brucker&#8217;s Job-Shop</span>
+<span 
+class="cmbxti-10x-x-120">B&amp;B</span>, respectively, in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1404--><p class="noindent" ><span id="textcolor45">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+<!--l. 1406--><p class="noindent" >For the <span 
+class="cmbx-12">open-shop </span>algorithm, the choice of a heuristic for generating sequences must be made.
+For the job-shop algorithm no options are available.
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Heuristic:</span> </dt><dd 
+class="description">The algorithm can use several heuristics for generating or completing sequences.
+      (There exist more than the two heuristics mentioned here. However, they are deactivated
+      since they do not work with incomplete sets of operations.) <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">LB</span><span 
+class="cmbx-12">_PREC</span><span 
+class="cmbx-12">_RULE: </span>This heuristic is based on a dispatching rule which results
+           from the calculation of a lower bound.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LB</span><span 
+class="cmbx-12">_PREC</span><span 
+class="cmbx-12">_RULE</span><span 
+class="cmbx-12">_VAR: </span>This heuristic is a variation of the above heuristic.</li></ul>
+      </dd></dl>
+                                                                                         
+                                                                                         
+<!--l. 1424--><p class="noindent" ><span id="textcolor46">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1426--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, the branch &amp; bound algorithm by Brucker is
+activated as follows:
+<!--l. 1430--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-16">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;os_bb_wo
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;HEURISTIC&#x00A0;MIN_MATCHING
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1437--><p class="nopar" ></div>
+<!--l. 1440--><p class="noindent" >As executable file, there must be invoked os_bb_wo for <span 
+class="cmbx-12">open-shop </span>problem and js_bb_br for
+<span 
+class="cmbx-12">job-shop </span>problems. Then, for open-shop problem, a <span 
+class="cmbx-12">heuristic </span>can be selected. For job-shop
+problems, there are no further parameters.
+                                                                                         
+                                                                                         
+<!--l. 1446-->
+<!--l. 1446--><p class="noindent" ><a 
+ id="tailhandbuchsu23.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
