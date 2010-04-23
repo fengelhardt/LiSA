@@ -324,7 +324,7 @@
     </problem>
   </heuristic>
   <alg_controls>
-    <choice name="SCHEDULE" caption="Erzeuge Plan">
+    <choice name="SCHEDULE" caption="Erzeuge Schedule">
       <item name="SEMIACTIVE"/>
       <item name="ACTIVE"/>
       <item name="NONDELAY"/>
