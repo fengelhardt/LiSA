@@ -9,9 +9,6 @@
     </problem>
   </exact>
   <alg_controls>
-    <choice name="SPEED" caption="Speed">
-      <item name="SLOW"/>
-      <item name="FAST"/>
-    </choice>
+    <fixed name="SPEED" value="FAST" />
   </alg_controls>
 </algorithm>
