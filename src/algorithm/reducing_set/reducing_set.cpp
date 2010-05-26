@@ -25,8 +25,6 @@
 
 using namespace std;
 
-// FIXME: this algorithm uses the old .lsa-format for output and seems to be broken anyway
-
 //**************************************************************************
 
 // A 'Lisa_Pair'-like object with one integer and one pointer.
