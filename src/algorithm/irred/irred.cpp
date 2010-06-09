@@ -164,7 +164,7 @@ int main(int argc, char *argv[]){
   Lisa_List<Lisa_ScheduleNode> SchedList;  
     
   if (irre && alg_param!=Lisa_IrreducibilityTest::GENERATE_SIMILAR){
-    cout << "WARNING: Plan is irreducible !" << endl;
+    cout << "WARNING: Sequence is irreducible!" << endl;
     SchedList.append(Lisa_ScheduleNode(&my_schedule));
   }else{
     if(alg_param==Lisa_IrreducibilityTest::JUST_TEST ||
