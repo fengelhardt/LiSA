@@ -1,10 +1,92 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<HTML>
-  <HEAD>
-    <TITLE>bottle - LiSA-Modul</TITLE>
-  </HEAD>
-  <BODY>
-    <P>noch keine Hilfe verf&uuml;gbar</P>
-  </BODY>
-</HTML>
+<!--l. 1678--><p class="noindent" ><!-- LISA ALGORITHM bottle -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Die Shifting-Bottleneck Heuristik</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1675-->
+<h4 class="subsectionHead"> <a 
+ id="x48-470004.5.1"></a>Die Shifting-Bottleneck Heuristik</h4>
+<!--l. 1678--><p class="noindent" ><!-- LISA ALGORITHM bottle -->
+<!--l. 1680--><p class="noindent" >Die Shifting-Bottleneck Heuristik erzeugt eine Näherungslösung für das <span 
+class="cmbx-12">job-shop </span>bzw. <span 
+class="cmbx-12">flow-shop</span>
+Problem mit Makespanminimierung durch das sukzessive Lösen von Einmaschinenproblemen. Im
+ersten Schritt wird das Gewicht eines kritischen Weges im zugehörenden disjunktiven Graphen, in
+dem alle ungerichteten Kanten entfernt wurden, berechnet. Dieser Wert ist eine untere Schranke
+<span 
+class="cmmi-12">LB </span>für die Gesamtbearbeitungszeit <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>. Schritt für Schritt wird jetzt für jede Maschine ein
+Einmaschinenproblem mit Bereitstellungszeiten der Aufträge (Heads der Operationen auf der
+betrachteten Maschine), Fälligkeitsterminen (<span 
+class="cmmi-12">LB </span>minus Tails der Operationen auf der betrachteten
+Maschine), Vorrangbedingungen der Aufträge (Vorrangbedingungen der Operationen auf der
+betrachteten Maschine aus dem jeweils aktuellen disjunktiven Graphen ohne disjunktive Kanten)
+und Minimierung von <span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub> gelöst. Die exakte Lösung dieses Problems wird als organisatorische
+Reihenfolge der Operationen auf der betrachteten Maschine angesetzt. Daneben wird
+nach der Festlegung der organisatorischen Reihenfolge auf einer Maschine versucht,
+bereits festgelegte organisatorische Reihenfolgen weiter zu verbessern, man shiftet den
+Bottleneck.
+<!--l. 1699--><p class="noindent" ><span id="textcolor53">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1702--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/ShiftingBottleneck </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1708--><p class="noindent" ><span id="textcolor54">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Speed:</span> </dt><dd 
+class="description">Mit dieser Auswahl sind eine schnelle Variante, die aber auf unzulässige Pläne führen
+      kann, oder eine langsamere Variante, die die vollständige Heuristik enthält, verfügbar.
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">FAST  </span>Die  schnelle  Variante  berücksichtigt  nicht  den  Vorranggraph  der
+           Operationen  bei  der  Lösung  der  Einmaschinenprobleme.  Dadurch  können
+           Kombinationen aus Technologie und Organisation erzeugt werden, die unzulässig
+           sind, also Zyklen enthalten, was LiSA als Fehlermeldung zurückgibt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SLOW </span>Hier ist die Shifting-Bottleneck Heuristik vollständig implementiert.</li></ul>
+      </dd></dl>
+<!--l. 1723--><p class="noindent" ><span id="textcolor55">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1726--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> wird die Shifting-Bottleneck Heuristik wie
+folgt aufgerufen:
+<!--l. 1730--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-20">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bottle
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SPEED&#x00A0;SLOW
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1737--><p class="nopar" ></div>
+<!--l. 1740--><p class="noindent" >Testrechnungen mit zufällig erzeugten technologischen Reihenfolgen haben erst bei Problemen mit
+mehr als 20 Maschinen und 20 Aufträgen in der FAST- Variante zu Zyklen geführt.
+                                                                                         
+                                                                                         
+<!--l. 1745-->
+<!--l. 1745--><p class="noindent" ><a 
+ id="tailhandbuchsu27.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

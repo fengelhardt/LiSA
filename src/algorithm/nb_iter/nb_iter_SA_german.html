@@ -1,4 +1,4 @@
-<!--l. 924--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
+<!--l. 942--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,31 +8,34 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 921-->
+<!--l. 939-->
 <h4 class="subsectionHead"> <a 
- id="x31-300004.3.3"></a>Simulated Annealing</h4>
-<!--l. 924--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
-<!--l. 926--><p class="noindent" >Simulated Annealing ist eine erweiterte Variante der Iterativen Suche. Hierbei darf die
+ id="x38-370004.3.3"></a>Simulated Annealing</h4>
+<!--l. 942--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
+<!--l. 944--><p class="noindent" >Simulated Annealing ist eine erweiterte Variante der Iterativen Suche. Hierbei darf die
 Verbesserung in jedem Schritt mit einer gewissen, kleiner werdenden Wahrscheinlichkeit auch
-negativ sein. Dadurch kann vermieden werden, dass man zu schnell in einem schlechtem lokalen
+negativ sein. Dadurch kann vermieden werden, dass man zu schnell in einem schlechten lokalen
 Optimum stecken bleibt. Die Wahrscheinlichkeit für die Akzeptanz einer schlechteren Lösung
 hängt von der &#8216;Temperatur&#8217; ab, die im Laufe des Prozesses abkühlt. Der gesamte Prozess kann aus
 mehreren Abkühlungsperioden oder -zyklen bestehen, wobei die Temperatur zu Beginn jeder
 Periode erneut auf den Ausgangswert gesetzt wird.
-<!--l. 938--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
+<!--l. 954--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 955--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 940--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 958--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Simulated Annealing </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 946--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
+<!--l. 964--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -56,7 +59,7 @@ class="description">Hiermit wird die maximale Anzahl der Iterationsschritte
 class="cmbx-12">Abbruch nach Stillst</span><span 
 class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
 class="description">Hiermit kann ein Abbruchkriterium
-      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
+      in Form einer maximalen Anzahl von Iterationsschritten ohne Verbesserung der bisher
       besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen</span>,
@@ -75,9 +78,7 @@ class="cmbx-12">Starttemperatur:</span> </dt><dd
 class="description">Dieser Parameter legt die Starttemperatur für den Abkühlungsprozess
       fest. Wird im Laufe der Abkühlungsperiode die <span 
 class="cmbx-12">Endtemperatur </span>erreicht, so wird die
-      Temperatur zurückgesetzt, und eine neue Periode beginnt.
-                                                                                         
-                                                                                         
+      Temperatur zurückgesetzt und eine neue Periode beginnt.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Endtemperatur:</span> </dt><dd 
@@ -91,7 +92,7 @@ class="cmbx-12">änge </span>und  der
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen </span>kann diese Temperatur deutlich vor der Anzahl der Lösungen
       oder auch deutlich danach erreicht werden. Daraus ergeben sich im ersten Fall mehrere
-      Abkühlungsperioden, und im zweiten Fall eine unvollständige Periode.
+      Abkühlungsperioden und im zweiten Fall eine unvollständige Periode.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Abk</span><span 
@@ -108,6 +109,8 @@ class="description">Hier   kann   eine   obere   Schranke   für   die
       Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
       abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
       wurde.
+                                                                                         
+                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Abk</span><span 
@@ -118,8 +121,7 @@ class="description">Die Abkühlung der Temperatur von einer Epoche zur nächsten k
 class="cmbx-12">Abk</span><span 
 class="cmbx-12">ühlungsparameter </span><span 
 class="cmmi-12">p </span>(0 <span 
-class="cmmi-12">&#x003C; p &#x003C; </span>1) jeweils explizit angegeben werden.<br 
-class="newline" />
+class="cmmi-12">&#x003C; p &#x003C; </span>1) jeweils explizit angegeben werden.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">LINEAR</span>: Die neue Temperatur wird wie folgt aus der alten berechnet: <span 
@@ -166,13 +168,8 @@ class="cmmi-8">old</span></sup>).</li></ul>
 <span 
 class="cmbx-12">Nachbarschaft:</span> </dt><dd 
 class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
-      einem Plan neue Pläne erzeugt werden.<br 
-class="newline" />
+      einem Plan neue Pläne erzeugt werden.
            <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
            <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
@@ -182,8 +179,6 @@ class="cmbx-12">SHIFT</span>
            </li>
            <li class="itemize"><span 
 class="cmbx-12">PI</span>
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">CR</span><span 
@@ -209,12 +204,11 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 1022--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
+<!--l. 1038--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1024--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 1041--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span> wird Simulated Annealing wie folgt
 aufgerufen:
-<!--l. 1028--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -236,10 +230,10 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;ENUM
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1047--><p class="nopar" ></div>
-<!--l. 1050--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 1064--><p class="nopar" ></div>
+<!--l. 1067--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1054--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
+<!--l. 1071--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
 werden. Für Simulated Annealing muss als Methode SimulatedAnnealingNew aufgerufen
 werden. Angaben zur Auswahl der <span 
 class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf. zusätzlich mit
@@ -261,14 +255,14 @@ class="cmbx-12">ühlungsparameter</span>, eine etwaige
 <span 
 class="cmbx-12">Abbruchschranke</span>, das <span 
 class="cmbx-12">Abk</span><span 
-class="cmbx-12">ühlungsschema</span>, und die Art und Weise zur <span 
+class="cmbx-12">ühlungsschema </span>und die Art und Weise zur <span 
 class="cmbx-12">Erzeugung</span>
 <span 
 class="cmbx-12">der Nachbarn </span>(zufällig oder enumeriert) (Variable TYPE mit Optionen ENUM und
 RAND).
                                                                                          
                                                                                          
-<!--l. 1071-->
-<!--l. 1071--><p class="noindent" ><a 
- id="tailhandbuchsu13.html"></a>  
+<!--l. 1088-->
+<!--l. 1088--><p class="noindent" ><a 
+ id="tailhandbuchsu19.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

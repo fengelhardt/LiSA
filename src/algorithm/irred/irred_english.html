@@ -8,31 +8,40 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 366-->
+<!--l. 365-->
 <h3 class="sectionHead"> <a 
- id="x54-530006.3"></a>Irreducibility Test</h3>
+ id="x59-580006.3"></a>Irreducibility Test</h3>
 <!--l. 2--><p class="noindent" ><!-- LISA ALGORITHM irred -->
-<!--l. 4--><p class="noindent" >The test solves different problems from the irreducibility theory, reference: Willenius. It is
+<!--l. 4--><p class="noindent" >This test solves different problems from the irreducibility theory, see <span 
+class="cmcsc-10x-x-120">W<span 
+class="small-caps">i</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span><span 
+class="small-caps">i</span><span 
+class="small-caps">u</span><span 
+class="small-caps">s</span> </span><span class="cite"></span>. It is
 applicable to open-, job- and flow-shop problems with processing times of the jobs and with
 the regular criteria Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und
 SumWiTi.
-<!--l. 10--><p class="noindent" >A sequence <span 
+<!--l. 9--><p class="noindent" >A sequence <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> reduces a sequence <span 
 class="cmmi-12">S</span>, if <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> does not have a worse objective function value than <span 
 class="cmmi-12">S</span>
-for any possible choice of the processing times. Two sequences are called related if they have the
+for any possible choice of the processing times. Two sequences are called similar if they have the
 same objective function value for any possible choice of the processing times. A sequence <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup>
 reduces a sequence <span 
-class="cmmi-12">S </span>properly, if they are not related and if <span 
+class="cmmi-12">S </span>strictly, if they are not similar and if <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> reduces the sequence <span 
 class="cmmi-12">S</span>. A sequence
@@ -43,7 +52,7 @@ class="cmsy-8">&lowast;</span></sup> which strictly reduces <span
 class="cmmi-12">S</span>. Thus, there exists a
 globally optimal sequence in the set of all irreducible sequences for any possible choice of the
 processing times.
-<!--l. 22--><p class="noindent" ><span id="textcolor49">&nbsp;<br><span 
+<!--l. 21--><p class="noindent" ><span id="textcolor58">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
 <!--l. 24--><p class="noindent" >If LiSA knows the problem type and all parameters and a sequence is already available, the
 algorithm can be activated in the menu item <span 
@@ -51,7 +60,7 @@ class="cmbxti-10x-x-120">Heuristic Algorithms/Irreducibilitytest</span>
 <span 
 class="cmbxti-10x-x-120">(Research) </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 31--><p class="noindent" ><span id="textcolor50">&nbsp;<br><span 
+<!--l. 31--><p class="noindent" ><span id="textcolor59">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -59,38 +68,39 @@ class="cmbx-12">Generate sequences:</span> </dt><dd
 class="description">It is settled which sequences should be generated:
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">SIMILAR </span>All sequences are generated which are related to the input sequence.
+class="cmbx-12">SIMILAR </span>All sequences are generated which are similar to the input sequence.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">ALL</span><span 
 class="cmbx-12">_</span><span 
 class="cmbx-12">REDUCING </span>All sequences are generated which strictly reduce the input
-           sequence,  namely  exactly  one  from  each  class  of  related  sequences.  If  such  a
-           sequence does not exist, LiSA gives an error message: Warning: Plan is irreducible.
+           sequence,  namely  exactly  one  from  each  class  of  similar  sequences.  If  such  a
+           sequence  does  not  exist,  LiSA  gives  an  error  message:  Warning:  Sequence  is
+           irreducible.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">ITERATIVE</span><span 
 class="cmbx-12">_</span><span 
 class="cmbx-12">REDUCING  </span>If  a  sequence  has  been  found  which  strictly
-           reduces the input sequence, the algorithm is interrupted and restarted with the
+           reduces the input sequence, the algorithm is interrupted and re-started with the
            new sequence. This is continued until an irreducible sequence has been found.
-           <!--l. 46--><p class="noindent" >If the input sequence is irreducible, LiSA gives an error message: Warning: Plan
-           is irreducible.</li></ul>
+           <!--l. 46--><p class="noindent" >If  the  input  sequence  is  irreducible,  LiSA  gives  an  error  message:  Warning:
+           Sequence is irreducible.</li></ul>
       </dd><dt class="description">
 <span 
 class="cmbx-12">Return following sequences:</span> </dt><dd 
 class="description">They are stored in the file <span 
 class="cmti-12">algo</span><span 
-class="cmti-12">_out.xml </span>in the directory <span 
-class="cmti-12">.lisa/proc</span>.
-      In LiSA, the output is displayed under <span 
+class="cmti-12">_out.xml </span>in the directory
+      <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">~/.lisa/proc</span></span></span>. In LiSA, the output is displayed under <span 
 class="cmbxti-10x-x-120">Edit/List of Sequences</span>.
                                                                                          
                                                                                          
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">ALL </span>All generated sequences are returned, where the number can be rather large
-           when using the the ALL_REDUCING option.
+           when using the ALL_REDUCING option.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">ONLY</span><span 
@@ -111,7 +121,7 @@ class="cmbx-12">NO </span>Sequences are generated by the algorithm in an efficie
       </dd></dl>
                                                                                          
                                                                                          
-<!--l. 376-->
-<!--l. 376--><p class="noindent" ><a 
- id="tailhandbuchse23.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<!--l. 375-->
+<!--l. 375--><p class="noindent" ><a 
+ id="tailhandbuchse24.html"></a>  
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

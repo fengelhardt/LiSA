@@ -1,129 +1,99 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Beschreibung</title> 
+<head><title>Die Shifting-Bottleneck Heuristik</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 177--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu26.html" >prev</a>] [<a 
-href="handbuchsu26.html#tailhandbuchsu26.html" >prev-tail</a>] [<a 
+<!--l. 1675--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu28.html" >next</a>] [<a 
 href="#tailhandbuchsu27.html">tail</a>] [<a 
-href="handbuchse32.html#handbuchsu27.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">A.2.2   </span> <a 
- id="x70-75000A.2.2"></a>Beschreibung</h4>
-<!--l. 181--><p class="noindent" >
-<div class="subsubsectionTOCS">
-&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu28.html#x71-76000A.2.2"><span 
-class="cmtt-12">&#x003C;solution&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu29.html#x72-77000A.2.2"><span 
-class="cmtt-12">&#x003C;instance&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu30.html#x73-78000A.2.2"><span 
-class="cmtt-12">&#x003C;problem&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu31.html#x74-79000A.2.2"><span 
-class="cmtt-12">&#x003C;alpha&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu32.html#x75-80000A.2.2"><span 
-class="cmtt-12">&#x003C;beta&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu33.html#x76-81000A.2.2"><span 
-class="cmtt-12">&#x003C;gamma&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu34.html#x77-82000A.2.2"><span 
-class="cmtt-12">&#x003C;values&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu35.html#x78-83000A.2.2"><span 
-class="cmtt-12">&#x003C;processing</span><span 
-class="cmtt-12">_times&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu36.html#x79-84000A.2.2"><span 
-class="cmtt-12">&#x003C;operation</span><span 
-class="cmtt-12">_set&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu37.html#x80-85000A.2.2"><span 
-class="cmtt-12">&#x003C;machine</span><span 
-class="cmtt-12">_order&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu38.html#x81-86000A.2.2"><span 
-class="cmtt-12">&#x003C;release</span><span 
-class="cmtt-12">_times&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu39.html#x82-87000A.2.2"><span 
-class="cmtt-12">&#x003C;due</span><span 
-class="cmtt-12">_dates&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu40.html#x83-88000A.2.2"><span 
-class="cmtt-12">&#x003C;weights&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu41.html#x84-89000A.2.2"><span 
-class="cmtt-12">&#x003C;weights</span><span 
-class="cmtt-12">_2&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu42.html#x85-90000A.2.2"><span 
-class="cmtt-12">&#x003C;extra&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu43.html#x86-91000A.2.2"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu44.html#x87-92000A.2.2"><span 
-class="cmtt-12">&#x003C;parameter&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu45.html#x88-93000A.2.2"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu46.html#x89-94000A.2.2"><span 
-class="cmtt-12">&#x003C;plan&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu47.html#x90-95000A.2.2"><span 
-class="cmtt-12">&#x003C;machine</span><span 
-class="cmtt-12">_sequences&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu48.html#x91-96000A.2.2"><span 
-class="cmtt-12">&#x003C;job</span><span 
-class="cmtt-12">_sequences&#x003E;</span></a></span>
-<br />&#x00A0;&#x00A0;&#x00A0;<span class="subsubsectionToc" ><a 
-href="handbuchsu49.html#x92-97000A.2.2"><span 
-class="cmtt-12">&#x003C;completion</span><span 
-class="cmtt-12">_times&#x003E;</span></a></span>
+href="handbuchse16.html#handbuchsu27.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.5.1   </span> <a 
+ id="x48-470004.5.1"></a>Die Shifting-Bottleneck Heuristik</h4>
+<!--l. 1678--><p class="noindent" ><!-- LISA ALGORITHM bottle -->
+<!--l. 1680--><p class="noindent" >Die Shifting-Bottleneck Heuristik erzeugt eine Näherungslösung für das <span 
+class="cmbx-12">job-shop </span>bzw. <span 
+class="cmbx-12">flow-shop</span>
+Problem mit Makespanminimierung durch das sukzessive Lösen von Einmaschinenproblemen. Im
+ersten Schritt wird das Gewicht eines kritischen Weges im zugehörenden disjunktiven Graphen, in
+dem alle ungerichteten Kanten entfernt wurden, berechnet. Dieser Wert ist eine untere Schranke
+<span 
+class="cmmi-12">LB </span>für die Gesamtbearbeitungszeit <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>. Schritt für Schritt wird jetzt für jede Maschine ein
+Einmaschinenproblem mit Bereitstellungszeiten der Aufträge (Heads der Operationen auf der
+betrachteten Maschine), Fälligkeitsterminen (<span 
+class="cmmi-12">LB </span>minus Tails der Operationen auf der betrachteten
+Maschine), Vorrangbedingungen der Aufträge (Vorrangbedingungen der Operationen auf der
+betrachteten Maschine aus dem jeweils aktuellen disjunktiven Graphen ohne disjunktive Kanten)
+und Minimierung von <span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub> gelöst. Die exakte Lösung dieses Problems wird als organisatorische
+Reihenfolge der Operationen auf der betrachteten Maschine angesetzt. Daneben wird
+nach der Festlegung der organisatorischen Reihenfolge auf einer Maschine versucht,
+bereits festgelegte organisatorische Reihenfolgen weiter zu verbessern, man shiftet den
+Bottleneck.
+<!--l. 1699--><p class="noindent" ><span id="textcolor53">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1702--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/ShiftingBottleneck </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1708--><p class="noindent" ><span id="textcolor54">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Speed:</span> </dt><dd 
+class="description">Mit dieser Auswahl sind eine schnelle Variante, die aber auf unzulässige Pläne führen
+      kann, oder eine langsamere Variante, die die vollständige Heuristik enthält, verfügbar.
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">FAST  </span>Die  schnelle  Variante  berücksichtigt  nicht  den  Vorranggraph  der
+           Operationen  bei  der  Lösung  der  Einmaschinenprobleme.  Dadurch  können
+           Kombinationen aus Technologie und Organisation erzeugt werden, die unzulässig
+           sind, also Zyklen enthalten, was LiSA als Fehlermeldung zurückgibt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SLOW </span>Hier ist die Shifting-Bottleneck Heuristik vollständig implementiert.</li></ul>
+      </dd></dl>
+<!--l. 1723--><p class="noindent" ><span id="textcolor55">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1726--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird die Shifting-Bottleneck Heuristik wie
+folgt aufgerufen:
+<!--l. 1730--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-20">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bottle
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SPEED&#x00A0;SLOW
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      <!--l. 1737--><p class="nopar" ></div>
+<!--l. 1740--><p class="noindent" >Testrechnungen mit zufällig erzeugten technologischen Reihenfolgen haben erst bei Problemen mit
+mehr als 20 Maschinen und 20 Aufträgen in der FAST- Variante zu Zyklen geführt.
                                                                                          
                                                                                          
-<!--l. 814--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchsu26.html" >prev</a>] [<a 
-href="handbuchsu26.html#tailhandbuchsu26.html" >prev-tail</a>] [<a 
+<!--l. 1745--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu28.html" >next</a>] [<a 
 href="handbuchsu27.html" >front</a>] [<a 
-href="handbuchse32.html#handbuchsu27.html" >up</a>] </p></div>
-<!--l. 814--><p class="noindent" ><a 
+href="handbuchse16.html#handbuchsu27.html" >up</a>] </p></div>
+<!--l. 1745--><p class="noindent" ><a 
  id="tailhandbuchsu27.html"></a>  
 </body></html> 

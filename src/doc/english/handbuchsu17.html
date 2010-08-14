@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Iterative search</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 689--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu18.html" >next</a>] [<a 
+href="#tailhandbuchsu17.html">tail</a>] [<a 
+href="handbuchse14.html#handbuchsu17.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.3.1   </span> <a 
+ id="x36-350004.3.1"></a>Iterative search</h4>
+<!--l. 692--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
+<!--l. 694--><p class="noindent" >In an iterative search procedure, the neighborhood is searched in any step and the first improving
+solution is accepted. This always ends in a local optimum the quality of which can, however, be
+rather bad.
+<!--l. 700--><p class="noindent" ><span id="textcolor26">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 703--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Iterative Improvement </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 709--><p class="noindent" ><span id="textcolor27">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Created solutions:</span> </dt><dd 
+class="description">This fixes the maximal number of solutions to be generated.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when stuck for (stopping criterion):</span> </dt><dd 
+class="description">Here  a  stopping  criterion  in  form  of  a
+      maximal number of iterations without an improvement of the best solution found so
+      far can be fixed. If this value is larger than the <span 
+class="cmbx-12">number of solutions</span>, it does not
+      apply.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k for k</span><span 
+class="cmbx-12">_API or k</span><span 
+class="cmbx-12">_REINSERTION:</span> </dt><dd 
+class="description">Here a parameter <span 
+class="cmti-12">k </span>is settled, if the <span 
+class="cmbx-12">neighborhood</span>
+      k_API or k_REINSERTION has been chosen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when reaching objective (stopping criterion):</span> </dt><dd 
+class="description">Here one can settle an upper
+      bound for the acceptance of an objective function value. The neighborhood search is
+      finished if the settled objective function value has been reached.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Neighborhood:</span> </dt><dd 
+class="description">Here the choice of the neighborhood is fixed, i.e., in which ways neighbors are
+      generated from a given sequence.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_AP</span>
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
+      </dd></dl>
+<!--l. 746--><p class="noindent" ><span id="textcolor28">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 749--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), iterative search is activated as
+follows:
+<!--l. 752--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-10">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;IterativeImprovement
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;5000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 765--><p class="nopar" ></div>
+<!--l. 769--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 772--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For iterative
+search, method IterativeImprovement must be activated. The settlements on the selection of the
+<span 
+class="cmbx-12">neighborhood </span>are mandatory (possibly in addition with the corresponding parameter for <span 
+class="cmti-12">k</span>).
+Then, optionally, the following parameters can be set: the <span 
+class="cmbx-12">number of generated sequences</span>, the
+<span 
+class="cmbx-12">number of stagnations </span>after which the procedure is stopped, and possibly a <span 
+class="cmbx-12">stopping</span>
+<span 
+class="cmbx-12">bound</span>.
+                                                                                         
+                                                                                         
+<!--l. 784--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu18.html" >next</a>] [<a 
+href="handbuchsu17.html" >front</a>] [<a 
+href="handbuchse14.html#handbuchsu17.html" >up</a>] </p></div>
+<!--l. 784--><p class="noindent" ><a 
+ id="tailhandbuchsu17.html"></a>  
+</body></html> 

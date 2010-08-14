@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The Document Type instance</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 73--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu9.html" >next</a>] [<a 
+href="handbuchsu7.html" >prev</a>] [<a 
+href="handbuchsu7.html#tailhandbuchsu7.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu8.html">tail</a>] [<a 
+href="handbuchse8.html#handbuchsu8.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.2   </span> <a 
+ id="x19-180002.5.2"></a>The Document Type <span 
+class="cmtt-12">instance</span></h4>
+<!--l. 77--><p class="noindent" >The document type <span 
+class="cmtt-12">instance </span>contains a problem instance, i.e., besides the problem type also
+parameters like problem size, processing times and due dates. These parameters are summarized in
+a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span> element that follows right after the already introduced <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;problem&#x003E;</span></span></span> element. Giving the
+problem size, processing times and operation set is mandatory, all other parameters are
+optional.
+<!--l. 85--><p class="noindent" >Another example, with the problem type <span 
+class="cmmi-12">O</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub>, problem size <span 
+class="cmmi-12">n</span>=5, <span 
+class="cmmi-12">m</span>=10 and given processing
+times:
+<!--l. 88--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-3">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;instance&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;
+&#x00A0;<br />&#x003C;instance&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="O"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ti"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="10"&#x00A0;n="5"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;28&#x00A0;&#x00A0;32&#x00A0;&#x00A0;93&#x00A0;&#x00A0;71&#x00A0;&#x00A0;42&#x00A0;&#x00A0;18&#x00A0;&#x00A0;24&#x00A0;&#x00A0;10&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;15&#x00A0;&#x00A0;68&#x00A0;&#x00A0;88&#x00A0;&#x00A0;39&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;15&#x00A0;&#x00A0;84&#x00A0;&#x00A0;39&#x00A0;&#x00A0;59&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;98&#x00A0;&#x00A0;56&#x00A0;&#x00A0;59&#x00A0;&#x00A0;56&#x00A0;&#x00A0;95&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;49&#x00A0;&#x00A0;15&#x00A0;&#x00A0;25&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;65&#x00A0;&#x00A0;80&#x00A0;&#x00A0;63&#x00A0;&#x00A0;32&#x00A0;&#x00A0;62&#x00A0;&#x00A0;96&#x00A0;&#x00A0;13&#x00A0;&#x00A0;20&#x00A0;&#x00A0;13&#x00A0;&#x00A0;46&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;15&#x00A0;&#x00A0;39&#x00A0;&#x00A0;43&#x00A0;&#x00A0;94&#x00A0;&#x00A0;21&#x00A0;&#x00A0;25&#x00A0;&#x00A0;41&#x00A0;&#x00A0;48&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;90&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;0&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;95&#x00A0;&#x00A0;94&#x00A0;&#x00A0;39&#x00A0;&#x00A0;27&#x00A0;&#x00A0;69&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
+&#x00A0;<br />&#x003C;/instance&#x003E;
+</div>
+      <!--l. 124--><p class="nopar" ></div>
+<!--l. 127--><p class="noindent" >In Appendix <a 
+href="handbuchap1.html#x68-73000A">A<!--tex4ht:ref: XML-Referenz --></a>, there are descriptions of all further parameters that belong to a problem
+instance.
+<!--l. 132--><p class="noindent" >This document type can be passed to the algorithms as input file, that means, a <span 
+class="cmbx-12">manual call of</span>
+<span 
+class="cmbx-12">an algorithm </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse25.html#x61-600007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>) can have a document of this type as a parameter. The algorithm will
+compute one or more solutions for the given instance.
+<!--l. 137--><p class="noindent" >In addition to the parameters that describe a problem instance, an <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span> document may also
+contain parameters that belong to the algorithm to invoke. These parameters only control the
+behaviour of the algorithm and do not belong to the problem instance. They are aggregated in a
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span> element that directly follows the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span> element in the document. The content of
+this element is individual for each algorithm. Further information is located in the section
+                                                                                         
+                                                                                         
+<span 
+class="cmbx-12">Algorithm Modules </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse25.html#x61-600007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>). A reference of the parameters for each algorithm can be found in
+Chapter <a 
+href="handbuchch4.html#x27-260004">4<!--tex4ht:ref: Algorithmen in LiSA --></a>.
+<!--l. 146--><p class="noindent" >Problem instances can be easily generated with the LiSA GUI. After defining a problem type with
+<span 
+class="cmbxti-10x-x-120">File/New </span>and editing of the parameters via <span 
+class="cmbxti-10x-x-120">Edit/Parameters</span>, the data can be saved as an
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span> document using <span 
+class="cmbxti-10x-x-120">File/Save As</span>.
+                                                                                         
+                                                                                         
+<!--l. 153--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu9.html" >next</a>] [<a 
+href="handbuchsu7.html" >prev</a>] [<a 
+href="handbuchsu7.html#tailhandbuchsu7.html" >prev-tail</a>] [<a 
+href="handbuchsu8.html" >front</a>] [<a 
+href="handbuchse8.html#handbuchsu8.html" >up</a>] </p></div>
+<!--l. 153--><p class="noindent" ><a 
+ id="tailhandbuchsu8.html"></a>  
+</body></html> 

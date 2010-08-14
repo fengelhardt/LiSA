@@ -947,12 +947,12 @@ proc lisa_help_topic { topic } {
     }
     if {$lang == "english"} {
         switch $topic {
-            HELP_MAIN     { return main.html }
-            HELP_CLASSIFY { return classify.html }
-            HELP_PROBLEM  { return problem.html }
-            HELP_MAN_OPER { return man_oper.html }
-            HELP_SCHEDULE { return schedule.html }
-            HELP_VALUES   { return values.html }
+            HELP_MAIN     { return handbuch.html }
+            HELP_CLASSIFY { return handbuchse21.html }
+            HELP_PROBLEM  { return handbuchse9.html }
+            HELP_MAN_OPER { return handbuchse22.html }
+            HELP_SCHEDULE { return handbuchse18.html }
+            HELP_VALUES   { return handbuchse10.html }
             HELP_GEN_PTST { return utility/gen_ptst.html }
         }
     }

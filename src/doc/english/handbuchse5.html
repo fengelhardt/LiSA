@@ -1,0 +1,990 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Classification of Deterministic Scheduling Problems</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 166--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse6.html" >next</a>] [<a 
+href="handbuchse4.html" >prev</a>] [<a 
+href="handbuchse4.html#tailhandbuchse4.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse5.html">tail</a>] [<a 
+href="handbuchch2.html#handbuchse5.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x8-70002.2"></a>Classification of Deterministic Scheduling Problems</h3>
+<!--l. 9--><p class="noindent" >LiSA uses the <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>classification for deterministic scheduling problems by <span 
+class="cmcsc-10x-x-120">G<span 
+class="small-caps">r</span><span 
+class="small-caps">a</span><span 
+class="small-caps">h</span><span 
+class="small-caps">a</span><span 
+class="small-caps">m</span> <span 
+class="small-caps">e</span><span 
+class="small-caps">t</span> <span 
+class="small-caps">a</span><span 
+class="small-caps">l</span>. </span><span class="cite">[<a 
+href="handbuchli1.html#Xgr79">15</a>]</span>,
+where
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmmi-12">&alpha; </span>describes the machine environment,
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">&beta; </span>gives job characteristics and further constraints and
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">&gamma; </span>describes the objective function.</li></ul>
+<!--l. 17--><p class="noindent" >LiSA uses this classification not only for describing a problem but also for determining the
+complexity status of the problem considered. Tables <a 
+href="#x8-70012">2.2<!--tex4ht:ref: alpha-table --></a>, <a 
+href="#x8-70023">2.3<!--tex4ht:ref: beta-table --></a> and <a 
+href="#x8-70034">2.4<!--tex4ht:ref: gamma-table --></a> gives an overview on the
+possible parameters of a problem <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>without guaranteeing completeness. In contrast to the
+literature, where a repeated processing of a job in a job shop problem is possible, LiSA uses the
+assumption for all shop problems that any job is processed at most once on any machine (classical
+case).
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 27--><p class="noindent" ><a 
+ id="x8-70012"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 28--><p class="noindent" >
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">                   <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmbx-12">Machine environment </span><span 
+class="cmmib-10x-x-120">&alpha; </span><span 
+class="cmbx-12">= </span><span 
+class="cmmib-10x-x-120">&alpha;</span><sub><span 
+class="cmbx-8">1</span></sub><span 
+class="cmmib-10x-x-120">&alpha;</span><sub><span 
+class="cmbx-8">2</span></sub></div>
+</td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span>1<span 
+class="cmmi-12">,P,Q,R</span><span 
+class="cmsy-10x-x-120">}</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-2"  
+class="td11">Any job consists of exactly one operation which can be          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-2"  
+class="td11">processed on an arbitrary machine.                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-2"  
+class="td11">                                                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub>
+<span 
+class="cmr-8">1</span></sub> = 1              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-2"  
+class="td11">There is only one machine, thus: <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">i</span><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">i</span></sub>.                            </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-1"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">P           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-2"  
+class="td11">Any job has to be processed on exactly one of <span 
+class="cmmi-12">m </span>identical      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-2"  
+class="td11">parallel machines, i.e. we have <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">i</span></sub>.                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-2"  
+class="td11">                                                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub>
+<span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">Q           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-2"  
+class="td11">Each of the <span 
+class="cmmi-12">m </span>parallel machines has the same given <span 
+class="cmti-12">speed      </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-2"  
+class="td11"><span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">j</span></sub>, i.e. we have <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">&#x2215;s</span><sub><span 
+class="cmmi-8">j</span></sub>.                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">R</span>:            </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-2"  
+class="td11">The speeds <span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">ij</span></sub> for the processing of operation (<span 
+class="cmmi-12">ij</span>) depend      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-14-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-14-2"  
+class="td11">both on <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> and on machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>, i.e. we have <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">&#x2215;s</span><sub><span 
+class="cmmi-8">ij</span></sub>.       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-15-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-15-2"  
+class="td11">                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-16-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span><span 
+class="cmmi-12">O,F,J</span><span 
+class="cmsy-10x-x-120">} </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-16-2"  
+class="td11">Any job has to be processed on any machine exactly once or   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-17-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-17-2"  
+class="td11">at most once (classical case).                                            </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-18-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-18-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-19-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">O           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-19-2"  
+class="td11">open-shop problem: The machine and job orders can be         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-20-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-20-2"  
+class="td11">arbitrarily chosen.                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-21-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-21-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-22-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">J           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-22-2"  
+class="td11">job-shop problem: The machine order is fixed and the job       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-23-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-23-2"  
+class="td11">order can be arbitrarily chosen.                                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-24-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-24-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-25-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">F           </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-25-2"  
+class="td11">flow-shop problem: The machine order is fixed                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-26-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-26-2"  
+class="td11">and identical for any job, w.l.o.g.: <span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span><span 
+class="cmmi-12">&hellip;</span> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">m</span></sub>.      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-27-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-27-2"  
+class="td11">The job order can be arbitrarily chosen.                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-28-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-28-2"  
+class="td11">                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-29-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,c</span><span 
+class="cmsy-10x-x-120">}   </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-29-2"  
+class="td11">Characteristics of the number of machines                           </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-30-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-30-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-30-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-31-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-31-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">c            </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-31-2"  
+class="td11">The number of machines <span 
+class="cmmi-12">m </span>is constant, <span 
+class="cmmi-12">m </span>= <span 
+class="cmmi-12">c</span>.                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-32-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-32-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-32-2"  
+class="td11">                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-33-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-33-1"  
+class="td11"><span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;      </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-33-2"  
+class="td11">The number of machines is variable, i.e. it is part of the input.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-34-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-34-1"  
+class="td11">              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-34-2"  
+class="td11">                                                    </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-35-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-35-1"  
+class="td11">              </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2.2: </span><span  
+class="content">Parameter of the machine environment <span 
+class="cmmi-12">&alpha;</span></span></div><!--tex4ht:label?: x8-70012 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 70--><p class="noindent" ><a 
+ id="x8-70023"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 71--><p class="noindent" >
+<div class="tabular"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"></colgroup><colgroup id="TBL-3-2g"><col 
+id="TBL-3-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-3-1-1"  
+class="td11">     <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmbx-12">Characteristics of jobs and additional constraints </span><span 
+class="cmbsy-10x-x-120">{</span><span 
+class="cmmib-10x-x-120">&beta;</span><sub><span 
+class="cmbx-8">1</span></sub><span 
+class="cmmib-10x-x-120">,</span><span 
+class="cmmib-10x-x-120">&hellip;</span><span 
+class="cmmib-10x-x-120">,&beta;</span><sub><span 
+class="cmbx-8">5</span></sub><span 
+class="cmbsy-10x-x-120">}</span></div>
+</td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-2-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,pmtn</span><span 
+class="cmsy-10x-x-120">}     </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-2-2"  
+class="td11">Preemption of operations                                      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-3-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-3-2"  
+class="td11">                                             </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-4-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub>
+<span 
+class="cmr-8">1</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-4-2"  
+class="td11">Preemption is not allowed.                                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-5-1"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-5-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-6-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">1</span></sub> = <span 
+class="cmmi-12">pmtn               </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-6-2"  
+class="td11">Preemption is allowed, i.e. the processing of a job       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-7-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-7-2"  
+class="td11">on a machine can be interrupted and resumed later.   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-8-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-8-2"  
+class="td11">                                             </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-9-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,prec,outtree,  </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-9-2"  
+class="td11">The precedence constraint <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">k</span></sub> means                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-10-1"  
+class="td11">&#x00A0;     <span 
+class="cmmi-12">intree,tree,chain</span><span 
+class="cmsy-10x-x-120">}</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-10-2"  
+class="td11">that job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> must be completed before job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">k</span></sub> starts.   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-11-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-11-2"  
+class="td11">                                             </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-12-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub>
+<span 
+class="cmr-8">2</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-12-2"  
+class="td11">There are no precedence constraints.                        </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-13-1"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-13-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-14-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">chain              </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-14-2"  
+class="td11">The precedence constraints have a path structure.      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-15-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-15-2"  
+class="td11">                                             </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-16-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub>
+<span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">outtree            </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-16-2"  
+class="td11">Any job has at most one predecessor.                       </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-17-1"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-17-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-18-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">intree              </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-18-2"  
+class="td11">Any job has at most one successor.                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-19-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-19-2"  
+class="td11">                                             </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-20-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub>
+<span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">tree                </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-20-2"  
+class="td11">The precedence constraints have a tree structure.       </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-21-1"  
+class="td11"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-21-2"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-22-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">2</span></sub> = <span 
+class="cmmi-12">prec                </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-22-2"  
+class="td11">The precedence constraints are given by an acyclic     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-23-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-23-2"  
+class="td11">digraph.                                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-24-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-24-2"  
+class="td11">                                             </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-25-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,r</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0<span 
+class="cmsy-10x-x-120">}     </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-25-2"  
+class="td11">Release dates of the jobs                                       </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-26-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-26-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-27-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">3</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-27-2"  
+class="td11">Any job is available at time 0: <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> = 0   <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>.           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-28-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-28-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-29-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">3</span></sub> = <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0                </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-29-2"  
+class="td11">For any job, a release date <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0 is given.                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-30-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-30-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-30-2"  
+class="td11">                                             </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-31-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-31-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,d</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">}       </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-31-2"  
+class="td11">Due dates of the jobs                                            </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-32-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-32-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-32-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-33-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-33-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">4</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-33-2"  
+class="td11">There are no due dates.                                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-34-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-34-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-34-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-35-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-35-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">4</span></sub> = <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub>                         </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-35-2"  
+class="td11">Any job must be completed before its due date <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0.</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-36-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-36-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-36-2"  
+class="td11">                                             </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-37-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-37-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">5</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{&#x2218;</span><span 
+class="cmmi-12">,p</span><sub><span 
+class="cmmi-8">ij</span></sub> = 1<span 
+class="cmsy-10x-x-120">}    </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-37-2"  
+class="td11">Specific processing times                                       </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-38-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-38-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-38-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-39-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-39-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">5</span></sub> = <span 
+class="cmsy-10x-x-120">&#x2218;          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-39-2"  
+class="td11"><span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmsy-10x-x-120">&ge; </span>0 <span 
+class="cmsy-10x-x-120">&forall; </span>(<span 
+class="cmmi-12">i,j</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">J</span>, <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>: natural numbers.            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-40-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-40-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-40-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-41-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-41-1"  
+class="td11"><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">5</span></sub> = <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> = 1               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-41-2"  
+class="td11">                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-42-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-42-1"  
+class="td11">for <span 
+class="cmmi-12">&alpha;</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span>1<span 
+class="cmmi-12">,O,F,J</span><span 
+class="cmsy-10x-x-120">}  </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-42-2"  
+class="td11"><span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> = 1 holds for all operations (<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ</span>.                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-43-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-43-1"  
+class="td11">                    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-3-43-2"  
+class="td11">                                             </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-3-44-"><td  style="white-space:nowrap; text-align:left;" id="TBL-3-44-1"  
+class="td11">                    </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2.3: </span><span  
+class="content"> Some additional constraints in <span 
+class="cmmi-12">&beta;</span></span></div><!--tex4ht:label?: x8-70023 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 124--><p class="noindent" >The <span 
+class="cmmi-12">&beta; </span>field may contain no, one or several parameters from <span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">&beta;</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,&beta;</span><sub><span 
+class="cmr-8">5</span></sub><span 
+class="cmsy-10x-x-120">}</span>. Here, many other
+constraints are also possible, e.g. <br 
+class="newline" />- <span 
+class="cmti-12">no-wait </span>: Waiting times between two successive operations of the same job are not
+allowed.<br 
+class="newline" />- <span 
+class="cmti-12">no-idle </span>: Idle times between two successive jobs on the same machine are not allowed.
+<br 
+class="newline" />- <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span>1<span 
+class="cmmi-12">, </span>2<span 
+class="cmsy-10x-x-120">}</span>: There are only processing times from <span 
+class="cmsy-10x-x-120">{</span>1<span 
+class="cmmi-12">, </span>2<span 
+class="cmsy-10x-x-120">} </span>allowed.<br 
+class="newline" />
+<!--l. 132--><p class="noindent" >Any criterion <span 
+class="cmmi-12">F</span>(<span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,C</span><sub><span 
+class="cmmi-8">n</span></sub>) from Table <a 
+href="#x8-70034">2.4<!--tex4ht:ref: gamma-table --></a> is <span 
+class="cmti-12">regular</span>, i.e. if <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmsy-8">&lowast;</span></sup> <span 
+class="cmsy-10x-x-120">&ge; </span><span 
+class="cmmi-12">C</span><sub>
+<span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>, then
+<span 
+class="cmmi-12">F</span>(<span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">1</span></sub><sup><span 
+class="cmsy-8">&lowast;</span></sup><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,C</span><sub>
+<span 
+class="cmmi-8">n</span></sub><sup><span 
+class="cmsy-8">&lowast;</span></sup>) <span 
+class="cmsy-10x-x-120">&ge; </span><span 
+class="cmmi-12">F</span>(<span 
+class="cmmi-12">C</span><sub>
+<span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,C</span><sub><span 
+class="cmmi-8">n</span></sub>).<br 
+class="newline" />A non-regular criterion is e.g. die minimization of the penalty costs which occur if a job is
+completed too early or too late.<br 
+class="newline" />
+<!--l. 139--><p class="noindent" >There are many other constraints on the processing of the jobs, e.g. a flexible flow-shop problem
+(<span 
+class="cmmi-12">FFS</span>) is a combination of a flow-shop and a parallel machine problem. If machine routes are only
+partly given, it is a mixed shop problem. Moreover, there exist scheduling problems with resource
+constraints, batching problems and many others.
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 147--><p class="noindent" ><a 
+ id="x8-70034"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 148--><p class="noindent" >
+<div class="tabular"> <table id="TBL-4" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-4-1g"><col 
+id="TBL-4-1"></colgroup><colgroup id="TBL-4-2g"><col 
+id="TBL-4-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-1-"><td colspan="2" style="white-space:nowrap; text-align:center;" id="TBL-4-1-1"  
+class="td11">                   <div class="multicolumn"  style="white-space:nowrap; text-align:center;"><span 
+class="cmbx-12">Objective function </span><span 
+class="cmmib-10x-x-120">&gamma; </span><span 
+class="cmbsy-10x-x-120">&isin;{</span><span 
+class="cmmib-10x-x-120">f</span><sub><span 
+class="cmmib-8">max</span></sub><span 
+class="cmmib-10x-x-120">,</span><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmib-10x-x-120">f</span><sub><span 
+class="cmmib-8">i</span></sub><span 
+class="cmbsy-10x-x-120">}</span></div>
+</td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-1"  
+class="td11"><span 
+class="cmmi-12">f</span><sub><span 
+class="cmmi-8">max</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub><span 
+class="cmmi-12">,L</span><sub><span 
+class="cmmi-8">max</span></sub><span 
+class="cmsy-10x-x-120">}          </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-2-2"  
+class="td11">Objective function: <span 
+class="cmmi-12">f</span><sub><span 
+class="cmmi-8">max</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-3-2"  
+class="td11">                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-4-1"  
+class="td11"><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> = max <sub><span 
+class="cmmi-8">i</span><span 
+class="cmsy-8">&isin;</span><span 
+class="cmmi-8">I</span></sub><span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">}&rarr;</span> min!              </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-4-2"  
+class="td11">Minimize the makespan.                            </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-5-1"  
+class="td11"><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub> = max <sub><span 
+class="cmmi-8">i</span><span 
+class="cmsy-8">&isin;</span><span 
+class="cmmi-8">I</span></sub><span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">}&rarr;</span> min!               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-5-2"  
+class="td11">Minimize maximum lateness.                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-6-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-6-2"  
+class="td11">                                      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-7-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">f</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&isin;{</span><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+<span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,            </span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-7-2"  
+class="td11">                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-8-1"  
+class="td11">&#x00A0;&#x00A0;&#x00A0;           <span 
+class="cmex-10x-x-120">&sum;</span>
+       <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">}</span></td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-8-2"  
+class="td11">Objective Function: <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">f</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-9-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-9-2"  
+class="td11">                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-10-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                                  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-10-2"  
+class="td11">Minimize the sum of the completion times of </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-11-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-11-2"  
+class="td11">all jobs.                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-12-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                                  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-12-2"  
+class="td11">Minimize total tardiness of all jobs.             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-13-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                                  </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-13-2"  
+class="td11">Minimize the number of late jobs.                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-14-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-14-2"  
+class="td11">Minimize the weighted sum of the completion</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-15-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-15-2"  
+class="td11">times of all jobs.                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-16-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-16-2"  
+class="td11">Minimize weighted total tardiness.               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-17-1"  
+class="td11"><span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&rarr;</span> min!                               </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-17-2"  
+class="td11">Minimize the weighted sum of late jobs.        </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-18-1"  
+class="td11">                                 </td><td  style="white-space:nowrap; text-align:left;" id="TBL-4-18-2"  
+class="td11">                                      </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-4-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-4-19-1"  
+class="td11">                                 </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2.4: </span><span  
+class="content">Regular criteria</span></div><!--tex4ht:label?: x8-70034 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 179--><p class="noindent" >
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 180--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse6.html" >next</a>] [<a 
+href="handbuchse4.html" >prev</a>] [<a 
+href="handbuchse4.html#tailhandbuchse4.html" >prev-tail</a>] [<a 
+href="handbuchse5.html" >front</a>] [<a 
+href="handbuchch2.html#handbuchse5.html" >up</a>] </p></div>
+<!--l. 180--><p class="noindent" ><a 
+ id="tailhandbuchse5.html"></a>  
+</body></html> 

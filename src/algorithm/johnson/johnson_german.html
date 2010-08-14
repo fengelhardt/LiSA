@@ -1,26 +1,98 @@
-
-<HTML>
-<HEAD> <TITLE>Hilfe zum Johnson Algorithmus</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2> Johnson Algorithmus </H2>
-
-Benutzen Sie diesen Algorithmus, um Probleme des Typs O2||Cmax, J2||Cmax oder
-F2||Cmax exakt zu lösen.
-
-<P>
-<H2>So kommen Sie hierher:</H2> 
-Stellen Sie sicher, da&szlig; ein 
-<A HREF="../problem.html"> Problemtyp </A> und alle 
-<A HREF="../values.html"> Problemparameter </A> 
-definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
-<I> Algorithmen|Exakte Verfahren|Johnsonsche Regel</I>.
-
-<P>
-<HR>
-<A HREF="../main.html"> Inhaltsverzeichnis </A>
-<HR>
-30.04.2001 LiSA
-</BODY>
-</HTML>
-
+<!--l. 1550--><p class="noindent" ><!-- LISA ALGORITHM johnson -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Zweimaschinenprobleme</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1547-->
+<h4 class="subsectionHead"> <a 
+ id="x44-430004.4.2"></a>Zweimaschinenprobleme</h4>
+<!--l. 1550--><p class="noindent" ><!-- LISA ALGORITHM johnson -->
+<!--l. 1552--><p class="noindent" ><!-- LISA ALGORITHM pr -->
+<!--l. 1554--><p class="noindent" >Für Probleme mit 2 Maschinen liefert die Johnsonsche Regel für das <span 
+class="cmbx-12">flow-shop </span>Problem mit
+Makespanminimierung und deren Erweiterung auf den <span 
+class="cmbx-12">job-shop </span>und <span 
+class="cmbx-12">open-shop </span>Fall eine
+optimale Lösung, also gilt im Problemtyp <span 
+class="cmmi-12">&alpha; </span><span 
+class="cmsy-10x-x-120">&isin;{</span><span 
+class="cmmi-12">F</span>2<span 
+class="cmmi-12">,J</span>2<span 
+class="cmmi-12">,O</span>2<span 
+class="cmsy-10x-x-120">}</span>.
+<!--l. 1560--><p class="noindent" ><span id="textcolor47">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1563--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>(wähle unter <span 
+class="cmmi-12">&alpha; </span>neben <span 
+class="cmmi-12">F,J </span>oder <span 
+class="cmmi-12">O </span>auch <span 
+class="cmbxti-10x-x-120">gegebene</span>
+<span 
+class="cmbxti-10x-x-120">Maschinenzahl</span>, denn diese hat als Startwert 2) und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man
+<span 
+class="cmbxti-10x-x-120">Exakte Verfahren/Johnsonsche Regel </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1570--><p class="noindent" ><span id="textcolor48">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1573--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> wird die Johnsonsche Regel wie folgt
+aufgerufen:
+<!--l. 1577--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-17">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;johnson
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1583--><p class="nopar" ></div>
+<!--l. 1586--><p class="noindent" >Für ein <span 
+class="cmmi-12">O</span>2<span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> Problem liefert auch die LAPT-Regel (longest alternating processing times) eine
+optimale Lösung.
+<!--l. 1591--><p class="noindent" ><span id="textcolor49">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1594--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>(beachte: <span 
+class="cmmi-12">&alpha; </span>= <span 
+class="cmmi-12">O</span>2) und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man
+<span 
+class="cmbxti-10x-x-120">Exakte Verfahren/LAPT-Regel </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1601--><p class="noindent" ><span id="textcolor50">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1604--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> wird die LAPT-Regel wie folgt
+aufgerufen:
+<!--l. 1608--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-18">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;pr
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1614--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 1618-->
+<!--l. 1618--><p class="noindent" ><a 
+ id="tailhandbuchsu24.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

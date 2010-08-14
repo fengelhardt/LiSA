@@ -1,10 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<HTML>
-  <HEAD>
-    <TITLE>fsheur - LiSA module</TITLE>
-  </HEAD>
-  <BODY>
-    <P>no help available yet</P>
-  </BODY>
-</HTML>
+<!--l. 1687--><p class="noindent" ><!-- LISA ALGORITHM fsheur -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The Flow-Shop Heuristic</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1684-->
+<h4 class="subsectionHead"> <a 
+ id="x49-480004.5.2"></a>The Flow-Shop Heuristic</h4>
+<!--l. 1687--><p class="noindent" ><!-- LISA ALGORITHM fsheur -->
+<!--l. 1689--><p class="noindent" >This heuristic determines a heuristic solution for the <span 
+class="cmbx-12">flow-shop </span>problem from the set of all
+permutation schedules (i.e., the same job order is chosen on all machines). To this end, the
+insertion order of the jobs according to non-increasing sums of their processing times is used. One
+starts with the first job of this order and sequences the second job directly before and after the
+first job. Choosing the partial sequence with the smallest makespan value, the third job is
+sequenced on position 1, 2 and 3, etc. (beam-insert with width 1 on the set of all permutation
+schedules).
+<!--l. 1696--><p class="noindent" ><span id="textcolor56">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1698--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Flow Shop Heuristic </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1704--><p class="noindent" ><span id="textcolor57">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1706--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, the flow-shop heuristic is activated as
+follows:
+<!--l. 1709--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-21">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;fsheur
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1715--><p class="nopar" ></div>
+<!--l. 1718--><p class="noindent" >As an executable file, there must be invoked fsheur. No further parameters are expected.
+                                                                                         
+                                                                                         
+<!--l. 272-->
+<!--l. 272--><p class="noindent" ><a 
+ id="tailhandbuchsu28.html"></a>  
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

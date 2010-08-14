@@ -1,4 +1,4 @@
-<!--l. 816--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
+<!--l. 834--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,15 +8,15 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 813-->
+<!--l. 831-->
 <h4 class="subsectionHead"> <a 
- id="x30-290004.3.2"></a>Tabu-Suche</h4>
-<!--l. 816--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
-<!--l. 818--><p class="noindent" >Ber der Tabu-Suche handelt es sich um eine einfache Erweiterung der Iterativen Suche. Um nicht
+ id="x37-360004.3.2"></a>Tabu-Suche</h4>
+<!--l. 834--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TS -->
+<!--l. 836--><p class="noindent" >Bei der Tabu-Suche handelt es sich um eine einfache Erweiterung der Iterativen Suche. Um nicht
 zu schnell in einem schlechten lokalen Optimum stecken zu bleiben, wird immer der Nachbar mit
 dem besten Zielfunktionswert als nächste Lösung akzeptiert. Um bei einer Verschlechterung in
 einem Schritt zu verhindern, dass man im nächsten Schritt wieder zu der bereits betrachteten
@@ -24,16 +24,16 @@ einem Schritt zu verhindern, dass man im nächsten Schritt wieder zu der bereits 
 und für eine nochmalige Betrachtung gesperrt. Um die Rechenzeit für die Vergleiche
 jeder Lösung mit dieser Tabu-Liste in Grenzen zu halten, wird die Liste in ihrer Länge
 begrenzt.
-<!--l. 831--><p class="noindent" ><span id="textcolor29">&nbsp;<br><span 
+<!--l. 849--><p class="noindent" ><span id="textcolor29">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 833--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 852--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Tabu-Suche </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 839--><p class="noindent" ><span id="textcolor30">&nbsp;<br><span 
+<!--l. 858--><p class="noindent" ><span id="textcolor30">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -46,12 +46,12 @@ class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösung
 class="cmbx-12">Tabulistenl</span><span 
 class="cmbx-12">änge:</span> </dt><dd 
 class="description">Dieser   Parameter   bestimmt,   wie   viele   vergangene   Lösungen   im
-      &#8216;Gedächtnis&#8217; des Verfahrens bleiben, und im aktuellen Schritt nicht erneut gewählt
+      &#8216;Gedächtnis&#8217; des Verfahrens bleiben und im aktuellen Schritt nicht erneut gewählt
       werden dürfen.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Anzahl der Nachbarn:</span> </dt><dd 
-class="description">Hier wird festgelegt, wieviele Nachbarn in jedem Schritt generiert
+class="description">Hier wird festgelegt, wie viele Nachbarn in jedem Schritt generiert
       werden sollen.
       </dd><dt class="description">
 <span 
@@ -68,19 +68,14 @@ class="description">Hier   kann   eine   obere   Schranke   für   die
       Akzeptanz eines Zielfunktionswertes angegeben werden. Die Nachbarschaftssuche wird
       abgebrochen,  sobald  der  angegebene  Zielfunktionswert  erreicht  oder  unterschritten
       wurde.
-                                                                                         
-                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Nachbarschaft:</span> </dt><dd 
 class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise
-      aus einem Plan neue Pläne erzeugt werden.<br 
-class="newline" />
+      aus einem Plan neue Pläne erzeugt werden.
+                                                                                         
+                                                                                         
            <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
            <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
@@ -115,12 +110,12 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 881--><p class="noindent" ><span id="textcolor31">&nbsp;<br><span 
+<!--l. 898--><p class="noindent" ><span id="textcolor31">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 883--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 901--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span> wird die Tabu-Suche wie folgt
 aufgerufen:
-<!--l. 887--><p class="noindent" >
+<!--l. 905--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -137,10 +132,10 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 901--><p class="nopar" ></div>
-<!--l. 904--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 919--><p class="nopar" ></div>
+<!--l. 922--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 908--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
+<!--l. 926--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
 werden. Für die Tabu Suche muss als Methode TabuSearch aufgerufen werden. Angaben zur
 Auswahl der <span 
 class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf. zusätzlich mit entsprechendem Parameter für
@@ -149,7 +144,7 @@ class="cmti-12">k</span>). Danach können optional die folgenden Parameter gesetz
 class="cmbx-12">Gesamtzahl der</span>
 <span 
 class="cmbx-12">erzeugten Pl</span><span 
-class="cmbx-12">äne </span>, die <span 
+class="cmbx-12">äne</span>, die <span 
 class="cmbx-12">L</span><span 
 class="cmbx-12">änge der Tabuliste</span>, die <span 
 class="cmbx-12">Anzahl der erzeugten Nachbarn</span>, eine
@@ -157,7 +152,7 @@ etwaige <span
 class="cmbx-12">Abbruchschranke</span>.
                                                                                          
                                                                                          
-<!--l. 921-->
-<!--l. 921--><p class="noindent" ><a 
- id="tailhandbuchsu12.html"></a>  
+<!--l. 939-->
+<!--l. 939--><p class="noindent" ><a 
+ id="tailhandbuchsu18.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

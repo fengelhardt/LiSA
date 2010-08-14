@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Universal Algorithms</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 6--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu6.html" >next</a>] [<a 
+href="#tailhandbuchsu5.html">tail</a>] [<a 
+href="handbuchse7.html#handbuchsu5.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.4.1   </span> <a 
+ id="x15-140002.4.1"></a>Universal Algorithms</h4>
+<!--l. 8--><p class="noindent" >-  <span 
+class="cmbx-12">Exact Algorithms</span><br 
+class="newline" />A general branch and bound algorithm, which is based on insertion techniques given
+in <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span></span><span 
+class="cmcsc-10x-x-120">ä<span 
+class="small-caps">s</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xbr90">5</a>]</span> and <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span></span><span 
+class="cmcsc-10x-x-120">ä<span 
+class="small-caps">s</span><span 
+class="small-caps">e</span><span 
+class="small-caps">l</span> <span 
+class="small-caps">u</span>.<span 
+class="small-caps">a</span>. </span><span class="cite">[<a 
+href="handbuchli1.html#Xbrtawe93">7</a>]</span>, can be used for most open-, flow- and job-shop
+problems with regular criteria. The user can set lower and upper bounds, where an
+upper bound can be determined by one of the available heuristics. This approach can be
+used only for small values <span 
+class="cmmi-12">n,m </span>since the algorithm has a large running time due to its
+universality. The use of good lower bounds can substantially reduce the running times.
+<br 
+class="newline" />
+<!--l. 20--><p class="noindent" >-  <span 
+class="cmbx-12">Constructive Heuristics</span><br 
+class="newline" />Simple dispatching rules are available for a large number of problems, also in case of additional
+constraints such as given release date of the jobs. A new operation is inserted step by step
+according to a chosen strategy. <br 
+class="newline" />
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 25--><p class="noindent" ><a 
+ id="x15-140015"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 26--><p class="noindent" >
+<div class="tabular"> <table id="TBL-12" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-12-1g"><col 
+id="TBL-12-1"></colgroup><colgroup id="TBL-12-2g"><col 
+id="TBL-12-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-1-1"  
+class="td11">Rule  </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-1-2"  
+class="td11"><!--l. 28--><p class="noindent" >Choice of the next operation                                                                </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-2-1"  
+class="td11">      </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-2-2"  
+class="td11"><!--l. 31--><p class="noindent" >                                                                 </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-3-1"  
+class="td11">RAND</td><td  style="white-space:wrap; text-align:left;" id="TBL-12-3-2"  
+class="td11"><!--l. 31--><p class="noindent" >randomly</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-4-1"  
+class="td11">FCFS </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-4-2"  
+class="td11"><!--l. 32--><p class="noindent" >first come, first served                                                                         </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-5-1"  
+class="td11">EDD  </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-5-2"  
+class="td11"><!--l. 33--><p class="noindent" >earliest due date first                                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-6-1"  
+class="td11">LQUE</td><td  style="white-space:wrap; text-align:left;" id="TBL-12-6-2"  
+class="td11"><!--l. 34--><p class="noindent" >smallest difference between due date and (processing time + tail) first          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-7-1"  
+class="td11">SPT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-7-2"  
+class="td11"><!--l. 35--><p class="noindent" >shortest processing time first                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-8-1"  
+class="td11">WSPT</td><td  style="white-space:wrap; text-align:left;" id="TBL-12-8-2"  
+class="td11"><!--l. 36--><p class="noindent" >weighted shortest processing time first                                                   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-9-1"  
+class="td11">ECT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-9-2"  
+class="td11"><!--l. 37--><p class="noindent" >(reachable) earliest completion time first                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-10-1"  
+class="td11">WI     </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-10-2"  
+class="td11"><!--l. 38--><p class="noindent" >largest weight first                                                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-11-1"  
+class="td11">LPT   </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-11-2"  
+class="td11"><!--l. 39--><p class="noindent" >largest processing time first                                                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-12-1"  
+class="td11">      </td><td  style="white-space:wrap; text-align:left;" id="TBL-12-12-2"  
+class="td11"><!--l. 40--><p class="noindent" >                                                                 </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-12-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-12-13-1"  
+class="td11">      </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2.5: </span><span  
+class="content"> Dispatching rules</span></div><!--tex4ht:label?: x15-140015 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 46--><p class="noindent" >In LiSA Version 3.0, one can find so-called beam-search procedures for many problems. These are
+restricted branch-and-bound procedures, i.e., the branch-and-bound tree is only partially
+generated. The algorithm is polynomial since a solution is determined by depth first search and in
+any step, only a limited number of vertices (beam width) is branched. These procedures can be
+partitioned into beam-insert and beam-append procedures depending on whether the next
+operation is inserted or appended. <br 
+class="newline" />
+<!--l. 55--><p class="noindent" >- <span 
+class="cmbx-12">Iterative Algorithms </span><br 
+class="newline" />In LiSA, several neighborhood search procedures are available. Each vertex of a neighborhood
+graph corresponds to a sequence and is weighted by the objective function value of the problem
+considered. The set of edges is different for the particular neighborhoods. To start a procedure,
+an initial solution is required which can be found by a simple constructive heuristic.
+Then the iterative search on the neighborhood graph starts in order to find a better
+solution.<br 
+class="newline" />
+<div class="table">
+                                                                                         
+                                                                                         
+<!--l. 62--><p class="noindent" ><a 
+ id="x15-140026"></a><hr class="float"><div class="float" 
+>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 63--><p class="noindent" >
+<div class="tabular"> <table id="TBL-13" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-13-1g"><col 
+id="TBL-13-1"></colgroup><colgroup id="TBL-13-2g"><col 
+id="TBL-13-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-1-1"  
+class="td11"><!--l. 66--><p class="noindent" >&#x00A0;&#x00A0;         Method       </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-1-2"  
+class="td11"><!--l. 66--><p class="noindent" >&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;                                    Description                     </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-2-1"  
+class="td11"><!--l. 69--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-2-2"  
+class="td11"><!--l. 70--><p class="noindent" >                                                   </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-3-1"  
+class="td11"><!--l. 70--><p class="noindent" >Iterative Improvement </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-3-2"  
+class="td11"><!--l. 71--><p class="noindent" >transition to a better solution</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-4-1"  
+class="td11"><!--l. 72--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-4-2"  
+class="td11"><!--l. 72--><p class="noindent" >- after enumerating all neighbors or                                 </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-5-1"  
+class="td11"><!--l. 73--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-5-2"  
+class="td11"><!--l. 73--><p class="noindent" >- if the first better neighbor has been found.                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-6-1"  
+class="td11"><!--l. 74--><p class="noindent" >Simulated Annealing   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-6-2"  
+class="td11"><!--l. 75--><p class="noindent" >allows  the  transition  to  a  worse  solution  with  a  certain
+probability, which is step by step decreased.                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-7-1"  
+class="td11"><!--l. 77--><p class="noindent" >Threshold Accepting   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-7-2"  
+class="td11"><!--l. 77--><p class="noindent" >allows the transition to a worse solution by means of a thres-
+hold which decreases.                                                    </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-8-1"  
+class="td11"><!--l. 79--><p class="noindent" >Tabu Search              </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-8-2"  
+class="td11"><!--l. 79--><p class="noindent" >generates a tabu list in order to avoid a return to a solution
+already considered.                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-9-1"  
+class="td11"><!--l. 80--><p class="noindent" >                   </td><td  style="white-space:wrap; text-align:left;" id="TBL-13-9-2"  
+class="td11"><!--l. 81--><p class="noindent" >                                                   </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-13-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-13-10-1"  
+class="td11">                   </td></tr></table></div></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;2.6: </span><span  
+class="content"> Neighborhood search strategies</span></div><!--tex4ht:label?: x15-140026 -->
+                                                                                         
+                                                                                         
+</div><hr class="endfloat" />
+</div>
+<!--l. 86--><p class="noindent" >In Table <a 
+href="#x15-140026">2.6<!--tex4ht:ref: Iterative_Search --></a>, the individual implemented search methods are explained. To get more information,
+the reader is referred to the books by <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span><span 
+class="small-caps">u</span><span 
+class="small-caps">c</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xbr01">8</a>]</span>, <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">z</span><span 
+class="small-caps">e</span><span 
+class="small-caps">w</span><span 
+class="small-caps">i</span><span 
+class="small-caps">c</span><span 
+class="small-caps">z</span> <span 
+class="small-caps">u</span>.<span 
+class="small-caps">a</span>. </span><span class="cite">[<a 
+href="handbuchli1.html#Xbl96">3</a>]</span> or <span 
+class="cmcsc-10x-x-120">P<span 
+class="small-caps">i</span><span 
+class="small-caps">n</span><span 
+class="small-caps">e</span><span 
+class="small-caps">d</span><span 
+class="small-caps">o</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xpi95">21</a>]</span>. In LiSA,
+a number of neighborhoods are available, e.g. the API (adjacent pairwise interchange)
+neighborhood, where two adjacent operations with respect to a machine or job order are
+interchanged. In Chapter <a 
+href="handbuchse14.html#x35-340004.3">4.3<!--tex4ht:ref: Universelle iterative Verbesserungsverfahren --></a>, an overview on all neighborhoods available in LiSA can be
+found.
+<!--l. 95--><p class="noindent" >In LiSA Version 3.0, there are also implemented genetic algorithms. Starting from an initial
+population (set of starting solutions), a new generation is generated, where specific genetic
+operators (mutation and crossover) are applied. The fitness measure of a solution (individual) is
+described by its objective function value. As in the nature, better adapted individuals survive
+during the course of the evolution.
+                                                                                         
+                                                                                         
+<!--l. 101--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu6.html" >next</a>] [<a 
+href="handbuchsu5.html" >front</a>] [<a 
+href="handbuchse7.html#handbuchsu5.html" >up</a>] </p></div>
+<!--l. 101--><p class="noindent" ><a 
+ id="tailhandbuchsu5.html"></a>  
+</body></html> 

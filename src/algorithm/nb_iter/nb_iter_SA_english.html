@@ -1,4 +1,4 @@
-<!--l. 876--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
+<!--l. 896--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,30 +8,30 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 873-->
+<!--l. 893-->
 <h4 class="subsectionHead"> <a 
  id="x38-370004.3.3"></a>Simulated Annealing</h4>
-<!--l. 876--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
-<!--l. 878--><p class="noindent" >Simulated annealing is an extended variant of iterative improvement. Here in any step, the
-improvement can also be negative with a specific decreasing probability. This should avoid to
-stagnate quickly in a bad local optimum. The probability for accepting a worse solution depends
-on the &#8216;temperature&#8217; which is decreased during the search process. The whole cooling process may
-consist of several cooling periods or cycles, where the temperature is re-set to the initial value at
-the beginning of each period.
-<!--l. 888--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
+<!--l. 896--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
+<!--l. 898--><p class="noindent" >Simulated annealing is an extended variant of iterative search. Here in any step, the improvement
+can also be negative with a specific decreasing probability. This should avoid to stagnate quickly in
+a bad local optimum. The probability for accepting a worse solution depends on the &#8216;temperature&#8217;
+which is decreased during the search process. The whole cooling process may consist of several
+cooling periods or cycles, where the temperature is re-set to the initial value at the beginning of
+each period.
+<!--l. 908--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 890--><p class="noindent" >After the input of the <span 
+<!--l. 911--><p class="noindent" >After the input of the <span 
 class="cmbx-12">problem type </span>and the required <span 
-class="cmbx-12">parameters </span>one chooses <span 
+class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Simulated Annealing </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 896--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
+<!--l. 917--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -83,7 +83,7 @@ class="cmbx-12">epoch  length </span>and  the  <span
 class="cmbx-12">number</span>
       <span 
 class="cmbx-12">of  solutions</span>,  this  temperature  can  be  reached  significantly  before  the  number  of
-      generated solutions has been generated or after that. Thus, in the first case there are
+      generated solutions has been generated or after that. Thus, in the first case, there are
       several cooling periods while in the second case, there is only one incomplete cooling
       period.
       </dd><dt class="description">
@@ -159,10 +159,6 @@ class="description">Here the definition of the neighborhood is fixed, i.e., in w
 class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
-           <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
            </li>
@@ -171,12 +167,12 @@ class="cmbx-12">SHIFT</span>
            </li>
            <li class="itemize"><span 
 class="cmbx-12">PI</span>
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">CR</span><span 
 class="cmbx-12">_API</span>
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">BL</span><span 
@@ -198,12 +194,12 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 970--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
+<!--l. 991--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 972--><p class="noindent" >In the input file for the <span 
+<!--l. 994--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, Simulated annealing is activated as
 follows:
-<!--l. 975--><p class="noindent" >
+<!--l. 997--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -225,10 +221,10 @@ follows:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;ENUM
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 994--><p class="nopar" ></div>
-<!--l. 997--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 1016--><p class="nopar" ></div>
+<!--l. 1019--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 1000--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
+<!--l. 1022--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
 simulated annealing, method SimulatedAnnealingNew must be activated. The information on the
 choice of the <span 
 class="cmbx-12">neighborhood </span>is mandatory (possibly also with the corresponding parameter for <span 
@@ -238,8 +234,8 @@ class="cmbx-12">number of epochs</span>, the <span
 class="cmbx-12">number of iterations</span>, and the
 <span 
 class="cmbx-12">number of stagnations </span>when the procedure is stopped, the <span 
-class="cmbx-12">initial temperature</span>, the <span 
-class="cmbx-12">final</span>
+class="cmbx-12">start temperature</span>, the <span 
+class="cmbx-12">end</span>
 <span 
 class="cmbx-12">temperature</span>, the <span 
 class="cmbx-12">cooling parameter</span>, possibly a <span 
@@ -250,7 +246,7 @@ class="cmbx-12">generation of the neighbors </span>(randomly or enumerative) (va
 options ENUM and RAND).
                                                                                          
                                                                                          
-<!--l. 1017-->
-<!--l. 1017--><p class="noindent" ><a 
+<!--l. 1039-->
+<!--l. 1039--><p class="noindent" ><a 
  id="tailhandbuchsu19.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

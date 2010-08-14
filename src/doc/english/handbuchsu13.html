@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Dispatching Rules</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 170--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu14.html" >next</a>] [<a 
+href="#tailhandbuchsu13.html">tail</a>] [<a 
+href="handbuchse13.html#handbuchsu13.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.1   </span> <a 
+ id="x31-300004.2.1"></a>Dispatching Rules</h4>
+<!--l. 173--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 175--><p class="noindent" >Dispatching Rules are very fast heuristics, where step by step new operations are appended. The
+operation which is appended next is determined by a chosen strategy.
+<!--l. 179--><p class="noindent" >Some problem classes can be even optimally solved by means of such simple procedures.
+<!--l. 183--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 186--><p class="noindent" >After the input of <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Dispatching Rules </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>. In dependence on the problem type,
+particular dispatching rules can also be listed under <span 
+class="cmbxti-10x-x-120">Exact Algorithms</span>. In this case, usually no
+settings can be made.
+<!--l. 193--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Generate schedule:</span> </dt><dd 
+class="description">
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SEMI-ACTIVE: </span>A schedule is called semi-active if no operation can be started
+           earlier without changing the sequence, i.e., a semi-active schedule has no unforced
+           idle times.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ACTIVE: </span>A schedule is called active if it is semi-active and no idle time exists
+           such  that  a  later  operation  on  the  corresponding  machine  can  be  completely
+           processed within this idle time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NON-DELAY: </span>A schedule is called non-delay, if at any time where a machine
+           <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>  and a job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>  are available, the processing of operation (<span 
+class="cmti-12">ij</span>) is started. A
+           non-delay schedule is also active.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Priority:</span> </dt><dd 
+class="description">The following definition of priorities are available. The operations to be inserted are
+      ordered according to the chosen strategy and then step by step are appended according to
+      this sequence.
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">RAND </span>(random): The operations are randomly sequenced.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">FCFS </span>(first come - first served): The operation is sequenced next which entered
+           the queue first.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">EDD </span>(earliest due date): The operations are ordered according to non-decreasing
+           due dates.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LQUE</span>: The operation is processed next which has the smallest difference &#8216;due
+           date <span 
+class="cmsy-10x-x-120">&minus; </span>(processing time + tail)&#8217;. In the case of an open shop, instead of the tail
+           the sum of the processing times of all operations of the corresponding job not
+           sequenced yet is taken. As a tie breaking rule, an operation is chosen such that
+           on the corresponding machine the sum of the processing times of the operations
+           not yet sequenced is maximal.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT </span>(shortest processing time): The operations are sequenced according to their
+           processing times, starting with the shortest one.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WSPT </span>(weighted shortest processing time): The operation with the smallest
+           quotient of the processing time and the weight is sequenced next.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ECT </span>(earliest completion time): The operation with the earliest completion time
+           is sequenced next.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WI</span>: Jobs are weighted, and the operations are sequenced according to the weights
+           of the jobs, starting with the largest weight.
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT </span>(longest processing time): The operations are sequenced according to their
+           processing times, starting with the largest time.
+           </li></ul>
+      </dd></dl>
+<!--l. 235--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 238--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), dispatching rules are activated as
+follows:
+<!--l. 241--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-6">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;dispatch
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SCHEDULE&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 249--><p class="nopar" ></div>
+<!--l. 252--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, the
+default-value is given.
+<!--l. 255--><p class="noindent" >As an executable file, dispatch must be invoked for all dispatching rules. Optionally, it can be
+settled which type of a sequence should be <span 
+class="cmbx-12">generated </span>and which <span 
+class="cmbx-12">dispatching rule </span>should be
+used.
+                                                                                         
+                                                                                         
+<!--l. 263--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu14.html" >next</a>] [<a 
+href="handbuchsu13.html" >front</a>] [<a 
+href="handbuchse13.html#handbuchsu13.html" >up</a>] </p></div>
+<!--l. 263--><p class="noindent" ><a 
+ id="tailhandbuchsu13.html"></a>  
+</body></html> 

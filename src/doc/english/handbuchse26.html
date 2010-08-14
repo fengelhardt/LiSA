@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Inclusion of External Algorithms</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 393--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse27.html" >next</a>] [<a 
+href="handbuchse25.html" >prev</a>] [<a 
+href="handbuchse25.html#tailhandbuchse25.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse26.html">tail</a>] [<a 
+href="handbuchch7.html#handbuchse26.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">7.2   </span> <a 
+ id="x62-650007.2"></a>Inclusion of External Algorithms</h3>
+<!--l. 1--><p class="noindent" >To include a new algorithm module, it suffices to create the files described in the previous section.
+In principle, the algorithm can be implemented in any programming language which can be
+compiled into the binary format. However, LiSA provides particularly for C++ classes which
+simplify the work with scheduling problems and the implementation of algorithms. For instance,
+the problem description, schedules and parameters can be read from the XML files and written
+into them. In addition, basic and also specific data types are provided which are helpful for the
+treatment of scheduling problems. To use this class library, the LiSA source code package must be
+installed.
+<!--l. 9--><p class="noindent" >In the following, we assume that an algorithm should be implemented in C++.
+<!--l. 13--><p class="noindent" >New algorithms should obtain an own directory in the subdirectory <span 
+class="cmtt-12">src/algorithm </span>to simplify the
+later creation process. There the following files must be created:
+      <ul class="itemize1">
+      <li class="itemize">C++ source code and header files which implement the algorithm.
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Makefile</span>
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Make.List</span>
+      </li>
+      <li class="itemize">The XML and HTML files mentioned in Section <a 
+href="handbuchse25.html#x61-600007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>. They are moved during the
+      creation process into the corresponding directories.
+      </li>
+      <li class="itemize"><span 
+class="cmtt-12">Make.Depend </span>and <span 
+class="cmtt-12">Make.Objects</span>, which are automatically created.</li></ul>
+<!--l. 26--><p class="noindent" ><span id="textcolor65">&nbsp;<br><span 
+class="cmbx-12x-x-120">Source code</span></span>
+<!--l. 29--><p class="noindent" >The algorithm itself is implemented as a usual console program, which takes the inputs described
+in Chapter <a 
+href="handbuchse25.html#x61-600007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a> and writes the determined solution into an output file. As an introductory example
+we refer to the algorithm in the directory <span 
+class="cmtt-12">src/algorithm/sample</span>, where the basic
+structure of the implementation of an algorithm is already prefabricated. Mostly it
+suffices to take over the source code file <span 
+class="cmtt-12">sample.cpp </span>and to replace the marked parts
+by an own code. Of course, it is also possible to externalize an own code into other
+files.
+<!--l. 40--><p class="noindent" ><span id="textcolor66">&nbsp;<br><span 
+class="cmbx-12x-x-120">Makefile</span></span>
+<!--l. 43--><p class="noindent" >The following basic structure of the makefile for C++ programs can directly be adopted. Here one
+must only adapt the name of the program which is the name of the subdirectory, that contains the
+source code files of the algorithm.
+                                                                                         
+                                                                                         
+<!--l. 50--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-23">
+#&#x00A0;LiSA&#x00A0;Sample&#x00A0;Algorithm&#x00A0;Makefile
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;LiSA&#x00A0;part:&#x00A0;sample
+&#x00A0;<br />
+&#x00A0;<br />PROGRAMNAME=sample
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />TOPPROGRAMPATH=../../..
+&#x00A0;<br />
+&#x00A0;<br />#&#x00A0;--------------------------------------------------------------
+&#x00A0;<br />
+&#x00A0;<br />include&#x00A0;../Make.Algorithm
+</div>
+      <!--l. 69--><p class="nopar" ></div>
+<!--l. 74--><p class="noindent" ><span id="textcolor67">&nbsp;<br><span 
+class="cmbx-12x-x-120">Make.List</span></span>
+<!--l. 77--><p class="noindent" >In this file, all C++- source code files are listed, which are compiled during the creation
+process and which are linked to an executable module file. In addition to the actual
+source code files of the module, here also all external dependencies must be given so
+that the linker can resolve all symbols. In in the source code of the module e.g. class
+<span 
+class="cmtt-12">LISA</span><span 
+class="cmtt-12">_Matrix </span>is used, the corresponding source code file <span 
+class="cmtt-12">matrix.cpp </span>in the subdirectory
+<span 
+class="cmtt-12">src/basics </span>must be linked. The information on the path is done in relation to the module
+directory, i.e., the entry <span 
+class="cmtt-12">../../basics/matrix.cpp </span>must be included. The corresponding
+source code files for the classes can be taken from the documentation on the LiSA class
+library.
+<!--l. 87--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-24">
+CXXSOURCES=\
+&#x00A0;<br />&#x00A0;&#x00A0;sample.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/list.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/matrix.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../basics/pair.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/ctrlpara.cpp\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/lvalues.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../lisa/ptype.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../main/global.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../misc/except.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../misc/int2str.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../scheduling/mo_jo.cpp&#x00A0;\
+&#x00A0;<br />&#x00A0;&#x00A0;../../scheduling/schedule.cpp
+</div>
+      <!--l. 104--><p class="nopar" ></div>
+<!--l. 109--><p class="noindent" ><span id="textcolor68">&nbsp;<br><span 
+class="cmbx-12x-x-120">Make.Depend and Make.Object</span></span>
+<!--l. 112--><p class="noindent" >These files are created by a single call <span 
+class="cmtt-12">make depend </span>in the module directory from the file
+<span 
+class="cmtt-12">Make.List</span>. If the file <span 
+class="cmtt-12">Make.List </span>is changed, they must be updated by <span 
+class="cmtt-12">make depend</span>
+again.
+<!--l. 118--><p class="noindent" ><span id="textcolor69">&nbsp;<br><span 
+class="cmbx-12x-x-120">XML and HTML documents</span></span>
+<!--l. 121--><p class="noindent" >These documents must be available in an English and a German version (both versions of the XML
+document mostly differ only by translation of the name of the algorithm and the parameters). The
+English versions of the documents have the suffixes <span 
+class="cmtt-12">_english.xml </span>and <span 
+class="cmtt-12">_english.html</span>,
+respectively, and the German versions have the suffixes <span 
+class="cmtt-12">_german.xml </span>and <span 
+class="cmtt-12">_german.html</span>,
+respectively. During the creation process, these suffixes are replaced by <span 
+class="cmtt-12">.html </span>and <span 
+class="cmtt-12">.xml</span>,
+respectively, and the documents are moved to their destinations.
+<!--l. 131--><p class="noindent" ><span id="textcolor70">&nbsp;<br><span 
+class="cmbx-12x-x-120">Creation process</span></span>
+<!--l. 134--><p class="noindent" >The creation process can be started by means of the call <span 
+class="cmtt-12">make </span>in the module directory. During this
+process, the source code files which are given in <span 
+class="cmtt-12">Make.list </span>are compiled and linked to
+an executable file. Then all module files are copied to their destination directories (<span 
+class="cmsy-10x-x-120">&rarr;</span>
+<a 
+href="handbuchse25.html#x61-600007.1">7.1<!--tex4ht:ref: Algorithmenmodule --></a>).
+                                                                                         
+                                                                                         
+<!--l. 403--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse27.html" >next</a>] [<a 
+href="handbuchse25.html" >prev</a>] [<a 
+href="handbuchse25.html#tailhandbuchse25.html" >prev-tail</a>] [<a 
+href="handbuchse26.html" >front</a>] [<a 
+href="handbuchch7.html#handbuchse26.html" >up</a>] </p></div>
+<!--l. 403--><p class="noindent" ><a 
+ id="tailhandbuchse26.html"></a>  
+</body></html> 

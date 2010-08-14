@@ -1,73 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Plan (Sequence)</title> 
+<head><title>Heuristische Algorithmen fur spezielle Probleme</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 282--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse17.html" >next</a>] [<a 
+<!--l. 1671--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse15.html" >prev</a>] [<a 
+href="handbuchse15.html#tailhandbuchse15.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse16.html">tail</a>] [<a 
-href="handbuchch5.html#handbuchse16.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">5.1   </span> <a 
- id="x45-440005.1"></a>Plan (Sequence)</h3>
-<!--l. 1--><p class="noindent" >Ein Plan ist eine zulässige Kombination aus den technologischen Reihenfolgen (machine order) der
-Aufträge und den organisatorischen Reihenfolgen (job order) auf den Maschinen. Er wird
-durch die Rangmatrix der Knoten (Operationen) des (azyklischen) Sequencegraphen
-(siehe <a 
-href="handbuchse17.html#x46-450005.2">5.2<!--tex4ht:ref: Plangraph (Sequencegraph) --></a>) beschrieben. Der Rang eines Knotens <span 
-class="cmti-12">v </span>in einem azyklischen Digraphen ist
-definiert als Knotenanzahl eines längsten Weges zum Knoten <span 
-class="cmti-12">v</span>, wobei <span 
-class="cmti-12">v </span>mitgezählt
-wird.<br 
-class="newline" />
-<!--l. 9--><p class="noindent" >Es sei bemerkt, das jeder Plan ein lateinisches Rechteck ist, das die sogenannte Sequencebedingung
-erfüllt: Steht an der Position (<span 
-class="cmmi-12">i,j</span>) im lateinischen Rechteck eine Zahl <span 
-class="cmmi-12">a &#x003E; </span>1, dann existiert
-entweder in Zeile <span 
-class="cmmi-12">i </span>oder in Spalte <span 
-class="cmmi-12">j </span>oder in beiden der Eintrag <span 
-class="cmmi-12">a </span><span 
-class="cmsy-10x-x-120">&minus; </span>1. Ein lateinisches
-Rechteck <span 
-class="cmmi-12">LR</span>[<span 
-class="cmmi-12">m,n,r</span>] ist eine Matrix vom Format <span 
-class="cmmi-12">m </span><span 
-class="cmsy-10x-x-120">&#x00D7; </span><span 
-class="cmmi-12">n </span>mit Einträgen aus der Menge
+href="handbuchch4.html#handbuchse16.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.5   </span> <a 
+ id="x47-460004.5"></a>Heuristische Algorithmen für spezielle Probleme</h3>
+<!--l. 1675--><p class="noindent" >
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.1 <a 
+href="handbuchsu27.html#x48-470004.5.1">Die Shifting-Bottleneck Heuristik</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.2 <a 
+href="handbuchsu28.html#x49-480004.5.2">Die flow-shop Heuristik</a></span>
+</div>
+
                                                                                          
                                                                                          
-<span 
-class="cmmi-12">B </span>= <span 
-class="cmsy-10x-x-120">{</span>1<span 
-class="cmmi-12">,...,r</span><span 
-class="cmsy-10x-x-120">}</span>, wobei jede Zahl aus <span 
-class="cmmi-12">B </span>in jeder Zeile und Spalte höchstens einmal vorkommt.
-<br 
-class="newline" />
-<!--l. 14--><p class="noindent" >Nähere Informationen: siehe Block-Matrizen-Modell <span 
-class="cmsy-10x-x-120">&rarr;</span> <span 
-class="cmbx-12">??</span>
-<!--l. 17--><p class="noindent" >&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufruf</span>
-<!--l. 19--><p class="noindent" >Nach Eingabe einer Probleminstanz und erster Anwendung eines Algorithmusses wird
-standardmäßig der entstehende Schedule durch ein Gantt-Diagramm dargestellt. Dann wird nach
-Wahl des Menüpunktes <span 
-class="cmbxti-10x-x-120">Ansicht/Plan </span>der Plan im Hauptfenster angezeigt.
-                                                                                         
-                                                                                         
-<!--l. 293--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse17.html" >next</a>] [<a 
+<!--l. 269--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse15.html" >prev</a>] [<a 
+href="handbuchse15.html#tailhandbuchse15.html" >prev-tail</a>] [<a 
 href="handbuchse16.html" >front</a>] [<a 
-href="handbuchch5.html#handbuchse16.html" >up</a>] </p></div>
-<!--l. 293--><p class="noindent" ><a 
+href="handbuchch4.html#handbuchse16.html" >up</a>] </p></div>
+<!--l. 269--><p class="noindent" ><a 
  id="tailhandbuchse16.html"></a>  
 </body></html> 

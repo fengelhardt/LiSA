@@ -1,4 +1,4 @@
-<!--l. 170--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 173--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,22 +8,22 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 167-->
+<!--l. 170-->
 <h4 class="subsectionHead"> <a 
  id="x31-300004.2.1"></a>Dispatching Rules</h4>
-<!--l. 170--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
-<!--l. 172--><p class="noindent" >Dispatching Rules are very fast heuristics, where step by step new operations are appended. The
+<!--l. 173--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 175--><p class="noindent" >Dispatching Rules are very fast heuristics, where step by step new operations are appended. The
 operation which is appended next is determined by a chosen strategy.
-<!--l. 176--><p class="noindent" >Some problem classes can be even optimally solved by means of such simple procedures.
-<!--l. 180--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
+<!--l. 179--><p class="noindent" >Some problem classes can be even optimally solved by means of such simple procedures.
+<!--l. 183--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 182--><p class="noindent" >After the input of <span 
+<!--l. 186--><p class="noindent" >After the input of <span 
 class="cmbx-12">problem type </span>and the required <span 
-class="cmbx-12">parameters </span>one chooses <span 
+class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Dispatching Rules </span>in the menu <span 
@@ -31,19 +31,19 @@ class="cmbxti-10x-x-120">Algorithms</span>. In dependence on the problem type,
 particular dispatching rules can also be listed under <span 
 class="cmbxti-10x-x-120">Exact Algorithms</span>. In this case, usually no
 settings can be made.
-<!--l. 189--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
+<!--l. 193--><p class="noindent" ><span id="textcolor14">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
 class="cmbx-12">Generate schedule:</span> </dt><dd 
 class="description">
+                                                                                         
+                                                                                         
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">SEMI-ACTIVE: </span>A schedule is called semi-active if no operation can be started
            earlier without changing the sequence, i.e., a semi-active schedule has no unforced
            idle times.
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">ACTIVE: </span>A schedule is called active if it is semi-active and no idle time exists
@@ -63,8 +63,8 @@ class="cmti-12">ij</span>) is started. A
 <span 
 class="cmbx-12">Priority:</span> </dt><dd 
 class="description">The following definition of priorities are available. The operations to be inserted are
-      ordered according to the chosen strategy and then step by step appended according to the
-      resulting order inserted into the sequence.
+      ordered according to the chosen strategy and then step by step are appended according to
+      this sequence.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">RAND </span>(random): The operations are randomly sequenced.
@@ -101,20 +101,20 @@ class="cmbx-12">ECT </span>(earliest completion time): The operation with the ea
            <li class="itemize"><span 
 class="cmbx-12">WI</span>: Jobs are weighted, and the operations are sequenced according to the weights
            of the jobs, starting with the largest weight.
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">LPT </span>(longest processing time): The operations are sequenced according to their
            processing times, starting with the largest time.
            </li></ul>
-                                                                                         
-                                                                                         
       </dd></dl>
-<!--l. 229--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
+<!--l. 235--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 231--><p class="noindent" >In the input file for the <span 
+<!--l. 238--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, dispatching rules are activated as
 follows:
-<!--l. 234--><p class="noindent" >
+<!--l. 241--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -125,17 +125,17 @@ follows:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 242--><p class="nopar" ></div>
-<!--l. 245--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
-the default-value is given.
-<!--l. 248--><p class="noindent" >As an executable file, dispatch must be invoked for all dispatching rules. Optionally, it can be
+      <!--l. 249--><p class="nopar" ></div>
+<!--l. 252--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, the
+default-value is given.
+<!--l. 255--><p class="noindent" >As an executable file, dispatch must be invoked for all dispatching rules. Optionally, it can be
 settled which type of a sequence should be <span 
 class="cmbx-12">generated </span>and which <span 
 class="cmbx-12">dispatching rule </span>should be
 used.
                                                                                          
                                                                                          
-<!--l. 256-->
-<!--l. 256--><p class="noindent" ><a 
+<!--l. 263-->
+<!--l. 263--><p class="noindent" ><a 
  id="tailhandbuchsu13.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

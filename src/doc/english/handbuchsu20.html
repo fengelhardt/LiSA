@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Threshold Accepting</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 1039--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu21.html" >next</a>] [<a 
+href="handbuchsu19.html" >prev</a>] [<a 
+href="handbuchsu19.html#tailhandbuchsu19.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu20.html">tail</a>] [<a 
+href="handbuchse14.html#handbuchsu20.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.3.4   </span> <a 
+ id="x39-380004.3.4"></a>Threshold Accepting</h4>
+<!--l. 1042--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1044--><p class="noindent" >Threshold Accepting is also an extended version of iterative search. In contrast to local search, in
+any step also small deteriorations are accepted. The threshold for accepting worse solutions is
+decreased during the search and tends to zero. In LiSA, a linear reduction of the threshold is
+implemented.
+<!--l. 1051--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1054--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Threshold Accepting </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1060--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Created solutions:</span> </dt><dd 
+class="description">Here the maximal number of generated solutions is fixed
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when stuck for (stopping criterion):</span> </dt><dd 
+class="description">Here  a  stopping  criterion  in  form  of  a
+      maximal number of iterations without an improvement of the best solution can be
+      fixed. If this value is larger than the <span 
+class="cmbx-12">number of solutions</span>, it is not applied.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Initial threshold:</span> </dt><dd 
+class="description">This parameter gives the maximal allowed deterioration in per mille.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Maximal number of stagnations:</span> </dt><dd 
+class="description">In order to avoid trapping into a local optimum in
+      case of a low threshold, the threshold is re-set to the initial value after the given number
+      of iterations without an improvement of the currently best solution.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k for k</span><span 
+class="cmbx-12">_API or k</span><span 
+class="cmbx-12">_REINSERTION:</span> </dt><dd 
+class="description">Here the parameter <span 
+class="cmti-12">k </span>is fixed, if the <span 
+class="cmbx-12">neighborhood</span>
+      k_API or k_REINSERTION has been chosen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when reaching objective (stopping criterion):</span> </dt><dd 
+class="description">Here one can settle an upper
+      bound for the acceptance of an objective function value. The neighborhood search is
+      finished if the settled objective function value has been reached.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Neighborhood:</span> </dt><dd 
+class="description">Here the definition of the neighborhood is settled, i.e., in which way neighbors
+      are generated from the current solution. <br 
+class="newline" />
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
+      </dd></dl>
+<!--l. 1106--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1109--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), Threshold accepting is activated as
+follows:
+<!--l. 1113--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-13">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;ThresholdAccepting
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;RAND
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;PROB&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAX_STUCK&#x00A0;30
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1128--><p class="nopar" ></div>
+<!--l. 1131--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 1134--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
+Threshold accepting, method ThresholdAccepting must be activated. The information on the
+choice of the <span 
+class="cmbx-12">neighborhood </span>is mandatory (possibly also with the corresponding parameter for <span 
+class="cmti-12">k</span>).
+Then, optionally, the parameters for the <span 
+class="cmbx-12">number of generated solutions</span>, the <span 
+class="cmbx-12">number of</span>
+<span 
+class="cmbx-12">stagnations </span>after which the procedure stops, the <span 
+class="cmbx-12">initial threshold </span>and possibly a <span 
+class="cmbx-12">stopping</span>
+<span 
+class="cmbx-12">bound</span>.
+                                                                                         
+                                                                                         
+<!--l. 1148--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu21.html" >next</a>] [<a 
+href="handbuchsu19.html" >prev</a>] [<a 
+href="handbuchsu19.html#tailhandbuchsu19.html" >prev-tail</a>] [<a 
+href="handbuchsu20.html" >front</a>] [<a 
+href="handbuchse14.html#handbuchsu20.html" >up</a>] </p></div>
+<!--l. 1148--><p class="noindent" ><a 
+ id="tailhandbuchsu20.html"></a>  
+</body></html> 

@@ -1,4 +1,4 @@
-<!--l. 467--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
+<!--l. 480--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,38 +8,38 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 464-->
+<!--l. 477-->
 <h4 class="subsectionHead"> <a 
  id="x34-330004.2.4"></a>Beam Search Procedures with Insertion Technique </h4>
-<!--l. 467--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
-<!--l. 470--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
+<!--l. 480--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
+<!--l. 483--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
 class="cmbx-12">Branch &amp; Bound Procedure </span>.
-In contrast to them, the number of investigated partial solution is limited in any vertex of the
+In contrast to them, the number of investigated partial solutions is limited in any vertex of the
 solution tree. This leads to an incomplete search in the set of feasible solutions which can possibly
 exclude all optimal solutions. However, such procedures are substantially faster than a branch &amp;
 bound algorithm. The quality of the solution depends both on the chosen problem type and on the
 chosen parameters.
-<!--l. 479--><p class="noindent" >In case of an <span 
+<!--l. 492--><p class="noindent" >In case of an <span 
 class="cmbx-12">insertion </span>procedure, the sequence in which the operations are added to a partial
 sequence is settled in advance. For any partial sequence and any new operation, several feasible
 positions are considered at which the new operation with one of the possible ranks can be inserted.
 In addition to the insertion procedure, an <span 
 class="cmbx-12">appending </span>procedure  is also implemented in
 LiSA.
-<!--l. 490--><p class="noindent" ><span id="textcolor22">&nbsp;<br><span 
+<!--l. 503--><p class="noindent" ><span id="textcolor22">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 493--><p class="noindent" >After the input of the <span 
+<!--l. 507--><p class="noindent" >After the input of the <span 
 class="cmbx-12">problem type </span>and the required <span 
-class="cmbx-12">parameters </span>one chooses <span 
+class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Beam Search (insert) </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 499--><p class="noindent" ><span id="textcolor23">&nbsp;<br><span 
+<!--l. 513--><p class="noindent" ><span id="textcolor23">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -60,7 +60,7 @@ class="cmbx-12">MACHINEWISE: </span>The operations are sequenced column-wise.
 class="cmbx-12">DIAGONAL: </span>This strategy is based on the consideration of the diagonal in a
            square of the size <span 
 class="cmmi-12">M </span>= min <img 
-src="handbuch16x.png" alt="(m, n )"  class="left" align="middle">.
+src="handbuch18x.png" alt="(m, n )"  class="left" align="middle">.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">QUEEN</span><span 
@@ -72,7 +72,7 @@ class="cmsy-10x-x-120">&#x00D7; </span><span
 class="cmmi-12">M  </span>chess  board  (<span 
 class="cmmi-12">M  </span>=
            min <img 
-src="handbuch17x.png" alt="(m, n)"  class="left" align="middle">).
+src="handbuch19x.png" alt="(m, n)"  class="left" align="middle">).
            </li>
            <li class="itemize"><span 
 class="cmbx-12">RANDOM: </span>The operations are inserted in random order.
@@ -80,8 +80,8 @@ class="cmbx-12">RANDOM: </span>The operations are inserted in random order.
                                                                                          
            </li>
            <li class="itemize"><span 
-class="cmbx-12">LPT </span>(longest processing time): The operations are order according to decreasing
-           processing times.
+class="cmbx-12">LPT  </span>(longest  processing  time):  The  operations  are  ordered  according  to
+           decreasing processing times.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">ECT </span>(earliest completion time): The operation to be inserted next is chosen
@@ -126,12 +126,12 @@ class="cmbx-12">OBJECTIVE: </span>The  objective  function  value  is  used  for
 class="cmbx-12">CLAST: </span>A partial sequence is evaluated by the cost of a longest path through
            the operation which has been inserted last.</li></ul>
       </dd></dl>
-<!--l. 551--><p class="noindent" ><span id="textcolor24">&nbsp;<br><span 
+<!--l. 566--><p class="noindent" ><span id="textcolor24">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 553--><p class="noindent" >In the input file for the <span 
+<!--l. 569--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, beam search insertion procedures are
 activated as follows:
-<!--l. 557--><p class="noindent" >
+<!--l. 573--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -145,10 +145,10 @@ activated as follows:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k_BRANCHES&#x00A0;5
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 568--><p class="nopar" ></div>
-<!--l. 571--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 584--><p class="nopar" ></div>
+<!--l. 587--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 574--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
+<!--l. 590--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
 the beam search mode is mandatory as it is for the <span 
 class="cmbx-12">insertion order</span>. Optionally, the parameters
 for the <span 
@@ -158,7 +158,7 @@ class="cmbx-12">beam width </span>can be
 set.
                                                                                          
                                                                                          
-<!--l. 589-->
-<!--l. 589--><p class="noindent" ><a 
+<!--l. 605-->
+<!--l. 605--><p class="noindent" ><a 
  id="tailhandbuchsu16.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

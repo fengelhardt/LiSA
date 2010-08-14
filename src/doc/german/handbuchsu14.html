@@ -7,11 +7,11 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 302--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 300--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >next</a>] [<a 
 href="handbuchsu13.html" >prev</a>] [<a 
 href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
@@ -19,21 +19,24 @@ href="#tailhandbuchsu14.html">tail</a>] [<a
 href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.2.2   </span> <a 
  id="x32-310004.2.2"></a>Matchingheuristiken</h4>
-<!--l. 305--><p class="noindent" ><!-- LISA ALGORITHM match -->
-<!--l. 307--><p class="noindent" >Diese Heuristiken erzeugen einen Plan für Open-Shop Probleme. Dabei wird das gegebene Problem
-auf ein Zuordnungsproblem zurückgeführt, das durch die Suche nach einem maximalen Matching
-heuristisch gelöst wird. Das führt zu einem Plan, bei dem Operationen mit ähnlichen
-Bearbeitungszeiten möglichst parallel laufen.
-<!--l. 315--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
+<!--l. 303--><p class="noindent" ><!-- LISA ALGORITHM match -->
+<!--l. 305--><p class="noindent" >Diese Heuristiken erzeugen einen Plan für open-shop Probleme. Dabei wird das gegebene Problem
+auf Zuordnungsprobleme zurückgeführt, die optimal gelöst werden. Allen Operationen einer
+optimalen Zuordnung wird der gleiche Rang zugewiesen, d.h. es entstehen stets rangminimale
+Pläne.
+<!--l. 310--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 312--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 317--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 315--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Matching Heuristiken </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 323--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
+<!--l. 321--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -41,19 +44,17 @@ class="cmbx-12">Art des Algorithmus:</span> </dt><dd
 class="description">Mit dieser Option wird festgelegt, wie mit den durch die <span 
 class="cmbx-12">Art des</span>
       <span 
-class="cmbx-12">Matchings </span>festgelegten Gewichten der Operationen umgegangen wird.<br 
-class="newline" />
+class="cmbx-12">Matchings </span>festgelegten Gewichten der Operationen umgegangen wird.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">BOTTLENECK:  </span>Die  Operationen  werden  nach  ihren  Gewichten  sortiert.
-           Anschließend   wird   das   größte   Gewicht   <span 
-class="cmti-12">p   </span>bestimmt,   so   dass   <span 
-class="cmmi-12">M    </span>=
-           <img 
-src="handbuch15x.png" alt="{p (i,j) | p (i,j) &ge; p}"  class="left" align="middle"> ein   perfektes   Matching   enthält.   Die   entsprechenden
-           Operationen aus diesem Matching werden an den Plan angefügt und die Gewichte
-           gelöscht. Dieser Vorgang wird solange wiederholt, bis alle Operationen an den
-           Plan angefügt sind.
+           Anschließend wird das größte Gewicht <span 
+class="cmti-12">p </span>bestimmt, so dass <span 
+class="cmmi-12">M </span>= <img 
+src="handbuch17x.png" alt="{ptij | ptij &ge; p }"  class="left" align="middle">
+           ein  perfektes  Matching  enthält.  Die  entsprechenden  Operationen  aus  diesem
+           Matching werden an den Plan angefügt und die Gewichte gelöscht. Dieser Vorgang
+           wird solange wiederholt, bis alle Operationen an den Plan angefügt sind.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">WEIGHTED:  </span>Es  wird  ein  maximal  gewichtetes  Matching  berechnet.  Die
@@ -65,14 +66,11 @@ class="cmbx-12">WEIGHTED:  </span>Es  wird  ein  maximal  gewichtetes  Matching 
 <span 
 class="cmbx-12">Art des Matchings:</span> </dt><dd 
 class="description">Mit dieser Option wird festgelegt, wie die Gewichte der einzelnen
-      Operationen berechnet werden.<br 
-class="newline" />
+      Operationen berechnet werden.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">HEADS:  </span>Die  erste  anzufügende  Menge  wird  mit  dem  MIN  Parameter
-           berechnet. Nachdem eine Anfangsmenge von Operationen angefügt wurde werden
-                                                                                         
-                                                                                         
+           berechnet. Nachdem eine Anfangsmenge von Operationen angefügt wurde, werden
            für  alle  verbleibenden  Operationen  die  Heads  bestimmt.  Diese  werden  zur
            Bearbeitungszeit addiert und das Ergebnis wird vom größten möglichen Wert
            abgezogen. Dies ergibt die Gewichte für das nächste Matching. Auf diese Weise
@@ -89,14 +87,15 @@ class="cmbx-12">MAX: </span>Das Gewicht einer Operation ergibt sich direkt aus d
            Auf diese Weise wird die durchschnittliche Bearbeitungszeit aller Operationen in
            einem Anfügeschritt maximiert. (Dies ist die Standardeinstellung.)</li></ul>
       </dd></dl>
-<!--l. 368--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
+<!--l. 364--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 370--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 367--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Matching Heuristiken wie folgt
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Matching Heuristiken wie folgt
 aufgerufen:
-<!--l. 374--><p class="noindent" >
+                                                                                         
+                                                                                         
       <div class="quote">
                                                                                          
                                                                                          
@@ -107,22 +106,22 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPEOF&#x00A0;WEIGHTED
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 382--><p class="nopar" ></div>
-<!--l. 385--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 379--><p class="nopar" ></div>
+<!--l. 382--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 389--><p class="noindent" >Als ausführbare Datei muss für die Matching Heuristiken match aufgerufen werden.
+<!--l. 386--><p class="noindent" >Als ausführbare Datei muss für die Matching Heuristiken match aufgerufen werden.
 Optional können dann die <span 
 class="cmbx-12">Art des Matchings </span>und die <span 
 class="cmbx-12">Art des Algorithmus </span>angegeben
 werden.
                                                                                          
                                                                                          
-<!--l. 397--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 394--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >next</a>] [<a 
 href="handbuchsu13.html" >prev</a>] [<a 
 href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
 href="handbuchsu14.html" >front</a>] [<a 
 href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
-<!--l. 397--><p class="noindent" ><a 
+<!--l. 394--><p class="noindent" ><a 
  id="tailhandbuchsu14.html"></a>  
 </body></html> 

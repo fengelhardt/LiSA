@@ -1,4 +1,4 @@
-<!--l. 1020--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1042--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,28 +8,28 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 1017-->
+<!--l. 1039-->
 <h4 class="subsectionHead"> <a 
  id="x39-380004.3.4"></a>Threshold Accepting</h4>
-<!--l. 1020--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
-<!--l. 1022--><p class="noindent" >Threshold Accepting is also an extended version of the iterative search. In contrast to local search,
-in any step also small deteriorations are accepted. The threshold for accepting worse
-solutions is decreased during the search. In LiSA, a linear reduction of the threshold is
+<!--l. 1042--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1044--><p class="noindent" >Threshold Accepting is also an extended version of iterative search. In contrast to local search, in
+any step also small deteriorations are accepted. The threshold for accepting worse solutions is
+decreased during the search and tends to zero. In LiSA, a linear reduction of the threshold is
 implemented.
-<!--l. 1029--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
+<!--l. 1051--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 1031--><p class="noindent" >After the input of the <span 
+<!--l. 1054--><p class="noindent" >After the input of the <span 
 class="cmbx-12">problem type </span>and the required <span 
-class="cmbx-12">parameters </span>one chooses <span 
+class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Threshold Accepting </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 1037--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
+<!--l. 1060--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -77,10 +77,6 @@ class="newline" />
                                                                                          
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
-           <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
            </li>
@@ -114,12 +110,12 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 1083--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
+<!--l. 1106--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 1085--><p class="noindent" >In the input file for the <span 
+<!--l. 1109--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, Threshold accepting is activated as
 follows:
-<!--l. 1089--><p class="noindent" >
+<!--l. 1113--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -137,10 +133,10 @@ follows:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAX_STUCK&#x00A0;30
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1104--><p class="nopar" ></div>
-<!--l. 1107--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 1128--><p class="nopar" ></div>
+<!--l. 1131--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 1110--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
+<!--l. 1134--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
 Threshold accepting, method ThresholdAccepting must be activated. The information on the
 choice of the <span 
 class="cmbx-12">neighborhood </span>is mandatory (possibly also with the corresponding parameter for <span 
@@ -149,14 +145,14 @@ Then, optionally, the parameters for the <span
 class="cmbx-12">number of generated solutions</span>, the <span 
 class="cmbx-12">number of</span>
 <span 
-class="cmbx-12">stagnations </span>after which the procedure stops, <span 
+class="cmbx-12">stagnations </span>after which the procedure stops, the <span 
 class="cmbx-12">initial threshold </span>and possibly a <span 
 class="cmbx-12">stopping</span>
 <span 
 class="cmbx-12">bound</span>.
                                                                                          
                                                                                          
-<!--l. 1124-->
-<!--l. 1124--><p class="noindent" ><a 
+<!--l. 1148-->
+<!--l. 1148--><p class="noindent" ><a 
  id="tailhandbuchsu20.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

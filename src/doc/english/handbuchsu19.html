@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Simulated Annealing</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 893--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu20.html" >next</a>] [<a 
+href="handbuchsu18.html" >prev</a>] [<a 
+href="handbuchsu18.html#tailhandbuchsu18.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu19.html">tail</a>] [<a 
+href="handbuchse14.html#handbuchsu19.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.3.3   </span> <a 
+ id="x38-370004.3.3"></a>Simulated Annealing</h4>
+<!--l. 896--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_SA -->
+<!--l. 898--><p class="noindent" >Simulated annealing is an extended variant of iterative search. Here in any step, the improvement
+can also be negative with a specific decreasing probability. This should avoid to stagnate quickly in
+a bad local optimum. The probability for accepting a worse solution depends on the &#8216;temperature&#8217;
+which is decreased during the search process. The whole cooling process may consist of several
+cooling periods or cycles, where the temperature is re-set to the initial value at the beginning of
+each period.
+<!--l. 908--><p class="noindent" ><span id="textcolor32">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 911--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Simulated Annealing </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 917--><p class="noindent" ><span id="textcolor33">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Epoch length:</span> </dt><dd 
+class="description">Here the length of the so-called epoch can be settled. During an epoch
+      the temperature is constant. At the beginning of the next epoch, the temperature is
+      reduced.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Number of neighbors:</span> </dt><dd 
+class="description">Here the number of neighbors is fixed which are generated in each
+      iteration.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Iteration steps:</span> </dt><dd 
+class="description">Here the maximal number of iterations is settled.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when stuck for (stopping criterion):</span> </dt><dd 
+class="description">Here  a  stopping  criterion  in  form  of  a
+      maximal number of iterations without an improvement of the best solution found so
+      far can be fixed. If this value is larger than the <span 
+class="cmbx-12">number of solutions</span>, it does not
+      apply.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">k for k</span><span 
+class="cmbx-12">_API or k</span><span 
+class="cmbx-12">_REINSERTION:</span> </dt><dd 
+class="description">Here    parameter    <span 
+class="cmti-12">k   </span>can    be    fixed,    if    the
+      <span 
+class="cmbx-12">neighborhood </span>k_API or k_REINSERTION has been chosen.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Start temperature:</span> </dt><dd 
+class="description">This parameter fixes the initial temperature for the cooling process.
+      If during the cooling process the final temperature is reached, the temperature is re-set
+      to the initial value and a new period starts.
+                                                                                         
+                                                                                         
+      </dd><dt class="description">
+<span 
+class="cmbx-12">End temperature:</span> </dt><dd 
+class="description">This  parameter  fixes  the  final  temperature  for  a  cooling  period.
+      In  dependence  on  the  <span 
+class="cmbx-12">cooling  parameter</span>,  the  <span 
+class="cmbx-12">epoch  length </span>and  the  <span 
+class="cmbx-12">number</span>
+      <span 
+class="cmbx-12">of  solutions</span>,  this  temperature  can  be  reached  significantly  before  the  number  of
+      generated solutions has been generated or after that. Thus, in the first case, there are
+      several cooling periods while in the second case, there is only one incomplete cooling
+      period.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Cooling parameter:</span> </dt><dd 
+class="description">This parameter controls the speed of the cooling process. Depending
+      on the chosen <span 
+class="cmbx-12">cooling scheme</span>, it determines how the temperature is calculated from
+      the current temperature for the next epoch.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Abort when reaching objective (Stopping criterion):</span> </dt><dd 
+class="description">Here one can settle an upper
+      bound for the acceptance of an objective function value. The neighborhood search is
+      finished if the settled objective function value has been reached.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Cooling scheme:</span> </dt><dd 
+class="description">The cooling process of the temperature from one epoch to the next one can be
+      controlled by several decreasing functions. For each scheme, the <span 
+class="cmbx-12">cooling parameter </span><span 
+class="cmmi-12">p</span>
+      (0 <span 
+class="cmmi-12">&#x003C; p &#x003C; </span>1) can be explicitly settled.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">LINEAR</span>:  The  new  temperature  is  determined  from  the  old  one  as  follows:
+           <span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">new</span></sup> = <span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">old</span></sup> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">p</span><sub>
+<span 
+class="cmmi-8">L</span></sub> <span 
+class="cmsy-10x-x-120">&sdot; </span><span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">start</span></sup>.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">GEOMETRIC</span>: The new temperature is determined from the old one as follows:
+           <span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">new</span></sup> = <span 
+class="cmmi-12">p</span><sub>
+<span 
+class="cmmi-8">G</span></sub> <span 
+class="cmsy-10x-x-120">&sdot; </span><span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">old</span></sup>.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LUNDYANDMEES</span>: The new temperature is determined from the old one as
+           follows: (according to Lundy-Mees): <span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">new</span></sup> = <span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">old</span></sup><span 
+class="cmmi-12">&#x2215;</span>(1 + <span 
+class="cmmi-12">p</span><sub>
+<span 
+class="cmmi-8">LM</span></sub> <span 
+class="cmsy-10x-x-120">&sdot; </span><span 
+class="cmmi-12">T</span><sup><span 
+class="cmmi-8">old</span></sup>).</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Neighborhood:</span> </dt><dd 
+class="description">Here the definition of the neighborhood is fixed, i.e., in which way new sequences
+      are generated from the given sequence.<br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">PI</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API</span>
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_AP</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION.</span></li></ul>
+      </dd></dl>
+<!--l. 991--><p class="noindent" ><span id="textcolor34">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 994--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), Simulated annealing is activated as
+follows:
+<!--l. 997--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-12">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;nb_iter
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;METHOD&#x00A0;SimulatedAnnealingNew
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;NGBH&#x00A0;k_API
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;EPOCH&#x00A0;100
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_NGHB&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NUMB_STUCKS&#x00A0;214748000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;TSTART&#x00A0;20
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;TEND&#x00A0;0.9
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;COOLPARAM&#x00A0;0.0005
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;COOLSCHEME&#x00A0;LUNDYANDMEES
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPE&#x00A0;ENUM
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1016--><p class="nopar" ></div>
+<!--l. 1019--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 1022--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For
+simulated annealing, method SimulatedAnnealingNew must be activated. The information on the
+choice of the <span 
+class="cmbx-12">neighborhood </span>is mandatory (possibly also with the corresponding parameter for <span 
+class="cmti-12">k</span>).
+Then, optionally, the parameters for the <span 
+class="cmbx-12">number of epochs</span>, the <span 
+class="cmbx-12">number of iterations</span>, and the
+<span 
+class="cmbx-12">number of stagnations </span>when the procedure is stopped, the <span 
+class="cmbx-12">start temperature</span>, the <span 
+class="cmbx-12">end</span>
+<span 
+class="cmbx-12">temperature</span>, the <span 
+class="cmbx-12">cooling parameter</span>, possibly a <span 
+class="cmbx-12">stopping bound</span>, the <span 
+class="cmbx-12">cooling scheme </span>and
+the way of the <span 
+class="cmbx-12">generation of the neighbors </span>(randomly or enumerative) (variable TYPE with
+options ENUM and RAND).
+                                                                                         
+                                                                                         
+<!--l. 1039--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu20.html" >next</a>] [<a 
+href="handbuchsu18.html" >prev</a>] [<a 
+href="handbuchsu18.html#tailhandbuchsu18.html" >prev-tail</a>] [<a 
+href="handbuchsu19.html" >front</a>] [<a 
+href="handbuchse14.html#handbuchsu19.html" >up</a>] </p></div>
+<!--l. 1039--><p class="noindent" ><a 
+ id="tailhandbuchsu19.html"></a>  
+</body></html> 

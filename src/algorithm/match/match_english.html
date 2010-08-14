@@ -1,4 +1,4 @@
-<!--l. 259--><p class="noindent" ><!-- LISA ALGORITHM match -->
+<!--l. 266--><p class="noindent" ><!-- LISA ALGORITHM match -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,35 +8,35 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 256-->
+<!--l. 263-->
 <h4 class="subsectionHead"> <a 
  id="x32-310004.2.2"></a>Matching Heuristics</h4>
-<!--l. 259--><p class="noindent" ><!-- LISA ALGORITHM match -->
-<!--l. 262--><p class="noindent" >These heuristics generate a sequence for open-shop problems. Here the given problem is reduced to
-an assignment problem which will be solved heuristically by searching a maximal matching. This
-leads to a sequence, where operations with similar processing times are processed in parallel if
+<!--l. 266--><p class="noindent" ><!-- LISA ALGORITHM match -->
+<!--l. 269--><p class="noindent" >These heuristics generate a sequence for open-shop problems. Here the given problem is reduced to
+assignment problems which will be solved optimally by searching a maximal matching. This leads
+to a sequence, where operations with similar processing times are processed in parallel if
 possible.
-<!--l. 270--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
+<!--l. 277--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 273--><p class="noindent" >After the input of <span 
+<!--l. 281--><p class="noindent" >After the input of <span 
 class="cmbx-12">problem type </span>and the required <span 
 class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Matching Heuristics </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 280--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
+<!--l. 288--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
 class="cmbx-12">Kind of algorithm:</span> </dt><dd 
-class="description">By this option, one determines how to treat the fixed weights of the
-      operations by means of <span 
-class="cmbx-12">type of the matching</span>. <br 
+class="description">By  this  option,  one  determines  how  to  treat  the  weights  of  the
+      operations that are fixed by the setting <span 
+class="cmbx-12">Kind of matching</span>. <br 
 class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
@@ -44,7 +44,7 @@ class="cmbx-12">BOTTLENECK: </span>The operations are ordered by their weights. 
            weight <span 
 class="cmti-12">p </span>is determined such that <span 
 class="cmmi-12">M </span>= <img 
-src="handbuch15x.png" alt="{p(i,j) | p(i,j) &ge; p}"  class="left" align="middle"> contains a perfect
+src="handbuch17x.png" alt="{p(i,j) | p(i,j) &ge; p}"  class="left" align="middle"> contains a perfect
            matching.  The  corresponding  operations  from  this  matching  are  appended  to
            the sequence and the weights are deleted. This procedure is repeated until all
            operations have been appended to the sequence.
@@ -80,12 +80,12 @@ class="cmbx-12">MAX: </span>The weight of an operation directly results from the
            this way, the average processing time of all operations in one appending step is
            maximized. (This is the standard setting.)</li></ul>
       </dd></dl>
-<!--l. 321--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
+<!--l. 330--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 323--><p class="noindent" >In the input file for the <span 
+<!--l. 333--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, matching heuristics are activated as
 follows:
-<!--l. 327--><p class="noindent" >
+<!--l. 337--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -96,17 +96,17 @@ follows:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPEOF&#x00A0;WEIGHTED
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 335--><p class="nopar" ></div>
-<!--l. 338--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 345--><p class="nopar" ></div>
+<!--l. 348--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 341--><p class="noindent" >As an executable file, match must be invoked for the matching heuristics. Optionally, the <span 
-class="cmbx-12">type of</span>
+<!--l. 351--><p class="noindent" >As an executable file, match must be invoked for the matching heuristics. Optionally, the <span 
+class="cmbx-12">kind of</span>
 <span 
-class="cmbx-12">the matching </span>and the <span 
-class="cmbx-12">type of the algorithm </span>can be settled.
+class="cmbx-12">matching </span>and the <span 
+class="cmbx-12">kind of algorithm </span>can be settled.
                                                                                          
                                                                                          
-<!--l. 350-->
-<!--l. 350--><p class="noindent" ><a 
+<!--l. 360-->
+<!--l. 360--><p class="noindent" ><a 
  id="tailhandbuchsu14.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

@@ -1,190 +1,144 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Algorithmenmodule</title> 
+<head><title>Irreduzibilitatstest</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 386--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse25.html" >next</a>] [<a 
+<!--l. 362--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse23.html" >prev</a>] [<a 
+href="handbuchse23.html#tailhandbuchse23.html" >prev-tail</a>] [<a 
 href="#tailhandbuchse24.html">tail</a>] [<a 
-href="handbuchch7.html#handbuchse24.html" >up</a>] </p></div>
-<h3 class="sectionHead"><span class="titlemark">7.1   </span> <a 
- id="x55-540007.1"></a>Algorithmenmodule</h3>
-<!--l. 1--><p class="noindent" >Alle Algorithmen zur Lösung von Schedulingproblemen in LiSA sind in externe Module
-ausgelagert. Es handelt sich dabei um eigenständige ausführbare Programme, die nach der
-Auswahl im Menü <span 
-class="cmbxti-10x-x-120">Algorithmen </span>von LiSA aufgerufen werden. Sie können aber auch manuell über
-die Kommandozeile ausgeführt werden.
-<!--l. 9--><p class="noindent" ><span id="textcolor49">&nbsp;<br><span 
-class="cmbx-12x-x-120">Aufbau eines Moduls</span></span> <br 
-class="newline" />Ein Modul in LiSA besteht im Wesentlichen aus fünf einzelnen Dateien:
-      <ul class="itemize1">
-      <li class="itemize">einer     XML-Datei     vom     <span 
-class="cmbx-12">Dokumenttyp     </span>(<span 
-class="cmsy-10x-x-120">&rarr;  </span><a 
-href="handbuchse8.html#x17-160002.5">2.5<!--tex4ht:ref: Das File Format in LiSA --></a>)     <span 
-class="cmtt-12">algorithm   </span>zur
-      Algorithmenbeschreibung,
-      </li>
-      <li class="itemize">einer Hilfedatei im HTML-Format,
-      </li>
-      <li class="itemize">und schließlich dem Algorithmus selbst in Form eines eigenständigen Programms,</li></ul>
-<!--l. 17--><p class="noindent" >wobei die ersten beiden Dateien jeweils in einer deutschen und englischen Version vorliegen
-müssen.
-<!--l. 20--><p class="noindent" >Das XML-Dokument dient dabei zur Einbindung des Moduls in das Hauptprogramm. Es
-befindet sich in den Unterordnern <span 
-class="cmtt-12">data/alg</span><span 
-class="cmtt-12">_desc/language/german </span>und <span 
-class="cmtt-12">data/alg</span><span 
-class="cmtt-12">_desc/</span>
+href="handbuchch6.html#handbuchse24.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x59-580006.3"></a>Irreduzibilitätstest</h3>
+<!--l. 2--><p class="noindent" ><!-- LISA ALGORITHM irred -->
+<!--l. 4--><p class="noindent" >Dieser Test löst verschiedene Aufgabenstellungen aus der Irreduzibilitätstheorie, ausführliche
+Informationen sind in der Dissertation von <span 
+class="cmcsc-10x-x-120">W<span 
+class="small-caps">i</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span><span 
+class="small-caps">i</span><span 
+class="small-caps">u</span><span 
+class="small-caps">s</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xwi00">26</a>]</span> enthalten. Er ist für open,
+job und flow shop Probleme mit Bereitstellungszeiten der Jobs und mit den regulären
+Zielfunktionen Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und SumWiTi
+anwendbar.
+<!--l. 9--><p class="noindent" >Ein Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> reduziert einen Plan <span 
+class="cmmi-12">S</span>, wenn <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> für jede Wahl der Bearbeitungszeiten keinen
+schlechteren Zielfunktionswert als <span 
+class="cmmi-12">S </span>liefert. Zwei Pläne sind zueinander ähnlich, wenn sie für jede
+Wahl von Bearbeitungszeiten den gleichen Zielfunktionswert besitzen. Ein Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> reduziert einen
+Plan <span 
+class="cmmi-12">S </span>streng, wenn sie nicht ähnlich zueinander sind und wenn <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> den Plan <span 
+class="cmmi-12">S </span>reduziert. Ein
+Plan <span 
+class="cmmi-12">S </span>heißt irreduzibel, wenn es keinen Plan <span 
+class="cmmi-12">S</span><sup><span 
+class="cmsy-8">&lowast;</span></sup> gibt, der <span 
+class="cmmi-12">S </span>echt reduziert. Damit
+existiert in der Menge aller irreduziblen Pläne ein global optimaler Plan für jede Wahl der
+Bearbeitungszeiten.
+<!--l. 19--><p class="noindent" ><span id="textcolor58">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 22--><p class="noindent" >Wenn LiSA den Problemtyp und alle Parameter kennt und bereits ein Plan erzeugt wurde, läßt
+sich der Algorithmus im Menüpunkt <span 
+class="cmbxti-10x-x-120">Heuristische Verfahren/Irreduzibilit</span><span 
+class="cmbxti-10x-x-120">ätstest </span>des Menüs
 <span 
-class="cmtt-12">language/english</span>. Dort wird unter anderem festgelegt, welche Problemtypen ein Algorithmus
-lösen kann, ob er auf einer bereits gefundenen Lösung aufbaut oder ob er ein Problem heuristisch
-oder exakt löst. Zudem können hier Parameter deklariert werden, die dem Algorithmus
-übergeben werden. Der genaue Aufbau eines solchen XML-Dokuments ist im Anhang <a 
-href="handbuchap1.html#x64-69000A">A<!--tex4ht:ref: XML-Referenz --></a>
-beschrieben.
-<!--l. 30--><p class="noindent" >Die Hilfedatei dient zur Beschreibung des Algorithmus in menschenlesbarer Form. Sie sollte
-kurz auf die Lösungsstrategie eingehen, die lösbaren Problemtypen aufzählen und die
-Programmparameter beschreiben. Sie befindet sich im Unterordner <span 
-class="cmtt-12">doc/lisa/english/algorithm</span>
-und <span 
-class="cmtt-12">doc/lisa/german/algorithm</span>.
-<!--l. 36--><p class="noindent" >Der Algorithmus selbst liegt im Unterordner <span 
-class="cmtt-12">bin</span>.
-                                                                                         
-                                                                                         
-<!--l. 41--><p class="noindent" ><span id="textcolor50">&nbsp;<br><span 
-class="cmbx-12x-x-120">Kommandozeilenschnittstelle</span></span> <br 
-class="newline" />Das Programm, das den Algorithmus implementiert, nimmt genau zwei Komandozeilenparameter
-entgegen: eine Eingabedatei und eine Ausgabedatei. Die Eingabedatei muss eine LiSA-Probleminstanz
-im XML-Format enthalten. Sie kann entweder vom <span 
-class="cmbx-12">Dokumenttyp </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse8.html#x17-160002.5">2.5<!--tex4ht:ref: Das File Format in LiSA --></a>) <span 
-class="cmtt-12">instance </span>oder
+class="cmbxti-10x-x-120">Algorithmen </span>aufrufen.
+<!--l. 27--><p class="noindent" ><span id="textcolor59">&nbsp;<br><span 
+class="cmbx-12x-x-120">Einstellungen</span></span>
+      <dl class="description"><dt class="description">
 <span 
-class="cmtt-12">solution </span>sein. Die Ausgabedatei wird vom Algorithmenmodul erzeugt und enthält die vom
-Algorithmus berechnete Lösung des Problems.
-<!--l. 52--><p class="noindent" ><span id="textcolor51">&nbsp;<br><span 
-class="cmbx-12x-x-120">Übergabe von Parametern</span></span> <br 
-class="newline" />Kapitel <a 
-href="handbuchch4.html#x27-260004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> beschreibt zu jedem Algorithmus einen Satz von Parametern, die dessen Verhalten
-beeinflussen. Die Übergabe der Parameter erfolgt mit Hilfe der Eingabedatei. Zu diesem Zweck
-steht das <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Element zur Verfügung, das sich in die Dokumente des Typs <span 
-class="cmtt-12">instance</span>
-und <span 
-class="cmtt-12">solution </span>einfügen lässt. Es enthält einzelne Parameterbelegungen in Form von
-<span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;parameter&#x003E;</span></span></span>-Elementen. Mit diesen erfolgt eine Wertzuweisung für einen Parameter
-durch Angabe von Datentyp (<span 
-class="cmtt-12">integer</span>, <span 
-class="cmtt-12">real </span>oder <span 
-class="cmtt-12">string</span>), Parametername und dem
-Wert.
-<!--l. 62--><p class="noindent" >Ein <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Bock für einen Aufruf des Algorithmus <span 
-class="cmbx-12">Iterative Suche </span>(<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchsu17.html#x36-350004.3.1">4.3.1<!--tex4ht:ref: Iterative Suche --></a>) kann
-beispielsweise so aussehen:
-<!--l. 65--><p class="noindent" >
-      <div class="quote">
+class="cmbx-12">Erzeuge Pl</span><span 
+class="cmbx-12">äne:</span> </dt><dd 
+class="description">Es wird eingegeben, welche Pläne erzeugt werden sollen:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">SIMILAR </span>Es werden alle zum Ausgangsplan ähnlichen Pläne erzeugt.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ALL</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">REDUCING </span>Es werden alle Pläne erzeugt, die den Eingabeplan streng
+           reduzieren und zwar genau einer aus jeder Ähnlichkeitsklasse. Wenn kein solcher
+           Plan  existiert,  wird  eine  LiSA-Fehlermeldung  ausgegeben:  Warning:  Plan  is
+           irreducible.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ITERATIVE</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">REDUCING  </span>Sobald  ein  Plan  gefunden  wurde,  der  den
+           ursprünglichen Plan streng reduziert, wird der Algorithmus unterbrochen und mit
+           dem neuen Plan erneut gestartet. Dies wird fortgeführt, bis ein irreduzibler Plan
+           gefunden wurde.
+           <!--l. 40--><p class="noindent" >Sollte   der   Ausgangsplan   irreduzibel   sein,   wird   eine   LiSA-Fehlermeldung
+           ausgegeben: Warning: Sequence is irreducible.</li></ul>
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-17">
-&#x003C;controls&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="METHOD"&#x00A0;value="IterativeImprovement"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="string"&#x00A0;name="NGBH"&#x00A0;value="k_API"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="k"&#x00A0;value="1"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="STEPS"&#x00A0;value="1"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="integer"&#x00A0;name="NUMB_STUCKS"&#x00A0;value="214748000"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;parameter&#x00A0;type="real"&#x00A0;name="ABORT_BOUND"&#x00A0;value="-214748000"&#x00A0;/&#x003E;
-&#x00A0;<br />&#x003C;/controls&#x003E;
-</div>
-      <!--l. 77--><p class="nopar" ></div>
-<!--l. 80--><p class="noindent" >In <span 
-class="cmtt-12">instance</span>-Dokumenten müssen <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls&#x003E;</span></span></span>-Böcke direkt nach dem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element eingefügt
-werden. In <span 
-class="cmtt-12">solution</span>-Dokumenten stehen sie ebenfalls hinter dem <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;values&#x003E;</span></span></span>-Element, noch vor
-dem ersten <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Element.
-<!--l. 86--><p class="noindent" ><span id="textcolor52">&nbsp;<br><span 
-class="cmbx-12x-x-120">Ausgabe von Laufzeitinformationen</span></span> <br 
-class="newline" />Algorithmenmodule können mit Hilfe ihrer Standardausgabe Informationen an das Hauptprogramm
-ausgeben. Dazu stehen die vier Schlüsselworte <span 
-class="cmtt-12">PID=</span>, <span 
-class="cmtt-12">OBJECTIVE=</span>, <span 
-class="cmtt-12">WARNING: </span>und <span 
-class="cmtt-12">ERROR:</span>
-bereit.
-<div class="paragraphTOCS">
-</div>
-<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
- id="x55-550007.1"></a><span 
-class="cmtt-12">PID=x</span></span>
-teilt dem Hauptprogramm die Prozess-ID <span 
-class="cmtt-12">x </span>des laufenden Moduls mit. Diese Information sollte
-möglichst zu Beginn der Ausführung ausgegeben werden.
-<!--l. 95--><p class="noindent" ><span class="paragraphHead"><a 
- id="x55-560007.1"></a><span 
-class="cmtt-12">OBJECTIVE=x</span></span>
-gibt eine Meldung über den aktuellen Rechenstatus zurück. Als Ausgabewert kann z.B. der
-aktuelle Zielfunktionswert dienen. Diese Werte werden dann von der LiSA-Oberfläche
-während der Berechnung grafisch dargestellt. Die erste Ausgabe setzt dabei die Größe des
-Anzeigefensters, alle weiteren Meldungen sollten also wenn möglich unter dieser Grenze
-bleiben.
-<!--l. 100--><p class="noindent" ><span class="paragraphHead"><a 
- id="x55-570007.1"></a><span 
-class="cmtt-12">WARNING:msg</span></span>
-zeigt ein Meldungsfenster mit der Warnungsmeldung <span 
-class="cmtt-12">msg</span>. Das Algorithmenmodul setzt danach
-seine Ausführung fort.
-<!--l. 102--><p class="noindent" ><span class="paragraphHead"><a 
- id="x55-580007.1"></a><span 
-class="cmtt-12">ERROR:msg</span></span>
-zeigt ein Meldungsfenster mit der Fehlermeldung <span 
-class="cmtt-12">msg </span>und bricht die Ausführung des Algorithmus
-ab.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Gib folgende Pl</span><span 
+class="cmbx-12">äne zur</span><span 
+class="cmbx-12">ück:</span> </dt><dd 
+class="description">Eine Abspeicherung erfolgt in der Datei <span 
+class="cmti-12">algo</span><span 
+class="cmti-12">_out.xml </span>im
+      Verzeichnis <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">~/.lisa/proc</span></span></span>. In LiSA wird das Ergebnis unter <span 
+class="cmbxti-10x-x-120">Bearbeiten/Liste von</span>
+      <span 
+class="cmbxti-10x-x-120">Plaenen </span>angezeigt.
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">ALL  </span>Alle  erzeugten  Pläne  werden  zurückgegeben,  wobei  die  Anzahl  im
+           Zusammenhang mit der ALL_REDUCING Option sehr groß sein kann.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ONLY</span><span 
+class="cmbx-12">_</span><span 
+class="cmbx-12">IRREDUCIBLE </span>Nur irreduzible Pläne werden zurückgegeben.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Erzeuge Pl</span><span 
+class="cmbx-12">äne in zuf</span><span 
+class="cmbx-12">älliger Reihenfolge:</span> </dt><dd 
+class="description">Auswahlmöglichkeiten:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">YES </span>Pläne werden vom Algorithmus in zufälliger Reihenfolge erzeugt. Dies ist
+           nur interessant im Zusammenhang mit der ITERATIVE_REDUCING Option, um
+           bei verschiedenen Aufrufen des Algorithmus verschiedene Resultate zu erhalten.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">NO </span>Pläne werden vom Algorithmus in einer effizienten Reihenfolge erzeugt.</li></ul>
+      </dd></dl>
                                                                                          
                                                                                          
-<!--l. 108--><p class="noindent" ><span id="textcolor53">&nbsp;<br><span 
-class="cmbx-12x-x-120">Manuelles Aufrufen eines Algorithmus</span></span> <br 
-class="newline" />Soll ein Algorithmus unabhängig von der LiSA-Oberfläche ausgeführt werden, kann dies also duch
-den Aufruf der entsprechenden ausführbaren Datei im Unterordner <span 
-class="cmtt-12">bin </span>geschehen. Dazu
-muss eine Eingabedatei erstellt werden, die das zu lösende Problem enthält. Solche
-Dateien lassen sich einfach erzeugen, indem ein in LiSA erstelltes Problem mit dem
-Menüpunkt <span 
-class="cmbxti-10x-x-120">Datei/Speichern als </span>abgespeichert wird (<span 
-class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse11.html#x26-250003.3">3.3<!--tex4ht:ref: Eingabedatei --></a>). Es müssen dann jedoch
-noch die Parameter für den Algorithmus von Hand eingefügt werden (mindestens ein
-leeres <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;controls</span><span 
-class="cmtt-12">&#x00A0;/&#x003E;</span></span></span>-Tag, wenn alle Parameter mit den Standardwerten belegt werden
-sollen).
-<!--l. 118--><p class="noindent" >Für nähere Informationen zu den Parametern der einzelnen Algorithmen siehe Kapitel <a 
-href="handbuchch4.html#x27-260004">4<!--tex4ht:ref: Algorithmen in LiSA --></a> und die
-XML-Referenz im Anhang <a 
-href="handbuchap1.html#x64-69000A">A<!--tex4ht:ref: XML-Referenz --></a>.
-                                                                                         
-                                                                                         
-<!--l. 395--><div class="crosslinks"><p class="noindent">[<a 
-href="handbuchse25.html" >next</a>] [<a 
+<!--l. 372--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse23.html" >prev</a>] [<a 
+href="handbuchse23.html#tailhandbuchse23.html" >prev-tail</a>] [<a 
 href="handbuchse24.html" >front</a>] [<a 
-href="handbuchch7.html#handbuchse24.html" >up</a>] </p></div>
-<!--l. 395--><p class="noindent" ><a 
+href="handbuchch6.html#handbuchse24.html" >up</a>] </p></div>
+<!--l. 372--><p class="noindent" ><a 
  id="tailhandbuchse24.html"></a>  
 </body></html> 

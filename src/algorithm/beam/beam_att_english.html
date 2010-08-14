@@ -1,4 +1,4 @@
-<!--l. 354--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 364--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,15 +8,15 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 351-->
+<!--l. 361-->
 <h4 class="subsectionHead"> <a 
  id="x33-320004.2.3"></a>Beam Search Procedures with Appending Technique</h4>
-<!--l. 354--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
-<!--l. 356--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
+<!--l. 364--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 366--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
 class="cmbx-12">Branch &amp; Bound Procedure</span>
 . In contrast to them, the number of partial solutions to be investigated is
 restricted in any vertex of the solution tree. This leads to an incomplete search in the
@@ -24,24 +24,23 @@ set of feasible solutions which possibly excludes all optimal solutions. However
 procedures are substantially faster than a complete branch &amp; bound algorithm. The
 quality of the solution depends both on the chosen problem type and on the chosen
 settings.
-<!--l. 365--><p class="noindent" >In case of an <span 
+<!--l. 375--><p class="noindent" >In case of an <span 
 class="cmbx-12">appending </span>procedure, for any partial sequence different positions are
-considered at which new operations with increasing rank can be <span 
-class="cmti-12">appended</span>. Using one of the
+considered at which new operations with increasing rank can be appended. Using one of the
 particular strategies, an operation is searched which fits on this position. In addition to
 the appending procedure, an <span 
 class="cmbx-12">insertion </span>procedure  is also implemented in
 LiSA.
-<!--l. 375--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
+<!--l. 385--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 377--><p class="noindent" >After the input of the <span 
+<!--l. 388--><p class="noindent" >After the input of the <span 
 class="cmbx-12">problem type </span>and the required <span 
 class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Beam Search (attach) </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 384--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
+<!--l. 395--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -104,18 +103,18 @@ class="cmbx-12">LPT </span>(longest processing time): The next sequenced operati
            has the largest processing time.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">SPT </span>(shortest processing time): The next sequenced operation is th one which
+class="cmbx-12">SPT </span>(shortest processing time): The next sequenced operation is the one which
            has the shortest processing time.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">RANDOM: </span>The operation is randomly chosen.</li></ul>
       </dd></dl>
-<!--l. 426--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
+<!--l. 438--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 428--><p class="noindent" >In the input file for the <span 
+<!--l. 441--><p class="noindent" >In the input file for the <span 
 class="cmbx-12">Autoalg-function </span>, beam search appending procedures are
 activated as follows:
-<!--l. 432--><p class="noindent" >
+<!--l. 445--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -130,10 +129,10 @@ activated as follows:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;K_BRANCHES&#x00A0;5
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 444--><p class="nopar" ></div>
-<!--l. 447--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 457--><p class="nopar" ></div>
+<!--l. 460--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 450--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
+<!--l. 463--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
 the beam search mode is mandatory. Optionally, the parameters for the <span 
 class="cmbx-12">appending</span>
 <span 
@@ -147,7 +146,7 @@ class="cmbx-12">beam width </span>can be
 set.
                                                                                          
                                                                                          
-<!--l. 463-->
-<!--l. 463--><p class="noindent" ><a 
+<!--l. 476-->
+<!--l. 476--><p class="noindent" ><a 
  id="tailhandbuchsu15.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

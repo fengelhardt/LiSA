@@ -1,26 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Beam Search Verfahren mit Einfugetechnik </title> 
+<head><title>Beam Search Verfahren mit Einfugetechnik</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 516--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 513--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >prev</a>] [<a 
 href="handbuchsu15.html#tailhandbuchsu15.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu16.html">tail</a>] [<a 
 href="handbuchse13.html#handbuchsu16.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.2.4   </span> <a 
- id="x34-330004.2.4"></a>Beam Search Verfahren mit Einfügetechnik </h4>
-<!--l. 519--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
-<!--l. 521--><p class="noindent" >Beam Search Verfahren sind eine heuristische Variante des <span 
-class="cmbx-12">Branch &amp; Bound Verfahren </span>(<span 
+ id="x34-330004.2.4"></a>Beam Search Verfahren mit Einfügetechnik</h4>
+<!--l. 516--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
+<!--l. 518--><p class="noindent" >Beam Search Verfahren sind eine heuristische Variante des <span 
+class="cmbx-12">Branch &amp; Bound Verfahrens </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span>
 <a 
 href="handbuchsu12.html#x29-280004.1.1">4.1.1<!--tex4ht:ref: Universeller Branch and Bound Algorithmus --></a>). Im Unterschied zu diesem ist bei ihnen die Anzahl der untersuchten Teillösungen in jedem
@@ -29,21 +29,23 @@ Lösungsraum, die möglicherweise sämtliche optimalen Lösungen ausschließt. Allerd
 Verfahren dieser Art jedoch auch bedeutend schneller als ein umfangreicher Branch &amp; Bound
 Algorithmus. Die Qualität der Lösung hängt dabei sowohl vom gewählten Problemtyp, als auch
 von den gewählten Einstellungen ab.
-<!--l. 532--><p class="noindent" >Beim <span 
+<!--l. 529--><p class="noindent" >Beim <span 
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">üge</span>-Verfahren wird die Reihenfolge, in der die Operationen zu den jeweiligen Teilplänen
 hinzugefügt werden, vorher festgelegt. Für jeden Teilplan und jede neue Operation werden dann
 verschiedene zulässige Positionen betrachtet, in die die neue Operation mit einem von mehreren
-möglichen Rängen <span 
-class="cmti-12">ein</span>gefügt werden kann. Neben dem Einfüge-Verfahren ist auch ein
+möglichen Rängen eingefügt werden kann. Neben dem Einfüge-Verfahren ist auch ein
 <span 
 class="cmbx-12">Anf</span><span 
 class="cmbx-12">üge</span>-Verfahren (<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
 href="handbuchsu15.html#x33-320004.2.3">4.2.3<!--tex4ht:ref: Beam Search Verfahren mit Anfuegetechnik --></a>) in LiSA implementiert.
-<!--l. 543--><p class="noindent" ><span id="textcolor22">&nbsp;<br><span 
+<!--l. 538--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 540--><p class="noindent" ><span id="textcolor22">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 545--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 543--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
@@ -51,7 +53,7 @@ class="cmbxti-10x-x-120">Heuristische</span>
 class="cmbxti-10x-x-120">Verfahren/Beam Search (Einf</span><span 
 class="cmbxti-10x-x-120">ügen) </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 551--><p class="noindent" ><span id="textcolor23">&nbsp;<br><span 
+<!--l. 549--><p class="noindent" ><span id="textcolor23">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -63,8 +65,7 @@ class="description">Hier wird festgelegt, wie viele der in jedem Schritt neu
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">ügereihenfolge:</span> </dt><dd 
 class="description">Hier wird die Reihenfolge festgelegt, in der die Operationen zu den
-      Teilplänen hinzugefügt werden sollen.<br 
-class="newline" />
+      Teilplänen hinzugefügt werden sollen.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">MACHINEWISE: </span>Die Operationen werden spaltenweise angeordnet.
@@ -73,7 +74,7 @@ class="cmbx-12">MACHINEWISE: </span>Die Operationen werden spaltenweise angeordn
 class="cmbx-12">DIAGONAL: </span>Diese Strategie basiert auf der Betrachtung von Diagonalen in
            einem Quadrat der Größe <span 
 class="cmmi-12">M </span>= min <img 
-src="handbuch16x.png" alt="(m, n )"  class="left" align="middle">.
+src="handbuch18x.png" alt="(m, n )"  class="left" align="middle">.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">QUEEN</span><span 
@@ -85,9 +86,7 @@ class="cmsy-10x-x-120">&#x00D7;</span>
            <span 
 class="cmmi-12">M</span>-Schachbrett (<span 
 class="cmmi-12">M </span>= min <img 
-src="handbuch17x.png" alt="(m, n)"  class="left" align="middle">).
-                                                                                         
-                                                                                         
+src="handbuch19x.png" alt="(m, n)"  class="left" align="middle">).
            </li>
            <li class="itemize"><span 
 class="cmbx-12">RANDOM: </span>Die Operationen werden in zufälliger Reihenfolge eingefügt.
@@ -112,13 +111,14 @@ class="cmbx-12">Auswahlmethode:</span> </dt><dd
 class="description">Hier wird festgelegt, wie die gewählte Anzahl der Teilpläne, die weiter
       betrachtet werden sollen (<span 
 class="cmbx-12">Anzahl zu verfolgender Zweige</span>), ausgewählt werden. Die
-      Teilpläne werden dabei mit ihren Zielfunktionswerten bewertet.<br 
-class="newline" />
+      Teilpläne werden dabei mit ihren Zielfunktionswerten bewertet.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">INSERT1: </span>Aus der Gesamtheit <span 
 class="cmti-12">aller </span>in einem Iterationsschritt zur Verfügung
            stehenden Kinder-Pläne werden die besten ausgewählt.
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">INSERT2:  </span>Es  wird  für  jeden  Vater-Plan  genau  ein  (bester)  Kind-Plan
@@ -129,8 +129,7 @@ class="cmbx-12">Auswahlkriterium:</span> </dt><dd
 class="description">Diese Option steht nur bei <span 
 class="cmmi-12">C</span><sub><span 
 class="cmr-8">max</span></sub>-Problemen zur Verfügung. Sie stellt eine
-      alternative Bewertungsmethode für die Teilpläne zur Verfügung.<br 
-class="newline" />
+      alternative Bewertungsmethode für die Teilpläne zur Verfügung.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">OBJECTIVE:  </span>Der  Zielfunktionswert  wird  zur  Bewertung  eines  Teilplans
@@ -140,14 +139,13 @@ class="cmbx-12">OBJECTIVE:  </span>Der  Zielfunktionswert  wird  zur  Bewertung 
 class="cmbx-12">CLAST: </span>Als Bewertung eines Teilplans dienen die Kosten eines längsten Weges
            durch die Operation, die als letzte eingefügt wurde.</li></ul>
       </dd></dl>
-<!--l. 606--><p class="noindent" ><span id="textcolor24">&nbsp;<br><span 
+<!--l. 603--><p class="noindent" ><span id="textcolor24">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 608--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 606--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Beam Search Einfüge-Verfahren
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Beam Search Einfüge-Verfahren
 wie folgt aufgerufen:
-<!--l. 612--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -161,25 +159,25 @@ wie folgt aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k_BRANCHES&#x00A0;5
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 623--><p class="nopar" ></div>
-<!--l. 626--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 621--><p class="nopar" ></div>
+<!--l. 624--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 630--><p class="noindent" >Als ausführbare Datei muss für alle Beam Search Verfahren beam aufgerufen werden. Die Angabe
+<!--l. 628--><p class="noindent" >Als ausführbare Datei muss für alle Beam Search Verfahren beam aufgerufen werden. Die Angabe
 des Beam Search-Modus ist ebenso obligatorisch, wie eine Angabe zur <span 
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">ügereihenfolge</span>.
 Danach können optional die Parameter für die <span 
 class="cmbx-12">Auswahlmethode</span>, das <span 
-class="cmbx-12">Auswahlkriterium</span>, und
+class="cmbx-12">Auswahlkriterium </span>und
 die <span 
 class="cmbx-12">Anzahl zu verfolgender Zweige </span>gesetzt werden.
                                                                                          
                                                                                          
-<!--l. 644--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 642--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu15.html" >prev</a>] [<a 
 href="handbuchsu15.html#tailhandbuchsu15.html" >prev-tail</a>] [<a 
 href="handbuchsu16.html" >front</a>] [<a 
 href="handbuchse13.html#handbuchsu16.html" >up</a>] </p></div>
-<!--l. 644--><p class="noindent" ><a 
+<!--l. 642--><p class="noindent" ><a 
  id="tailhandbuchsu16.html"></a>  
 </body></html> 

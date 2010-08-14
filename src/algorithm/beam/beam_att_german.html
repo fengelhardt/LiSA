@@ -1,4 +1,4 @@
-<!--l. 401--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 398--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,34 +8,33 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 398-->
+<!--l. 394-->
 <h4 class="subsectionHead"> <a 
- id="x26-250004.2.3"></a>Beam Search Verfahren mit Anfügetechnik</h4>
-<!--l. 401--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
-<!--l. 403--><p class="noindent" >Beam Search Verfahren sind eine heuristische Variante des <span 
+ id="x33-320004.2.3"></a>Beam Search Verfahren mit Anfügetechnik</h4>
+<!--l. 398--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 400--><p class="noindent" >Beam Search Verfahren sind eine heuristische Variante des <span 
 class="cmbx-12">Branch &amp; Bound Verfahren </span>. Im Unterschied zu diesem ist bei ihnen die Anzahl der untersuchten Teillösungen in jedem
 Knoten des Lösungsbaumes beschränkt. Das führt zu einer unvollständigen Suche im
 Lösungsraum, die möglicherweise sämtliche optimalen Lösungen ausschließt. Allerdings sind
 Verfahren dieser Art jedoch auch bedeutend schneller als ein umfangreicher Branch &amp; Bound
 Algorithmus. Die Qualität der Lösung hängt dabei sowohl vom gewählten Problemtyp, als auch
 von den gewählten Einstellungen ab.
-<!--l. 414--><p class="noindent" >Beim <span 
+<!--l. 411--><p class="noindent" >Beim <span 
 class="cmbx-12">Anf</span><span 
 class="cmbx-12">üge</span>-Verfahren werden für jeden Teilplan verschiedene Positionen betrachtet, in die
-neue Operationen mit aufsteigendem Rang <span 
-class="cmti-12">an</span>gefügt werden können. Dabei wird mit
+neue Operationen mit aufsteigendem Rang angefügt werden können. Dabei wird mit
 unterschiedlichen Strategien jeweils nach einer Operation gesucht, die möglichst gut an diese Stelle
 passt. Neben dem Anfüge-Verfahren ist auch ein <span 
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">üge</span>-Verfahren  in LiSA
 implementiert.
-<!--l. 424--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
+<!--l. 421--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 426--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 424--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
@@ -43,7 +42,7 @@ class="cmbxti-10x-x-120">Heuristische</span>
 class="cmbxti-10x-x-120">Verfahren/Beam Search (Anf</span><span 
 class="cmbxti-10x-x-120">ügen) </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 432--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
+<!--l. 430--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -56,8 +55,7 @@ class="cmbx-12">Auswahlmethode:</span> </dt><dd
 class="description">Hier wird festgelegt, wie die gewählte Anzahl der Teilpläne, die weiter
       betrachtet werden sollen (<span 
 class="cmbx-12">Anzahl zu verfolgender Zweige</span>), ausgewählt werden. Die
-      Teilpläne werden dabei mit ihren Zielfunktionswerten bewertet.<br 
-class="newline" />
+      Teilpläne werden dabei mit ihren Zielfunktionswerten bewertet.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">INSERT1: </span>Aus der Gesamtheit <span 
@@ -73,8 +71,7 @@ class="cmbx-12">Auswahlkriterium:</span> </dt><dd
 class="description">Diese Option steht nur bei <span 
 class="cmti-12">C</span><span 
 class="cmr-10">max</span>-Problemen zur Verfügung. Sie stellt dort
-      eine alternative Bewertungsmethode für die Teilpläne zur Verfügung.<br 
-class="newline" />
+      eine alternative Bewertungsmethode für die Teilpläne zur Verfügung.
                                                                                          
                                                                                          
            <ul class="itemize1">
@@ -92,11 +89,10 @@ class="cmbx-12">OBJECTIVE:  </span>Der  Zielfunktionswert  wird  zur  Bewertung 
            benutzt. Dies ist die Standardmethode.</li></ul>
       </dd><dt class="description">
 <span 
-class="cmbx-12">Tie Braking:</span> </dt><dd 
+class="cmbx-12">Tie Breaking:</span> </dt><dd 
 class="description">Ist die Auswahl der anzufügenden Operation nicht eindeutig, so legt diese Option
       fest, mit welcher Regel die gesuchte Operation unter den in Frage kommenden ausgewählt
-      wird.<br 
-class="newline" />
+      wird.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">FCFS </span>(first come - first serve): Es wird die Operation als nächste angeordnet,
@@ -113,12 +109,12 @@ class="cmbx-12">SPT  </span>(shortest  processing  time):  Es  wird  die  Operat
            <li class="itemize"><span 
 class="cmbx-12">RANDOM: </span>Die Operation wird zufällig ausgewählt.</li></ul>
       </dd></dl>
-<!--l. 478--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
+<!--l. 475--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 480--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 478--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span> werden Beam Search Anfüge-Verfahren
 wie folgt aufgerufen:
-<!--l. 484--><p class="noindent" >
+<!--l. 482--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -133,17 +129,17 @@ wie folgt aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;K_BRANCHES&#x00A0;5
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 496--><p class="nopar" ></div>
-<!--l. 499--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 494--><p class="nopar" ></div>
+<!--l. 497--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 503--><p class="noindent" >Als ausführbare Datei muss für alle Beam Search Verfahren beam aufgerufen werden. Die Angabe
+<!--l. 501--><p class="noindent" >Als ausführbare Datei muss für alle Beam Search Verfahren beam aufgerufen werden. Die Angabe
 des Beam Search-Modus ist obligatorisch. Danach können optional die Parameter für das
 <span 
 class="cmbx-12">Anf</span><span 
 class="cmbx-12">ügekriterium </span>(ATTACH_WHAT mit Optionen Machines, Jobs, Machines+Jobs), das <span 
 class="cmbx-12">Tie</span>
 <span 
-class="cmbx-12">Braking</span>, die <span 
+class="cmbx-12">Breaking</span>, die <span 
 class="cmbx-12">Auswahlmethode</span>, das <span 
 class="cmbx-12">Auswahlkriterium</span>, und die <span 
 class="cmbx-12">Anzahl zu verfolgender</span>
@@ -151,7 +147,7 @@ class="cmbx-12">Anzahl zu verfolgender</span>
 class="cmbx-12">Zweige </span>gesetzt werden.
                                                                                          
                                                                                          
-<!--l. 515-->
-<!--l. 515--><p class="noindent" ><a 
- id="tailhandbuchsu9.html"></a>  
+<!--l. 513-->
+<!--l. 513--><p class="noindent" ><a 
+ id="tailhandbuchsu15.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

@@ -7,7 +7,7 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
@@ -20,8 +20,9 @@ href="handbuchse7.html#handbuchsu6.html" >up</a>] </p></div>
  id="x16-150002.4.2"></a>Spezielle Algorithmen</h4>
 <!--l. 90--><p class="noindent" >Einige Algorithmen in LiSA sind speziellen Problemklassen gewidmet.<br 
 class="newline" />Tabelle <a 
-href="#x16-150017">2.7<!--tex4ht:ref: exact_special --></a> enthält exakte Algorithmen und Heuristiken. Die meisten der Algorithmen aus dieser
-Tabelle findet man in jedem Lehrbuch zur Schedulingtheorie. Die exakten Algorithmen von dem
+href="#x16-150017">2.7<!--tex4ht:ref: exact_special --></a> enthält exakte Algorithmen und Heuristiken. Die meisten der Algorithmen
+aus dieser Tabelle findet man in jedem Lehrbuch zur Schedulingtheorie. Die exakten
+Algorithmen zur Minimierung der Gesamtbearbeitungszeit im job und open-shop Fall vom
 Brucker-Team sind im Netz verfügbar und wurden in LiSA mit Erlaubnis eingebunden.
 <br 
 class="newline" />
@@ -36,31 +37,117 @@ class="newline" />
 <div class="center" 
 >
 <!--l. 96--><p class="noindent" >
-<div class="tabular"> <table id="TBL-10" class="tabular" 
+<div class="tabular"> <table id="TBL-14" class="tabular" 
 cellspacing="0" cellpadding="0" rules="groups" 
-><colgroup id="TBL-10-1g"><col 
-id="TBL-10-1"></colgroup><colgroup id="TBL-10-2g"><col 
-id="TBL-10-2"></colgroup><tr 
+><colgroup id="TBL-14-1g"><col 
+id="TBL-14-1"></colgroup><colgroup id="TBL-14-2g"><col 
+id="TBL-14-2"></colgroup><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-10-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-1-1"  
-class="td11">Problemtyp   </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-1-2"  
+ style="vertical-align:baseline;" id="TBL-14-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-1-1"  
+class="td11">Problemtyp   </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-1-2"  
 class="td11"><!--l. 98--><p class="noindent" >Exakte Verfahren                                                  </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-10-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-2-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-2-2"  
+ style="vertical-align:baseline;" id="TBL-14-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-2-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-2-2"  
 class="td11"><!--l. 100--><p class="noindent" >                                              </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-3-1"  
+ style="vertical-align:baseline;" id="TBL-14-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-3-1"  
 class="td11">1<span 
 class="cmsy-10x-x-120">&#x2223;</span><span 
 class="cmsy-10x-x-120">&#x2223;</span><span 
 class="cmmi-12">L</span><sub><span 
-class="cmmi-8">max</span></sub>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-3-2"  
+class="cmmi-8">max</span></sub>            </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-3-2"  
 class="td11"><!--l. 100--><p class="noindent" >Branch and Bound                                                </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-4-1"  
+ style="vertical-align:baseline;" id="TBL-14-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-4-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-4-2"  
+class="td11"><!--l. 102--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-5-1"  
+class="td11">F2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-5-2"  
+class="td11"><!--l. 102--><p class="noindent" >Johnson Regel                                                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-6-1"  
+class="td11">J2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-6-2"  
+class="td11"><!--l. 103--><p class="noindent" >Jackson regel                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-7-1"  
+class="td11">O2<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-7-2"  
+class="td11"><!--l. 104--><p class="noindent" >Gonzales/ Sahni Algorithmus                                  </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-8-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-8-2"  
+class="td11"><!--l. 106--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-9-1"  
+class="td11">J<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-9-2"  
+class="td11"><!--l. 107--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-10-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-10-2"  
+class="td11"><!--l. 109--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-11-1"  
+class="td11">O<span 
+class="cmsy-10x-x-120">&#x2225; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-11-2"  
+class="td11"><!--l. 110--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-12-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-12-2"  
+class="td11"><!--l. 112--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-13-1"  
+class="td11">O <span 
+class="cmsy-10x-x-120">&#x2223;</span>pmtn <span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub></td><td  style="white-space:wrap; text-align:left;" id="TBL-14-13-2"  
+class="td11"><!--l. 112--><p class="noindent" >Gonzales/ Sahni (ohne Visualisierung)                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-14-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-14-2"  
+class="td11"><!--l. 114--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-15-1"  
+class="td11">O2<span 
+class="cmsy-10x-x-120">&#x2225;</span> <span 
+class="cmmi-12">&#x00A0;C</span><sub><span 
+class="cmmi-8">max</span></sub>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-15-2"  
+class="td11"><!--l. 115--><p class="noindent" >LAPT  Regel,  Job  mit  längster  Bearbeitung  auf  der
+anderen Maschine zuerst (longest alternating processing
+time first)                                                           </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-16-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-16-2"  
+class="td11"><!--l. 116--><p class="noindent" >                                              </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-17-1"  
+class="td11">Problemtyp    </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-17-2"  
+class="td11"><!--l. 117--><p class="noindent" >Heuristiken                                                          </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-18-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-18-2"  
+class="td11"><!--l. 119--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-19-1"  
 class="td11">1<span 
 class="cmsy-10x-x-120">&#x2225;</span><span 
 class="cmex-10x-x-120">&sum;</span>
@@ -68,156 +155,75 @@ class="cmex-10x-x-120">&sum;</span>
 class="cmmi-12">w</span><sub><span 
 class="cmmi-8">i</span></sub><span 
 class="cmmi-12">T</span><sub><span 
-class="cmmi-8">i</span></sub>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-4-2"  
-class="td11"><!--l. 101--><p class="noindent" >Smith Regel (arbeitet wie die WSPT Regel)               </td>
+class="cmmi-8">i</span></sub>       </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-19-2"  
+class="td11"><!--l. 119--><p class="noindent" >Smith Regel (arbeitet wie die WSPT Regel)               </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-5-1"  
+ style="vertical-align:baseline;" id="TBL-14-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-20-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-20-2"  
+class="td11"><!--l. 120--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-21-1"  
 class="td11">1<span 
 class="cmsy-10x-x-120">&#x2225; </span><span 
 class="cmmi-12">L</span><sub><span 
-class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-5-2"  
-class="td11"><!--l. 102--><p class="noindent" >ERD Regel, Job mit kleinster Bereitstellungszeit zuerst
+class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-21-2"  
+class="td11"><!--l. 120--><p class="noindent" >ERD Regel, Job mit kleinster Bereitstellungszeit zuerst
 (earliest release date first)                                      </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-6-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-6-2"  
-class="td11"><!--l. 104--><p class="noindent" >                                              </td>
+ style="vertical-align:baseline;" id="TBL-14-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-22-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-22-2"  
+class="td11"><!--l. 121--><p class="noindent" >                                              </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-7-1"  
-class="td11">F2<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-7-2"  
-class="td11"><!--l. 104--><p class="noindent" >Johnson Regel                                                      </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-8-1"  
-class="td11">J2<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-8-2"  
-class="td11"><!--l. 105--><p class="noindent" >Jackson regel                                                       </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-9-1"  
-class="td11">O2<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-9-2"  
-class="td11"><!--l. 106--><p class="noindent" >Gonzales/ Sahni Algorithmus                                  </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-10-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-10-2"  
-class="td11"><!--l. 108--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-11-1"  
-class="td11">P2<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-11-2"  
-class="td11"><!--l. 108--><p class="noindent" >Pseudopolynomialer Algorithmus ( ohne Visualisierung)</td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-12-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-12-2"  
-class="td11"><!--l. 110--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-13-1"  
-class="td11">J<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>           </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-13-2"  
-class="td11"><!--l. 111--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-14-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-14-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-14-2"  
-class="td11"><!--l. 113--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-15-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-15-1"  
-class="td11">O<span 
-class="cmsy-10x-x-120">&#x2225; </span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>          </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-15-2"  
-class="td11"><!--l. 114--><p class="noindent" >Originaler Brucker&#8217;s Branch-and-Bound Algorithmus   </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-16-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-16-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-16-2"  
-class="td11"><!--l. 116--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-17-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-17-1"  
-class="td11">O <span 
-class="cmsy-10x-x-120">&#x2223;</span>pmtn <span 
-class="cmsy-10x-x-120">&#x2223;</span><span 
-class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub></td><td  style="white-space:wrap; text-align:left;" id="TBL-10-17-2"  
-class="td11"><!--l. 116--><p class="noindent" >Gonzales/ Sahni (ohne Visualisierung)                      </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-18-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-18-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-18-2"  
-class="td11"><!--l. 118--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-19-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-19-1"  
-class="td11">O2<span 
-class="cmsy-10x-x-120">&#x2225;</span> <span 
-class="cmmi-12">&#x00A0;C</span><sub><span 
-class="cmmi-8">max</span></sub>      </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-19-2"  
-class="td11"><!--l. 119--><p class="noindent" >LAPT  Regel,  Job  mit  längster  Bearbeitung  auf  der
-anderen Maschine zuerst (longest alternating processing
-time first)                                                           </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-20-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-20-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-20-2"  
-class="td11"><!--l. 120--><p class="noindent" >                                              </td>
-</tr><tr 
-class="hline"><td><hr></td><td><hr></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-10-21-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-21-1"  
-class="td11">Problemtyp    </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-21-2"  
-class="td11"><!--l. 121--><p class="noindent" >Heuristiken                                                          </td>
-</tr><tr 
-class="hline"><td><hr></td><td><hr></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-10-22-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-22-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-22-2"  
-class="td11"><!--l. 122--><p class="noindent" >                                              </td>
-</tr><tr  
- style="vertical-align:baseline;" id="TBL-10-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-23-1"  
+ style="vertical-align:baseline;" id="TBL-14-23-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-23-1"  
 class="td11">F <span 
 class="cmsy-10x-x-120">&#x2225; </span><span 
 class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-23-2"  
-class="td11"><!--l. 123--><p class="noindent" >Beam Insert mit Beamweite 1 auf der                       </td>
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-23-2"  
+class="td11"><!--l. 122--><p class="noindent" >Beam Insert mit Beamweite 1 auf der                       </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-24-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-24-2"  
-class="td11"><!--l. 124--><p class="noindent" >Menge der permutation-flow-shop Pläne                    </td>
+ style="vertical-align:baseline;" id="TBL-14-24-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-24-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-24-2"  
+class="td11"><!--l. 123--><p class="noindent" >Menge der permutation-flow-shop Pläne                    </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-25-1"  
+ style="vertical-align:baseline;" id="TBL-14-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-25-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-25-2"  
+class="td11"><!--l. 124--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-26-1"  
 class="td11">J <span 
 class="cmsy-10x-x-120">&#x2225; </span><span 
 class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-25-2"  
-class="td11"><!--l. 126--><p class="noindent" >Shifting bottleneck Heuristik <span class="cite">[<a 
-href="handbuchli1.html#Xadbaza88">11</a>]</span>                             </td>
+class="cmmi-8">max</span></sub>         </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-26-2"  
+class="td11"><!--l. 125--><p class="noindent" >Shifting bottleneck Heuristik <span class="cite">[<a 
+href="handbuchli1.html#Xadbaza88">1</a>]</span>                               </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-26-1"  
+ style="vertical-align:baseline;" id="TBL-14-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-27-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-27-2"  
+class="td11"><!--l. 126--><p class="noindent" >                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-14-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-28-1"  
 class="td11">O <span 
 class="cmsy-10x-x-120">&#x2225; </span><span 
 class="cmmi-12">C</span><sub><span 
-class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-26-2"  
-class="td11"><!--l. 128--><p class="noindent" >Matching Heuristiken <span class="cite">[<a 
-href="handbuchli1.html#Xbrtawe93">4</a>]</span>                                        </td>
+class="cmmi-8">max</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-28-2"  
+class="td11"><!--l. 127--><p class="noindent" >Matching Heuristiken <span class="cite">[<a 
+href="handbuchli1.html#Xbrtawe93">7</a>]</span>                                        </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-27-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-27-1"  
+ style="vertical-align:baseline;" id="TBL-14-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-29-1"  
 class="td11">O <span 
 class="cmsy-10x-x-120">&#x2225;</span><span 
 class="cmex-10x-x-120">&sum;</span>
   <span 
 class="cmmi-12">C</span><sub><span 
-class="cmmi-8">i</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-27-2"  
-class="td11"><!--l. 130--><p class="noindent" >                                              </td>
+class="cmmi-8">i</span></sub>        </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-29-2"  
+class="td11"><!--l. 129--><p class="noindent" >                                              </td>
 </tr><tr  
- style="vertical-align:baseline;" id="TBL-10-28-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-28-1"  
-class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-10-28-2"  
-class="td11"><!--l. 130--><p class="noindent" >                                              </td>
+ style="vertical-align:baseline;" id="TBL-14-30-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-30-1"  
+class="td11">             </td><td  style="white-space:wrap; text-align:left;" id="TBL-14-30-2"  
+class="td11"><!--l. 129--><p class="noindent" >                                              </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
- style="vertical-align:baseline;" id="TBL-10-29-"><td  style="white-space:nowrap; text-align:left;" id="TBL-10-29-1"  
+ style="vertical-align:baseline;" id="TBL-14-31-"><td  style="white-space:nowrap; text-align:left;" id="TBL-14-31-1"  
 class="td11">             </td></tr></table></div></div>
 <br /> <div class="caption" 
 ><span class="id">Tabelle&#x00A0;2.7: </span><span  
@@ -226,17 +232,17 @@ class="content"> Algorithmen für spezielle Probleme</span></div><!--tex4ht:label
                                                                                          
 </div><hr class="endfloat" />
 </div>
-<!--l. 137--><p class="noindent" >In LiSA - Version 3.0 gibt es keine Algorithmen für<br 
+<!--l. 136--><p class="noindent" >In LiSA - Version 3.0 gibt es keine Algorithmen für<br 
 class="newline" />- Probleme mit Vorrangbedingungen,<br 
 class="newline" />- Basisalgorithmen und Visualisierung von Problemen mit Unterbrechung der Operationen,<br 
 class="newline" />- Parallelmaschinenprobleme.
                                                                                          
                                                                                          
-<!--l. 210--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 208--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu5.html" >prev</a>] [<a 
 href="handbuchsu5.html#tailhandbuchsu5.html" >prev-tail</a>] [<a 
 href="handbuchsu6.html" >front</a>] [<a 
 href="handbuchse7.html#handbuchsu6.html" >up</a>] </p></div>
-<!--l. 210--><p class="noindent" ><a 
+<!--l. 208--><p class="noindent" ><a 
  id="tailhandbuchsu6.html"></a>  
 </body></html> 

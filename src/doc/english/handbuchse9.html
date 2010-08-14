@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Problem Type</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 230--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse10.html" >next</a>] [<a 
+href="#tailhandbuchse9.html">tail</a>] [<a 
+href="handbuchch3.html#handbuchse9.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x24-230003.1"></a>Problem Type</h3>
+<!--l. 1--><p class="noindent" >In order to treat a problem type with LiSA, first the problem type has to be set in
+the <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>notation according to Graham et al. After that, the machine and the job
+numbers have to be entered. A problem type therefore is feasible, if at least the machine
+environment and the objective function are specified. If, additionally, machine and job numbers
+are given, later the parameter window can be used to input and edit problem specific
+data.
+<!--l. 9--><p class="noindent" ><span id="textcolor1">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation </span></span>
+<!--l. 12--><p class="noindent" >After choosing <span 
+class="cmbxti-10x-x-120">File/New </span>from the menu to enter a new problem type, or <span 
+class="cmbxti-10x-x-120">Edit/Problem Type</span>
+to edit an already existing one, the problem type window opens.
+<!--l. 17--><p class="noindent" ><span id="textcolor2">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+<!--l. 20--><p class="noindent" >The problem input follows the usual conventions from scheduling textbooks, see also
+Chapter <span 
+class="cmbx-12">Definitions and Notations </span><a 
+href="handbuchse4.html#x7-60002.1">2.1<!--tex4ht:ref: Definitionen und Bezeichnungen --></a>, hence we do not give a description of all
+possible options for the machine environment, additional constraints or the objective
+function.
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmbx-12">machine environment</span>
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">additional constraints</span>
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">objective function</span>
+                                                                                         
+                                                                                         
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">(number of) machines</span>
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">(number of) jobs</span></li></ul>
+<!--l. 34--><p class="noindent" ><span id="textcolor3">&nbsp;<br><span 
+class="cmbx-12x-x-120">Irregular objective functions</span></span>
+<!--l. 37--><p class="noindent" >There are some additional objective functions that can be used:<br 
+class="newline" /><span 
+class="cmmi-12">IRREG</span>1 = &Sigma;<span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">&#x2223;</span><br 
+class="newline" /><span 
+class="cmmi-12">IRREG</span>2 = <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">late</span></sub><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub> + <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">early</span></sub> max(<span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub>)<sup><span 
+class="cmr-8">+</span></sup> + &Sigma;<span 
+class="cmmi-12">w</span><sub>
+<span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> + &Sigma;<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">early</span></sub>(<span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub>)<sup><span 
+class="cmr-8">+</span></sup><br 
+class="newline" />One has to take into account, that for additional weights, which are used by these objective
+functions, an external problem generator has to be used.<br 
+class="newline" />
+<!--l. 43--><p class="noindent" ><span id="textcolor4">&nbsp;<br><span 
+class="cmbx-12x-x-120">Hints</span></span>
+<!--l. 46--><p class="noindent" >LiSA always tries to use the last input. If an inconsistent input is made, LiSA will modify former
+inputs if necessary. For instance, if one chooses multi-machine jobs in a single-machine problem,
+the problem type will be altered to <span 
+class="cmmi-12">P</span>.
+<!--l. 50--><p class="noindent" >Since the classification is modified continuously, it can be that certain choices are not
+implemented yet. LiSA already allows more than ten thousand different problem types to be
+entered.
+<!--l. 54--><p class="noindent" >Not for every problem type there is a solution method implemented. Appropriate algorithms can
+be selected from the menus <span 
+class="cmbxti-10x-x-120">Algorithms/Exact Algorithms </span>and <span 
+class="cmbxti-10x-x-120">Algorithms/Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms</span>, as soon as the problem parameters have been specified.
+                                                                                         
+                                                                                         
+<!--l. 241--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse10.html" >next</a>] [<a 
+href="handbuchse9.html" >front</a>] [<a 
+href="handbuchch3.html#handbuchse9.html" >up</a>] </p></div>
+<!--l. 241--><p class="noindent" ><a 
+ id="tailhandbuchse9.html"></a>  
+</body></html> 

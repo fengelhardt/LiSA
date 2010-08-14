@@ -7,42 +7,51 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 1327--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1343--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu21.html" >prev</a>] [<a 
 href="handbuchsu21.html#tailhandbuchsu21.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu22.html">tail</a>] [<a 
 href="handbuchse14.html#handbuchsu22.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.3.6   </span> <a 
  id="x41-400004.3.6"></a>Beam Ant Colony Verfahren</h4>
-<!--l. 1330--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
-<!--l. 1332--><p class="noindent" >???
-<!--l. 1336--><p class="noindent" ><span id="textcolor41">&nbsp;<br><span 
+<!--l. 1346--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
+<!--l. 1348--><p class="noindent" >Ant colony Optimierung ist eine Metaheuristik für schwer zu lösende Optimierungsprobleme.
+Basierend auf einem wahrscheinlichkeitstheoretischen Konstruktionsmechanismus wird durch
+Baumsuche eine Lösung konstruiert. Dabei entsteht bei Verwendung von Beamsearchverfahren auf
+diesem Baum ein hybrider Algorithmus, der vorliegende Algorithmus folgt den Ideen von <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">l</span><span 
+class="small-caps">u</span><span 
+class="small-caps">m</span></span>
+<span class="cite">[<a 
+href="handbuchli1.html#Xblu03">4</a>]</span>.
+<!--l. 1357--><p class="noindent" ><span id="textcolor41">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 1338--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 1360--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Beam Ant Colony </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 1344--><p class="noindent" ><span id="textcolor42">&nbsp;<br><span 
+<!--l. 1366--><p class="noindent" ><span id="textcolor42">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
 class="cmbx-12">Anzahl der Beam-Extensions:</span> </dt><dd 
 class="description">Hier   werden   die   maximal   pro   Erweiterungsschritt
       einzufügenden Operationen angegeben. Dieser Wert wird nur berücksichtigt, wenn die
-      bestimmung der Beam Extension auf FIXED gesetzt wurde.
+      Bestimmung der Beam Extension auf FIXED gesetzt wurde.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Anzahl der Durchl</span><span 
 class="cmbx-12">äufe:</span> </dt><dd 
 class="description">Anzahl  der  Einzelschritte.  Da  die  Ameisen  nacheinander
-      gestartet  werden,  entspricht  dies  Zahl  auch  der  Anzahl  der  Ameisen  in  der
+      gestartet  werden,  entspricht  diese  Zahl  auch  der  Anzahl  der  Ameisen  in  der
       Gesamtpopulation.
       </dd><dt class="description">
 <span 
@@ -58,24 +67,28 @@ class="description">Dieser Parameter bezeichnet den Einfluss, den ein neuer best
       </dd><dt class="description">
 <span 
 class="cmbx-12">Einfluss der Earliest Completion Time:</span> </dt><dd 
-class="description">Gilt  nur  für  Strategie  der  Auswahl  der
-      Extensions = SORTED.
+class="description">Gilt  nur  für  <span 
+class="cmbx-12">Strategie  der  Auswahl  der</span>
+      <span 
+class="cmbx-12">Extensions </span>= SORTED.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Einfluss der Pheromone Werte:</span> </dt><dd 
-class="description">Gilt nur für Strategie der Auswahl der Extensions =
-      SORTED.
+class="description">Gilt nur für <span 
+class="cmbx-12">Strategie der Auswahl der Extensions</span>
+      = SORTED.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Einfluss des Zufalls:</span> </dt><dd 
-class="description">Gilt  nur  für  Strategie  der  Auswahl  der  Extensions  =  SORTED
+class="description">Gilt nur für <span 
+class="cmbx-12">Strategie der Auswahl der Extensions </span>= SORTED
       Zielfunktionswert.
+                                                                                         
+                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Bestimmung der Beam Extensions:</span> </dt><dd 
 class="description">
-                                                                                         
-                                                                                         
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">MED: </span>Anzahl der freien Operationen / 2.
@@ -87,7 +100,7 @@ class="cmbx-12">LDS: </span>Zu Beginn wie MED, ab der zweiten Hälfte auf 2 festg
 class="cmbx-12">FIXED: </span>Feste Anzahl.</li></ul>
       </dd><dt class="description">
 <span 
-class="cmbx-12">Stategie der Auswahl der Extension:</span> </dt><dd 
+class="cmbx-12">Strategie der Auswahl der Extension:</span> </dt><dd 
 class="description">
            <ul class="itemize1">
            <li class="itemize"><span 
@@ -107,14 +120,14 @@ class="cmbx-12">NONE:</span>
            <li class="itemize"><span 
 class="cmbx-12">ACTIVE: </span>Es werden nur aktive Pläne berücksichtigt.</li></ul>
       </dd></dl>
-<!--l. 1398--><p class="noindent" ><span id="textcolor43">&nbsp;<br><span 
+<!--l. 1419--><p class="noindent" ><span id="textcolor43">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1400--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 1422--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Beam Ant Colony-Verfahren wie
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden Beam Ant Colony-Verfahren wie
 folgt aufgerufen:
-<!--l. 1404--><p class="noindent" >
+<!--l. 1426--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -136,10 +149,10 @@ folgt aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;EVAPORATION_RATE&#x00A0;0.3
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1423--><p class="nopar" ></div>
-<!--l. 1426--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 1445--><p class="nopar" ></div>
+<!--l. 1448--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1430--><p class="noindent" >Als ausführbare Datei muss für Beam Ant Colony-Verfahren beam_aco aufgerufen
+<!--l. 1452--><p class="noindent" >Als ausführbare Datei muss für Beam Ant Colony-Verfahren beam_aco aufgerufen
 werden. Optional können anschließend die folgenden Parameter aufgerufen werden:
 <span 
 class="cmbx-12">Beamweite</span>, <span 
@@ -147,27 +160,28 @@ class="cmbx-12">obere Schranke</span>, <span
 class="cmbx-12">untere Schranke</span>, <span 
 class="cmbx-12">Bestimmung der Beam-Extensions</span>
 (EXTENSION_STRATEGY), <span 
-class="cmbx-12">Anzahl der Durchlaufe </span>(STEPS), <span 
+class="cmbx-12">Anzahl der Durchl</span><span 
+class="cmbx-12">äufe </span>(STEPS), <span 
 class="cmbx-12">Konvergenzfaktor </span>für
 Neustart, <span 
 class="cmbx-12">Anzahl der Beam-Extensions </span>(FIXED_KEXT), Strategie zur <span 
 class="cmbx-12">Auswahl der</span>
 <span 
 class="cmbx-12">Extensions </span>(APPEND_STRATEGY), <span 
-class="cmbx-12">Vorauswahl der Erweiterungen</span>, Einfluss der <span 
-class="cmbx-12">Earliest</span>
+class="cmbx-12">Vorauswahl der Erweiterungen</span>, <span 
+class="cmbx-12">Einfluss der</span>
 <span 
-class="cmbx-12">Completion Time </span>(WEIGHT_EST), Einfluss der <span 
-class="cmbx-12">Pheromone Werte </span>(WEIGHT_TIJ), und
-Einfluss des <span 
-class="cmbx-12">Zufalls</span>.
+class="cmbx-12">Earliest Completion Time </span>(WEIGHT_EST), <span 
+class="cmbx-12">Einfluss der Pheromone Werte</span>
+(WEIGHT_TIJ), und <span 
+class="cmbx-12">Einfluss des Zufalls</span>.
                                                                                          
                                                                                          
-<!--l. 1447--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1467--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu21.html" >prev</a>] [<a 
 href="handbuchsu21.html#tailhandbuchsu21.html" >prev-tail</a>] [<a 
 href="handbuchsu22.html" >front</a>] [<a 
 href="handbuchse14.html#handbuchsu22.html" >up</a>] </p></div>
-<!--l. 1447--><p class="noindent" ><a 
+<!--l. 1467--><p class="noindent" ><a 
  id="tailhandbuchsu22.html"></a>  
 </body></html> 

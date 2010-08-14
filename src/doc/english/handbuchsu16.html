@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Beam Search Procedures with Insertion Technique </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 477--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu15.html" >prev</a>] [<a 
+href="handbuchsu15.html#tailhandbuchsu15.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu16.html">tail</a>] [<a 
+href="handbuchse13.html#handbuchsu16.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.4   </span> <a 
+ id="x34-330004.2.4"></a>Beam Search Procedures with Insertion Technique </h4>
+<!--l. 480--><p class="noindent" ><!-- LISA ALGORITHM beam_ins -->
+<!--l. 483--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
+class="cmbx-12">Branch &amp; Bound Procedure </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu12.html#x29-280004.1.1">4.1.1<!--tex4ht:ref: Universeller Branch and Bound Algorithmus --></a>).
+In contrast to them, the number of investigated partial solutions is limited in any vertex of the
+solution tree. This leads to an incomplete search in the set of feasible solutions which can possibly
+exclude all optimal solutions. However, such procedures are substantially faster than a branch &amp;
+bound algorithm. The quality of the solution depends both on the chosen problem type and on the
+chosen parameters.
+<!--l. 492--><p class="noindent" >In case of an <span 
+class="cmbx-12">insertion </span>procedure, the sequence in which the operations are added to a partial
+sequence is settled in advance. For any partial sequence and any new operation, several feasible
+positions are considered at which the new operation with one of the possible ranks can be inserted.
+In addition to the insertion procedure, an <span 
+class="cmbx-12">appending </span>procedure (<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu15.html#x33-320004.2.3">4.2.3<!--tex4ht:ref: Beam Search Verfahren mit Anfuegetechnik --></a>) is also implemented in
+LiSA.
+<!--l. 503--><p class="noindent" ><span id="textcolor22">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 507--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Beam Search (insert) </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 513--><p class="noindent" ><span id="textcolor23">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Beam width:</span> </dt><dd 
+class="description">Here one fixes how many of the partial sequences generated in any step are
+      considered further.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Insertion order:</span> </dt><dd 
+class="description">Here the sequence is fixed in which the operations are added to the partial
+      sequences. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">MACHINEWISE: </span>The operations are sequenced column-wise.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">DIAGONAL: </span>This strategy is based on the consideration of the diagonal in a
+           square of the size <span 
+class="cmmi-12">M </span>= min <img 
+src="handbuch18x.png" alt="(m, n )"  class="left" align="middle">.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">QUEEN</span><span 
+class="cmbx-12">_SWEEP: </span>This strategy is based on the consideration of independent
+           sets  as  solutions  of  a  <span 
+class="cmti-12">M  </span>queens  problem  on  a  <span 
+class="cmmi-12">M </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">M  </span>chess  board  (<span 
+class="cmmi-12">M  </span>=
+           min <img 
+src="handbuch19x.png" alt="(m, n)"  class="left" align="middle">).
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM: </span>The operations are inserted in random order.
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT  </span>(longest  processing  time):  The  operations  are  ordered  according  to
+           decreasing processing times.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ECT </span>(earliest completion time): The operation to be inserted next is chosen
+           in such a way that the completion time for the new partial schedule becomes
+           minimal. In contrast to all other strategies for selecting an insertion order, this
+           selection is not globally made. In any step, for each partial sequence considered,
+           the operation is determined which is inserted next.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT  </span>(shortest  processing  time):  The  operations  are  ordered  according  to
+           increasing processing times.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Selection method:</span> </dt><dd 
+class="description">Here one fixes how the chosen number of partial sequences investigated
+      further (<span 
+class="cmbx-12">beam width</span>) is selected. The partial sequences are evaluated by their objective
+      function values. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">INSERT1: </span>From the set of <span 
+class="cmti-12">all </span>child-sequences in one step, select the best ones.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">INSERT2: </span>For any parent-sequence, exactly one (best) child-sequence is chosen,
+           independently whether this is globally promising or not.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Selection criterion:</span> </dt><dd 
+class="description">This option is only available for <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub> problems. It gives an alternative
+      evaluation method for partial sequences. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">OBJECTIVE: </span>The  objective  function  value  is  used  for  evaluating  a  partial
+           sequence. This is the standard method.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">CLAST: </span>A partial sequence is evaluated by the cost of a longest path through
+           the operation which has been inserted last.</li></ul>
+      </dd></dl>
+<!--l. 566--><p class="noindent" ><span id="textcolor24">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 569--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), beam search insertion procedures are
+activated as follows:
+<!--l. 573--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-9">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;beam
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MODE&#x00A0;INSERT
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_ORDER&#x00A0;LPT
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_METHOD&#x00A0;INSERT1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;CRITERION&#x00A0;OBJECTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;k_BRANCHES&#x00A0;5
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 584--><p class="nopar" ></div>
+<!--l. 587--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 590--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
+the beam search mode is mandatory as it is for the <span 
+class="cmbx-12">insertion order</span>. Optionally, the parameters
+for the <span 
+class="cmbx-12">selection method</span>, the <span 
+class="cmbx-12">selection criterion</span>, and the <span 
+class="cmbx-12">beam width </span>can be
+set.
+                                                                                         
+                                                                                         
+<!--l. 605--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu15.html" >prev</a>] [<a 
+href="handbuchsu15.html#tailhandbuchsu15.html" >prev-tail</a>] [<a 
+href="handbuchsu16.html" >front</a>] [<a 
+href="handbuchse13.html#handbuchsu16.html" >up</a>] </p></div>
+<!--l. 605--><p class="noindent" ><a 
+ id="tailhandbuchsu16.html"></a>  
+</body></html> 

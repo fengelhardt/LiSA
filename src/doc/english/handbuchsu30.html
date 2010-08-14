@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Representation of Data</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 52--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu29.html" >prev</a>] [<a 
+href="handbuchsu29.html#tailhandbuchsu29.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu30.html">tail</a>] [<a 
+href="handbuchse30.html#handbuchsu30.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.1.2   </span> <a 
+ id="x71-76000A.1.2"></a>Representation of Data</h4>
+<!--l. 56--><p class="noindent" >Primitive data types, as integer or real numbers, as well as strings are simply stored in attributes.
+An example is the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span> tag:
+<!--l. 59--><p class="noindent" >
+      <div class="quote">
+      <!--l. 60--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule</span><span 
+class="cmtt-12">&#x00A0;m="10"</span><span 
+class="cmtt-12">&#x00A0;n="20"</span><span 
+class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span></div>
+<!--l. 63--><p class="noindent" >Here the problem size is fixed by the integers <span 
+class="cmmi-12">m </span>= 10 and <span 
+class="cmmi-12">n </span>= 20. Moreover, the string <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">"yes"</span></span></span>, as
+the value of the attribute <span 
+class="cmtt-12">semiactive</span>, indicates that the following schedule is semi-active.
+Attention has to be paid to real numbers, where a decimal point must be used instead of a
+comma.
+<!--l. 70--><p class="noindent" >In addition, vectors and matrices are used as complex data types. A vector of dimension <span 
+class="cmmi-12">n </span>with the
+components <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_1 </span>to <span 
+class="cmtt-12">a</span><span 
+class="cmtt-12">_n </span>is denoted as follows:
+<!--l. 73--><p class="noindent" >
+      <div class="quote">
+      <!--l. 74--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">{</span><span 
+class="cmtt-12">&#x00A0;a_1</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_2</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_3</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;a_n</span><span 
+class="cmtt-12">&#x00A0;}</span></span></span></div>
+<!--l. 77--><p class="noindent" >As a separator between the values, one or more whitespace characters may be used. An <span 
+class="cmmi-12">n </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">m</span>
+matrix can be denoted as an <span 
+class="cmmi-12">n</span>-dimensional vector that itself contains <span 
+class="cmmi-12">m</span>-dimensional
+vectors:
+<!--l. 81--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-34">
+&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_11&#x00A0;&#x00A0;a_12&#x00A0;&#x00A0;a_13&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_1m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_21&#x00A0;&#x00A0;a_22&#x00A0;&#x00A0;a_23&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_2m&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;...
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_n1&#x00A0;&#x00A0;a_n2&#x00A0;&#x00A0;a_n3&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_nm&#x00A0;}
+&#x00A0;<br />&#x00A0;}
+</div>
+      <!--l. 89--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 94--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu29.html" >prev</a>] [<a 
+href="handbuchsu29.html#tailhandbuchsu29.html" >prev-tail</a>] [<a 
+href="handbuchsu30.html" >front</a>] [<a 
+href="handbuchse30.html#handbuchsu30.html" >up</a>] </p></div>
+<!--l. 94--><p class="noindent" ><a 
+ id="tailhandbuchsu30.html"></a>  
+</body></html> 

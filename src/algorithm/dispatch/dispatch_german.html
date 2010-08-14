@@ -1,4 +1,4 @@
-<!--l. 194--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 193--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,20 +8,20 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 191-->
+<!--l. 190-->
 <h4 class="subsectionHead"> <a 
- id="x24-230004.2.1"></a>Reihungsregeln</h4>
-<!--l. 194--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
-<!--l. 196--><p class="noindent" >Reihungsregeln (Dispatching Rules) sind sehr schnelle Heuristiken, bei denen Schritt für Schritt
+ id="x31-300004.2.1"></a>Reihungsregeln</h4>
+<!--l. 193--><p class="noindent" ><!-- LISA ALGORITHM dispatch -->
+<!--l. 195--><p class="noindent" >Reihungsregeln (Dispatching Rules) sind sehr schnelle Heuristiken, bei denen Schritt für Schritt
 neue Operationen angefügt werden. Die jeweils anzufügenden Operationen werden dabei durch die
 gewählte Strategie bestimmt.
-<!--l. 201--><p class="noindent" >Einige Problemklassen können mit Hilfe solcher einfachen Verfahren sogar exakt gelöst
+<!--l. 200--><p class="noindent" >Einige Problemklassen können mit Hilfe solcher einfachen Verfahren sogar exakt gelöst
 werden.
-<!--l. 206--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
+<!--l. 205--><p class="noindent" ><span id="textcolor13">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
 <!--l. 208--><p class="noindent" >Nach Eingabe von <span 
 class="cmbxti-10x-x-120">Problemtyp </span>und erforderlichen <span 
@@ -37,14 +37,14 @@ meist keine Einstellungen getroffen werden.
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
-class="cmbx-12">Erzeuge Plan:</span> </dt><dd 
+class="cmbx-12">Erzeuge Schedule:</span> </dt><dd 
 class="description">
                                                                                          
                                                                                          
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">SEMIAKTIV:  </span>Ein  Schedule  heißt  semiaktiv,  wenn  keine  Operation  früher
-           begonnen werden kann, ohne den Plan zu verändern. D.h. in einem semiaktiven
+           begonnen werden kann, ohne den Plan zu verändern, d.h. in einem semiaktiven
            Schedule treten keine unnötigen Stillstandszeiten auf.
            </li>
            <li class="itemize"><span 
@@ -65,11 +65,9 @@ class="cmti-12">ij</span>) begonnen wird. Ein non-delay-Schedule ist dann auch a
 <span 
 class="cmbx-12">Priorit</span><span 
 class="cmbx-12">ätsregel:</span> </dt><dd 
-class="description">Es stehen folgende Definitionen von Prioritäten zur Auswahl. Die
-      einzufügenden Operationen werden dann gemäß&#x00A0;der gewählten Strategie geordnet
-      und in der sich dadurch ergebenden Reihenfolge Schritt für Schritt in dem Plan
-      angefügt.<br 
-class="newline" />
+class="description">Es stehen folgende Prioritäten zur Auswahl. Die einzufügenden Operationen
+      werden dann gemäß&#x00A0;der gewählten Strategie geordnet und dieser Reihenfolge an den Plan
+      angefügt.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">RAND </span>(random): Die Operationen werden zufällig angeordnet.
@@ -79,13 +77,13 @@ class="cmbx-12">FCFS </span>(first come - first serve): Es wird die Operation al
            die schon am längsten bereitsteht.
            </li>
            <li class="itemize"><span 
-class="cmbx-12">EDD  </span>(earliest  due  date):  Die  Operationen  werden  (aufsteigend)  nach  ihren
+class="cmbx-12">EDD  </span>(earliest  due  date):  Die  Operationen  werden  aufsteigend  nach  ihren
            Fälligkeitsterminen angeordnet.
            </li>
            <li class="itemize"><span 
 class="cmbx-12">LQUE</span>: Es wird die Operation als nächste angeordnet, die die kleinste Differenz
            &#8216;Fälligkeitstermin  <span 
-class="cmsy-10x-x-120">&minus; </span>(Bearbeitungszeit  +  Tail)&#8217;  hat.  Im  Fall  von  Open  Shop
+class="cmsy-10x-x-120">&minus; </span>(Bearbeitungszeit  +  Tail)&#8217;  hat.  Im  Fall  von  open-shop
            wird  statt  des  Tails  die  Summe  der  Bearbeitungszeiten  aller  noch  nicht
            angeordneten Operationen des jeweiligen Auftrags betrachtet. Als zweitrangige
            Auswahlregel wird die Operation gewählt, auf deren Maschine die Summe der
@@ -102,23 +100,23 @@ class="cmbx-12">WSPT </span>(weighted shortest processing time): Es wird die Ope
            <li class="itemize"><span 
 class="cmbx-12">ECT </span>(earliest completion time): Es wird die Operation als nächste angeordnet,
            die am schnellsten fertiggestellt werden kann.
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">WI</span>:  Die  Aufträge  sind  gewichtet,  und  die  Operationen  werden  gemäß&#x00A0;der
-           Gewichte der Aufträge angeordnet, beginnend mit den wichtigsten.
+           Gewichte der Aufträge angeordnet, beginnend mit dem größten Gewicht.
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">LPT   </span>(longest   processing   time):   Die   Operationen   werden   gemäß&#x00A0;ihrer
            Bearbeitungszeiten angeordnet, beginnend mit der größten.</li></ul>
       </dd></dl>
-<!--l. 272--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
+<!--l. 269--><p class="noindent" ><span id="textcolor15">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 274--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 272--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span> werden Reihungsregeln wie folgt
 aufgerufen:
-<!--l. 278--><p class="noindent" >
+<!--l. 276--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -129,17 +127,17 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;RULE&#x00A0;SPT
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 286--><p class="nopar" ></div>
-<!--l. 289--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 284--><p class="nopar" ></div>
+<!--l. 287--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 293--><p class="noindent" >Als ausführbare Datei muss für alle Reihungsregeln dispatch aufgerufen werden. Optional sind die
+<!--l. 291--><p class="noindent" >Als ausführbare Datei muss für alle Reihungsregeln dispatch aufgerufen werden. Optional sind die
 Anforderung, was für ein Plan <span 
 class="cmbx-12">erzeugt </span>werden soll, und welche <span 
 class="cmbx-12">Reihungsregel </span>angewandt
 werden soll.
                                                                                          
                                                                                          
-<!--l. 302-->
-<!--l. 302--><p class="noindent" ><a 
- id="tailhandbuchsu7.html"></a>  
+<!--l. 300-->
+<!--l. 300--><p class="noindent" ><a 
+ id="tailhandbuchsu13.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

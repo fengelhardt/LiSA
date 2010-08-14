@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>4 Algorithms in LiSA</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 262--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchch5.html" >next</a>] [<a 
+href="handbuchch3.html" >prev</a>] [<a 
+href="handbuchch3.html#tailhandbuchch3.html" >prev-tail</a>] [<a 
+href="#tailhandbuchch4.html">tail</a>] [<a 
+href="handbuch.html#handbuchch4.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;4</span><br /><a 
+ id="x27-260004"></a>Algorithms in LiSA</h2>
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >4.1 <a 
+href="handbuchse12.html#x28-270004.1">Universal Exact Algorithm </a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.1.1 <a 
+href="handbuchsu12.html#x29-280004.1.1">Universal Branch &amp; Bound Algorithm</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.2 <a 
+href="handbuchse13.html#x30-290004.2">Universal Constructive Procedures</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.1 <a 
+href="handbuchsu13.html#x31-300004.2.1">Dispatching Rules</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.2 <a 
+href="handbuchsu14.html#x32-310004.2.2">Matching Heuristics</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.3 <a 
+href="handbuchsu15.html#x33-320004.2.3">Beam Search Procedures with Appending Technique</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.2.4 <a 
+href="handbuchsu16.html#x34-330004.2.4">Beam Search Procedures with Insertion Technique </a></span>
+<br />&#x00A0;<span class="sectionToc" >4.3 <a 
+href="handbuchse14.html#x35-340004.3">Universal Iterative Improvement Procedures</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.1 <a 
+href="handbuchsu17.html#x36-350004.3.1">Iterative search</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.2 <a 
+href="handbuchsu18.html#x37-360004.3.2">Tabu Search</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.3 <a 
+href="handbuchsu19.html#x38-370004.3.3">Simulated Annealing</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.4 <a 
+href="handbuchsu20.html#x39-380004.3.4">Threshold Accepting</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.5 <a 
+href="handbuchsu21.html#x40-390004.3.5">Genetic Algorithms</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.6 <a 
+href="handbuchsu22.html#x41-400004.3.6">Beam Ant Colony Procedures</a></span>
+<br />&#x00A0;<span class="sectionToc" >4.4 <a 
+href="handbuchse15.html#x42-410004.4">Algorithms for Solving Special Problems</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.1 <a 
+href="handbuchsu23.html#x43-420004.4.1">Brucker&#8217;s Branch &amp; Bound Algorithm</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.2 <a 
+href="handbuchsu24.html#x44-430004.4.2">Two-Machine Problems </a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.3 <a 
+href="handbuchsu25.html#x45-440004.4.3">Single Machine Problems with Minimizing the Number of Late Jobs </a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.4.4 <a 
+href="handbuchsu26.html#x46-450004.4.4">Open-Shop Problem with Makespan Minimization and
+pmtn (Allowed Preemptions) </a></span>
+<br />&#x00A0;<span class="sectionToc" >4.5 <a 
+href="handbuchse16.html#x47-460004.5">Heuristic Algorithms for Special Problems</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.1 <a 
+href="handbuchsu27.html#x48-470004.5.1">The Shifting Bottleneck Heuristic</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.5.2 <a 
+href="handbuchsu28.html#x49-480004.5.2">The Flow-Shop Heuristic</a></span>
+</div>
+
+
+
+
+                                                                                         
+                                                                                         
+<!--l. 272--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchch5.html" >next</a>] [<a 
+href="handbuchch3.html" >prev</a>] [<a 
+href="handbuchch3.html#tailhandbuchch3.html" >prev-tail</a>] [<a 
+href="handbuchch4.html" >front</a>] [<a 
+href="handbuch.html#handbuchch4.html" >up</a>] </p></div>
+<!--l. 272--><p class="noindent" ><a 
+ id="tailhandbuchch4.html"></a>  
+</body></html> 

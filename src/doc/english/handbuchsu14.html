@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Matching Heuristics</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 263--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu15.html" >next</a>] [<a 
+href="handbuchsu13.html" >prev</a>] [<a 
+href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu14.html">tail</a>] [<a 
+href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.2   </span> <a 
+ id="x32-310004.2.2"></a>Matching Heuristics</h4>
+<!--l. 266--><p class="noindent" ><!-- LISA ALGORITHM match -->
+<!--l. 269--><p class="noindent" >These heuristics generate a sequence for open-shop problems. Here the given problem is reduced to
+assignment problems which will be solved optimally by searching a maximal matching. This leads
+to a sequence, where operations with similar processing times are processed in parallel if
+possible.
+<!--l. 277--><p class="noindent" ><span id="textcolor16">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 281--><p class="noindent" >After the input of <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Matching Heuristics </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 288--><p class="noindent" ><span id="textcolor17">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Kind of algorithm:</span> </dt><dd 
+class="description">By  this  option,  one  determines  how  to  treat  the  weights  of  the
+      operations that are fixed by the setting <span 
+class="cmbx-12">Kind of matching</span>. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">BOTTLENECK: </span>The operations are ordered by their weights. Then the largest
+           weight <span 
+class="cmti-12">p </span>is determined such that <span 
+class="cmmi-12">M </span>= <img 
+src="handbuch17x.png" alt="{p(i,j) | p(i,j) &ge; p}"  class="left" align="middle"> contains a perfect
+           matching.  The  corresponding  operations  from  this  matching  are  appended  to
+           the sequence and the weights are deleted. This procedure is repeated until all
+           operations have been appended to the sequence.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">WEIGHTED:    </span>A     maximally     weighted     matching     is     determined.
+           The corresponding operations are appended to the sequence and the weights are
+           deleted (they are set on the smallest feasible value). This procedure is repeated
+           until all operations are appended to the sequence. (This is the standard setting.)</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Kind of matching:</span> </dt><dd 
+class="description">By this option, one fixes how the weights of the particular operations are
+      calculated. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">HEADS:  </span>The first set to be appended is calculated by the MIN parameter. If
+           an initial set of operations has been appended, the heads are determined for all
+                                                                                         
+                                                                                         
+           remaining operations. They are added to the processing times and the results are
+           subtracted from the largest value. This gives the weights for the next matching.
+           In this way, the algorithm minimizes the current makespan value in each step.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">MIN: </span>The weight of an operation is calculated as the difference between the
+           processing time of an operation and the largest feasible value. In this way, the
+           average processing time of all operations in one appending step is minimized.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">MAX: </span>The weight of an operation directly results from the processing time. In
+           this way, the average processing time of all operations in one appending step is
+           maximized. (This is the standard setting.)</li></ul>
+      </dd></dl>
+<!--l. 330--><p class="noindent" ><span id="textcolor18">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 333--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), matching heuristics are activated as
+follows:
+<!--l. 337--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-7">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;match
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MINMAX&#x00A0;MAX
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;TYPEOF&#x00A0;WEIGHTED
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 345--><p class="nopar" ></div>
+<!--l. 348--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 351--><p class="noindent" >As an executable file, match must be invoked for the matching heuristics. Optionally, the <span 
+class="cmbx-12">kind of</span>
+<span 
+class="cmbx-12">matching </span>and the <span 
+class="cmbx-12">kind of algorithm </span>can be settled.
+                                                                                         
+                                                                                         
+<!--l. 360--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu15.html" >next</a>] [<a 
+href="handbuchsu13.html" >prev</a>] [<a 
+href="handbuchsu13.html#tailhandbuchsu13.html" >prev-tail</a>] [<a 
+href="handbuchsu14.html" >front</a>] [<a 
+href="handbuchse13.html#handbuchsu14.html" >up</a>] </p></div>
+<!--l. 360--><p class="noindent" ><a 
+ id="tailhandbuchsu14.html"></a>  
+</body></html> 

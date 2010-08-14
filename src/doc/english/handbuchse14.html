@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Universal Iterative Improvement Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 606--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse15.html" >next</a>] [<a 
+href="handbuchse13.html" >prev</a>] [<a 
+href="handbuchse13.html#tailhandbuchse13.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse14.html">tail</a>] [<a 
+href="handbuchch4.html#handbuchse14.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x35-340004.3"></a>Universal Iterative Improvement Procedures</h3>
+<!--l. 610--><p class="noindent" >Iterative improvement procedures try to improve step by step a given starting solution which has
+been found e.g. by a fast heuristic. To this end, several neighborhoods between feasible
+solutions are considered, which can be searched by different strategies. Such procedures are
+often used when looking for excellent approximation solutions in a medium-size running
+time.
+<!--l. 616--><p class="noindent" >In addition to the simple <span 
+class="cmbx-12">iterative search </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu17.html#x36-350004.3.1">4.3.1<!--tex4ht:ref: Iterative Suche --></a>) and the <span 
+class="cmbx-12">tabu search </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu18.html#x37-360004.3.2">4.3.2<!--tex4ht:ref: Tabu-Suche --></a>), in LiSA
+there are also implemented extended neighborhood search procedures such as <span 
+class="cmbx-12">simulated</span>
+<span 
+class="cmbx-12">annealing </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu19.html#x38-370004.3.3">4.3.3<!--tex4ht:ref: Simulated Annealing --></a>) or <span 
+class="cmbx-12">threshold accepting </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu20.html#x39-380004.3.4">4.3.4<!--tex4ht:ref: Threshold Accepting --></a>). In addition, there are available further
+metaheuristic algorithms such as <span 
+class="cmbx-12">genetic algorithms </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu21.html#x40-390004.3.5">4.3.5<!--tex4ht:ref: Genetische Algorithmen --></a>) and <span 
+class="cmbx-12">ant colony procedures </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span>
+<a 
+href="handbuchsu22.html#x41-400004.3.6">4.3.6<!--tex4ht:ref: Beam Ant Colony Verfahren --></a>).
+<!--l. 624--><p class="noindent" >The quality of the solution depends on the used procedures, the quality of the starting solution
+and the number of generated solutions.
+<!--l. 629--><p class="noindent" ><span id="textcolor25">&nbsp;<br><span 
+class="cmbx-12x-x-120">Neighborhoods</span></span>
+<!--l. 632--><p class="noindent" >In all neighborhood search procedures, the different neighborhoods play a particular role. A
+neighborhood graph describes which sequences can be generated from a given sequence in one step.
+The choice of the neighborhood may have a large influence on the quality of the procedure. In
+LiSA, the following neighborhoods are considered but not every neighborhood is available for any
+problem type:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_API </span>(<span 
+class="cmti-12">k</span>-adjacent pairwise interchange)<span 
+class="cmbx-12">: </span><span 
+class="cmti-12">k + 1 </span>adjacent operations are randomly
+      re-sequenced.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">SHIFT: </span>An operation is shifted in the sequence.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">PI </span>(pairwise interchange)<span 
+class="cmbx-12">: </span>Two arbitrary operations are interchanged.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">TRANS </span>(transpose)<span 
+class="cmbx-12">: </span>A sub-sequence of operations on a machine is reversed.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_API </span>(critical API)<span 
+class="cmbx-12">: </span>A <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>  critical operation is interchanged with a directly
+      adjacent operation.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">SC</span><span 
+class="cmbx-12">_API </span>(semi-critical API)<span 
+class="cmbx-12">: </span>A <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> critical operation or with a specific probability
+      also another operation is interchanged with a directly adjacent operation.
+                                                                                         
+                                                                                         
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_API </span>(block API)<span 
+class="cmbx-12">: </span>A <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>  critical block-end-operation is interchanged with a
+      directly adjacent operation.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT </span>(critical SHIFT)<span 
+class="cmbx-12">: </span>A <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub> critical operation is shifted in the sequence.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">BL</span><span 
+class="cmbx-12">_SHIFT </span>(block  SHIFT)<span 
+class="cmbx-12">: </span>A  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>  critical  block-end-operation  is  shifted  in  the
+      sequence.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TRANS </span>(critical TRANS) <span 
+class="cmbx-12">: </span>The sequence of jobs between two critical operations
+      on a machine is reversed.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">SC</span><span 
+class="cmbx-12">_TRANS </span>(semi-critical  TRANS)  <span 
+class="cmbx-12">: </span>The  sequence  on  a  machine  is  not  always
+      reversed between two critical operations but with a small probability also between
+      non-critical operations.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">3</span><span 
+class="cmbx-12">_CR: </span>A <span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">max</span></sub>  critical operation is interchanged with a directly adjacent operation.
+      In  addition,  both  the  predecessor  and  the  successor  are  interchanged  with  other
+      operations.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">k</span><span 
+class="cmbx-12">_REINSERTION: </span><span 
+class="cmti-12">k </span>arbitrary operations are removed from the sequence and then
+      re-inserted.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_TRANS</span><span 
+class="cmbx-12">_MIX: </span>In 75% of all cases, a neighbor sequence is generated in the
+      CR_TRANS neighborhood, otherwise in the CR_API neighborhood.
+      </li>
+      <li class="itemize"><span 
+class="cmbx-12">CR</span><span 
+class="cmbx-12">_SHIFT</span><span 
+class="cmbx-12">_MIX: </span>In 75% of all cases, a neighbor is generated in the CR_SHIFT
+      neighborhood, otherwise in the CR_API neighborhood.</li></ul>
+<!--l. 689--><p class="noindent" >
+<div class="subsectionTOCS">
+&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.1 <a 
+href="handbuchsu17.html#x36-350004.3.1">Iterative search</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.2 <a 
+href="handbuchsu18.html#x37-360004.3.2">Tabu Search</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.3 <a 
+href="handbuchsu19.html#x38-370004.3.3">Simulated Annealing</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.4 <a 
+href="handbuchsu20.html#x39-380004.3.4">Threshold Accepting</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.5 <a 
+href="handbuchsu21.html#x40-390004.3.5">Genetic Algorithms</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >4.3.6 <a 
+href="handbuchsu22.html#x41-400004.3.6">Beam Ant Colony Procedures</a></span>
+</div>
+
+
+
+
+
+                                                                                         
+                                                                                         
+<!--l. 1408--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse15.html" >next</a>] [<a 
+href="handbuchse13.html" >prev</a>] [<a 
+href="handbuchse13.html#tailhandbuchse13.html" >prev-tail</a>] [<a 
+href="handbuchse14.html" >front</a>] [<a 
+href="handbuchch4.html#handbuchse14.html" >up</a>] </p></div>
+<!--l. 1408--><p class="noindent" ><a 
+ id="tailhandbuchse14.html"></a>  
+</body></html> 

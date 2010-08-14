@@ -7,11 +7,11 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 1180--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1196--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu22.html" >next</a>] [<a 
 href="handbuchsu20.html" >prev</a>] [<a 
 href="handbuchsu20.html#tailhandbuchsu20.html" >prev-tail</a>] [<a 
@@ -19,8 +19,8 @@ href="#tailhandbuchsu21.html">tail</a>] [<a
 href="handbuchse14.html#handbuchsu21.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.3.5   </span> <a 
  id="x40-390004.3.5"></a>Genetische Algorithmen</h4>
-<!--l. 1183--><p class="noindent" ><!-- LISA ALGORITHM ga -->
-<!--l. 1185--><p class="noindent" >Bei genetischen Algorithmen handelt es sich um Metaheuristiken, die aus einer Population von
+<!--l. 1199--><p class="noindent" ><!-- LISA ALGORITHM ga -->
+<!--l. 1201--><p class="noindent" >Bei genetischen Algorithmen handelt es sich um Metaheuristiken, die aus einer Population von
 Startlösungen durch zufällige Änderungen neue Lösungen erzeugen. Dabei werden die
 biologischen Konzepte der Mutation und der Kreuzung zweier Individuen imitiert. Bei der
 <span 
@@ -34,23 +34,23 @@ auch in diesem Fall beide veränderte Pläne wieder zu Plänen gemacht. Auf diese W
 entstehen neue Individuen. Diese neuen Individuen werden dann in die nächste Generation
 übernommen, wenn sie gemäß&#x00A0;einer Fitness-Funktion nicht weniger &#8216;fit&#8217; sind, als ihre jeweiligen
 Vorgänger.
-<!--l. 1201--><p class="noindent" >Die Startpopulation wird dabei aus zufällig generierten Plänen gebildet. Mit Hilfe der
+<!--l. 1217--><p class="noindent" >Die Startpopulation wird dabei aus zufällig generierten Plänen gebildet. Mit Hilfe der
 <span 
 class="cmbx-12">Autoalg</span>-Funktion (<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) ist es jedoch auch möglich, sicherzustellen, dass die Startpopulation
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) ist es jedoch auch möglich sicherzustellen, dass die Startpopulation
 bereits sehr gute Lösungen enthält, die mit selbstgewählten konstruktiven Heuristiken erzeugt
 wurden.
-<!--l. 1209--><p class="noindent" ><span id="textcolor38">&nbsp;<br><span 
+<!--l. 1225--><p class="noindent" ><span id="textcolor38">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 1211--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 1228--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/GenAlg </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 1217--><p class="noindent" ><span id="textcolor39">&nbsp;<br><span 
+<!--l. 1234--><p class="noindent" ><span id="textcolor39">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -74,14 +74,14 @@ class="description">Dieser  Parameter  dient  als  Eingabe  für  die  zufällige 
 <span 
 class="cmbx-12">Anzahl lokaler Suchschritte:</span> </dt><dd 
 class="description">Ein   durch   Mutation   oder   Kreuzung   neu   erzeugtes
-                                                                                         
-                                                                                         
       Individuum kann durch eine einfache <span 
 class="cmbx-12">Lokale Suche </span>(<span 
 class="cmsy-10x-x-120">&rarr; </span><a 
 href="handbuchsu17.html#x36-350004.3.1">4.3.1<!--tex4ht:ref: Iterative Suche --></a>) in der Regel leicht
       verbessert werden. Hier wird festgelegt, wie viele Iterationen der Lokalen Suche bei
       jeder neuen Lösung durchgeführt werden sollen.
+                                                                                         
+                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Mutationswahrscheinlichkeit:</span> </dt><dd 
@@ -98,8 +98,7 @@ class="description">Dieser Parameter gibt die Wahrscheinlichkeit an,
 <span 
 class="cmbx-12">Erzeugung der Anfangspopulation:</span> </dt><dd 
 class="description">Hier wird festgelegt, welche Art von Plänen für die
-      Startpopulation zufällig erzeugt werden sollen.<br 
-class="newline" />
+      Startpopulation zufällig erzeugt werden sollen.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">RANDOM</span><span 
@@ -122,13 +121,8 @@ class="cmbx-12">Lokale Suche:</span> </dt><dd
 class="description">Hier wird die Nachbarschaft festgelegt, in der neue Lösungen lokal
       verbessert werden sollen. Bei der Einstellung <span 
 class="cmti-12">(disabled) </span>wird keine lokale Suche
-      durchgeführt.<br 
-class="newline" />
+      durchgeführt.
            <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
            <li class="itemize"><span 
 class="cmbx-12">API</span>
            </li>
@@ -145,8 +139,6 @@ class="cmbx-12">_API</span>
            <li class="itemize"><span 
 class="cmbx-12">BL</span><span 
 class="cmbx-12">_API</span>
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">CR</span><span 
@@ -159,18 +151,20 @@ class="cmbx-12">_SHIFT</span>
            <li class="itemize"><span 
 class="cmbx-12">3</span><span 
 class="cmbx-12">_CR</span>
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">(disabled).</span></li></ul>
       </dd></dl>
-<!--l. 1278--><p class="noindent" ><span id="textcolor40">&nbsp;<br><span 
+<!--l. 1293--><p class="noindent" ><span id="textcolor40">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1280--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 1296--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden genetische Algorithmen wie folgt
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) werden genetische Algorithmen wie folgt
 aufgerufen:
-<!--l. 1284--><p class="noindent" >
+<!--l. 1300--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -188,10 +182,10 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;L_IMPR&#x00A0;(disabled)
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1299--><p class="nopar" ></div>
-<!--l. 1302--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 1315--><p class="nopar" ></div>
+<!--l. 1318--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1306--><p class="noindent" >Als ausführbare Datei muss für alle genetischen Verfahren ga aufgerufen werden. Unbedingt
+<!--l. 1322--><p class="noindent" >Als ausführbare Datei muss für alle genetischen Verfahren ga aufgerufen werden. Unbedingt
 notwendig sind danach Angaben zu der <span 
 class="cmbx-12">Populationsgr</span><span 
 class="cmbx-12">öße</span>, der <span 
@@ -199,14 +193,14 @@ class="cmbx-12">Anzahl der Generationen</span>, der
 Methode zur <span 
 class="cmbx-12">Erzeugung der Anfangspopulation </span>(INIT), der <span 
 class="cmbx-12">Mutationswahrscheinlichkeit</span>
-(M_PROB), und der <span 
+(M_PROB) und der <span 
 class="cmbx-12">Rekombinationswahrscheinlichkeit </span>(C_PROB). Optional ist die Vorgabe
 von Parametern für den <span 
 class="cmbx-12">Zufalls-Seed</span>, die <span 
-class="cmbx-12">Anzahl lokaler Suchschritte</span>, und die Auswahl der
+class="cmbx-12">Anzahl lokaler Suchschritte </span>und die Auswahl der
 Nachbarschaft der <span 
 class="cmbx-12">Lokalen Suche</span>.
-<!--l. 1315--><p class="noindent" >Zusätzlich kann durch den Aufruf eines genetischen Verfahrens mit Hilfe der Autoalg-Eingabedatei
+<!--l. 1331--><p class="noindent" >Zusätzlich kann durch den Aufruf eines genetischen Verfahrens mit Hilfe der Autoalg-Eingabedatei
 auch Einfluss auf die Wahl der <span 
 class="cmbx-12">Fitness-Funktion </span>(FITNESS) genommen werden. Diese
 bestimmt, welche Individuen in die nächste Generation übernommen werden. Zur Auswahl stehen
@@ -214,12 +208,12 @@ dabei zwei Optionen: Mit OBJECTIVE wählt man den jeweiligen Zielfunktionswert al
 Fitness-Funktion. Daneben kann auch SUM_Ci2 gewählt werden.
                                                                                          
                                                                                          
-<!--l. 1327--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1343--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu22.html" >next</a>] [<a 
 href="handbuchsu20.html" >prev</a>] [<a 
 href="handbuchsu20.html#tailhandbuchsu20.html" >prev-tail</a>] [<a 
 href="handbuchsu21.html" >front</a>] [<a 
 href="handbuchse14.html#handbuchsu21.html" >up</a>] </p></div>
-<!--l. 1327--><p class="noindent" ><a 
+<!--l. 1343--><p class="noindent" ><a 
  id="tailhandbuchsu21.html"></a>  
 </body></html> 

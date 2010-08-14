@@ -1,10 +1,58 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<HTML>
-  <HEAD>
-    <TITLE>fsheur - LiSA-Modul</TITLE>
-  </HEAD>
-  <BODY>
-    <P>noch keine Hilfe verf&uuml;gbar</P>
-  </BODY>
-</HTML>
+<!--l. 1748--><p class="noindent" ><!-- LISA ALGORITHM fsheur -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Die flow-shop Heuristik</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1745-->
+<h4 class="subsectionHead"> <a 
+ id="x49-480004.5.2"></a>Die flow-shop Heuristik</h4>
+<!--l. 1748--><p class="noindent" ><!-- LISA ALGORITHM fsheur -->
+<!--l. 1750--><p class="noindent" >In dieser Heuristik für das <span 
+class="cmbx-12">flow-shop </span>Problem wird aus der Menge der Permutationspläne (auf
+allen Maschinen liegt die gleiche organisatorische Reihenfolge vor) eine Näherungslösung bestimmt.
+Dafür wird eine Insertionreihenfolge der Jobs nicht steigend nach ihren Gesamtbearbeitungszeiten
+bestimmt. Man beginnt mit dem ersten Job dieser Reihenfolge und ordnet den zweiten direkt vor
+dem ersten und direkt nach ihm an. In der besten Variante hinsichtlich des Makespan wird der
+dritte Auftrag auf Position 1, 2 und 3 eingefügt, usw. (Beam-Insert mit der Weite 1 auf der Menge
+aller Permutationspläne).
+<!--l. 1761--><p class="noindent" ><span id="textcolor56">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1764--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Heuristische</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Flow Shop Heuristic </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1770--><p class="noindent" ><span id="textcolor57">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1773--><p class="noindent" >In der Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> wird die flow-shop Heuristik wie folgt
+aufgerufen:
+<!--l. 1777--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-21">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;fsheur
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1783--><p class="nopar" ></div>
+<!--l. 1786--><p class="noindent" >Als ausführbare Datei muss fsheur angegeben werden. Es werden keine weiteren Parameter
+erwartet.
+                                                                                         
+                                                                                         
+<!--l. 269-->
+<!--l. 269--><p class="noindent" ><a 
+ id="tailhandbuchsu28.html"></a>  
+<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

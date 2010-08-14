@@ -1,4 +1,4 @@
-<!--l. 676--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
+<!--l. 692--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,27 +8,27 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2010-04-10 15:42:00"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 673-->
+<!--l. 689-->
 <h4 class="subsectionHead"> <a 
  id="x36-350004.3.1"></a>Iterative search</h4>
-<!--l. 676--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
-<!--l. 678--><p class="noindent" >In an iterative search procedure, the neighborhood is searched in any step and the first improving
+<!--l. 692--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
+<!--l. 694--><p class="noindent" >In an iterative search procedure, the neighborhood is searched in any step and the first improving
 solution is accepted. This always ends in a local optimum the quality of which can, however, be
 rather bad.
-<!--l. 684--><p class="noindent" ><span id="textcolor26">&nbsp;<br><span 
+<!--l. 700--><p class="noindent" ><span id="textcolor26">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation</span></span>
-<!--l. 686--><p class="noindent" >After the input of the <span 
+<!--l. 703--><p class="noindent" >After the input of the <span 
 class="cmbx-12">problem type </span>and the required <span 
-class="cmbx-12">parameters </span>one chooses <span 
+class="cmbx-12">parameters</span>, one chooses <span 
 class="cmbxti-10x-x-120">Heuristic</span>
 <span 
 class="cmbxti-10x-x-120">Algorithms/Iterative Improvement </span>in the menu <span 
 class="cmbxti-10x-x-120">Algorithms</span>.
-<!--l. 692--><p class="noindent" ><span id="textcolor27">&nbsp;<br><span 
+<!--l. 709--><p class="noindent" ><span id="textcolor27">&nbsp;<br><span 
 class="cmbx-12x-x-120">Settings</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -65,10 +65,6 @@ class="description">Here the choice of the neighborhood is fixed, i.e., in which
 class="newline" />
            <ul class="itemize1">
            <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
-           <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
            </li>
@@ -81,12 +77,12 @@ class="cmbx-12">PI</span>
            <li class="itemize"><span 
 class="cmbx-12">CR</span><span 
 class="cmbx-12">_API</span>
-                                                                                         
-                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">BL</span><span 
 class="cmbx-12">_AP</span>
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">CR</span><span 
@@ -104,12 +100,12 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 729--><p class="noindent" ><span id="textcolor28">&nbsp;<br><span 
+<!--l. 746--><p class="noindent" ><span id="textcolor28">&nbsp;<br><span 
 class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
-<!--l. 731--><p class="noindent" >In the input file for the <span 
-class="cmbx-12">Autoalg-function </span>, the iterative search is activated as
+<!--l. 749--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, iterative search is activated as
 follows:
-<!--l. 734--><p class="noindent" >
+<!--l. 752--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -125,10 +121,10 @@ follows:
 &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 747--><p class="nopar" ></div>
-<!--l. 751--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optimal parameters, here
+      <!--l. 765--><p class="nopar" ></div>
+<!--l. 769--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
 the default-value is given.
-<!--l. 754--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For iterative
+<!--l. 772--><p class="noindent" >As an executable file, nb_iter must be invoked for all neighborhood search procedures. For iterative
 search, method IterativeImprovement must be activated. The settlements on the selection of the
 <span 
 class="cmbx-12">neighborhood </span>are mandatory (possibly in addition with the corresponding parameter for <span 
@@ -142,7 +138,7 @@ class="cmbx-12">stopping</span>
 class="cmbx-12">bound</span>.
                                                                                          
                                                                                          
-<!--l. 766-->
-<!--l. 766--><p class="noindent" ><a 
+<!--l. 784-->
+<!--l. 784--><p class="noindent" ><a 
  id="tailhandbuchsu17.html"></a>  
-<hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

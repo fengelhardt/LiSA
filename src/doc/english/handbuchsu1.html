@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Sequences and Schedules</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 16--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu2.html" >next</a>] [<a 
+href="#tailhandbuchsu1.html">tail</a>] [<a 
+href="handbuchse6.html#handbuchsu1.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.1   </span> <a 
+ id="x10-90002.3.1"></a>Sequences and Schedules</h4>
+<!--l. 19--><p class="noindent" >In order to introduce the notations of a sequence and a schedule, we define the following graphs,
+where the set of vertices is given by the set of operations <span 
+class="cmmi-12">SIJ</span>:
+      <ul class="itemize1">
+      <li class="itemize">The graph of machine orders <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) contains all arcs which correspond to the direct
+      precedence constraints of the jobs.
+      </li>
+      <li class="itemize">The  graph  of  job  orders  <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>)  contains  all  arcs  which  correspond  to  the  direct
+      precedence constraints between jobs on the machines.
+      </li>
+      <li class="itemize">The graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) = (<span 
+class="cmmi-12">SIJ,A</span>) contains all arcs from <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) and <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>), i.e.,
+      <center class="math-display" >
+      <img 
+src="handbuch2x.png" alt="                    (
+                    ||{  (i = k  &and; after the processing of job Ai on
+((ij),(kl)) &isin; A &lArr; &rArr;      Mj, this job is processed on Ml ) &or;
+                    ||  (j = l &and;  after machine Mj  has processed job Ai,
+                    (   this machine processes job  Ak.)
+      " class="math-display" ></center>
+                                                                                         
+                                                                                         
+      <!--l. 33--><p class="nopar" ></li></ul>
+<!--l. 35--><p class="noindent" >A combination of machine and job orders is called <span 
+class="cmti-12">feasible</span>, if the corresponding graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>)
+is acyclic. In this case, the graph is called a <span 
+class="cmti-12">sequence graph</span>.
+<div class="newtheorem">
+<!--l. 40--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-12">Example</span><span 
+class="cmbx-12">&#x00A0;1</span> </span><span 
+class="cmti-12">Three jobs have to be processed on four machines. The matrix of the processing</span>
+<span 
+class="cmti-12">times </span><span 
+class="cmmi-12">PT </span><span 
+class="cmti-12">and the job and machine orders are given by</span>
+<center class="math-display" >
+<img 
+src="handbuch3x.png" alt="      &lfloor;             &rfloor;
+         2  1  0  1
+P T = &lceil;  2  3  4  3 &rceil; , therefore SIJ  = I &#x00D7; J\ {(13)}.
+         1  5  1  2
+" class="math-display" ></center>
+<div class="center" 
+>
+<!--l. 46--><p class="noindent" >
+<!--l. 47--><p class="noindent" ><div class="array"> <table id="TBL-5" class="array" 
+cellpadding="0" cellspacing="0"  
+><colgroup id="TBL-5-1g"><col 
+id="TBL-5-1"><col 
+id="TBL-5-2"><col 
+id="TBL-5-3"><col 
+id="TBL-5-4"><col 
+id="TBL-5-5"><col 
+id="TBL-5-6"></colgroup><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub>             </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub>           </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">                    </div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:center;" 
+><div class="td11"></div></td><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td></tr></table>                                                                                  </div></div>
+<!--l. 54--><p class="noindent" ><span 
+class="cmti-12">The following figure gives the graphs </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>)<span 
+class="cmti-12">, </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) <span 
+class="cmti-12">and </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>)<span 
+class="cmti-12">: </span><hr class="figure"><div class="figure" 
+><a 
+ id="x10-90021"></a>
+<div class="center" 
+>
+<!--l. 56--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 57--><p class="noindent" ><img 
+src="handbuch4x.png" alt="PIC" class="graphics" width="341.45724pt" height="284.5337pt" ><!--tex4ht:graphics  
+name="handbuch4x.png" src="bilder/bild1_neu.eps"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.1: </span><span  
+class="content"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>), <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) and <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) </span></div><!--tex4ht:label?: x10-90021 -->
+<!--l. 60--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 62--><p class="noindent" ><span 
+class="cmti-12">This combination of machine and job orders is not feasible since digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">contains the</span>
+<span 
+class="cmti-12">cycle</span>
+<center class="math-display" >
+<img 
+src="handbuch5x.png" alt="(1,2) &rarr;  (1,4) &rarr; (2,4) &rarr;  (2,1) &rarr; (3,1) &rarr;  (3,2) &rarr; (1,2 ).  " class="math-display" ></center> <span 
+class="cmti-12">This</span>
+<span 
+class="cmti-12">would mean that every operation on the cycle is a predecessor and a successor of itself, which is</span>
+<span 
+class="cmti-12">certainly a contradiction.</span><br 
+class="newline" /><span 
+class="cmti-12">If we choose the natural sequence of the jobs and machines, respectively, digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>)
+<span 
+class="cmti-12">cannot contain cycles since all horizontal arcs are directed from left to right and all vertical arcs</span>
+<span 
+class="cmti-12">are directed from the top to the bottom. In this case, digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">is a sequence</span>
+<span 
+class="cmti-12">graph.</span>
+</div>
+<!--l. 70--><p class="noindent" >Now we assign to each vertex (<span 
+class="cmmi-12">ij</span>) of the sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) the processing time <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> as a
+weight. Then the &#8216;timetable&#8217; of processing the operations is denoted as a <span 
+class="cmti-12">schedule</span>. Usually,
+schedules are described by the starting or completion times of all operations, and they can be
+visualized by <span 
+class="cmti-12">Gantt charts</span>, which can be <span 
+class="cmti-12">machine oriented </span>oder <span 
+class="cmti-12">job oriented</span>. There exist the
+following classes of schedules: <br 
+class="newline" />
+                                                                                         
+                                                                                         
+<!--l. 79--><p class="noindent" >A schedule is called <span 
+class="cmti-12">semi-active</span>, if no operation can be completed earlier without changing the
+corresponding sequence.<br 
+class="newline" />
+<!--l. 82--><p class="noindent" >A schedule is called <span 
+class="cmti-12">active</span>, if no operation can be completed earlier without delaying some other
+operation. <br 
+class="newline" />
+<!--l. 85--><p class="noindent" >A schedule is called <span 
+class="cmti-12">non-delay</span>, if no machine is idle as long as there is a job which can be processed
+on this machine.<br 
+class="newline" />
+<!--l. 89--><p class="noindent" >Any non-delay schedule is active, and any active schedule is semi-active. The opposite is in general
+not true.<br 
+class="newline" />
+<div class="newtheorem">
+<!--l. 91--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-12">Example</span><span 
+class="cmbx-12">&#x00A0;2</span> </span><span 
+class="cmti-12">In addition to the matrix of the processing times given in Example 1, let the following</span>
+<span 
+class="cmti-12">acyclic digraph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">be given. In a first step, the corresponding semi-active schedule can be</span>
+<span 
+class="cmti-12">visualized in a job oriented Gantt chart. Now, all operations are processed which are</span>
+<span 
+class="cmti-12">sources (vertices without predecessor) in the sequence graph. Then all sources together</span>
+<span 
+class="cmti-12">with the outgoing arcs from them are dropped and in the next step, all operations are</span>
+<span 
+class="cmti-12">sequenced which are now sources, etc. In addition, this schedule is active, but in the</span>
+<span 
+class="cmti-12">open-shop case not necessarily non-delay since operation </span>(11) <span 
+class="cmti-12">could start at time 2.</span>
+<hr class="figure"><div class="figure" 
+><a 
+ id="x10-90042"></a>
+<div class="center" 
+>
+<!--l. 96--><p class="noindent" >
+<div class="minipage">
+<!--l. 98--><p class="noindent" ><img 
+src="handbuch6x.png" alt="PIC" class="graphics" width="128.03868pt" height="85.35934pt" ><!--tex4ht:graphics  
+name="handbuch6x.png" src="bilder/bild2.eps"  
+-->
+</div> &#x00A0;&#x00A0;        <div class="minipage">
+<img 
+src="handbuch7x.png" alt="PIC" class="graphics" width="170.721pt" height="79.67148pt" ><!--tex4ht:graphics  
+name="handbuch7x.png" src="bilder/gantt1.eps"  
+--></div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.2: </span><span  
+class="content">Sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) and schedule (job oriented Gantt chart)</span></div><!--tex4ht:label?: x10-90042 -->
+</div>
+<!--l. 105--><p class="noindent" ></div><hr class="endfigure">
+</div>
+                                                                                         
+                                                                                         
+<!--l. 108--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu2.html" >next</a>] [<a 
+href="handbuchsu1.html" >front</a>] [<a 
+href="handbuchse6.html#handbuchsu1.html" >up</a>] </p></div>
+<!--l. 108--><p class="noindent" ><a 
+ id="tailhandbuchsu1.html"></a>  
+</body></html> 

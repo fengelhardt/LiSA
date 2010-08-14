@@ -1,10 +1,98 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<HTML>
-  <HEAD>
-    <TITLE>pr - LiSA module</TITLE>
-  </HEAD>
-  <BODY>
-    <P>no help available yet</P>
-  </BODY>
-</HTML>
+<!--l. 1492--><p class="noindent" ><!-- LISA ALGORITHM pr -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Two-Machine Problems </title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1487-->
+<h4 class="subsectionHead"> <a 
+ id="x44-430004.4.2"></a>Two-Machine Problems </h4>
+<!--l. 1490--><p class="noindent" ><!-- LISA ALGORITHM johnson -->
+<!--l. 1492--><p class="noindent" ><!-- LISA ALGORITHM pr -->
+<!--l. 1494--><p class="noindent" >For problems with 2 machines, the Johnson rule yields an optimal solution for the <span 
+class="cmbx-12">flow-shop</span>
+problem with minimizing the makespan as well as for the extensions to the <span 
+class="cmbx-12">job-shop </span>and
+<span 
+class="cmbx-12">open-shop </span>case, i.e., it works for the problem type <span 
+class="cmmi-12">&alpha; </span><span 
+class="cmsy-10x-x-120">&isin;{</span><span 
+class="cmmi-12">F</span>2<span 
+class="cmmi-12">,J</span>2<span 
+class="cmmi-12">,O</span>2<span 
+class="cmsy-10x-x-120">}</span>.
+<!--l. 1501--><p class="noindent" ><span id="textcolor47">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1503--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>(choose under <span 
+class="cmmi-12">&alpha; </span>in addition to <span 
+class="cmmi-12">F,J </span>or <span 
+class="cmmi-12">O </span>also <span 
+class="cmbxti-10x-x-120">given</span>
+<span 
+class="cmbxti-10x-x-120">number of machines </span>since it has the initial value 2) and the required <span 
+class="cmbx-12">parameters</span>, one chooses
+<span 
+class="cmbxti-10x-x-120">Exact Algorithms/Johnson Rule </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1511--><p class="noindent" ><span id="textcolor48">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1513--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, the Johnson rule is activated as
+follows:
+<!--l. 1518--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-17">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;johnson
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1524--><p class="nopar" ></div>
+<!--l. 1527--><p class="noindent" >For an <span 
+class="cmmi-12">O</span>2<span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> problem, the LAPT (longest alternating processing times) rule also yields an
+optimal solution.
+<!--l. 1532--><p class="noindent" ><span id="textcolor49">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1534--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>(note that <span 
+class="cmmi-12">&alpha; </span>= <span 
+class="cmmi-12">O</span>2) and the required <span 
+class="cmbx-12">parameters</span>, one
+chooses <span 
+class="cmbxti-10x-x-120">Exact Algorithms/LAPT-Rule </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1541--><p class="noindent" ><span id="textcolor50">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1543--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, the LAPT rule is activated as
+follows:
+<!--l. 1547--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-18">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;pr
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1553--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 1557-->
+<!--l. 1557--><p class="noindent" ><a 
+ id="tailhandbuchsu24.html"></a>  
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

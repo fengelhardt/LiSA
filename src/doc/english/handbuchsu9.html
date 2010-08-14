@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The Document Type solution</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 153--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu10.html" >next</a>] [<a 
+href="handbuchsu8.html" >prev</a>] [<a 
+href="handbuchsu8.html#tailhandbuchsu8.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu9.html">tail</a>] [<a 
+href="handbuchse8.html#handbuchsu9.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.5.3   </span> <a 
+ id="x20-190002.5.3"></a>The Document Type <span 
+class="cmtt-12">solution</span></h4>
+<!--l. 157--><p class="noindent" >A <span 
+class="cmtt-12">solution </span>document is structured much like an <span 
+class="cmtt-12">instance </span>document, with the difference that it
+contains also one or more solutions (sequences). Supplementary data, like completion times or
+machine and job orders, can also be given. All those data will be stored in a <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>
+element.
+<!--l. 164--><p class="noindent" >An example with one solution, which consists of the sequence (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;plan&#x003E;</span></span></span>) and the matrix of
+completion times:
+<!--l. 167--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-4">
+&#x003C;?xml&#x00A0;version="1.0"&#x00A0;encoding="ISO-8859-1"?&#x003E;
+&#x00A0;<br />&#x003C;!DOCTYPE&#x00A0;solution&#x00A0;PUBLIC&#x00A0;""&#x00A0;"LiSA.dtd"&#x003E;&#x00A0;&#x003C;solution&#x00A0;xmlns:LiSA="http://lisa.math.uni-magdeburg.de"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;alpha&#x00A0;env="O"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;beta/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;gamma&#x00A0;objective="Sum_Ui"/&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/problem&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;values&#x00A0;m="5"&#x00A0;n="3"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;processing_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;38&#x00A0;&#x00A0;25&#x00A0;&#x00A0;&#x00A0;9&#x00A0;&#x00A0;48&#x00A0;&#x00A0;23&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;59&#x00A0;&#x00A0;25&#x00A0;&#x00A0;65&#x00A0;&#x00A0;88&#x00A0;&#x00A0;82&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;9&#x00A0;&#x00A0;48&#x00A0;&#x00A0;57&#x00A0;&#x00A0;10&#x00A0;&#x00A0;&#x00A0;5&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/processing_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/operation_set&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;107&#x00A0;175&#x00A0;&#x00A0;71&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/due_dates&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/values&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;schedule&#x00A0;m="5"&#x00A0;n="3"&#x00A0;semiactive="yes"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;plan&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;4&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;1&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;2&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;4&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;7&#x00A0;&#x00A0;&#x00A0;6&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;&#x00A0;2&#x00A0;&#x00A0;&#x00A0;5&#x00A0;&#x00A0;&#x00A0;6&#x00A0;&#x00A0;&#x00A0;3&#x00A0;&#x00A0;&#x00A0;1&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/plan&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;completion_times&#x00A0;model="lisa_native"&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;95&#x00A0;&#x00A0;57&#x00A0;&#x00A0;&#x00A0;9&#x00A0;143&#x00A0;&#x00A0;32&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;158&#x00A0;&#x00A0;99&#x00A0;&#x00A0;74&#x00A0;328&#x00A0;240&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;{&#x00A0;&#x00A0;14&#x00A0;147&#x00A0;204&#x00A0;&#x00A0;24&#x00A0;&#x00A0;&#x00A0;5&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x00A0;}
+&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;&#x003C;/completion_times&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;&#x003C;/schedule&#x003E;
+&#x00A0;<br />&#x003C;/solution&#x003E;
+</div>
+      <!--l. 214--><p class="nopar" ></div>
+                                                                                         
+                                                                                         
+<!--l. 217--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">solution</span></span></span> documents are created as the output of algorithms. As well as documents of type
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">instance</span></span></span>, they can also be used as input files for algorithms. In this case, however, all already
+contained solutions are discarded. Also, the document has to contain algorithm parameters in a
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span></span></span> element for that purpose. This element has to be placed between the <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;values&#x003E;</span></span></span> and
+<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span> elements.
+                                                                                         
+                                                                                         
+<!--l. 226--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu10.html" >next</a>] [<a 
+href="handbuchsu8.html" >prev</a>] [<a 
+href="handbuchsu8.html#tailhandbuchsu8.html" >prev-tail</a>] [<a 
+href="handbuchsu9.html" >front</a>] [<a 
+href="handbuchse8.html#handbuchsu9.html" >up</a>] </p></div>
+<!--l. 226--><p class="noindent" ><a 
+ id="tailhandbuchsu9.html"></a>  
+</body></html> 

@@ -1,39 +1,175 @@
-<HTML>
-<HEAD> <TITLE>Hilfe zum Beam ACO - Eingabefenster</TITLE>
-</HEAD>
-<BODY BACKGROUND="../../../../img/lisa.gif" BGCOLOR="#e3e3e3">
-<H2> Beam ACO Algorithmus </H2>
-
-<P>
-<H2>So kommen Sie hierher:</H2> 
-Stellen Sie sicher, da&szlig; ein 
-<A HREF="../problem.html"> Problemtyp </A> und alle 
-<A HREF="../values.html"> Problemparameter </A> 
-definiert sind. W&auml;hlen Sie dann den Men&uuml;punkt 
-<I> Algorithmen|N&auml;herungsverfahren|beamACO</I> und
-dr&uuml;cken nach Anpassen der Einstellungen <I>OK</I>.
-<P>
-<H2>Einstellungen:</H2>
-<DL>
-<DT>Untere Schranke:<DD>
-   Geben Sie bekannte untere Schranken hier an. LisaBB behandelt dann jeden 
-   Plan, dessen Zielfunktionswert diesen Wert nicht &uuml;berschreitet, als 
-   optimal. Falls Sie hier einen zu hohen Wert eingeben, erhalten Sie
-   m&ouml;glicherweise ein falsches Ergebenis. 
-<DT>Obere Schranke:<DD>
-   Wenn Sie bereits einen Plan kennen, geben Sie dessen Zielfunktionswert hier
-   an. LisaBB verwirft dann alle Teilpl&auml;ne mit gr&ouml;&szlig;erem 
-   Zielfunktionswert.
-</DL>
-<P>
-<HR>
-<A HREF="../main.html"> Inhaltsverzeichnis </A>
-<HR>
-29.10.99 TAU
-</BODY>
-</HTML>
-
-
-
-
-
+<!--l. 1290--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Beam Ant Colony Procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="../handbuch.css"> 
+</head><body style="background-image: url('../../../../img/lisa.gif')"  
+>
+<!--l. 1287-->
+<h4 class="subsectionHead"> <a 
+ id="x41-400004.3.6"></a>Beam Ant Colony Procedures</h4>
+<!--l. 1290--><p class="noindent" ><!-- LISA ALGORITHM beam_aco -->
+<!--l. 1292--><p class="noindent" >Ant colony optimization is a metaheuristic for optimization problems which are difficult to solve.
+Based on a probabilistic construction mechanism, a solution is constructed by tree search. Using
+beam search procedures on this tree, a hybrid algorithm is obtained. The available algorithm
+follows the ideas by <span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">l</span><span 
+class="small-caps">u</span><span 
+class="small-caps">m</span> </span><span class="cite"></span>.
+<!--l. 1299--><p class="noindent" ><span id="textcolor41">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1302--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Beam Ant Colony </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1308--><p class="noindent" ><span id="textcolor42">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Number of beam extensions:</span> </dt><dd 
+class="description">Here  the  number  of  operations  to  be  inserted  in  one
+      extension  step  is  settled.  This  value  is  only  taken  into  account,  if  the  parameter
+      <span 
+class="cmbx-12">Determination of beam extensions </span>is set to FIXED.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Number of runs:</span> </dt><dd 
+class="description">Number  of  single  runs.  Since  the  ants  are  successively  started,  this
+      corresponds to the number of ants in the whole population.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Convergence factor for re-start:</span> </dt><dd 
+class="description">This value gives a lower bound for the convergence
+      factor from which a new calculation of the pheromone values is done.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Evaporation rate:</span> </dt><dd 
+class="description">This parameter characterizes the influence which a new best sequence
+      has on the calculation of the pheromone values. This value should be between 0 and
+      1.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Influence of earliest completion time:</span> </dt><dd 
+class="description">This holds only for the <span 
+class="cmbx-12">Strategy of selection</span>
+      <span 
+class="cmbx-12">of extensions </span>= SORTED.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Influence of pheromone values:</span> </dt><dd 
+class="description">This  holds  only  for  the  <span 
+class="cmbx-12">Strategy  of  selection  of</span>
+      <span 
+class="cmbx-12">extensions </span>= SORTED.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Influence of randomness:</span> </dt><dd 
+class="description">This holds only for the <span 
+class="cmbx-12">Strategy of selection of extensions</span>
+      = SORTED objective function value.
+                                                                                         
+                                                                                         
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Determination of beam extensions:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">MED: </span>Number of free operations / 2.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LDS: </span>At the beginning as MED, in the second half fixed as 2.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">FIXED: </span>Fixed number.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Strategy of selection of extensions:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">ORIGINAL: </span>This corresponds to the method described in the literature.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SORTED: </span>Here the particular operations are weighted and sorted according to
+           these values.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Pre-selection of extensions:</span> </dt><dd 
+class="description">
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">NONE:</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">ACTIVE: </span>Only active schedules are considered.</li></ul>
+      </dd></dl>
+<!--l. 1359--><p class="noindent" ><span id="textcolor43">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1362--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>, Beam Ant Colony procedures are activated as
+follows:
+<!--l. 1366--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-15">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;beam_aco
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;BEAM_WIDTH&#x00A0;32
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;UPPER_BOUND&#x00A0;10000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;LOWER_BOUND&#x00A0;0
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;EXTENSION_STRATEGY&#x00A0;FIXED
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;STEPS&#x00A0;2500
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;CONVERGENCE_FACTOR&#x00A0;0.98
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;FIXED_KEXT&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;APPEND_STRATEGY&#x00A0;SORTED
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;PRE_SELECTION&#x00A0;ACTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_EST&#x00A0;1.8
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_TIJ&#x00A0;2
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;WEIGHT_RAND&#x00A0;1
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;EVAPORATION_RATE&#x00A0;0.3
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1385--><p class="nopar" ></div>
+<!--l. 1388--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 1391--><p class="noindent" >As an executable file, beam_aco must be invoked for beam ant colony procedures. Then,
+optionally, the following parameters can be activated: The information about the <span 
+class="cmbx-12">beam</span>
+<span 
+class="cmbx-12">width</span>, the <span 
+class="cmbx-12">upper bound</span>, the <span 
+class="cmbx-12">lower bound</span>, <span 
+class="cmbx-12">determination of beam extensions</span>
+(EXTENSION_STRATEGY), <span 
+class="cmbx-12">number of runs </span>(STEPS), <span 
+class="cmbx-12">convergence factor for re-start</span>,
+<span 
+class="cmbx-12">number of beam extensions </span>(FIXED_KEXT), the strategy for the <span 
+class="cmbx-12">selection of extensions</span>
+(APPEND_STRATEGY), <span 
+class="cmbx-12">pre-selection of extensions</span>, the <span 
+class="cmbx-12">influence of earliest completion</span>
+<span 
+class="cmbx-12">time </span>(WEIGHT_EST), the <span 
+class="cmbx-12">influence of pheromone values </span>(WEIGHT_TIJ), and the
+<span 
+class="cmbx-12">influence of randomness</span>.
+                                                                                         
+                                                                                         
+<!--l. 1408-->
+<!--l. 1408--><p class="noindent" ><a 
+ id="tailhandbuchsu22.html"></a>  
+<hr><a href="../handbuch.html">LiSA handbook</a><hr></body></html>

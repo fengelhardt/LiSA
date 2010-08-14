@@ -1,90 +1,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>Darstellung von Daten</title> 
+<head><title>Einmaschinenproblem mit Minimierung der Anzahl der verspateten Jobs</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 56--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1618--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu26.html" >next</a>] [<a 
 href="handbuchsu24.html" >prev</a>] [<a 
 href="handbuchsu24.html#tailhandbuchsu24.html" >prev-tail</a>] [<a 
 href="#tailhandbuchsu25.html">tail</a>] [<a 
-href="handbuchse31.html#handbuchsu25.html" >up</a>] </p></div>
-<h4 class="subsectionHead"><span class="titlemark">A.1.2   </span> <a 
- id="x67-72000A.1.2"></a>Darstellung von Daten</h4>
-<!--l. 60--><p class="noindent" >Einfache Datentypen, wie ganze oder gebrochene Zahlen, sowie Zeichenketten werden einfach mit
-Hilfe von Attributen dargestellt. Ein Beispiel dafür ist das <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule&#x003E;</span></span></span>-Tag:
-<!--l. 63--><p class="noindent" >
-      <div class="quote">
-      <!--l. 64--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">&#x003C;schedule</span><span 
-class="cmtt-12">&#x00A0;m="10"</span><span 
-class="cmtt-12">&#x00A0;n="20"</span><span 
-class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span></div>
-<!--l. 67--><p class="noindent" >Hier wird die Problemgröße durch die Ganzzahlen <span 
-class="cmmi-12">m </span>= 10 und <span 
-class="cmmi-12">n </span>= 20 festgelegt. Zusätzlich besagt
-die Zeichenkette <span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">"yes"</span></span></span> als Wert des Attributes <span 
-class="cmtt-12">semiactive</span>, dass der folgende Zeitplan semiaktiv
-ist. Zu beachten ist bei reellen Zahlen die Verwendung des Dezimalpunktes anstatt eines
-Kommas.
-<!--l. 74--><p class="noindent" >Weiterhin werden Vektoren und Matrizen als komplexe Datentypen verwendet. Ein Vektor der
-Dimension <span 
-class="cmmi-12">n </span>mit den Komponenten <span 
-class="cmtt-12">a</span><span 
-class="cmtt-12">_1 </span>bis <span 
-class="cmtt-12">a</span><span 
-class="cmtt-12">_n </span>wird dargestellt durch:
-<!--l. 77--><p class="noindent" >
-      <div class="quote">
-      <!--l. 78--><p class="noindent" ><span class="obeylines-h"><span class="verb"><span 
-class="cmtt-12">{</span><span 
-class="cmtt-12">&#x00A0;a_1</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_2</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_3</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;...</span><span 
-class="cmtt-12">&#x00A0;</span><span 
-class="cmtt-12">&#x00A0;a_n</span><span 
-class="cmtt-12">&#x00A0;}</span></span></span></div>
-<!--l. 81--><p class="noindent" >Als Trennung zwischen den Werten können beliebig viele Whitespace-Zeichen benutzt werden.
-Eine <span 
-class="cmmi-12">n</span><span 
-class="cmsy-10x-x-120">&#x00D7;</span><span 
-class="cmmi-12">m </span>Matrix kann als <span 
-class="cmmi-12">n</span>-dimensionaler Vektor dargestellt werden, der selbst <span 
-class="cmmi-12">m</span>-dimensionale
-Vektoren enthält:
-<!--l. 85--><p class="noindent" >
+href="handbuchse15.html#handbuchsu25.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.4.3   </span> <a 
+ id="x45-440004.4.3"></a>Einmaschinenproblem mit Minimierung der Anzahl der verspäteten Jobs</h4>
+<!--l. 1621--><p class="noindent" ><!-- LISA ALGORITHM single_sum_ui -->
+<!--l. 1623--><p class="noindent" >Dieser Algorithmus minimiert in Einmaschinenumgebungen die Anzahl der verspäteten Aufträge.
+Er findet eine optimale Lösung in Polynomialzeit.
+<!--l. 1628--><p class="noindent" ><span id="textcolor51">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf</span></span>
+<!--l. 1631--><p class="noindent" >Nach Eingabe von <span 
+class="cmbx-12">Problemtyp </span>und erforderlichen <span 
+class="cmbx-12">Parametern </span>wählt man <span 
+class="cmbxti-10x-x-120">Exakte</span>
+<span 
+class="cmbxti-10x-x-120">Verfahren/Eine Maschine - Summe Ui </span>im Menü <span 
+class="cmbxti-10x-x-120">Algorithmen</span>.
+<!--l. 1637--><p class="noindent" ><span id="textcolor52">&nbsp;<br><span 
+class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
+<!--l. 1640--><p class="noindent" >In einer Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird der Einmaschinenalgorithmus
+folgendermaßen aufgerufen:
+<!--l. 1644--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
-      <div class="verbatim" id="verbatim-28">
-&#x00A0;{
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_11&#x00A0;&#x00A0;a_12&#x00A0;&#x00A0;a_13&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_1m&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_21&#x00A0;&#x00A0;a_22&#x00A0;&#x00A0;a_23&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_2m&#x00A0;}
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;...
-&#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;{&#x00A0;a_n1&#x00A0;&#x00A0;a_n2&#x00A0;&#x00A0;a_n3&#x00A0;&#x00A0;...&#x00A0;&#x00A0;a_nm&#x00A0;}
-&#x00A0;<br />&#x00A0;}
+      <div class="verbatim" id="verbatim-19">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;single_sum_ui
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 93--><p class="nopar" ></div>
+      <!--l. 1650--><p class="nopar" ></div>
+<!--l. 1653--><p class="noindent" >Als ausführbare Datei muss single_sum_ui aufgerufen werden. Es werden keine Parameter
+erwartet.
                                                                                          
                                                                                          
-<!--l. 98--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 1657--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu26.html" >next</a>] [<a 
 href="handbuchsu24.html" >prev</a>] [<a 
 href="handbuchsu24.html#tailhandbuchsu24.html" >prev-tail</a>] [<a 
 href="handbuchsu25.html" >front</a>] [<a 
-href="handbuchse31.html#handbuchsu25.html" >up</a>] </p></div>
-<!--l. 98--><p class="noindent" ><a 
+href="handbuchse15.html#handbuchsu25.html" >up</a>] </p></div>
+<!--l. 1657--><p class="noindent" ><a 
  id="tailhandbuchsu25.html"></a>  
 </body></html> 

@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The Block-Matrices Model for Shop Problems</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 108--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu3.html" >next</a>] [<a 
+href="handbuchsu1.html" >prev</a>] [<a 
+href="handbuchsu1.html#tailhandbuchsu1.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu2.html">tail</a>] [<a 
+href="handbuchse6.html#handbuchsu2.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.2   </span> <a 
+ id="x11-100002.3.2"></a>The Block-Matrices Model for Shop Problems</h4>
+<!--l. 110--><p class="noindent" >For a shop problem, the machine and job orders, the sequences and schedules can be described by
+matrices. Any matrix contains an information on operation (<span 
+class="cmmi-12">i,j</span>) in row <span 
+class="cmmi-12">i </span>and column <span 
+class="cmmi-12">j</span>. This is
+either a structural or a time-wise property of operation (<span 
+class="cmmi-12">ij</span>). For this reason, we introduce the rank
+<span 
+class="cmmi-12">rg</span>(<span 
+class="cmmi-12">v</span>) of a vertex <span 
+class="cmmi-12">v </span>in an acyclic digraph. When the number of vertices on a path <span 
+class="cmmi-12">w </span>is denoted as
+the length of this path, then rank <span 
+class="cmmi-12">rg</span>(<span 
+class="cmmi-12">v</span>) denotes the number of vertices on a longest path ending
+in vertex <span 
+class="cmmi-12">v</span>. When the vertices (<span 
+class="cmmi-12">ij</span>) of the sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) are weighted
+by the processing time <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>, the makespan of the corresponding semi-active schedule is
+determined as the weight of a critical path (path with maximal weight) in the sequence
+graph.<br 
+class="newline" />
+<!--l. 118--><p class="noindent" >Thus, for describing the graphs we have the following matrices:
+      <ul class="itemize1">
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) is described by <span 
+class="cmmi-12">MO </span>= [<span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub>  is the rank of operation (<span 
+class="cmmi-12">ij</span>) in
+      <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) (matrix of the machine orders).
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>) is described by <span 
+class="cmmi-12">JO </span>= [<span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> is the rank of operation (<span 
+class="cmmi-12">ij</span>) in <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>)
+      (matrix of the job orders).
+      </li>
+      <li class="itemize"><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) is described by <span 
+class="cmmi-12">LR </span>= [<span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> is the rank of operation (<span 
+class="cmmi-12">ij</span>) in the
+      sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) (sequence).</li></ul>
+<!--l. 126--><p class="noindent" >In any row <span 
+class="cmmi-12">i </span>of matrix <span 
+class="cmmi-12">MO</span>, there is a permutation of the numbers 1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,u</span><sub><span 
+class="cmmi-8">i</span></sub>, where <span 
+class="cmmi-12">u</span><sub><span 
+class="cmmi-8">i</span></sub> is the number
+of operations of job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub>. In any column <span 
+class="cmmi-12">j </span>of matrix <span 
+class="cmmi-12">JO</span>, there is a permutation of the numbers
+1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,v</span><sub><span 
+class="cmmi-8">j</span></sub>, where <span 
+class="cmmi-12">v</span><sub><span 
+class="cmmi-8">j</span></sub> is the number of operations which have to be processed on machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>. A
+sequence <span 
+class="cmmi-12">LR </span>combines the properties of <span 
+class="cmmi-12">MO </span>and <span 
+class="cmmi-12">JO</span>. Due to the definition of the rank, any
+sequence satisfies the <span 
+class="cmti-12">sequence property</span>: For any number <span 
+class="cmmi-12">z </span>= <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmmi-12">&#x003E; </span>1, there exists in row <span 
+class="cmmi-12">i </span>or in
+column <span 
+class="cmmi-12">j </span>or in both the number <span 
+class="cmmi-12">z </span><span 
+class="cmsy-10x-x-120">&minus; </span>1. It can be noted that sequences on complete sets of
+operations <span 
+class="cmmi-12">SIJ </span>= <span 
+class="cmmi-12">I </span><span 
+class="cmsy-10x-x-120">&#x00D7; </span><span 
+class="cmmi-12">J </span>are special latin rectangles. A latin rectangle <span 
+class="cmmi-12">LR</span>[<span 
+class="cmmi-12">n,m,r</span>] is is a matrix
+with <span 
+class="cmmi-12">n </span>rows, <span 
+class="cmmi-12">m </span>columns and entries from a set <span 
+class="cmsy-10x-x-120">{</span>1<span 
+class="cmmi-12">,</span><span 
+class="cmmi-12">&hellip;</span><span 
+class="cmmi-12">,r</span><span 
+class="cmsy-10x-x-120">}</span>, where any number from this
+set occurs in any row and any column at most once. If a latin rectangle satisfies the
+sequence property, then it is the rank matrix of a sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>). If the set
+of operations is incomplete, then we obtain so-called partial latin rectangles as rank
+matrices.<br 
+class="newline" />
+<!--l. 131--><p class="noindent" >To describe a semi-active schedule which corresponds one-to-one to a sequence with given matrix
+of the processing times, we introduce the following matrices:<br 
+class="newline" />
+                                                                                         
+                                                                                         
+      <ul class="itemize1">
+      <li class="itemize">Matrix <span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> is the completion time of operation (<span 
+class="cmmi-12">ij</span>).
+      </li>
+      <li class="itemize">Matrix <span 
+class="cmmi-12">H </span>= [<span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> is the minimal time required for processing all predecessors
+      of operation (<span 
+class="cmmi-12">ij</span>) (head of (<span 
+class="cmmi-12">ij</span>): earliest possible starting time of operation (<span 
+class="cmmi-12">ij</span>)).
+      </li>
+      <li class="itemize">Matrix <span 
+class="cmmi-12">T </span>= [<span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> is the minimal time required for processing all successors of
+      operation (<span 
+class="cmmi-12">ij</span>) (tail of (<span 
+class="cmmi-12">ij</span>)).
+      </li>
+      <li class="itemize">Matrix <span 
+class="cmmi-12">W </span>= <span 
+class="cmmi-12">H </span>+ <span 
+class="cmmi-12">PT </span>+ <span 
+class="cmmi-12">T </span>= <span 
+class="cmmi-12">C </span>+ <span 
+class="cmmi-12">T </span>= [<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub>], where <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> is the maximum weight of a
+      path which contains operation (<span 
+class="cmmi-12">ij</span>).</li></ul>
+<!--l. 140--><p class="noindent" >Then we obtain the makespan
+<center class="math-display" >
+<img 
+src="handbuch8x.png" alt="Cmax  =  max   cij =  max  wij.
+        (ij)&isin;SIJ     (ij)&isin;SIJ  " class="math-display" ></center> All
+operations (<span 
+class="cmmi-12">ij</span>) with <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> belong to at least one critical path. By means of matrix <span 
+class="cmmi-12">W</span>, one
+can construct all critical paths by breadth first search. Figure <a 
+href="#x11-100013">2.3<!--tex4ht:ref: block_matrices_model --></a> summarizes the block-matrices
+model.
+<!--l. 144--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x11-100013"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 145--><p class="noindent" >
+<div class="fbox"> <div class="minipage"><div class="tabular"> <table id="TBL-6" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1"><col 
+id="TBL-6-2"><col 
+id="TBL-6-3"><col 
+id="TBL-6-4"><col 
+id="TBL-6-5"><col 
+id="TBL-6-6"><col 
+id="TBL-6-7"><col 
+id="TBL-6-8"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-1"  
+class="td11">                    <img 
+src="handbuch9x.png" alt="   P T =  [pij]    LR =  [lrij]
+
+  processing times    sequence
+
+
+&#x25DF;-------------&#x25DD;&#x25DC;------------&#x25DE;" >              </td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-2"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-7" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-7-1g"><col 
+id="TBL-7-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-7-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-1-1"  
+class="td11">                              <img 
+src="handbuch10x.png" alt="                     =&rArr;"  class="Longrightarrow" >                    </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-2-1"  
+class="td11"> <span 
+class="cmsy-10x-x-120">&lArr;</span>=</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-7-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-7-3-1"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-8" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-8-1g"><col 
+id="TBL-8-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-8-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-1-1"  
+class="td11"><span 
+class="cmr-10">if </span><span 
+class="cmmi-10">G</span><span 
+class="cmr-10">(</span><span 
+class="cmmi-10">MO,JO</span><span 
+class="cmr-10">)</span></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-8-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-8-2-1"  
+class="td11"> <span 
+class="cmr-10">acyclic</span></td></tr></table>                                                                                                </div></td></tr></table></div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-1-3"  
+class="td11"><img 
+src="handbuch11x.png" alt="                                                               (
+                                                               ||  M O =  [moij ]
+                                                               |||  machine orders
+                                                               |{
+
+                                                               |||  J O =  [joij]
+                                                               |||    job orders
+                                                               ("  class="left" align="middle"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-1"  
+class="td11"><!--tex4ht:inline--><div class="tabular"> <table id="TBL-9" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-9-1g"><col 
+id="TBL-9-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-9-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-1-1"  
+class="td11">          <span 
+class="cmsy-10x-x-120">&dArr;       </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-2-1"  
+class="td11">    <span 
+class="cmr-10">schedule: </span><span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>]      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-3-1"  
+class="td11">                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-4-1"  
+class="td11"> 
+<span 
+class="cmr-10">maximum weight of a path  </span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-5-1"  
+class="td11"><span 
+class="cmr-10">which contains operation (</span><span 
+class="cmmi-10">ij</span><span 
+class="cmr-10">):</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-6-1"  
+class="td11">                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-7-1"  
+class="td11"><span 
+class="cmmi-12">W </span>= [<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub>] = <span 
+class="cmmi-12">H </span>+ <span 
+class="cmmi-12">PT </span>+ <span 
+class="cmmi-12">T</span></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-8-1"  
+class="td11">                     </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-9-9-"><td  style="white-space:nowrap; text-align:center;" id="TBL-9-9-1"  
+class="td11"></td></tr></table>                                         </div></td><td  style="white-space:nowrap; text-align:center;" id="TBL-6-2-2"  
+class="td11">                                                                   </td>
+</tr></table>
+</div>                                                                 </div></div>
+</div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.3: </span><span  
+class="content">Block-Matrices Model</span></div><!--tex4ht:label?: x11-100013 -->
+                                                                                         
+                                                                                         
+<!--l. 173--><p class="noindent" ></div><hr class="endfigure">
+                                                                                         
+                                                                                         
+<!--l. 181--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu3.html" >next</a>] [<a 
+href="handbuchsu1.html" >prev</a>] [<a 
+href="handbuchsu1.html#tailhandbuchsu1.html" >prev-tail</a>] [<a 
+href="handbuchsu2.html" >front</a>] [<a 
+href="handbuchse6.html#handbuchsu2.html" >up</a>] </p></div>
+<!--l. 181--><p class="noindent" ><a 
+ id="tailhandbuchsu2.html"></a>  
+</body></html> 

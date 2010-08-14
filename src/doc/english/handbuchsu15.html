@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Beam Search Procedures with Appending Technique</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 361--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu16.html" >next</a>] [<a 
+href="handbuchsu14.html" >prev</a>] [<a 
+href="handbuchsu14.html#tailhandbuchsu14.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu15.html">tail</a>] [<a 
+href="handbuchse13.html#handbuchsu15.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.2.3   </span> <a 
+ id="x33-320004.2.3"></a>Beam Search Procedures with Appending Technique</h4>
+<!--l. 364--><p class="noindent" ><!-- LISA ALGORITHM beam_att -->
+<!--l. 366--><p class="noindent" >Beam Search procedures are a heuristic variant of the <span 
+class="cmbx-12">Branch &amp; Bound Procedure</span>
+(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu12.html#x29-280004.1.1">4.1.1<!--tex4ht:ref: Universeller Branch and Bound Algorithmus --></a>). In contrast to them, the number of partial solutions to be investigated is
+restricted in any vertex of the solution tree. This leads to an incomplete search in the
+set of feasible solutions which possibly excludes all optimal solutions. However, such
+procedures are substantially faster than a complete branch &amp; bound algorithm. The
+quality of the solution depends both on the chosen problem type and on the chosen
+settings.
+<!--l. 375--><p class="noindent" >In case of an <span 
+class="cmbx-12">appending </span>procedure, for any partial sequence different positions are
+considered at which new operations with increasing rank can be appended. Using one of the
+particular strategies, an operation is searched which fits on this position. In addition to
+the appending procedure, an <span 
+class="cmbx-12">insertion </span>procedure (<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchsu16.html#x34-330004.2.4">4.2.4<!--tex4ht:ref: Beam Search Verfahren mit Einfuegetechnik --></a>) is also implemented in
+LiSA.
+<!--l. 385--><p class="noindent" ><span id="textcolor19">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 388--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Beam Search (attach) </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 395--><p class="noindent" ><span id="textcolor20">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Beam width:</span> </dt><dd 
+class="description">Here one fixes how many of the partial sequences generated in each step
+      should be considered further.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Selection method:</span> </dt><dd 
+class="description">Here one fixes how the chosen number of partial sequences considered further
+      (<span 
+class="cmbx-12">beam width</span>) should be selected. The partial sequences are evaluated by their objective
+      function values. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">INSERT1: </span>From the set of <span 
+class="cmti-12">all </span>child-sequences in one step, select the best ones.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">INSERT2: </span>For any parent-sequence, exactly one (best) child-sequence is chosen,
+           independently whether this is globally promising or not.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Selection criterion:</span> </dt><dd 
+class="description">This option is only available in case of <span 
+class="cmti-12">C</span><span 
+class="cmr-10">max </span>problems. It gives an
+      alternative evaluation method for partial sequences. <br 
+class="newline" />
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">CLAST: </span>A partial sequence is evaluated by the cost of a longest path through
+           the operation which has been inserted last.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LB(Sum</span><span 
+class="cmbx-12">_Ci): </span>A partial sequence is evaluated by the Sum_Ci objective function
+           value.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">OBJECTIVE: </span>The  objective  function  value  is  used  for  evaluating  a  partial
+           sequence. This is the standard method.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Tie Breaking:</span> </dt><dd 
+class="description">If the selection of an operation to be appended is not uniquely determined, this
+      option fixes by which rule an operation is chosen among the candidate operations.
+      <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">FCFS </span>(first come - first served): The next sequenced operation is the one which
+           entered the queue first.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LPT </span>(longest processing time): The next sequenced operation is the one which
+           has the largest processing time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SPT </span>(shortest processing time): The next sequenced operation is the one which
+           has the shortest processing time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM: </span>The operation is randomly chosen.</li></ul>
+      </dd></dl>
+<!--l. 438--><p class="noindent" ><span id="textcolor21">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 441--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), beam search appending procedures are
+activated as follows:
+<!--l. 445--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-8">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;beam
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;MODE&#x00A0;ATTACH
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;ATTACH_WHAT&#x00A0;Machines+Jobs
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;BREAK_TIES&#x00A0;FCFS
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_METHOD&#x00A0;INSERT1
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;CRITERION&#x00A0;OBJECTIVE
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;K_BRANCHES&#x00A0;5
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 457--><p class="nopar" ></div>
+<!--l. 460--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, here
+the default-value is given.
+<!--l. 463--><p class="noindent" >As an executable file, beam must be invoked for all beam search procedures. The information on
+the beam search mode is mandatory. Optionally, the parameters for the <span 
+class="cmbx-12">appending</span>
+<span 
+class="cmbx-12">criterion </span>(ATTACH_WHAT with options machines, jobs, machines+jobs), the <span 
+class="cmbx-12">tie</span>
+<span 
+class="cmbx-12">breaking</span>, the <span 
+class="cmbx-12">selection method</span>, the <span 
+class="cmbx-12">selection criterion</span>, and the <span 
+class="cmbx-12">beam width </span>can be
+set.
+                                                                                         
+                                                                                         
+<!--l. 476--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu16.html" >next</a>] [<a 
+href="handbuchsu14.html" >prev</a>] [<a 
+href="handbuchsu14.html#tailhandbuchsu14.html" >prev-tail</a>] [<a 
+href="handbuchsu15.html" >front</a>] [<a 
+href="handbuchse13.html#handbuchsu15.html" >up</a>] </p></div>
+<!--l. 476--><p class="noindent" ><a 
+ id="tailhandbuchsu15.html"></a>  
+</body></html> 

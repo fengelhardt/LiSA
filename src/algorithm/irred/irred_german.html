@@ -8,19 +8,29 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 367-->
+<!--l. 362-->
 <h3 class="sectionHead"> <a 
- id="x53-520006.3"></a>Irreduzibilitätstest</h3>
+ id="x59-580006.3"></a>Irreduzibilitätstest</h3>
 <!--l. 2--><p class="noindent" ><!-- LISA ALGORITHM irred -->
-<!--l. 4--><p class="noindent" >Dieser Test löst verschiedene Aufgabenstellungen aus der Irreduzibilitätstheorie, Literaturhinweis:
-Willenius. Er ist für open-, job- und flow-shop Probleme mit Bereitstellungszeiten der Jobs und
-mit den regulären Zielfunktionen Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und
-SumWiTi anwendbar.
-<!--l. 8--><p class="noindent" >Ein Plan <span 
+<!--l. 4--><p class="noindent" >Dieser Test löst verschiedene Aufgabenstellungen aus der Irreduzibilitätstheorie, ausführliche
+Informationen sind in der Dissertation von <span 
+class="cmcsc-10x-x-120">W<span 
+class="small-caps">i</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">e</span><span 
+class="small-caps">n</span><span 
+class="small-caps">i</span><span 
+class="small-caps">u</span><span 
+class="small-caps">s</span> </span><span class="cite"></span> enthalten. Er ist für open,
+job und flow shop Probleme mit Bereitstellungszeiten der Jobs und mit den regulären
+Zielfunktionen Cmax, Lmax, SumCi, SumWiCi, SumUi, SumWiUi, SumTi und SumWiTi
+anwendbar.
+<!--l. 9--><p class="noindent" >Ein Plan <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> reduziert einen Plan <span 
 class="cmmi-12">S</span>, wenn <span 
@@ -32,7 +42,7 @@ Wahl von Bearbeitungszeiten den gleichen Zielfunktionswert besitzen. Ein Plan <s
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> reduziert einen
 Plan <span 
-class="cmmi-12">S </span>echt, wenn sie nicht ähnlich zueinander sind und wenn <span 
+class="cmmi-12">S </span>streng, wenn sie nicht ähnlich zueinander sind und wenn <span 
 class="cmmi-12">S</span><sup><span 
 class="cmsy-8">&lowast;</span></sup> den Plan <span 
 class="cmmi-12">S </span>reduziert. Ein
@@ -43,15 +53,15 @@ class="cmsy-8">&lowast;</span></sup> gibt, der <span
 class="cmmi-12">S </span>echt reduziert. Damit
 existiert in der Menge aller irreduziblen Pläne ein global optimaler Plan für jede Wahl der
 Bearbeitungszeiten.
-<!--l. 18--><p class="noindent" ><span id="textcolor47">&nbsp;<br><span 
+<!--l. 19--><p class="noindent" ><span id="textcolor58">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 20--><p class="noindent" >Wenn LiSA den Problemtyp und alle Parameter kennt und bereits ein Plan erzeugt wurde, läßt
+<!--l. 22--><p class="noindent" >Wenn LiSA den Problemtyp und alle Parameter kennt und bereits ein Plan erzeugt wurde, läßt
 sich der Algorithmus im Menüpunkt <span 
 class="cmbxti-10x-x-120">Heuristische Verfahren/Irreduzibilit</span><span 
 class="cmbxti-10x-x-120">ätstest </span>des Menüs
 <span 
 class="cmbxti-10x-x-120">Algorithmen </span>aufrufen.
-<!--l. 25--><p class="noindent" ><span id="textcolor48">&nbsp;<br><span 
+<!--l. 27--><p class="noindent" ><span id="textcolor59">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -75,10 +85,12 @@ class="cmbx-12">ITERATIVE</span><span
 class="cmbx-12">_</span><span 
 class="cmbx-12">REDUCING  </span>Sobald  ein  Plan  gefunden  wurde,  der  den
            ursprünglichen Plan streng reduziert, wird der Algorithmus unterbrochen und mit
-           dem neuen Plan erneut gestartet. Dies wird fortgeführt bis ein irreduzibler Plan
+           dem neuen Plan erneut gestartet. Dies wird fortgeführt, bis ein irreduzibler Plan
            gefunden wurde.
-           <!--l. 38--><p class="noindent" >Sollte   der   Ausgangsplan   irreduzibel   sein,   wird   eine   LiSA-Fehlermeldung
-           ausgegeben: Warning: Plan is irreducible.</li></ul>
+           <!--l. 40--><p class="noindent" >Sollte   der   Ausgangsplan   irreduzibel   sein,   wird   eine   LiSA-Fehlermeldung
+           ausgegeben: Warning: Sequence is irreducible.</li></ul>
+                                                                                         
+                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Gib folgende Pl</span><span 
@@ -87,12 +99,11 @@ class="cmbx-12">ück:</span> </dt><dd
 class="description">Eine Abspeicherung erfolgt in der Datei <span 
 class="cmti-12">algo</span><span 
 class="cmti-12">_out.xml </span>im
-      Verzeichnis <span 
-class="cmti-12">.lisa/proc</span>. In LiSA wird das Ergebnis unter <span 
-class="cmbxti-10x-x-120">Bearbeiten/Liste von Plaenen</span>
-      angezeigt.
-                                                                                         
-                                                                                         
+      Verzeichnis <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">~/.lisa/proc</span></span></span>. In LiSA wird das Ergebnis unter <span 
+class="cmbxti-10x-x-120">Bearbeiten/Liste von</span>
+      <span 
+class="cmbxti-10x-x-120">Plaenen </span>angezeigt.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">ALL  </span>Alle  erzeugten  Pläne  werden  zurückgegeben,  wobei  die  Anzahl  im
@@ -119,7 +130,7 @@ class="cmbx-12">NO </span>Pläne werden vom Algorithmus in einer effizienten Reih
       </dd></dl>
                                                                                          
                                                                                          
-<!--l. 377-->
-<!--l. 377--><p class="noindent" ><a 
- id="tailhandbuchse23.html"></a>  
+<!--l. 372-->
+<!--l. 372--><p class="noindent" ><a 
+ id="tailhandbuchse24.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

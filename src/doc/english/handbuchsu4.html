@@ -1,0 +1,1188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Basic Algorithms for the Block-Matrices Model</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 205--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu3.html" >prev</a>] [<a 
+href="handbuchsu3.html#tailhandbuchsu3.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu4.html">tail</a>] [<a 
+href="handbuchse6.html#handbuchsu4.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.4   </span> <a 
+ id="x13-120002.3.4"></a>Basic Algorithms for the Block-Matrices Model</h4>
+<!--l. 207--><p class="noindent" >There are some basic algorithms belonging to the block-matrices model, which have a linear
+complexity due to the special structure of the sequence graph. They exclusively use the matrices of
+the model which describe in one-to-one correspondence the graph-theoretic properties
+considered.<br 
+class="newline" />
+<!--l. 209--><p class="noindent" >Algorithm 1 determines the sequence <span 
+class="cmmi-12">LR </span>by means of the given matrices <span 
+class="cmmi-12">MO </span>and <span 
+class="cmmi-12">JO</span>, if graph
+<span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) does not contain cycles. The set <span 
+class="cmmi-12">MQ </span>contains all operations, which are both a source
+in <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO</span>) as well as in <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">JO</span>).
+<div class="center" 
+>
+<!--l. 214--><p class="noindent" >
+<div class="fbox"> <div class="minipage"><span 
+class="cmbx-12">Algorithm 1: Determination of </span><span 
+class="cmmib-10x-x-120">LR </span><span 
+class="cmbx-12">by means of a combination </span><br 
+class="newline" /><span 
+class="cmbx-12">&#x00A0;</span><span 
+class="cmbx-12">&#x00A0;</span><span 
+class="cmbx-12">&#x00A0;</span><span 
+class="cmbx-12">&#x00A0;</span><span 
+class="cmbx-12">&#x00A0;                  (</span><span 
+class="cmmib-10x-x-120">MO</span><span 
+class="cmbx-12">,</span><span 
+class="cmmib-10x-x-120">JO</span><span 
+class="cmbx-12">), if </span><span 
+class="cmmib-10x-x-120">G</span><span 
+class="cmbx-12">(</span><span 
+class="cmmib-10x-x-120">MO,JO</span><span 
+class="cmbx-12">) does not contain any cycle</span>
+<br 
+class="newline" />____________________________________________________________________________________________
+<table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Input: </span><span 
+class="cmmi-12">n,m,SIJ</span>, <span 
+class="cmmi-12">MO </span>and <span 
+class="cmmi-12">JO </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >               <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Output: </span><span 
+class="cmmi-12">LR </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>, if <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) is acyclic;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                                    <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN </span><span 
+class="cmmi-12">k </span>:= 0;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                                       <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">REPEAT</span></td></tr></table>
+<!--l. 237--><p class="noindent" >        <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">k </span>:= <span 
+class="cmmi-12">k </span>+ 1; Determine set <span 
+class="cmmi-12">MQ </span>= <span 
+class="cmsy-10x-x-120">{</span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> = 1<span 
+class="cmsy-10x-x-120">}</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">IF </span><span 
+class="cmmi-12">MQ </span>= <span 
+class="cmsy-10x-x-120">&empty; </span><span 
+class="cmbx-12">THEN </span>(<span 
+class="cmmi-12">MO,JO</span>) is infeasible and <span 
+class="cmbx-12">STOP</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                           <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL</span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">MQ </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 237--><p class="noindent" >                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">k</span>; Mark in <span 
+class="cmmi-12">MO </span>row <span 
+class="cmmi-12">i </span>and in <span 
+class="cmmi-12">JO </span>column <span 
+class="cmmi-12">j</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                                <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                    <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">SIJ </span>:= <span 
+class="cmmi-12">SIJ </span><span 
+class="cmsy-10x-x-120">\ </span><span 
+class="cmmi-12">MQ</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" > <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>in a marked row in <span 
+class="cmmi-12">MO </span><span 
+class="cmbx-12">DO </span><span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub> := <span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span>1;</td></tr></table>
+<!--l. 237--><p class="noindent" ><table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>in a marked column in <span 
+class="cmmi-12">JO </span><span 
+class="cmbx-12">DO </span><span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> := <span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> <span 
+class="cmsy-10x-x-120">&minus; </span>1;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                             <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">UNTIL </span><span 
+class="cmmi-12">SIJ </span>= <span 
+class="cmsy-10x-x-120">&empty;</span>;</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                                                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>.</td></tr></table>
+<!--l. 237--><p class="noindent" >                                                                                                         </div></div>
+</div>
+<!--l. 240--><p class="noindent" >Algorithm 2 determines <span 
+class="cmmi-12">MO </span>and <span 
+class="cmmi-12">JO </span>by means of <span 
+class="cmmi-12">LR</span>. Here <span 
+class="cmmi-12">a</span><sub><span 
+class="cmmi-8">i</span></sub> and <span 
+class="cmmi-12">b</span><sub><span 
+class="cmmi-8">j</span></sub> are the smallest natural
+numbers which are available for the rank of operation (<span 
+class="cmmi-12">ij</span>). The maximal element in <span 
+class="cmmi-12">LR </span>is denoted
+by <span 
+class="cmmi-12">r</span>.
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 245--><p class="noindent" >
+<div class="fbox"> <div class="minipage"><span 
+class="cmbx-12">Algorithm 2: Determination of </span><span 
+class="cmmib-10x-x-120">MO </span><span 
+class="cmbx-12">and </span><span 
+class="cmmib-10x-x-120">JO </span><span 
+class="cmbx-12">by means of </span><span 
+class="cmmib-10x-x-120">LR</span><br 
+class="newline" />____________________________________________________________________________
+<table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Input: </span><span 
+class="cmmi-12">n,m,r,I,J,SIJ</span>, <span 
+class="cmmi-12">LR </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                    <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Output: </span><span 
+class="cmmi-12">MO </span>and <span 
+class="cmmi-12">JO </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                         <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN </span>Set <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>: <span 
+class="cmmi-12">a</span><sub><span 
+class="cmmi-8">i</span></sub> = 1 and <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">j </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">J</span>: <span 
+class="cmmi-12">b</span><sub><span 
+class="cmmi-8">j</span></sub> = 1;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                                                     <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FOR </span><span 
+class="cmmi-12">k </span>:= 1 <span 
+class="cmbx-12">TO </span><span 
+class="cmmi-12">r </span><span 
+class="cmbx-12">DO</span> </td></tr></table>
+<!--l. 262--><p class="noindent" >                               <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>with <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">k </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 262--><p class="noindent" >                                                                <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 262--><p class="noindent" >                                    <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing">Set <span 
+class="cmmi-12">mo</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">a</span><sub><span 
+class="cmmi-8">i</span></sub> and <span 
+class="cmmi-12">a</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-12">a</span><sub><span 
+class="cmmi-8">i</span></sub> + 1;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                           <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing">Set <span 
+class="cmmi-12">jo</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">b</span><sub><span 
+class="cmmi-8">i</span></sub> and <span 
+class="cmmi-12">b</span><sub><span 
+class="cmmi-8">j</span></sub> = <span 
+class="cmmi-12">b</span><sub><span 
+class="cmmi-8">j</span></sub> + 1;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                                                            <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 262--><p class="noindent" >                                                                                                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>.</td></tr></table>
+<!--l. 262--><p class="noindent" >                                                                                                         </div></div>
+</div>
+<!--l. 265--><p class="noindent" >Algorithm 3 generates a semi-active schedule, i.e., the matrix <span 
+class="cmmi-12">C </span>= [<span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>] of the completion times of
+all operations, by means of the matrix of the processing times <span 
+class="cmmi-12">PT </span>and the sequence <span 
+class="cmmi-12">LR</span>.
+Here <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> and <span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> denote the earliest possible starting time of job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> and on machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>,
+respectively.
+<div class="center" 
+>
+<!--l. 270--><p class="noindent" >
+<div class="fbox"> <div class="minipage"><span 
+class="cmbx-12">Algorithm 3: Determination of </span><span 
+class="cmmib-10x-x-120">C</span><span 
+class="cmbx-12">, provided that </span><span 
+class="cmmib-10x-x-120">PT </span><span 
+class="cmbx-12">and </span><span 
+class="cmmib-10x-x-120">LR </span><span 
+class="cmbx-12">are</span>
+<span 
+class="cmbx-12">given</span><br 
+class="newline" />____________________________________________________________________________________________
+<table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Input: </span><span 
+class="cmmi-12">n,m,r,I,J,SIJ</span>, <span 
+class="cmmi-12">PT </span>and <span 
+class="cmmi-12">LR </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>;</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Output: </span><span 
+class="cmmi-12">C </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>.</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                                              <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 288--><p class="noindent" >                                           <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing">Set <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>: <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> = 0 and <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">j </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">J</span>: <span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> = 0;</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                      <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FOR </span><span 
+class="cmmi-12">k </span>:= 1 <span 
+class="cmbx-12">TO </span><span 
+class="cmmi-12">r </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 288--><p class="noindent" >                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>with <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">k </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 288--><p class="noindent" >                                               <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> := max<span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmsy-10x-x-120">} </span>+ <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>;</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                             <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> := <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>; <span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> := <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub>;</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                                <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                                                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>.</td></tr></table>
+<!--l. 288--><p class="noindent" >                                                                                                         </div></div>
+</div>
+<!--l. 292--><p class="noindent" >Algorithm 4 determines the matrices <span 
+class="cmmi-12">H </span>= [<span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub>] and <span 
+class="cmmi-12">T </span>= [<span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub>]. <span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> is the head of operation (<span 
+class="cmmi-12">ij</span>), i.e.,
+                                                                                         
+                                                                                         
+the smallest time which is necessary for the processing of all preceding operations of (<span 
+class="cmmi-12">ij</span>) in the
+sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>). <span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> denotes the tail of operation (<span 
+class="cmmi-12">ij</span>), i.e., the smallest time which is
+necessary for the processing of all succeeding operations of (<span 
+class="cmmi-12">ij</span>) in the sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>).
+Here <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> are again the earliest starting times of job <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> and on machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>, respectively. <span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span class="overline"><span 
+class="cmmi-12">s</span></span><sub><span 
+class="cmmi-8">j</span></sub>
+denote the earliest starting times of jobs <span 
+class="cmmi-12">A</span><sub><span 
+class="cmmi-8">i</span></sub> and on machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub>, respectively, in a backward
+calculation.
+<div class="center" 
+>
+<!--l. 299--><p class="noindent" >
+<div class="fbox"> <div class="minipage"><span 
+class="cmbx-12">Algorithm 4: Calculation of </span><span 
+class="cmmib-10x-x-120">H </span><span 
+class="cmbx-12">and </span><span 
+class="cmmib-10x-x-120">T </span><br 
+class="newline" />____________________________________________________________________________
+<table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Input: </span><span 
+class="cmmi-12">n,m,r,I,J,SIJ</span>, <span 
+class="cmmi-12">PT </span>and <span 
+class="cmmi-12">LR </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                         <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">Output: </span><span 
+class="cmmi-12">H </span>and <span 
+class="cmmi-12">T </span>on the set of operations <span 
+class="cmmi-12">SIJ</span>.</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                              <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                                           <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing">Set <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>: <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> = 0 and <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">j </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">J</span>: <span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> = 0;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing">Set <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">i </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">I</span>: <span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">i</span></sub> = 0 and <span 
+class="cmsy-10x-x-120">&forall; </span><span 
+class="cmmi-12">j </span><span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">J</span>: <span class="overline"><span 
+class="cmmi-12">s</span></span><sub><span 
+class="cmmi-8">j</span></sub> = 0;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                      <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FOR </span><span 
+class="cmmi-12">k </span>:= 1 <span 
+class="cmbx-12">TO </span><span 
+class="cmmi-12">r </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                           <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>with <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">k </span><span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                      <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> := max<span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmsy-10x-x-120">}</span>; <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub> := <span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> + <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>; <span class="overline"><span 
+class="cmmi-12">r</span></span><sub><span 
+class="cmmi-8">j</span></sub> := <span 
+class="cmmi-12">h</span><sub><span 
+class="cmmi-8">ij</span></sub> + <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                             <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">FORALL </span>(<span 
+class="cmmi-12">ij</span>) <span 
+class="cmsy-10x-x-120">&isin; </span><span 
+class="cmmi-12">SIJ </span>with <span 
+class="cmmi-12">lr</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-12">r </span><span 
+class="cmsy-10x-x-120">&minus; </span><span 
+class="cmmi-12">k </span>+ 1 <span 
+class="cmbx-12">DO</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                   <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">BEGIN</span></td></tr></table>
+<!--l. 326--><p class="noindent" >                    <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> := max<span 
+class="cmsy-10x-x-120">{</span><span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">,</span><span class="overline"><span 
+class="cmmi-12">s</span></span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmsy-10x-x-120">}</span>; <span 
+class="cmmi-12">s</span><sub><span 
+class="cmmi-8">i</span></sub> := <span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> + <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>; <span class="overline"><span 
+class="cmmi-12">s</span></span><sub><span 
+class="cmmi-8">j</span></sub> := <span 
+class="cmmi-12">t</span><sub><span 
+class="cmmi-8">ij</span></sub> + <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                         <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td style="width:24;" 
+class="tabbing">    </td><td style="width:24;" 
+class="tabbing">    </td><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>;</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                                 <table  
+cellpadding="0" border="0" cellspacing="0" 
+class="tabbing"><tr  
+style="vertical-align:baseline;" class="tabbing"><td  
+class="tabbing"><span 
+class="cmbx-12">END</span>.</td></tr></table>
+<!--l. 326--><p class="noindent" >                                                                                                         </div></div>
+</div>
+<!--l. 328--><p class="noindent" >Matrix <span 
+class="cmmi-12">W </span>= <span 
+class="cmmi-12">H </span>+ <span 
+class="cmmi-12">PT </span>+ <span 
+class="cmmi-12">T </span>contains the weight of a critical path <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> from a source via operation (<span 
+class="cmmi-12">ij</span>)
+to a sink of a sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>). Thus, all operations with a maximal weight <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> belong
+to at least one critical path. Due to the properties of a latin rectangle, we can order all operations
+in <span 
+class="cmmi-12">O</span>(<span 
+class="cmmi-12">nm</span>) time according to non-decreasing ranks. Thus, we can determine the heads and tails as
+well as all <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">ij</span></sub> in linear time.
+<!--l. 333--><p class="noindent" >This chapter finishes with an example on the block-matrices model. <div class="newtheorem">
+<!--l. 334--><p class="noindent" ><span class="head">
+<span 
+class="cmbx-12">Example</span><span 
+class="cmbx-12">&#x00A0;3</span> </span><span 
+class="cmti-12">Consider the matrix </span><span 
+class="cmmi-12">PT </span><span 
+class="cmti-12">of the processing times from Example 1. The due dates</span>
+<span 
+class="cmti-12">of the jobs are given by </span><span 
+class="cmmi-12">d</span><sub><span 
+class="cmr-8">1</span></sub> = 6<span 
+class="cmmi-12">,d</span><sub><span 
+class="cmr-8">2</span></sub> = 12<span 
+class="cmmi-12">,d</span><sub><span 
+class="cmr-8">3</span></sub> = 8<span 
+class="cmti-12">. The following combination of machine and</span>
+<span 
+class="cmti-12">job orders is feasible since the graph </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">is a sequence graph, i.e., </span><span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) <span 
+class="cmti-12">does</span>
+<span 
+class="cmti-12">not contain any cycle.</span>
+<!--l. 340--><p class="noindent" ><hr class="figure"><div class="figure" 
+><a 
+ id="x13-120024"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 341--><p class="noindent" >
+<div class="minipage"><!--l. 343--><p class="noindent" ><div class="array"> <table id="TBL-10" class="array" 
+cellpadding="0" cellspacing="0"  
+><colgroup id="TBL-10-1g"><col 
+id="TBL-10-1"><col 
+id="TBL-10-2"></colgroup><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub>             </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"> <span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub></div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11">                    </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">1</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub>                 </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">2</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub>                 </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">3</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub>                            </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11"><span 
+class="cmmi-12">M</span><sub><span 
+class="cmr-8">4</span></sub> :</div></td><td  style="white-space:nowrap; text-align:left;" 
+><div class="td11"><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">3</span></sub> <span 
+class="cmsy-10x-x-120">&rarr; </span><span 
+class="cmmi-12">A</span><sub><span 
+class="cmr-8">2</span></sub>                 </div></td>
+</tr><tr  
+ style="vertical-align:baseline;"><td  style="white-space:nowrap; text-align:right;" 
+><div class="td11">    </div></td></tr></table>                          </div>
+</div>&#x00A0;     <div class="minipage">
+<img 
+src="handbuch12x.png" alt="PIC" class="graphics" width="170.72021pt" height="113.8132pt" ><!--tex4ht:graphics  
+name="handbuch12x.png" src="bilder/bild2.eps"  
+--></div></div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;2.4: </span><span  
+class="content">Machine and job orders and the sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>)</span></div><!--tex4ht:label?: x13-120024 -->
+<!--l. 359--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 361--><p class="noindent" ><span 
+class="cmti-12">Algorithm 1 determines the sequence </span><span 
+class="cmmi-12">LR</span><span 
+class="cmti-12">, and Algorithm 3 determines the schedule</span>
+<span 
+class="cmmi-12">C</span><span 
+class="cmti-12">:</span><br 
+class="newline" />
+<div class="center" 
+>
+<!--l. 362--><p class="noindent" >
+<div class="tabular"> <table id="TBL-11" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-11-1g"><col 
+id="TBL-11-1"><col 
+id="TBL-11-2"><col 
+id="TBL-11-3"><col 
+id="TBL-11-4"><col 
+id="TBL-11-5"><col 
+id="TBL-11-6"><col 
+id="TBL-11-7"><col 
+id="TBL-11-8"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-11-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-11-1-1"  
+class="td11"><img 
+src="handbuch13x.png" alt="       &lfloor;  2 1  0  1 &rfloor;       &lfloor;  4  2 &minus;   1 &rfloor;
+  PT = &lceil;  2 3  4  3 &rceil;  LR = &lceil;  3  1  5  4 &rceil;
+          1 5  1  2            2  4  1  3
+
+
+&#x25DF;---------------------&#x25DD;&#x25DC;---------------------&#x25DE;" ></td><td  style="white-space:nowrap; text-align:center;" id="TBL-11-1-2"  
+class="td11"><span 
+class="cmsy-10">&lArr;&rArr;</span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-11-1-3"  
+class="td11"><img 
+src="handbuch14x.png" alt="(        &lfloor;            &rfloor;
+|||          3  2  &minus;  1
+||||  M O = &lceil; 2  1  4  3 &rceil;
+|||{          2  4  1  3
+
+|||        &lfloor;            &rfloor;
+||||          3  2  &minus;  1
+|||(  JO  = &lceil; 2  1  2  3 &rceil;
+           1  3  1  2"  class="left" align="middle"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-11-2-1"  
+class="td11">             <span 
+class="cmmi-10">C </span><span 
+class="cmr-10">= </span><img 
+src="handbuch15x.png" alt="&lfloor;            &rfloor;
+  7  4  &minus;  1
+&lceil; 5  3  12 8 &rceil;
+  2  9  1  4"  class="left" align="middle">          </td><td  style="white-space:nowrap; text-align:center;" id="TBL-11-2-2"  
+class="td11">   </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-11-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-11-3-1"  
+class="td11">                                             </td></tr></table></div></div>
+<!--l. 386--><p class="noindent" ><span 
+class="cmti-12">Matrices </span><span 
+class="cmmi-12">H </span><span 
+class="cmti-12">and </span><span 
+class="cmmi-12">T </span><span 
+class="cmti-12">are determined by Algorithm 4, which gives matrix </span><span 
+class="cmmi-12">W </span>= <span 
+class="cmmi-12">H </span>+ <span 
+class="cmmi-12">PT </span>+ <span 
+class="cmmi-12">T</span><span 
+class="cmti-12">:</span>
+<br 
+class="newline" />
+<center class="math-display" >
+<img 
+src="handbuch16x.png" alt="    &lfloor;  5 3  &minus;   0 &rfloor;  &lfloor; 2  1  &minus;   1&rfloor;   &lfloor; 0  5  &minus;   9 &rfloor;   &lfloor; 7   9   &minus;  10 &rfloor;
+W = &lceil;  3 0   8  5 &rceil;+ &lceil; 2  3  4   3&rceil; + &lceil; 7  9  0   4 &rceil; = &lceil; 12  12  12  12 &rceil;
+       1 4   0  2      1  5  1   2      9  0  10  7       11  9  11  11
+" class="math-display" ></center>
+                                                                                         
+                                                                                         
+<!--l. 401--><p class="noindent" ><span 
+class="cmti-12">Schedule </span><span 
+class="cmmi-12">C </span><span 
+class="cmti-12">yields </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> = 12 <span 
+class="cmti-12">and </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">1</span></sub> = 7<span 
+class="cmti-12">, </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">2</span></sub> = 12<span 
+class="cmti-12">, </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmr-8">3</span></sub> = 9 <span 
+class="cmti-12">such that</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub> = 28<span 
+class="cmti-12">, </span><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub> = 1<span 
+class="cmti-12">,</span>
+<span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> = 2 <span 
+class="cmti-12">and</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub> = 1 <span 
+class="cmti-12">follows. This schedule is optimal in the open-shop case for the</span>
+<span 
+class="cmti-12">objective functions </span><span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub> <span 
+class="cmti-12">and </span><span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub><span 
+class="cmti-12">, but there are better schedules for</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+  <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmti-12">,</span> <span 
+class="cmex-10x-x-120">&sum;</span>
+<span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmti-12">and</span>
+<span 
+class="cmex-10x-x-120">&sum;</span>
+   <span 
+class="cmmi-12">U</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmti-12">.</span>
+</div>
+<!--l. 407--><p class="noindent" >In a job-shop and a flow-shop problem, respectively, with given matrix <span 
+class="cmmi-12">MO</span>, all sequences <span 
+class="cmmi-12">LR </span>are
+feasible which contain the given machine order.
+<!--l. 195--><p class="noindent" >
+                                                                                         
+                                                                                         
+                                                                                         
+                                                                                         
+<!--l. 196--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu3.html" >prev</a>] [<a 
+href="handbuchsu3.html#tailhandbuchsu3.html" >prev-tail</a>] [<a 
+href="handbuchsu4.html" >front</a>] [<a 
+href="handbuchse6.html#handbuchsu4.html" >up</a>] </p></div>
+<!--l. 196--><p class="noindent" ><a 
+ id="tailhandbuchsu4.html"></a>  
+</body></html> 

@@ -7,30 +7,33 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 715--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 733--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu18.html" >next</a>] [<a 
 href="#tailhandbuchsu17.html">tail</a>] [<a 
 href="handbuchse14.html#handbuchsu17.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.3.1   </span> <a 
  id="x36-350004.3.1"></a>Iterative Suche</h4>
-<!--l. 718--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
-<!--l. 720--><p class="noindent" >Bei der Iterativen Suche wird in jedem Schritt die Nachbarschaft abgesucht, und die erste bessere
+<!--l. 736--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_II -->
+<!--l. 738--><p class="noindent" >Bei der Iterativen Suche wird in jedem Schritt die Nachbarschaft abgesucht und die erste bessere
 Lösung akzeptiert. Man endet dabei immer in einem lokalen Optimum, dessen Qualität jedoch
 unter Umständen sehr schlecht sein kann.
-<!--l. 727--><p class="noindent" ><span id="textcolor26">&nbsp;<br><span 
+<!--l. 745--><p class="noindent" ><span id="textcolor26">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 729--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 748--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Iterative Suche </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 735--><p class="noindent" ><span id="textcolor27">&nbsp;<br><span 
+<!--l. 752--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 754--><p class="noindent" ><span id="textcolor27">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -38,14 +41,12 @@ class="cmbx-12">Anzahl der L</span><span
 class="cmbx-12">ösungen:</span> </dt><dd 
 class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösungen
       festgelegt.
-                                                                                         
-                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Abbruch nach Stillst</span><span 
 class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
 class="description">Hiermit kann ein Abbruchkriterium
-      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
+      in Form einer maximalen Anzahl von Iterationsschritten ohne Verbesserung der bisher
       besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen</span>,
@@ -69,13 +70,8 @@ class="description">Hier   kann   eine   obere   Schranke   für   die
 <span 
 class="cmbx-12">Nachbarschaft:</span> </dt><dd 
 class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
-      einem Plan neue Pläne erzeugt werden.<br 
-class="newline" />
+      einem Plan neue Pläne erzeugt werden.
            <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
            <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
@@ -110,16 +106,15 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 774--><p class="noindent" ><span id="textcolor28">&nbsp;<br><span 
+                                                                                         
+                                                                                         
+<!--l. 791--><p class="noindent" ><span id="textcolor28">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-                                                                                         
-                                                                                         
-<!--l. 776--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 794--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span>(<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird die Iterative Suche wie folgt
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird die Iterative Suche wie folgt
 aufgerufen:
-<!--l. 780--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -135,10 +130,10 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;ABORT_BOUND&#x00A0;-214748000
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 793--><p class="nopar" ></div>
-<!--l. 796--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 811--><p class="nopar" ></div>
+<!--l. 814--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 800--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
+<!--l. 818--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter aufgerufen
 werden. Für die Iterative Suche muss als Methode IterativeImprovement aufgerufen werden.
 Angaben zur Auswahl der <span 
 class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf. zusätzlich mit entsprechendem
@@ -153,10 +148,10 @@ wird, und eine etwaige <span
 class="cmbx-12">Abbruchschranke</span>.
                                                                                          
                                                                                          
-<!--l. 813--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 831--><div class="crosslinks"><p class="noindent">[<a 
 href="handbuchsu18.html" >next</a>] [<a 
 href="handbuchsu17.html" >front</a>] [<a 
 href="handbuchse14.html#handbuchsu17.html" >up</a>] </p></div>
-<!--l. 813--><p class="noindent" ><a 
+<!--l. 831--><p class="noindent" ><a 
  id="tailhandbuchsu17.html"></a>  
 </body></html> 

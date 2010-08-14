@@ -7,44 +7,44 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-11-04 12:23:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="handbuch.css"> 
 </head><body 
 >
-<!--l. 42--><div class="crosslinks"><p class="noindent">[<a 
+<!--l. 40--><div class="crosslinks"><p class="noindent">[<a 
 href="#tailhandbuchsu12.html">tail</a>] [<a 
 href="handbuchse12.html#handbuchsu12.html" >up</a>] </p></div>
 <h4 class="subsectionHead"><span class="titlemark">4.1.1   </span> <a 
  id="x29-280004.1.1"></a>Universeller Branch &amp; Bound Algorithmus</h4>
-<!--l. 45--><p class="noindent" ><!-- LISA ALGORITHM bb -->
-<!--l. 47--><p class="noindent" >Mit diesem Branch &amp; Bound Algorithmus können exakte Lösungen für alle Open-Shop,-
-Flow-Shop-, Job-Shop-, oder Einmaschinenprobleme mit regulärer Zielfunktion ermittelt werden.
-Sollte für den gewählten Problemtyp ein alternatives exaktes Verfahren verfügbar sein, so sollte
-dieses gewählt werden, da die Rechenzeit für den universellen Branch &amp; Bound Algorithmus unter
-Umständen beträchtlich sein kann.
-<!--l. 55--><p class="noindent" >Bei geeigneten Einschränkungen (siehe Einstellungen) kann dieser Algorithmus auch zur
+<!--l. 43--><p class="noindent" ><!-- LISA ALGORITHM bb -->
+<!--l. 45--><p class="noindent" >Mit diesem Branch &amp; Bound Algorithmus können exakte Lösungen für alle open-shop, flow-shop,
+job-shop, oder Einmaschinenprobleme mit regulärer Zielfunktion ermittelt werden. Sollte für den
+gewählten Problemtyp ein alternatives exaktes Verfahren verfügbar sein, so sollte dieses gewählt
+werden, da die Rechenzeit für den universellen Branch &amp; Bound Algorithmus unter Umständen
+beträchtlich sein kann.
+<!--l. 53--><p class="noindent" >Bei geeigneten Einschränkungen (siehe Einstellungen) kann dieser Algorithmus auch zur
 Bestimmung einer guten Näherungslösung verwendet werden.
-<!--l. 61--><p class="noindent" ><span id="textcolor9">&nbsp;<br><span 
+<!--l. 59--><p class="noindent" ><span id="textcolor9">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 63--><p class="noindent" >Nach der Eingabe von <span 
+<!--l. 62--><p class="noindent" >Nach der Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und den erforderlichen <span 
 class="cmbx-12">Parametern </span>kann dieses Verfahren
 im Menüpunkt <span 
 class="cmbxti-10x-x-120">Exakte Verfahren/Branch &amp; Bound </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen </span>erreicht
 werden.
-<!--l. 70--><p class="noindent" ><span id="textcolor10">&nbsp;<br><span 
+<!--l. 69--><p class="noindent" ><span id="textcolor10">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen:</span> </dt><dd 
 class="description">Hier kann eine obere Schranke für die Anzahl der auszugebenden
-      Pläne angegeben werden. Die Standardeinstellung beträgt 1. Der Algorithmus ist in der
-      Lage <span 
-class="cmti-12">alle </span>optimalen Pläne zu berechnen. Für diesen Fall muss in diesem Feld eine Zahl
-      eingetragen werden, die mindestens so groß&#x00A0;wie die tatsächliche Anzahl aller optimalen
-      Pläne ist.
+      Pläne angegeben werden. Die Standardeinstellung beträgt 1. Der Algorithmus ist in
+      der Lage, <span 
+class="cmti-12">alle </span>optimalen Pläne zu berechnen. Für diesen Fall muss in diesem Feld
+      eine Zahl eingetragen werden, die mindestens so groß&#x00A0;wie die tatsächliche Anzahl aller
+      optimalen Pläne ist.
       </dd><dt class="description">
 <span 
 class="cmbx-12">Untere Schranke:</span> </dt><dd 
@@ -61,15 +61,14 @@ class="description">Hier kann eine bekannte obere Schranke für den Zielfunktions
       optimalen Lösung eingegeben werden. Eine solche Schranke ergibt sich beispielsweise
       durch den Zielfunktionswert einer bekannten (Näherungs-) Lösung für das vorliegende
       Problem. LiSA verwirft dann alle Teilpläne mit größerem Zielfunktionswert.
+                                                                                         
+                                                                                         
       </dd><dt class="description">
 <span 
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">ügereihenfolge:</span> </dt><dd 
 class="description">Durch die Auswahl der Einfügereihenfolge wird festgelegt, in welcher
-      Reihenfolge die Operationen in den Teilplänen angefügt werden.<br 
-class="newline" />
-                                                                                         
-                                                                                         
+      Reihenfolge die Operationen in den Teilplänen angefügt werden.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">LPT </span>(longest processing time): Die Operationen werden abhängig von der Größe
@@ -81,8 +80,7 @@ class="cmbx-12">RANDOM: </span>Die Operationen werden in zufälliger Reihenfolge 
 <span 
 class="cmbx-12">Art der unteren Schranke:</span> </dt><dd 
 class="description">Hiermit wird festgelegt, mit welcher Prozedur LiSA untere
-      Schranken für den Zielfunktionswert berechnet.<br 
-class="newline" />
+      Schranken für den Zielfunktionswert berechnet.
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">NORMAL:  </span>Als  untere  Schranke  wird  der  Zielfunktionswert  des  Teilplans
@@ -91,26 +89,25 @@ class="cmbx-12">NORMAL:  </span>Als  untere  Schranke  wird  der  Zielfunktionsw
            <li class="itemize"><span 
 class="cmbx-12">EXTENDED: </span>(Diese erweiterte Methode ist noch nicht implementiert.)</li></ul>
       </dd></dl>
-<!--l. 117--><p class="noindent" ><span id="textcolor11">&nbsp;<br><span 
+<!--l. 115--><p class="noindent" ><span id="textcolor11">&nbsp;<br><span 
 class="cmbx-12x-x-120">Problembehandlung</span></span>
-<!--l. 119--><p class="noindent" >Dieser Branch &amp; Bound Algorithmus ist ein Universalsolver, und deshalb sehr aufwendig.
-Sofern möglich, sollte ein problemspezifisches Verfahren benutzt werden. Gestaltet sich
-die Laufzeit zu lang, so kann der Algorithmus jederzeit abgebrochen. Dieser Vorgang
-kann jedoch selbst einige Minuten dauern. Man erhält dann Näherungslösungen als
+<!--l. 118--><p class="noindent" >Dieser Branch &amp; Bound Algorithmus ist ein Universalsolver und deshalb sehr aufwendig. Sofern
+möglich, sollte ein problemspezifisches Verfahren benutzt werden. Gestaltet sich die
+Laufzeit zu lang, so kann der Algorithmus jederzeit abgebrochen werden. Dieser Vorgang
+kann jedoch selbst einige Minuten dauern. Man erhält dann eine Näherungslösung als
 Ausgabe.
-<!--l. 125--><p class="noindent" >Wenn mehrere optimale Lösungen gefunden werden sollen, so empfiehlt es sich, zunächst den
+<!--l. 124--><p class="noindent" >Wenn mehrere optimale Lösungen gefunden werden sollen, so empfiehlt es sich, zunächst den
 optimalen Zielfunktionswert mit der Einstellung 1 für die <span 
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen </span>zu bestimmen,
 und anschließend weitere Optimallösungen in einem zweiten Lauf mit nun bekannten Schranken zu
 berechnen.
-<!--l. 133--><p class="noindent" ><span id="textcolor12">&nbsp;<br><span 
+<!--l. 132--><p class="noindent" ><span id="textcolor12">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 135--><p class="noindent" >In einer Eingabedatei für die <span 
-class="cmbx-12">Autoalg-Funktion </span>(<span 
+<!--l. 135--><p class="noindent" >In einer Eingabedatei für den automatisiereten Algorithmenaufruf (<span 
 class="cmsy-10x-x-120">&rarr;</span><a 
-href="handbuchse26.html#x57-600007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird der allgemeine Branch &amp; Bound
-Algorithmus folgendermaßen aufgerufen:
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) wird der allgemeine
+Branch &amp; Bound Algorithmus folgendermaßen aufgerufen:
 <!--l. 139--><p class="noindent" >
       <div class="quote">
                                                                                          
@@ -132,7 +129,7 @@ können dann die <span
 class="cmbx-12">Einf</span><span 
 class="cmbx-12">ügereihenfolge</span>, die <span 
 class="cmbx-12">Anzahl der L</span><span 
-class="cmbx-12">ösungen</span>, sowie jeweils eine <span 
+class="cmbx-12">ösungen </span>sowie jeweils eine <span 
 class="cmbx-12">obere </span>bzw.
 eine <span 
 class="cmbx-12">untere Schranke </span>angegeben werden.

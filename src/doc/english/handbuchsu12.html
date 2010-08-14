@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Universal Branch &amp; Bound Algorithm</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 33--><div class="crosslinks"><p class="noindent">[<a 
+href="#tailhandbuchsu12.html">tail</a>] [<a 
+href="handbuchse12.html#handbuchsu12.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.1.1   </span> <a 
+ id="x29-280004.1.1"></a>Universal Branch &amp; Bound Algorithm</h4>
+<!--l. 36--><p class="noindent" ><!-- LISA ALGORITHM bb -->
+<!--l. 38--><p class="noindent" >This branch &amp; bound algorithm determines an exact solution for all open-shop, flow-shop,
+job-shop, or single machine problems with a regular criterion. If an alternative exact procedure is
+available for the chosen problem type, this should be chosen since the running time for the
+universal branch &amp; bound algorithm can be possibly rather large.
+<!--l. 46--><p class="noindent" >Using appropriate restrictions (see Settings), this algorithm can also be used for determining a
+good approximate solution.
+<!--l. 51--><p class="noindent" ><span id="textcolor9">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 54--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, this procedure can
+be reached in the menu item <span 
+class="cmbxti-10x-x-120">Exact Algorithms/Branch &amp; Bound </span>in the menu
+<span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 59--><p class="noindent" ><span id="textcolor10">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Number of solutions:</span> </dt><dd 
+class="description">Here an upper bound for the number of output sequences can be
+      settled. The standard setting is 1. The algorithm is able to determine <span 
+class="cmti-12">all </span>optimal
+      sequences. In this case, one must set a number which is at least as large as the number
+      of optimal solutions.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Lower bound:</span> </dt><dd 
+class="description">Here one can set a known lower bound. LiSA considers any sequence, whose
+      objective function does not exceed this value, as optimal. If a value is entered which is
+      larger than the optimal function value, this may lead to the output of sequences which
+      are not optimal. In this way, one can also set a level of the objective function value
+      which is accepted as an approximation.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Upper bound:</span> </dt><dd 
+class="description">Here one can set a known upper bound for the objective function value of
+      an optimal solution. Such a bound can be obtained e.g. by the objective function value
+      of a known approximate solution. Then LiSA disregards all partial sequences with a
+      larger objective function value.
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Insertion order:</span> </dt><dd 
+class="description">By selecting an insertion order it is fixed in which sequence the operations will
+      be appended to the partial sequences. <br 
+class="newline" />
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">LPT </span>(longest processing time): The operations are appended in dependence on
+           the processing times, starting with the largest processing time.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">RANDOM: </span>The operations are appended in a random order.</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbx-12">Bounding:</span> </dt><dd 
+class="description">Here it is fixed which procedure is used by LiSA to calculate lower bounds for the
+      objective function value. <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">NORMAL: </span>The objective function value of the partial sequence is used as a
+           lower bound.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">EXTENDED: </span>(This extended method is not implemented yet.)</li></ul>
+      </dd></dl>
+<!--l. 101--><p class="noindent" ><span id="textcolor11">&nbsp;<br><span 
+class="cmbx-12x-x-120">Treatment of the problem</span></span>
+<!--l. 104--><p class="noindent" >This branch &amp; bound algorithm is a universal solver and therefore rather time consuming. If
+possible, one should use a problem-specific procedure. If the running time becomes too large, the
+procedure can be stopped at any time. This stopping procedure can also last a few minutes. Then
+the output gives an approximate solution.
+<!--l. 109--><p class="noindent" >If one looks for several optimal solutions, it is recommended to determine first the optimal function
+value with the setting 1 for the <span 
+class="cmbx-12">number of solutions </span>and then further optimal solutions in a
+second run with known bounds.
+<!--l. 115--><p class="noindent" ><span id="textcolor12">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 118--><p class="noindent" >The general branch &amp; bound algorithm is called in an input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span>
+<a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>) as follows:
+<!--l. 123--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-5">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bb
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;INS_ORDER&#x00A0;RANDOM
+&#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;NB_SOLUTIONS&#x00A0;1000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;UPPER_BOUND&#x00A0;10000000
+&#x00A0;<br />&#x00A0;&#x00A0;double&#x00A0;LOWER_BOUND&#x00A0;-10000000
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 133--><p class="nopar" ></div>
+<!--l. 136--><p class="noindent" >The sequence in which the parameters are passed is irrelevant. In case of optional parameters, the
+default-value is given.
+<!--l. 139--><p class="noindent" >As an executable file, bb must be invoked for the branch &amp; bound procedure. Then the <span 
+class="cmbx-12">insertion</span>
+<span 
+class="cmbx-12">order</span>, the <span 
+class="cmbx-12">number of solutions </span>as well as an <span 
+class="cmbx-12">upper </span>and a <span 
+class="cmbx-12">lower bound </span>can be optionally
+set.
+                                                                                         
+                                                                                         
+<!--l. 148--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu12.html" >front</a>] [<a 
+href="handbuchse12.html#handbuchsu12.html" >up</a>] </p></div>
+<!--l. 148--><p class="noindent" ><a 
+ id="tailhandbuchsu12.html"></a>  
+</body></html> 

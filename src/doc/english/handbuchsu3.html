@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Disjunctive Graph Model and Block-Matrices Model</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 181--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu4.html" >next</a>] [<a 
+href="handbuchsu2.html" >prev</a>] [<a 
+href="handbuchsu2.html#tailhandbuchsu2.html" >prev-tail</a>] [<a 
+href="#tailhandbuchsu3.html">tail</a>] [<a 
+href="handbuchse6.html#handbuchsu3.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">2.3.3   </span> <a 
+ id="x12-110002.3.3"></a>Disjunctive Graph Model and Block-Matrices Model</h4>
+<!--l. 183--><p class="noindent" >Shop problems are often modelled in the literature by the <span 
+class="cmti-12">disjunctive graph model</span>, see e.g.
+<span 
+class="cmcsc-10x-x-120">B<span 
+class="small-caps">r</span><span 
+class="small-caps">u</span><span 
+class="small-caps">c</span><span 
+class="small-caps">k</span><span 
+class="small-caps">e</span><span 
+class="small-caps">r</span></span>, <span class="cite">[<a 
+href="handbuchli1.html#Xbr01">8</a>]</span>. The set of vertices of the disjunctive graph are the operations which are
+successively numbered and weighted by the processing times. Two vertices are joined by an edge if
+they cannot be simultaneously processed, i.e. they belong to the same job or to the same machine.
+There are arcs from a fictitious source to any vertex. From any vertex, there are arcs to a fictitious
+sink. Precedence constrains for the operations in the job-shop and flow-shop case are
+modelled by an orientation of the corresponding edge. We look for an orientation of all
+edges that are still not oriented such that the resulting graph does not contain any
+cycle and the weight of a critical path becomes minimal (in case of minimizing the
+makespan).
+<!--l. 192--><p class="noindent" >The model used in LiSA can be derived from the latter model as follows:
+<!--l. 194--><p class="noindent" >- Delete the source and the sink and the incident arcs from the disjunctive graph.<br 
+class="newline" />- Determine an acyclic orientation of the disjunctive graph.
+<!--l. 197--><p class="noindent" >If we drop all arcs that are transitive with respect to the machine and job orders from the acyclic
+orientation of the disjunctive graph, we obtain the sequence graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>) used in LiSA.
+Moreover, a sequence is a combination of all ranks of an acyclic orientation of a disjunctive
+graph.
+                                                                                         
+                                                                                         
+<!--l. 205--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu4.html" >next</a>] [<a 
+href="handbuchsu2.html" >prev</a>] [<a 
+href="handbuchsu2.html#tailhandbuchsu2.html" >prev-tail</a>] [<a 
+href="handbuchsu3.html" >front</a>] [<a 
+href="handbuchse6.html#handbuchsu3.html" >up</a>] </p></div>
+<!--l. 205--><p class="noindent" ><a 
+ id="tailhandbuchsu3.html"></a>  
+</body></html> 

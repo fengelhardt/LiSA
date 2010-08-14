@@ -1,4 +1,4 @@
-<!--l. 1460--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
+<!--l. 1478--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,23 +8,23 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 1457-->
+<!--l. 1475-->
 <h4 class="subsectionHead"> <a 
- id="x36-350004.4.1"></a>Brucker&#8217;s Branch &amp; Bound Algorithmus</h4>
-<!--l. 1460--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
-<!--l. 1462--><p class="noindent" ><!-- LISA ALGORITHM js_bb_br -->
-<!--l. 1464--><p class="noindent" >Dieser exakte Algorithmus wurde an der Universität Osnabrück in der Arbeitsgruppe von Peter
+ id="x43-420004.4.1"></a>Brucker&#8217;s Branch &amp; Bound Algorithmus</h4>
+<!--l. 1478--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
+<!--l. 1480--><p class="noindent" ><!-- LISA ALGORITHM js_bb_br -->
+<!--l. 1482--><p class="noindent" >Dieser exakte Algorithmus wurde an der Universität Osnabrück in der Arbeitsgruppe von Peter
 Brucker entwickelt und implementiert. Es gibt jeweils eine Variante für <span 
-class="cmbx-12">Open-Shop Probleme</span>
+class="cmbx-12">open-shop Probleme</span>
 und eine für <span 
-class="cmbx-12">Job-Shop Probleme</span>.
-<!--l. 1471--><p class="noindent" ><span id="textcolor44">&nbsp;<br><span 
+class="cmbx-12">job-shop Probleme</span>.
+<!--l. 1489--><p class="noindent" ><span id="textcolor44">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 1473--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 1492--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Exakte</span>
@@ -34,11 +34,11 @@ class="cmbxti-10x-x-120">Exakte Verfahren/Brucker&#8217;s Job-Shop</span>
 <span 
 class="cmbxti-10x-x-120">B&amp;B </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 1480--><p class="noindent" ><span id="textcolor45">&nbsp;<br><span 
+<!--l. 1499--><p class="noindent" ><span id="textcolor45">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
-<!--l. 1482--><p class="noindent" >Für den <span 
-class="cmbx-12">Open-Shop </span>Algorithmus muss eine Auswahl einer Heuristik zur Generierung von
-Plänen getroffen werden. Für den Job-Shop Algorithmus stehen keiner Optionen zur
+<!--l. 1503--><p class="noindent" >Für den <span 
+class="cmbx-12">open-shop </span>Algorithmus muss eine Auswahl einer Heuristik zur Generierung
+von Plänen getroffen werden. Für den job-shop Algorithmus stehen keine Optionen zur
 Verfügung.
       <dl class="description"><dt class="description">
 <span 
@@ -46,29 +46,28 @@ class="cmbx-12">Heuristik:</span> </dt><dd
 class="description">Der Algorithmus kann verschiedene Heuristiken zum Erzeugen oder vervollständigen
       von Plänen anwenden. (Es existieren mehr als die beiden hier aufgeführten Heuristiken.
       Diese sind jedoch deaktiviert, da sie nicht mit unvollständigen Operationenmengen
-      funktionieren.)<br 
-class="newline" />
+      funktionieren.)
            <ul class="itemize1">
            <li class="itemize"><span 
 class="cmbx-12">LB</span><span 
 class="cmbx-12">_PREC</span><span 
 class="cmbx-12">_RULE: </span>Diese  Heuristik  basiert  auf  einer  Vorrangregel,  die  sich
            aufgrund der Berechnung einer unteren Schranke ergibt.
+                                                                                         
+                                                                                         
            </li>
            <li class="itemize"><span 
 class="cmbx-12">LB</span><span 
 class="cmbx-12">_PREC</span><span 
 class="cmbx-12">_RULE</span><span 
 class="cmbx-12">_VAR: </span>Diese Heuristik ist eine Variation der Obigen.</li></ul>
-                                                                                         
-                                                                                         
       </dd></dl>
-<!--l. 1502--><p class="noindent" ><span id="textcolor46">&nbsp;<br><span 
+<!--l. 1522--><p class="noindent" ><span id="textcolor46">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1504--><p class="noindent" >In einer Eingabedatei für die <span 
-class="cmbx-12">Autoalg-Funktion </span> wird der Branch &amp; Bound
-Algorithmus von Brucker folgendermaßen aufgerufen:
-<!--l. 1508--><p class="noindent" >
+<!--l. 1525--><p class="noindent" >In einer Eingabedatei für die <span 
+class="cmbx-12">Autoalg-Funktion </span> wird der Branch &amp; Bound Algorithmus
+von Brucker folgendermaßen aufgerufen:
+<!--l. 1529--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -78,17 +77,16 @@ Algorithmus von Brucker folgendermaßen aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;HEURISTIC&#x00A0;MIN_MATCHING
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1515--><p class="nopar" ></div>
-<!--l. 1518--><p class="noindent" >Als ausführbare Datei muss für <span 
-class="cmbx-12">Open-Shop </span>Probleme os_bb_wo, und für <span 
-class="cmbx-12">Job-Shop</span>
-Probleme js_bb_br aufgerufen werden. Für Open-Shop Problem kann danach die Wahl
-der <span 
-class="cmbx-12">Heuristik </span>bestimmt werden. Für Job-Shop Probleme existieren keine weiteren
-Paramter.
+      <!--l. 1536--><p class="nopar" ></div>
+<!--l. 1539--><p class="noindent" >Als ausführbare Datei muss für <span 
+class="cmbx-12">open-shop </span>Probleme os_bb_wo, und für <span 
+class="cmbx-12">job-shop </span>Probleme
+js_bb_br aufgerufen werden. Für open-shop Probleme kann danach die Wahl der <span 
+class="cmbx-12">Heuristik</span>
+bestimmt werden. Für job-shop Probleme existieren keine weiteren Parameter.
                                                                                          
                                                                                          
-<!--l. 1532-->
-<!--l. 1532--><p class="noindent" ><a 
- id="tailhandbuchsu17.html"></a>  
+<!--l. 1547-->
+<!--l. 1547--><p class="noindent" ><a 
+ id="tailhandbuchsu23.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

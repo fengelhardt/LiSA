@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Brucker&#8217;s Branch &amp; Bound Algorithm</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 1418--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu24.html" >next</a>] [<a 
+href="#tailhandbuchsu23.html">tail</a>] [<a 
+href="handbuchse15.html#handbuchsu23.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.4.1   </span> <a 
+ id="x43-420004.4.1"></a>Brucker&#8217;s Branch &amp; Bound Algorithm</h4>
+<!--l. 1421--><p class="noindent" ><!-- LISA ALGORITHM os_bb_wo -->
+<!--l. 1423--><p class="noindent" ><!-- LISA ALGORITHM js_bb_br -->
+<!--l. 1425--><p class="noindent" >This exact algorithm has been developed and implemented by the team of Peter Brucker at the
+University of Osnabrück. There exists a variant for <span 
+class="cmbx-12">open-shop problems </span>and a variant for
+<span 
+class="cmbx-12">job-shop problems</span>.
+<!--l. 1431--><p class="noindent" ><span id="textcolor44">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1434--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Exact</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/Brucker&#8217;s Open-Shop B&amp;B </span>and <span 
+class="cmbxti-10x-x-120">Exact Algorithms/Brucker&#8217;s Job-Shop</span>
+<span 
+class="cmbxti-10x-x-120">B&amp;B</span>, respectively, in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1441--><p class="noindent" ><span id="textcolor45">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+<!--l. 1444--><p class="noindent" >For the <span 
+class="cmbx-12">open-shop </span>algorithm, the choice of a heuristic for generating sequences must be made.
+For the job-shop algorithm, no options are available.
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Heuristic:</span> </dt><dd 
+class="description">The algorithm can use several heuristics for generating or completing sequences.
+      (There exist more than the two heuristics mentioned here. However, they are deactivated
+      since they do not work with incomplete sets of operations.) <br 
+class="newline" />
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">LB</span><span 
+class="cmbx-12">_PREC</span><span 
+class="cmbx-12">_RULE: </span>This heuristic is based on a dispatching rule which results
+           from the calculation of a lower bound.
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">LB</span><span 
+class="cmbx-12">_PREC</span><span 
+class="cmbx-12">_RULE</span><span 
+class="cmbx-12">_VAR: </span>This heuristic is a variation of the above heuristic.</li></ul>
+      </dd></dl>
+<!--l. 1462--><p class="noindent" ><span id="textcolor46">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1465--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), the branch &amp; bound algorithm by Brucker is
+activated as follows:
+<!--l. 1469--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-16">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;os_bb_wo
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;HEURISTIC&#x00A0;MIN_MATCHING
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1476--><p class="nopar" ></div>
+<!--l. 1479--><p class="noindent" >As executable file, there must be invoked os_bb_wo for <span 
+class="cmbx-12">open-shop </span>problems and js_bb_br for
+<span 
+class="cmbx-12">job-shop </span>problems. Then, for open-shop problems, a <span 
+class="cmbx-12">heuristic </span>can be selected. For job-shop
+problems, there are no further parameters.
+                                                                                         
+                                                                                         
+<!--l. 1486--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu24.html" >next</a>] [<a 
+href="handbuchsu23.html" >front</a>] [<a 
+href="handbuchse15.html#handbuchsu23.html" >up</a>] </p></div>
+<!--l. 1486--><p class="noindent" ><a 
+ id="tailhandbuchsu23.html"></a>  
+</body></html> 

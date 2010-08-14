@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Example for the Use of LiSA</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 448--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse28.html" >prev</a>] [<a 
+href="handbuchse28.html#tailhandbuchse28.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse29.html">tail</a>] [<a 
+href="handbuchch8.html#handbuchse29.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">8.2   </span> <a 
+ id="x66-710008.2"></a>Example for the Use of LiSA</h3>
+<!--l. 3--><p class="noindent" >The user considers an open-shop problem with <span 
+class="cmmi-12">m </span>= 4 machines and <span 
+class="cmmi-12">n </span>= 4 jobs and makespan
+minimization. No further restrictions are given. How can one use LiSA in this case? After starting
+LiSA, one clicks under <span 
+class="cmbxti-10x-x-120">File </span>the button <span 
+class="cmbxti-10x-x-120">New</span>. The window with the problem type opens and the
+problem is entered in the <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>description, i.e., one chooses the machine environment O and the
+objective function Cmax.
+<!--l. 10--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x66-710011"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 11--><p class="noindent" >
+<div class="fbox"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-21" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-21-1g"><col 
+id="TBL-21-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-21-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-21-1-1"  
+class="td11">                                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-21-2-1"  
+class="td11">              <img 
+src="handbuch35x.png" alt="PIC" class="graphics" width="284.53511pt" height="113.8108pt" ><!--tex4ht:graphics  
+name="handbuch35x.png" src="Lisa_Bilder_e/problemtyp_e.eps"  
+-->                      </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-21-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-21-3-1"  
+class="td11"><img 
+src="handbuch36x.png" alt="PIC" class="graphics" width="213.39787pt" height="170.72008pt" ><!--tex4ht:graphics  
+name="handbuch36x.png" src="Lisa_Bilder_e/parameter_e.eps"  
+--> <img 
+src="handbuch37x.png" alt="PIC" class="graphics" width="213.40346pt" height="142.26428pt" ><!--tex4ht:graphics  
+name="handbuch37x.png" src="Lisa_Bilder_e/generieren_e.eps"  
+--></td></tr></table></div> </div>
+</div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8.1: </span><span  
+class="content">Input of a problem instance</span></div><!--tex4ht:label?: x66-710011 -->
+                                                                                         
+                                                                                         
+<!--l. 22--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 23--><p class="noindent" >Moreover, both the number of machines and the number of jobs are set to 4. Now LiSA makes all
+modules available which are contained for this problem type. One starts with the input of the
+processing times (Button <span 
+class="cmbxti-10x-x-120">Edit</span>, <span 
+class="cmbxti-10x-x-120">Parameter</span>, <span 
+class="cmbxti-10x-x-120">Generate</span>, <span 
+class="cmbxti-10x-x-120">... Processing Times</span>). In addition to
+the manual input, it is possible to use a random number generator. It generates the processing
+times uniformly distributed from the interval [Minimum, Maximum]. Time seed and machine seed
+are arbitrary parameters for starting the generator which determines for the same selection the
+same numbers.
+<!--l. 31--><p class="noindent" >Figure <a 
+href="#x66-710011">8.1<!--tex4ht:ref: Beispieleingabe --></a> displays the corresponding LiSA windows. The matrix of the processing times <span 
+class="cmmi-12">PT </span>is
+given by
+<center class="math-display" >
+<img 
+src="handbuch38x.png" alt="      &lfloor;                 &rfloor;
+        12    6  15   7
+      || 13    6   7  13 ||
+PT  = |   3  14   8   7 |
+      |&lceil;                 |&rceil;
+        10   13   9   7
+" class="math-display" ></center>
+<!--l. 39--><p class="noindent" >In addition, one can also read the data from an XML file the format of which is described in
+Chapter <a 
+href="handbuchse8.html#x17-160002.5">2.5<!--tex4ht:ref: Das File Format in LiSA --></a>. Now LiSA releases the available algorithms. Under <span 
+class="cmbxti-10x-x-120">Algorithms</span>, there are available
+both exact and heuristic algorithms.
+<!--l. 43--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x66-710022"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 44--><p class="noindent" >
+<div class="fbox"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-22" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-22-1g"><col 
+id="TBL-22-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-22-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-22-1-1"  
+class="td11">                                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-22-2-1"  
+class="td11"><img 
+src="handbuch39x.png" alt="PIC" class="graphics" width="199.16557pt" height="99.58647pt" ><!--tex4ht:graphics  
+name="handbuch39x.png" src="Lisa_Bilder_e/reihungsregel_e.eps"  
+--> <img 
+src="handbuch40x.png" alt="PIC" class="graphics" width="199.16998pt" height="99.58629pt" ><!--tex4ht:graphics  
+name="handbuch40x.png" src="Lisa_Bilder_e/matching_e.eps"  
+--></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-22-3-1"  
+class="td11">              <img 
+src="handbuch41x.png" alt="PIC" class="graphics" width="256.08191pt" height="256.0695pt" ><!--tex4ht:graphics  
+name="handbuch41x.png" src="Lisa_Bilder_e/simulated_annealing_e.eps"  
+-->                      </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-22-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-22-4-1"  
+class="td11"></td></tr></table></div> </div>
+</div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8.2: </span><span  
+class="content"> Heuristic Algorithms</span></div><!--tex4ht:label?: x66-710022 -->
+                                                                                         
+                                                                                         
+<!--l. 56--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 58--><p class="noindent" >Figure <a 
+href="#x66-710022">8.2<!--tex4ht:ref: Beispielalgorithmen --></a> displays some of the available heuristics. Fast dispatching rules like the LPT rule
+(longest processing time first) generate a first active schedule which can be used for starting
+several iterative search procedures. Here the window for simulated annealing is displayed.
+Several parameters such as the neighborhood or the cooling scheme can be chosen.
+Details for the parameters can be taken from the description of the search procedure.
+Another constructive procedure is the use of matching algorithms, where step by step
+operations are appended to the sequence which can be simultaneously processed. Here, the
+minimization of the maximal processing time of the operations simultaneously processed is
+used.
+<!--l. 67--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x66-710033"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 68--><p class="noindent" >
+<div class="fbox"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-23" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-23-1g"><col 
+id="TBL-23-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-23-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-23-1-1"  
+class="td11">                                                                               </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-23-2-1"  
+class="td11"><img 
+src="handbuch42x.png" alt="PIC" class="graphics" width="113.80789pt" height="108.12172pt" ><!--tex4ht:graphics  
+name="handbuch42x.png" src="Lisa_Bilder_e/plan_e.eps"  
+--> <img 
+src="handbuch43x.png" alt="PIC" class="graphics" width="170.711pt" height="170.71631pt" ><!--tex4ht:graphics  
+name="handbuch43x.png" src="Lisa_Bilder_e/plangraph_e.eps"  
+--> <img 
+src="handbuch44x.png" alt="PIC" class="graphics" width="113.80789pt" height="108.12036pt" ><!--tex4ht:graphics  
+name="handbuch44x.png" src="Lisa_Bilder_e/schedule_e.eps"  
+--></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-23-3-1"  
+class="td11"></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-23-4-1"  
+class="td11">          <img 
+src="handbuch45x.png" alt="PIC" class="graphics" width="341.42703pt" height="213.39482pt" ><!--tex4ht:graphics  
+name="handbuch45x.png" src="Lisa_Bilder_e/gantt_e.eps"  
+-->                </td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-23-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-23-5-1"  
+class="td11"></td></tr></table></div> </div>
+</div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8.3: </span><span  
+class="content"> Output of the results</span></div><!--tex4ht:label?: x66-710033 -->
+                                                                                         
+                                                                                         
+<!--l. 81--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 83--><p class="noindent" >When applying an algorithm, LiSA immediately displays the Gantt chart of the generated schedule
+on the screen. All forms of the output are given in Figure <a 
+href="#x66-710033">8.3<!--tex4ht:ref: Beispielausgabe --></a>. So the sequence and the matrix of
+the completion times of all operations as well as the visualizations in the sequence graph and in the
+Gantt chart can be selected under <span 
+class="cmbxti-10x-x-120">View</span>. Gantt charts can be displayed machine and job oriented,
+the critical path can be highlighted (Button <span 
+class="cmbxti-10x-x-120">Options</span>). If the number of machines or jobs is too
+large, i.e., the Gantt chart is too complex, the zoom function may help. By zooming
+repeatedly, the Gantt chart can be enlarged such that all information can be viewed when
+scrolling.
+<!--l. 91--><p class="noindent" >LiSA has some extras, two of them are given in Figure <a 
+href="#x66-710044">8.4<!--tex4ht:ref: beispielextras --></a>.
+<!--l. 96--><p class="noindent" ><hr class="figure"><div class="figure" 
+>
+                                                                                         
+                                                                                         
+<a 
+ id="x66-710044"></a>
+                                                                                         
+                                                                                         
+<div class="center" 
+>
+<!--l. 97--><p class="noindent" >
+<div class="fbox"> <!--tex4ht:inline--><div class="tabular"> <table id="TBL-24" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-24-1g"><col 
+id="TBL-24-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-24-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-24-1-1"  
+class="td11">                                                                          </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-24-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-24-2-1"  
+class="td11"><img 
+src="handbuch46x.png" alt="PIC" class="graphics" width="227.61517pt" height="184.94081pt" ><!--tex4ht:graphics  
+name="handbuch46x.png" src="Lisa_Bilder_e/manipulation_e.eps"  
+--> <img 
+src="handbuch47x.png" alt="PIC" class="graphics" width="170.71611pt" height="113.80821pt" ><!--tex4ht:graphics  
+name="handbuch47x.png" src="Lisa_Bilder_e/komplexitaet_e.eps"  
+--></td></tr></table></div> </div>
+</div>
+<br /> <div class="caption" 
+><span class="id">Figure&#x00A0;8.4: </span><span  
+class="content"> Manipulation and Complexity</span></div><!--tex4ht:label?: x66-710044 -->
+                                                                                         
+                                                                                         
+<!--l. 107--><p class="noindent" ></div><hr class="endfigure">
+<!--l. 110--><p class="noindent" >The Gantt charts can be manipulated, i.e., an operation which is chosen by clicking the
+right mouse button can be shifted both in the machine order (MO) and the job order
+(JO) one position to the left or right. If this shift does not lead to an acyclic sequence
+graph, an error massage is given. In addition, it is possible that an operation is chosen as
+source or sink in the sequence graph. In this case, an acyclic sequence graph is always
+generated.
+<!--l. 114--><p class="noindent" >As a second extra, LiSA contains a complexity module. As soon as a problem has been
+entered in the <span 
+class="cmmi-12">&alpha;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&beta;</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">&gamma; </span>notation, the complexity of the problem can be retrieved under
+<span 
+class="cmbxti-10x-x-120">Extras</span>, <span 
+class="cmbxti-10x-x-120">Problem classification</span>. Here LiSA uses the database from Osnabrück on the
+complexity of deterministic scheduling problems. Moreover, it makes the complete reference
+available.
+                                                                                         
+                                                                                         
+<!--l. 1--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse28.html" >prev</a>] [<a 
+href="handbuchse28.html#tailhandbuchse28.html" >prev-tail</a>] [<a 
+href="handbuchse29.html" >front</a>] [<a 
+href="handbuchch8.html#handbuchse29.html" >up</a>] </p></div>
+<!--l. 1--><p class="noindent" ><a 
+ id="tailhandbuchse29.html"></a>  
+</body></html> 

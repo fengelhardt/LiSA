@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The XML Language</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 13--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu30.html" >next</a>] [<a 
+href="#tailhandbuchsu29.html">tail</a>] [<a 
+href="handbuchse30.html#handbuchsu29.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">A.1.1   </span> <a 
+ id="x70-75000A.1.1"></a>The XML Language</h4>
+<!--l. 16--><p class="noindent" >XML (<span 
+class="cmti-12">extensible markup language</span>) is a markup language, similar to HTML, for storing
+information in text form. Like in HTML, XML documents consist of elements, that can be nested,
+such that a tree-like structure is created. These elements may contain text, attributes or other
+elements. Here a summary about all XML-related notions is given, that are used in this
+documentation. However, these explanations are kept very simple and are just provided
+to give a basic understanding of the examples used here. A more detailed description
+of the language can be viewed on the web site of the World Wide Web Consortium
+(<a 
+href="http://www.w3.org/xml" >www.w3.org/xml</a>)
+                                                                                         
+                                                                                         
+      <ul class="itemize1">
+      <li class="itemize">A <span 
+class="cmti-12">tag </span>is a string enclosed in sharp brackets (<span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;</span><span 
+class="cmtt-12">&#x00A0;&#x003E;</span></span></span>). If this string begins with a slash
+      (<span 
+class="cmtt-12">/</span>), it is called an <span 
+class="cmti-12">end tag</span>, otherwise it is a <span 
+class="cmti-12">start tag</span>. The first word in the string is
+      the name of the tag. After every start tag, there must follow an end tag with the same
+      name. <br 
+class="newline" />Example: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;controls&#x003E;</span><span 
+class="cmtt-12">&#x00A0;</span><span 
+class="cmtt-12">&#x00A0;&#x003C;/controls&#x003E;</span></span></span>
+      </li>
+      <li class="itemize">Start tags may contain <span 
+class="cmti-12">attributes</span>. These are denoted as <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">[attribute]="[value]"</span></span></span>, with
+      a space character between the tag name and the attribute. <br 
+class="newline" />Example: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;schedule</span><span 
+class="cmtt-12">&#x00A0;m="5"</span><span 
+class="cmtt-12">&#x00A0;n="3"</span><span 
+class="cmtt-12">&#x00A0;semiactive="yes"&#x003E;</span></span></span>
+      </li>
+      <li class="itemize">A pair of start and end tags, as well as the enclosed text, is called an <span 
+class="cmti-12">element</span>. This
+      text can contain elements itself, which are called <span 
+class="cmti-12">child elements</span>. <br 
+class="newline" />Example: <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;due_dates</span><span 
+class="cmtt-12">&#x00A0;model="lisa_native"&#x003E;</span><span 
+class="cmtt-12">&#x00A0;{</span><span 
+class="cmtt-12">&#x00A0;5</span><span 
+class="cmtt-12">&#x00A0;8</span><span 
+class="cmtt-12">&#x00A0;10</span><span 
+class="cmtt-12">&#x00A0;4</span><span 
+class="cmtt-12">&#x00A0;2</span><span 
+class="cmtt-12">&#x00A0;}</span><span 
+class="cmtt-12">&#x00A0;&#x003C;/due_dates&#x003E;</span></span></span>
+      </li>
+      <li class="itemize">If an element does not contain child elements or an enclosed text, the shorter notation
+      <span class="obeylines-h"><span class="verb"><span 
+class="cmtt-12">&#x003C;[tagname]</span><span 
+class="cmtt-12">&#x00A0;[attribute1]="[value1]"</span><span 
+class="cmtt-12">&#x00A0;...</span><span 
+class="cmtt-12">&#x00A0;/&#x003E;</span></span></span> can be used. The end tag, in this
+      case, is omitted.</li></ul>
+                                                                                         
+                                                                                         
+<!--l. 52--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu30.html" >next</a>] [<a 
+href="handbuchsu29.html" >front</a>] [<a 
+href="handbuchse30.html#handbuchsu29.html" >up</a>] </p></div>
+<!--l. 52--><p class="noindent" ><a 
+ id="tailhandbuchsu29.html"></a>  
+</body></html> 

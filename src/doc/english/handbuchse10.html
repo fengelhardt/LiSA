@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Parameters</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 241--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse11.html" >next</a>] [<a 
+href="handbuchse9.html" >prev</a>] [<a 
+href="handbuchse9.html#tailhandbuchse9.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse10.html">tail</a>] [<a 
+href="handbuchch3.html#handbuchse10.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x25-240003.2"></a>Parameters</h3>
+<!--l. 1--><p class="noindent" >When LiSA knows the problem type and the number of jobs and machines, all parameters can be
+entered.
+<!--l. 5--><p class="noindent" ><span id="textcolor5">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 8--><p class="noindent" >After selecting the menu entry <span 
+class="cmbxti-10x-x-120">Edit/Parameters</span>, the window <span 
+class="cmbx-12">Parameters </span>opens for the
+parameter input, which is built up differently according to the problem type, <span 
+class="cmmi-12">n </span>and <span 
+class="cmmi-12">m</span>. The
+following choices come up for a problem <span 
+class="cmmi-12">J</span><span 
+class="cmsy-10x-x-120">&#x2223;</span><span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmsy-10x-x-120">&#x2223;</span>&Sigma;<span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-12">T</span><sub><span 
+class="cmmi-8">i</span></sub>:
+<!--l. 13--><p class="noindent" ><span id="textcolor6">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbxti-10x-x-120">View:</span> </dt><dd 
+class="description">The release dates <span 
+class="cmmi-12">r</span><sub><span 
+class="cmmi-8">i</span></sub>, the due dates <span 
+class="cmmi-12">d</span><sub><span 
+class="cmmi-8">i</span></sub> and the weights <span 
+class="cmmi-12">w</span><sub><span 
+class="cmmi-8">i</span></sub> will be shown for all these
+      choices:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbxti-10x-x-120">Set of Operations: </span>The number in row <span 
+class="cmti-12">i </span>and column <span 
+class="cmti-12">j </span>of this matrix is 1, if
+           operation (<span 
+class="cmmi-12">ij</span>) exists, 0 otherwise.
+           </li>
+           <li class="itemize"><span 
+class="cmbxti-10x-x-120">Machine Order: </span>The number in row <span 
+class="cmti-12">i </span>and column <span 
+class="cmti-12">j </span>of this matrix is <span 
+class="cmmi-12">k</span>, if the
+           machine <span 
+class="cmmi-12">M</span><sub><span 
+class="cmmi-8">j</span></sub> is at position <span 
+class="cmmi-12">k </span>in the machine order of job <span 
+class="cmmi-12">J</span><sub><span 
+class="cmmi-8">i</span></sub>.
+           </li>
+           <li class="itemize"><span 
+class="cmbxti-10x-x-120">Processing Times: </span>The number in row <span 
+class="cmti-12">i </span>and column <span 
+class="cmti-12">j </span>in this matrix is the
+           processing time of operation (<span 
+class="cmmi-12">ij</span>).</li></ul>
+      </dd><dt class="description">
+<span 
+class="cmbxti-10x-x-120">Generate:</span> </dt><dd 
+class="description">To enter the data by hand, first one has to select the view that contains this data.
+      There, a field can be edited by simply clicking on it. The cursor then jumps to the next
+      field, and so on. After that, according to the problem type, it follows the input
+      of
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">... the processing times</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">... the set of operations</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">... the machine order</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">... the weights</span>
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">... the due dates</span>
+                                                                                         
+                                                                                         
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">... the release dates</span></li></ul>
+      <!--l. 36--><p class="noindent" >By choosing Generate, the window <span 
+class="cmbx-12">Generate </span>is opened for randomly generating uniformly
+      distributed numbers. The following parameters can be chosen:
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">Minimum </span>is the smallest number of the random number interval.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">Maximum </span>is the largest number of the random number interval.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">Time seed </span>is a random number for the generation of the numerical data.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">Machine seed </span>is a random number for the generation of the order of operations
+           on a machine.</li></ul>
+      <!--l. 46--><p class="noindent" >With the parameters time seed and machine seed, the generation of a problem instance is
+      guaranteed to be repeatable. Further information about this random generator can be found
+      in <span 
+class="cmcsc-10x-x-120">T<span 
+class="small-caps">a</span><span 
+class="small-caps">i</span><span 
+class="small-caps">l</span><span 
+class="small-caps">l</span><span 
+class="small-caps">a</span><span 
+class="small-caps">r</span><span 
+class="small-caps">d</span> </span><span class="cite">[<a 
+href="handbuchli1.html#Xtai93">24</a>]</span>.
+      </dd><dt class="description">
+<span 
+class="cmbxti-10x-x-120">Adopt Machine Order:</span> </dt><dd 
+class="description">The machine order will only be adopted, if every row <span 
+class="cmmi-12">i </span>is a
+      permutation of the numbers 1 to the number of operations for job <span 
+class="cmmi-12">J</span><sub><span 
+class="cmmi-8">i</span></sub>.</dd></dl>
+<!--l. 57--><p class="noindent" ><span id="textcolor7">&nbsp;<br><span 
+class="cmbx-12x-x-120">ATTENTION!</span></span>
+<!--l. 60--><p class="noindent" >With the menu entry <span 
+class="cmbxti-10x-x-120">Edit/Parameters</span>, one can also edit the problem instance of the chosen
+problem type. LiSA always tries to use the last input. If an inconsistent input is made, LiSA will
+modify former inputs if necessary, so that in the case of a repeated usage of the editing function
+errors can occur.
+                                                                                         
+                                                                                         
+<!--l. 251--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse11.html" >next</a>] [<a 
+href="handbuchse9.html" >prev</a>] [<a 
+href="handbuchse9.html#tailhandbuchse9.html" >prev-tail</a>] [<a 
+href="handbuchse10.html" >front</a>] [<a 
+href="handbuchch3.html#handbuchse10.html" >up</a>] </p></div>
+<!--l. 251--><p class="noindent" ><a 
+ id="tailhandbuchse10.html"></a>  
+</body></html> 

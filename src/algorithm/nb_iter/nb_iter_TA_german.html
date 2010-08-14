@@ -1,4 +1,4 @@
-<!--l. 1074--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1091--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
@@ -8,28 +8,28 @@
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html,5 --> 
 <meta name="src" content="handbuch.tex"> 
-<meta name="date" content="2009-10-18 16:08:00"> 
+<meta name="date" content="2010-08-13 18:08:00"> 
 <link rel="stylesheet" type="text/css" href="../handbuch.css"> 
 </head><body style="background-image: url('../../../../img/lisa.gif')"  
 >
-<!--l. 1071-->
+<!--l. 1088-->
 <h4 class="subsectionHead"> <a 
- id="x32-310004.3.4"></a>Threshold Accepting</h4>
-<!--l. 1074--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
-<!--l. 1076--><p class="noindent" >Threshold Accepting ist ebenfalls eine erweiterte Version der Iterativen Suche. Im Unterschied zur
+ id="x39-380004.3.4"></a>Threshold Accepting</h4>
+<!--l. 1091--><p class="noindent" ><!-- LISA ALGORITHM nb_iter_TA -->
+<!--l. 1093--><p class="noindent" >Threshold Accepting ist ebenfalls eine erweiterte Version der Iterativen Suche. Im Unterschied zur
 Lokalen Suche werden in jedem Schritt auch kleine Verschlechterungen akzeptiert. Die Schwelle für
-die Akzeptanz schlechterer Lösungen sinkt jedoch im Laufe des Prozesses ab. In LiSA ist eine
-lineare Verkleinerung der Threshold-Schranke implementiert.
-<!--l. 1084--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
+die Akzeptanz schlechterer Lösungen geht jedoch im Laufe des Prozesses gegen Null. In LiSA ist
+eine lineare Verkleinerung der Threshold-Schranke implementiert.
+<!--l. 1101--><p class="noindent" ><span id="textcolor35">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf</span></span>
-<!--l. 1086--><p class="noindent" >Nach Eingabe von <span 
+<!--l. 1104--><p class="noindent" >Nach Eingabe von <span 
 class="cmbx-12">Problemtyp </span>und erforderlichen <span 
 class="cmbx-12">Parametern </span>wählt man <span 
 class="cmbxti-10x-x-120">Heuristische</span>
 <span 
 class="cmbxti-10x-x-120">Verfahren/Threshold Accepting </span>im Menü <span 
 class="cmbxti-10x-x-120">Algorithmen</span>.
-<!--l. 1092--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
+<!--l. 1109--><p class="noindent" ><span id="textcolor36">&nbsp;<br><span 
 class="cmbx-12x-x-120">Einstellungen</span></span>
       <dl class="description"><dt class="description">
 <span 
@@ -42,7 +42,7 @@ class="description">Hiermit  wird  die  maximale  Anzahl  von  erzeugten  Lösung
 class="cmbx-12">Abbruch nach Stillst</span><span 
 class="cmbx-12">änden (Abbruchkriterium):</span> </dt><dd 
 class="description">Hiermit kann ein Abbruchkriterium
-      in Form einer maximalen Anzahl von Iterationsschriten ohne Verbesserung der bisher
+      in Form einer maximalen Anzahl von Iterationsschritten ohne Verbesserung der bisher
       besten Lösung festgelegt werden. Ist dieser Wert größer als die <span 
 class="cmbx-12">Anzahl der L</span><span 
 class="cmbx-12">ösungen</span>,
@@ -80,13 +80,8 @@ class="description">Hier   kann   eine   obere   Schranke   für   die
 <span 
 class="cmbx-12">Nachbarschaft:</span> </dt><dd 
 class="description">Hier wird die Definition der Nachbarschaft festgelegt, d.h. auf welche Weise aus
-      einem Plan neue Pläne erzeugt werden.<br 
-class="newline" />
+      einem Plan neue Pläne erzeugt werden.
            <ul class="itemize1">
-           <li class="itemize"><span 
-class="cmbx-12">CR</span><span 
-class="cmbx-12">_TST</span>
-           </li>
            <li class="itemize"><span 
 class="cmbx-12">k</span><span 
 class="cmbx-12">_API</span>
@@ -121,12 +116,12 @@ class="cmbx-12">_CR</span>
 class="cmbx-12">k</span><span 
 class="cmbx-12">_REINSERTION.</span></li></ul>
       </dd></dl>
-<!--l. 1139--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
+<!--l. 1154--><p class="noindent" ><span id="textcolor37">&nbsp;<br><span 
 class="cmbx-12x-x-120">Aufruf in der Autoalg-Eingabedatei</span></span>
-<!--l. 1141--><p class="noindent" >In der Eingabedatei für die <span 
+<!--l. 1157--><p class="noindent" >In der Eingabedatei für die <span 
 class="cmbx-12">Autoalg-Funktion </span> wird Threshold Accepting wie folgt
 aufgerufen:
-<!--l. 1145--><p class="noindent" >
+<!--l. 1161--><p class="noindent" >
       <div class="quote">
                                                                                          
                                                                                          
@@ -144,10 +139,10 @@ aufgerufen:
 &#x00A0;<br />&#x00A0;&#x00A0;long&#x00A0;MAX_STUCK&#x00A0;30
 &#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
 </div>
-      <!--l. 1160--><p class="nopar" ></div>
-<!--l. 1163--><p class="noindent" >Die Reiheinfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
+      <!--l. 1176--><p class="nopar" ></div>
+<!--l. 1179--><p class="noindent" >Die Reihenfolge, in der die Parameter aufgerufen werden, ist dabei irrelevant. Bei optionalen
 Parametern ist hier jeweils der default-Wert angegeben.
-<!--l. 1167--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter
+<!--l. 1183--><p class="noindent" >Als ausführbare Datei muss für alle Nachbarschaftssuchverfahren Verfahren nb_iter
 aufgerufen werden. Für Threshold Accepting muss als Methode ThresholdAccepting
 aufgerufen werden. Angaben zur Auswahl der <span 
 class="cmbx-12">Nachbarschaft </span>sind obligatorisch (ggf.
@@ -165,7 +160,7 @@ class="cmbx-12">Startwahrscheinlichkeit</span>, eine etwaige
 class="cmbx-12">Abbruchschranke</span>.
                                                                                          
                                                                                          
-<!--l. 1180-->
-<!--l. 1180--><p class="noindent" ><a 
- id="tailhandbuchsu14.html"></a>  
+<!--l. 1196-->
+<!--l. 1196--><p class="noindent" ><a 
+ id="tailhandbuchsu20.html"></a>  
 <hr><a href="../handbuch.html">LiSA-Handbuch</a><hr></body></html>

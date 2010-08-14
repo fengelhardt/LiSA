@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Manipulation of Sequences and Schedules</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 355--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse24.html" >next</a>] [<a 
+href="handbuchse22.html" >prev</a>] [<a 
+href="handbuchse22.html#tailhandbuchse22.html" >prev-tail</a>] [<a 
+href="#tailhandbuchse23.html">tail</a>] [<a 
+href="handbuchch6.html#handbuchse23.html" >up</a>] </p></div>
+<h3 class="sectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x58-570006.2"></a>Manipulation of Sequences and Schedules</h3>
+<!--l. 1--><p class="noindent" >LiSA enables one to manipulate later a sequence or schedule which has already been
+determined by shifting particular operations in the corresponding machine and/or job
+order.
+<!--l. 5--><p class="noindent" >&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span>
+<!--l. 8--><p class="noindent" >Select an operation to be manipulated by a double click on the corresponding bar in the Gantt
+chart. The chosen operation (<span 
+class="cmmi-12">ij</span>) is marked by a black border, and a window opens with the
+corresponding manipulation possibilities.
+<!--l. 16--><p class="noindent" >
+                                                                                         
+                                                                                         
+<!--l. 17--><p class="noindent" >&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span>
+<div class="center" 
+>
+<!--l. 18--><p class="noindent" >
+<!--l. 18--><p class="noindent" ><span 
+class="cmbx-12">Manipulation possibilities for the selected operation </span>(<span 
+class="cmmi-12">i j</span>)</div>
+<div class="center" 
+>
+<!--l. 19--><p class="noindent" >
+<div class="tabular"> <table id="TBL-15" class="tabular" 
+cellspacing="0" cellpadding="0" rules="groups" 
+><colgroup id="TBL-15-1g"><col 
+id="TBL-15-1"></colgroup><colgroup id="TBL-15-2g"><col 
+id="TBL-15-2"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-1-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-1-1"  
+class="td11"><!--l. 21--><p class="noindent" >Symbol     </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-1-2"  
+class="td11"><!--l. 21--><p class="noindent" >Meaning                                                                                       </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-2-1"  
+class="td11"><!--l. 21--><p class="noindent" >          </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-2-2"  
+class="td11"><!--l. 22--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-3-1"  
+class="td11"><!--l. 22--><p class="noindent" >Source       </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-3-2"  
+class="td11"><!--l. 22--><p class="noindent" >The operation (<span 
+class="cmmi-12">ij</span>) becomes a source in the sequence graph, i.e., it does not
+have predecessor operations.                                                             </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-4-1"  
+class="td11"><!--l. 24--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-4-2"  
+class="td11"><!--l. 25--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-5-1"  
+class="td11"><!--l. 25--><p class="noindent" >Sink          </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-5-2"  
+class="td11"><!--l. 25--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) becomes a sink in the sequence graph, i.e., it does not
+have successor operations.                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-6-1"  
+class="td11"><!--l. 27--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-6-2"  
+class="td11"><!--l. 28--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-7-1"  
+class="td11"><!--l. 28--><p class="noindent" >MO  <img 
+src="handbuch20x.png" alt="PIC" class="graphics" width="9.03374pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch20x.png" src="bilder/lleft.eps"  
+-->                </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-7-2"  
+class="td11"><!--l. 28--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) becomes the first operation in the machine order of job
+i.                                                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-8-1"  
+class="td11"><!--l. 30--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-8-2"  
+class="td11"><!--l. 31--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-9-1"  
+class="td11"><!--l. 31--><p class="noindent" >MO <img 
+src="handbuch21x.png" alt="PIC" class="graphics" width="8.03pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch21x.png" src="bilder/left.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-9-2"  
+class="td11"><!--l. 31--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) is shifted left in the machine order of job i by one
+position.                                                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-10-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-10-1"  
+class="td11"><!--l. 33--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-10-2"  
+class="td11"><!--l. 34--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-11-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-11-1"  
+class="td11"><!--l. 34--><p class="noindent" >MO  <img 
+src="handbuch22x.png" alt="PIC" class="graphics" width="9.03374pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch22x.png" src="bilder/rright.eps"  
+-->                </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-11-2"  
+class="td11"><!--l. 34--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) becomes the last operation in the machine order of job
+i.                                                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-12-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-12-1"  
+class="td11"><!--l. 36--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-12-2"  
+class="td11"><!--l. 37--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-13-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-13-1"  
+class="td11"><!--l. 37--><p class="noindent" >MO <img 
+src="handbuch23x.png" alt="PIC" class="graphics" width="8.03pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch23x.png" src="bilder/right.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-13-2"  
+class="td11"><!--l. 37--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) is shifted right in the machine order of job i by one
+position.                                                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-14-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-14-1"  
+class="td11"><!--l. 39--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-14-2"  
+class="td11"><!--l. 40--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-15-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-15-1"  
+class="td11"><!--l. 40--><p class="noindent" >JO <img 
+src="handbuch24x.png" alt="PIC" class="graphics" width="8.03pt" height="9.03374pt" ><!--tex4ht:graphics  
+name="handbuch24x.png" src="bilder/ttop.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-15-2"  
+class="td11"><!--l. 40--><p class="noindent" >The operation (<span 
+class="cmmi-12">ij</span>) becomes the first operation in the job order on machine
+j.                                                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-16-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-16-1"  
+class="td11"><!--l. 42--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-16-2"  
+class="td11"><!--l. 43--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-17-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-17-1"  
+class="td11"><!--l. 43--><p class="noindent" >JO <img 
+src="handbuch25x.png" alt="PIC" class="graphics" width="8.03pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch25x.png" src="bilder/top.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-17-2"  
+class="td11"><!--l. 43--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) is shifted left in the job order on machine j by one
+position.                                                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-18-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-18-1"  
+class="td11"><!--l. 45--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-18-2"  
+class="td11"><!--l. 46--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-19-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-19-1"  
+class="td11"><!--l. 46--><p class="noindent" >JO <img 
+src="handbuch26x.png" alt="PIC" class="graphics" width="8.03pt" height="9.03374pt" ><!--tex4ht:graphics  
+name="handbuch26x.png" src="bilder/bbuttom.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-19-2"  
+class="td11"><!--l. 46--><p class="noindent" >The operation (<span 
+class="cmmi-12">ij</span>) becomes the last operation in the job order on machine
+j.                                                                                                </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-20-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-20-1"  
+class="td11"><!--l. 48--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-20-2"  
+class="td11"><!--l. 49--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-21-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-21-1"  
+class="td11"><!--l. 49--><p class="noindent" >JO <img 
+src="handbuch27x.png" alt="PIC" class="graphics" width="8.03pt" height="8.03pt" ><!--tex4ht:graphics  
+name="handbuch27x.png" src="bilder/buttom.eps"  
+--> </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-21-2"  
+class="td11"><!--l. 49--><p class="noindent" >The operation (<span 
+class="cmmi-12">i j</span>) is shifted right in the job order on machine j by one
+position.                                                                                       </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-22-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-22-1"  
+class="td11"><!--l. 51--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-22-2"  
+class="td11"><!--l. 52--><p class="noindent" >                                                              </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-23-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-23-1"  
+class="td11"><!--l. 52--><p class="noindent" ><img 
+src="handbuch28x.png" alt="PIC" class="graphics" width="10.03749pt" height="10.03749pt" ><!--tex4ht:graphics  
+name="handbuch28x.png" src="bilder/reset.eps"  
+-->      </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-23-2"  
+class="td11"><!--l. 52--><p class="noindent" >The  sequence  is  re-determined  which  was  available  before  opening  the
+manipulation window.                                                                     </td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-24-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-24-1"  
+class="td11"><!--l. 53--><p class="noindent" >&#x00A0;              </td><td  style="white-space:wrap; text-align:left;" id="TBL-15-24-2"  
+class="td11"><!--l. 54--><p class="noindent" >                                                              </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-15-25-"><td  style="white-space:wrap; text-align:left;" id="TBL-15-25-1"  
+class="td11">          </td></tr></table></div></div>
+<!--l. 59--><p class="noindent" ><span 
+class="cmbx-12">ATTENTION: </span>If the shift of an operation creates a cycle in the graph <span 
+class="cmmi-12">G</span>(<span 
+class="cmmi-12">MO,JO</span>), a window is
+opened with the error message: <span 
+class="cmti-12">cycle: modification not possible</span>.
+<!--l. 62--><p class="noindent" >In the lower part of the manipulation window, the immediate predecessors and successors of the
+chosen operation (<span 
+class="cmmi-12">i j</span>) are displayed. Simultaneously, the processing time <span 
+class="cmmi-12">p</span><sub><span 
+class="cmmi-8">ij</span></sub> and the completion
+time <span 
+class="cmmi-12">c</span><sub><span 
+class="cmmi-8">ij</span></sub> are displayed.<br 
+class="newline" />
+                                                                                         
+                                                                                         
+<!--l. 365--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchse24.html" >next</a>] [<a 
+href="handbuchse22.html" >prev</a>] [<a 
+href="handbuchse22.html#tailhandbuchse22.html" >prev-tail</a>] [<a 
+href="handbuchse23.html" >front</a>] [<a 
+href="handbuchch6.html#handbuchse23.html" >up</a>] </p></div>
+<!--l. 365--><p class="noindent" ><a 
+ id="tailhandbuchse23.html"></a>  
+</body></html> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>The Shifting Bottleneck Heuristic</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html,5 --> 
+<meta name="src" content="handbuch.tex"> 
+<meta name="date" content="2010-08-13 17:57:00"> 
+<link rel="stylesheet" type="text/css" href="handbuch.css"> 
+</head><body 
+>
+<!--l. 1615--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu28.html" >next</a>] [<a 
+href="#tailhandbuchsu27.html">tail</a>] [<a 
+href="handbuchse16.html#handbuchsu27.html" >up</a>] </p></div>
+<h4 class="subsectionHead"><span class="titlemark">4.5.1   </span> <a 
+ id="x48-470004.5.1"></a>The Shifting Bottleneck Heuristic</h4>
+<!--l. 1618--><p class="noindent" ><!-- LISA ALGORITHM bottle -->
+<!--l. 1620--><p class="noindent" >The shifting bottleneck heuristic generates an approximate solution for the <span 
+class="cmbx-12">job-shop </span>and the
+<span 
+class="cmbx-12">flow-shop </span>problem, respectively, with minimizing the makespan by solving successively single
+machine problems. In the first step, the weight of a critical path in the corresponding disjunctive
+graph is determined, where all non-oriented edges have been deleted. This value is a lower bound
+<span 
+class="cmmi-12">LB </span>for the makespan <span 
+class="cmmi-12">C</span><sub><span 
+class="cmmi-8">max</span></sub>. Step by step, one now solves for any machine a single machine
+problem with release dates of the jobs (heads of the operations on the corresponding machine),
+due dates (<span 
+class="cmmi-12">LB </span>minus tails of the operations on the considered machine), precedence
+constraints between the jobs (precedence constraints between the operations on the
+considered machine from the current disjunctive graph without disjunctive edges) and the
+minimization of <span 
+class="cmmi-12">L</span><sub><span 
+class="cmmi-8">max</span></sub>. The exact solution of this problem is used as the job order of
+the operations on the considered machine. In addition, after fixing the job order on
+a machine, one tries to improve already fixed job orders further, i.e., one shifts the
+bottleneck.
+<!--l. 1639--><p class="noindent" ><span id="textcolor53">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation</span></span>
+<!--l. 1641--><p class="noindent" >After the input of the <span 
+class="cmbx-12">problem type </span>and the required <span 
+class="cmbx-12">parameters</span>, one chooses <span 
+class="cmbxti-10x-x-120">Heuristic</span>
+<span 
+class="cmbxti-10x-x-120">Algorithms/ShiftingBottleneck </span>in the menu <span 
+class="cmbxti-10x-x-120">Algorithms</span>.
+<!--l. 1647--><p class="noindent" ><span id="textcolor54">&nbsp;<br><span 
+class="cmbx-12x-x-120">Settings</span></span>
+      <dl class="description"><dt class="description">
+<span 
+class="cmbx-12">Speed:</span> </dt><dd 
+class="description">By this, one can select a fast variant which might generate infeasible schedules or a
+      slower variant which contains the complete heuristic.
+                                                                                         
+                                                                                         
+           <ul class="itemize1">
+           <li class="itemize"><span 
+class="cmbx-12">FAST </span>The fast variant does not consider the precedence graph of the operations
+           when  solving  the  single  machine  problems.  As  a  consequence,  there  can  be
+           generated combinations of the machine and job orders which are infeasible, i.e.,
+           which contain cycles, what LiSA returns as an error message.
+           </li>
+           <li class="itemize"><span 
+class="cmbx-12">SLOW </span>Here, the shifting bottleneck heuristic is completely implemented.</li></ul>
+      </dd></dl>
+<!--l. 1665--><p class="noindent" ><span id="textcolor55">&nbsp;<br><span 
+class="cmbx-12x-x-120">Invocation in the Autoalg input file</span></span>
+<!--l. 1667--><p class="noindent" >In the input file for the <span 
+class="cmbx-12">Autoalg-function </span>(<span 
+class="cmsy-10x-x-120">&rarr;</span><a 
+href="handbuchse27.html#x63-660007.3">7.3<!--tex4ht:ref: Automatisierter Algorithmenaufruf --></a>), the shifting bottleneck heuristic is activated
+as follows:
+<!--l. 1671--><p class="noindent" >
+      <div class="quote">
+                                                                                         
+                                                                                         
+      <div class="verbatim" id="verbatim-20">
+&#x003C;CONTROLPARAMETERS&#x003E;
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;AUTOALG_EXECUTABLE&#x00A0;bottle
+&#x00A0;<br />&#x00A0;&#x00A0;string&#x00A0;SPEED&#x00A0;SLOW
+&#x00A0;<br />&#x003C;/CONTROLPARAMETERS&#x003E;
+</div>
+      <!--l. 1678--><p class="nopar" ></div>
+<!--l. 1681--><p class="noindent" >Computational tests with randomly generated machine orders have created cycles in the FAST
+variant only for problems with more than 20 machines and 20 jobs.
+                                                                                         
+                                                                                         
+<!--l. 1684--><div class="crosslinks"><p class="noindent">[<a 
+href="handbuchsu28.html" >next</a>] [<a 
+href="handbuchsu27.html" >front</a>] [<a 
+href="handbuchse16.html#handbuchsu27.html" >up</a>] </p></div>
+<!--l. 1684--><p class="noindent" ><a 
+ id="tailhandbuchsu27.html"></a>  
+</body></html> 
