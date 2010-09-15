@@ -9,7 +9,7 @@
 
 Das Softwarepaket LiSA wurde im Rahmen des vom Land Sachsen Anhalt 
 gefoerderten Projektes "Lateinische Rechtecke in der Scheduling-Theorie" 
-entwickelt. Diese Kopie ist unter der GNU General Public Licence lizensiert.
+entwickelt. Diese Kopie ist unter der GNU General Public License lizensiert.
 
 Projektleiterin: Heidemarie Braesel
 
