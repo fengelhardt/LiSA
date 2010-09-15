@@ -25,7 +25,7 @@ const int ENTRYWIDTH =60;
     string (like "Black" or "\#4992a6"), or as number.
   
     @author Per Willenius
-    @version 3.0pre1
+    @version 3.0
  */
 class Lisa_Canvas{
   

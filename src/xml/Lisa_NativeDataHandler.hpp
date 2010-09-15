@@ -15,7 +15,7 @@
  * The documentation is provided in the Lisa_DataHandler class.
  * 
  * @author Jan Tusch
- * @version 3.0pre1
+ * @version 3.0
 */
 /// IO-Handler for Lisa Native Data Model
 class Lisa_NativeDataHandler : public Lisa_DataHandler {

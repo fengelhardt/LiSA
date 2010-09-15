@@ -329,7 +329,7 @@ const long MAXNUMBER= 1000000L;
     @param seed random seed
     @return a random value between lb and ub, determined by seed 
     @author Per Willenius
-    @version 3.0pre1
+    @version 3.0
  */
 int lisa_random( int lb, int ub, long *seed );
 

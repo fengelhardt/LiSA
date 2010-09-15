@@ -15,7 +15,7 @@
     problem (i.e. this neighbourhood swaps two arbitrary adjacent jobs).
    
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood  
  */
 class API_Neighbourhood: public Lisa_Neighbourhood{
@@ -68,7 +68,7 @@ public:
     machine problem, it shifts an arbitrary job on the machine.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see API_Neighbourhood
 */
@@ -97,7 +97,7 @@ public:
     supports random moves but no enumeration.
 
     @author Marc Moerig
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see API_Neighbourhood
 */

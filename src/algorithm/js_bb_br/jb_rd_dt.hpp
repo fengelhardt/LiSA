@@ -2,7 +2,7 @@
 /*                            Filename: ReadData.h                           */
 /*                                                                           */
 /*     EXPORT: Procedure Read_Data: Read data from file 'FileName'           */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 

@@ -129,7 +129,7 @@
     So the objective for solution A is 
     P(0,1) + P(1,2) + P(2,3) + P(0,3) = 4 + 3 + 4 + 6 = 17
     
-    @version 3.0pre1
+    @version 3.0
     @author Marc Moerig   
 */
 class Travel_Graph : public Lisa_Object{

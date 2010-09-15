@@ -35,7 +35,7 @@ enum{
  *  problem objects with the aid of the reduction graphs.
  *  
  *  @author Martin Harborth , Jan Tusch
- *  @version 3.0pre1
+ *  @version 3.0
  * 
  */
 

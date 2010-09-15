@@ -14,7 +14,7 @@
     as tupel with TUPEL_INDEX entries
     
     @author Per Willenius, Thomas Tautenhahn, Martin Harborth
-    @version 3.0pre1
+    @version 3.0
 */
 class Lisa_ProblemType : public Lisa_FileEntry{
 private:

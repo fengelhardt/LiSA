@@ -10,7 +10,7 @@ const int  MAX_CANV_HEIGHT = 150000;
 
 /// contains information on LiSA system values
 /** @author  Per Willenius
-    @version 3.0pre1
+    @version 3.0
   */
 class Lisa_Status{
 public:

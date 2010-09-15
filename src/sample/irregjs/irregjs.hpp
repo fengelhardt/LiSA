@@ -10,7 +10,7 @@
 //**************************************************************************
 
 /// specialisation of Lisa_JsProblem
-/** @version 3.0pre1
+/** @version 3.0
     @author Thomas Tautenhahn
  */
 class NM_JsProblem: public Lisa_JsProblem{
@@ -28,7 +28,7 @@ public:
 //**************************************************************************
 
 /// specialisation of Lisa_JsSchedule
-/** @version 3.0pre1
+/** @version 3.0
     @author Thomas Tautenhahn
  */   
 class NM_JsSchedule: public Lisa_JsSchedule{

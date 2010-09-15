@@ -14,7 +14,7 @@ void rattle_js( Lisa_JsSchedule * sched);
 
 /// Job Shop insertion class
 /**
-  @version 3.0pre1
+  @version 3.0
   @author Thomas Tautenhahn */
 class JS_Inserter{
 public:

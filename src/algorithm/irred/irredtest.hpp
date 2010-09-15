@@ -31,7 +31,7 @@
   retrivial.
 
   @author Marc Moerig
-  @version 3.0pre1
+  @version 3.0
 */
 class Lisa_IrreducibilityTest : public Lisa_GenericObject{
 private:

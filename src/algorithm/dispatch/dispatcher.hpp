@@ -13,7 +13,7 @@
     LR!
 
     @author Thomas Tautenhahn
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_List
  */ 
 class Lisa_Dispatcher{ 	

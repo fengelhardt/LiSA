@@ -8,7 +8,7 @@
 /** ordered pairs are often used as basictype
     
     @author            Per Willenius
-    @version 3.0pre1
+    @version 3.0
   */
 class Lisa_Pair : public Lisa_Object{ 
 public:

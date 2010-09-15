@@ -3,7 +3,7 @@
 /*                                                                           */
 /*  EXPORT: Add_Disjunctive_Arcs: Fixation of additional disjunctive arcs    */
 /*          due to J. Carlier and E.Pinson                                   */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 

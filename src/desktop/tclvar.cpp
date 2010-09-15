@@ -1,6 +1,6 @@
 /**
  * @author  Per Willenius
- * @version 3.0pre1
+ * @version 3.0
  */
 
 #include "tclvar.hpp"

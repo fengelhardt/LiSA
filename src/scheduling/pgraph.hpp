@@ -7,7 +7,7 @@
 /// Sequence Graph
 /**
   @author Per Willenius
-  @version 3.0pre1
+  @version 3.0
   */
 class Lisa_SGraph { 
 private:
@@ -76,7 +76,7 @@ public:
 /// adjacency list node
 /**
   @author Per Willenius
-  @version 3.0pre1
+  @version 3.0
   */
 class AD_List_Node{
 public:
@@ -96,7 +96,7 @@ public:
 /// adjacency list graph object
 /**
   @author Per Willenius
-  @version 3.0pre1
+  @version 3.0
   */
 class AD_List{
 private:
@@ -135,7 +135,7 @@ public:
 /// vertex list
 /**
   @author Per Willenius
-  @version 3.0pre1
+  @version 3.0
   */
 class V_List{
 private: 
@@ -169,7 +169,7 @@ public:
 /// contains the edges of the CS graph
 /**
   @author Per Willenius
-  @version 3.0pre1
+  @version 3.0
   */
 class Lisa_CSGraph{
 private:

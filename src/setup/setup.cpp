@@ -1,6 +1,6 @@
 /** 
  * @author  Lars Dornheim
- * @version 3.0pre1
+ * @version 3.0
  */
  
 #include <cstdlib>

@@ -9,7 +9,7 @@
 
 /// set entry in G_Schedule->LR
 /** @author Per Willenius
-    @version 3.0pre1
+    @version 3.0
 */ 
 int TC_set_p(ClientData clientData, Tcl_Interp *interp,
              int argc, TCL_HACK_CHAR *argv[]); 

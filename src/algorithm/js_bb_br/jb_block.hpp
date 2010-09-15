@@ -3,7 +3,7 @@
 /*                                                                           */
 /*   Export: Procedure Compute_Blocks:                                       */
 /*                     Calculation of the blocks on the critical path        */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 

@@ -15,7 +15,7 @@
     a machine). It is inherited from the class Lisa_Neighbourhood.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_API_Ngbh: public Lisa_Neighbourhood{
@@ -78,7 +78,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -130,7 +130,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -164,7 +164,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -198,7 +198,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -235,7 +235,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */  
@@ -266,7 +266,7 @@ class JSHOP_cr_API_Ngbh: public JSHOP_API_Ngbh{
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -298,7 +298,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -331,7 +331,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_cr_trans_mix_Ngbh: public JSHOP_API_Ngbh{
@@ -372,7 +372,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_cr_trans_Ngbh: public JSHOP_API_Ngbh{
@@ -412,7 +412,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
     @see JSHOP_API_Ngbh
 */
@@ -441,7 +441,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_semi_trans_Ngbh: public JSHOP_API_Ngbh{
@@ -481,7 +481,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_shift_Ngbh: public JSHOP_API_Ngbh{
@@ -517,7 +517,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_PI_Ngbh: public JSHOP_API_Ngbh{
@@ -546,7 +546,7 @@ public:
     It is inherited from the class JSHOP_API_Ngbh.
 
     @author Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_Neighbourhood
 */
 class JSHOP_trans_Ngbh: public JSHOP_API_Ngbh{

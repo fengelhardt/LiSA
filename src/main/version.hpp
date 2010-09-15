@@ -3,11 +3,11 @@
 #define lisa_version_h
 
 /// current LiSA version
-#define LISA_VERSION "3.0pre1"
+#define LISA_VERSION "3.0"
 
 /// LiSA version management
 /** @author Lars Dornheim
-    @version 3.0pre1
+    @version 3.0
   */ 
 const char* Lisa_GetVersion(void);
 

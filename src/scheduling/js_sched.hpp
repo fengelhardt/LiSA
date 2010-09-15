@@ -8,7 +8,7 @@
 /// special problem class for job shop problems
 /** it numerates from 1
     @author Thomas Tautenhahn, Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_JsSchedule
  */
 class Lisa_JsProblem : public Lisa_ShpProblem{ 
@@ -26,7 +26,7 @@ public:
 /// special schedule class for job shop problems
 /** it numerates from 1
     @author Thomas Tautenhahn, Andreas Winkler
-    @version 3.0pre1
+    @version 3.0
     @see Lisa_JsProblem
  */
 class Lisa_JsSchedule  : public Lisa_ShpSchedule{ 

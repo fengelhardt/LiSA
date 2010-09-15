@@ -5,7 +5,7 @@
 
                        http://lisa.math.uni-magdeburg.de
 
-                    Version 3.0pre1 released on 04.11.2009
+                    Version 3.0 released on 15.09.2010
 
 The software package LiSA was developed within the framework of the research 
 project Latin Rectangles in Scheduling Theory (supported by the German State

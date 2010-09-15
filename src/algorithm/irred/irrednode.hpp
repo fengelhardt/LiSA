@@ -11,7 +11,7 @@
     schedule so they can be put in a list.
   
     @see Lisa_IrredResult
-    @version 3.0pre1
+    @version 3.0
     @author Marc Moerig
 
  */
@@ -53,7 +53,7 @@ public:
     unwanted results by comparing them to each other.
  
     @see Lisa_IrredNode
-    @version 3.0pre1
+    @version 3.0
     @author Marc Moerig
 */
 class Lisa_IrredResult : public Lisa_GenericObject{

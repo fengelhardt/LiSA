@@ -3,7 +3,7 @@
 /*                                                                           */
 /*   Export: Procedure Fix_Disjunctions:                                     */
 /*                     Calculation of the fixed disjunctive arcs in SonNode  */ 
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 #ifndef _FIX_H

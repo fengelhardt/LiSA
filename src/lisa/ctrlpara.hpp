@@ -25,7 +25,7 @@
     </CONTROLPARAMETERS>
   
     @author Per Willenius, Thomas Tautenhahn 
-    @version 3.0pre1
+    @version 3.0
 */   
 class Lisa_ControlParameters: public  Lisa_Object{
 private:

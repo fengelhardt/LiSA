@@ -4,7 +4,7 @@
  * Single_Machine algorithm
  *
  * @author Christian Schulz
- * @version 3.0pre1
+ * @version 3.0
  *
  * 14.5.2001
  *

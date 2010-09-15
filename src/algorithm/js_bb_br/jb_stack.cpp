@@ -2,7 +2,7 @@
 /*                                                                           */
 /*   EXPORT: Procedure Push: Put a search tree node onto the stack           */
 /*           Procedure Pop:  Delete a search tree node from the stack        */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 #include <malloc.h>

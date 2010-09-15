@@ -1,6 +1,6 @@
 /**
  * @author  LiSA
- * @version 3.0pre1
+ * @version 3.0
  */
 
 // Include the header files for the used objects! Standard:

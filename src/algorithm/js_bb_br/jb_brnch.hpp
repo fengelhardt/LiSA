@@ -4,7 +4,7 @@
 /*  Export: Procedure Compute_Branchlist;                                    */
 /*                    Calculation of Before- and After-Candidates of         */
 /*                    the search tree node SonNode.                          */ 
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 #ifndef _BRANCH_H

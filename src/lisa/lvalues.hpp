@@ -11,7 +11,7 @@
 
 /// collection of all values which define the instance of a problem
 /** @author Per Willenius, Thomas Tautenhahn
-    @version 3.0pre1
+    @version 3.0
   */
 class Lisa_Values  : public Lisa_FileEntry{ 
 private:

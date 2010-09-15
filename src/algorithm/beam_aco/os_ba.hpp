@@ -21,7 +21,7 @@ const long MAX_HASH = 2524713;
 
 /// beam ACO implementation for open shop
 /** @author Per Willenius
-@version 3.0pre1
+@version 3.0
 */
 
 

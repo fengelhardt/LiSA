@@ -9,7 +9,7 @@
     through files of the type *.lsa should be children of Lisa_FileEntry.
         
     @author Per Willenius 
-    @version 3.0pre1
+    @version 3.0
  */
 class Lisa_FileEntry : public Lisa_Object{};
 

@@ -2,7 +2,7 @@
 /*                              Filename: Sort.c                             */
 /*                                                                           */
 /*  EXPORT: Procedure Sort: Sorting of an array into a non-decreasing order  */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 

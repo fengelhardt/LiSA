@@ -3,7 +3,7 @@
 /*                                                                           */
 /*    EXPORT: Procedure Initialize:                                          */
 /*                      Initialization of global variables                   */ 
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 #ifndef _INIT_H

@@ -10,7 +10,7 @@
 /*          Procedure PrintList:       Print list on screen                  */
 /*          Procedure Update_DisjArcs: Updating of fixed disjunctive arcs    */
 /*                                     during the backtracking               */
-//   @version 3.0pre1
+//   @version 3.0
 /* ************************************************************************* */
 
 #include <malloc.h>
