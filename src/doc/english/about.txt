@@ -4,13 +4,12 @@
                         ================================
 
                        http://lisa.math.uni-magdeburg.de
-                     lisagroup@lisa.math.uni-magdeburg.de
 
                     Version 3.0pre1 released on 04.11.2009
 
 The software package LiSA was developed within the framework of the research 
 project Latin Rectangles in Scheduling Theory (supported by the German State
-Sachsen-Anhalt). This distribution is licensed under the GNU public license.
+Sachsen-Anhalt). This distribution is licensed under the GNU General Public License.
 
 Project Supervisor: Heidemarie Braesel
 
@@ -19,7 +18,8 @@ Programming - Research Assistents: Martin Harborth,
                                    Per Willenius
 
 Programming - Students:  Lars Dornheim, Ines Wasmund, Andreas Winkler,
-                         Ivo Roessling, Sandra Kutz, Marc Moerig
+                         Ivo Roessling, Sandra Kutz, Marc Moerig,
+                         Mathias Plauschin, Frank Engelhardt
 
 Contact Address: Heidemarie Braesel, 
                  Otto-von-Guericke-Universitaet Magdeburg,

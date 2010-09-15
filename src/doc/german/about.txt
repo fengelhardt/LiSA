@@ -4,13 +4,12 @@
                         ================================
 
                        http://lisa.math.uni-magdeburg.de
-                     lisagroup@lisa.math.uni-magdeburg.de
 
                        Version 3.0pre1 vom 04.11.2009
 
 Das Softwarepaket LiSA wurde im Rahmen des vom Land Sachsen Anhalt 
 gefoerderten Projektes "Lateinische Rechtecke in der Scheduling-Theorie" 
-entwickelt. Diese Kopie ist unter der GNU Public Licence lizensiert.
+entwickelt. Diese Kopie ist unter der GNU General Public Licence lizensiert.
 
 Projektleiterin: Heidemarie Braesel
 
@@ -19,7 +18,8 @@ Programmierung - Wissenschaftliche Assistenten: Martin Harborth,
                                                 Per Willenius
 
 Programmierung - Studenten: Lars Dornheim, Ines Wasmund, Andreas Winkler, 
-                            Ivo Roessling, Sandra Kutz, Marc Moerig
+                            Ivo Roessling, Sandra Kutz, Marc Moerig,
+                            Mathias Plauschin, Frank Engelhardt
 
 Kontaktadresse: Heidemarie Braesel, 
                 Otto-von-Guericke-Universitaet Magdeburg,
