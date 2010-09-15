@@ -1,6 +1,7 @@
 #include "beam_orders.hpp"
+#include <time.h>
 
-//define modulo to always be a positive integer even if a is negative 
+//define modulo to always be a positive integer even if a is negative
 #define MOD(a,b) (((a)%(b))+(b))%(b)
 
 // this is not working due to the wierd sorting of Lisa_Order (what is a bug in my eyes)
@@ -28,7 +29,7 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
   for (int i=0; i < os_problem->n; i++)
     for (int j=0; j < os_problem->m; j++) {
       //do nothing for non-existing operations
-      if (! (*os_problem->sij)[i+1][j+1]) 
+      if (! (*os_problem->sij)[i+1][j+1])
 	{
 	  //order sorts non-decreasing
 	  //non-existing ops get maximum key : +infinity;
@@ -36,18 +37,18 @@ Lisa_Order* makeOrder(InsertionOrder iord, int& ops, Lisa_OsProblem *os_problem)
 	  order->read_one_key( i, j, DOUBLE_INF);
 	  continue;
 	}
-      if (iord == lpt) 
+      if (iord == lpt)
 	order->read_one_key( i, j, -(*(os_problem->time))[i+1][j+1]);
-      else if (iord == spt) 
+      else if (iord == spt)
 	order->read_one_key( i, j, (*(os_problem->time))[i+1][j+1]);
       else if (iord == diagonal){
-	order->read_one_key(i,j, 
-			    (MOD(j-i,min_mn))*min_mn*min_mn*squares + 
+	order->read_one_key(i,j,
+			    (MOD(j-i,min_mn))*min_mn*min_mn*squares +
 			    i*min_mn + (j/min_mn)*min_mn*min_mn + j%min_mn);
       }
       else if (iord == line_by_line)
 	order->read_one_key( i, j, j * os_problem->n + i);
-      else 
+      else
 	order->read_one_key( i, j, lisa_random(1, 24213, &seed));
     }
   order->sort();
@@ -166,7 +167,7 @@ Lisa_Order* makeQueenSweep(int& ops, Lisa_OsProblem *os_problem){
 	    continue;
 	  }
 	order->read_one_key(row, pos, i + sweep*m);
-      }	
+      }
     }
   }
   ops = l;
