@@ -16,7 +16,10 @@ using namespace std;
 //**************************************************************************
 
 Lisa_ScheduleNode::Lisa_ScheduleNode() {
+  
   actual_schedule=NULL;
+  must_destroy=false;
+  
   schedule_info=new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
   schedule_info->fill(0);
 }
@@ -28,17 +31,52 @@ int Lisa_ScheduleNode::sinfo_pointer = 0;
 //**************************************************************************
 
 Lisa_ScheduleNode::Lisa_ScheduleNode(Lisa_Schedule* l_schedule) {
+  
   actual_schedule=l_schedule;
+  must_destroy=false;
+  
   schedule_info=new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
   schedule_info->fill(0);
 }
 
 //**************************************************************************
 
-Lisa_ScheduleNode::Lisa_ScheduleNode(const Lisa_ScheduleNode &myschedulenode) {
-  actual_schedule=myschedulenode.actual_schedule;
+Lisa_ScheduleNode::Lisa_ScheduleNode(const Lisa_ScheduleNode &other) {
+  
+  actual_schedule=other.actual_schedule;
+  must_destroy=false;
+  
   schedule_info=new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
-  (*schedule_info) = (*myschedulenode.schedule_info);
+  (*schedule_info) = (*other.schedule_info);
+}
+
+//**************************************************************************
+
+const Lisa_ScheduleNode & Lisa_ScheduleNode::operator=( const Lisa_ScheduleNode & other) {
+ //old variant ... seems to be heavily brokken! -marc-
+ if(must_destroy){
+   delete actual_schedule;
+   must_destroy=false;
+ }
+ 
+ if (other.actual_schedule) {
+   actual_schedule= new Lisa_Schedule(*other.actual_schedule);
+   must_destroy = true;
+ }
+ 
+ if (other.schedule_info) {
+   delete schedule_info;
+   schedule_info= new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
+   (*schedule_info)=(*other.schedule_info);
+ }
+
+}
+
+//**************************************************************************
+
+Lisa_ScheduleNode::~Lisa_ScheduleNode(){
+  delete schedule_info;
+  if(must_destroy) delete actual_schedule;
 }
 
 //**************************************************************************
@@ -88,21 +126,6 @@ bool Lisa_ScheduleNode::operator!=(const Lisa_ScheduleNode & other) const {
 
 //**************************************************************************
 
-const Lisa_ScheduleNode & Lisa_ScheduleNode::operator=( const Lisa_ScheduleNode & other) {
-  delete actual_schedule;
-  if (other.actual_schedule) {
-  actual_schedule= new Lisa_Schedule(*other.actual_schedule);
-  }
-  if (other.schedule_info) {
-    delete schedule_info;
-    schedule_info= new Lisa_Vector<int>(LENGHT_OF_INFO_VECTOR);
-    (*schedule_info)=(*other.schedule_info);
-  }
- return  other;
-}
-
-//**************************************************************************
-
 void Lisa_ScheduleNode::write(ostream & strm) const {
   if (actual_schedule)
     strm << *actual_schedule << endl;
@@ -112,12 +135,6 @@ void Lisa_ScheduleNode::write(ostream & strm) const {
 
 void Lisa_ScheduleNode::read(istream & strm) {
   strm >> *actual_schedule;
-}
-
-//**************************************************************************
-
-Lisa_ScheduleNode::~Lisa_ScheduleNode(){
-  delete schedule_info;
 }
 
 //**************************************************************************

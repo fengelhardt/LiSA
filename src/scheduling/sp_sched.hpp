@@ -47,7 +47,7 @@ public:
   /** needs a given instance of Lisa_Values to construct */
   Lisa_ShpProblem(const Lisa_Values * Pin);
   /// destructor
-  ~Lisa_ShpProblem();
+  virtual ~Lisa_ShpProblem();
 };
        
 /// basic class and interface for Lisa_OsSchedule and Lisa_JsSchedule 

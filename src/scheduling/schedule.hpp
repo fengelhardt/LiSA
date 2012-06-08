@@ -112,6 +112,9 @@ public:
   /// the Schedule
   Lisa_Schedule *actual_schedule;
   
+  ///true iff I own *actual_schedule
+  bool must_destroy;
+  
   /// a vector to hold some additional information
   Lisa_Vector<int> *schedule_info;
   
