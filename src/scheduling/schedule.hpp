@@ -24,7 +24,7 @@ const int NO_OF_IKL =12;
 
 /// schedule class for communication with algorithms
 /** @author Per Willenius, Thomas Tautenhahn
-    @version 3.0
+    @version 3.0pre1
  */
 class Lisa_Schedule  : public Lisa_FileEntry{
 protected:
@@ -105,15 +105,12 @@ public:
     Used to store Schedules in a Lisa_List
     
     @author Per Willenius, Thomas Tautenhahn
-    @version 3.0
+    @version 3.0pre1
  */
 class Lisa_ScheduleNode  : public Lisa_FileEntry{
 public:
   /// the Schedule
   Lisa_Schedule *actual_schedule;
-  
-  ///true iff I own *actual_schedule
-  bool must_destroy;
   
   /// a vector to hold some additional information
   Lisa_Vector<int> *schedule_info;

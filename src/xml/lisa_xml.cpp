@@ -814,16 +814,19 @@ bool LisaXmlFile::read(Lisa_Schedule& S)
 
 bool LisaXmlFile::read(Lisa_ScheduleNode& S)
 {	
-  if(!S.actual_schedule)
-    S.actual_schedule = new Lisa_Schedule();
-    S.must_destroy    = true;
-  if(!read(*(S.actual_schedule)))
-    {
-      delete S.actual_schedule;
-      S.actual_schedule = NULL;
-      S.must_destroy=false;
-      return false;
-    }
+  //if(!S.actual_schedule)
+  //  S.actual_schedule = new Lisa_Schedule();
+  //if(!read(*(S.actual_schedule)))
+  //  {
+  //    delete S.actual_schedule;
+  //    S.actual_schedule = NULL;
+  //    return false;
+  //  }
+  //return true;
+  Lisa_Schedule SS;
+  if(!read(SS)) return false;
+  
+  S = Lisa_ScheduleNode(SS);
   return true;
 }
 
